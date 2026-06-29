@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Free online tools hub - Jurepi",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
