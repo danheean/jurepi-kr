@@ -18,3 +18,5 @@
 | 2026-06-29 | 사다리타기(ghost-leg) 구현 — 엔진(공정성 chi-square)·reducer·게임 UI·SSG 라우트, 243 테스트/96% 커버리지/빌드 그린 | src/** (제품) | 첫 도구 빌드. 팀 파이프라인 정상 동작 검증 |
 | 2026-06-29 | integration-qa 스킬에 "커버리지·테스트 하드 게이트" 추가 | skills/integration-qa | QA가 도메인 커버리지를 전체로 오인해 false PASS 2회 → 전체 커버리지·UI 테스트 존재를 명시적 차단 체크로 |
 | 2026-06-29 | 스캐폴드 기본값 강화 (test=`vitest run`, coverage 스코프 `src/**`) | skills/nextjs-ssg-platform | 워치 모드 스크립트 hang + 커버리지 스코프 오염 결함 재발 방지 |
+| 2026-06-29 | 오케스트레이터에 "주장≠증명" 검증 원칙 + 작업 분할 지침 추가 | skills/jurepi-build | 에이전트 거짓 PASS 4회(가짜 chi-square·커버리지 false-PASS·"10/11"실제4실패·행에도 "배포완료") + ui 컨텍스트 소진 2회 |
+| 2026-06-29 | Vitest/Playwright 스펙 분리, ui E2E `data-testid` 앵커, 죽은검정·로케일매처·clipboard 교훈 | nextjs-ssg-platform · ui-engineer · jurepi-tdd | E2E 그린화 세션에서 드러난 경계·환경 결함 재발 방지 |

@@ -31,6 +31,7 @@ model: opus
 - **컴포지터 친화 모션만.** transform/opacity/clip-path/stroke-dashoffset. width/height/top/left/margin 애니메이션 금지.
 - **CLS 방어.** 동적 콘텐츠·광고 슬롯은 고정 높이 예약. 이미지 width/height 명시.
 - **TDD 적용** → `jurepi-tdd` 스킬: 상태 동작이 있는 컴포넌트는 동작 테스트(Testing Library)를 먼저, 고도 시각 컴포넌트는 시각 회귀(Playwright 스크린샷)로 보강.
+- **E2E 안정 앵커.** 상호작용·검증 대상(카드·칩·토글·스테퍼·보드·요약 등)에 `data-testid`를 부여한다 — QA가 로케일 문자열(영어 vs 한국어)에 의존하지 않고 안정적으로 셀렉트하게 하는 경계 계약. 프리미티브엔 optional `testId` prop을 두고 통과시킨다.
 - 파일 800줄 초과 금지(특히 큰 컴포넌트는 분할).
 
 ## 입력/출력 프로토콜
