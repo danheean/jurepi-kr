@@ -27,8 +27,13 @@ export function ResultPanel({ ladder }: ResultPanelProps) {
   const [showToast, setShowToast] = useState(false);
   const [showCopyModal, setShowCopyModal] = useState(false);
 
-  if (ladder.state.phase === 'setup' || ladder.state.revealed.length === 0)
-    return null;
+  // Action panel (reveal-all / reshuffle / reset) is available as soon as a ladder
+  // is built — and stays available after "다시 섞기" clears reveals. Only setup hides it.
+  if (ladder.state.phase === 'setup') return null;
+
+  // Copy stays gated so hidden results can't leak before any reveal.
+  const canCopy =
+    ladder.state.revealed.length > 0 || !ladder.state.hideResults;
 
   const mapping = selectMapping(ladder.state);
   const resultText = ladder.state.players
@@ -75,9 +80,11 @@ export function ResultPanel({ ladder }: ResultPanelProps) {
           {t('panel.reset')}
         </Button>
 
-        <Button variant="secondary" onClick={handleCopy}>
-          {t('panel.copy')}
-        </Button>
+        {canCopy && (
+          <Button variant="secondary" onClick={handleCopy}>
+            {t('panel.copy')}
+          </Button>
+        )}
       </div>
 
       {/* Sound toggle */}

@@ -15,19 +15,25 @@ describe('ResultPanel Component', () => {
     });
   });
 
-  it('does not render when phase=setup or no reveals', () => {
+  it('hides only in setup; keeps action panel (reveal-all/reshuffle/reset) once built', () => {
     const { result } = renderHook(() => useLadder(2));
     const { rerender } = render(<ResultPanel ladder={result.current} />);
 
+    // setup phase → panel not rendered
     expect(screen.queryByText(/Reveal all/i)).not.toBeInTheDocument();
 
-    // After build but no reveals
+    // After build (ready, no reveals) the action panel IS available — including Reset,
+    // so it persists after "다시 섞기" clears reveals (product decision).
     act(() => {
       result.current.build();
     });
     rerender(<ResultPanel ladder={result.current} />);
 
-    expect(screen.queryByText(/Reveal all/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/Reveal all/i)).toBeInTheDocument();
+    expect(screen.getByText(/Reshuffle/i)).toBeInTheDocument();
+    expect(screen.getByText(/Reset/i)).toBeInTheDocument();
+    // Copy is gated before any reveal in hidden mode (no result leak via clipboard)
+    expect(screen.queryByText(/Copy results/i)).not.toBeInTheDocument();
   });
 
   it('renders after first reveal', () => {

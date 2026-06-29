@@ -93,10 +93,10 @@ test.describe('Ladder Game - E2E Integration', () => {
       await expect(playerChips.nth(i)).toContainText(playerNames[i]);
     }
 
-    // Reset lives in ResultPanel, which requires an active reveal — reveal once, then reset.
-    await playerChips.nth(0).click();
-    await expect.poll(() => prizeCardsAllRevealed(prizeCards, 6), { timeout: 3000 }).toBeGreaterThan(0);
-    await page.locator('button:has-text("처음으로")').click();
+    // Reset stays available after reshuffle (product decision) — no re-reveal needed.
+    const resetButton = page.locator('button:has-text("처음으로")');
+    await expect(resetButton).toBeVisible();
+    await resetButton.click();
 
     // Back to setup with labels retained
     await expect(setupCard).toBeVisible({ timeout: 5000 });
