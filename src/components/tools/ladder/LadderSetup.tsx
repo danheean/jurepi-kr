@@ -13,6 +13,7 @@ import {
   toRankEmoji,
 } from '@/lib/result-suggestions';
 import type { UseLadderReturn } from './useLadder';
+import type { LadderTension } from '@/lib/ladder-reducer';
 
 interface LadderSetupProps {
   ladder: UseLadderReturn;
@@ -87,6 +88,30 @@ export function LadderSetup({ ladder }: LadderSetupProps) {
             max={10}
             label={t('setup.countLabel')}
           />
+        </div>
+
+        {/* Tension control */}
+        <div className="mb-6" data-testid="tension-control">
+          <label className="block text-sm font-semibold text-text mb-2">
+            {t('setup.tensionLabel')}
+          </label>
+          <div className="flex gap-2">
+            {(['low', 'medium', 'high'] as const).map((tension: LadderTension) => (
+              <button
+                key={tension}
+                data-testid={`tension-option-${tension}`}
+                onClick={() => ladder.setTension(tension)}
+                aria-pressed={ladder.state.tension === tension}
+                className={`flex-1 px-3 py-2 rounded-lg font-medium text-sm transition-colors ${
+                  ladder.state.tension === tension
+                    ? 'bg-brand text-on-brand'
+                    : 'bg-surface-muted text-text border border-hairline hover:border-brand-soft'
+                }`}
+              >
+                {t(`setup.tension${tension.charAt(0).toUpperCase() + tension.slice(1)}`)}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Two-column layout for desktop, stacked for mobile */}

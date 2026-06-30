@@ -142,30 +142,27 @@ test.describe('Ladder Game - Accessibility', () => {
     // Focus the page first to ensure keyboard events are captured
     await page.focus('body');
 
-    // Press "1" to reveal first player
+    // Press "1" to reveal first player. The reveal animation now scales with rung
+    // density (high tension = longer trace), so poll for the reveal instead of a
+    // fixed wait. Do NOT fall back to a chip click — chips are disabled while a
+    // trace is animating, so a fallback click would hang.
     await page.keyboard.press('1');
-    await page.waitForTimeout(400);
 
-    // At least one prize should be revealed (or use button click as fallback)
     const prizeCards = page.locator('[data-testid="prize-card"]');
-    let revealedCount = 0;
-    for (let i = 0; i < await prizeCards.count(); i++) {
-      const text = await prizeCards.nth(i).textContent();
-      if (text?.trim() !== '?') revealedCount++;
-    }
-
-    // If keyboard shortcut didn't work, try clicking a chip directly
-    if (revealedCount === 0) {
-      const chip = page.locator('[data-testid="player-chip"]').first();
-      await chip.click();
-      await page.waitForTimeout(400);
-      for (let i = 0; i < await prizeCards.count(); i++) {
-        const text = await prizeCards.nth(i).textContent();
-        if (text?.trim() !== '?') revealedCount++;
-      }
-    }
-
-    expect(revealedCount).toBeGreaterThan(0);
+    await expect
+      .poll(
+        async () => {
+          let revealed = 0;
+          const count = await prizeCards.count();
+          for (let i = 0; i < count; i++) {
+            const text = await prizeCards.nth(i).textContent();
+            if (text?.trim() !== '?') revealed++;
+          }
+          return revealed;
+        },
+        { timeout: 6000 }
+      )
+      .toBeGreaterThan(0);
   });
 
   test('Focus visible on interactive buttons', async ({ page }) => {

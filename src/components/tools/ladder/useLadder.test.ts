@@ -24,6 +24,34 @@ describe('useLadder Hook', () => {
   });
 
   describe('Setup Phase', () => {
+    it('initializes with tension=high by default', () => {
+      const { result } = renderHook(() => useLadder());
+      expect(result.current.state.tension).toBe('high');
+    });
+
+    it('SET_TENSION changes state.tension', () => {
+      const { result } = renderHook(() => useLadder());
+      expect(result.current.state.tension).toBe('high');
+
+      act(() => {
+        result.current.setTension('low');
+      });
+
+      expect(result.current.state.tension).toBe('low');
+
+      act(() => {
+        result.current.setTension('medium');
+      });
+
+      expect(result.current.state.tension).toBe('medium');
+
+      act(() => {
+        result.current.setTension('high');
+      });
+
+      expect(result.current.state.tension).toBe('high');
+    });
+
     it('SET_COUNT preserves existing values', () => {
       const { result } = renderHook(() => useLadder());
 

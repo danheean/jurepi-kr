@@ -4,6 +4,8 @@
  * Used for rasterizing result images to PNG.
  */
 
+import { levelHeightFor } from '@/components/tools/ladder/ladderLayout';
+
 export const ACCENT_HEX: string[] = [
   '#ff7a85', // coral
   '#2dd4bf', // mint
@@ -56,7 +58,6 @@ function escapeXml(str: string): string {
  */
 export function buildResultSvgString(params: ResultImageParams): string {
   const COLUMN_WIDTH = 60;
-  const LEVEL_HEIGHT = 40;
   const PADDING = 30;
   const LABEL_PADDING = 15; // space for top/bottom labels
   const LEGEND_MARGIN_TOP = 40;
@@ -67,6 +68,7 @@ export function buildResultSvgString(params: ResultImageParams): string {
 
   const numLevels = rungs.length || 5;
   const numColumns = playerCount;
+  const LEVEL_HEIGHT = levelHeightFor(numLevels);
 
   // Board dimensions (including space for labels)
   const boardWidth = PADDING * 2 + COLUMN_WIDTH * numColumns;

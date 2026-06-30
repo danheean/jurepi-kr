@@ -55,15 +55,28 @@ export function uniformPermutation(n: number, rng: Rng = cryptoRng): number[] {
 }
 
 /**
+ * Options for ladderFromPermutation.
+ */
+export interface LadderFromPermutationOptions {
+  tension?: 'low' | 'medium' | 'high';
+}
+
+/**
  * Build a ladder (rungs) that realizes the given permutation.
  * Strategy: decompose the permutation into adjacent transpositions via bubble sort.
  * Each transposition becomes one rung level, ensuring the no-adjacent-rung invariant.
+ * Phase 2: optionally insert canceling decoy rung pairs to increase visual density.
  *
  * @param perm the target permutation (perm[startCol] = prizeIndex)
- * @param rng optional RNG (not used in base algorithm, reserved for Phase 2 decoy rung insertion)
+ * @param rng optional RNG (used for decoy rung insertion to ensure determinism)
+ * @param opts optional configuration { tension: 'low'|'medium'|'high' }
  * @returns rungs[level][c] = true if there is a rung between columns c and c+1 at this level
  */
-export function ladderFromPermutation(perm: number[], rng?: Rng): boolean[][] {
+export function ladderFromPermutation(
+  perm: number[],
+  rng?: Rng,
+  opts?: LadderFromPermutationOptions
+): boolean[][] {
   const n = perm.length;
   const arr = perm.slice(); // work array: arr[col] = prize this column must reach
   const rungs: boolean[][] = [];
@@ -82,10 +95,64 @@ export function ladderFromPermutation(perm: number[], rng?: Rng): boolean[][] {
     }
   }
 
-  // TODO: Phase 2 — optionally insert canceling decoy rung pairs for visual richness
-  // (does NOT change the mathematical result, only visual appearance)
+  // Phase 2: optionally insert canceling decoy rung pairs for visual richness
+  // Decoy pairs do NOT change the mathematical result (they are identity swaps)
+  const tension = opts?.tension ?? 'high';
+  if (tension !== 'low' && rng) {
+    const baselineCount = rungs.length;
+    const targetCount = calculateTargetRungCount(n, tension);
+
+    if (targetCount > baselineCount) {
+      const decoysToAdd = Math.floor((targetCount - baselineCount) / 2);
+      insertDecoRungPairs(rungs, n, decoysToAdd, rng);
+    }
+  }
 
   return rungs;
+}
+
+/**
+ * Calculate the target number of rungs based on n and tension level.
+ * low: baseline (n-1), medium: ~1.5x baseline, high: ~2.5x baseline
+ */
+function calculateTargetRungCount(n: number, tension: 'low' | 'medium' | 'high'): number {
+  const baseline = Math.max(1, n - 1);
+  switch (tension) {
+    case 'low':
+      return baseline;
+    case 'medium':
+      return Math.ceil(baseline * 1.5);
+    case 'high':
+      return Math.ceil(baseline * 2.5);
+  }
+}
+
+/**
+ * Insert decoy rung pairs (non-sequential canceling swaps) at random positions.
+ * Each pair consists of two adjacent levels with a rung at the same column.
+ * Since they swap and swap back, they are identity and don't change the permutation.
+ *
+ * @param rungs the rungs array to modify (mutated in place)
+ * @param n number of columns
+ * @param count number of decoy pairs to insert
+ * @param rng seeded RNG for reproducibility
+ */
+function insertDecoRungPairs(rungs: boolean[][], n: number, count: number, rng: Rng): void {
+  for (let i = 0; i < count; i++) {
+    // Pick a random column (0 to n-2) for the decoy pair
+    const col = Math.floor(rng() * (n - 1));
+    // Pick a random position to insert the pair (can be at the beginning, middle, or end)
+    const insertPos = Math.floor(rng() * (rungs.length + 1));
+
+    // Create two levels with rungs at the same column
+    const level1 = new Array(n - 1).fill(false);
+    level1[col] = true;
+    const level2 = new Array(n - 1).fill(false);
+    level2[col] = true;
+
+    // Insert both levels together (order matters: they must be consecutive)
+    rungs.splice(insertPos, 0, level1, level2);
+  }
 }
 
 /**

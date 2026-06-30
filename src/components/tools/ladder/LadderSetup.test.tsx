@@ -353,4 +353,68 @@ describe('LadderSetup Component', () => {
       expect((input as HTMLInputElement).value).toBe('');
     });
   });
+
+  describe('Tension Control', () => {
+    it('renders tension control with three options (low, medium, high)', () => {
+      const { result } = renderHook(() => useLadder(4));
+      render(<LadderSetup ladder={result.current} />);
+
+      const tensionControl = screen.getByTestId('tension-control');
+      expect(tensionControl).toBeInTheDocument();
+
+      const lowBtn = screen.getByTestId('tension-option-low');
+      const mediumBtn = screen.getByTestId('tension-option-medium');
+      const highBtn = screen.getByTestId('tension-option-high');
+
+      expect(lowBtn).toBeInTheDocument();
+      expect(mediumBtn).toBeInTheDocument();
+      expect(highBtn).toBeInTheDocument();
+    });
+
+    it('defaults to high tension (active state)', () => {
+      const { result } = renderHook(() => useLadder(4));
+      const { rerender } = render(<LadderSetup ladder={result.current} />);
+
+      const highBtn = screen.getByTestId('tension-option-high');
+      expect(highBtn).toHaveAttribute('aria-pressed', 'true');
+
+      const lowBtn = screen.getByTestId('tension-option-low');
+      const mediumBtn = screen.getByTestId('tension-option-medium');
+      expect(lowBtn).toHaveAttribute('aria-pressed', 'false');
+      expect(mediumBtn).toHaveAttribute('aria-pressed', 'false');
+    });
+
+    it('clicking tension option updates state', async () => {
+      const { result } = renderHook(() => useLadder(4));
+      const { rerender } = render(<LadderSetup ladder={result.current} />);
+
+      expect(result.current.state.tension).toBe('high');
+
+      // Click low
+      const lowBtn = screen.getByTestId('tension-option-low');
+      await userEvent.click(lowBtn);
+
+      act(() => {
+        result.current.setTension('low');
+      });
+      rerender(<LadderSetup ladder={result.current} />);
+
+      expect(result.current.state.tension).toBe('low');
+      expect(lowBtn).toHaveAttribute('aria-pressed', 'true');
+      expect(screen.getByTestId('tension-option-high')).toHaveAttribute('aria-pressed', 'false');
+
+      // Click medium
+      const mediumBtn = screen.getByTestId('tension-option-medium');
+      await userEvent.click(mediumBtn);
+
+      act(() => {
+        result.current.setTension('medium');
+      });
+      rerender(<LadderSetup ladder={result.current} />);
+
+      expect(result.current.state.tension).toBe('medium');
+      expect(mediumBtn).toHaveAttribute('aria-pressed', 'true');
+      expect(lowBtn).toHaveAttribute('aria-pressed', 'false');
+    });
+  });
 });

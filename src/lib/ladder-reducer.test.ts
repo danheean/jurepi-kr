@@ -180,12 +180,14 @@ describe('ladder reducer', () => {
   describe('BUILD action', () => {
     it('transitions setup → ready and generates permutation + rungs', () => {
       let state = initLadderState(3);
+      // Set tension to 'low' to get baseline rungs (no decoy pairs) for this test
+      state = ladderReducer(state, { type: 'SET_TENSION', tension: 'low' });
       const rng = mulberry32(42);
       state = ladderReducer(state, { type: 'BUILD', rng });
 
       expect(state.phase).toBe('ready');
       expect(state.permutation).toHaveLength(3);
-      expect(state.rungs).toHaveLength(state.playerCount - 1); // bubble sort at most n-1 levels
+      expect(state.rungs).toHaveLength(state.playerCount - 1); // bubble sort exactly n-1 levels with tension='low'
       expect(state.revealed).toEqual([]);
       expect(state.activeTrace).toBeNull();
     });
@@ -614,6 +616,67 @@ describe('ladder reducer', () => {
       }
       // It is itself a permutation of 0..n-1.
       expect([...inverse].sort((a, b) => a - b)).toEqual([0, 1, 2, 3, 4]);
+    });
+  });
+
+  describe('tension state management', () => {
+    it('initializes with default tension=high', () => {
+      const state = initLadderState(4);
+      expect(state.tension).toBe('high');
+    });
+
+    it('SET_TENSION action changes tension', () => {
+      let state = initLadderState(3);
+      state = ladderReducer(state, { type: 'SET_TENSION', tension: 'low' });
+      expect(state.tension).toBe('low');
+
+      state = ladderReducer(state, { type: 'SET_TENSION', tension: 'medium' });
+      expect(state.tension).toBe('medium');
+
+      state = ladderReducer(state, { type: 'SET_TENSION', tension: 'high' });
+      expect(state.tension).toBe('high');
+    });
+
+    it('tension is preserved across SET_COUNT', () => {
+      let state = initLadderState(2);
+      state = ladderReducer(state, { type: 'SET_TENSION', tension: 'low' });
+      expect(state.tension).toBe('low');
+
+      state = ladderReducer(state, { type: 'SET_COUNT', count: 4 });
+      expect(state.tension).toBe('low'); // Should remain low
+    });
+
+    it('tension is preserved across RESET', () => {
+      let state = initLadderState(3);
+      state = ladderReducer(state, { type: 'SET_TENSION', tension: 'medium' });
+      state = ladderReducer(state, { type: 'BUILD', rng: mulberry32(42) });
+      state = ladderReducer(state, { type: 'RESET' });
+      expect(state.tension).toBe('medium'); // Should remain medium after reset
+    });
+
+    it('BUILD uses the current tension setting', () => {
+      let state1 = initLadderState(4);
+      state1 = ladderReducer(state1, { type: 'SET_TENSION', tension: 'low' });
+      state1 = ladderReducer(state1, { type: 'BUILD', rng: mulberry32(999) });
+      const rungsLow = state1.rungs;
+
+      let state2 = initLadderState(4);
+      state2 = ladderReducer(state2, { type: 'SET_TENSION', tension: 'high' });
+      state2 = ladderReducer(state2, { type: 'BUILD', rng: mulberry32(999) });
+      const rungsHigh = state2.rungs;
+
+      // Both should be valid rungs, but high should have more levels
+      expect(rungsHigh.length).toBeGreaterThan(rungsLow.length);
+    });
+
+    it('RESHUFFLE preserves tension', () => {
+      let state = initLadderState(3);
+      state = ladderReducer(state, { type: 'SET_TENSION', tension: 'medium' });
+      state = ladderReducer(state, { type: 'BUILD', rng: mulberry32(42) });
+
+      const oldTension = state.tension;
+      state = ladderReducer(state, { type: 'RESHUFFLE', rng: mulberry32(123) });
+      expect(state.tension).toBe(oldTension);
     });
   });
 });

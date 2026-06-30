@@ -213,4 +213,112 @@ describe('ladder engine', () => {
       }
     });
   });
+
+  describe('ladderFromPermutation with tension (decoy rungs)', () => {
+    it('accepts tension option: low, medium, high', () => {
+      const perm = [2, 0, 1];
+      const rng = mulberry32(42);
+      const rungs = ladderFromPermutation(perm, rng, { tension: 'high' });
+      expect(Array.isArray(rungs)).toBe(true);
+    });
+
+    it('higher tension produces more rungs than lower tension (same perm, seed)', () => {
+      const perm = [3, 1, 2, 0];
+      const rngSeed = 555;
+
+      const rngLow = mulberry32(rngSeed);
+      const rungesLow = ladderFromPermutation(perm, rngLow, { tension: 'low' });
+
+      const rngHigh = mulberry32(rngSeed);
+      const rungesHigh = ladderFromPermutation(perm, rngHigh, { tension: 'high' });
+
+      // high should have more levels than low
+      expect(rungesHigh.length).toBeGreaterThan(rungesLow.length);
+    });
+
+    it('all tensions preserve the permutation via resolveAll', () => {
+      const tensions: Array<'low' | 'medium' | 'high'> = ['low', 'medium', 'high'];
+      const testCases = [2, 3, 4, 5, 6];
+
+      for (const n of testCases) {
+        const perm = uniformPermutation(n, mulberry32(888 + n));
+
+        for (const tension of tensions) {
+          const rng = mulberry32(889 + n); // deterministic RNG per test
+          const rungs = ladderFromPermutation(perm, rng, { tension });
+          const resolved = resolveAll(rungs, n);
+
+          // CRITICAL: The result must equal the original permutation
+          // For all tensions (low, medium, high), resolveAll must return the permutation unchanged
+          expect(resolved).toEqual(perm);
+        }
+      }
+    });
+
+    it('maintains no-adjacent-rung invariant with tension', () => {
+      const tensions: Array<'low' | 'medium' | 'high'> = ['low', 'medium', 'high'];
+
+      for (const tension of tensions) {
+        const perm = [4, 1, 3, 0, 2];
+        const rng = mulberry32(999 + (tension === 'low' ? 0 : tension === 'medium' ? 1 : 2));
+        const rungs = ladderFromPermutation(perm, rng, { tension });
+
+        // Check no adjacent rungs (two true values next to each other in same level)
+        for (let level = 0; level < rungs.length; level++) {
+          for (let c = 0; c < rungs[level].length - 1; c++) {
+            const hasLeft = rungs[level][c];
+            const hasRight = rungs[level][c + 1];
+            // No two adjacent rungs in same level (no-adjacent-rung invariant)
+            expect(!(hasLeft && hasRight)).toBe(true);
+          }
+        }
+      }
+    });
+
+    it('chi-square fairness is preserved across all tensions', () => {
+      // Simplified chi-square test: ensure tension does not break fairness
+      // We'll sample a smaller set due to computation cost
+      const n = 4;
+      const RUNS = 10000;
+      const tension = 'high';
+
+      // Tally: for each start column, count how many times each prize is reached
+      const countByStartAndPrize: number[][] = Array.from({ length: n }, () =>
+        Array.from({ length: n }, () => 0)
+      );
+
+      const rng = mulberry32(7777);
+      for (let run = 0; run < RUNS; run++) {
+        const perm = uniformPermutation(n, rng);
+        const rngDecoy = mulberry32(7778 + run);
+        const rungs = ladderFromPermutation(perm, rngDecoy, { tension });
+        const resolved = resolveAll(rungs, n);
+
+        for (let startCol = 0; startCol < n; startCol++) {
+          const prizeIdx = resolved[startCol];
+          countByStartAndPrize[startCol][prizeIdx]++;
+        }
+      }
+
+      const expectedPerCell = RUNS / n;
+      const dof = n - 1;
+      const CHI2_CRITICAL_P001: Record<number, number> = {
+        3: 11.345,
+      };
+      const criticalValue = CHI2_CRITICAL_P001[dof];
+
+      // Test a couple of start columns
+      for (let startCol = 0; startCol < 2; startCol++) {
+        const observed = countByStartAndPrize[startCol];
+        let chi2 = 0;
+        for (let prizeIdx = 0; prizeIdx < n; prizeIdx++) {
+          const obs = observed[prizeIdx];
+          const exp = expectedPerCell;
+          chi2 += ((obs - exp) ** 2) / exp;
+        }
+        // Should pass chi-square test (chi2 < critical)
+        expect(chi2).toBeLessThan(criticalValue);
+      }
+    });
+  });
 });

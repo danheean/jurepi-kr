@@ -23,6 +23,7 @@ export interface Prize {
 }
 
 export type LadderPhase = 'setup' | 'ready' | 'revealing' | 'done';
+export type LadderTension = 'low' | 'medium' | 'high';
 
 export interface LadderState {
   playerCount: number; // 2..10
@@ -31,6 +32,7 @@ export interface LadderState {
   shuffleResults: boolean; // default true: shuffle prize slots; false: identity
   prizeOrder: number[]; // slot index → prize input index, length n
   soundOn: boolean; // default false
+  tension: LadderTension; // default 'high': visual density of rungs
   phase: LadderPhase;
   rungs: boolean[][];
   permutation: number[]; // set by BUILD
@@ -46,6 +48,7 @@ export type LadderAction =
   | { type: 'SET_ALL_PRIZE_LABELS'; labels: string[] }
   | { type: 'TOGGLE_SHUFFLE' }
   | { type: 'TOGGLE_SOUND' }
+  | { type: 'SET_TENSION'; tension: LadderTension }
   | { type: 'BUILD'; rng?: Rng }
   | { type: 'START_TRACE'; playerId: string }
   | { type: 'COMPLETE_REVEAL'; playerId: string }
@@ -56,6 +59,7 @@ export type LadderAction =
 /**
  * Initialize the ladder state with a default player count.
  * All players and prizes start with blank names/labels (rendered as defaults).
+ * Tension defaults to 'high'.
  */
 export function initLadderState(count: number = 4): LadderState {
   const playerCount = Math.max(2, Math.min(10, count));
@@ -76,6 +80,7 @@ export function initLadderState(count: number = 4): LadderState {
     shuffleResults: true,
     prizeOrder,
     soundOn: false,
+    tension: 'high',
     phase: 'setup',
     rungs: [],
     permutation: [],
@@ -167,10 +172,14 @@ export function ladderReducer(
       return { ...state, soundOn: !state.soundOn };
     }
 
+    case 'SET_TENSION': {
+      return { ...state, tension: action.tension };
+    }
+
     case 'BUILD': {
       const rng = action.rng || cryptoRng;
       const permutation = uniformPermutation(state.playerCount, rng);
-      const rungs = ladderFromPermutation(permutation, rng);
+      const rungs = ladderFromPermutation(permutation, rng, { tension: state.tension });
       const prizeOrder = state.shuffleResults
         ? uniformPermutation(state.playerCount, rng)
         : Array.from({ length: state.playerCount }, (_, i) => i);
@@ -234,7 +243,7 @@ export function ladderReducer(
       if (state.phase === 'setup') return state; // Cannot reshuffle if not yet built
       const rng = action.rng || cryptoRng;
       const permutation = uniformPermutation(state.playerCount, rng);
-      const rungs = ladderFromPermutation(permutation, rng);
+      const rungs = ladderFromPermutation(permutation, rng, { tension: state.tension });
       const prizeOrder = state.shuffleResults
         ? uniformPermutation(state.playerCount, rng)
         : Array.from({ length: state.playerCount }, (_, i) => i);

@@ -152,4 +152,141 @@ test.describe('Ladder Game - Shuffle Results', () => {
 
     expect(count).toBe(7);
   });
+
+  test.describe('Tension Control', () => {
+    test('Tension control exists and defaults to high', async ({ page }) => {
+      await page.goto('/ko/tools/ladder');
+      await page.waitForLoadState('networkidle');
+
+      const tensionControl = page.locator('[data-testid="tension-control"]');
+      await expect(tensionControl).toBeVisible();
+
+      const lowBtn = page.locator('[data-testid="tension-option-low"]');
+      const mediumBtn = page.locator('[data-testid="tension-option-medium"]');
+      const highBtn = page.locator('[data-testid="tension-option-high"]');
+
+      await expect(lowBtn).toBeVisible();
+      await expect(mediumBtn).toBeVisible();
+      await expect(highBtn).toBeVisible();
+
+      // High should be active by default
+      const highPressed = await highBtn.getAttribute('aria-pressed');
+      expect(highPressed).toBe('true');
+
+      const lowPressed = await lowBtn.getAttribute('aria-pressed');
+      const mediumPressed = await mediumBtn.getAttribute('aria-pressed');
+      expect(lowPressed).toBe('false');
+      expect(mediumPressed).toBe('false');
+    });
+
+    test('Can change tension and build ladders with different densities', async ({ page }) => {
+      await page.goto('/ko/tools/ladder');
+      await page.waitForLoadState('networkidle');
+
+      // Step the count down from default 7 to 4 via the stepper buttons. At n=4 the
+      // high-tension target (~8 rungs) always exceeds the max possible low-tension
+      // rung count (6 inversions), so high > low is deterministic (no permutation-
+      // variance flake). The Stepper uses +/- buttons, not a number input.
+      const minusBtn = page.locator('[data-testid="stepper-decrement"]').first();
+      await expect(minusBtn).toBeVisible({ timeout: 5000 });
+      for (let i = 0; i < 3; i++) await minusBtn.click();
+
+      // Build with LOW tension
+      const lowBtn = page.locator('[data-testid="tension-option-low"]');
+      await lowBtn.click();
+
+      const buildButton = page.locator('button').filter({
+        hasText: /사다리 만들기|Build/,
+      });
+      await buildButton.click();
+      await page.waitForTimeout(300);
+
+      const svgBoard = page.locator('[data-testid="ladder-board"]');
+      await expect(svgBoard).toBeVisible();
+
+      // Count horizontal lines (rungs) with low tension
+      const rungsLow = await svgBoard.evaluate(() => {
+        const svg = document.querySelector('[data-testid="ladder-board"]') as SVGSVGElement;
+        const lines = Array.from(svg.querySelectorAll('line'));
+        return lines.filter(l => {
+          const y1 = parseFloat(l.getAttribute('y1') || '0');
+          const y2 = parseFloat(l.getAttribute('y2') || '0');
+          const x1 = parseFloat(l.getAttribute('x1') || '0');
+          const x2 = parseFloat(l.getAttribute('x2') || '0');
+          // Horizontal lines: y1 ≈ y2, x1 ≠ x2
+          return Math.abs(y1 - y2) < 1 && Math.abs(x1 - x2) > 5;
+        }).length;
+      });
+
+      expect(rungsLow).toBeGreaterThan(0);
+
+      // Reset to setup and build with HIGH tension
+      const resetBtn = page.locator('button').filter({ hasText: /처음으로|Reset/ });
+      await expect(resetBtn).toBeVisible({ timeout: 5000 });
+      await resetBtn.click();
+      await page.waitForTimeout(300);
+
+      const highBtn = page.locator('[data-testid="tension-option-high"]');
+      await highBtn.click();
+
+      await buildButton.click();
+      await page.waitForTimeout(300);
+
+      // Count horizontal lines with high tension
+      const rungsHigh = await svgBoard.evaluate(() => {
+        const svg = document.querySelector('[data-testid="ladder-board"]') as SVGSVGElement;
+        const lines = Array.from(svg.querySelectorAll('line'));
+        return lines.filter(l => {
+          const y1 = parseFloat(l.getAttribute('y1') || '0');
+          const y2 = parseFloat(l.getAttribute('y2') || '0');
+          const x1 = parseFloat(l.getAttribute('x1') || '0');
+          const x2 = parseFloat(l.getAttribute('x2') || '0');
+          // Horizontal lines: y1 ≈ y2, x1 ≠ x2
+          return Math.abs(y1 - y2) < 1 && Math.abs(x1 - x2) > 5;
+        }).length;
+      });
+
+      // High tension should have more rungs (higher density) than low
+      expect(rungsHigh).toBeGreaterThan(rungsLow);
+    });
+
+    test('Results still work correctly with different tension settings', async ({ page }) => {
+      await page.goto('/ko/tools/ladder');
+      await page.waitForLoadState('networkidle');
+
+      // Set to medium tension
+      const mediumBtn = page.locator('[data-testid="tension-option-medium"]');
+      await mediumBtn.click();
+
+      // Verify it's active
+      const isActive = await mediumBtn.getAttribute('aria-pressed');
+      expect(isActive).toBe('true');
+
+      // Build
+      const buildButton = page.locator('button').filter({
+        hasText: /사다리 만들기|Build/,
+      });
+      await buildButton.click();
+      await page.waitForTimeout(300);
+
+      // Board should be visible
+      const svgBoard = page.locator('[data-testid="ladder-board"]');
+      await expect(svgBoard).toBeVisible();
+
+      // Reveal all results
+      const revealAllBtn = page.locator('button').filter({ hasText: /전체 결과 보기|Reveal all/ });
+      await expect(revealAllBtn).toBeVisible();
+      await revealAllBtn.click();
+      await page.waitForTimeout(800);
+
+      // All prize cards should be revealed (no '?')
+      const prizeCards = page.locator('[data-testid="prize-card"]');
+      const count = await prizeCards.count();
+
+      for (let i = 0; i < count; i++) {
+        const text = await prizeCards.nth(i).textContent();
+        expect(text?.trim()).not.toBe('?');
+      }
+    });
+  });
 });

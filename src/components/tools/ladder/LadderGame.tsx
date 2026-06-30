@@ -11,7 +11,7 @@ import { ResultPanel } from './ResultPanel';
 import { LadderHowTo } from './LadderHowTo';
 import { LadderFaq } from './LadderFaq';
 import { WinnerConfetti } from './WinnerConfetti';
-import { MIN_COL, BOARD_MAX } from './ladderLayout';
+import { MIN_COL, BOARD_MAX, traceDurationMs } from './ladderLayout';
 import { softwareApplicationJsonLd } from '@/lib/seo';
 import { playPop } from '@/lib/sound';
 import { useTranslations } from 'next-intl';
@@ -75,9 +75,12 @@ export function LadderGame() {
   // Handle trace animation completion
   useEffect(() => {
     if (ladder.state.activeTrace) {
+      const delayMs = ladder.prefers_reduced_motion
+        ? 0
+        : traceDurationMs(ladder.state.rungs.length, false);
       const timer = setTimeout(() => {
         ladder.completeReveal(ladder.state.activeTrace!);
-      }, ladder.prefers_reduced_motion ? 100 : 350);
+      }, delayMs);
 
       return () => clearTimeout(timer);
     }

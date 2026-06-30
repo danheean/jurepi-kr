@@ -3,7 +3,13 @@
 import { useTranslations } from 'next-intl';
 import { tracePath } from '@/lib/ladder';
 import type { UseLadderReturn } from './useLadder';
-import { COLUMN_WIDTH, LEVEL_HEIGHT, PADDING } from './ladderLayout';
+import {
+  COLUMN_WIDTH,
+  LEVEL_HEIGHT,
+  PADDING,
+  levelHeightFor,
+  traceDurationMs,
+} from './ladderLayout';
 
 const ACCENT_COLORS = [
   'coral',
@@ -27,7 +33,7 @@ export function LadderBoard({ ladder, onTraceComplete }: LadderBoardProps) {
   const { playerCount, rungs, permutation } = ladder.state;
   const numLevels = rungs.length || 5;
   const columnWidth = COLUMN_WIDTH;
-  const levelHeight = LEVEL_HEIGHT;
+  const levelHeight = levelHeightFor(numLevels);
   const padding = PADDING;
 
   // SVG dimensions (add extra levelHeight for the floor)
@@ -71,6 +77,10 @@ export function LadderBoard({ ladder, onTraceComplete }: LadderBoardProps) {
       ))
     : [];
 
+  // Determine if we should dim the background (when there's an active trace or revealed paths)
+  const shouldDimBackground = ladder.state.activeTrace || ladder.state.revealed.length > 0;
+  const backgroundOpacity = shouldDimBackground ? 0.35 : 1;
+
   return (
     <div className="w-full">
       <svg
@@ -82,40 +92,43 @@ export function LadderBoard({ ladder, onTraceComplete }: LadderBoardProps) {
         data-testid="ladder-board"
         className="border border-hairline rounded-lg bg-surface"
       >
-        {/* Vertical lines (players) */}
-        {Array.from({ length: playerCount }).map((_, col) => (
-          <line
-            key={`col-${col}`}
-            x1={padding + col * columnWidth}
-            y1={padding}
-            x2={padding + col * columnWidth}
-            y2={padding + levelHeight * (numLevels + 1)}
-            stroke="var(--hairline-strong)"
-            strokeWidth="3"
-            strokeLinecap="round"
-            aria-hidden="true"
-          />
-        ))}
+        {/* Background rails and rungs (dimmed when traces are active) */}
+        <g opacity={backgroundOpacity}>
+          {/* Vertical lines (players) */}
+          {Array.from({ length: playerCount }).map((_, col) => (
+            <line
+              key={`col-${col}`}
+              x1={padding + col * columnWidth}
+              y1={padding}
+              x2={padding + col * columnWidth}
+              y2={padding + levelHeight * (numLevels + 1)}
+              stroke="var(--hairline-strong)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              aria-hidden="true"
+            />
+          ))}
 
-        {/* Horizontal rungs */}
-        {rungs.map((level, levelIdx) =>
-          level.map((hasRung, col) => {
-            if (!hasRung) return null;
-            return (
-              <line
-                key={`rung-${levelIdx}-${col}`}
-                x1={padding + col * columnWidth}
-                y1={padding + (levelIdx + 1) * levelHeight}
-                x2={padding + (col + 1) * columnWidth}
-                y2={padding + (levelIdx + 1) * levelHeight}
-                stroke="var(--hairline-strong)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                aria-hidden="true"
-              />
-            );
-          })
-        )}
+          {/* Horizontal rungs */}
+          {rungs.map((level, levelIdx) =>
+            level.map((hasRung, col) => {
+              if (!hasRung) return null;
+              return (
+                <line
+                  key={`rung-${levelIdx}-${col}`}
+                  x1={padding + col * columnWidth}
+                  y1={padding + (levelIdx + 1) * levelHeight}
+                  x2={padding + (col + 1) * columnWidth}
+                  y2={padding + (levelIdx + 1) * levelHeight}
+                  stroke="var(--hairline-strong)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  aria-hidden="true"
+                />
+              );
+            })
+          )}
+        </g>
 
         {/* Persistent trace paths for revealed players */}
         {ladder.state.revealed.map((playerId) => {
@@ -147,28 +160,62 @@ export function LadderBoard({ ladder, onTraceComplete }: LadderBoardProps) {
         {/* Animated trace path for active trace */}
         {ladder.state.activeTrace &&
           activePlayerPath.length > 0 && (
-            <path
-              d={buildPathString(activePlayerPath)}
-              stroke={`var(--accent-${
-                ACCENT_COLORS[
-                  ladder.state.players.findIndex(
-                    (p) => p.id === ladder.state.activeTrace
-                  ) % ACCENT_COLORS.length
-                ]
-              })`}
-              strokeWidth="4"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              pathLength={1}
-              style={{
-                strokeDasharray: 1,
-                strokeDashoffset: ladder.prefers_reduced_motion ? 0 : 1,
-                animation: ladder.prefers_reduced_motion
-                  ? 'none'
-                  : 'strokeDraw 280ms ease-out forwards',
-              }}
-            />
+            <>
+              {/* Halo (subtle background for depth) */}
+              {!ladder.prefers_reduced_motion && (
+                <path
+                  d={buildPathString(activePlayerPath)}
+                  stroke={`var(--accent-${
+                    ACCENT_COLORS[
+                      ladder.state.players.findIndex(
+                        (p) => p.id === ladder.state.activeTrace
+                      ) % ACCENT_COLORS.length
+                    ]
+                  })`}
+                  strokeWidth="8"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  pathLength={1}
+                  style={{
+                    strokeDasharray: 1,
+                    strokeDashoffset: 1,
+                    opacity: 0.15,
+                    animation: `strokeDraw ${traceDurationMs(
+                      numLevels,
+                      false
+                    )}ms ease-out forwards`,
+                  }}
+                  aria-hidden="true"
+                />
+              )}
+              {/* Main trace */}
+              <path
+                d={buildPathString(activePlayerPath)}
+                stroke={`var(--accent-${
+                  ACCENT_COLORS[
+                    ladder.state.players.findIndex(
+                      (p) => p.id === ladder.state.activeTrace
+                    ) % ACCENT_COLORS.length
+                  ]
+                })`}
+                strokeWidth="6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                pathLength={1}
+                style={{
+                  strokeDasharray: 1,
+                  strokeDashoffset: ladder.prefers_reduced_motion ? 0 : 1,
+                  animation: ladder.prefers_reduced_motion
+                    ? 'none'
+                    : `strokeDraw ${traceDurationMs(
+                        numLevels,
+                        false
+                      )}ms ease-out forwards`,
+                }}
+              />
+            </>
           )}
 
         {/* Define animation */}

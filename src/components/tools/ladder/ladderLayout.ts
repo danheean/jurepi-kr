@@ -24,3 +24,39 @@ export const BOARD_MAX = 560;
  */
 export const colCenterPct = (i: number, n: number): number =>
   ((2 * i + 1) / (2 * n)) * 100;
+
+/**
+ * Compute the level height based on the number of rungs.
+ * For many levels, compress the board by reducing height-per-level.
+ * - numLevels <= 5: 40px (default)
+ * - 5 < numLevels <= 15: linear interpolation from 40 → 25
+ * - numLevels > 15: 25px (minimum)
+ */
+export const levelHeightFor = (numLevels: number): number => {
+  if (numLevels <= 5) {
+    return 40;
+  }
+  if (numLevels <= 15) {
+    // Linear from 40 (at level 5) to 25 (at level 15)
+    return 40 - ((numLevels - 5) / 10) * 15;
+  }
+  return 25;
+};
+
+/**
+ * Compute animation duration for trace based on path length.
+ * - reducedMotion: 0ms (no animation)
+ * - otherwise: 50ms per level, clamped to [280ms, 1400ms]
+ */
+export const traceDurationMs = (
+  numLevels: number,
+  reducedMotion: boolean
+): number => {
+  if (reducedMotion) {
+    return 0;
+  }
+  const perLevelMs = 50;
+  const baseDuration = numLevels * perLevelMs;
+  // Clamp to reasonable bounds
+  return Math.max(280, Math.min(baseDuration, 1400));
+};

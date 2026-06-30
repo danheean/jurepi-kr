@@ -6,6 +6,7 @@ import {
   ladderReducer,
   type LadderState,
   type LadderAction,
+  type LadderTension,
 } from '@/lib/ladder-reducer';
 
 export interface UseLadderReturn {
@@ -19,6 +20,7 @@ export interface UseLadderReturn {
   setAllPrizeLabels: (labels: string[]) => void;
   toggleShuffle: () => void;
   toggleSound: () => void;
+  setTension: (tension: LadderTension) => void;
   build: () => void;
   startTrace: (playerId: string) => void;
   completeReveal: (playerId: string) => void;
@@ -95,6 +97,11 @@ export function useLadder(initialCount: number = 7): UseLadderReturn {
     []
   );
 
+  const setTension = useCallback(
+    (tension: LadderTension) => dispatch({ type: 'SET_TENSION', tension }),
+    []
+  );
+
   const build = useCallback(() => dispatch({ type: 'BUILD' }), []);
 
   const startTrace = useCallback(
@@ -140,6 +147,7 @@ export function useLadder(initialCount: number = 7): UseLadderReturn {
     setAllPrizeLabels,
     toggleShuffle,
     toggleSound,
+    setTension,
     build,
     startTrace,
     completeReveal,

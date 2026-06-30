@@ -52,15 +52,14 @@ test.describe('Ladder Game - Improvements', () => {
 
     // Toggle ON
     await autoNamesToggle.click();
-    const isCheckedAfterClick = await autoNamesToggle.getAttribute('aria-checked');
-    expect(isCheckedAfterClick).toBe('true');
+    await expect(autoNamesToggle).toHaveAttribute('aria-checked', 'true');
 
-    // Player inputs should now have non-empty values
+    // Names are filled by an effect (async), so use retrying assertions instead of
+    // reading values immediately — avoids a race when there are many inputs.
     const playerInputs = page.locator('[data-testid="player-input"]');
     const count = await playerInputs.count();
     for (let i = 0; i < count; i++) {
-      const value = await playerInputs.nth(i).inputValue();
-      expect(value.trim()).not.toBe('');
+      await expect(playerInputs.nth(i)).not.toHaveValue('');
     }
   });
 
