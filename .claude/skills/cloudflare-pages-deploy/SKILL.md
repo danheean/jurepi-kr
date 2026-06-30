@@ -15,6 +15,30 @@ description: >-
 
 **가장 중요한 원리: `next build` 그린 ≠ 배포 정상.** 정적 익스포트는 미들웨어·`next.config` 헤더 같은 "동적/노드 런타임" 기능을 **조용히 버린다.** 빌드는 통과하지만 프로덕션에서 보안 헤더가 사라지고 루트 리다이렉트가 죽는다. 그래서 이 스킬의 절반은 "정적 호스팅에서 깨지는 것들을 Cloudflare 네이티브로 옮기기"이고, 끝은 항상 **배포본 직접 검증**이다.
 
+## ✅ 채택된 실제 배포 경로 (2026-06-30) — Cloudflare **Workers 정적 에셋** (Pages 아님)
+
+이 프로젝트는 Cloudflare **Workers Builds**(Git 연동)에 **정적 에셋(assets-only Worker)**으로 배포한다. 라이브: `https://apps.jurepi.kr`. 아래 절들의 원리(`_headers`·`_redirects`·force-static·검증 게이트)는 그대로 유효하고 **CF 측 배선만 다르다**(Pages의 `pages_build_output_dir`/`wrangler pages …` 대신 assets-only `wrangler.jsonc` + `wrangler deploy`/`wrangler dev`).
+
+**핵심 함정 ①: `npx wrangler deploy`의 OpenNext 자동 전환.** repo에 wrangler 설정이 **없으면** wrangler가 Next.js를 감지해 `@opennextjs/cloudflare migrate`를 자동 실행 → 앱을 **풀 SSR Worker**(951 패키지)로 배포하고, 첫 배포에서 `Service binding 'WORKER_SELF_REFERENCE' references Worker '<package.json name>' which was not found [10143]`로 실패한다(self-ref 이름 = package.json `name` ≠ CF 워커명). **예방 = repo에 `wrangler.jsonc`를 커밋**해 정적 에셋 경로로 못박는다(설정이 있으면 wrangler가 그걸 읽고 OpenNext를 건너뜀). 순수 SSG에 OpenNext SSR은 불필요.
+
+`wrangler.jsonc` (repo 루트, `main` 없음 = assets-only):
+```jsonc
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jurep-kr",                          // CF 워커 이름과 반드시 일치
+  "compatibility_date": "2025-06-01",
+  "assets": { "directory": "./out", "not_found_handling": "404-page" }
+}
+```
+
+**핵심 함정 ②: `output:'export'`는 metadata 라우트에 `force-static` 요구.** `src/app/{manifest,sitemap,robots}.ts`(route handler)는 `export const dynamic = 'force-static'`가 없으면 export 빌드가 `export const dynamic = "force-static"… not configured … with "output: export"`로 실패. 세 파일 모두 추가.
+
+**핵심 함정 ③: `NEXT_PUBLIC_*`는 `.env.local`(gitignored)로 프로덕션에 못 들어간다.** 정적 빌드는 CF에서 돌아 로컬 `.env.local`을 못 봄 → sitemap/canonical/OG가 코드 기본값으로, 마스코트 등 링크가 빈 값으로 나간다. **예방 = 비밀 아닌 `NEXT_PUBLIC_*`를 `.env.production`(커밋)에** 둔다(`next build`가 로드). 또는 CF 대시보드 빌드 env. 현 값: `NEXT_PUBLIC_SITE_URL=https://apps.jurepi.kr`, `NEXT_PUBLIC_BLOG_URL=https://blog.naver.com/dhan0213`.
+
+**CF Workers Builds 설정(대시보드):** 빌드 명령 `pnpm run build`, 배포 명령 `npx wrangler deploy`(커밋된 `wrangler.jsonc` 사용), 프로덕션 분기 `main`. `_headers`/`_redirects`는 Workers 정적 에셋도 **네이티브 지원**(assets-only면 Worker 코드 응답이 없어 모든 응답에 적용). 클린 URL은 `html_handling: auto-trailing-slash` 기본이 `ko.html`→`/ko`, `ko/tools/x.html`→`/ko/tools/x`로 해석 → `trailingSlash` 불필요.
+
+**로컬 게이트:** `wrangler dev`(wrangler.jsonc 읽어 workerd로 `out/` 서빙 — `wrangler pages dev out` 아님). 그 위에서 아래 curl 게이트 실행 후, 배포 후 실제 도메인에 동일 curl을 1:1 재실행해 닫는다.
+
 ## 사전 점검 (현 상태)
 
 배포 작업 전 현재 레포 상태를 확인한다:

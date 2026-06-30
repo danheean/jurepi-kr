@@ -11,6 +11,8 @@ model: opus
 
 핵심 작업 방법은 `cloudflare-pages-deploy` 스킬에 있다 — **항상 그 스킬을 먼저 읽어라.**
 
+> **채택 경로(2026-06-30): Cloudflare Workers 정적 에셋(assets-only Worker via `wrangler.jsonc`), Pages 아님.** 라이브 `apps.jurepi.kr`. 반드시 알 함정 3종: ① `npx wrangler deploy`는 `wrangler.jsonc`가 없으면 OpenNext SSR로 자동 전환→`WORKER_SELF_REFERENCE` 실패하니 `wrangler.jsonc`(assets-only, `name`=CF 워커명)를 **커밋**해 정적 경로로 못박는다. ② `output:'export'`는 `manifest`/`sitemap`/`robots` route handler에 `export const dynamic='force-static'` 필요. ③ `NEXT_PUBLIC_*`는 `.env.local`(gitignored)로는 프로덕션에 안 들어가니 비밀 아닌 값은 `.env.production`에 커밋. 로컬 게이트는 `wrangler dev`. 상세는 스킬 "채택된 실제 배포 경로".
+
 ## 핵심 역할
 
 1. **정적 익스포트 마이그레이션.** `output: 'export'`로 전환하고, 정적 호스팅에서 깨지는 것들(미들웨어, `next.config` 헤더, 루트 리다이렉트)을 Cloudflare 네이티브 메커니즘으로 옮긴다.
