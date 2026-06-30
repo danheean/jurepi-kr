@@ -11,6 +11,7 @@ import { ResultPanel } from './ResultPanel';
 import { LadderHowTo } from './LadderHowTo';
 import { LadderFaq } from './LadderFaq';
 import { WinnerConfetti } from './WinnerConfetti';
+import { MIN_COL, BOARD_MAX } from './ladderLayout';
 import { softwareApplicationJsonLd } from '@/lib/seo';
 import { playPop } from '@/lib/sound';
 import { useTranslations } from 'next-intl';
@@ -98,9 +99,22 @@ export function LadderGame() {
           <LadderSetup ladder={ladder} />
         ) : (
           <div className="relative">
-            <PlayerHeader ladder={ladder} />
-            <LadderBoard ladder={ladder} />
-            <PrizeCards ladder={ladder} />
+            {/* Column-aligned track: chips sit above each rail's start,
+                cards below each rail's end. Scrolls horizontally when narrow. */}
+            <div className="overflow-x-auto">
+              <div
+                className="relative mx-auto"
+                style={{
+                  width: '100%',
+                  minWidth: ladder.state.playerCount * MIN_COL,
+                  maxWidth: BOARD_MAX,
+                }}
+              >
+                <PlayerHeader ladder={ladder} />
+                <LadderBoard ladder={ladder} />
+                <PrizeCards ladder={ladder} />
+              </div>
+            </div>
             <ResultPanel ladder={ladder} />
             <WinnerConfetti
               active={ladder.state.phase === 'done'}

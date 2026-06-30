@@ -7,6 +7,7 @@ import {
   initLadderState,
   ladderReducer,
   selectMapping,
+  selectInversePermutation,
 } from './ladder-reducer';
 import { mulberry32, uniformPermutation } from './ladder';
 
@@ -531,6 +532,28 @@ describe('ladder reducer', () => {
         const expectedPrizeId = state.prizes[expectedPrizeIdx].id;
         expect(mapping[playerId]).toBe(expectedPrizeId);
       }
+    });
+  });
+
+  describe('selectInversePermutation selector', () => {
+    it('falls back to identity before BUILD', () => {
+      const state = initLadderState(4);
+      expect(selectInversePermutation(state)).toEqual([0, 1, 2, 3]);
+    });
+
+    it('is the true inverse of permutation (inverse[permutation[s]] === s)', () => {
+      let state = initLadderState(5);
+      state = ladderReducer(state, { type: 'BUILD', rng: mulberry32(42) });
+
+      const inverse = selectInversePermutation(state);
+      expect(inverse).toHaveLength(5);
+      // Round-trip: the start column that lands at endCol is permutation^-1(endCol).
+      for (let startCol = 0; startCol < state.playerCount; startCol++) {
+        const endCol = state.permutation[startCol];
+        expect(inverse[endCol]).toBe(startCol);
+      }
+      // It is itself a permutation of 0..n-1.
+      expect([...inverse].sort((a, b) => a - b)).toEqual([0, 1, 2, 3, 4]);
     });
   });
 });

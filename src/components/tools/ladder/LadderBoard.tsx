@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { tracePath } from '@/lib/ladder';
 import type { UseLadderReturn } from './useLadder';
+import { COLUMN_WIDTH, LEVEL_HEIGHT, PADDING } from './ladderLayout';
 
 const ACCENT_COLORS = [
   'coral',
@@ -25,9 +26,9 @@ export function LadderBoard({ ladder, onTraceComplete }: LadderBoardProps) {
 
   const { playerCount, rungs, permutation } = ladder.state;
   const numLevels = rungs.length || 5;
-  const columnWidth = 60;
-  const levelHeight = 40;
-  const padding = 30;
+  const columnWidth = COLUMN_WIDTH;
+  const levelHeight = LEVEL_HEIGHT;
+  const padding = PADDING;
 
   // SVG dimensions (add extra levelHeight for the floor)
   const svgWidth = padding * 2 + columnWidth * (playerCount - 1);
@@ -71,11 +72,11 @@ export function LadderBoard({ ladder, onTraceComplete }: LadderBoardProps) {
     : [];
 
   return (
-    <div className="w-full overflow-x-auto mb-6 flex justify-center p-4">
+    <div className="w-full">
       <svg
         viewBox={`0 0 ${svgWidth} ${svgHeight}`}
         preserveAspectRatio="xMidYMid meet"
-        style={{ minHeight: '320px', maxWidth: '100%', height: 'auto' }}
+        style={{ width: '100%', height: 'auto', display: 'block' }}
         role="img"
         aria-label={t('board.aria')}
         data-testid="ladder-board"

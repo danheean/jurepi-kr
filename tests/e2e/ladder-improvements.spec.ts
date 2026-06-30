@@ -297,4 +297,50 @@ test.describe('Ladder Game - Improvements', () => {
       }
     }
   });
+
+  test('Player chips and prize cards align to the ladder rails', async ({ page }) => {
+    await page.goto('/ko/tools/ladder');
+    await page.waitForLoadState('networkidle');
+
+    await page.locator('button:has-text("사다리 만들기")').click();
+    await page.waitForTimeout(300);
+
+    // Each chip center and card center should sit on its rail's x (±3px).
+    const maxDelta = await page.evaluate(() => {
+      const svg = document.querySelector(
+        '[data-testid="ladder-board"]'
+      ) as SVGSVGElement;
+      const vlines = Array.from(svg.querySelectorAll('line')).filter(
+        (l) => l.getAttribute('x1') === l.getAttribute('x2')
+      );
+      const pt = svg.createSVGPoint();
+      const railX = vlines
+        .map((l) => {
+          pt.x = parseFloat(l.getAttribute('x1') || '0');
+          pt.y = parseFloat(l.getAttribute('y1') || '0');
+          return pt.matrixTransform(l.getScreenCTM()!).x;
+        })
+        .sort((a, b) => a - b);
+      const centers = (sel: string) =>
+        Array.from(document.querySelectorAll(sel))
+          .map((e) => {
+            const r = e.getBoundingClientRect();
+            return r.left + r.width / 2;
+          })
+          .sort((a, b) => a - b);
+      const chipX = centers('[data-testid="player-chip"]');
+      const cardX = centers('[data-testid="prize-card"]');
+      let max = 0;
+      for (let i = 0; i < railX.length; i++) {
+        max = Math.max(
+          max,
+          Math.abs(chipX[i] - railX[i]),
+          Math.abs(cardX[i] - railX[i])
+        );
+      }
+      return max;
+    });
+
+    expect(maxDelta).toBeLessThan(4);
+  });
 });

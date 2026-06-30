@@ -2,15 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 import type { UseLadderReturn } from './useLadder';
+import { colCenterPct } from './ladderLayout';
 
-const ACCENT_COLORS = [
-  'coral',
-  'mint',
-  'sky',
-  'sun',
-  'grape',
-  'rose',
-];
+const ACCENT_COLORS = ['coral', 'mint', 'sky', 'sun', 'grape', 'rose'];
 
 interface PlayerHeaderProps {
   ladder: UseLadderReturn;
@@ -21,9 +15,11 @@ export function PlayerHeader({ ladder }: PlayerHeaderProps) {
 
   if (ladder.state.phase === 'setup') return null;
 
+  const n = ladder.state.playerCount;
+
   return (
     <div
-      className="flex justify-center gap-2 flex-wrap mb-4 p-4"
+      className="relative w-full h-12 mb-1"
       role="region"
       aria-label="Player selection"
     >
@@ -32,6 +28,7 @@ export function PlayerHeader({ ladder }: PlayerHeaderProps) {
         const accentColor = ACCENT_COLORS[idx % ACCENT_COLORS.length];
         const canClick =
           ladder.canStartTrace() && ladder.state.phase !== 'done';
+        const label = player.name || `${t('defaults.player', { n: idx + 1 })}`;
 
         return (
           <button
@@ -43,11 +40,16 @@ export function PlayerHeader({ ladder }: PlayerHeaderProps) {
               }
             }}
             disabled={!canClick || isRevealed}
-            aria-label={t('header.revealAria', {
-              name: player.name || `${t('defaults.player', { n: idx + 1 })}`,
-            })}
+            title={label}
+            aria-label={t('header.revealAria', { name: label })}
+            style={{
+              left: `${colCenterPct(idx, n)}%`,
+              maxWidth: `calc(${100 / n}% - 6px)`,
+            }}
             className={`
-              px-3 py-2 rounded-full font-button text-sm
+              absolute top-1/2 -translate-x-1/2 -translate-y-1/2
+              min-h-[44px] px-2 py-2 rounded-full font-button text-sm
+              truncate text-center
               transition-all duration-200
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring
               ${
@@ -58,7 +60,7 @@ export function PlayerHeader({ ladder }: PlayerHeaderProps) {
               ${canClick && !isRevealed ? 'cursor-pointer active:scale-95' : ''}
             `}
           >
-            {player.name || `${t('defaults.player', { n: idx + 1 })}`}
+            {label}
             {isRevealed && ' ✓'}
           </button>
         );

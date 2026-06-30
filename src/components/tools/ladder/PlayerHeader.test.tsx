@@ -120,4 +120,21 @@ describe('PlayerHeader Component', () => {
     expect(screen.getByText(/Player 1/i)).toBeInTheDocument();
     expect(screen.getByText(/Player 2/i)).toBeInTheDocument();
   });
+
+  it('positions each chip at its column center via inline left %', () => {
+    const { result } = renderHook(() => useLadder(4));
+    act(() => {
+      result.current.build();
+    });
+
+    render(<PlayerHeader ladder={result.current} />);
+
+    const chips = screen.getAllByTestId('player-chip');
+    expect(chips).toHaveLength(4);
+    // Column centers for N=4 → (2i+1)/8 → 12.5%, 37.5%, 62.5%, 87.5%.
+    expect(parseFloat((chips[0] as HTMLElement).style.left)).toBeCloseTo(12.5, 2);
+    expect(parseFloat((chips[1] as HTMLElement).style.left)).toBeCloseTo(37.5, 2);
+    expect(parseFloat((chips[2] as HTMLElement).style.left)).toBeCloseTo(62.5, 2);
+    expect(parseFloat((chips[3] as HTMLElement).style.left)).toBeCloseTo(87.5, 2);
+  });
 });

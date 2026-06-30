@@ -267,3 +267,22 @@ export function selectMapping(state: LadderState): Record<string, string> {
 
   return mapping;
 }
+
+/**
+ * Selector: inverse of the permutation — for each END column, which START column
+ * (player index) lands there. `permutation[startCol] = endCol`, so
+ * `inverse[endCol] = startCol`. Falls back to identity until BUILD sets permutation.
+ * Used to reveal/color the prize card under a rail by the player whose trace ends there.
+ */
+export function selectInversePermutation(state: LadderState): number[] {
+  const n = state.players.length;
+  const inverse = Array.from({ length: n }, (_, i) => i); // identity fallback
+  const { permutation } = state;
+  if (permutation.length === n) {
+    for (let startCol = 0; startCol < n; startCol++) {
+      const endCol = permutation[startCol];
+      if (endCol >= 0 && endCol < n) inverse[endCol] = startCol;
+    }
+  }
+  return inverse;
+}
