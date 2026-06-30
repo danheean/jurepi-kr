@@ -14,6 +14,8 @@
     "themeSystem": "시스템",
     "themeToggleAria": "테마 전환",
     "localeAria": "언어 선택",
+    "localeKo": "한국어로 전환",
+    "localeEn": "영어로 전환",
     "homeLink": "홈"
   },
   "footer": {
@@ -64,6 +66,8 @@
       "lead": "참가자들의 공정한 순서를 정해보세요. 누가 커피를 살까, 누가 먼저 선택할까?",
       "setup": {
         "countLabel": "참가자 수",
+        "decrement": "참가자 수 줄이기",
+        "increment": "참가자 수 늘리기",
         "playerPlaceholder": "참가자 이름",
         "prizePlaceholder": "결과",
         "shuffleToggle": "결과 섞기",

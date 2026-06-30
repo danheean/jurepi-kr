@@ -32,10 +32,10 @@ export function CategoryFilter({
               key={cat.id}
               onClick={() => onChange(cat.id)}
               aria-pressed={isActive}
-              className={`px-4 py-2 rounded-full font-medium text-sm transition-all whitespace-nowrap ${
+              className={`px-4 py-2 rounded-full text-sm transition-all whitespace-nowrap ${
                 isActive
-                  ? 'bg-brand text-on-brand shadow-card'
-                  : 'bg-surface-muted text-text-secondary hover:bg-hairline'
+                  ? 'bg-brand text-on-brand shadow-card font-semibold'
+                  : 'bg-surface-muted text-text-secondary hover:bg-hairline font-medium'
               } focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand min-h-11 flex items-center justify-center`}
             >
               {t(cat.labelKey)}

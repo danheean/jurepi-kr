@@ -14,11 +14,11 @@ describe('LadderSetup Component', () => {
     expect(stepper).toBeInTheDocument();
 
     // Minus button should be enabled (count > 2)
-    const minusBtn = screen.getByLabelText('Decrease');
+    const minusBtn = screen.getByTestId('stepper-decrement');
     expect(minusBtn).not.toBeDisabled();
 
     // Plus button should be enabled (count < 10)
-    const plusBtn = screen.getByLabelText('Increase');
+    const plusBtn = screen.getByTestId('stepper-increment');
     expect(plusBtn).not.toBeDisabled();
   });
 
@@ -26,13 +26,13 @@ describe('LadderSetup Component', () => {
     const { result: r2 } = renderHook(() => useLadder(2));
     const { rerender: rerender2 } = render(<LadderSetup ladder={r2.current} />);
 
-    let minusBtn = screen.getByLabelText('Decrease');
+    let minusBtn = screen.getByTestId('stepper-decrement');
     expect(minusBtn).toBeDisabled();
 
     const { result: r10 } = renderHook(() => useLadder(10));
     rerender2(<LadderSetup ladder={r10.current} />);
 
-    let plusBtn = screen.getByLabelText('Increase');
+    let plusBtn = screen.getByTestId('stepper-increment');
     expect(plusBtn).toBeDisabled();
   });
 

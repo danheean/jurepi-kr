@@ -7,6 +7,8 @@ interface StepperProps {
   max?: number;
   label?: string;
   step?: number;
+  decrementLabel?: string;
+  incrementLabel?: string;
 }
 
 export function Stepper({
@@ -16,6 +18,8 @@ export function Stepper({
   max = 10,
   label,
   step = 1,
+  decrementLabel = 'Decrease',
+  incrementLabel = 'Increase',
 }: StepperProps) {
   const isAtMin = value <= min;
   const isAtMax = value >= max;
@@ -46,7 +50,7 @@ export function Stepper({
                 : 'hover:bg-surface-muted active:scale-95'
             }
           `}
-          aria-label="Decrease"
+          aria-label={decrementLabel}
         >
           −
         </button>
@@ -69,7 +73,7 @@ export function Stepper({
                 : 'hover:bg-surface-muted active:scale-95'
             }
           `}
-          aria-label="Increase"
+          aria-label={incrementLabel}
         >
           +
         </button>

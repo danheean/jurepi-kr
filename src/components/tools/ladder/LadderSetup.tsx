@@ -87,6 +87,8 @@ export function LadderSetup({ ladder }: LadderSetupProps) {
             min={2}
             max={10}
             label={t('setup.countLabel')}
+            decrementLabel={t('setup.decrement')}
+            incrementLabel={t('setup.increment')}
           />
         </div>
 

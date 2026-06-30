@@ -28,7 +28,7 @@ export function LocaleSwitcher(): React.ReactNode {
     <div className="flex items-center gap-px">
       <button
         onClick={() => handleLocaleSwitch('ko')}
-        aria-label={t('header.localeAria')}
+        aria-label={t('header.localeKo')}
         aria-current={locale === 'ko' ? 'true' : undefined}
         className={`${baseClasses} ${locale === 'ko' ? activeClasses : inactiveClasses}`}
         data-testid="locale-ko"
@@ -38,7 +38,7 @@ export function LocaleSwitcher(): React.ReactNode {
       <span className="text-hairline">|</span>
       <button
         onClick={() => handleLocaleSwitch('en')}
-        aria-label={t('header.localeAria')}
+        aria-label={t('header.localeEn')}
         aria-current={locale === 'en' ? 'true' : undefined}
         className={`${baseClasses} ${locale === 'en' ? activeClasses : inactiveClasses}`}
         data-testid="locale-en"

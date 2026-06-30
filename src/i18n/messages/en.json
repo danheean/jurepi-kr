@@ -14,6 +14,8 @@
     "themeSystem": "System",
     "themeToggleAria": "Toggle theme",
     "localeAria": "Select language",
+    "localeKo": "Switch to Korean",
+    "localeEn": "Switch to English",
     "homeLink": "Home"
   },
   "footer": {
@@ -64,6 +66,8 @@
       "lead": "Decide fair orders for your group. Who buys coffee? Who picks first?",
       "setup": {
         "countLabel": "Number of players",
+        "decrement": "Decrease number of players",
+        "increment": "Increase number of players",
         "playerPlaceholder": "Player name",
         "prizePlaceholder": "Outcome",
         "shuffleToggle": "Shuffle results",
