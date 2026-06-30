@@ -1,13 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Search } from 'lucide-react';
 import { Link } from '@/i18n/routing';
-import { IconButton } from '@/components/ui/IconButton';
+import type { SearchableTool } from '@/lib/tool-search';
+import { HeaderSearch } from './HeaderSearch';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 
-export function Header(): React.ReactNode {
+interface HeaderProps {
+  tools: SearchableTool[];
+}
+
+export function Header({ tools }: HeaderProps): React.ReactNode {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -18,13 +22,6 @@ export function Header(): React.ReactNode {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleSearchClick = () => {
-    const searchField = document.getElementById('tool-search');
-    if (searchField instanceof HTMLInputElement) {
-      searchField.focus();
-    }
-  };
 
   return (
     <header
@@ -50,15 +47,8 @@ export function Header(): React.ReactNode {
 
         {/* Right: Controls */}
         <div className="flex items-center gap-2">
-          {/* Search trigger */}
-          <IconButton
-            icon={<Search className="w-5 h-5" strokeWidth={1.75} />}
-            ariaLabel="Search tools"
-            onClick={handleSearchClick}
-            size="md"
-            variant="ghost"
-            testId="header-search"
-          />
+          {/* Global search combobox */}
+          <HeaderSearch tools={tools} />
 
           {/* Locale switcher */}
           <LocaleSwitcher />

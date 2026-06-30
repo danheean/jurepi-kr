@@ -23,7 +23,7 @@ export function CategoryFilter({
   const t = useTranslations();
 
   return (
-    <div className="w-full overflow-x-auto scrollbar-hide">
+    <div className="mx-auto max-w-container w-full overflow-x-auto scrollbar-hide">
       <div className="flex gap-3 pb-2 px-6 md:px-8 lg:px-12 min-w-max md:min-w-0 md:flex-wrap">
         {categories.map(cat => {
           const isActive = cat.id === active;

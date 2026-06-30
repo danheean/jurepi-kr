@@ -64,4 +64,28 @@ describe('LocaleSwitcher', () => {
     expect(separator).toBeInTheDocument();
     expect(separator).toHaveTextContent('|');
   });
+
+  it('EN button has aria-current="true" when locale is en', () => {
+    render(<LocaleSwitcher />);
+    const enBtn = screen.getByTestId('locale-en');
+    expect(enBtn).toHaveAttribute('aria-current', 'true');
+  });
+
+  it('KO button does not have aria-current when locale is en', () => {
+    render(<LocaleSwitcher />);
+    const koBtn = screen.getByTestId('locale-ko');
+    expect(koBtn).not.toHaveAttribute('aria-current');
+  });
+
+  it('active button has text-brand font-semibold styles', () => {
+    render(<LocaleSwitcher />);
+    const enBtn = screen.getByTestId('locale-en');
+    expect(enBtn).toHaveClass('text-brand', 'font-semibold');
+  });
+
+  it('inactive button has text-text hover:text-brand styles', () => {
+    render(<LocaleSwitcher />);
+    const koBtn = screen.getByTestId('locale-ko');
+    expect(koBtn).toHaveClass('text-text', 'hover:text-brand');
+  });
 });

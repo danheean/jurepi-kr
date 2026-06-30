@@ -1,10 +1,11 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
 
 export function LocaleSwitcher(): React.ReactNode {
   const t = useTranslations();
+  const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -19,12 +20,17 @@ export function LocaleSwitcher(): React.ReactNode {
     router.push(href, { locale: newLocale });
   };
 
+  const baseClasses = 'px-3 py-2 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2';
+  const activeClasses = 'text-brand font-semibold';
+  const inactiveClasses = 'text-text hover:text-brand';
+
   return (
     <div className="flex items-center gap-px">
       <button
         onClick={() => handleLocaleSwitch('ko')}
         aria-label={t('header.localeAria')}
-        className="px-3 py-2 text-sm font-medium transition-colors duration-150 text-text hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        aria-current={locale === 'ko' ? 'true' : undefined}
+        className={`${baseClasses} ${locale === 'ko' ? activeClasses : inactiveClasses}`}
         data-testid="locale-ko"
       >
         KO
@@ -33,7 +39,8 @@ export function LocaleSwitcher(): React.ReactNode {
       <button
         onClick={() => handleLocaleSwitch('en')}
         aria-label={t('header.localeAria')}
-        className="px-3 py-2 text-sm font-medium transition-colors duration-150 text-text hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+        aria-current={locale === 'en' ? 'true' : undefined}
+        className={`${baseClasses} ${locale === 'en' ? activeClasses : inactiveClasses}`}
         data-testid="locale-en"
       >
         EN

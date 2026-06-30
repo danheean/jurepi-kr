@@ -1,8 +1,10 @@
 import { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
-import { setRequestLocale, getMessages } from 'next-intl/server';
+import { setRequestLocale, getMessages, getTranslations } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
+import { tools } from '@/tools/registry';
+import { toSearchableTools } from '@/lib/searchable-tools';
 import { ThemeBootstrap } from '@/components/providers/ThemeBootstrap';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
@@ -28,6 +30,8 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const t = await getTranslations();
+  const searchableTools = toSearchableTools(tools, t);
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -37,7 +41,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <Header />
+            <Header tools={searchableTools} />
             <main id="main">{children}</main>
             <Footer />
           </ThemeProvider>
