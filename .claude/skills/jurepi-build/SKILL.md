@@ -2,9 +2,11 @@
 name: jurepi-build
 description: >-
   Jurepi.kr(무료 온라인 도구 허브, Next.js 15 SSG) 풀스택 웹 개발의 오케스트레이터. 클린 아키텍처 + TDD로
-  기능을 구현하기 위해 architect·domain-engineer·ui-engineer·platform-engineer·qa-integration 에이전트 팀을 조율한다.
-  Jurepi 플랫폼/대시보드/도구(사다리타기 등) 구현·기능 추가·리팩터링·버그 수정 요청 시 반드시 이 스킬을 사용하라.
+  기능을 구현하기 위해 architect·domain-engineer·ui-engineer·platform-engineer·qa-integration 에이전트 팀을 조율하고,
+  배포 시점엔 deploy-engineer(Cloudflare Pages)를 호출한다.
+  Jurepi 플랫폼/대시보드/도구(사다리타기 등) 구현·기능 추가·리팩터링·버그 수정·배포 요청 시 반드시 이 스킬을 사용하라.
   "사다리/ladder 게임", "도구 카드 그리드", "메인 대시보드", "도구 추가", "SSG/SEO/i18n/광고/동의", "클린 아키텍처로", "TDD로 구현",
+  "배포/deploy/Cloudflare/CF Pages/재배포/배포 실패/정적 익스포트",
   "다시 구현/재실행/이어서/업데이트/수정/보완", "이전 결과 기반으로", "{기능}만 다시" 같은 표현에 적극 트리거하라.
   단순 질문이나 단일 파일 사소 편집은 직접 응답해도 된다.
 ---
@@ -32,10 +34,11 @@ description: >-
 | `architect` | 설계 | 계층 분해·계약·작업 분배·빌드 순서 | clean-architecture |
 | `domain-engineer` | 1·2 도메인/유스케이스 | 순수 로직 TDD(공정성 엔진·검색·동의·reducer) | jurepi-tdd, clean-architecture |
 | `ui-engineer` | 3 어댑터(UI) | React 컴포넌트·훅·디자인 시스템·a11y | design-system-fidelity, jurepi-tdd |
-| `platform-engineer` | 4 프레임워크 | App Router·SSG·i18n·SEO·광고·빌드·보안 | nextjs-ssg-platform |
+| `platform-engineer` | 4 프레임워크 | App Router·SSG·i18n·SEO·광고·빌드·보안(앱 내부) | nextjs-ssg-platform |
 | `qa-integration` | 횡단 | 경계 교차 검증·E2E·a11y·CWV(general-purpose) | integration-qa, jurepi-tdd |
+| `deploy-engineer` | 배포 경계 | Cloudflare Pages 정적 배포·정적 익스포트 마이그레이션·`_headers`/`_redirects`·트러블슈팅 | cloudflare-pages-deploy |
 
-팀 크기 5명 — 중규모 작업에 적정. 작은 작업은 일부만 호출한다.
+빌드 팀(상시) 5명 — 중규모 작업에 적정. 작은 작업은 일부만 호출한다. **deploy-engineer는 빌드 팀 상시 멤버가 아니라 배포 시점/배포 실패 시 호출하는 운영 전문가다**(아래 "배포" 절).
 
 ## Phase 0: 컨텍스트 확인 (항상 먼저)
 
@@ -64,6 +67,15 @@ description: >-
 
 > 단계별 상세(누가 무엇을 입력받아 무엇을 산출하는지, 의존 그래프, 권장 첫 기능 순서)는 `references/feature-pipeline.md`를 읽어라.
 > 팀 생성·작업 분배·Phase 간 팀 재구성·데이터 전달·에러 핸들링 구현은 `references/orchestration-flow.md`를 읽어라.
+
+## 배포 (Cloudflare Pages) — 배포 시점 호출
+
+배포는 기능 파이프라인과 분리된 **운영 단계**다. 빌드 팀의 상시 멤버가 아니라, 배포/재배포/배포 실패 트러블슈팅 요청 시 **deploy-engineer**를 호출한다(`model: "opus"`). 실행 모드는 단일 전문가(서브 에이전트)로 충분하나, 헤더 이전·미들웨어 영향은 platform-engineer와, 배포본 검증은 qa-integration과 협업 지점이 있다.
+
+- **전략:** 정적 익스포트(`output: 'export'`) → `out/` → Cloudflare Pages. Jurepi는 순수 SSG라 이게 기본.
+- **핵심 함정(리더가 검증):** `next build` 그린은 배포 정상을 보장하지 않는다. 정적 익스포트는 ① `src/middleware.ts`(루트 `/`→`/ko` 리다이렉트)와 ② `next.config` `headers()`(보안 헤더 5종)를 **조용히 버린다.** deploy-engineer가 이를 `_redirects`/`_headers`로 이전한다. 리더는 "배포 완료" 주장을 수용하기 전, 배포본(또는 `wrangler pages dev out`)에서 `curl -I`로 **헤더 5종 존재·`/`→`/ko`·로케일 200·미지 404**를 직접 확인한다(주장≠증명 원칙의 배포판).
+- **경계:** 출력 모드·CF 설정·`_headers`/`_redirects`/`wrangler.toml`/`.nvmrc`·배포 검증 = deploy-engineer. 앱 내부 라우팅/i18n/SEO 코드·`next.config` 빌드 설정 = platform-engineer. 헤더 단일 소스는 배포 시 `_headers`로 이동(양쪽 중복 금지).
+- 절차·매핑·트러블슈팅은 `cloudflare-pages-deploy` 스킬.
 
 ## 데이터 전달 프로토콜
 

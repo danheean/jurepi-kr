@@ -1,6 +1,6 @@
 ---
 name: nextjs-ssg-platform
-description: Jurepi의 Next.js 15 App Router 정적 사이트(SSG) 플랫폼을 구축하는 방법. generateStaticParams, Server/Client 경계, next-intl 로케일 라우팅(ko/en), 레지스트리 기반 동적 도구 라우트, SEO 인프라(sitemap/robots/manifest/JSON-LD/hreflang), AdSense+동의 게이팅, CSP/보안 헤더, Core Web Vitals. 라우팅·SSG·i18n·SEO·광고·빌드·배포 작업 시 반드시 사용.
+description: Jurepi의 Next.js 15 App Router 정적 사이트(SSG) 플랫폼을 구축하는 방법. generateStaticParams, Server/Client 경계, next-intl 로케일 라우팅(ko/en), 레지스트리 기반 동적 도구 라우트, SEO 인프라(sitemap/robots/manifest/JSON-LD/hreflang), AdSense+동의 게이팅, CSP/보안 헤더(앱 내부 next.config), Core Web Vitals. 라우팅·SSG·i18n·SEO·광고·빌드 작업 시 반드시 사용. (Cloudflare Pages 배포·정적 익스포트·_headers/_redirects는 cloudflare-pages-deploy 스킬.)
 ---
 
 # Next.js SSG Platform — Jurepi 프레임워크 계층
