@@ -174,7 +174,7 @@ export function JournalPanel({
                 ✕
               </button>
             </div>
-            <p className="text-body text-text-secondary pl-3 border-l-3 border-accent-grape">
+            <p className="text-body text-text-secondary rounded-md bg-accent-grape-soft/40 px-3 py-2">
               {selectedDateQuestion}
             </p>
           </div>

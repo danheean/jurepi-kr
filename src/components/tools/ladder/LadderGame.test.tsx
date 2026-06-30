@@ -15,7 +15,7 @@ describe('LadderGame Component', () => {
 
   it('renders main element', () => {
     render(<LadderGame />);
-    const main = screen.getByRole('main');
+    const main = document.querySelector('.max-w-2xl') as HTMLElement;
     expect(main).toBeInTheDocument();
   });
 
@@ -72,25 +72,25 @@ describe('LadderGame Component', () => {
 
   it('has max-w-2xl container width', () => {
     render(<LadderGame />);
-    const main = screen.getByRole('main');
+    const main = document.querySelector('.max-w-2xl') as HTMLElement;
     expect(main).toHaveClass('max-w-2xl');
   });
 
   it('has centered alignment', () => {
     render(<LadderGame />);
-    const main = screen.getByRole('main');
+    const main = document.querySelector('.max-w-2xl') as HTMLElement;
     expect(main).toHaveClass('mx-auto');
   });
 
   it('has padding on sides', () => {
     render(<LadderGame />);
-    const main = screen.getByRole('main');
+    const main = document.querySelector('.max-w-2xl') as HTMLElement;
     expect(main).toHaveClass('px-4');
   });
 
   it('has full width', () => {
     render(<LadderGame />);
-    const main = screen.getByRole('main');
+    const main = document.querySelector('.max-w-2xl') as HTMLElement;
     expect(main).toHaveClass('w-full');
   });
 
@@ -136,7 +136,7 @@ describe('LadderGame Component', () => {
 
   it('applies vertical padding to main', () => {
     render(<LadderGame />);
-    const main = screen.getByRole('main');
+    const main = document.querySelector('.max-w-2xl') as HTMLElement;
     expect(main).toHaveClass('py-8');
   });
 });

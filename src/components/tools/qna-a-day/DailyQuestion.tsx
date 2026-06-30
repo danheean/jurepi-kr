@@ -72,7 +72,7 @@ export function DailyQuestion() {
   });
 
   return (
-    <main className="w-full max-w-2xl mx-auto px-4 py-8">
+    <div className="w-full max-w-2xl mx-auto px-4 py-8">
       {/* Intro — i18n only, server-rendered for SEO */}
       <QnaIntro />
 
@@ -164,6 +164,6 @@ export function DailyQuestion() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </main>
+    </div>
   );
 }

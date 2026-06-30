@@ -16,7 +16,7 @@ colors:
   hairline-strong: "#d8d3ee"
   text: "#1e1b3a"
   text-secondary: "#5c5780"
-  text-muted: "#938eb3"
+  text-muted: "#6f6a8f"
   accent-coral: "#ff7a85"
   accent-coral-soft: "#ffe7e9"
   accent-mint: "#2dd4bf"
@@ -29,6 +29,8 @@ colors:
   accent-grape-soft: "#ece6fe"
   accent-rose: "#fb7185"
   accent-rose-soft: "#fee2e7"
+  accent-mint-ink: "#0f766e"
+  accent-sun-ink: "#92400e"
   semantic-success: "#22c55e"
   semantic-warning: "#f59e0b"
   semantic-danger: "#ef4444"
@@ -180,19 +182,19 @@ components:
     padding: 8px 16px
   badge-new:
     backgroundColor: "{colors.accent-mint-soft}"
-    textColor: "{colors.accent-mint}"
+    textColor: "{colors.accent-mint-ink}"
     typography: "{typography.eyebrow}"
     rounded: "{rounded.pill}"
     padding: 3px 8px
   badge-popular:
     backgroundColor: "{colors.accent-sun-soft}"
-    textColor: "{colors.semantic-warning}"
+    textColor: "{colors.accent-sun-ink}"
     typography: "{typography.eyebrow}"
     rounded: "{rounded.pill}"
     padding: 3px 8px
   badge-soon:
     backgroundColor: "{colors.surface-muted}"
-    textColor: "{colors.text-muted}"
+    textColor: "{colors.text-secondary}"
     typography: "{typography.eyebrow}"
     rounded: "{rounded.pill}"
     padding: 3px 8px

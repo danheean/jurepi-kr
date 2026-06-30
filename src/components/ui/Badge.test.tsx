@@ -12,28 +12,28 @@ describe('Badge Component', () => {
     render(<Badge>Default</Badge>);
     const badge = screen.getByText('Default');
     expect(badge).toHaveClass('bg-accent-mint-soft');
-    expect(badge).toHaveClass('text-accent-mint');
+    expect(badge).toHaveClass('text-accent-mint-ink');
   });
 
   it('applies "new" variant styles explicitly', () => {
     render(<Badge variant="new">New</Badge>);
     const badge = screen.getByText('New');
     expect(badge).toHaveClass('bg-accent-mint-soft');
-    expect(badge).toHaveClass('text-accent-mint');
+    expect(badge).toHaveClass('text-accent-mint-ink');
   });
 
   it('applies "popular" variant styles', () => {
     render(<Badge variant="popular">Popular</Badge>);
     const badge = screen.getByText('Popular');
     expect(badge).toHaveClass('bg-accent-sun-soft');
-    expect(badge).toHaveClass('text-semantic-warning');
+    expect(badge).toHaveClass('text-accent-sun-ink');
   });
 
   it('applies "soon" variant styles', () => {
     render(<Badge variant="soon">Coming Soon</Badge>);
     const badge = screen.getByText('Coming Soon');
     expect(badge).toHaveClass('bg-surface-muted');
-    expect(badge).toHaveClass('text-text-muted');
+    expect(badge).toHaveClass('text-text-secondary');
   });
 
   it('renders as inline-block span', () => {

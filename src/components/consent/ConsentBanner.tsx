@@ -21,17 +21,6 @@ export function ConsentBanner(): React.ReactNode {
       aria-label={t('title')}
       aria-live="polite"
     >
-      {/* Backdrop for mobile/overlay */}
-      <div
-        className="fixed inset-0 bg-black/0 pointer-events-none"
-        style={{
-          background: 'rgba(0, 0, 0, 0.2)',
-          animation: prefersReducedMotion
-            ? 'none'
-            : 'fadeIn var(--duration-normal) ease-out forwards',
-        }}
-      />
-
       {/* Banner card */}
       <div
         className="relative mx-auto max-w-container px-4 sm:px-6 py-4 sm:py-6 bg-surface border-t border-hairline-strong shadow-card"
@@ -42,10 +31,6 @@ export function ConsentBanner(): React.ReactNode {
         }}
       >
         <style>{`
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
           @keyframes slideUpBanner {
             from {
               transform: translateY(100%);
@@ -79,7 +64,7 @@ export function ConsentBanner(): React.ReactNode {
           <div className="flex gap-2 sm:gap-3 flex-shrink-0">
             <button
               onClick={decline}
-              className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md border border-hairline-strong bg-surface text-text-secondary hover:bg-surface-muted active:bg-surface-sunken transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap rounded-md border border-hairline-strong bg-surface text-text-secondary hover:bg-surface-muted active:bg-surface-sunken transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               type="button"
               aria-label={t('decline')}
             >
@@ -87,7 +72,7 @@ export function ConsentBanner(): React.ReactNode {
             </button>
             <button
               onClick={accept}
-              className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md bg-brand text-on-brand hover:bg-brand-strong active:opacity-90 transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap rounded-md bg-brand text-on-brand hover:bg-brand-strong active:opacity-90 transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               type="button"
               aria-label={t('accept')}
             >

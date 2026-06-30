@@ -79,7 +79,7 @@ export function TodayPanel({
       </div>
 
       {/* Question with quotation styling */}
-      <div className="relative pl-6 py-4 border-l-4 border-accent-grape">
+      <div className="rounded-lg bg-accent-grape-soft/50 px-5 py-4">
         <p className="text-body-lg text-text leading-relaxed font-medium">
           {todayQuestion.text || ''}
         </p>

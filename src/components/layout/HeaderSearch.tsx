@@ -211,8 +211,7 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
               shadow-card
               max-h-96 overflow-y-auto
               z-50
-              animate-in fade-in-0 zoom-in-95
-              motion-safe:animate-in motion-safe:fade-in-0 motion-safe:zoom-in-95
+              dropdown-in
             "
           >
             {results.length === 0 ? (
@@ -276,7 +275,7 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
                         transition-colors duration-150
                         ${
                           isActive
-                            ? 'bg-surface-muted/60 border-l-2 border-brand'
+                            ? 'bg-brand-soft'
                             : 'hover:bg-surface-muted/30'
                         }
                       `}
@@ -297,7 +296,7 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
                     className={`
                       block px-3 py-2 opacity-60
                       transition-colors duration-150
-                      ${isActive ? 'bg-surface-muted/60 border-l-2 border-brand' : ''}
+                      ${isActive ? 'bg-brand-soft' : ''}
                     `}
                   >
                     {rowContent}

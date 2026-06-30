@@ -17,7 +17,7 @@
   /* Text */
   --text: #1e1b3a;
   --text-secondary: #5c5780;
-  --text-muted: #938eb3;
+  --text-muted: #6f6a8f; /* WCAG AA: 5.08:1 on white, 4.62:1 on surface-muted */
 
   /* Per-Accent Identity */
   --accent-coral: #ff7a85;
@@ -32,6 +32,10 @@
   --accent-grape-soft: #ece6fe;
   --accent-rose: #fb7185;
   --accent-rose-soft: #fee2e7;
+
+  /* Accent ink — dark, text-safe shade of an accent for labels on its *-soft tint (WCAG AA) */
+  --accent-mint-ink: #0f766e; /* 4.82:1 on accent-mint-soft */
+  --accent-sun-ink: #92400e; /* 6.32:1 on accent-sun-soft */
 
   /* Semantic */
   --success: #22c55e;
