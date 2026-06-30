@@ -54,6 +54,59 @@ export function buildToolMetadata({
 }
 
 /**
+ * Build metadata for a page (About, Privacy, Terms, Contact, etc.).
+ * Constructs canonical URL, hreflang alternates, and Open Graph tags.
+ */
+export function buildPageMetadata({
+  locale,
+  path,
+  title,
+  description,
+}: {
+  locale: string;
+  path: string;
+  title: string;
+  description: string;
+}): Metadata {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jurepi.kr';
+  const canonicalUrl = `${siteUrl}/${locale}${path}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        ko: `${siteUrl}/ko${path}`,
+        en: `${siteUrl}/en${path}`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: canonicalUrl,
+      siteName: 'Jurepi',
+      locale: locale === 'ko' ? 'ko_KR' : 'en_US',
+      images: [
+        {
+          url: `${siteUrl}/og-default.png`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${siteUrl}/og-default.png`],
+    },
+  };
+}
+
+/**
  * Build SoftwareApplication JSON-LD schema.
  * Structured data for search engines to understand the tool.
  */

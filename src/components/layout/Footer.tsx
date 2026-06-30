@@ -1,10 +1,25 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
+import { tools } from '@/tools/registry';
+import { toSearchableTools } from '@/lib/searchable-tools';
+
+const FOOTER_CATEGORIES = ['random', 'calculator', 'text', 'converter', 'fun', 'mindset'] as const;
 
 export async function Footer(): Promise<React.ReactNode> {
   const t = await getTranslations();
 
-  const links = [
+  // Get live tools grouped by category
+  const liveTools = toSearchableTools(tools, t).filter((x) => x.status === 'live');
+  const toolsByCategory = new Map<string, typeof liveTools>();
+
+  for (const category of FOOTER_CATEGORIES) {
+    toolsByCategory.set(
+      category,
+      liveTools.filter((tool) => tool.category === category)
+    );
+  }
+
+  const legalLinks = [
     { label: t('footer.about'), href: '/about' },
     { label: t('footer.privacy'), href: '/privacy' },
     { label: t('footer.terms'), href: '/terms' },
@@ -14,15 +29,44 @@ export async function Footer(): Promise<React.ReactNode> {
   return (
     <footer className="bg-surface-muted">
       <div className="max-w-container mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        {/* Top section: wordmark + tagline */}
-        <div className="mb-8 sm:mb-12">
-          <h2 className="font-display text-lg font-bold text-brand mb-2">Jurepi</h2>
-          <p className="text-body-sm text-text-secondary">{t('footer.tagline')}</p>
+        {/* Top section: wordmark only (no tagline) */}
+        <div className="mb-12">
+          <h2 className="font-display text-lg font-bold text-brand">Jurepi</h2>
         </div>
 
-        {/* Link columns */}
+        {/* Category grid with live tools */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
+          {FOOTER_CATEGORIES.map((category) => {
+            const categoryTools = toolsByCategory.get(category) || [];
+            return (
+              <div key={category}>
+                <h3 className="font-display text-caption font-bold text-text uppercase tracking-wider mb-4">
+                  {t(`categories.${category}`)}
+                </h3>
+                {categoryTools.length > 0 ? (
+                  <ul className="space-y-2">
+                    {categoryTools.map((tool) => (
+                      <li key={tool.slug}>
+                        <Link
+                          href={`/tools/${tool.slug}`}
+                          className="text-body-sm text-text-secondary hover:text-brand transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded"
+                        >
+                          {tool.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <ul className="space-y-2" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Legal links row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
-          {links.map((link) => (
+          {legalLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}

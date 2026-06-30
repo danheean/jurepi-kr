@@ -18,7 +18,6 @@
   },
   "footer": {
     "copyright": "© 2026 Jurepi · All tools are free.",
-    "tagline": "Handy tools, all free.",
     "about": "About",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
@@ -145,30 +144,6 @@
           }
         ]
       }
-    },
-    "picker": {
-      "title": "Random Picker",
-      "description": "Randomly select from a list."
-    },
-    "wordcounter": {
-      "title": "Word Counter",
-      "description": "Count characters, words, and sentences in text."
-    },
-    "unitconverter": {
-      "title": "Unit Converter",
-      "description": "Convert between length, weight, temperature, and more."
-    },
-    "percentcalc": {
-      "title": "Percentage Calculator",
-      "description": "Easily calculate ratios and percentages."
-    },
-    "timer": {
-      "title": "Timer",
-      "description": "Time activities and get notifications."
-    },
-    "ddaycounter": {
-      "title": "D-Day Calculator",
-      "description": "Calculate the number of days until a specific date."
     },
     "qna-a-day": {
       "title": "One Question a Day",
@@ -302,5 +277,129 @@
         ]
       }
     }
+  },
+  "about": {
+    "meta": {
+      "title": "About Jurepi · Handy Online Tools",
+      "description": "Learn about Jurepi, a free online tool hub. No sign-up required, all tools work locally in your browser."
+    },
+    "heading": "About Jurepi",
+    "intro": "Handy tools, all free.",
+    "sections": [
+      {
+        "title": "What is Jurepi?",
+        "body": "Jurepi is a free online tool hub designed to make everyday tasks simpler. Whether you need to make a fair decision for your group, keep a daily reflection journal, or find quick answers to common problems, Jurepi has you covered. No sign-up, no login, no hassle—just open a tool and get started."
+      },
+      {
+        "title": "Privacy first",
+        "body": "We don't collect your personal information. When you use Jurepi tools, your data stays on your device. Everything you enter—names in the ladder game, reflections in the journal, calculations—stays safely in your browser's local storage and never leaves your computer. Your privacy is our priority."
+      },
+      {
+        "title": "Tools for every need",
+        "body": "We start with tools that solve real problems: a fair lottery game for making group decisions, and a daily journal for self-reflection. More tools are coming soon across categories like math, text, conversions, and fun. Check back often as we expand what Jurepi can do for you."
+      },
+      {
+        "title": "Built in the open",
+        "body": "Jurepi is developed by a small team passionate about simplicity and quality. We share updates, ideas, and behind-the-scenes work on our blog. Follow along to learn about new tools, improvements, and how we think about design and engineering."
+      }
+    ]
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy Policy · Jurepi",
+      "description": "Learn how Jurepi handles your data, privacy, and the use of cookies and third-party services."
+    },
+    "heading": "Privacy Policy",
+    "lastUpdated": "Last updated: June 30, 2026",
+    "intro": "Your privacy matters to us. This policy explains how Jurepi collects, uses, and protects your information.",
+    "sections": [
+      {
+        "title": "Information we collect",
+        "body": "We do not directly collect personal information like names, emails, or phone numbers. When you use Jurepi tools, any data you enter—such as participant names in the ladder game or journal entries in One Question a Day—is stored only in your browser's local storage. This data never leaves your device and is not sent to any server."
+      },
+      {
+        "title": "Cookies and third-party services",
+        "body": "Jurepi uses Google AdSense and Google Analytics, which may use cookies to collect information about your browsing activity and help us understand how you use the site. These services have their own privacy policies. By using Jurepi, you consent to the collection and use of data by these third parties as described in their respective policies."
+      },
+      {
+        "title": "Changing your privacy settings",
+        "body": "You can review and adjust your consent for cookies and analytics at any time. Look for 'Privacy settings' at the bottom of every page (in the footer). Clicking it will reopen the consent dialog, allowing you to enable or disable analytics and ads as you prefer."
+      },
+      {
+        "title": "External links",
+        "body": "Jurepi may link to external websites and resources. We are not responsible for the privacy practices or content of these external sites. Please review their privacy policies before visiting."
+      },
+      {
+        "title": "Children's privacy",
+        "body": "Jurepi is not intended for children under 13. We do not knowingly collect information from children under 13. If we become aware of such collection, we will take steps to delete the information immediately."
+      },
+      {
+        "title": "Changes to this policy",
+        "body": "We may update this privacy policy from time to time to reflect changes in our practices or legal requirements. We will notify you of significant changes by updating the 'Last updated' date at the top of this policy."
+      },
+      {
+        "title": "Contact us",
+        "body": "If you have questions or concerns about your privacy or how we handle your data, please contact us at dhan0213@naver.com. We aim to respond within a few days."
+      }
+    ]
+  },
+  "terms": {
+    "meta": {
+      "title": "Terms of Service · Jurepi",
+      "description": "Review the terms and conditions for using Jurepi and its tools."
+    },
+    "heading": "Terms of Service",
+    "lastUpdated": "Last updated: June 30, 2026",
+    "intro": "By using Jurepi, you agree to these terms. Please read them carefully.",
+    "sections": [
+      {
+        "title": "Agreement to terms",
+        "body": "By accessing and using Jurepi and its tools, you agree to be bound by these Terms of Service. If you do not agree to any part of these terms, you may not use the site."
+      },
+      {
+        "title": "Service provision",
+        "body": "Jurepi provides its tools and services on an 'as is' basis without warranties of any kind. We make no guarantee that the tools will always be available, function without errors, or meet your specific needs. We do not guarantee uptime, accuracy of results, or continuous operation."
+      },
+      {
+        "title": "Acceptable use",
+        "body": "You agree to use Jurepi only for lawful purposes and in a way that does not infringe on the rights of others or restrict their use and enjoyment of the site. Prohibited behavior includes harassment, obtaining or attempting to obtain unauthorized access to systems or data, and any illegal activity."
+      },
+      {
+        "title": "Limitation of liability",
+        "body": "To the fullest extent permitted by law, Jurepi and its creators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of or inability to use the tools, even if we have been advised of the possibility of such damages."
+      },
+      {
+        "title": "Intellectual property",
+        "body": "All content on Jurepi, including text, graphics, logos, and code, is owned by or licensed to Jurepi and is protected by copyright and intellectual property laws. You may use the tools for personal, non-commercial purposes only."
+      },
+      {
+        "title": "Third-party advertising and links",
+        "body": "Jurepi may display advertisements from Google AdSense and other advertisers. These ads are independent of Jurepi's content. External links on Jurepi are provided for convenience; Jurepi is not responsible for their content, accuracy, or policies. Your use of third-party services is at your own risk."
+      },
+      {
+        "title": "Changes to terms",
+        "body": "We reserve the right to modify these terms at any time. Changes become effective immediately upon posting. Your continued use of Jurepi following any changes constitutes your acceptance of the updated terms."
+      },
+      {
+        "title": "Governing law and disputes",
+        "body": "These terms are governed by and construed in accordance with the laws of the Republic of Korea, without regard to conflict of law principles. Any legal action or proceeding shall be subject to the exclusive jurisdiction of the courts located in South Korea."
+      },
+      {
+        "title": "Contact",
+        "body": "If you have questions or concerns regarding these terms, please contact us at dhan0213@naver.com."
+      }
+    ]
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact · Jurepi",
+      "description": "Get in touch with the Jurepi team. We welcome feedback, bug reports, and partnership inquiries."
+    },
+    "heading": "Contact",
+    "intro": "We love hearing from you! Have feedback, found a bug, or want to collaborate? Reach out anytime—we typically respond within a few days.",
+    "emailLabel": "Email",
+    "email": "dhan0213@naver.com",
+    "blogLabel": "Blog",
+    "note": "Check our blog for updates on new tools, improvements, and behind-the-scenes stories."
   }
 }
