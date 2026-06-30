@@ -1,15 +1,48 @@
 import { getToolBySlug, getLiveTools } from '@/tools/registry';
 import { notFound } from 'next/navigation';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import dynamic from 'next/dynamic';
+import type { Metadata } from 'next';
+import { buildToolMetadata } from '@/lib/seo';
 
 const LadderGame = dynamic(() =>
   import('@/components/tools/ladder/LadderGame').then((m) => ({
     default: m.LadderGame,
   }))
 );
+
+const DailyQuestion = dynamic(() =>
+  import('@/components/tools/qna-a-day/DailyQuestion').then((m) => ({
+    default: m.DailyQuestion,
+  }))
+);
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const tool = getToolBySlug(slug);
+  if (!tool || tool.status !== 'live') {
+    return {};
+  }
+
+  const t = await getTranslations({ locale, namespace: `tools.${slug}` });
+
+  // Each tool exposes its own title/description message keys.
+  let title: string;
+  let description: string;
+  if (slug === 'qna-a-day') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'ladder') {
+    title = t('title');
+    description = t('lead');
+  } else {
+    return {};
+  }
+
+  return buildToolMetadata({ locale, slug, title, description });
+}
 
 export function generateStaticParams() {
   return getLiveTools().map((tool) => ({
@@ -38,6 +71,10 @@ async function ToolContent({ slug }: { slug: string }) {
   // Mount tool based on slug
   if (slug === 'ladder') {
     return <LadderGame />;
+  }
+
+  if (slug === 'qna-a-day') {
+    return <DailyQuestion />;
   }
 
   notFound();

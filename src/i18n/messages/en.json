@@ -45,7 +45,8 @@
     "calculator": "Calculator",
     "text": "Text",
     "converter": "Converter",
-    "fun": "Fun"
+    "fun": "Fun",
+    "mindset": "Mindset"
   },
   "emptyState": {
     "heading": "No results found",
@@ -168,6 +169,138 @@
     "ddaycounter": {
       "title": "D-Day Calculator",
       "description": "Calculate the number of days until a specific date."
+    },
+    "qna-a-day": {
+      "title": "One Question a Day",
+      "description": "Answer one daily question and keep a year-long personal reflection journal.",
+      "meta": {
+        "title": "One Question a Day · Daily Reflection",
+        "description": "A 365-day self-reflection journal tool. Answer the same question every day and compare your answers year over year. All entries are stored privately in your browser."
+      },
+      "intro": {
+        "eyebrow": "Daily Reflection",
+        "title": "One Question a Day",
+        "lead": "Spend a year answering the same question every day. On the same date each year, you'll see your past answer alongside your new one. Every entry stays private in your browser—a personal, safe space to reflect."
+      },
+      "tabBar": {
+        "today": "Today",
+        "calendar": "Calendar",
+        "journal": "Journal",
+        "settings": "Settings"
+      },
+      "today": {
+        "badge": "Today",
+        "dateFormatNote": "Note: Local time",
+        "futureHint": "Future",
+        "neighborPrev": "Yesterday",
+        "neighborNext": "Tomorrow",
+        "backToToday": "Back to today",
+        "pastYearsHeading": "Past years",
+        "noPastYears": "No entries yet for this date in past years"
+      },
+      "composer": {
+        "placeholder": "Write your answer…",
+        "saving": "Saving…",
+        "saved": "Saved",
+        "savedJustNow": "Saved · just now",
+        "charCount": "{current} / {max}",
+        "deleted": "Deleted",
+        "delete": "Clear",
+        "undo": "Undo",
+        "saveNow": "Save",
+        "maxReached": "Maximum character limit reached"
+      },
+      "calendar": {
+        "prevMonth": "Previous month",
+        "nextMonth": "Next month",
+        "prevYear": "Previous year",
+        "nextYear": "Next year",
+        "answered": "Answered",
+        "unanswered": "Not answered",
+        "today": "Today",
+        "future": "Future",
+        "answeredCountThisYear": "{count} answered this year",
+        "heatmapLegend": "Annual activity"
+      },
+      "journal": {
+        "searchPlaceholder": "Search answers or questions…",
+        "yearAll": "All years",
+        "noEntries": "Start your first entry",
+        "noResults": "No results found",
+        "clearSearch": "Clear search",
+        "editAria": "Edit {date}"
+      },
+      "settings": {
+        "exportTitle": "Export entries",
+        "exportButton": "Export",
+        "lastBackup": "Last backup: {date}",
+        "neverBackedUp": "No backups yet",
+        "importTitle": "Import entries",
+        "importButton": "Import",
+        "importMerge": "Merge",
+        "importReplace": "Replace",
+        "importInvalid": "Invalid file",
+        "importDiffSummary": "{newCount} entries to import, {conflictCount} overlapping dates",
+        "resetTitle": "Delete all entries",
+        "resetButton": "Delete",
+        "resetConfirm": "Are you sure you want to delete all entries?",
+        "resetConfirmBody": "This action cannot be undone. Please export a backup first.",
+        "privacyTitle": "Privacy",
+        "privacyBody": "All your answers are stored only in this browser and are never uploaded anywhere. If you switch devices or clear your browser data, your entries will be lost unless you export them first.",
+        "backupReminder": "Regularly back up your entries",
+        "storageUnavailable": "This browser cannot save data — please export your entries as a backup",
+        "quotaExceeded": "Your browser's storage is full. Please export old entries and clear space.",
+        "corruptRecovered": "Recovered corrupted data",
+        "downloadCorrupt": "Download corrupted data"
+      },
+      "stats": {
+        "streak": "{count}-day streak",
+        "longestStreak": "Longest streak: {count} days",
+        "total": "{count} total",
+        "ringAria": "{answered}/{elapsed} days answered this year"
+      },
+      "howTo": {
+        "heading": "How to use One Question a Day",
+        "whatTitle": "What is One Question a Day?",
+        "whatBody": "One Question a Day is a year-long self-reflection journal. Every calendar date comes with one fixed, thoughtful question. You answer it once today, then next year on the same date, you'll see your old answer right alongside your new one. This creates a powerful 'then vs. now' mirror: you see exactly how you've changed, what you've learned, and what matters to you. All entries stay private in your browser.",
+        "howTitle": "How to use it",
+        "howBody": "The 'Today' tab shows today's question front and center with a text area to write your answer. It auto-saves as you type. Switch to the 'Calendar' tab to browse any date and edit past answers—or even write ahead for future dates. The 'Journal' tab lets you search your entire history and filter by year. Use the 'Settings' tab to back up your entries (download a JSON file), restore from a backup, or reset everything. That's it—simple and private.",
+        "whyTitle": "Why answer the same question daily?",
+        "whyBody": "Repeating the same question year after year teaches you about yourself at a deeper level. Your answer evolves: your priorities shift, your worldview grows, your understanding deepens. When you look back at what you wrote a year ago, you see your own progress made tangible. The habit builds slowly—one answer a day—but after a year, you've created a precious record of who you are and how you're becoming."
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "Where are my answers stored?",
+            "a": "Entirely in this browser's local storage. Your answers never leave your device and are never uploaded anywhere. Because of this, if you clear your browser data or switch devices, you'll lose everything unless you export a backup first. We strongly recommend regular backups."
+          },
+          {
+            "q": "Can I move my entries to another device?",
+            "a": "Yes, via export and import. On your current device, use 'Settings' → 'Export' to download a JSON backup file. On your new device, open One Question a Day, go to 'Settings' → 'Import', and select the file. Choose to merge (combine with any existing entries) or replace (start fresh with the imported entries)."
+          },
+          {
+            "q": "Can I see what I wrote a year ago today?",
+            "a": "Yes—that's the whole point. On the 'Today' tab, scroll down and you'll see a 'Past years' section showing all your previous answers for this calendar date, newest first."
+          },
+          {
+            "q": "What if I want to skip a day?",
+            "a": "No problem. You don't have to answer every day. Come back whenever you want. You can also write ahead for future dates if you're feeling inspired."
+          },
+          {
+            "q": "What happens on Leap Day (February 29)?",
+            "a": "The dataset has exactly 365 questions for 365 days. On February 29 (in leap years), you'll see the February 28 question—the same one non-leap years use."
+          },
+          {
+            "q": "Can my entries disappear?",
+            "a": "Yes, if you clear your browser's cached data or storage. Since entries are only stored locally, they're vulnerable to the usual browser actions. That's why consistent backups are essential. With a backup file, you can always restore everything."
+          },
+          {
+            "q": "Is this journal shareable?",
+            "a": "Your entries are private by default. No one can see them unless you intentionally share the export file. It's a personal space, just for you."
+          }
+        ]
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
  * Tool registry types — pure domain layer, no React/Next imports
  */
 
-export type ToolCategory = 'random' | 'calculator' | 'text' | 'converter' | 'fun' | 'dev';
+export type ToolCategory = 'random' | 'calculator' | 'text' | 'converter' | 'fun' | 'dev' | 'mindset';
 
 export type AccentColor = 'coral' | 'mint' | 'sky' | 'sun' | 'grape' | 'rose';
 

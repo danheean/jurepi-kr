@@ -78,6 +78,17 @@ export const tools: ToolMeta[] = [
     order: 7,
     keywords: ['디데이', 'd-day', '날짜', 'counter'],
   },
+  {
+    id: 'qna-a-day',
+    slug: 'qna-a-day',
+    category: 'mindset',
+    icon: 'NotebookPen',
+    accent: 'grape',
+    status: 'live',
+    isNew: true,
+    order: 8,
+    keywords: ['1일1질문', '하루한질문', '365질문', '질문일기', '자기성찰', '일기', '저널', 'q&a a day', 'daily question', 'journal', 'self reflection', 'one question a day'],
+  },
 ];
 
 /** Get all live tools for static generation */
