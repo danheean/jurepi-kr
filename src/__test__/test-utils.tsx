@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { NextIntlClientProvider } from 'next-intl';
 
 const defaultMessages = {
@@ -13,16 +14,48 @@ const defaultMessages = {
   header: {
     wordmark: 'Jurepi',
     searchPlaceholder: 'Search tools…',
+    themeLight: 'Light',
+    themeDark: 'Dark',
+    themeSystem: 'System',
+    themeToggleAria: 'Toggle theme',
+    localeAria: 'Select language',
+    homeLink: 'Home',
   },
   footer: {
     copyright: '© 2026 Jurepi · All tools are free.',
     tagline: 'Handy tools, all free.',
+    about: 'About',
+    privacy: 'Privacy',
+    terms: 'Terms',
+    contact: 'Contact',
+    consentReopen: 'Privacy settings',
   },
   home: {
     eyebrow: 'Free online tools',
     headline: 'Handy tools, all free.',
     subhead: 'Discover useful tools in one place.',
     searchPlaceholder: 'Search tools…',
+    searchAria: 'Search tools',
+    mascotGreeting: 'Find the tool you need!',
+    resultCount: '{count, plural, one {# tool} other {# tools}}',
+  },
+  categories: {
+    all: 'All',
+    random: 'Random',
+    calculator: 'Calculator',
+    text: 'Text',
+    converter: 'Converter',
+    fun: 'Fun',
+  },
+  card: {
+    new: 'New',
+    popular: 'Popular',
+    comingSoon: 'Coming soon',
+  },
+  emptyState: {
+    heading: 'No results found',
+    body: 'Try a different search or category.',
+    resetButton: 'Reset',
   },
   notFound: {
     heading: 'Page not found',
@@ -96,4 +129,4 @@ const customRender = (
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
 export * from '@testing-library/react';
-export { customRender as render };
+export { customRender as render, userEvent };

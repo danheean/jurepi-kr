@@ -1,9 +1,16 @@
 /* Global styles */
 
 @import url('@/styles/tokens.css');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+/* Font loading: Pretendard via jsDelivr with dynamic subset for optimal perf */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css');
+
+/* Tailwind v4: load the engine and bridge the legacy (v3) config so the
+   design-token theme (colors, radii, shadows, container width) and content
+   globs in tailwind.config.ts are applied. Without @config, v4 ignores the JS
+   config and none of the custom token utilities are generated. */
+@import 'tailwindcss';
+@config '../../tailwind.config.ts';
 
 /* System font stack as fallback */
 @supports (font-variation-settings: normal) {
@@ -24,15 +31,6 @@ body {
   color: var(--text);
   background-color: var(--surface);
   line-height: 1.55;
-}
-
-/* Prevent Flash of Unstyled Content (FOUC) */
-html {
-  display: none;
-}
-
-html.init {
-  display: block;
 }
 
 /* Focus visible ring */

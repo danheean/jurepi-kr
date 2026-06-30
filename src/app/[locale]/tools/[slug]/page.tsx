@@ -1,5 +1,6 @@
 import { getToolBySlug, getLiveTools } from '@/tools/registry';
 import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import dynamic from 'next/dynamic';
@@ -44,9 +45,10 @@ async function ToolContent({ slug }: { slug: string }) {
 
 export default async function ToolPage({ params }: Props) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen bg-surface">
+    <div className="bg-surface">
       <div className="mx-auto max-w-container px-6 py-16">
         {/* Breadcrumb */}
         <div className="mb-8">
@@ -76,6 +78,6 @@ export default async function ToolPage({ params }: Props) {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

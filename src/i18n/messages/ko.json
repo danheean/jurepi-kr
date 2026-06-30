@@ -8,26 +8,59 @@
   },
   "header": {
     "wordmark": "Jurepi",
-    "searchPlaceholder": "도구 검색…"
+    "searchPlaceholder": "도구 검색…",
+    "themeLight": "라이트",
+    "themeDark": "다크",
+    "themeSystem": "시스템",
+    "themeToggleAria": "테마 전환",
+    "localeAria": "언어 선택",
+    "homeLink": "홈"
   },
   "footer": {
     "copyright": "© 2026 Jurepi · 모든 도구는 무료입니다.",
-    "tagline": "필요한 모든 도구를 무료로"
+    "tagline": "필요한 모든 도구를 무료로",
+    "about": "소개",
+    "privacy": "개인정보 처리방침",
+    "terms": "이용약관",
+    "contact": "문의",
+    "consentReopen": "개인정보 설정 변경"
   },
   "home": {
     "eyebrow": "무료 온라인 도구",
     "headline": "필요한 도구, 전부 무료로.",
-    "subhead": "유용한 도구들을 한곳에서 만나보세요.",
-    "searchPlaceholder": "도구 검색…"
+    "subhead": "매일 필요한 도구를 한곳에서 찾아보세요.",
+    "searchPlaceholder": "도구 검색…",
+    "searchAria": "도구 검색",
+    "resultCount": "{count, plural, one {# 개의 도구} other {# 개의 도구}}",
+    "mascotGreeting": "안녕하세요! 원하는 도구를 찾아보세요."
   },
   "notFound": {
     "heading": "페이지를 찾을 수 없어요",
     "description": "요청한 페이지가 존재하지 않습니다.",
     "backHome": "홈으로 돌아가기"
   },
+  "categories": {
+    "all": "전체",
+    "random": "랜덤/추첨",
+    "calculator": "계산기",
+    "text": "텍스트",
+    "converter": "변환",
+    "fun": "재미"
+  },
+  "emptyState": {
+    "heading": "검색 결과가 없어요",
+    "body": "다른 검색어를 시도해보거나, 아래의 카테고리를 선택해보세요.",
+    "resetButton": "다시 시작"
+  },
+  "card": {
+    "comingSoon": "준비중",
+    "new": "새로운",
+    "popular": "인기"
+  },
   "tools": {
     "ladder": {
       "title": "사다리 타기",
+      "description": "사다리를 타고 아래로 내려와 상품을 얻어보세요. 공정한 추첨 게임입니다.",
       "lead": "참가자들의 공정한 순서를 정해보세요. 누가 커피를 살까, 누가 먼저 선택할까?",
       "setup": {
         "countLabel": "참가자 수",
@@ -92,6 +125,30 @@
           }
         ]
       }
+    },
+    "picker": {
+      "title": "랜덤 추첨기",
+      "description": "목록에서 무작위로 선택해주는 도구입니다."
+    },
+    "wordcounter": {
+      "title": "글자 수 세기",
+      "description": "텍스트의 글자, 단어, 문장 수를 세어줍니다."
+    },
+    "unitconverter": {
+      "title": "단위 변환기",
+      "description": "길이, 무게, 온도 등 다양한 단위를 변환해줍니다."
+    },
+    "percentcalc": {
+      "title": "퍼센트 계산기",
+      "description": "비율과 퍼센트를 쉽게 계산할 수 있습니다."
+    },
+    "timer": {
+      "title": "타이머",
+      "description": "시간을 재고 알림을 받으세요."
+    },
+    "ddaycounter": {
+      "title": "디데이 계산기",
+      "description": "특정 날짜까지 남은 일수를 계산해줍니다."
     }
   }
 }

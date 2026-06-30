@@ -41,7 +41,7 @@ export function Modal({
         role="dialog"
         aria-modal="true"
       >
-        <div className="bg-surface rounded-xxl shadow-pop max-w-md w-full p-6 max-h-[90vh] overflow-auto">
+        <div className="bg-surface rounded-xxl shadow-pop max-w-[28rem] w-full p-6 max-h-[90vh] overflow-auto">
           {title && (
             <h2 className="font-headline text-text mb-4">{title}</h2>
           )}

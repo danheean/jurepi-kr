@@ -85,9 +85,24 @@
   --container-gutter-mobile: 16px;
 }
 
-/* Dark theme tokens (Phase 2) */
+/* Dark theme tokens via explicit attribute (manual preference override) */
+[data-theme="dark"] {
+  --surface: #1e1b2e;
+  --surface-muted: #262238;
+  --surface-sunken: #1a181f;
+  --hairline: #322c49;
+  --hairline-strong: #463e63;
+  --text: #f4f2ff;
+  --text-secondary: #b7b1d6;
+  --text-muted: #7e7799;
+  --brand: #8b7bff;
+  --brand-strong: #a294ff;
+  --brand-soft: #2a2545;
+}
+
+/* Dark theme tokens via system preference (fallback when [data-theme] not set to 'light') */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --surface: #1e1b2e;
     --surface-muted: #262238;
     --surface-sunken: #1a181f;
@@ -101,3 +116,5 @@
     --brand-soft: #2a2545;
   }
 }
+
+/* TODO: Phase 2 — accent token dark fine-tuning; currently using light values for accents */

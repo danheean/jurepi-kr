@@ -27,3 +27,6 @@ coverage/
 playwright-report/
 test-results/
 /playwright/.cache/
+
+# QA screenshot captures (audit only, not versioned)
+_workspace/screens*/

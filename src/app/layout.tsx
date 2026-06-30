@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jurepi.kr';
@@ -18,37 +18,22 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  colorScheme: 'light dark',
+};
+
+/**
+ * Root layout intentionally returns children only. The `[locale]` layout owns
+ * the <html lang> / <body> document so the language attribute reflects the
+ * active locale (next-intl App Router pattern).
+ */
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html suppressHydrationWarning>
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, viewport-fit=cover"
-        />
-        <style>{`
-          html {
-            color-scheme: light;
-          }
-          html.init {
-            display: block;
-          }
-        `}</style>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                document.documentElement.classList.add('init');
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
-      <body>{children}</body>
-    </html>
-  );
+  return children;
 }

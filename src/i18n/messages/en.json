@@ -8,26 +8,59 @@
   },
   "header": {
     "wordmark": "Jurepi",
-    "searchPlaceholder": "Search tools…"
+    "searchPlaceholder": "Search tools…",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "themeToggleAria": "Toggle theme",
+    "localeAria": "Select language",
+    "homeLink": "Home"
   },
   "footer": {
     "copyright": "© 2026 Jurepi · All tools are free.",
-    "tagline": "Handy tools, all free."
+    "tagline": "Handy tools, all free.",
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "consentReopen": "Privacy settings"
   },
   "home": {
     "eyebrow": "Free online tools",
     "headline": "Handy tools, all free.",
     "subhead": "Discover useful tools in one place.",
-    "searchPlaceholder": "Search tools…"
+    "searchPlaceholder": "Search tools…",
+    "searchAria": "Search tools",
+    "resultCount": "{count, plural, one {# tool} other {# tools}}",
+    "mascotGreeting": "Hi! Find the tool you need."
   },
   "notFound": {
     "heading": "Page not found",
     "description": "The page you requested does not exist.",
     "backHome": "Back to home"
   },
+  "categories": {
+    "all": "All",
+    "random": "Random/Draw",
+    "calculator": "Calculator",
+    "text": "Text",
+    "converter": "Converter",
+    "fun": "Fun"
+  },
+  "emptyState": {
+    "heading": "No results found",
+    "body": "Try a different search term or select a category below.",
+    "resetButton": "Start over"
+  },
+  "card": {
+    "comingSoon": "Coming soon",
+    "new": "New",
+    "popular": "Popular"
+  },
   "tools": {
     "ladder": {
       "title": "Ladder Game",
+      "description": "Climb down the ladder and get your prize. A fair lottery game.",
       "lead": "Decide fair orders for your group. Who buys coffee? Who picks first?",
       "setup": {
         "countLabel": "Number of players",
@@ -92,6 +125,30 @@
           }
         ]
       }
+    },
+    "picker": {
+      "title": "Random Picker",
+      "description": "Randomly select from a list."
+    },
+    "wordcounter": {
+      "title": "Word Counter",
+      "description": "Count characters, words, and sentences in text."
+    },
+    "unitconverter": {
+      "title": "Unit Converter",
+      "description": "Convert between length, weight, temperature, and more."
+    },
+    "percentcalc": {
+      "title": "Percentage Calculator",
+      "description": "Easily calculate ratios and percentages."
+    },
+    "timer": {
+      "title": "Timer",
+      "description": "Time activities and get notifications."
+    },
+    "ddaycounter": {
+      "title": "D-Day Calculator",
+      "description": "Calculate the number of days until a specific date."
     }
   }
 }

@@ -20,3 +20,5 @@
 | 2026-06-29 | 스캐폴드 기본값 강화 (test=`vitest run`, coverage 스코프 `src/**`) | skills/nextjs-ssg-platform | 워치 모드 스크립트 hang + 커버리지 스코프 오염 결함 재발 방지 |
 | 2026-06-29 | 오케스트레이터에 "주장≠증명" 검증 원칙 + 작업 분할 지침 추가 | skills/jurepi-build | 에이전트 거짓 PASS 4회(가짜 chi-square·커버리지 false-PASS·"10/11"실제4실패·행에도 "배포완료") + ui 컨텍스트 소진 2회 |
 | 2026-06-29 | Vitest/Playwright 스펙 분리, ui E2E `data-testid` 앵커, 죽은검정·로케일매처·clipboard 교훈 | nextjs-ssg-platform · ui-engineer · jurepi-tdd | E2E 그린화 세션에서 드러난 경계·환경 결함 재발 방지 |
+| 2026-06-29 | 메인 대시보드 + 공유 셸 구현 — Hero(마스코트 동반)·검색·카테고리 필터·툴카드 그리드(라이브1+준비중6)·빈상태·404, Header/Footer/테마토글/로케일 스위처, 도메인(검색/정렬/테마) TDD. 357 유닛 / 20 E2E / typecheck / 빌드 10페이지 SSG 그린 | src/** (제품) | 플랫폼 메인화면 빌드 |
+| 2026-06-29 | "녹색 빌드가 숨긴" 시각/SSR 결함 4건을 리더 직접 검증으로 적발: ① Tailwind v4가 v3 `tailwind.config.ts` 미로드(@config 브리지 누락)→디자인 토큰 유틸 전부 미생성 ② 그리드 CSR-only(useSearchParams+Suspense)→SSG/SEO 회귀 ③ 라이브 카드 링크 로케일 프리픽스 누락→404 ④ spacing 토큰명(md/sm) 충돌로 `max-w-md`=16px | src/app/globals.css · ToolExplorer · ToolCard · Hero/Modal/EmptyState | 빌드·테스트·axe 모두 그린이어도 렌더 화면/SSR HTML을 직접 봐야 함(시각 검증 게이트) |
