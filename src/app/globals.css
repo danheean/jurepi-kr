@@ -2,8 +2,11 @@
 
 @import url('@/styles/tokens.css');
 
-/* Font loading: Pretendard via jsDelivr with dynamic subset for optimal perf */
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css');
+/* Font loading: Pretendard (SIL OFL) self-hosted from the npm package. Dynamic
+   subset (unicode-range split, font-display:swap) keeps Korean payloads small and
+   loads only the glyph ranges actually used. Replaces the render-blocking external
+   jsDelivr @import, which blocked first paint on a third-party request. */
+@import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
 
 /* Tailwind v4: load the engine and bridge the legacy (v3) config so the
    design-token theme (colors, radii, shadows, container width) and content
