@@ -65,8 +65,8 @@ export async function Footer(): Promise<React.ReactNode> {
           })}
         </div>
 
-        {/* Legal links row + Consent reopen */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
+        {/* Legal links + consent — one row, divided from the tool grid above */}
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-hairline pt-8 mb-8">
           {legalLinks.map((link) => (
             <Link
               key={link.href}
@@ -76,7 +76,9 @@ export async function Footer(): Promise<React.ReactNode> {
               {link.label}
             </Link>
           ))}
-          <ConsentReopenButton />
+          <div className="w-full sm:w-auto sm:ml-auto">
+            <ConsentReopenButton />
+          </div>
         </div>
 
         {/* Copyright */}

@@ -1,5 +1,6 @@
 'use client';
 
+import { SlidersHorizontal } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 /**
@@ -30,9 +31,10 @@ export function ConsentReopenButton(): React.ReactNode {
   return (
     <button
       onClick={reopen}
-      className="text-xs sm:text-sm text-text-secondary hover:text-text transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink"
       type="button"
+      className="inline-flex items-center gap-1.5 rounded-pill border border-hairline-strong bg-surface px-3 py-1.5 text-body-sm font-semibold text-brand-ink transition-colors duration-fast hover:border-brand-soft hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2"
     >
+      <SlidersHorizontal aria-hidden="true" className="h-4 w-4" />
       {t('consentReopen')}
     </button>
   );
