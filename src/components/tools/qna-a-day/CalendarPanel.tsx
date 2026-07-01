@@ -46,7 +46,9 @@ export function CalendarPanel({
   const [displayMonth, setDisplayMonth] = useState<number>(
     parseInt(today.slice(5, 7), 10) - 1
   );
-  const [selectedDate, setSelectedDate] = useState<DateKey | null>(null);
+  // Pre-select today so the calendar lands with today's question + composer
+  // already open (the tool's entry view). Users can close it (X) or pick another day.
+  const [selectedDate, setSelectedDate] = useState<DateKey | null>(today);
 
   const todayYear = parseInt(today.slice(0, 4), 10);
   const minYear = todayYear - 10;

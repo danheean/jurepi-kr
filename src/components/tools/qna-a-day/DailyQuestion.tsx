@@ -35,7 +35,9 @@ const TAB_KEY_REVERSE: Record<TabKey, number> = {
 export function DailyQuestion() {
   const t = useTranslations('tools.qna-a-day');
   const daily = useDailyJournal();
-  const [activeTab, setActiveTab] = useState<TabKey>('today');
+  // Calendar is the landing view: users enter (from the dashboard or a direct
+  // link) onto the calendar with today pre-selected and its answer composer open.
+  const [activeTab, setActiveTab] = useState<TabKey>('calendar');
   const [currentDate, setCurrentDate] = useState<DateKey>(daily.today);
 
   // Handle keyboard shortcuts
