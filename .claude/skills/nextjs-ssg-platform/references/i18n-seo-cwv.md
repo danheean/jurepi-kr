@@ -59,6 +59,8 @@ export function generateStaticParams() {
 
 체크: 홈 WebSite JSON-LD, 도구 SoftwareApplication+FAQPage, sitemap에 live 도구×로케일+정적 페이지(절대 URL), robots allow+sitemap, 미지 slug→지역화 404.
 
+**GEO(생성엔진)·도구별 발견성 전략은 여기가 아니라 `seo-geo-optimization` 스킬(seo-geo-engineer 소유).** 이 인프라가 제공해야 하는 것: 요청 시 추가 JSON-LD 헬퍼(HowTo/DefinedTermSet/BreadcrumbList), hreflang `x-default`, `robots`가 AI 크롤러(GPTBot·PerplexityBot·ClaudeBot·Google-Extended·CCBot 등) 미차단, `public/llms.txt` 정적 서빙. **비타협: 메타·JSON-LD·SEO 롱폼은 `mounted` 게이트 밖 SSR** — 게이트 안이면 정적 HTML(크롤러/AI가 읽는 것)에서 사라진다(Q&A a Day 실제 회귀). JSON-LD `url`·canonical·sitemap은 `absoluteToolUrl` 단일 소스.
+
 ## 5. 동의 + AdSlot 게이팅
 
 - 첫 방문 → ConsentBanner("수락"/"거부"/"설정"). 선택 → localStorage `jurepi-consent`. 푸터에서 재오픈.

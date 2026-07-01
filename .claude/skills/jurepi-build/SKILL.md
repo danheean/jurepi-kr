@@ -3,9 +3,10 @@ name: jurepi-build
 description: >-
   Jurepi.kr(무료 온라인 도구 허브, Next.js 15 SSG) 풀스택 웹 개발의 오케스트레이터. 클린 아키텍처 + TDD로
   기능을 구현하기 위해 architect·domain-engineer·ui-engineer·platform-engineer·qa-integration 에이전트 팀을 조율하고,
-  배포 시점엔 deploy-engineer(Cloudflare Pages)를 호출한다.
+  도구별 발견성 시점엔 seo-geo-engineer(SEO/GEO), 배포 시점엔 deploy-engineer(Cloudflare Pages)를 호출한다.
   Jurepi 플랫폼/대시보드/도구(사다리타기 등) 구현·기능 추가·리팩터링·버그 수정·배포 요청 시 반드시 이 스킬을 사용하라.
-  "사다리/ladder 게임", "도구 카드 그리드", "메인 대시보드", "도구 추가", "SSG/SEO/i18n/광고/동의", "클린 아키텍처로", "TDD로 구현",
+  "사다리/ladder 게임", "도구 카드 그리드", "메인 대시보드", "도구 추가", "SSG/SEO/GEO/i18n/광고/동의", "클린 아키텍처로", "TDD로 구현",
+  "검색 노출/AI 노출/구조화 데이터/JSON-LD/llms.txt/발견성",
   "배포/deploy/Cloudflare/CF Pages/재배포/배포 실패/정적 익스포트",
   "다시 구현/재실행/이어서/업데이트/수정/보완", "이전 결과 기반으로", "{기능}만 다시" 같은 표현에 적극 트리거하라.
   단순 질문이나 단일 파일 사소 편집은 직접 응답해도 된다.
@@ -36,9 +37,10 @@ description: >-
 | `ui-engineer` | 3 어댑터(UI) | React 컴포넌트·훅·디자인 시스템·a11y | design-system-fidelity, jurepi-tdd |
 | `platform-engineer` | 4 프레임워크 | App Router·SSG·i18n·SEO·광고·빌드·보안(앱 내부) | nextjs-ssg-platform |
 | `qa-integration` | 횡단 | 경계 교차 검증·E2E·a11y·CWV(general-purpose) | integration-qa, jurepi-tdd |
+| `seo-geo-engineer` | 발견성 경계 | 도구별 SEO+GEO(고유 메타·JSON-LD·답변 우선 콘텐츠·llms.txt·AI 크롤러·프리렌더 노출) | seo-geo-optimization |
 | `deploy-engineer` | 배포 경계 | Cloudflare Pages 정적 배포·정적 익스포트 마이그레이션·`_headers`/`_redirects`·트러블슈팅 | cloudflare-pages-deploy |
 
-빌드 팀(상시) 5명 — 중규모 작업에 적정. 작은 작업은 일부만 호출한다. **deploy-engineer는 빌드 팀 상시 멤버가 아니라 배포 시점/배포 실패 시 호출하는 운영 전문가다**(아래 "배포" 절).
+빌드 팀(상시) 5명 — 중규모 작업에 적정. 작은 작업은 일부만 호출한다. **seo-geo-engineer와 deploy-engineer는 빌드 팀 상시 멤버가 아니라 전문가**다: seo-geo-engineer는 **도구를 출시(또는 발견성 개선)할 때마다** 호출하는 발견성 게이트(아래 "발견성" 절), deploy-engineer는 배포 시점/배포 실패 시 호출한다(아래 "배포" 절).
 
 ## Phase 0: 컨텍스트 확인 (항상 먼저)
 
@@ -60,13 +62,25 @@ description: >-
              ↳ 공개 API 계약을 ui/platform에 SendMessage
 3. 병렬 구현  ui-engineer ∥ platform-engineer → 계약 위에서 어댑터/프레임워크 구현 (각자 TDD)
              ↳ ui는 i18n 키 목록을 platform에 공유
-4. 점진 QA   qa-integration → 각 모듈 완성 직후 경계 교차 검증 (incremental)
-5. 통합      qa-integration → E2E(SPEC 시나리오) + a11y + CWV; CRITICAL은 해당 엔지니어로 반송
-6. 종합      리더가 결과 수집·요약, 미해결/미검증 명시
+4. 발견성    seo-geo-engineer → 도구별 SEO+GEO 명세·검증 (메타·JSON-LD 타입·답변 우선 콘텐츠·llms.txt)
+             ↳ 새 JSON-LD 헬퍼/generateMetadata는 platform, 답변 우선 카피는 ui에 요청 (아래 "발견성" 절)
+5. 점진 QA   qa-integration → 각 모듈 완성 직후 경계 교차 검증 + 발견성 게이트 (incremental)
+6. 통합      qa-integration → E2E(SPEC 시나리오) + a11y + CWV + 프리렌더 SEO/JSON-LD; CRITICAL은 해당 엔지니어로 반송
+7. 종합      리더가 결과 수집·요약, 미해결/미검증 명시
 ```
 
 > 단계별 상세(누가 무엇을 입력받아 무엇을 산출하는지, 의존 그래프, 권장 첫 기능 순서)는 `references/feature-pipeline.md`를 읽어라.
 > 팀 생성·작업 분배·Phase 간 팀 재구성·데이터 전달·에러 핸들링 구현은 `references/orchestration-flow.md`를 읽어라.
+
+## 발견성 (SEO/GEO) — 도구 출시·개선 시점 호출
+
+**발견성은 이 제품의 성장 엔진이다(원칙 ③).** 각 도구는 두 관객에게 닿아야 한다 — 사람(검색엔진 SEO)과 AI(생성엔진 GEO: ChatGPT·Perplexity·Gemini·Claude·AI Overviews가 답변에 인용). 도구를 **출시하거나 발견성을 개선할 때마다 seo-geo-engineer**를 호출한다(`model: "opus"`). 단일 전문가(서브 에이전트)로 충분하나, 인프라는 platform-engineer, 카피는 ui-engineer, 검증은 qa-integration과 협업 지점이 있다.
+
+- **제1원칙(비타협): 인덱싱·인용 대상은 프리렌더 HTML에 있어야 한다.** AI 크롤러는 대개 JS를 실행하지 않으므로 `mounted` 게이트/CSR 뒤의 메타·JSON-LD·howTo/FAQ는 그들에게 **없는 것**이다(실제: Q&A a Day가 게이트로 감싸 JSON-LD 0개, 빌드·테스트는 그린). Intro/H1/HowTo/FAQ/JSON-LD/메타는 게이트 밖 SSR, localStorage/`Date` 의존부만 게이트.
+- **도구별 산출물(게이트):** 고유 메타(title/description/canonical/hreflang/OG) · 도구 성격에 맞는 JSON-LD(공통 SoftwareApplication+FAQPage, 해당 시 HowTo·DefinedTermSet·BreadcrumbList) · 답변 우선(answer-first) Intro/HowTo/FAQ(ko/en) · `/llms.txt` 등재 · robots가 AI 크롤러 미차단 · sitemap 등재 · CWV.
+- **URL 단일 소스:** 메타 canonical·JSON-LD `url`·sitemap 항목은 전부 `seo.absoluteToolUrl(locale, slug)`. 하드코딩 금지(과거 drift: `jurepi.kr/tools/*` vs canonical `apps.jurepi.kr/<locale>/...`).
+- **경계:** 도구별 *무엇을 노출할지*(메타 카피 규격·JSON-LD 타입 선정·키워드/엔티티·답변 우선 콘텐츠 요구·검증) = seo-geo-engineer. SEO 인프라 *메커니즘*(`lib/seo.ts` 빌더·`sitemap`/`robots`/`manifest`·`generateMetadata` 배선·`public/llms.txt` 서빙) = platform-engineer. 카피(ko/en) = ui-engineer/i18n. **리더는 "노출 완료" 주장을 수용하기 전, 프리렌더 HTML(`out/<locale>/tools/<slug>.html` 또는 `curl`)에서 도구별 고유 `<title>`·`hrefLang`(카멜케이스!)·유효 `application/ld+json`(url==canonical)·howTo/FAQ 텍스트를 직접 grep으로 확인한다**(주장≠증명의 발견성판).
+- 절차·JSON-LD 레시피·AI 크롤러 표·llms.txt 형식은 `seo-geo-optimization` 스킬.
 
 ## 배포 (Cloudflare Pages) — 배포 시점 호출
 

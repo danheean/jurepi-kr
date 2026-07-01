@@ -23,7 +23,7 @@ description: Jurepi의 Next.js 15 App Router 정적 사이트(SSG) 플랫폼을 
 2. **i18n 라우팅 먼저 배선** (페이지 짓기 전): `i18n/routing.ts` (locales `["ko","en"]`, defaultLocale `"ko"`, localePrefix `"always"`), `request.ts`, `next.config.ts`에 next-intl 플러그인. `/` → `/ko` 307.
 3. **레이아웃 쉘:** root `layout.tsx`(html lang, next/font/local 폰트 변수, flash-free 테마 부트스트랩) → `[locale]/layout.tsx`(Provider 순서 고정).
 4. **레지스트리 기반 라우트:** `generateStaticParams`가 `registry.filter(s=>s.status==='live') × locales`. coming_soon은 라우트 없음. 미지 slug → 지역화 `not-found`.
-5. **SEO 인프라:** `lib/seo.ts`, `app/sitemap.ts`, `robots.ts`, `manifest.ts`.
+5. **SEO/GEO 인프라(메커니즘):** `lib/seo.ts`, `app/sitemap.ts`, `robots.ts`(AI 크롤러 미차단), `manifest.ts`, `public/llms.txt`. JSON-LD 헬퍼는 WebSite/SoftwareApplication/FAQPage 외에 요청 시 HowTo/DefinedTermSet/BreadcrumbList. **도구별로 무엇을 노출할지(메타 카피·JSON-LD 타입·GEO 답변 우선 콘텐츠)는 seo-geo-engineer가 명세** → `seo-geo-optimization` 스킬. 여긴 그 메커니즘만 만든다.
 6. **동의 + 광고:** ConsentBanner → AdSlot(고정 높이) → AdSense lazy.
 7. **보안 헤더/CSP** + 법무 페이지.
 
@@ -56,6 +56,8 @@ NextIntlClientProvider → ThemeProvider → ConsentProvider → ToastProvider
 ## SEO·i18n·동의·광고·CWV 상세
 
 라우팅 표, `generateStaticParams` 정확한 형태, 메시지 네임스페이스 규약, JSON-LD 종류(WebSite/SoftwareApplication/FAQPage), hreflang/canonical, AdSlot 높이·동의 게이팅, CSP 블록, CWV 체크리스트는 분량이 크다 → **`references/i18n-seo-cwv.md`를 읽어라.**
+
+> **SEO는 인프라, GEO는 전략.** 이 스킬/레퍼런스는 SEO *메커니즘*(메타 빌더·sitemap·robots·JSON-LD 헬퍼)을 다룬다. **도구별 발견성 전략과 생성엔진(GEO) 최적화**(어떤 메타·JSON-LD 타입·답변 우선 콘텐츠·llms.txt·AI 크롤러 정책이 필요한가, 프리렌더 HTML 노출 검증)는 **`seo-geo-optimization` 스킬 + seo-geo-engineer**가 소유한다. 핵심 접점: 도구의 메타·JSON-LD·SEO 롱폼은 반드시 `mounted` 게이트 *밖*에서 SSR해야 크롤러/AI에 보인다.
 
 ## 검증 (TDD 연계)
 

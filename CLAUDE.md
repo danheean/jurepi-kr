@@ -7,7 +7,7 @@
 
 전략 단일 소스 `PRODUCT.md`(루트) · 시각 단일 소스 `docs/DESIGN.md`. impeccable 작업은 둘을 먼저 읽는다.
 - **Register**: `product` (도구 허브 — 디자인이 도구 사용을 보조, 사용성 최우선; 플레이풀 브랜드 성격은 그 위에 얹힘).
-- **Design Principles**: ① 색은 의미(카테고리 액센트 6종=정체성, 브랜드 바이올렛 `#6c5ce7`=유일 액션색) ② 마찰 제로·즉시 사용(SSG 셸 위 클라이언트 SPA) ③ 발견성이 성장(도구별 인덱싱 URL·SEO·CWV CLS<0.1) ④ 놀이를 명료하게 하는 모션(compositor 속성·`prefers-reduced-motion` 존중) ⑤ 수익은 콘텐츠를 막지 않음(광고 높이 예약·동의 게이팅).
+- **Design Principles**: ① 색은 의미(카테고리 액센트 6종=정체성, 브랜드 바이올렛 `#6c5ce7`=유일 액션색) ② 마찰 제로·즉시 사용(SSG 셸 위 클라이언트 SPA) ③ 발견성이 성장(도구별 인덱싱 URL·SEO+GEO[검색엔진+AI 답변 인용]·CWV CLS<0.1) ④ 놀이를 명료하게 하는 모션(compositor 속성·`prefers-reduced-motion` 존중) ⑤ 수익은 콘텐츠를 막지 않음(광고 높이 예약·동의 게이팅).
 - **라이브 모드**: `.impeccable/live/config.json` 설정됨 → `/impeccable live`. 세션 저널 `.impeccable/live/sessions/`는 로컬 상태.
 
 ## 하네스: Jurepi 풀스택 웹 빌드 (클린 아키텍처 + TDD)
@@ -16,7 +16,7 @@
 
 **트리거:** Jurepi 플랫폼/대시보드/도구(사다리타기 등) 구현·기능 추가·리팩터링·버그 수정·재실행 요청 시 `jurepi-build` 스킬을 사용하라. 단순 질문이나 단일 파일 사소 편집은 직접 응답 가능.
 
-**구성:** 에이전트 팀(`.claude/agents/`: architect·domain-engineer·ui-engineer·platform-engineer·qa-integration) + 스킬(`.claude/skills/`: jurepi-build 오케스트레이터, clean-architecture, jurepi-tdd, nextjs-ssg-platform, design-system-fidelity, integration-qa). 모든 에이전트는 opus. 상세는 오케스트레이터 스킬과 각 디렉토리에서 관리한다.
+**구성:** 빌드 팀(`.claude/agents/`: architect·domain-engineer·ui-engineer·platform-engineer·qa-integration) + 전문가(seo-geo-engineer=도구별 발견성, deploy-engineer=Cloudflare 배포) + 스킬(`.claude/skills/`: jurepi-build 오케스트레이터, clean-architecture, jurepi-tdd, nextjs-ssg-platform, design-system-fidelity, integration-qa, seo-geo-optimization, cloudflare-pages-deploy). 모든 에이전트는 opus. 상세는 오케스트레이터 스킬과 각 디렉토리에서 관리한다.
 
 **변경 이력:**
 | 날짜 | 변경 내용 | 대상 | 사유 |
@@ -52,3 +52,4 @@
 | 2026-06-30 | 하네스 진화(동의 배너 회귀 교훈): ① **새 전역 Context Provider 도입 시 `test-utils`의 `AllTheProviders`에 추가 + 전체 `pnpm test` 필수** — `ConsentReopenButton`(`useConsent`)을 Footer에 끼우자 ConsentProvider 밖 throw로 `Footer.test` 7건 실패, 에이전트는 자기 consent 테스트(10/10)만 부분 실행해 놓침(리더 전체 재실행 적발) → jurepi-tdd ② **에이전트 "N passed"가 부분 실행이면 회귀 증명 아님 → 리더 전체 재실행** + **클라 JSON-LD url ↔ canonical 교차 체크(env 소스, 하드코딩 금지)** → integration-qa | skills/{jurepi-tdd,integration-qa} | 탐지(리더 전체 스위트)만으론 부족 — 생성·검증 단계에 인코딩 |
 | 2026-07-01 | **배포 정의 정정: 배포 = `git push`(프로덕션 분기 `main`)** — CF Workers Builds(Git 연동)가 push를 감지해 CF 파이프라인에서 `pnpm build`+`wrangler deploy`를 자동 실행. 로컬 `wrangler deploy`/`wrangler login`은 정상 경로가 아니라 CF 연동이 막혔을 때의 예외 폴백. 기능 브랜치/worktree는 `main`에 병합해야 배포 포함. 배포본 검증은 push 후 CF 빌드 완료 대기→실제 도메인 `curl -I`. 하네스 반영: deploy-engineer(배포 모델 블록)·cloudflare-pages-deploy(🚀 배포 트리거 절 + 배포 방법)·jurepi-build(배포 절) | .claude/agents/deploy-engineer · .claude/skills/{cloudflare-pages-deploy,jurepi-build} · CLAUDE.md | 사용자 정정(배포는 wrangler deploy가 아니라 push) |
 | 2026-07-01 | **문서 용어 통일: PRD → SPEC (스펙주도 프로그래밍 도입)** — ① 플랫폼·서비스 요구사항 문서 명칭을 PRD→SPEC으로 통일: 파일 `PRD.md`/`PRD_KR.md` → `SPEC.md`/`SPEC_KR.md`(`git mv`로 이력 보존). 컨벤션 유지: **영문 `SPEC.md`=AI 소비 정본 + 국문 `SPEC_KR.md`=번역** ② 하네스·문서 전반의 "PRD" 용어를 "SPEC"으로 진화(에이전트 5종·스킬 6종·CLAUDE.md·PRODUCT.md·README.md·E2E 주석). `_workspace/` 과거 로그는 사실 보존 위해 미변경 ③ 첫 스펙주도 도구 **new-word(신조어·트렌드 용어사전)** 스펙 신규 작성 — 용어를 마크다운 쌍(`<용어>.md`+`<용어>_en.md`)으로 관리→빌드 타임 생성기가 카탈로그로 굽는 모델, 한/영 대역·검색·MZ/기술 주제·용어 템플릿 포함 | docs/** · .claude/{agents,skills}/** · CLAUDE.md · PRODUCT.md · README.md · tests/e2e · docs/services/text/new-word/SPEC{,_KR}.md | 사용자 요청(스펙주도 프로그래밍 도입 + 용어 통일) |
+| 2026-07-01 | **SEO+GEO(도구별 발견성) 하네스 인코딩 — 신규 전문가 에이전트+스킬** — 도구별 검색엔진(SEO) *및* 생성엔진(GEO: ChatGPT·Perplexity·Gemini·Claude·AI Overviews 답변 인용) 노출을 일급 관심사로 등록(원칙 ③에 GEO 추가). ① **seo-geo-engineer**(발견성 경계 전문가, deploy-engineer 패턴) + **seo-geo-optimization** 스킬(+`references/geo-and-structured-data.md`: AI 크롤러 UA 표·llms.txt·JSON-LD 레시피) 신설 ② 오케스트레이터에 발견성 게이트 단계+전문가 호출 절+트리거 키워드(SEO/GEO/구조화 데이터/llms.txt/발견성) ③ integration-qa에 "SEO/GEO 발견성 하드 게이트"(프리렌더 HTML의 고유 메타·유효 JSON-LD[url==canonical]·SSR 롱폼·robots AI크롤러·llms.txt·sitemap) + 경계면 2행 ④ platform-engineer/nextjs-ssg-platform 경계 분리(인프라 메커니즘=platform, 도구별 전략·GEO=seo-geo). **비타협 제1원칙: 메타·JSON-LD·SEO 롱폼은 `mounted` 게이트 밖 SSR**(AI 크롤러는 JS 미실행 → 게이트 안이면 정적 HTML에서 소실, Q&A a Day 실제 회귀 재사용) | agents/{seo-geo-engineer,platform-engineer} · skills/{seo-geo-optimization,jurepi-build,integration-qa,nextjs-ssg-platform} · CLAUDE.md | 사용자 요청(도구별 SEO/GEO가 무엇보다 중요 — 방문자·AI 노출) |

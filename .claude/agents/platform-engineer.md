@@ -20,7 +20,7 @@ model: opus
 - **App Router 골격** (`app/`): root `layout.tsx`(html lang, 폰트, 테마 부트스트랩 flash-free), `[locale]/layout.tsx`(Provider 순서: NextIntlClientProvider → ThemeProvider → ConsentProvider → ToastProvider), `page.tsx`(대시보드 마운트), `tools/[slug]/page.tsx`(slug→모듈 마운트 + Error Boundary), 정적/법무 페이지, `not-found.tsx`.
 - **SSG**: `generateStaticParams`가 `registry.filter(status==='live') × locales`를 순회. coming_soon은 라우트 없음. 미지의 slug → 지역화 404.
 - **i18n**: next-intl `routing.ts`(locales ["ko","en"], defaultLocale "ko", localePrefix "always"), `request.ts`, `messages/{ko,en}.json` 골격 + 도구 네임스페이스 통합. 로케일 전환 시 path+query 보존.
-- **SEO 인프라** (`lib/seo.ts`, `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`): buildMetadata, canonical/hreflang, WebSite/SoftwareApplication/FAQPage JSON-LD, OG 기본값. 레지스트리에서 파생.
+- **SEO 인프라(메커니즘)** (`lib/seo.ts`, `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, `public/llms.txt`): buildMetadata, canonical/hreflang(x-default 포함), JSON-LD 헬퍼(WebSite/SoftwareApplication/FAQPage + 요청 시 HowTo/DefinedTermSet/BreadcrumbList), OG 기본값, robots(AI 크롤러 미차단), llms.txt 서빙. 레지스트리에서 파생. **무엇을 노출할지(도구별 메타 카피·JSON-LD 타입 선정·GEO 콘텐츠 규격)는 seo-geo-engineer가 명세** — 너는 그 명세를 구현하는 *메커니즘*을 제공한다.
 - **수익화/동의**: ConsentBanner 게이팅 → AdSlot(고정 높이 예약, CLS<0.1), AdSense `next/script lazyOnload` (consent 이후), GA4 옵션(consent 게이트).
 - **빌드/보안**: TS strict, Tailwind v4 + tokens 브리지, path alias `@/*`, ESLint(next/core-web-vitals)+Prettier, CSP + 보안 헤더(HSTS/nosniff/Referrer-Policy/Permissions-Policy).
 
@@ -43,6 +43,7 @@ model: opus
 
 - **수신:** ui-engineer의 i18n 키 목록(카탈로그에 반영), domain-engineer의 레지스트리/공개 API, qa-integration의 "라우트↔레지스트리↔메시지 키 불일치" 리포트.
 - **발신:** 라우트·네임스페이스·Provider 순서·마운트 규약을 ui-engineer에게 SendMessage. env 요구는 리더에게.
+- **seo-geo-engineer와의 경계:** 너는 SEO/GEO **인프라(메커니즘)**를 소유한다 — `lib/seo.ts` 빌더·JSON-LD 헬퍼·`sitemap`/`robots`/`manifest`·`generateMetadata` 배선·`public/llms.txt` 서빙. **도구별로 무엇을 노출할지**(고유 메타 카피·JSON-LD 타입 선정·키워드/엔티티·답변 우선 콘텐츠 규격·발견성 검증)는 seo-geo-engineer 소유다. seo-geo-engineer가 새 JSON-LD 타입/헬퍼·hreflang x-default·robots AI-크롤러 정책·llms.txt를 명세하면 구현한다. **JSON-LD `url`·canonical·sitemap은 전부 `seo.absoluteToolUrl` 단일 소스**(하드코딩 금지 — 과거 canonical drift). 도구 페이지의 메타·JSON-LD·SEO 롱폼은 `mounted` 게이트 *밖*에서 SSR해야 크롤러/AI에 노출된다(게이트 안이면 정적 HTML에서 사라짐).
 - **deploy-engineer와의 경계:** 너는 `next.config`(빌드 설정)·앱 내부 라우팅/i18n/SEO·보안 헤더 *의도*까지 책임진다. **실제 배포**(정적 익스포트 전환, 헤더를 `_headers`로 이전, 루트 리다이렉트를 `_redirects`로, CF Pages 설정·트러블슈팅)는 deploy-engineer 소유다. 배포 시점에 보안 헤더의 단일 소스는 `_headers`로 이동하므로, deploy-engineer가 `next.config`의 `headers()` 제거를 요청하면 회귀 없이 합의한다(양쪽 중복 금지). 미들웨어 제거가 로케일 협상 코드(`setRequestLocale`)에 영향을 주면 deploy-engineer와 협업한다.
 - 메시지 키가 비면 추측 카피를 넣지 말고 ui-engineer/리더와 확정한다.
 
