@@ -1,5 +1,7 @@
 import { Star } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { MergedTerm } from '@/lib/new-word/schema';
+import { toneEmoji } from '@/lib/new-word/tone';
 
 interface TermCardProps {
   term: MergedTerm;
@@ -23,11 +25,13 @@ export function TermCard({
   onToggleFav,
   currentLocale,
 }: TermCardProps) {
+  const t = useTranslations('tools.new-word');
   const otherLocale = currentLocale === 'ko' ? 'en' : 'ko';
   const primaryTerm = term[currentLocale].term;
   const secondaryTerm = term[otherLocale].term;
   const definition = term[currentLocale].definition;
   const colors = TOPIC_COLORS[term.topic] || TOPIC_COLORS.mz;
+  const emoji = toneEmoji(term.tone);
 
   const handleStarClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -59,7 +63,20 @@ export function TermCard({
       {/* Header: term name + star */}
       <div className="flex justify-between items-start gap-2 mb-2">
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-lg text-text leading-tight">{primaryTerm}</h3>
+          <h3 className="font-bold text-lg text-text leading-tight">
+            {emoji && term.tone && (
+              <span
+                role="img"
+                aria-label={t(`tone.${term.tone}`)}
+                title={t(`tone.${term.tone}`)}
+                className="mr-1.5"
+                data-testid={`term-tone-${term.slug}`}
+              >
+                {emoji}
+              </span>
+            )}
+            {primaryTerm}
+          </h3>
           <p className="text-sm text-text-muted">{secondaryTerm}</p>
         </div>
         <button

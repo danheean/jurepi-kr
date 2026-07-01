@@ -32,6 +32,7 @@ export function mergePair(
     tags,
     coinedYear: koFront.coinedYear,
     related,
+    tone: koFront.tone,
     ko: {
       term: koFront.term,
       definition: koFront.definition,
@@ -86,6 +87,11 @@ export function validatePair(
   if (en.topic && en.topic !== ko.topic) {
     errors.push(
       `${koFilename}: EN topic must match KO (KO="${ko.topic}", EN="${en.topic}")`
+    );
+  }
+  if (en.tone && en.tone !== ko.tone) {
+    errors.push(
+      `${koFilename}: EN tone must match KO (KO="${ko.tone}", EN="${en.tone}")`
     );
   }
   if (

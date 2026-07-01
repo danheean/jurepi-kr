@@ -2,6 +2,7 @@
 term: 억까
 slug: eok-kka
 topic: mz
+tone: negative
 definition: |
   SNS나 온라인에서 유명인의 언행을 비판·조롱하는 팬덤.
   '억울한'을 의미하는 청중(audience)의 줄임말로 풀이되기도 함.

@@ -2,6 +2,7 @@
 term: 알잘딱깔센
 slug: aljaldakkkalsen
 topic: mz
+tone: positive
 definition: |
   '알아서 잘 딱 깔끔하게 센스 있게'를 빠르게 발음한 신조어.
   상황을 스스로 판단해 적절하게 처신하는 것을 뜻함.

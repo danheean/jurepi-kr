@@ -2,6 +2,7 @@
 term: 컨텍스트 윈도우
 slug: context-window
 topic: tech
+tone: neutral
 definition: |
   LLM이 한 번에 처리할 수 있는 토큰(단어)의 최대 개수.
   윈도우가 클수록 더 긴 문서를 이해하고 정확한 답변을 제공할 수 있다.

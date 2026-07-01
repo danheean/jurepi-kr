@@ -190,6 +190,12 @@ const defaultMessages = {
         en: 'English',
         both: 'Both',
       },
+      tone: {
+        label: 'Tone',
+        positive: 'Positive',
+        negative: 'Negative',
+        neutral: 'Neutral',
+      },
       detail: {
         emptyHint: 'Select a term to see its definition and examples here.',
         definition: 'Definition',

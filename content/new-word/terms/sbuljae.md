@@ -2,6 +2,7 @@
 term: 스불재
 slug: sbuljae
 topic: mz
+tone: negative
 definition: |
   '스포일러를 불타는 재미'의 줄임말.
   드라마, 영화, 웹소설 등의 결말을 미리 알아도 재미있다는 뜻.

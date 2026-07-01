@@ -2,6 +2,7 @@
 term: 완내스
 slug: wannaes
 topic: mz
+tone: positive
 definition: |
   '완벽함이 나를 스트레스 준다'는 뜻.
   완벽함을 추구하다가 스트레스받는 현상을 표현한 신조어.

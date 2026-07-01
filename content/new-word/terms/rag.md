@@ -2,6 +2,7 @@
 term: 검색 증강 생성
 slug: rag
 topic: tech
+tone: neutral
 definition: |
   LLM이 생성 전에 외부 데이터베이스에서
   관련 정보를 검색한 후 이를 토대로 답변을 생성하는 기법.

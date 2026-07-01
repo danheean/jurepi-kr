@@ -2,6 +2,7 @@
 term: AI 에이전트
 slug: ai-agent
 topic: tech
+tone: neutral
 definition: |
   목표를 부여받으면 스스로 계획하고, 행동하고, 결과를 평가하며
   반복적으로 문제를 해결하는 자율형 AI 시스템.

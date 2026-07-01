@@ -278,4 +278,26 @@ describe('schema — zod validation', () => {
       expect(result).toBeNull();
     });
   });
+
+  describe('tone field', () => {
+    const base = {
+      term: '갓생',
+      definition: '열심히 사는 삶',
+      examples: ['갓생을 산다'],
+    };
+
+    it('accepts positive/negative/neutral tone', () => {
+      for (const tone of ['positive', 'negative', 'neutral'] as const) {
+        expect(TermFileFrontSchema.safeParse({ ...base, tone }).success).toBe(true);
+      }
+    });
+
+    it('allows omitting tone (optional)', () => {
+      expect(TermFileFrontSchema.safeParse(base).success).toBe(true);
+    });
+
+    it('rejects an unknown tone value', () => {
+      expect(TermFileFrontSchema.safeParse({ ...base, tone: 'happy' }).success).toBe(false);
+    });
+  });
 });

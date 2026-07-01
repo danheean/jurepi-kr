@@ -408,6 +408,12 @@
         "en": "English",
         "both": "한영혼용"
       },
+      "tone": {
+        "label": "어감",
+        "positive": "긍정",
+        "negative": "부정",
+        "neutral": "중립"
+      },
       "detail": {
         "emptyHint": "용어를 선택하면 뜻과 예문이 여기에 표시됩니다.",
         "definition": "뜻",

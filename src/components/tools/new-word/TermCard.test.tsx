@@ -179,4 +179,34 @@ describe('TermCard', () => {
     const card = screen.getByTestId('term-card-test-slug');
     expect(card).toHaveClass('border-accent-mint', 'ring-2', 'ring-accent-mint');
   });
+
+  it('renders the sentiment tone emoji with an accessible label when tone is set', () => {
+    render(
+      <TermCard
+        term={{ ...mockTerm, tone: 'positive' }}
+        isSelected={false}
+        isFavorite={false}
+        onSelect={vi.fn()}
+        onToggleFav={vi.fn()}
+        currentLocale="en"
+      />
+    );
+    const tone = screen.getByTestId('term-tone-test-slug');
+    expect(tone).toHaveTextContent('😊');
+    expect(tone).toHaveAttribute('aria-label', 'Positive');
+  });
+
+  it('renders no tone emoji when tone is absent', () => {
+    render(
+      <TermCard
+        term={mockTerm}
+        isSelected={false}
+        isFavorite={false}
+        onSelect={vi.fn()}
+        onToggleFav={vi.fn()}
+        currentLocale="en"
+      />
+    );
+    expect(screen.queryByTestId('term-tone-test-slug')).toBeNull();
+  });
 });

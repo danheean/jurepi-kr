@@ -2,6 +2,7 @@
 term: 바이브 코딩
 slug: vibe-coding
 topic: tech
+tone: neutral
 definition: |
   AI에게 자연어로 원하는 바를 설명하고,
   코드를 한 줄씩 읽기보다는 '느낌(vibe)'대로

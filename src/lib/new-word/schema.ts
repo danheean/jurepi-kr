@@ -17,6 +17,7 @@ export const TermFileFrontSchema = z.object({
   origin: z.string().optional(),
   coinedYear: z.number().int().optional(),
   related: z.array(z.string()).optional(),
+  tone: z.enum(['positive', 'negative', 'neutral']).optional(),
 });
 
 export type TermFileFront = z.infer<typeof TermFileFrontSchema>;
@@ -30,6 +31,7 @@ export const MergedTermSchema = z.object({
   tags: z.array(z.string()),
   coinedYear: z.number().int().optional(),
   related: z.array(z.string()),
+  tone: z.enum(['positive', 'negative', 'neutral']).optional(),
   ko: z.object({
     term: z.string(),
     definition: z.string(),

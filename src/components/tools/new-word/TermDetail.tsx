@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { X } from 'lucide-react';
 import { MergedTerm } from '@/lib/new-word/schema';
+import { toneEmoji } from '@/lib/new-word/tone';
 import { Markdown } from '@/components/markdown';
 import { RelatedChips } from './RelatedChips';
 
@@ -166,6 +167,17 @@ export function TermDetail({
             <span className="text-xs font-medium px-2 py-1 rounded bg-surface-muted text-text-muted">
               {term.topic.toUpperCase()}
             </span>
+            {term.tone && (
+              <span
+                className="text-xs font-medium px-2 py-1 rounded bg-surface-muted text-text-muted"
+                data-testid="term-detail-tone"
+              >
+                <span role="img" aria-hidden="true" className="mr-1">
+                  {toneEmoji(term.tone)}
+                </span>
+                {t(`tone.${term.tone}`)}
+              </span>
+            )}
             {term.coinedYear && (
               <span className="text-xs px-2 py-1 rounded bg-surface-muted text-text-muted">
                 {term.coinedYear}

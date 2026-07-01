@@ -2,6 +2,7 @@
 term: 갓생
 slug: god-saeng
 topic: mz
+tone: positive
 definition: |
   '같이 할 신(god)'과 '생활(life/생)'의 합성어.
   규칙 정연하고 생산적인 완벽한 생활을 의미하는 MZ 용어.

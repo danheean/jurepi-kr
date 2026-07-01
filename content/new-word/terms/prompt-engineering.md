@@ -2,6 +2,7 @@
 term: 프롬프트 엔지니어링
 slug: prompt-engineering
 topic: tech
+tone: neutral
 definition: |
   LLM(대형언어모델)의 성능을 최대로 끌어내기 위해
   입력 질문(프롬프트)을 체계적으로 설계하고 개선하는 기술.

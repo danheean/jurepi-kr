@@ -148,4 +148,36 @@ describe('merge — canonical rule application', () => {
       expect(errors[0]).toContain('my-term.md');
     });
   });
+
+  describe('tone (canonical from KO)', () => {
+    it('carries the KO tone onto the merged record', () => {
+      const merged = mergePair({ ...validKo, tone: 'positive' }, validEn);
+      expect(merged.tone).toBe('positive');
+    });
+
+    it('leaves tone undefined when KO has none', () => {
+      const merged = mergePair(validKo, validEn);
+      expect(merged.tone).toBeUndefined();
+    });
+
+    it('EN inherits when it omits tone (no error)', () => {
+      const { term, errors } = validatePair(
+        'god-saeng.md',
+        { ...validKo, tone: 'positive' },
+        validEn
+      );
+      expect(errors).toHaveLength(0);
+      expect(term?.tone).toBe('positive');
+    });
+
+    it('flags an error when EN tone conflicts with KO', () => {
+      const { term, errors } = validatePair(
+        'god-saeng.md',
+        { ...validKo, tone: 'positive' },
+        { ...validEn, tone: 'negative' }
+      );
+      expect(term).toBeNull();
+      expect(errors.some((e) => e.includes('tone'))).toBe(true);
+    });
+  });
 });

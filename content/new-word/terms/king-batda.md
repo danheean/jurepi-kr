@@ -2,6 +2,7 @@
 term: 킹받다
 slug: king-batda
 topic: mz
+tone: negative
 definition: |
   '킹(왕)처럼 화난다', '열받다'는 뜻의 신조어.
   극도로 화나고 열받은 상태를 표현할 때 사용.

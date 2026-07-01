@@ -2,6 +2,7 @@
 term: 루프 엔지니어링
 slug: loop-engineering
 topic: tech
+tone: neutral
 definition: |
   AI 에이전트가 스스로 반복 루프를 돌며
   작업을 계획·실행·검증하도록 설계·운영하는 기법.

@@ -28,6 +28,7 @@ const TermFileFrontSchema = z.object({
   origin: z.string().optional(),
   coinedYear: z.number().int().optional(),
   related: z.array(z.string()).optional(),
+  tone: z.enum(['positive', 'negative', 'neutral']).optional(),
 });
 
 const MergedTermSchema = z.object({
@@ -36,6 +37,7 @@ const MergedTermSchema = z.object({
   tags: z.array(z.string()),
   coinedYear: z.number().int().optional(),
   related: z.array(z.string()),
+  tone: z.enum(['positive', 'negative', 'neutral']).optional(),
   ko: z.object({
     term: z.string(),
     definition: z.string(),
@@ -104,6 +106,7 @@ function mergePair(koFront, enFront, koBody = '', enBody = '', koFilename = 'unk
     tags,
     coinedYear: koFront.coinedYear,
     related,
+    tone: koFront.tone,
     ko: {
       term: koFront.term,
       definition: koFront.definition,
@@ -155,6 +158,11 @@ function validatePair(koFilename, koFront, enFront) {
   if (en.topic && en.topic !== ko.topic) {
     errors.push(
       `${koFilename}: EN topic must match KO (KO="${ko.topic}", EN="${en.topic}")`
+    );
+  }
+  if (en.tone && en.tone !== ko.tone) {
+    errors.push(
+      `${koFilename}: EN tone must match KO (KO="${ko.tone}", EN="${en.tone}")`
     );
   }
   if (
