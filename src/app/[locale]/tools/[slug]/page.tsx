@@ -90,7 +90,7 @@ export default async function ToolPage({ params }: Props) {
       <div className="mx-auto max-w-container px-6 py-16">
         {/* Breadcrumb */}
         <div className="mb-8">
-          <a href={`/${locale}`} className="text-brand hover:text-brand-strong">
+          <a href={`/${locale}`} className="text-brand-ink hover:text-brand-ink-strong">
             ← {t('back')}
           </a>
         </div>

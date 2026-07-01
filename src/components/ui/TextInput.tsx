@@ -41,7 +41,7 @@ export function TextInput({
             border border-hairline bg-surface
             transition-all duration-150
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring
-            focus-visible:border-brand
+            focus-visible:border-brand-ink
             placeholder:text-text-muted
             ${className}
           `}

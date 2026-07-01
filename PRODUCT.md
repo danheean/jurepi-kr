@@ -28,13 +28,13 @@ Jurepi(apps.jurepi.kr)는 **백엔드/DB 없는 무료 온라인 도구 허브**
 - **기본 Tailwind/shadcn 템플릿 그리드** — 동일 크기 카드 + 아이콘·제목·설명 무한 반복 (액센트 정체성·둥근 디스플레이·디자인된 hover/press로 차별화)
 - 플랫 회색 박스 + 하드 1px 보더를 elevation으로 사용 (soft brand-tinted shadow가 깊이)
 - 순수 검정(#000) 텍스트, 워시드 회색 본문
-- **액센트 색을 CTA로 사용** (액센트=정체성, 브랜드 바이올렛=액션)
+- **액센트 색을 CTA로 사용** (액센트=정체성, 브랜드 허니골드=액션)
 - 한 화면에 채도 높은 액센트를 장식으로 난사
 - 광고를 H1 위 / 인터랙티브 보드 안에 두거나, 미충전 광고가 레이아웃을 미는 것(CLS)
 
 ## Design Principles
 
-1. **색은 의미다 (Color as meaning).** 6개 카테고리 액센트(coral/mint/sky/sun/grape/rose)는 "이건 그런 종류의 도구"라는 신호 — 장식이 아니라 정체성. 액션·링크·포커스는 항상 **단일 브랜드 바이올렛**.
+1. **색은 의미다 (Color as meaning).** 6개 카테고리 액센트(coral/mint/sky/sun/grape/rose)는 "이건 그런 종류의 도구"라는 신호 — 장식이 아니라 정체성. 액션·링크·포커스는 항상 **단일 브랜드 허니골드**.
 2. **마찰 제로, 즉시 사용 (Frictionless & instant).** 로그인·설치·대기 없이 진입 즉시 사용. SSG 셸 위 클라이언트 SPA, **사용성 최우선**. 검색→발견→사용이 빠르고 URL로 공유 가능.
 3. **발견성이 성장 (Discoverability is growth).** 도구마다 독립 인덱싱 URL·메타데이터·JSON-LD(canonical 일치). 검색 유입을 전제로 SEO·CWV(CLS<0.1)를 지킨다.
 4. **놀이를 명료하게 하는 모션 (Motion clarifies play).** 카드 리프트·trace·플립은 상태/흐름을 설명한다 — compositor 친화 속성만, `prefers-reduced-motion` 존중.
@@ -42,4 +42,4 @@ Jurepi(apps.jurepi.kr)는 **백엔드/DB 없는 무료 온라인 도구 허브**
 
 ## Accessibility & Inclusion
 
-WCAG 2.1 AA. 본문 대비 ≥4.5:1 / 큰 텍스트 ≥3:1 — 브랜드-바이올렛-온-화이트와 텍스트-온-액센트 대비를 신규 페어링마다 검증. 완전한 키보드 탐색 + 가시적 `focus-visible` 링; 탭 타깃 ≥44px. `prefers-reduced-motion` 시 trace 즉시 렌더·플립은 크로스페이드·카드는 transform 없이 shadow만. 시맨틱 `header/main/footer/nav`, 페이지당 H1 1개, 올바른 `html lang` + hreflang(ko/en). 상태를 색에만 의존해 표시하지 않는다.
+WCAG 2.1 AA. 본문 대비 ≥4.5:1 / 큰 텍스트 ≥3:1 — 브랜드-허니골드-온-화이트와 텍스트-온-액센트 대비를 신규 페어링마다 검증. 완전한 키보드 탐색 + 가시적 `focus-visible` 링; 탭 타깃 ≥44px. `prefers-reduced-motion` 시 trace 즉시 렌더·플립은 크로스페이드·카드는 transform 없이 shadow만. 시맨틱 `header/main/footer/nav`, 페이지당 H1 1개, 올바른 `html lang` + hreflang(ko/en). 상태를 색에만 의존해 표시하지 않는다.

@@ -45,7 +45,7 @@ export function HeroMascot({
         <a
           href={blogUrl}
           aria-label="Jurepi 블로그"
-          className="rounded-full transition-transform duration-200 ease-out hover:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:scale-100"
+          className="rounded-full transition-transform duration-200 ease-out hover:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:scale-100"
         >
           {portrait}
         </a>

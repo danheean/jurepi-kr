@@ -16,7 +16,7 @@ export async function ProsePage({ namespace }: ProsePageProps) {
       {/* Back-to-home link */}
       <Link
         href="/"
-        className="inline-flex mb-8 text-body-sm text-brand hover:text-brand-strong transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded"
+        className="inline-flex mb-8 text-body-sm text-brand-ink hover:text-brand-ink-strong transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 rounded"
       >
         ← Back to home
       </Link>

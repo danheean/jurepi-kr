@@ -10,7 +10,7 @@ export function ConsentReopenButton(): React.ReactNode {
   return (
     <button
       onClick={reopen}
-      className="text-xs sm:text-sm text-text-secondary hover:text-text transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+      className="text-xs sm:text-sm text-text-secondary hover:text-text transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink"
       type="button"
     >
       {t('consentReopen')}

@@ -36,7 +36,7 @@ export function CategoryFilter({
                 isActive
                   ? 'bg-brand text-on-brand shadow-card font-semibold'
                   : 'bg-surface-muted text-text-secondary hover:bg-hairline font-medium'
-              } focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand min-h-11 flex items-center justify-center`}
+              } focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring min-h-11 flex items-center justify-center`}
             >
               {t(cat.labelKey)}
             </button>

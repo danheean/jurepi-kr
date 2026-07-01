@@ -175,7 +175,7 @@ src/
 
   <category_tabs>
     - 가로 필 줄(category-pill / category-pill-active). 순서: "전체"(all), 다음 "최근"(recent, 최근 항목 있을 때만), "즐겨찾기"(favorites, 있을 때만), 다음 9개 카테고리.
-    - 활성 = 브랜드 바이올렛 채움 / on-brand 텍스트; 비활성 = surface-muted / text-secondary; 호버 시 bg 리프트.
+    - 활성 = 브랜드 허니골드 채움 / on-brand 텍스트; 비활성 = surface-muted / text-secondary; 호버 시 bg 리프트.
     - role="tablist"; ArrowLeft/Right로 필 간 이동; 활성에 aria-selected. 좁은 화면에서 스냅과 함께 가로 스크롤.
     - 카테고리 선택 시 검색을 지우나? 아니오 — 검색과 카테고리는 결합(카테고리가 집합을 좁히고, 검색이 그 안에서 필터). "전체" + 빈 검색 = 전체 카탈로그.
   </category_tabs>
@@ -214,7 +214,7 @@ src/
       3. 메타 "다른 형식으로 복사" 칩(줄): "기호 {char}" · "HTML {entity}" · "유니코드 {U+XXXX}" — 각 작은 필(player-chip 스타일, mint-soft); 칩 클릭 시 그 표현을 복사(토스트 "HTML 엔티티 복사됨" 등). 키보드 접근 가능.
       4. 사용법: body 16px var(--text-secondary), 로케일화된 1–2문장 노트.
       5. 예시: 작은 적층 목록(2–3), 각 var(--surface-muted) 칩(radius var(--radius-md)); 예시 안의 기호는 강조(var(--accent-mint) / 700). 라벨 "예시" / "Examples" eyebrow.
-      6. 1순위 "복사" 버튼(button-primary, 브랜드 바이올렛, 전폭) — 문자 복사(타일 클릭과 중복이나 선택 후 명확한 어포던스).
+      6. 1순위 "복사" 버튼(button-primary, 브랜드 허니골드, 전폭) — 문자 복사(타일 클릭과 중복이나 선택 후 명확한 어포던스).
     - 빈/초기 상태(미선택): 친절한 힌트 카드 — "기호를 선택하면 사용법과 예시가 여기에 표시됩니다." 그리고 최근 항목 있으면 다시 복사하라는 넛지.
   </detail_panel>
 
@@ -288,7 +288,7 @@ src/
   <accent_usage>
     - 카테고리 액센트는 MINT(var(--accent-mint) #2dd4bf / var(--accent-mint-soft) #d7f7f2) — DESIGN의 "text" 카테고리 정체성.
     - 민트는 정체성 표시: 인트로 아이콘 타일, 타일 호버/선택 상태, 상세 패널 글리프 타일, "다른 형식으로 복사" 칩, 예시 안 강조 기호, 즐겨찾기 별(채움).
-    - CTA(상세 "복사" 버튼, 1순위 동작)는 브랜드 바이올렛 var(--brand) 유지. 액센트는 정체성, 동작 색이 아님(DESIGN do/don't). 성공 토스트는 선두 점에 민트가 아닌 var(--semantic-success).
+    - CTA(상세 "복사" 버튼, 1순위 동작)는 브랜드 허니골드 var(--brand) 유지. 액센트는 정체성, 동작 색이 아님(DESIGN do/don't). 성공 토스트는 선두 점에 민트가 아닌 var(--semantic-success).
   </accent_usage>
   <surfaces>그리드 타일은 기본 var(--surface) + 1px var(--hairline), radius var(--radius-md) 12px; 상세 패널 radius var(--radius-xxl) 28px on var(--surface); 예시 칩 var(--surface-muted) radius var(--radius-md). 부드러운 브랜드 틴트 그림자(--shadow-card / --shadow-card-hover), 하드 보더를 엘리베이션으로 쓰지 않음.</surfaces>
   <typography>H1 Gmarket Sans(clamp 28–40px); 상세 이름 headline 24px; 글리프 자체가 초점 오브젝트(크고 중앙). Body/사용법 Pretendard 16px/1.55; 메타 칩/라벨 caption/eyebrow. 코드포인트/엔티티는 가독성을 위해 mono 계열 처리(U+XXXX와 &amp;#NNN; 문자열에만 mono fallback 스택).</typography>
@@ -375,7 +375,7 @@ src/
   <functionality>검색·카테고리 필터 가능한 그리드; localStorage에 영속화되고 알 수 없는 id가 정리되는 최근(상한 MRU) + 즐겨찾기; "다른 형식으로 복사" 문자/엔티티/코드포인트; 키보드 우선 동작; localStorage 없이도 완전히 동작.</functionality>
   <user_experience>복사가 즉각적으로 느껴짐(체감 &lt; 50ms); 명확하고 거슬리지 않는 성공 토스트 + ✓ 플래시; 글리프 하나가 스포트라이트; ≥44px 타깃; 가시 포커스; SPA — 어떤 상호작용도 라우트 리로드 없음.</user_experience>
   <technical_quality>lib/special-symbol/* 순수 함수 단위 커버리지 ≥ 80%(코드포인트/엔티티 도출, 코드포인트+발음부호 포함 검색 매칭, 최근/즐겨찾기 불변 ops, zod 거부 + 정리); TS 오류 0; 800줄 초과 파일 없음; 카탈로그는 코드 분할되어 전역 i18n 번들을 부풀리지 않음.</technical_quality>
-  <visual_design>DESIGN.md 준수; 민트 액센트로 정체성(타일, 글리프 타일, 칩, 즐겨찾기), 복사 CTA엔 브랜드 바이올렛; 밝고 친근한 그리드 — 시스템 문자표 다이얼로그 아님; HTML 엔티티 문자열은 리터럴 텍스트로만 렌더.</visual_design>
+  <visual_design>DESIGN.md 준수; 민트 액센트로 정체성(타일, 글리프 타일, 칩, 즐겨찾기), 복사 CTA엔 브랜드 허니골드; 밝고 친근한 그리드 — 시스템 문자표 다이얼로그 아님; HTML 엔티티 문자열은 리터럴 텍스트로만 렌더.</visual_design>
   <accessibility>완전한 키보드 동작(로빙 그리드, "/", Enter, "f", Esc); aria-live 복사 상태; 글리프 렌더에 의존하지 않고 기호를 안내하는 라벨 타일 버튼; 모션 감소 존중; WCAG 2.1 AA 대비.</accessibility>
   <performance>도구 라우트는 플랫폼 예산 내; 카탈로그 동적 import(전역 i18n 번들 아님); 200+ 타일이 부드럽게 렌더; CLS 영향 없음(광고 높이는 플랫폼이 예약).</performance>
 </success_criteria>

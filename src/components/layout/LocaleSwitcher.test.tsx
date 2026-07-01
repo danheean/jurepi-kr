@@ -54,8 +54,8 @@ describe('LocaleSwitcher', () => {
     const koBtn = screen.getByTestId('locale-ko') as HTMLButtonElement;
     const enBtn = screen.getByTestId('locale-en') as HTMLButtonElement;
 
-    expect(koBtn).toHaveClass('focus-visible:ring-2', 'focus-visible:ring-brand');
-    expect(enBtn).toHaveClass('focus-visible:ring-2', 'focus-visible:ring-brand');
+    expect(koBtn).toHaveClass('focus-visible:ring-2', 'focus-visible:ring-focus-ring');
+    expect(enBtn).toHaveClass('focus-visible:ring-2', 'focus-visible:ring-focus-ring');
   });
 
   it('renders separator divider', () => {
@@ -77,15 +77,15 @@ describe('LocaleSwitcher', () => {
     expect(koBtn).not.toHaveAttribute('aria-current');
   });
 
-  it('active button has text-brand font-semibold styles', () => {
+  it('active button has text-brand-ink font-semibold styles', () => {
     render(<LocaleSwitcher />);
     const enBtn = screen.getByTestId('locale-en');
-    expect(enBtn).toHaveClass('text-brand', 'font-semibold');
+    expect(enBtn).toHaveClass('text-brand-ink', 'font-semibold');
   });
 
-  it('inactive button has text-text hover:text-brand styles', () => {
+  it('inactive button has text-text hover:text-brand-ink styles', () => {
     render(<LocaleSwitcher />);
     const koBtn = screen.getByTestId('locale-ko');
-    expect(koBtn).toHaveClass('text-text', 'hover:text-brand');
+    expect(koBtn).toHaveClass('text-text', 'hover:text-brand-ink');
   });
 });

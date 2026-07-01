@@ -32,7 +32,7 @@ export async function Footer(): Promise<React.ReactNode> {
       <div className="max-w-container mx-auto px-4 sm:px-6 py-12 sm:py-16">
         {/* Top section: wordmark only (no tagline) */}
         <div className="mb-12">
-          <h2 className="font-display text-lg font-bold text-brand">Jurepi</h2>
+          <h2 className="font-display text-lg font-bold text-brand-ink">Jurepi</h2>
         </div>
 
         {/* Category grid with live tools */}
@@ -50,7 +50,7 @@ export async function Footer(): Promise<React.ReactNode> {
                       <li key={tool.slug}>
                         <Link
                           href={`/tools/${tool.slug}`}
-                          className="text-body-sm text-text-secondary hover:text-brand transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded"
+                          className="text-body-sm text-text-secondary hover:text-brand-ink transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 rounded"
                         >
                           {tool.name}
                         </Link>
@@ -71,7 +71,7 @@ export async function Footer(): Promise<React.ReactNode> {
             <Link
               key={link.href}
               href={link.href}
-              className="text-body-sm text-text-secondary hover:text-brand transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded"
+              className="text-body-sm text-text-secondary hover:text-brand-ink transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 rounded"
             >
               {link.label}
             </Link>

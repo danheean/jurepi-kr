@@ -32,7 +32,7 @@ export async function Hero(): Promise<React.ReactNode> {
       <div className="mx-auto max-w-container">
         <div className="flex flex-col-reverse items-center justify-between gap-12 md:flex-row md:gap-20">
           <div className="flex-1 text-center md:text-left">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-brand">
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-brand-ink">
               {t('eyebrow')}
             </p>
             <h1

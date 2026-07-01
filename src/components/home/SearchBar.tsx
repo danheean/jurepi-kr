@@ -33,7 +33,7 @@ export function SearchBar({
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
         aria-label={ariaLabel}
-        className="w-full h-14 pl-14 pr-4 bg-surface rounded-xl border border-hairline shadow-card placeholder:text-text-muted text-text text-lg font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand focus-visible:border-brand transition-all"
+        className="w-full h-14 pl-14 pr-4 bg-surface rounded-xl border border-hairline shadow-card placeholder:text-text-muted text-text text-lg font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring focus-visible:border-brand-ink transition-all"
       />
     </div>
   );

@@ -340,10 +340,10 @@ src/
 
 <aesthetic_guidelines>
   <source>CRITICAL: DESIGN.md is the single source of truth for tokens and component styling. src/styles/tokens.css mirrors it exactly. Below is the platform-relevant summary.</source>
-  <direction>Bright, friendly, playful, light-first. White cards on white ground lifted by soft brand-tinted shadows; six category accents as identity; rounded corners (16–28px); brand violet (#6C5CE7) for all actions.</direction>
+  <direction>Bright, friendly, playful, light-first. White cards on white ground lifted by soft brand-tinted shadows; six category accents as identity; rounded corners (16–28px); brand honey-gold (#f5a623) for all actions.</direction>
   <main_screen_usage>
     - Hero H1 in Gmarket Sans; everything else Pretendard
-    - Each tool card's icon tile + badge tint use the tool's category accent (coral/mint/sky/sun/grape/rose); CTAs/links stay brand violet
+    - Each tool card's icon tile + badge tint use the tool's category accent (coral/mint/sky/sun/grape/rose); CTAs/links stay brand honey-gold
     - Cards lift on hover (--shadow-card → --shadow-card-hover), press scale 0.99, focus-visible brand ring
     - Section rhythm 48–64px; grid gap 20px; container 1120px
   </main_screen_usage>

@@ -175,7 +175,7 @@ src/
   </progress_chip>
 
   <tab_bar>
-    - Four pills: "오늘" / "달력" / "모아보기" / "설정" (en: Today / Calendar / Journal / Settings). category-pill style; active = brand violet, inactive = surface-muted. role="tablist"; arrow-key navigation; aria-selected.
+    - Four pills: "오늘" / "달력" / "모아보기" / "설정" (en: Today / Calendar / Journal / Settings). category-pill style; active = brand honey-gold, inactive = surface-muted. role="tablist"; arrow-key navigation; aria-selected.
   </tab_bar>
 
   <today_panel tab="today">
@@ -284,9 +284,9 @@ src/
 <aesthetic_guidelines>
   <source>CRITICAL: DESIGN.md is the single source of all tokens. Below are tool-specific applications.</source>
   <accent_usage>
-    - Category accent is GRAPE (var(--accent-grape) #a78bfa / var(--accent-grape-soft) #ece6fe) — calm, reflective, distinct from the brand violet.
-    - Grape marks identity: the question's leading bar, the completion ring, the streak pill, answered calendar cells, heatmap intensity.
-    - CTAs (export, "시작하기", primary save) stay BRAND VIOLET var(--brand). Accent is identity, never the action color (DESIGN do/don't).
+    - Category accent is GRAPE (var(--accent-grape) #e0912b / var(--accent-grape-soft) #fbe8cb) — a warm honey-gold (token name kept as `grape`). It shares the brand's warm family; identity vs. action is separated by ROLE, not hue.
+    - Grape marks identity: the question's leading bar, the completion ring, the streak pill, answered calendar cells, heatmap intensity — always as accent tint / text-ink (var(--accent-grape-ink)), never as a CTA fill.
+    - CTAs (export, "시작하기", primary save) stay brand honey-gold var(--brand) fill with var(--on-brand) text (or var(--brand-ink) for links). Accent is identity, never the action color (DESIGN do/don't).
   </accent_usage>
   <surfaces>Question card radius var(--radius-xxl) 28px; composer radius var(--radius-lg); past-year cards var(--radius-lg) on var(--surface-muted). Soft brand-tinted shadows (--shadow-card), no hard borders as elevation.</surfaces>
   <typography>H1 Gmarket Sans; the question itself is the editorial focal point (large, generous line-height, quotation bar) — hierarchy through scale contrast. Body/answer in Pretendard 16px/1.6. Dates/labels in caption/body-sm.</typography>
@@ -367,7 +367,7 @@ src/
   <functionality>Today autosave (debounce + blur + Cmd/Ctrl+S); calendar browse/edit any date; multi-year PastYears; searchable journal; streak/completion stats; export/import with merge/replace; reset with double-confirm.</functionality>
   <user_experience>Composer feels instant (&lt; 50ms keystroke latency); save status is clear and unobtrusive; one question in the spotlight; ≥44px primary targets; visible focus; SPA tab switching with no route reload.</user_experience>
   <technical_quality>lib/qna-a-day/* pure-function unit coverage ≥ 80% (date math, streak edge cases, immutable ops, serialize/merge, zod rejection); 0 TS errors; no file &gt; 800 lines; the 365-question dataset is code-split and does NOT inflate the global i18n bundle.</technical_quality>
-  <visual_design>DESIGN.md compliant; grape accent used for identity (question bar, ring, streak, calendar fills); brand violet reserved for CTAs; warm, low-chrome journal atmosphere — not a dashboard.</visual_design>
+  <visual_design>DESIGN.md compliant; grape accent used for identity (question bar, ring, streak, calendar fills); brand honey-gold reserved for CTAs; warm, low-chrome journal atmosphere — not a dashboard.</visual_design>
   <accessibility>Full keyboard operation; aria-live save status; labeled calendar buttons; reduced-motion respected; WCAG 2.1 AA contrast.</accessibility>
   <performance>Tool route stays within platform budgets; question dataset dynamically imported (not in global i18n bundle); Today interactive quickly; CLS unaffected (ad height reserved by platform).</performance>
 </success_criteria>

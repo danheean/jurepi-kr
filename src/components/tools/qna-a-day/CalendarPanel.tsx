@@ -206,7 +206,7 @@ export function CalendarPanel({
                 aria-label={`${dateStr}, ${hasEntry ? t('calendar.answered') : t('calendar.unanswered')}`}
                 className={`h-10 rounded-lg font-medium text-sm flex items-center justify-center transition-all ${
                   isToday
-                    ? 'ring-2 ring-brand text-brand font-bold'
+                    ? 'ring-2 ring-focus-ring text-brand-ink font-bold'
                     : isFuture
                       ? 'bg-surface-muted text-text-secondary'
                       : hasEntry

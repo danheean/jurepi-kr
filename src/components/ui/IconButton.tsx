@@ -54,7 +54,7 @@ export function IconButton({
         transition-all duration-150
         hover:-translate-y-0.5 hover:shadow-card
         active:scale-95
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2
         motion-safe:hover:-translate-y-0.5
         motion-safe:active:scale-95
         ${className || ''}

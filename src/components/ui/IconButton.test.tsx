@@ -125,6 +125,6 @@ describe('IconButton', () => {
     );
 
     const button = screen.getByRole('button', { name: 'Favorite' });
-    expect(button).toHaveClass('focus-visible:ring-2', 'focus-visible:ring-brand');
+    expect(button).toHaveClass('focus-visible:ring-2', 'focus-visible:ring-focus-ring');
   });
 });

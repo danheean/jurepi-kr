@@ -20,9 +20,9 @@ export function LocaleSwitcher(): React.ReactNode {
     router.push(href, { locale: newLocale });
   };
 
-  const baseClasses = 'inline-flex items-center justify-center min-h-11 px-3 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2';
-  const activeClasses = 'text-brand font-semibold';
-  const inactiveClasses = 'text-text hover:text-brand';
+  const baseClasses = 'inline-flex items-center justify-center min-h-11 px-3 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2';
+  const activeClasses = 'text-brand-ink font-semibold';
+  const inactiveClasses = 'text-text hover:text-brand-ink';
 
   return (
     <div className="flex items-center gap-px">

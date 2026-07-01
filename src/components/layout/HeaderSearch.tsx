@@ -195,7 +195,7 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
               w-full px-3 py-2
               bg-surface border border-hairline rounded-lg
               text-text placeholder:text-text-secondary
-              focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2
+              focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-2
               text-sm
             "
           />

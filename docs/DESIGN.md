@@ -1,22 +1,24 @@
 ---
 version: alpha
 name: Jurepi-design-system
-description: "A bright, friendly, playful design system for Jurepi (jurepi.kr) — a free online tools hub. Built on a cheerful violet brand (#6C5CE7) anchored by a palette of six accent colors (coral, mint, sky, sun, grape, rose) that act as per-tool / per-category identity tokens rather than decoration. Display type is Gmarket Sans set in 700 with tight line-heights (1.1–1.2); body/UI type is Pretendard at 500/600 with relaxed line-heights (1.5–1.6). Surfaces are pure white cards lifted by soft, brand-tinted shadows over a faint-lavender app ground (#F5F3FC), with generously rounded corners (16–28px) and accent-tinted icon tiles. The system reads as welcoming, low-friction, and consumer-friendly — every tool card feels like an inviting, tappable object, and motion (card lift, prize flip, ladder trace) clarifies play rather than decorating it. Light theme is the canonical mode; a dark theme is provided as an optional Phase 2 toggle."
+description: "A bright, friendly, playful design system for Jurepi (jurepi.kr) — a free online tools hub. Built on a cheerful honey-gold brand (#f5a623) anchored by a palette of six accent colors (coral, mint, sky, sun, grape, rose) that act as per-tool / per-category identity tokens rather than decoration. Display type is Gmarket Sans set in 700 with tight line-heights (1.1–1.2); body/UI type is Pretendard at 500/600 with relaxed line-heights (1.5–1.6). Surfaces are pure white cards lifted by soft, honey-tinted shadows over a faint cream app ground (#faf6ee), with generously rounded corners (16–28px) and accent-tinted icon tiles. The system reads as welcoming, low-friction, and consumer-friendly — every tool card feels like an inviting, tappable object, and motion (card lift, prize flip, ladder trace) clarifies play rather than decorating it. Light theme is the canonical mode; a dark theme is provided as an optional Phase 2 toggle."
 
 colors:
-  brand: "#6c5ce7"
-  brand-strong: "#5a48d6"
-  brand-soft: "#efeaff"
-  on-brand: "#ffffff"
+  brand: "#f5a623"
+  brand-strong: "#e08e00"
+  brand-soft: "#fdefc9"
+  on-brand: "#3a2a05"
+  brand-ink: "#9a6400"
+  brand-ink-strong: "#7a4f00"
   bg: "#ffffff"
   surface: "#ffffff"
-  surface-muted: "#f5f3fc"
-  surface-sunken: "#eeeafa"
-  hairline: "#ece9f7"
-  hairline-strong: "#d8d3ee"
-  text: "#1e1b3a"
-  text-secondary: "#5c5780"
-  text-muted: "#6f6a8f"
+  surface-muted: "#faf6ee"
+  surface-sunken: "#f3ecdd"
+  hairline: "#f0e9da"
+  hairline-strong: "#e2d6bd"
+  text: "#2a2411"
+  text-secondary: "#6b6042"
+  text-muted: "#7a6f52"
   accent-coral: "#ff7a85"
   accent-coral-soft: "#ffe7e9"
   accent-mint: "#2dd4bf"
@@ -25,28 +27,30 @@ colors:
   accent-sky-soft: "#ddf2fe"
   accent-sun: "#fbbf24"
   accent-sun-soft: "#fef1d2"
-  accent-grape: "#a78bfa"
-  accent-grape-soft: "#ece6fe"
+  accent-grape: "#e0912b"
+  accent-grape-soft: "#fbe8cb"
   accent-rose: "#fb7185"
   accent-rose-soft: "#fee2e7"
   accent-mint-ink: "#0f766e"
   accent-sun-ink: "#92400e"
+  accent-grape-ink: "#8a5300"
   semantic-success: "#22c55e"
   semantic-warning: "#f59e0b"
   semantic-danger: "#ef4444"
   semantic-info: "#3b82f6"
-  focus-ring: "#6c5ce7"
-  dark-bg: "#15131f"
-  dark-surface: "#1e1b2e"
-  dark-surface-muted: "#262238"
-  dark-hairline: "#322c49"
-  dark-hairline-strong: "#463e63"
-  dark-text: "#f4f2ff"
-  dark-text-secondary: "#b7b1d6"
-  dark-text-muted: "#7e7799"
-  dark-brand: "#8b7bff"
-  dark-brand-strong: "#a294ff"
-  dark-brand-soft: "#2a2545"
+  focus-ring: "#9a6400"
+  dark-bg: "#17130a"
+  dark-surface: "#221d12"
+  dark-surface-muted: "#2b2416"
+  dark-hairline: "#3a3016"
+  dark-hairline-strong: "#4d4020"
+  dark-text: "#f7f2e4"
+  dark-text-secondary: "#d6cba8"
+  dark-text-muted: "#998f70"
+  dark-brand: "#ffc04d"
+  dark-brand-strong: "#ffd27a"
+  dark-brand-soft: "#3a2f12"
+  dark-brand-ink: "#ffca5c"
 
 typography:
   display-xl:
@@ -242,7 +246,7 @@ components:
     padding: 12px
   toast:
     backgroundColor: "{colors.text}"
-    textColor: "{colors.on-brand}"
+    textColor: "{colors.surface}"
     typography: "{typography.body-sm}"
     rounded: "{rounded.md}"
     padding: 12px 16px
@@ -274,39 +278,43 @@ components:
 
 ## Overview
 
-Jurepi's canvas is the inverse of an enterprise dark system: it is **light, warm, and playful by default**. The page ground is pure white (`{colors.bg}`) with sections lifting onto a faint-lavender `{colors.surface-muted}`; cards are white objects raised by **soft, brand-tinted shadows** rather than borders or dark surface steps. The chrome is anchored by one cheerful violet brand (`{colors.brand}`), and the system is held together by a **palette of six accent colors** — coral, mint, sky, sun, grape, rose — that signal which **tool or category** a card belongs to, exactly the way an enterprise system might use per-product accents, but warm and consumer-friendly instead of technical.
+Jurepi's canvas is the inverse of an enterprise dark system: it is **light, warm, and playful by default**. The page ground is pure white (`{colors.bg}`) with sections lifting onto a faint cream `{colors.surface-muted}`; cards are white objects raised by **soft, honey-tinted shadows** rather than borders or dark surface steps. The chrome is anchored by one cheerful honey-gold brand (`{colors.brand}`), and the system is held together by a **palette of six accent colors** — coral, mint, sky, sun, grape, rose — that signal which **tool or category** a card belongs to, exactly the way an enterprise system might use per-product accents, but warm and consumer-friendly instead of technical.
 
 Display type is **Gmarket Sans** at 700 with tight line-heights (1.1–1.2) — a rounded, friendly Korean+Latin face that gives headings character without shouting. Body and UI type is **Pretendard** at 500/600 with relaxed line-heights (1.5–1.6); Pretendard carries both Korean and Latin cleanly, which matters for a bilingual (ko/en) product. The pairing is deliberate: a rounded display voice for personality, a neutral humanist sans for everything readable.
 
 The signature device is the **tool-card** — a white, generously rounded (`{rounded.xl}` 20px) tappable object with an **accent-tinted icon tile** at top-left. Each card's accent comes from its tool's category, so a visitor scanning the grid reads color as meaning: coral = random/draw, mint = text, sky = converters, sun = calculators, grape = date/time, rose = fun. Cards lift on hover, press down slightly on tap, and the whole surface is the click target. The same accent system extends into the Ladder Game: each player gets an accent, their trace line is drawn in it, and the prize they land on flips to that accent face.
 
 **Key Characteristics:**
-- Light-first, white-card system: `{colors.bg}` ground, `{colors.surface}` cards, `{colors.surface-muted}` lavender sections — never dark by default.
+- Light-first, white-card system: `{colors.bg}` ground, `{colors.surface}` cards, `{colors.surface-muted}` cream sections — never dark by default.
 - **Per-tool / per-category color identity**: coral, mint, sky, sun, grape, rose — each with a saturated value and a `*-soft` tint used for icon tiles, chips, and reveal faces.
-- One playful violet brand (`{colors.brand}`) for all primary actions, links, and focus — accents never replace the brand for CTAs.
+- One playful honey-gold brand for all primary actions and identity — the gold `{colors.brand}` fills CTAs/active pills, and `{colors.brand-ink}` carries links, focus, and the wordmark on white. Accents never replace the brand for CTAs.
 - Display runs Gmarket Sans 700 (tight 1.1–1.2); body runs Pretendard 500/600 (relaxed 1.5–1.6) — the rounded-display / neutral-body contrast is the brand voice.
-- Generously rounded corners (`{rounded.lg}`–`{rounded.xxl}`, 16–28px) and **soft brand-tinted shadows** carry depth — no hard borders-as-elevation, no flat gray boxes.
+- Generously rounded corners (`{rounded.lg}`–`{rounded.xxl}`, 16–28px) and **soft honey-tinted shadows** carry depth — no hard borders-as-elevation, no flat gray boxes.
 - Motion clarifies play: cards lift, prize cards flip, ladder traces draw — all on compositor-friendly properties, all gated by `prefers-reduced-motion`.
 - Eyebrow typography (12px, 700, 0.6px tracking, uppercase) marks hero and section openers.
 
 ## Colors
 
 ### Brand & Action
-- **Brand Violet** (`{colors.brand}`): Primary CTAs, links, active pills, focus rings, the wordmark. The single action color across the whole product.
-- **Brand Strong** (`{colors.brand-strong}`): Hover / pressed state of brand surfaces.
-- **Brand Soft** (`{colors.brand-soft}`): Focus halos, active-card border tint, light brand washes.
-- **On-Brand** (`{colors.on-brand}`): White text/icons on brand-filled surfaces.
+The single action color is a **honey-gold**, split into two roles because a bright gold is too light to serve as both a fill and readable text/focus on white: **fill** (gold surfaces with dark text) and **ink** (dark honey for text/links/focus on light surfaces).
+- **Brand Honey-Gold** (`{colors.brand}`): The **fill** — primary CTA/button backgrounds, active pills. Paired with `on-brand` (dark) text, not white.
+- **Brand Strong** (`{colors.brand-strong}`): Hover / pressed state of brand-filled surfaces.
+- **Brand Soft** (`{colors.brand-soft}`): Focus halos, active-card border tint, light honey washes.
+- **On-Brand** (`{colors.on-brand}`): Dark honey-brown text/icons **on** gold brand-filled surfaces (6.86:1 on `brand`). Not white — a bright gold fill needs dark text for WCAG AA.
+- **Brand Ink** (`{colors.brand-ink}`): The **ink** — links, the wordmark, eyebrows, ghost-button text, borders and focus rings on light surfaces (5.0:1 on white). This is what carries "action/identity" as text; never color a link with the bright `brand` fill.
+- **Brand Ink Strong** (`{colors.brand-ink-strong}`): Hover state for `brand-ink` text.
+- **Focus Ring** (`{colors.focus-ring}`) equals `brand-ink` so focus outlines stay visible on white.
 
 ### Surface
 - **Background** (`{colors.bg}`): Default page ground — pure white.
 - **Surface** (`{colors.surface}`): Cards, inputs, nav — also white, separated from the ground by shadow, not color.
-- **Surface Muted** (`{colors.surface-muted}`): Faint lavender — app sections, filter pills, hidden prize cards, footer, ad-slot placeholder.
+- **Surface Muted** (`{colors.surface-muted}`): Faint cream — app sections, filter pills, hidden prize cards, footer, ad-slot placeholder.
 - **Surface Sunken** (`{colors.surface-sunken}`): One step deeper than muted — pressed pills, track of toggles.
 - **Hairline** (`{colors.hairline}`): 1px borders on cards and dividers — felt, not loud.
 - **Hairline Strong** (`{colors.hairline-strong}`): Ladder vertical lines and rungs; stronger dividers.
 
 ### Text
-- **Text** (`{colors.text}`): Primary text — a deep indigo-near-black (#1e1b3a), warmer than pure black.
+- **Text** (`{colors.text}`): Primary text — a deep warm near-black (#2a2411), warmer than pure black.
 - **Text Secondary** (`{colors.text-secondary}`): Descriptions, secondary labels.
 - **Text Muted** (`{colors.text-muted}`): Captions, placeholders, disabled, "준비중".
 
@@ -317,7 +325,7 @@ Jurepi isn't held together by a single accent — it's held together by a system
 - **Mint** (`{colors.accent-mint}` / `{colors.accent-mint-soft}`): 텍스트 (text tools).
 - **Sky** (`{colors.accent-sky}` / `{colors.accent-sky-soft}`): 변환 (converters).
 - **Sun** (`{colors.accent-sun}` / `{colors.accent-sun-soft}`): 계산기 (calculators).
-- **Grape** (`{colors.accent-grape}` / `{colors.accent-grape-soft}`): 날짜·시간 (date/time).
+- **Grape** (`{colors.accent-grape}` / `{colors.accent-grape-soft}`): 날짜·시간 (date/time) — now a warm **honey-gold** (`#e0912b`), chosen deeper/more amber than `accent-sun` so the two stay distinct in the ladder's 6-color cycle. The token name `grape` is retained internally; only its value changed.
 - **Rose** (`{colors.accent-rose}` / `{colors.accent-rose-soft}`): 재미 (fun/misc).
 
 ### Semantic
@@ -358,7 +366,7 @@ The pairing is intentional: Gmarket Sans gives personality at large sizes; Prete
 - **Rounded display, neutral body.** Gmarket Sans carries headings and the wordmark; Pretendard carries everything readable. The contrast IS the voice.
 - **Tight on display, relaxed on body.** Display line-heights sit at 1.1–1.2; body lifts to 1.5–1.6.
 - **Hero H1 uses clamp.** `clamp(32px, 6vw, 56px)` so the playful headline scales gracefully to mobile without a separate token.
-- **Eyebrow is the section opener.** Uppercase, 0.6px tracking, brand-colored — used above the hero headline and major sections.
+- **Eyebrow is the section opener.** Uppercase, 0.6px tracking, `{colors.brand-ink}` (honey-ink, AA on white) — used above the hero headline and major sections.
 - **One H1 per page.** Home → "필요한 도구, 전부 무료로."; tool page → the tool name.
 
 ## Layout
@@ -376,18 +384,18 @@ The pairing is intentional: Gmarket Sans gives personality at large sizes; Prete
 - Ladder setup: two columns (참가자 / 결과) side by side ≥768px, stacked below.
 
 ### Whitespace Philosophy
-White IS the system's breathing room. Sections separate by lifting onto `{colors.surface-muted}` lavender, not by heavy rules. Within a band, generous `{spacing.ml}` 20px gaps separate cards; cards themselves are airy with 20px padding. The hero is deliberately spacious — a big rounded headline, one line of subhead, and a prominent search field.
+White IS the system's breathing room. Sections separate by lifting onto `{colors.surface-muted}` cream, not by heavy rules. Within a band, generous `{spacing.ml}` 20px gaps separate cards; cards themselves are airy with 20px padding. The hero is deliberately spacious — a big rounded headline, one line of subhead, and a prominent search field.
 
 ## Elevation & Depth
 
 | Level | Treatment | Use |
 |---|---|---|
 | 0 (flat) | No shadow, sits on `{colors.bg}` | Display type, hero copy, section headings |
-| 1 (soft lift) | `{colors.surface}` + `0 2px 8px rgba(108,92,231,0.08)` (`--shadow-card`) | Default tool cards, setup card, inputs at rest |
-| 2 (hover lift) | translateY(-4px) + `0 10px 28px rgba(108,92,231,0.18)` (`--shadow-card-hover`) | Hovered tool cards |
-| 3 (pop) | `0 16px 40px rgba(108,92,231,0.22)` (`--shadow-pop`) | Modals, toasts, consent sheet |
+| 1 (soft lift) | `{colors.surface}` + `0 2px 8px rgba(146,100,0,0.08)` (`--shadow-card`) | Default tool cards, setup card, inputs at rest |
+| 2 (hover lift) | translateY(-4px) + `0 10px 28px rgba(146,100,0,0.18)` (`--shadow-card-hover`) | Hovered tool cards |
+| 3 (pop) | `0 16px 40px rgba(146,100,0,0.22)` (`--shadow-pop`) | Modals, toasts, consent sheet |
 
-Elevation is expressed by **soft brand-tinted shadow**, never by darkening a surface or thickening a border. Shadows carry a faint violet tint (not neutral gray) so depth feels warm and on-brand.
+Elevation is expressed by **soft honey-tinted shadow**, never by darkening a surface or thickening a border. Shadows carry a faint honey-gold tint (not neutral gray) so depth feels warm and on-brand.
 
 ### Decorative Depth
 - **Hero blobs**: large, low-opacity accent shapes (`{colors.accent-*}` at ~12% alpha) behind the hero, pure CSS, `pointer-events: none`. Static by default; any drift animation is disabled under `prefers-reduced-motion`.
@@ -419,15 +427,15 @@ Elevation is expressed by **soft brand-tinted shadow**, never by darkening a sur
 
 ### Buttons
 
-**`button-primary`** — Violet rounded CTA. The single primary action on any screen ("사다리 만들기", "전체 결과 보기").
+**`button-primary`** — Honey-Gold rounded CTA. The single primary action on any screen ("사다리 만들기", "전체 결과 보기").
 - Background `{colors.brand}`, text `{colors.on-brand}`, type `{typography.button}`, rounded `{rounded.lg}`, padding 12px 20px.
 - Hover → `button-primary-hover` (`{colors.brand-strong}`) + translateY(-1px); press → scale(0.99); disabled → opacity 0.5.
 
-**`button-secondary`** — Lavender rounded button. Secondary actions ("다시 섞기", "처음으로").
+**`button-secondary`** — Cream rounded button. Secondary actions ("다시 섞기", "처음으로").
 - Background `{colors.surface-muted}`, text `{colors.text}`, 1px border `{colors.hairline}`, rounded `{rounded.lg}`, padding 12px 20px. Hover → border `{colors.brand-soft}`.
 
 **`button-ghost`** — Text-forward button on white. Tertiary ("설정", "더보기").
-- Background `{colors.surface}`, text `{colors.brand}`, rounded `{rounded.lg}`.
+- Background `{colors.surface}`, text `{colors.brand-ink}` (honey-ink for AA on white), rounded `{rounded.lg}`.
 
 ### Cards & Containers
 
@@ -441,13 +449,13 @@ Elevation is expressed by **soft brand-tinted shadow**, never by darkening a sur
 - Background = the card's accent `*-soft` token; glyph color = the saturated accent; rounded `{rounded.lg}`. Shown here with the coral variant; **swap both tokens to the card's accent** (mint, sky, sun, grape, rose).
 
 **`modal`** — Centered dialog / clipboard-fallback / settings.
-- Background `{colors.surface}`, rounded `{rounded.xxl}` 28px, padding 24px, shadow `--shadow-pop`, backdrop `rgba(30,27,58,0.4)`.
+- Background `{colors.surface}`, rounded `{rounded.xxl}` 28px, padding 24px, shadow `--shadow-pop`, backdrop `rgba(42,36,17,0.4)`.
 
 ### Inputs & Forms
 
 **`text-input`** + **`text-input-focused`** — Player/prize labels, contact fields.
 - Background `{colors.surface}`, text `{colors.text}`, type `{typography.body}`, 1px border `{colors.hairline}`, rounded `{rounded.md}`, padding 10px 14px.
-- Focused: border `{colors.brand}` + 3px `{colors.brand-soft}` ring. Min 44px tap height on touch.
+- Focused: border `{colors.brand-ink}` + 3px `{colors.brand-soft}` ring. Min 44px tap height on touch.
 
 **`hero-search`** — Prominent search field in the hero.
 - Background `{colors.surface}`, type `{typography.body-lg}`, rounded `{rounded.xl}`, padding 16px 20px, leading search icon, shadow `--shadow-card`. 56px tall.
@@ -474,7 +482,7 @@ Elevation is expressed by **soft brand-tinted shadow**, never by darkening a sur
 ### Feedback
 
 **`toast`** — Transient confirmation/error.
-- Background `{colors.text}` (dark pill on light UI), text `{colors.on-brand}`, type `{typography.body-sm}`, rounded `{rounded.md}`, shadow `--shadow-pop`. Bottom-center mobile / bottom-right desktop. Success accented with `{colors.semantic-success}` leading dot; error with `{colors.semantic-danger}`.
+- Background `{colors.text}` (inverse-surface pill — dark in light theme, light in dark theme), text `{colors.surface}` (inverts with the theme so the label stays legible in both), type `{typography.body-sm}`, rounded `{rounded.md}`, shadow `--shadow-pop`. Bottom-center mobile / bottom-right desktop. Success accented with `{colors.semantic-success}` leading dot; error with `{colors.semantic-danger}`.
 
 ### Advertising
 
@@ -490,9 +498,9 @@ Elevation is expressed by **soft brand-tinted shadow**, never by darkening a sur
 ## Do's and Don'ts
 
 ### Do
-- Keep `{colors.bg}` white as the ground and lift cards with **soft brand-tinted shadow** (`--shadow-card`), not borders or dark surfaces.
+- Keep `{colors.bg}` white as the ground and lift cards with **soft honey-tinted shadow** (`--shadow-card`), not borders or dark surfaces.
 - Use a tool's **category accent** consistently — for its `tool-card-icon` tile, its badge tint, and (in the Ladder Game) its player trace + reveal face.
-- Reserve `{colors.brand}` violet for **actions and identity** (CTAs, links, focus, wordmark). One action color everywhere.
+- Reserve the honey-gold brand for **actions and identity**: the gold `{colors.brand}` fill for CTAs/active pills (with `on-brand` dark text), and `{colors.brand-ink}` for links, focus, and the wordmark. One action color everywhere.
 - Pair Gmarket Sans display (700, tight) with Pretendard body (500/600, relaxed). The rounded-vs-neutral contrast is the voice.
 - Round generously — `{rounded.xl}` 20px on cards, `{rounded.xxl}` 28px on modals. Playful means soft corners.
 - Give every interactive element a designed hover, press, and focus-visible state; keep touch targets ≥ 44px.
@@ -501,12 +509,12 @@ Elevation is expressed by **soft brand-tinted shadow**, never by darkening a sur
 
 ### Don't
 - Don't ship a dark-by-default page. Jurepi is light-first; dark is an optional Phase 2 toggle.
-- Don't use a category accent as a **CTA color**. Accents are identity; the brand violet is action. A coral "사다리 만들기" button is a violation.
+- Don't use a category accent as a **CTA color**. Accents are identity; the brand honey-gold is action. A coral "사다리 만들기" button is a violation.
 - Don't pile multiple saturated accents into one viewport as decoration — accent = "this is THAT kind of tool/player", and mixing it noisily breaks the signal.
 - Don't square off corners or use hard 1px borders as the primary elevation device — that reads as a default template, not Jurepi.
 - Don't introduce a third font family or use Gmarket Sans for long body text (it's a display face).
 - Don't place an ad above the H1 or inside the interactive ladder board, and never let an unfilled ad shift layout.
-- Don't use pure black (#000) text — use `{colors.text}` (#1e1b3a), the warm indigo-near-black.
+- Don't use pure black (#000) text — use `{colors.text}` (#2a2411), the warm near-black.
 
 ## Responsive Behavior
 
@@ -542,9 +550,9 @@ Elevation is expressed by **soft brand-tinted shadow**, never by darkening a sur
 2. When adding a tool, FIRST decide its category → that fixes its accent token. Apply the accent only to the icon tile, badge tint, and any per-tool identity surface — never to the CTA.
 3. Default body to `{typography.body}` (Pretendard 500); reach for Gmarket Sans only at `{typography.headline}` and above.
 4. Express elevation with the three shadow levels (`--shadow-card` / `-hover` / `--shadow-pop`), not by darkening surfaces.
-5. Keep the brand violet as the only action/identity color; if you find yourself coloring a button with an accent, step back.
+5. Keep the brand honey-gold as the only action/identity color; if you find yourself coloring a button with an accent, step back.
 6. Run `npx @google/design.md lint DESIGN.md` after edits to validate token references.
-7. Verify brand-violet-on-white and text-on-accent contrast meets WCAG AA (≥ 4.5:1 body, ≥ 3:1 large) whenever you introduce a new pairing.
+7. Verify contrast meets WCAG AA (≥ 4.5:1 body, ≥ 3:1 large) whenever you introduce a new pairing: `brand-ink`-on-white for text/links, `on-brand`-on-`brand` for gold fills, and text-on-accent for accent tints.
 8. Treat the six accents as identity tokens, not a rainbow — one accent per card, one per player.
 
 ## Known Gaps

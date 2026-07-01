@@ -175,7 +175,7 @@ src/
   </progress_chip>
 
   <tab_bar>
-    - 4개 알약: "오늘" / "달력" / "모아보기" / "설정"(en: Today / Calendar / Journal / Settings). category-pill 스타일; 활성 = 브랜드 바이올렛, 비활성 = surface-muted. role="tablist"; 화살표 키 탐색; aria-selected.
+    - 4개 알약: "오늘" / "달력" / "모아보기" / "설정"(en: Today / Calendar / Journal / Settings). category-pill 스타일; 활성 = 브랜드 허니골드, 비활성 = surface-muted. role="tablist"; 화살표 키 탐색; aria-selected.
   </tab_bar>
 
   <today_panel tab="today">
@@ -284,9 +284,9 @@ src/
 <aesthetic_guidelines>
   <source>CRITICAL: DESIGN.md가 모든 토큰의 단일 소스. 아래는 도구 전용 적용 사항.</source>
   <accent_usage>
-    - 카테고리 액센트는 GRAPE(var(--accent-grape) #a78bfa / var(--accent-grape-soft) #ece6fe) — 차분하고 성찰적이며 브랜드 바이올렛과 구별.
-    - grape는 정체성 표시: 질문의 선두 바, 완료 링, 연속 알약, 작성된 달력 셀, 히트맵 농도.
-    - CTA(내보내기, "시작하기", 주요 저장)는 브랜드 바이올렛 var(--brand) 유지. 액센트는 정체성이며 결코 액션 색이 아님(DESIGN do/don't).
+    - 카테고리 액센트는 GRAPE(var(--accent-grape) #e0912b / var(--accent-grape-soft) #fbe8cb) — 따뜻한 허니골드(토큰명은 `grape` 유지). 브랜드와 같은 웜 계열이며, 정체성과 액션의 구분은 색상이 아니라 역할로 한다.
+    - grape는 정체성 표시: 질문의 선두 바, 완료 링, 연속 알약, 작성된 달력 셀, 히트맵 농도 — 항상 액센트 틴트/텍스트-잉크(var(--accent-grape-ink))로, CTA 채움으로는 쓰지 않음.
+    - CTA(내보내기, "시작하기", 주요 저장)는 브랜드 허니골드 var(--brand) 채움+var(--on-brand) 텍스트(링크는 var(--brand-ink)) 유지. 액센트는 정체성이며 결코 액션 색이 아님(DESIGN do/don't).
   </accent_usage>
   <surfaces>질문 카드 radius var(--radius-xxl) 28px; 작성기 radius var(--radius-lg); 지난 해 카드는 var(--surface-muted) 위 var(--radius-lg). 부드러운 브랜드 틴트 그림자(--shadow-card), 엘리베이션으로서의 하드 보더 금지.</surfaces>
   <typography>H1 Gmarket Sans; 질문 자체가 편집 초점(크고 넉넉한 행간, 인용 바) — 스케일 대비로 위계. 본문/답변은 Pretendard 16px/1.6. 날짜/라벨은 caption/body-sm.</typography>
@@ -367,7 +367,7 @@ src/
   <functionality>오늘 자동저장(디바운스 + blur + Cmd/Ctrl+S); 달력에서 임의 날짜 탐색/편집; 다년 PastYears; 검색 가능한 모아보기; 연속/완료 통계; 병합/덮어쓰기 내보내기/가져오기; 이중 확인 초기화.</functionality>
   <user_experience>작성기가 즉각적(키 입력 지연 &lt; 50ms); 저장 상태가 명확하고 거슬리지 않음; 하나의 질문이 스포트라이트; ≥44px 주요 타깃; 가시적 포커스; 라우트 리로드 없는 SPA 탭 전환.</user_experience>
   <technical_quality>lib/qna-a-day/* 순수 함수 단위 커버리지 ≥80%(날짜 연산, 연속 엣지 케이스, 불변 연산, serialize/merge, zod 거부); TS 에러 0; 800줄 초과 파일 없음; 365 질문 데이터셋이 코드 분할되어 전역 i18n 번들을 부풀리지 않음.</technical_quality>
-  <visual_design>DESIGN.md 준수; grape 액센트가 정체성(질문 바, 링, 연속, 달력 채우기)에 사용; 브랜드 바이올렛은 CTA 전용; 따뜻하고 저채도인 일기 분위기 — 대시보드 아님.</visual_design>
+  <visual_design>DESIGN.md 준수; grape 액센트가 정체성(질문 바, 링, 연속, 달력 채우기)에 사용; 브랜드 허니골드은 CTA 전용; 따뜻하고 저채도인 일기 분위기 — 대시보드 아님.</visual_design>
   <accessibility>완전한 키보드 조작; aria-live 저장 상태; 라벨된 달력 버튼; reduced-motion 존중; WCAG 2.1 AA 대비.</accessibility>
   <performance>도구 라우트가 플랫폼 예산 내 유지; 질문 데이터셋 동적 임포트(전역 i18n 번들에 미포함); 오늘 빠르게 인터랙티브; CLS 무영향(광고 높이는 플랫폼이 예약).</performance>
 </success_criteria>

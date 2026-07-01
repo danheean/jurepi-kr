@@ -129,6 +129,6 @@ describe('ThemeToggle', () => {
     );
 
     const button = screen.getByTestId('theme-toggle');
-    expect(button).toHaveClass('focus-visible:ring-2', 'focus-visible:ring-brand');
+    expect(button).toHaveClass('focus-visible:ring-2', 'focus-visible:ring-focus-ring');
   });
 });

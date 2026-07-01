@@ -229,7 +229,7 @@ src/
   <accent_usage>
     - Category accent is coral, but EACH PLAYER is assigned an accent cycling coral→mint→sky→sun→grape→rose
     - A player's chip tint, their trace line color, and the face of the prize they land on all share that player's accent — color ties player → path → result
-    - CTAs ("사다리 만들기", "전체 결과 보기") stay brand violet; accents are identity only
+    - CTAs ("사다리 만들기", "전체 결과 보기") stay brand honey-gold; accents are identity only
   </accent_usage>
   <board>SVG structure in var(--hairline-strong) 3px; trace 4px in player accent; prize cards flip with rotateY 300ms; "?" on var(--surface-muted)</board>
   <motion>transform / opacity / stroke-dashoffset only; --ease-out cubic-bezier(0.16,1,0.3,1); durations 150/250/350ms; ALL gated by prefers-reduced-motion (instant path, cross-fade flip)</motion>
@@ -312,7 +312,7 @@ src/
   <functionality>Uniform-permutation-first generation; resolveAll(rungs) equals the chosen permutation and is a bijection; structural no-adjacent invariant; tracePath matches rendered path exactly; single + reveal-all flows; hide/show mode; reshuffle/reset/copy; keyboard shortcuts</functionality>
   <user_experience>Build click → board visible &lt; 100ms; trace animation smooth 60fps; reveal latency imperceptible; ≥44px targets; visible focus</user_experience>
   <technical_quality>lib/ladder.ts pure functions ≥ 80% unit coverage (invariant, bijection, trace correctness, seeded reproducibility); zero TS errors; no file &gt; 800 lines</technical_quality>
-  <visual_design>Matches DESIGN.md; per-player accent ties chip↔trace↔prize; CTAs stay brand violet</visual_design>
+  <visual_design>Matches DESIGN.md; per-player accent ties chip↔trace↔prize; CTAs stay brand honey-gold</visual_design>
   <accessibility>Keyboard-complete; aria-live reveals; reduced-motion honored; SVG labeled; WCAG 2.1 AA contrast</accessibility>
 </success_criteria>
 

@@ -13,6 +13,8 @@ const config: Config = {
         'brand-strong': 'var(--brand-strong)',
         'brand-soft': 'var(--brand-soft)',
         'on-brand': 'var(--on-brand)',
+        'brand-ink': 'var(--brand-ink)',
+        'brand-ink-strong': 'var(--brand-ink-strong)',
         'focus-ring': 'var(--focus-ring)',
         surface: 'var(--surface)',
         'surface-muted': 'var(--surface-muted)',

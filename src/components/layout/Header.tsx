@@ -12,7 +12,7 @@ interface HeaderProps {
 }
 
 const WORDMARK_CLASS =
-  'font-display text-xl font-bold text-brand hover:text-brand-strong transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded-lg';
+  'font-display text-xl font-bold text-brand-ink hover:text-brand-ink-strong transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 rounded-lg';
 
 export function Header({ tools }: HeaderProps): React.ReactNode {
   const [isScrolled, setIsScrolled] = useState(false);

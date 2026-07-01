@@ -231,7 +231,7 @@ src/
   <accent_usage>
     - 카테고리 액센트는 coral이지만, 각 참가자에게 coral→mint→sky→sun→grape→rose를 순환해 액센트를 배정
     - 참가자의 칩 틴트, 추적 선 색, 도착한 결과 카드의 면이 모두 그 참가자의 액센트를 공유 — 색이 참가자 → 경로 → 결과를 묶음
-    - CTA("사다리 만들기", "전체 결과 보기")는 브랜드 바이올렛 유지; 액센트는 정체성 표시용일 뿐
+    - CTA("사다리 만들기", "전체 결과 보기")는 브랜드 허니골드 유지; 액센트는 정체성 표시용일 뿐
   </accent_usage>
   <board>SVG 구조는 var(--hairline-strong) 3px; 추적 4px 참가자 액센트; 결과 카드는 rotateY 300ms 플립; "?"는 var(--surface-muted)</board>
   <motion>transform / opacity / stroke-dashoffset만 사용; --ease-out cubic-bezier(0.16,1,0.3,1); 지속시간 150/250/350ms; 모두 prefers-reduced-motion으로 게이팅(즉시 경로, 크로스페이드 플립)</motion>
@@ -314,7 +314,7 @@ src/
   <functionality>균등 순열 우선 생성; resolveAll(rungs)가 선택된 순열과 일치하며 bijection; 구조적 인접 금지 불변식; tracePath가 렌더 경로와 정확히 일치; 단일 + 전체 공개 플로우; 가리기/보이기 모드; 다시 섞기/초기화/복사; 키보드 단축키</functionality>
   <user_experience>빌드 클릭 → 보드 표시 &lt; 100ms; 추적 애니메이션 60fps 부드러움; 공개 지연 체감 불가; ≥44px 타깃; 가시적 포커스</user_experience>
   <technical_quality>lib/ladder.ts 순수 함수 단위 커버리지 ≥ 80%(불변식, bijection, 추적 정확성, 시드 재현성); TS 에러 0; 800줄 초과 파일 없음</technical_quality>
-  <visual_design>DESIGN.md 준수; 참가자별 액센트가 칩↔추적↔결과를 묶음; CTA는 브랜드 바이올렛 유지</visual_design>
+  <visual_design>DESIGN.md 준수; 참가자별 액센트가 칩↔추적↔결과를 묶음; CTA는 브랜드 허니골드 유지</visual_design>
   <accessibility>키보드 완전 조작; aria-live 공개; reduced-motion 존중; SVG 라벨링; WCAG 2.1 AA 대비</accessibility>
 </success_criteria>
 

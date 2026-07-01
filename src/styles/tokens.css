@@ -1,23 +1,27 @@
 /* Design Tokens — Mirror of DESIGN.md */
 
 :root {
-  /* Brand & Action */
-  --brand: #6c5ce7;
-  --brand-strong: #5a48d6;
-  --brand-soft: #efeaff;
-  --on-brand: #ffffff;
+  /* Brand & Action — honey-gold. Gold is too light for white text or as a
+     link on white, so the brand is split into a *fill* role (gold bg + dark
+     ink text) and an *ink* role (dark honey for text/links/focus on light). */
+  --brand: #f5a623; /* fill: buttons, active surfaces */
+  --brand-strong: #e08e00; /* hover/pressed fill */
+  --brand-soft: #fdefc9; /* light honey wash, focus halos, selection bg */
+  --on-brand: #3a2a05; /* dark honey-brown text/icons on brand-filled surfaces — 6.86:1 on --brand */
+  --brand-ink: #9a6400; /* text/links/wordmark/focus on light surfaces — 5.0:1 on white, 4.67:1 on surface-muted */
+  --brand-ink-strong: #7a4f00; /* hover for brand-ink text */
 
-  /* Surface */
+  /* Surface — warm neutrals (previously violet-tinted) */
   --surface: #ffffff;
-  --surface-muted: #f5f3fc;
-  --surface-sunken: #eeeafa;
-  --hairline: #ece9f7;
-  --hairline-strong: #d8d3ee;
+  --surface-muted: #faf6ee;
+  --surface-sunken: #f3ecdd;
+  --hairline: #f0e9da;
+  --hairline-strong: #e2d6bd;
 
-  /* Text */
-  --text: #1e1b3a;
-  --text-secondary: #5c5780;
-  --text-muted: #6f6a8f; /* WCAG AA: 5.08:1 on white, 4.62:1 on surface-muted */
+  /* Text — warm neutrals */
+  --text: #2a2411;
+  --text-secondary: #6b6042;
+  --text-muted: #7a6f52; /* WCAG AA: 4.7:1 on white, 4.5:1 on surface-muted */
 
   /* Per-Accent Identity */
   --accent-coral: #ff7a85;
@@ -28,15 +32,15 @@
   --accent-sky-soft: #ddf2fe;
   --accent-sun: #fbbf24;
   --accent-sun-soft: #fef1d2;
-  --accent-grape: #a78bfa;
-  --accent-grape-soft: #ece6fe;
+  --accent-grape: #e0912b;
+  --accent-grape-soft: #fbe8cb;
   --accent-rose: #fb7185;
   --accent-rose-soft: #fee2e7;
 
   /* Accent ink — dark, text-safe shade of an accent for labels on its *-soft tint (WCAG AA) */
   --accent-mint-ink: #0f766e; /* 4.82:1 on accent-mint-soft */
   --accent-sun-ink: #92400e; /* 6.32:1 on accent-sun-soft */
-  --accent-grape-ink: #6d28d9; /* 7.1:1 on white, 5.86:1 on accent-grape-soft */
+  --accent-grape-ink: #8a5300; /* honey-gold ink — 6.3:1 on white, 5.2:1 on accent-grape-soft */
 
   /* Semantic */
   --success: #22c55e;
@@ -51,12 +55,12 @@
   --warning-ink: #b45309; /* 5.02:1 on white */
 
   /* Focus */
-  --focus-ring: #6c5ce7;
+  --focus-ring: #9a6400; /* = --brand-ink, visible on white (5:1 non-text) */
 
-  /* Elevation & Depth */
-  --shadow-card: 0 2px 8px rgba(108, 92, 231, 0.08);
-  --shadow-card-hover: 0 10px 28px rgba(108, 92, 231, 0.18);
-  --shadow-pop: 0 16px 40px rgba(108, 92, 231, 0.22);
+  /* Elevation & Depth — warm honey-tinted shadows */
+  --shadow-card: 0 2px 8px rgba(146, 100, 0, 0.08);
+  --shadow-card-hover: 0 10px 28px rgba(146, 100, 0, 0.18);
+  --shadow-pop: 0 16px 40px rgba(146, 100, 0, 0.22);
 
   /* Border Radius */
   --radius-xs: 4px;
@@ -98,19 +102,23 @@
 
 /* Dark theme tokens via explicit attribute (manual preference override) */
 [data-theme="dark"] {
-  --surface: #1e1b2e;
-  --surface-muted: #262238;
-  --surface-sunken: #1a181f;
-  --hairline: #322c49;
-  --hairline-strong: #463e63;
-  --text: #f4f2ff;
-  --text-secondary: #b7b1d6;
-  --text-muted: #7e7799;
-  --brand: #8b7bff;
-  --brand-strong: #a294ff;
-  --brand-soft: #2a2545;
+  --surface: #221d12;
+  --surface-muted: #2b2416;
+  --surface-sunken: #1a160d;
+  --hairline: #3a3016;
+  --hairline-strong: #4d4020;
+  --text: #f7f2e4;
+  --text-secondary: #d6cba8;
+  --text-muted: #998f70;
+  --brand: #ffc04d;
+  --brand-strong: #ffd27a;
+  --brand-soft: #3a2f12;
+  --on-brand: #2a1d00; /* dark text on bright honey fill (dark theme) */
+  --brand-ink: #ffca5c; /* text/links/focus on dark surface */
+  --brand-ink-strong: #ffd98a;
+  --focus-ring: #ffca5c;
   /* Ink shades flip lighter so semantic/accent text stays AA on the dark surface */
-  --accent-grape-ink: #c4b5fd; /* 9.09:1 on dark surface */
+  --accent-grape-ink: #f0bc5e; /* honey-gold ink — 8.9:1 on dark surface */
   --danger-ink: #f87171; /* 6.07:1 on dark surface */
   --warning-ink: #fbbf24; /* 10.05:1 on dark surface */
 }
@@ -118,18 +126,22 @@
 /* Dark theme tokens via system preference (fallback when [data-theme] not set to 'light') */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --surface: #1e1b2e;
-    --surface-muted: #262238;
-    --surface-sunken: #1a181f;
-    --hairline: #322c49;
-    --hairline-strong: #463e63;
-    --text: #f4f2ff;
-    --text-secondary: #b7b1d6;
-    --text-muted: #7e7799;
-    --brand: #8b7bff;
-    --brand-strong: #a294ff;
-    --brand-soft: #2a2545;
-    --accent-grape-ink: #c4b5fd;
+    --surface: #221d12;
+    --surface-muted: #2b2416;
+    --surface-sunken: #1a160d;
+    --hairline: #3a3016;
+    --hairline-strong: #4d4020;
+    --text: #f7f2e4;
+    --text-secondary: #d6cba8;
+    --text-muted: #998f70;
+    --brand: #ffc04d;
+    --brand-strong: #ffd27a;
+    --brand-soft: #3a2f12;
+    --on-brand: #2a1d00;
+    --brand-ink: #ffca5c;
+    --brand-ink-strong: #ffd98a;
+    --focus-ring: #ffca5c;
+    --accent-grape-ink: #f0bc5e;
     --danger-ink: #f87171;
     --warning-ink: #fbbf24;
   }

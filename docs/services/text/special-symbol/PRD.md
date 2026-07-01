@@ -175,7 +175,7 @@ src/
 
   <category_tabs>
     - Horizontal pill row (category-pill / category-pill-active). Order: "전체"(all), then "최근"(recent, only if recents exist), "즐겨찾기"(favorites, only if any), then the 9 categories.
-    - Active = brand violet fill / on-brand text; inactive = surface-muted / text-secondary; hover lifts bg.
+    - Active = brand honey-gold fill / on-brand text; inactive = surface-muted / text-secondary; hover lifts bg.
     - role="tablist"; ArrowLeft/Right move between pills; aria-selected on active. Row scrolls horizontally with snap on narrow screens.
     - Selecting a category clears the search? NO — search and category compose (category narrows the set, search filters within it). "전체" + empty search = whole catalog.
   </category_tabs>
@@ -214,7 +214,7 @@ src/
       3. Meta "copy as" chips (row): "기호 {char}" · "HTML {entity}" · "유니코드 {U+XXXX}" — each a small pill (player-chip style, mint-soft); clicking a chip copies THAT representation (toast "HTML 엔티티 복사됨" etc.). Keyboard accessible.
       4. Usage: body 16px var(--text-secondary), the localized 1–2 sentence note.
       5. Examples: a small stacked list (2–3), each in a var(--surface-muted) chip (radius var(--radius-md)); the symbol within each example is emphasized (var(--accent-mint) / 700). Label "예시" / "Examples" in eyebrow.
-      6. Primary "복사" button (button-primary, brand violet, full width) — copies the char (redundant with tile click, but the obvious affordance once a symbol is selected).
+      6. Primary "복사" button (button-primary, brand honey-gold, full width) — copies the char (redundant with tile click, but the obvious affordance once a symbol is selected).
     - Empty/initial state (nothing selected): a friendly hint card — "기호를 선택하면 사용법과 예시가 여기에 표시됩니다." plus, if recents exist, a nudge to re-copy a recent one.
   </detail_panel>
 
@@ -288,7 +288,7 @@ src/
   <accent_usage>
     - Category accent is MINT (var(--accent-mint) #2dd4bf / var(--accent-mint-soft) #d7f7f2) — the "text" category identity per DESIGN.
     - Mint marks identity: the intro icon tile, tile hover/selected state, the detail panel's glyph tile, the "copy as" chips, the emphasized symbol inside examples, and the favorite star (filled).
-    - CTAs (the detail "복사" button, primary actions) stay BRAND VIOLET var(--brand). Accent is identity, never the action color (DESIGN do/don't). The success toast uses var(--semantic-success) for its leading dot, not mint.
+    - CTAs (the detail "복사" button, primary actions) stay brand honey-gold var(--brand). Accent is identity, never the action color (DESIGN do/don't). The success toast uses var(--semantic-success) for its leading dot, not mint.
   </accent_usage>
   <surfaces>Grid tiles var(--surface) + 1px var(--hairline) at rest, radius var(--radius-md) 12px; detail panel radius var(--radius-xxl) 28px on var(--surface); example chips var(--surface-muted) radius var(--radius-md). Soft brand-tinted shadows (--shadow-card / --shadow-card-hover), never hard borders as elevation.</surfaces>
   <typography>H1 Gmarket Sans (clamp 28–40px); detail name headline 24px; the GLYPH itself is the focal object (large, centered). Body/usage Pretendard 16px/1.55; meta chips/labels caption/eyebrow. Codepoints/entities shown in a monospace-ish treatment (use a mono fallback stack for the U+XXXX and &amp;#NNN; strings only) for legibility.</typography>
@@ -375,7 +375,7 @@ src/
   <functionality>Searchable, category-filterable grid; recents (capped MRU) + favorites persisted in localStorage and pruned of unknown ids; "copy as" character/entity/codepoint; keyboard-first operation; works fully without localStorage.</functionality>
   <user_experience>Copy feels instant (&lt; 50ms perceived); clear, unobtrusive success toast + ✓ flash; one glyph in the spotlight; ≥44px targets; visible focus; SPA — no route reload for any interaction.</user_experience>
   <technical_quality>lib/special-symbol/* pure-function unit coverage ≥ 80% (codepoint/entity derivation, search matching incl. codepoint + diacritics, recents/favorites immutable ops, zod rejection + prune); 0 TS errors; no file &gt; 800 lines; the catalog is code-split and does NOT inflate the global i18n bundle.</technical_quality>
-  <visual_design>DESIGN.md compliant; mint accent for identity (tiles, glyph tile, chips, favorites), brand violet reserved for the Copy CTA; bright, friendly grid — not a system character-map dialog; HTML-entity strings rendered as literal text only.</visual_design>
+  <visual_design>DESIGN.md compliant; mint accent for identity (tiles, glyph tile, chips, favorites), brand honey-gold reserved for the Copy CTA; bright, friendly grid — not a system character-map dialog; HTML-entity strings rendered as literal text only.</visual_design>
   <accessibility>Full keyboard operation (roving grid, "/", Enter, "f", Esc); aria-live copy status; labeled tile buttons announcing the symbol without relying on glyph rendering; reduced-motion respected; WCAG 2.1 AA contrast.</accessibility>
   <performance>Tool route stays within platform budgets; catalog dynamically imported (not in global i18n bundle); grid renders 200+ tiles smoothly; CLS unaffected (ad height reserved by platform).</performance>
 </success_criteria>

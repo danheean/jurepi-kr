@@ -53,7 +53,7 @@ export function ConsentBanner(): React.ReactNode {
               {t('body')}{' '}
               <Link
                 href="/privacy"
-                className="font-semibold text-brand hover:text-brand-strong focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-brand"
+                className="font-semibold text-brand-ink hover:text-brand-ink-strong focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-brand-ink"
               >
                 {t('learnMore')}
               </Link>
@@ -64,7 +64,7 @@ export function ConsentBanner(): React.ReactNode {
           <div className="flex gap-2 sm:gap-3 flex-shrink-0">
             <button
               onClick={decline}
-              className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap rounded-md border border-hairline-strong bg-surface text-text-secondary hover:bg-surface-muted active:bg-surface-sunken transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap rounded-md border border-hairline-strong bg-surface text-text-secondary hover:bg-surface-muted active:bg-surface-sunken transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink"
               type="button"
               aria-label={t('decline')}
             >
@@ -72,7 +72,7 @@ export function ConsentBanner(): React.ReactNode {
             </button>
             <button
               onClick={accept}
-              className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap rounded-md bg-brand text-on-brand hover:bg-brand-strong active:opacity-90 transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap rounded-md bg-brand text-on-brand hover:bg-brand-strong active:opacity-90 transition-colors duration-fast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-ink"
               type="button"
               aria-label={t('accept')}
             >

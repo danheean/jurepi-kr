@@ -162,7 +162,7 @@ export function AnswerComposer({
         onKeyDown={handleKeyDown}
         placeholder={t('composer.placeholder')}
         maxLength={MAX_CHARS}
-        className={`w-full min-h-[140px] p-4 rounded-lg border border-hairline focus:border-brand focus:ring-3 focus:ring-brand-soft resize-none font-body text-base leading-relaxed transition-colors ${
+        className={`w-full min-h-[140px] p-4 rounded-lg border border-hairline focus:border-brand-ink focus:ring-3 focus:ring-brand-soft resize-none font-body text-base leading-relaxed transition-colors ${
           isWarning ? 'border-warning-ink' : ''
         }`}
         aria-label={t('composer.placeholder')}

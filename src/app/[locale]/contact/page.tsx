@@ -31,7 +31,7 @@ export default async function ContactPage({ params }: Props) {
       {/* Back-to-home link */}
       <Link
         href="/"
-        className="inline-flex mb-8 text-body-sm text-brand hover:text-brand-strong transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded"
+        className="inline-flex mb-8 text-body-sm text-brand-ink hover:text-brand-ink-strong transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 rounded"
       >
         ← Back to home
       </Link>
@@ -53,7 +53,7 @@ export default async function ContactPage({ params }: Props) {
         </p>
         <a
           href={`mailto:${email}`}
-          className="text-body font-semibold text-brand hover:text-brand-strong transition-colors duration-150 break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded"
+          className="text-body font-semibold text-brand-ink hover:text-brand-ink-strong transition-colors duration-150 break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 rounded"
         >
           {email}
         </a>
@@ -66,7 +66,7 @@ export default async function ContactPage({ params }: Props) {
             href={blogUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-body-sm text-brand hover:text-brand-strong transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded"
+            className="text-body-sm text-brand-ink hover:text-brand-ink-strong transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 rounded"
           >
             {t('blogLabel')} →
           </a>

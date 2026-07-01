@@ -30,7 +30,7 @@ describe('Toast Component', () => {
       <Toast message="Success!" type="success" open={true} />
     );
     const toast = screen.getByRole('status');
-    expect(toast).toHaveClass('text-on-brand');
+    expect(toast).toHaveClass('text-surface');
   });
 
   it('applies error type styling', () => {
@@ -38,7 +38,7 @@ describe('Toast Component', () => {
       <Toast message="Error!" type="error" open={true} />
     );
     const toast = screen.getByRole('status');
-    expect(toast).toHaveClass('text-on-brand');
+    expect(toast).toHaveClass('text-surface');
   });
 
   it('has transition classes', () => {

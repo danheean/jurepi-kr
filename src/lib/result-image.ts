@@ -11,14 +11,14 @@ export const ACCENT_HEX: string[] = [
   '#2dd4bf', // mint
   '#38bdf8', // sky
   '#fbbf24', // sun
-  '#a78bfa', // grape
+  '#e0912b', // grape (honey-gold)
   '#fb7185', // rose
 ];
 
-export const HAIRLINE_STRONG_HEX = '#d8d3ee';
-export const TEXT_HEX = '#1e1b3a';
+export const HAIRLINE_STRONG_HEX = '#e2d6bd';
+export const TEXT_HEX = '#2a2411';
 export const SURFACE_HEX = '#ffffff';
-export const SURFACE_MUTED_HEX = '#f5f3fc';
+export const SURFACE_MUTED_HEX = '#faf6ee';
 
 export interface ResultImageRow {
   name: string;
