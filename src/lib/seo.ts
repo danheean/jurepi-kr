@@ -165,3 +165,35 @@ export function faqPageJsonLd(
     })),
   };
 }
+
+/**
+ * Build schema.org DefinedTermSet JSON-LD for glossaries.
+ * Structured data for search engines to recognize the glossary and expose terms in knowledge panels.
+ */
+export function definedTermSetJsonLd({
+  name,
+  description,
+  url,
+  terms,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  terms: Array<{ slug: string; term: string; definition: string }>;
+}): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTermSet',
+    '@id': url,
+    url,
+    name,
+    description,
+    hasDefinedTerm: terms.map((item) => ({
+      '@type': 'DefinedTerm',
+      name: item.term,
+      description: item.definition,
+      inDefinedTermSet: { '@id': url },
+      url: `${url}#${item.slug}`,
+    })),
+  };
+}

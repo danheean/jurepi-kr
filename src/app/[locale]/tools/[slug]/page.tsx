@@ -19,6 +19,12 @@ const DailyQuestion = dynamic(() =>
   }))
 );
 
+const NewWord = dynamic(() =>
+  import('@/components/tools/new-word/NewWord').then((m) => ({
+    default: m.NewWord,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -37,6 +43,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } else if (slug === 'ladder') {
     title = t('title');
     description = t('lead');
+  } else if (slug === 'new-word') {
+    title = t('meta.title');
+    description = t('meta.description');
   } else {
     return {};
   }
@@ -75,6 +84,10 @@ async function ToolContent({ slug }: { slug: string }) {
 
   if (slug === 'qna-a-day') {
     return <DailyQuestion />;
+  }
+
+  if (slug === 'new-word') {
+    return <NewWord />;
   }
 
   notFound();

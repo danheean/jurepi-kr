@@ -166,6 +166,61 @@ const defaultMessages = {
         ],
       },
     },
+    'new-word': {
+      title: 'New Word Glossary',
+      intro: {
+        eyebrow: 'TEXT TOOL',
+        title: 'New Word Glossary',
+        lead: 'Discover trendy MZ slang and modern tech terms with definitions and examples in Korean and English.',
+      },
+      search: {
+        placeholder: 'Search by term, definition, or tag (e.g., god life, vibe coding, AI)',
+        resultCount: '{count} results',
+        clear: 'Clear',
+      },
+      topics: {
+        all: 'All',
+        mz: 'MZ Slang',
+        tech: 'Tech Terms',
+        favorites: 'Favorites',
+        recent: 'Recent',
+      },
+      langToggle: {
+        ko: '한국어',
+        en: 'English',
+        both: 'Both',
+      },
+      detail: {
+        emptyHint: 'Select a term to see its definition and examples here.',
+        definition: 'Definition',
+        examples: 'Examples',
+        origin: 'Origin',
+        related: 'Related Terms',
+        copyTerm: 'Copy term',
+        copyDefinition: 'Copy definition',
+        aliases: 'Aliases',
+      },
+      toast: {
+        copied: 'Copied!',
+        favorited: 'Added to favorites',
+        unfavorited: 'Removed from favorites',
+      },
+      empty: {
+        noResults: "No terms match '{query}'.",
+        favorites: 'Star terms to save them to your favorites.',
+        recent: 'Your recently viewed terms will appear here.',
+      },
+      howTo: {
+        title: 'What is New Word?',
+        body: 'New Word Glossary brings together trendy language in one place.',
+      },
+      faq: {
+        title: 'Frequently Asked Questions',
+        items: [
+          { q: 'What are new words / slang?', a: 'New words are newly created terms.' },
+        ],
+      },
+    },
   },
 };
 

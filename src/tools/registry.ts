@@ -29,6 +29,17 @@ export const tools: ToolMeta[] = [
     order: 2,
     keywords: ['1일1질문', '하루한질문', '365질문', '질문일기', '자기성찰', '일기', '저널', 'q&a a day', 'daily question', 'journal', 'self reflection', 'one question a day'],
   },
+  {
+    id: 'new-word',
+    slug: 'new-word',
+    category: 'text',
+    icon: 'BookA',
+    accent: 'mint',
+    status: 'live',
+    isNew: true,
+    order: 10,
+    keywords: ['신조어', '유행어', 'MZ', '밈', '용어', '용어사전', '트렌드', '바이브코딩', '바이브 코딩', '루프엔지니어링', '갓생', '억까', '새로운 말', 'new word', 'slang', 'glossary', 'terms', 'vibe coding', 'trend', 'buzzword'],
+  },
 ];
 
 /** Get all live tools for static generation */

@@ -4,6 +4,7 @@ import {
   buildPageMetadata,
   softwareApplicationJsonLd,
   faqPageJsonLd,
+  definedTermSetJsonLd,
 } from './seo';
 
 describe('SEO Builders', () => {
@@ -234,6 +235,91 @@ describe('SEO Builders', () => {
 
       expect(mainEntity).toHaveLength(1);
       expect(mainEntity[0]?.name).toBe('Question?');
+    });
+  });
+
+  describe('definedTermSetJsonLd', () => {
+    it('builds DefinedTermSet JSON-LD with correct @type', () => {
+      const jsonLd = definedTermSetJsonLd({
+        name: 'Example Glossary',
+        description: 'A glossary of terms',
+        url: 'https://example.com/glossary',
+        terms: [],
+      });
+
+      expect(jsonLd['@context']).toBe('https://schema.org');
+      expect(jsonLd['@type']).toBe('DefinedTermSet');
+    });
+
+    it('includes all required fields', () => {
+      const jsonLd = definedTermSetJsonLd({
+        name: 'Tech Terms',
+        description: 'Modern technology terminology',
+        url: 'https://jurepi.kr/ko/tools/new-word',
+        terms: [],
+      });
+
+      expect(jsonLd.name).toBe('Tech Terms');
+      expect(jsonLd.description).toBe('Modern technology terminology');
+      expect(jsonLd.url).toBe('https://jurepi.kr/ko/tools/new-word');
+      expect(jsonLd['@id']).toBe('https://jurepi.kr/ko/tools/new-word');
+    });
+
+    it('maps terms to DefinedTerm structure with slug anchors', () => {
+      const terms = [
+        { slug: 'vibe-coding', term: 'Vibe Coding', definition: 'Building software by feel' },
+        { slug: 'ai-agent', term: 'AI Agent', definition: 'An autonomous AI system' },
+      ];
+
+      const jsonLd = definedTermSetJsonLd({
+        name: 'Glossary',
+        description: 'Description',
+        url: 'https://example.com/glossary',
+        terms,
+      });
+
+      const hasDefinedTerm = jsonLd.hasDefinedTerm as any[];
+      expect(hasDefinedTerm).toHaveLength(2);
+      expect(hasDefinedTerm[0]).toEqual({
+        '@type': 'DefinedTerm',
+        name: 'Vibe Coding',
+        description: 'Building software by feel',
+        inDefinedTermSet: { '@id': 'https://example.com/glossary' },
+        url: 'https://example.com/glossary#vibe-coding',
+      });
+      expect(hasDefinedTerm[1]).toEqual({
+        '@type': 'DefinedTerm',
+        name: 'AI Agent',
+        description: 'An autonomous AI system',
+        inDefinedTermSet: { '@id': 'https://example.com/glossary' },
+        url: 'https://example.com/glossary#ai-agent',
+      });
+    });
+
+    it('handles empty terms array', () => {
+      const jsonLd = definedTermSetJsonLd({
+        name: 'Empty Glossary',
+        description: 'No terms yet',
+        url: 'https://example.com/glossary',
+        terms: [],
+      });
+
+      expect(jsonLd.hasDefinedTerm).toEqual([]);
+    });
+
+    it('preserves description as plain text (not escaped HTML)', () => {
+      const jsonLd = definedTermSetJsonLd({
+        name: 'Glossary',
+        description: 'A glossary of MZ & tech terms',
+        url: 'https://example.com',
+        terms: [
+          { slug: 'test', term: 'Test', definition: 'A test definition' },
+        ],
+      });
+
+      expect(jsonLd.description).toBe('A glossary of MZ & tech terms');
+      const hasDefinedTerm = jsonLd.hasDefinedTerm as any[];
+      expect(hasDefinedTerm[0]?.description).toBe('A test definition');
     });
   });
 });

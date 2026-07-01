@@ -1,0 +1,13 @@
+# Jurepi
+
+> Free online toolkit. No setup, no signup — open in browser and use instantly: random draws, glossaries, daily journals, and more.
+
+## Tools
+
+- [사다리타기 (Ghost Leg)](https://apps.jurepi.kr/ko/tools/ladder): Enter participants and outcomes, then use a fair ladder draw for random selection. Lottery, raffle, impartial drawing.
+- [신조어 용어사전 (New Word)](https://apps.jurepi.kr/ko/tools/new-word): Discover trending MZ slang and modern tech terms with meanings and examples in Korean and English side by side.
+- [1일1질문 (Q&A a Day)](https://apps.jurepi.kr/ko/tools/qna-a-day): Answer one question daily and build a growing personal journal of reflections.
+
+## About
+
+- Run by Jurepi (individual). Free, ad-supported. No backend, no database — a static site.
