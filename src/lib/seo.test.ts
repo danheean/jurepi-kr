@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   buildToolMetadata,
+  buildPageMetadata,
   softwareApplicationJsonLd,
   faqPageJsonLd,
 } from './seo';
@@ -101,7 +102,43 @@ describe('SEO Builders', () => {
       expect(metadata.alternates?.canonical).toBe('https://custom.site/en/tools/test');
       expect(metadata.alternates?.languages?.ko).toBe('https://custom.site/ko/tools/test');
 
-      process.env.NEXT_PUBLIC_SITE_URL = originalEnv;
+      // Assigning `undefined` to process.env coerces to the string "undefined",
+      // which would leak into later tests as a truthy siteUrl. Delete instead.
+      if (originalEnv === undefined) {
+        delete process.env.NEXT_PUBLIC_SITE_URL;
+      } else {
+        process.env.NEXT_PUBLIC_SITE_URL = originalEnv;
+      }
+    });
+  });
+
+  describe('buildPageMetadata', () => {
+    it('builds home canonical (empty path) with locale root and hreflang alternates', () => {
+      const metadata = buildPageMetadata({
+        locale: 'ko',
+        path: '',
+        title: 'Jurepi · 무료 온라인 도구 모음',
+        description: '무료 온라인 도구 모음',
+      });
+
+      expect(metadata.alternates?.canonical).toBe('https://jurepi.kr/ko');
+      expect(metadata.alternates?.languages).toEqual({
+        ko: 'https://jurepi.kr/ko',
+        en: 'https://jurepi.kr/en',
+      });
+      expect(metadata.openGraph?.url).toBe('https://jurepi.kr/ko');
+    });
+
+    it('builds a sub-page canonical from its path', () => {
+      const metadata = buildPageMetadata({
+        locale: 'en',
+        path: '/about',
+        title: 'About',
+        description: 'About page',
+      });
+
+      expect(metadata.alternates?.canonical).toBe('https://jurepi.kr/en/about');
+      expect(metadata.alternates?.languages?.ko).toBe('https://jurepi.kr/ko/about');
     });
   });
 

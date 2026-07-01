@@ -33,7 +33,11 @@
     "searchPlaceholder": "Search tools…",
     "searchAria": "Search tools",
     "resultCount": "{count, plural, one {# tool} other {# tools}}",
-    "mascotGreeting": "Hi! Find the tool you need."
+    "mascotGreeting": "Hi! Find the tool you need.",
+    "meta": {
+      "title": "Jurepi · Free Online Tools",
+      "description": "A free online tool hub with no sign-up required. Use handy tools like the ladder game and daily questions right in your browser."
+    }
   },
   "notFound": {
     "heading": "Page not found",
