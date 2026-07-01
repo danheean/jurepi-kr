@@ -85,6 +85,7 @@
         "playerPlaceholder": "참가자 이름",
         "prizePlaceholder": "결과",
         "shuffleToggle": "결과 섞기",
+        "shuffleHint": "결과 위치를 한 번 더 무작위로 섞어 미리 예측할 수 없게 합니다",
         "tensionLabel": "긴장도",
         "tensionLow": "낮음",
         "tensionMedium": "보통",

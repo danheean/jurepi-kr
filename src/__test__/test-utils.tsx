@@ -70,7 +70,9 @@ const defaultMessages = {
         countLabel: 'Number of players',
         playerPlaceholder: 'Player name',
         prizePlaceholder: 'Outcome',
-        hideToggle: 'Hide results',
+        shuffleToggle: 'Shuffle results',
+        shuffleHint:
+          'Shuffles the outcome positions once more so no one can predict the result in advance',
         build: 'Build ladder',
         autoNames: 'Auto-suggest names',
         reroll: 'Shuffle again',

@@ -221,6 +221,7 @@ export function LadderSetup({ ladder }: LadderSetupProps) {
             checked={ladder.state.shuffleResults}
             onChange={() => ladder.toggleShuffle()}
             label={t('setup.shuffleToggle')}
+            description={t('setup.shuffleHint')}
           />
           <Button
             data-testid="clear-all-btn"
