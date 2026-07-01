@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 /**
  * E2E Tests for Q&A a Day Tool
- * Based on PRD final_integration_test scenarios 1–5.
+ * Based on SPEC final_integration_test scenarios 1–5.
  *
  * Each scenario focuses on a critical user flow: persistence, calendar navigation,
  * backup/restore, i18n/leap-year handling, and SEO/storage resilience.

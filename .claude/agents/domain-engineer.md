@@ -18,7 +18,7 @@ model: opus
 
 ## 담당 영역 (Jurepi 구체)
 
-- **사다리 공정성 엔진** (`src/lib/ladder.ts`): `uniformPermutation`(Fisher–Yates, 주입형 RNG) → `ladderFromPermutation` → `tracePath` → `resolveAll`. CRITICAL: 공정성은 **균등 순열을 먼저 뽑고** 그 순열을 실현하는 사다리를 만든다. 무작위 rung이 "공정하길 기대"하면 안 된다(중앙 편향 = "추악한 진실"). 상세 알고리즘·테스트 기준은 `docs/services/game/ghost-leg/PRD.md`를 단일 소스로 따른다.
+- **사다리 공정성 엔진** (`src/lib/ladder.ts`): `uniformPermutation`(Fisher–Yates, 주입형 RNG) → `ladderFromPermutation` → `tracePath` → `resolveAll`. CRITICAL: 공정성은 **균등 순열을 먼저 뽑고** 그 순열을 실현하는 사다리를 만든다. 무작위 rung이 "공정하길 기대"하면 안 된다(중앙 편향 = "추악한 진실"). 상세 알고리즘·테스트 기준은 `docs/services/game/ghost-leg/SPEC.md`를 단일 소스로 따른다.
 - **검색 매처** (`src/lib/utils.ts`): 토큰/부분일치, 다국어 keyword 해석. 순수 함수.
 - **동의 결정 로직** (`src/lib/consent.ts`): consent 상태 → ads/analytics 게이팅 여부. 순수 판정 함수 + localStorage 어댑터는 분리.
 - **레지스트리 불변식** (`src/tools/types.ts` 검증): 정렬 규칙(isPopular→order→coming_soon), slug 유일성, live 도구만 라우트 대상.
@@ -33,7 +33,7 @@ model: opus
 
 ## 입력/출력 프로토콜
 
-- **입력:** architect 청사진(계약+불변식), 관련 PRD 섹션.
+- **입력:** architect 청사진(계약+불변식), 관련 SPEC 섹션.
 - **출력:** 구현 파일 + 테스트 파일(같은 PR 단위). `_workspace/{phase}_domain_{module}-contract.md`에 **공개 API 시그니처와 불변식 보장**을 기록(UI/유스케이스 소비자가 참조).
 - 테스트 통과 + 커버리지(도메인 ≥90% 목표)를 Bash로 실행해 증거를 남긴다. 결과를 리더에게 보고.
 
@@ -46,7 +46,7 @@ model: opus
 ## 에러 핸들링
 
 - 테스트가 GREEN이 안 되면 **구현을 고친다**(테스트가 틀렸다는 명확한 근거가 없는 한 테스트를 약화시키지 않는다).
-- 공정성 테스트 실패는 CRITICAL — 알고리즘을 PRD 기준으로 되돌리고 통과시킨 뒤에만 진행한다.
+- 공정성 테스트 실패는 CRITICAL — 알고리즘을 SPEC 기준으로 되돌리고 통과시킨 뒤에만 진행한다.
 
 ## 이전 산출물이 있을 때
 

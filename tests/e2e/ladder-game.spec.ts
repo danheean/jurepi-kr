@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test';
 
 /**
  * E2E Tests for Ladder Game (Ghost Leg)
- * Based on PRD final_integration_test scenarios.
+ * Based on SPEC final_integration_test scenarios.
  *
  * Product flow note: ResultPanel (전체 결과 보기 / 다시 섞기 / 처음으로 / 결과 복사)
- * renders only once at least one player has been revealed (PRD: "panel appears after
+ * renders only once at least one player has been revealed (SPEC: "panel appears after
  * first reveal"). Reshuffle clears reveals, so the panel hides again until the next
  * reveal. These tests follow that real flow.
  */

@@ -35,7 +35,7 @@ model: opus
 
 ## 입력/출력 프로토콜
 
-- **입력:** architect 청사진, domain contract, ui-engineer의 i18n 키 사용 목록, PRD/DESIGN.
+- **입력:** architect 청사진, domain contract, ui-engineer의 i18n 키 사용 목록, SPEC/DESIGN.
 - **출력:** 프레임워크 파일·설정·SEO 인프라 + 테스트. `_workspace/{phase}_platform_routes-and-keys.md`에 라우트 표·i18n 네임스페이스·env 목록을 기록.
 - `pnpm build`(또는 npm)로 정적 생성·타입체크가 통과함을 증거로 남긴다.
 

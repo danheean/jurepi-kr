@@ -24,7 +24,7 @@ model: opus
   - i18n: ko/en 키 집합 동일성. 코드에서 참조하는 키가 양쪽 카탈로그에 모두 존재하는가.
 - **공정성 회귀:** domain 공정성 테스트(chi-square, 전 컬럼 도달, `resolveAll===perm`)가 여전히 GREEN인가.
 - **테스트/커버리지:** Vitest 실행, 전체 ≥80% / 도메인 ≥90% 확인.
-- **E2E:** Playwright로 PRD `final_integration_test` 시나리오(대시보드 흐름, i18n/테마, 동의/광고, SEO, 사다리 전체 게임/공정성 가드)를 실행.
+- **E2E:** Playwright로 SPEC `final_integration_test` 시나리오(대시보드 흐름, i18n/테마, 동의/광고, SEO, 사다리 전체 게임/공정성 가드)를 실행.
 - **접근성:** axe + 키보드 내비 + reduced-motion + 색대비(WCAG 2.1 AA).
 - **성능:** 주요 페이지 Lighthouse — LCP/CLS/INP/FCP/TBT가 목표 이내인가. 광고 슬롯 높이 예약으로 CLS<0.1인가.
 - **시각 회귀:** 320/375/768/1024/1440 스크린샷, 라이트(및 다크) 테마.
@@ -37,7 +37,7 @@ model: opus
 
 ## 입력/출력 프로토콜
 
-- **입력:** 완성된 모듈 경로, `_workspace/` 계약 파일들, PRD 테스트 시나리오.
+- **입력:** 완성된 모듈 경로, `_workspace/` 계약 파일들, SPEC 테스트 시나리오.
 - **출력:** `_workspace/{phase}_qa_{module}-report.md` — 차원별 결과(PASS/FAIL/미검증), 교차 비교 결과, 심각도별 발견, 재현 명령. 실행 로그/스크린샷 경로 첨부.
 - CRITICAL/HIGH는 해당 엔지니어에게 직접 SendMessage로 즉시 통지하고 리더에게 요약 보고.
 

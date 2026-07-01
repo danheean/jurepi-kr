@@ -1,10 +1,10 @@
-# 사다리타기 (Ghost Leg) — Service PRD
+# 사다리타기 (Ghost Leg) — Service SPEC
 
 > Jurepi 플랫폼의 첫 번째 도구인 **사다리타기 게임**의 빌드 사양입니다.
 > 내부 서비스 코드네임: `ghost-leg` (사다리타기의 표준 영문명). 공개 URL 슬러그: `/[locale]/tools/ladder`.
 >
-> 이 PRD는 **게임 자체**에 집중합니다. 공통 쉘(헤더/푸터/로케일/테마/동의), 도구 레지스트리, SEO·광고 인프라, 디자인 토큰은 플랫폼이 제공합니다:
-> - 플랫폼 PRD: [`docs/PRD.md`](../../../PRD.md)
+> 이 SPEC는 **게임 자체**에 집중합니다. 공통 쉘(헤더/푸터/로케일/테마/동의), 도구 레지스트리, SEO·광고 인프라, 디자인 토큰은 플랫폼이 제공합니다:
+> - 플랫폼 SPEC: [`docs/SPEC.md`](../../../SPEC.md)
 > - 디자인 시스템(시각 기준, 단일 소스): [`docs/DESIGN.md`](../../../DESIGN.md)
 
 ```xml
@@ -15,7 +15,7 @@
 <overview>
 The Ladder Game (사다리타기) is the launch tool of the Jurepi hub: the classic Korean ladder-lottery for fairly and playfully assigning outcomes — who buys coffee, team draws, gift order, chores, etc. Players are listed across the top, prizes/outcomes across the bottom; a randomly generated ladder of vertical lines and horizontal rungs connects each player to exactly one outcome. The user builds the ladder, then reveals results by tracing a player's path (single reveal) or revealing everyone at once.
 
-It mounts as a tool module inside the Jurepi platform shell at /[locale]/tools/ladder. It uses the platform's header/footer, locale (ko/en), theme, consent-gated ad slots, and the DESIGN.md token system. This PRD specifies only the game: its state model, screens, the ladder engine, interactions/animations, game-specific SEO content, and game tests.
+It mounts as a tool module inside the Jurepi platform shell at /[locale]/tools/ladder. It uses the platform's header/footer, locale (ko/en), theme, consent-gated ad slots, and the DESIGN.md token system. This SPEC specifies only the game: its state model, screens, the ladder engine, interactions/animations, game-specific SEO content, and game tests.
 
 CRITICAL: 100% client-side. The ladder engine is a set of PURE functions (shuffle/build/trace/resolve) with an injectable RNG so it is unit-testable and (Phase 2) reproducible from a shared seed. No backend, no persistence beyond optional URL-encoded share state.
 

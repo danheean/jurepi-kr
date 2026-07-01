@@ -152,7 +152,7 @@ src/
 ├── i18n/                # next-intl 라우팅 + ko/en 메시지
 └── styles/              # tokens.css (DESIGN.md 미러)
 
-docs/                    # PRD · DESIGN 시스템 (요구사항 단일 소스)
+docs/                    # SPEC · DESIGN 시스템 (요구사항 단일 소스)
 ```
 
 ## ➕ 새 도구 추가하기

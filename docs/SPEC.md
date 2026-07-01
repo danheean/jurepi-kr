@@ -1,11 +1,11 @@
-# Jurepi — Platform & Main Dashboard PRD
+# Jurepi — Platform & Main Dashboard SPEC
 
 > 무료 온라인 도구 모음 사이트(jurepi.kr)의 **플랫폼 + 메인 화면** 빌드 사양입니다.
 > 메인 화면은 유용한 프로그램을 카드 형태로 보여주고 선택하는 대시보드(도구 디렉터리)입니다.
-> 개별 도구의 상세 사양은 각 서비스 PRD에 분리되어 있습니다:
-> - 사다리타기(Ghost Leg): [`services/game/ghost-leg/PRD.md`](services/game/ghost-leg/PRD.md)
+> 개별 도구의 상세 사양은 각 서비스 SPEC에 분리되어 있습니다:
+> - 사다리타기(Ghost Leg): [`services/game/ghost-leg/SPEC.md`](services/game/ghost-leg/SPEC.md)
 >
-> 시각 기준(디자인 시스템)은 [`DESIGN.md`](DESIGN.md)를 단일 소스로 참조합니다. 본 PRD의 토큰 값은 DESIGN.md와 1:1로 일치합니다.
+> 시각 기준(디자인 시스템)은 [`DESIGN.md`](DESIGN.md)를 단일 소스로 참조합니다. 본 SPEC의 토큰 값은 DESIGN.md와 1:1로 일치합니다.
 
 ```xml
 <project_specification>
@@ -13,11 +13,11 @@
 <project_name>Jurepi Platform - 무료 온라인 도구 허브 (main dashboard + shared shell)</project_name>
 
 <overview>
-Jurepi (jurepi.kr) is a free online tools hub. This PRD covers the **platform**: the main dashboard screen (a card-grid directory of useful programs) plus the shared application shell, tool registry, SEO infrastructure, internationalization, monetization, and legal pages. Individual tools are specified in their own service PRDs and mount into this shell.
+Jurepi (jurepi.kr) is a free online tools hub. This SPEC covers the **platform**: the main dashboard screen (a card-grid directory of useful programs) plus the shared application shell, tool registry, SEO infrastructure, internationalization, monetization, and legal pages. Individual tools are specified in their own service SPECs and mount into this shell.
 
-The main screen is a dashboard: a hero with a prominent search, a category filter, and a responsive grid of tool cards. Each card is a tappable object showing an accent-tinted icon, name, and short description; selecting a live card navigates to that tool's page. The card grid is generated entirely from a typed tool registry, so adding a new tool means adding one registry entry (+ its own service PRD/module) — the hub scales without re-architecting the main screen.
+The main screen is a dashboard: a hero with a prominent search, a category filter, and a responsive grid of tool cards. Each card is a tappable object showing an accent-tinted icon, name, and short description; selecting a live card navigates to that tool's page. The card grid is generated entirely from a typed tool registry, so adding a new tool means adding one registry entry (+ its own service SPEC/module) — the hub scales without re-architecting the main screen.
 
-The launch tool is the **Ladder Game (사다리타기 / Ghost Leg)**, specified separately in services/game/ghost-leg/PRD.md (relative to this docs/ folder). At launch the grid shows the ladder card as "live" and may show other tools as non-clickable "coming soon" cards.
+The launch tool is the **Ladder Game (사다리타기 / Ghost Leg)**, specified separately in services/game/ghost-leg/SPEC.md (relative to this docs/ folder). At launch the grid shows the ladder card as "live" and may show other tools as non-clickable "coming soon" cards.
 
 CRITICAL: Next.js App Router rendered as **static pages (SSG)** with **NO application backend and NO database**. The tool registry is a compile-time module; preferences/consent live in localStorage. Only third-party network deps are Google AdSense, a consent CMP, optional Google Analytics, and self-hosted fonts. Deployable to any static/edge host.
 
@@ -29,7 +29,7 @@ CRITICAL: Search traffic is the growth engine — every tool is a separate index
     - Main dashboard screen: hero, search, category filter, responsive tool-card grid, empty state
     - Typed tool registry (single source of truth for the grid, sitemap, static params, search)
     - Shared application shell: header (wordmark, search, locale switch, theme toggle), footer
-    - Dynamic tool route /[locale]/tools/[slug] that mounts the matching tool module (tool internals per their own PRD)
+    - Dynamic tool route /[locale]/tools/[slug] that mounts the matching tool module (tool internals per their own SPEC)
     - Internationalization: Korean (default) + English via next-intl, locale-prefixed routes, language switcher
     - Theming: light (default) + optional dark toggle, flash-free SSR
     - Monetization: Google AdSense slots (header/footer) + consent flow + cookie banner
@@ -38,14 +38,14 @@ CRITICAL: Search traffic is the growth engine — every tool is a separate index
     - 404 / error boundaries / toast system
   </in_scope>
   <out_of_scope>
-    - Internals of any individual tool (each tool has its own service PRD — e.g., the ladder game)
+    - Internals of any individual tool (each tool has its own service SPEC — e.g., the ladder game)
     - Backend server, database, authentication, accounts
     - Payments / premium tiers (site is fully free)
     - Native mobile apps (responsive web only)
     - A CMS or admin UI (tools are added in code via the registry)
   </out_of_scope>
   <future_considerations>
-    - More tools via the registry + per-tool PRDs: random picker, dice/coin, timer, unit converter, counter, QR, color picker (Phase 2+)
+    - More tools via the registry + per-tool SPECs: random picker, dice/coin, timer, unit converter, counter, QR, color picker (Phase 2+)
     - "Recently used / favorites" in localStorage (Phase 2)
     - Coming-soon interest capture (Phase 2)
     - First-class dark theme (Phase 2); additional locales ja/zh (Phase 3)
@@ -132,7 +132,7 @@ src/
 │       ├── layout.tsx              # Providers, Header, Footer, ConsentBanner
 │       ├── page.tsx                # ★ MAIN DASHBOARD (Hero + ToolGrid)
 │       ├── not-found.tsx
-│       ├── tools/[slug]/page.tsx   # SSG; mounts tool module by slug (tool internals per its own PRD)
+│       ├── tools/[slug]/page.tsx   # SSG; mounts tool module by slug (tool internals per its own SPEC)
 │       ├── about/page.tsx
 │       ├── privacy/page.tsx
 │       ├── terms/page.tsx
@@ -142,7 +142,7 @@ src/
 │   ├── layout/                     # Header, Footer, LocaleSwitcher, ThemeToggle, ConsentBanner
 │   ├── home/                       # Hero, SearchBar, CategoryFilter, ToolGrid, ToolCard
 │   └── ads/                        # AdSlot
-│   └── tools/                      # one folder per tool (see each tool's PRD) — e.g. ladder/
+│   └── tools/                      # one folder per tool (see each tool's SPEC) — e.g. ladder/
 ├── tools/
 │   ├── registry.ts                 # ToolMeta[] — single source of truth
 │   └── types.ts
@@ -183,7 +183,7 @@ src/
     - jurepi-theme: enum (light, dark, system) — default "light"
     - jurepi-consent: { ads: boolean; analytics: boolean; ts: number } | null
   </user_preferences>
-  <note>Per-tool runtime state (e.g., ladder game state) is defined in that tool's own PRD, not here.</note>
+  <note>Per-tool runtime state (e.g., ladder game state) is defined in that tool's own SPEC, not here.</note>
 </core_data_entities>
 
 <route_definitions>
@@ -223,9 +223,9 @@ src/
             <category_filter />  <!-- pill row -->
             <tool_grid> <tool_card /> ... </tool_grid>
           </home_page>
-          <tool_page>            <!-- mounts a tool module; layout/breadcrumb provided here, internals per tool PRD -->
+          <tool_page>            <!-- mounts a tool module; layout/breadcrumb provided here, internals per tool SPEC -->
             <breadcrumb />
-            <tool_module />       <!-- e.g. <LadderGame/> (see ghost-leg PRD) -->
+            <tool_module />       <!-- e.g. <LadderGame/> (see ghost-leg SPEC) -->
             <ad_slot variant="in_content" />
           </tool_page>
         </main>
@@ -299,7 +299,7 @@ src/
 
 <core_functionality>
   <tool_hub>
-    - Registry-driven grid: ToolGrid maps registry; adding a tool = ToolMeta entry + messages + (if live) a module + its own PRD
+    - Registry-driven grid: ToolGrid maps registry; adding a tool = ToolMeta entry + messages + (if live) a module + its own SPEC
     - Category filter + client-side search over localized name/description/keywords (debounced 120ms)
     - Filter/search state mirrored to URL query (shareable, back-button friendly)
     - Selecting a live card → navigate to /[locale]/tools/[slug]
@@ -325,7 +325,7 @@ src/
   <integration name="Google AdSense">
     <purpose>Display advertising (monetization)</purpose>
     <sdk>next/script strategy="lazyOnload", only after ad consent</sdk>
-    <ad_slots>leaderboard (home, below hero): reserve 90px mobile / up to 250px desktop · footer (all pages): reserve 90px · in_content (tool pages): reserve ≥250px (placed by tool per its PRD)</ad_slots>
+    <ad_slots>leaderboard (home, below hero): reserve 90px mobile / up to 250px desktop · footer (all pages): reserve 90px · in_content (tool pages): reserve ≥250px (placed by tool per its SPEC)</ad_slots>
     <rules>CRITICAL: reserve fixed height (CLS &lt; 0.1); never above H1; ads off until consent.ads === true</rules>
   </integration>
   <integration name="Consent CMP">
@@ -362,7 +362,7 @@ src/
 </security_considerations>
 
 <advanced_functionality>
-  <extensible_tool_registry>Registry is the backbone: hub UI, sitemap, static params, search all derive from it. New tool = ToolMeta + messages.tools.&lt;id&gt; + components/tools/&lt;id&gt;/ + a slug→component branch + its own service PRD. coming_soon needs only the ToolMeta entry.</extensible_tool_registry>
+  <extensible_tool_registry>Registry is the backbone: hub UI, sitemap, static params, search all derive from it. New tool = ToolMeta + messages.tools.&lt;id&gt; + components/tools/&lt;id&gt;/ + a slug→component branch + its own service SPEC. coming_soon needs only the ToolMeta entry.</extensible_tool_registry>
   <theme_switching>light/dark/system, persisted, SSR flash-free</theme_switching>
   <pwa>manifest.webmanifest + maskable icons + theme-color; installable (offline SW optional Phase 2)</pwa>
 </advanced_functionality>
@@ -377,7 +377,7 @@ src/
       4. Click category pill "랜덤/추첨" → grid filters; URL gains ?cat=random
       5. Type "사다리" in search → grid narrows to ladder card (debounced)
       6. Type a non-matching term → EmptyState with reset; click reset → full grid returns
-      7. Click the ladder card → navigate to /ko/tools/ladder (tool behavior per ghost-leg PRD)
+      7. Click the ladder card → navigate to /ko/tools/ladder (tool behavior per ghost-leg SPEC)
     </steps>
   </test_scenario_1>
   <test_scenario_2>
@@ -435,7 +435,7 @@ src/
     2. UI primitives + layout shell (Header/Footer/ThemeProvider flash-free/LocaleSwitcher)
     3. Tool registry + types + ko/en messages
     4. Main dashboard: Hero, SearchBar, CategoryFilter, ToolGrid, ToolCard (all states + empty)
-    5. Dynamic tool route + slug→component mount + Error Boundary (then build the ladder tool per ghost-leg PRD)
+    5. Dynamic tool route + slug→component mount + Error Boundary (then build the ladder tool per ghost-leg SPEC)
     6. Consent + AdSlot + AdSense wiring (consent-gated, lazy)
     7. SEO: buildMetadata, WebSite JSON-LD, sitemap.ts, robots.ts, manifest.ts, hreflang/canonical
     8. Legal pages (About/Privacy/Terms/Contact); GA optional (consent-gated)

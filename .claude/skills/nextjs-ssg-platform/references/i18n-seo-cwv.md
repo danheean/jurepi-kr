@@ -1,6 +1,6 @@
 # i18n · SEO · 동의/광고 · CWV 상세
 
-> `nextjs-ssg-platform` 스킬의 부속 참조. 라우팅·SEO·광고·성능을 실제 배선할 때 읽는다. 모든 토큰/값은 `docs/PRD.md`를 단일 소스로 따른다.
+> `nextjs-ssg-platform` 스킬의 부속 참조. 라우팅·SEO·광고·성능을 실제 배선할 때 읽는다. 모든 토큰/값은 `docs/SPEC.md`를 단일 소스로 따른다.
 
 ## 목차
 1. 라우트 표
@@ -54,7 +54,7 @@ export function generateStaticParams() {
 `lib/seo.ts`:
 - `buildMetadata({locale, title, description, path, ...})` → Next `Metadata`. canonical = `NEXT_PUBLIC_SITE_URL` 기준 절대. `alternates.languages`로 ko/en hreflang.
 - `websiteJsonLd()` — 홈에 WebSite JSON-LD + OG 기본값.
-- 도구 페이지는 자체 PRD가 요구하는 JSON-LD를 추가: 사다리는 **SoftwareApplication + FAQPage**.
+- 도구 페이지는 자체 SPEC가 요구하는 JSON-LD를 추가: 사다리는 **SoftwareApplication + FAQPage**.
 - 각 도구/로케일 페이지: 고유 title·description·canonical·hreflang·OG.
 
 체크: 홈 WebSite JSON-LD, 도구 SoftwareApplication+FAQPage, sitemap에 live 도구×로케일+정적 페이지(절대 URL), robots allow+sitemap, 미지 slug→지역화 404.

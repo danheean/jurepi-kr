@@ -21,8 +21,8 @@ description: >-
 
 ## 단일 소스 문서
 
-- 플랫폼/대시보드: `docs/PRD.md`
-- 사다리 도구: `docs/services/game/ghost-leg/PRD.md`
+- 플랫폼/대시보드: `docs/SPEC.md`
+- 사다리 도구: `docs/services/game/ghost-leg/SPEC.md`
 - 디자인: `docs/DESIGN.md` (시각 단일 소스)
 
 이 문서들이 요구사항의 진실이다. 팀은 이를 재해석하지 말고 계층에 매핑한다.
@@ -61,7 +61,7 @@ description: >-
 3. 병렬 구현  ui-engineer ∥ platform-engineer → 계약 위에서 어댑터/프레임워크 구현 (각자 TDD)
              ↳ ui는 i18n 키 목록을 platform에 공유
 4. 점진 QA   qa-integration → 각 모듈 완성 직후 경계 교차 검증 (incremental)
-5. 통합      qa-integration → E2E(PRD 시나리오) + a11y + CWV; CRITICAL은 해당 엔지니어로 반송
+5. 통합      qa-integration → E2E(SPEC 시나리오) + a11y + CWV; CRITICAL은 해당 엔지니어로 반송
 6. 종합      리더가 결과 수집·요약, 미해결/미검증 명시
 ```
 

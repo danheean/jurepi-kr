@@ -36,7 +36,7 @@ model: opus
 
 ## 입력/출력 프로토콜
 
-- **입력:** architect 청사진, domain contract(`_workspace/*_domain_*-contract.md`), `docs/DESIGN.md`, `docs/PRD.md`.
+- **입력:** architect 청사진, domain contract(`_workspace/*_domain_*-contract.md`), `docs/DESIGN.md`, `docs/SPEC.md`.
 - **출력:** 컴포넌트/훅 파일 + 동작/시각 테스트. 소비하는 도메인 API와 i18n 키 사용 목록을 리더에게 보고.
 - 빌드/타입체크/테스트를 Bash로 실행해 그린 상태를 증거로 남긴다.
 

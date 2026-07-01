@@ -74,7 +74,7 @@ expect(reqs.some(u => u.includes('googlesyndication') || u.includes('googletagma
 
 ```bash
 pnpm vitest run --coverage          # 전체 ≥80%, 도메인 ≥90%
-pnpm playwright test                # PRD 시나리오 + 시각 회귀
+pnpm playwright test                # SPEC 시나리오 + 시각 회귀
 pnpm playwright test --grep @a11y   # axe 통합 스펙(있으면)
 pnpm build && npx lighthouse http://localhost:3000/ko --only-categories=performance --form-factor=mobile
 ```

@@ -1,13 +1,13 @@
-# Jurepi — 플랫폼 및 메인 대시보드 PRD (PRD_KR)
+# Jurepi — 플랫폼 및 메인 대시보드 SPEC (SPEC_KR)
 
-> 이 문서는 [`PRD.md`](PRD.md)의 한국어 번역본입니다. 원본(영문)이 정본이며, 내용 변경 시 두 문서를 함께 갱신하세요.
+> 이 문서는 [`SPEC.md`](SPEC.md)의 한국어 번역본입니다. 원본(영문)이 정본이며, 내용 변경 시 두 문서를 함께 갱신하세요.
 >
 > 무료 온라인 도구 모음 사이트(jurepi.kr)의 **플랫폼 + 메인 화면** 빌드 사양입니다.
 > 메인 화면은 유용한 프로그램을 카드 형태로 보여주고 선택하는 대시보드(도구 디렉터리)입니다.
-> 개별 도구의 상세 사양은 각 서비스 PRD에 분리되어 있습니다:
-> - 사다리타기(Ghost Leg): [`services/game/ghost-leg/PRD_KR.md`](services/game/ghost-leg/PRD_KR.md) (영문 정본: [`PRD.md`](services/game/ghost-leg/PRD.md))
+> 개별 도구의 상세 사양은 각 서비스 SPEC에 분리되어 있습니다:
+> - 사다리타기(Ghost Leg): [`services/game/ghost-leg/SPEC_KR.md`](services/game/ghost-leg/SPEC_KR.md) (영문 정본: [`SPEC.md`](services/game/ghost-leg/SPEC.md))
 >
-> 시각 기준(디자인 시스템)은 [`DESIGN.md`](DESIGN.md)를 단일 소스로 참조합니다. 본 PRD의 토큰 값은 DESIGN.md와 1:1로 일치합니다.
+> 시각 기준(디자인 시스템)은 [`DESIGN.md`](DESIGN.md)를 단일 소스로 참조합니다. 본 SPEC의 토큰 값은 DESIGN.md와 1:1로 일치합니다.
 
 ```xml
 <project_specification>
@@ -15,11 +15,11 @@
 <project_name>Jurepi 플랫폼 - 무료 온라인 도구 허브 (메인 대시보드 + 공유 쉘)</project_name>
 
 <overview>
-Jurepi (jurepi.kr)는 무료 온라인 도구 허브입니다. 본 제품 요구사항 문서(Product Requirement Document, PRD)는 **플랫폼** 영역을 다룹니다. 플랫폼은 메인 대시보드 화면(유용한 프로그램들을 카드 그리드 형태로 보여주는 디렉터리)과 공유 애플리케이션 쉘(Shared Application Shell), 도구 레지스트리(Tool Registry), 검색엔진 최적화(Search Engine Optimization, SEO) 인프라, 다국어 지원(Internationalization, i18n), 수익화, 그리고 약관/개인정보 처리방침 등의 정적 페이지를 포함합니다. 개별 도구는 고유한 서비스 PRD에 상세히 기술되어 있으며 이 쉘에 마운트(Mount)됩니다.
+Jurepi (jurepi.kr)는 무료 온라인 도구 허브입니다. 본 명세서(Specification, SPEC)는 **플랫폼** 영역을 다룹니다. 플랫폼은 메인 대시보드 화면(유용한 프로그램들을 카드 그리드 형태로 보여주는 디렉터리)과 공유 애플리케이션 쉘(Shared Application Shell), 도구 레지스트리(Tool Registry), 검색엔진 최적화(Search Engine Optimization, SEO) 인프라, 다국어 지원(Internationalization, i18n), 수익화, 그리고 약관/개인정보 처리방침 등의 정적 페이지를 포함합니다. 개별 도구는 고유한 서비스 SPEC에 상세히 기술되어 있으며 이 쉘에 마운트(Mount)됩니다.
 
-메인 화면은 대시보드 구조입니다. 눈에 잘 띄는 검색 바와 카테고리 필터가 포함된 히어로(Hero) 영역, 그리고 반응형 도구 카드 그리드로 구성됩니다. 각 카드는 강조색이 적용된 아이콘, 이름, 짧은 설명을 보여주는 탭 가능한 객체입니다. 활성화된(Live) 카드를 선택하면 해당 도구 페이지로 이동합니다. 카드 그리드는 타입 정의가 완료된 도구 레지스트리로부터 100% 생성되므로, 새 도구를 추가하는 것은 레지스트리에 항목 하나를 추가하는 것(+ 개별 서비스 PRD 및 모듈 추가)을 의미합니다. 즉, 메인 화면을 재설계하지 않고도 허브를 쉽게 확장할 수 있습니다.
+메인 화면은 대시보드 구조입니다. 눈에 잘 띄는 검색 바와 카테고리 필터가 포함된 히어로(Hero) 영역, 그리고 반응형 도구 카드 그리드로 구성됩니다. 각 카드는 강조색이 적용된 아이콘, 이름, 짧은 설명을 보여주는 탭 가능한 객체입니다. 활성화된(Live) 카드를 선택하면 해당 도구 페이지로 이동합니다. 카드 그리드는 타입 정의가 완료된 도구 레지스트리로부터 100% 생성되므로, 새 도구를 추가하는 것은 레지스트리에 항목 하나를 추가하는 것(+ 개별 서비스 SPEC 및 모듈 추가)을 의미합니다. 즉, 메인 화면을 재설계하지 않고도 허브를 쉽게 확장할 수 있습니다.
 
-런칭 시 탑재될 첫 도구는 **사다리타기(Ghost Leg)**이며, docs/services/game/ghost-leg/PRD.md에 별도로 규정되어 있습니다. 런칭 시점의 그리드는 사다리타기 카드를 활성("Live") 상태로 보여주고, 다른 도구들은 클릭할 수 없는 준비중("Coming soon") 카드로 보여줄 수 있습니다.
+런칭 시 탑재될 첫 도구는 **사다리타기(Ghost Leg)**이며, docs/services/game/ghost-leg/SPEC.md에 별도로 규정되어 있습니다. 런칭 시점의 그리드는 사다리타기 카드를 활성("Live") 상태로 보여주고, 다른 도구들은 클릭할 수 없는 준비중("Coming soon") 카드로 보여줄 수 있습니다.
 
 **핵심 제약 사항:** **애플리케이션 백엔드 및 데이터베이스가 없는** 완전한 **정적 페이지(Static Site Generation, SSG)** 형태의 Next.js 앱 라우터(App Router)로 렌더링되어야 합니다. 도구 레지스트리는 컴파일 타임(Compile-time) 모듈이며, 사용자 설정 및 동의 정보는 `localStorage`에 저장됩니다. 외부 네트워크 의존성은 Google AdSense, 동의 관리 플랫폼(Consent Management Platform, CMP), 선택적인 Google Analytics, 자체 호스팅 폰트뿐입니다. 어떠한 정적/에지 호스팅 서비스에도 배포할 수 있어야 합니다.
 
@@ -31,7 +31,7 @@ Jurepi (jurepi.kr)는 무료 온라인 도구 허브입니다. 본 제품 요구
     - 메인 대시보드 화면: 히어로, 검색, 카테고리 필터, 반응형 도구 카드 그리드, 결과 없음(Empty) 상태
     - 타입 안전한 도구 레지스트리 (그리드, 사이트맵, 정적 파라미터, 검색을 위한 단일 진실 공급원)
     - 공유 애플리케이션 쉘: 헤더(워드마크, 검색, 언어 변경, 테마 토글), 푸터
-    - 동적 도구 경로 `/[locale]/tools/[slug]`: 일치하는 도구 모듈을 마운트 (도구 내부 로직은 개별 PRD 참고)
+    - 동적 도구 경로 `/[locale]/tools/[slug]`: 일치하는 도구 모듈을 마운트 (도구 내부 로직은 개별 SPEC 참고)
     - 다국어 지원(i18n): next-intl을 통한 한국어(기본값) + 영어 지원, 언어 코드가 포함된 URL 경로, 언어 전환기
     - 테마 기능: 라이트 테마(기본값) + 어두운 테마(다크 모드) 토글, 깜빡임 없는(Flash-free) SSR 지원
     - 수익화: Google AdSense 광고 슬롯 (헤더/푸터) + 동의 플로우(Consent Flow) + 쿠키 배너
@@ -40,7 +40,7 @@ Jurepi (jurepi.kr)는 무료 온라인 도구 허브입니다. 본 제품 요구
     - 404 페이지 / 에러 바운더리(Error Boundaries) / 토스트(Toast) 알림 시스템
   </in_scope>
   <out_of_scope>
-    - 개별 도구의 내부 로직 (각 도구는 자체 서비스 PRD를 가짐 — 예: 사다리타기 게임)
+    - 개별 도구의 내부 로직 (각 도구는 자체 서비스 SPEC를 가짐 — 예: 사다리타기 게임)
     - 백엔드 서버, 데이터베이스, 사용자 인증 및 계정 기능
     - 결제 기능 및 프리미엄 등급 (완전 무료 사이트)
     - 네이티브 모바일 앱 (반응형 웹으로만 지원)
@@ -134,7 +134,7 @@ src/
 │       ├── layout.tsx              # 다국어 프로바이더, 헤더, 푸터, 동의 쿠키 배너
 │       ├── page.tsx                # ★ 메인 대시보드 화면 (히어로 + 도구 카드 그리드)
 │       ├── not-found.tsx
-│       ├── tools/[slug]/page.tsx   # SSG 페이지; 슬러그에 매칭되는 도구 모듈 마운트 (도구 내부 사양은 개별 PRD 참고)
+│       ├── tools/[slug]/page.tsx   # SSG 페이지; 슬러그에 매칭되는 도구 모듈 마운트 (도구 내부 사양은 개별 SPEC 참고)
 │       ├── about/page.tsx
 │       ├── privacy/page.tsx
 │       ├── terms/page.tsx
@@ -144,7 +144,7 @@ src/
 │   ├── layout/                     # 레이아웃: 헤더, 푸터, 언어 선택기, 테마 토글, 동의 배너
 │   ├── home/                       # 메인 화면용: 히어로, 검색창, 카테고리 필터, 도구 그리드, 도구 카드
 │   └── ads/                        # 광고 슬롯 컴포넌트
-│   └── tools/                      # 도구별 폴더 (각 도구 PRD 참조) — 예: ladder/
+│   └── tools/                      # 도구별 폴더 (각 도구 SPEC 참조) — 예: ladder/
 ├── tools/
 │   ├── registry.ts                 # ToolMeta[] 레지스트리 — 플랫폼의 단일 진실 공급원
 │   └── types.ts
@@ -185,7 +185,7 @@ src/
     - jurepi-theme: enum ('light', 'dark', 'system') — 기본값 "light"
     - jurepi-consent: { ads: boolean; analytics: boolean; ts: number } | null
   </user_preferences>
-  <note>개별 도구의 런타임 상태(예: 사다리타기 게임 진행 상태)는 본 플랫폼 PRD가 아닌 개별 도구의 PRD에 정의됩니다.</note>
+  <note>개별 도구의 런타임 상태(예: 사다리타기 게임 진행 상태)는 본 플랫폼 SPEC가 아닌 개별 도구의 SPEC에 정의됩니다.</note>
 </core_data_entities>
 
 <route_definitions>
@@ -225,9 +225,9 @@ src/
             <category_filter />  <!-- 필터 알약 버튼 행 -->
             <tool_grid> <tool_card /> ... </tool_grid>
           </home_page>
-          <tool_page>            <!-- 도구 모듈을 감싸는 레이아웃, 브레드크럼 제공, 내부 세부 로직은 도구별 PRD에 따름 -->
+          <tool_page>            <!-- 도구 모듈을 감싸는 레이아웃, 브레드크럼 제공, 내부 세부 로직은 도구별 SPEC에 따름 -->
             <breadcrumb />
-            <tool_module />       <!-- 예: <LadderGame/> (ghost-leg PRD 참고) -->
+            <tool_module />       <!-- 예: <LadderGame/> (ghost-leg SPEC 참고) -->
             <ad_slot variant="in_content" />
           </tool_page>
         </main>
@@ -301,7 +301,7 @@ src/
 
 <core_functionality>
   <tool_hub>
-    - 레지스트리 기반 그리드: ToolGrid 컴포넌트가 레지스트리를 맵핑하여 렌더링. 새 도구를 배포할 때는 ToolMeta 정의를 기입하고, i18n 번역 파일을 채운 후, (활성 도구인 경우) 컴포넌트 모듈을 등록하고 전용 PRD를 연동하는 것으로 완료. 준비중(coming_soon) 도구는 ToolMeta만 채워 넣으면 자동으로 그리드에 노출됨
+    - 레지스트리 기반 그리드: ToolGrid 컴포넌트가 레지스트리를 맵핑하여 렌더링. 새 도구를 배포할 때는 ToolMeta 정의를 기입하고, i18n 번역 파일을 채운 후, (활성 도구인 경우) 컴포넌트 모듈을 등록하고 전용 SPEC를 연동하는 것으로 완료. 준비중(coming_soon) 도구는 ToolMeta만 채워 넣으면 자동으로 그리드에 노출됨
     - 카테고리 필터 + 로컬라이즈된 이름/설명/키워드를 대상으로 클라이언트단에서 검색 기능 수행 (120ms 디바운스 적용)
     - 필터와 검색 상태는 브라우저 URL 쿼리 스트링에 실시간 동기화되어 공유 및 뒤로 가기 동작이 매끄럽게 호환됨
     - 활성화된(Live) 카드를 클릭하면 즉시 `/[locale]/tools/[slug]` 상세 경로로 라우팅됨
@@ -327,7 +327,7 @@ src/
   <integration name="Google AdSense">
     <purpose>광고 노출을 통한 수익 창출 (수익화)</purpose>
     <sdk>Next.js Script 컴포넌트 (`strategy="lazyOnload"` 적용), 사용자가 광고 쿠키 활용에 동의한 이후에만 동적으로 로드함</sdk>
-    <ad_slots>리더보드 슬롯 (메인 화면, 히어로 영역 아래): 모바일 90px, 데스크톱 최대 250px 높이 사전 예약. 푸터 슬롯 (모든 페이지의 하단): 90px 높이 예약. 본문 슬롯 (도구 상세 페이지 내부): 최소 250px 이상 높이 예약 (도구의 PRD 설계에 맞춰 콘텐츠 중간에 삽입)</ad_slots>
+    <ad_slots>리더보드 슬롯 (메인 화면, 히어로 영역 아래): 모바일 90px, 데스크톱 최대 250px 높이 사전 예약. 푸터 슬롯 (모든 페이지의 하단): 90px 높이 예약. 본문 슬롯 (도구 상세 페이지 내부): 최소 250px 이상 높이 예약 (도구의 SPEC 설계에 맞춰 콘텐츠 중간에 삽입)</ad_slots>
     <rules>핵심 규정: 누적 레이아웃 이동(CLS) 지표 향상을 위해 광고가 로드되기 전에 레이아웃 높이를 고정값으로 강제 확보해야 함. 광고가 메인 H1 타이틀보다 위쪽에 렌더링되어서는 안 됨. 쿠키 활용 동의 여부가 참(`consent.ads === true`)이 되기 전까지는 광고 스크립트를 로드하거나 구동할 수 없음</rules>
   </integration>
   <integration name="Consent CMP">
@@ -364,7 +364,7 @@ src/
 </security_considerations>
 
 <advanced_functionality>
-  <extensible_tool_registry>도구 레지스트리는 플랫폼 뼈대 그 자체입니다. 메인 대시보드 화면 렌더링, sitemap.xml, 정적 배포 경로 생성, 도구 검색 알고리즘이 모두 이 단 하나의 레지스트리 파일을 원천 데이터로 삼아 동작합니다. 새로운 도구를 추가할 경우: ToolMeta 엔티티 기입 → i18n messages 다국어 리소스 매핑 → components/tools/ 하위에 도구 소스 구현 → 도구 슬러그 라우터 매핑 → 서비스 PRD 추가 과정으로 완료됩니다. 준비중인 도구는 ToolMeta에 메타정보만 정의하면 별도의 컴포넌트 없이 자동으로 대시보드 그리드에 회색 준비중 카드로 노출됩니다.</extensible_tool_registry>
+  <extensible_tool_registry>도구 레지스트리는 플랫폼 뼈대 그 자체입니다. 메인 대시보드 화면 렌더링, sitemap.xml, 정적 배포 경로 생성, 도구 검색 알고리즘이 모두 이 단 하나의 레지스트리 파일을 원천 데이터로 삼아 동작합니다. 새로운 도구를 추가할 경우: ToolMeta 엔티티 기입 → i18n messages 다국어 리소스 매핑 → components/tools/ 하위에 도구 소스 구현 → 도구 슬러그 라우터 매핑 → 서비스 SPEC 추가 과정으로 완료됩니다. 준비중인 도구는 ToolMeta에 메타정보만 정의하면 별도의 컴포넌트 없이 자동으로 대시보드 그리드에 회색 준비중 카드로 노출됩니다.</extensible_tool_registry>
   <theme_switching>라이트 테마 / 다크 테마 / 브라우저 시스템 테마와 연동되어 동작하며 쿠키나 localStorage에 영구 설정 보관. SSR 렌더링 시 다크 모드로 설정되어 있을 때 화면이 밝게 나타났다가 깜빡이며 어두워지는 현상(Flash)이 없도록 로딩 직전 즉시 테마 속성을 DOM에 바인딩하는 인라인 로더 포함</theme_switching>
   <pwa>manifest.webmanifest 및 라운드 처리와 시스템 마스크 처리가 가능한 다용도 PWA 앱 아이콘 제공, 기기별 테마 컬러 지원. 모바일 홈 화면 설치를 완벽 지원 (오프라인 캐싱용 서비스 워커는 차기 2단계 검토)</pwa>
 </advanced_functionality>
@@ -379,7 +379,7 @@ src/
       4. 상단 카테고리 필터 중 "랜덤/추첨" 알약 버튼을 클릭 → 그리드의 리스트가 해당 카테고리 도구만으로 즉시 동적 갱신되고 브라우저 주소창 주소가 `?cat=random`으로 갱신되는지 확인
       5. 검색창에 "사다리" 검색어 타이핑 입력 → 약간의 디바운스 대기시간 후 다른 카드가 사라지고 오직 사다리타기 카드 1개만 화면에 표시되는지 검증
       6. 레지스트리에 전혀 없는 엉뚱한 검색어 입력 → 결과 없음을 안내하는 전용 화면(EmptyState) 일러스트와 안내가 출력되는지 확인하고 아래 "검색 초기화" 버튼 클릭 시 다시 전체 도구 카드가 원복되어 나타나는지 검증
-      7. 사다리타기 카드를 클릭 → 즉시 `/ko/tools/ladder` 상세 경로로 페이지가 부드럽게 넘어가며, 사다리타기 게임 화면(ghost-leg PRD 참고)이 온전하게 나타나는지 테스트
+      7. 사다리타기 카드를 클릭 → 즉시 `/ko/tools/ladder` 상세 경로로 페이지가 부드럽게 넘어가며, 사다리타기 게임 화면(ghost-leg SPEC 참고)이 온전하게 나타나는지 테스트
     </steps>
   </test_scenario_1>
   <test_scenario_2>
@@ -437,7 +437,7 @@ src/
     2. 공통 UI 프리미티브 컴포넌트 작성 및 레이아웃 쉘 (헤더/푸터/깜빡임 방지용 ThemeProvider/LocaleSwitcher) 조립
     3. 핵심 도구 레지스트리(`registry.ts`) + TS 인터페이스 선언 및 번역 메시지(`ko.json`, `en.json`) 초기 데이터 삽입
     4. 메인 화면 퍼블리싱: Hero 영역, 검색 바, 카테고리 필터 바, 카드 그리드 및 도구 카드 작성 (마우스 오버 등 인터랙션 상태 피드백 및 Empty 결과 없음 상태 포함)
-    5. 동적 도구 연동 라우트(`/[locale]/tools/[slug]`) 구현 및 모듈 동적 로더 + 에러 바운더리 컴포넌트 작성 (이후 ghost-leg PRD 문서를 참조해 실제 사다리타기 상세 도구 기능 개발 및 연동)
+    5. 동적 도구 연동 라우트(`/[locale]/tools/[slug]`) 구현 및 모듈 동적 로더 + 에러 바운더리 컴포넌트 작성 (이후 ghost-leg SPEC 문서를 참조해 실제 사다리타기 상세 도구 기능 개발 및 연동)
     6. 사용자 쿠키 수집 설정 배너 작성 + 광고 슬롯 컴포넌트 연동 + 구글 AdSense 연동 래퍼 스크립트 비동기 작성
     7. SEO 고도화: `buildMetadata` 헬퍼 함수 정의, JSON-LD 스키마 구성, robots.txt, sitemap.ts, manifest.ts 설정 적용 및 hreflang 크로스 링크 연동
     8. 사이트 정적 정보 전달 페이지 작성 (소개/개인정보 처리방침/이용약관/문의); GA 웹 분석 트래커 조건부 연동

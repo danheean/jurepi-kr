@@ -1,13 +1,13 @@
-# Q&A a Day — One Question a Day (Daily Question Journal) — Service PRD
+# Q&A a Day — One Question a Day (Daily Question Journal) — Service SPEC
 
-> This document is the **canonical (English) source** consumed by AI coding agents. The Korean translation lives in [`PRD_KR.md`](PRD_KR.md); keep both in sync when either changes.
+> This document is the **canonical (English) source** consumed by AI coding agents. The Korean translation lives in [`SPEC_KR.md`](SPEC_KR.md); keep both in sync when either changes.
 >
 > Build specification for **Q&A a Day** (1일 1질문 / Daily Question Journal) — a year-long, one-question-a-day self-reflection tool.
 > Internal service codename: `qna-a-day`. Registry id: `qna-a-day`. Public URL slug: `/[locale]/tools/qna-a-day`.
 > Question content source: the provided **`1mnc-questions.json`** dataset in this service directory (365 entries, ko + en).
 >
-> This PRD covers the **tool itself**. The shared shell (header/footer/locale/theme/consent), tool registry, SEO & ad infrastructure, and design tokens are provided by the platform:
-> - Platform PRD: [`docs/PRD.md`](../../../PRD.md) (Korean: [`PRD_KR.md`](../../../PRD_KR.md))
+> This SPEC covers the **tool itself**. The shared shell (header/footer/locale/theme/consent), tool registry, SEO & ad infrastructure, and design tokens are provided by the platform:
+> - Platform SPEC: [`docs/SPEC.md`](../../../SPEC.md) (Korean: [`SPEC_KR.md`](../../../SPEC_KR.md))
 > - Design system (single source of visual truth): [`docs/DESIGN.md`](../../../DESIGN.md)
 
 ```xml
@@ -18,7 +18,7 @@
 <overview>
 Q&A a Day is a year-long self-reflection tool: every calendar date carries one fixed, curated, open-ended question, and the user writes a short answer to it. "Today" shows today's question front and center with a writing area; the answer is saved privately in the browser. Because each question is keyed to the calendar date (month-day), the same question returns on the same date every year — so over multiple years the user accumulates a personal record and can read what they wrote "a year ago today." This is the classic "Q&A a Day" journal reimagined as a free, private, browser-only web tool.
 
-The tool mounts inside the Jurepi platform shell at `/[locale]/tools/qna-a-day`. It uses the platform header/footer, locale (ko/en), theme, consent-gated ad slots, and the DESIGN.md token system. This PRD specifies only the tool: its data model, views, calendar/question engine, interactions/animation, tool-specific SEO content, and tests.
+The tool mounts inside the Jurepi platform shell at `/[locale]/tools/qna-a-day`. It uses the platform header/footer, locale (ko/en), theme, consent-gated ad slots, and the DESIGN.md token system. This SPEC specifies only the tool: its data model, views, calendar/question engine, interactions/animation, tool-specific SEO content, and tests.
 
 CRITICAL (question source): the 365 questions are NOT invented here — they come from the provided dataset `1mnc-questions.json` (365 records: `date` "MM-DD", `month`, `day`, `question` for Korean, `questionEn` for English, covering 01-01 through 12-31). The build copies/transforms this file into the tool's code-split bank module. Treat this dataset as the canonical content; do not paraphrase or reassign questions to different dates.
 

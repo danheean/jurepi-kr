@@ -7,7 +7,7 @@ description: Jurepi의 Next.js 15 App Router 정적 사이트(SSG) 플랫폼을 
 
 이 스킬은 클린 아키텍처의 **가장 바깥 계층**을 다룬다. 원칙: 프레임워크는 *세부사항*이다. App Router·next-intl·AdSense를 안쪽 계층(도메인/유스케이스) 뒤에서 배선하되, 비즈니스 로직을 페이지/핸들러에 인라인하지 않는다.
 
-## 비타협 제약 (PRD)
+## 비타협 제약 (SPEC)
 
 - **SSG only. 백엔드/DB/first-party API 없음.** 모든 페이지는 빌드타임 생성. 레지스트리는 컴파일타임 TS 모듈, 선호/동의는 localStorage.
 - **검색 트래픽이 성장 엔진** — 모든 도구는 별도 인덱싱 URL. 메인+쉘은 CWV를 회귀시키면 안 된다(CLS<0.1, 광고 슬롯 높이 예약).
@@ -51,7 +51,7 @@ NextIntlClientProvider → ThemeProvider → ConsentProvider → ToastProvider
 
 ## 레지스트리가 backbone
 
-허브 UI·sitemap·static params·검색이 모두 `src/tools/registry.ts`에서 파생된다. **새 도구 추가 = ToolMeta 엔트리 + `messages.tools.<id>.*` + (live면) 모듈 + slug→컴포넌트 분기 + 자체 PRD.** 메인 화면을 재설계하지 않는다. coming_soon은 ToolMeta만 있으면 된다.
+허브 UI·sitemap·static params·검색이 모두 `src/tools/registry.ts`에서 파생된다. **새 도구 추가 = ToolMeta 엔트리 + `messages.tools.<id>.*` + (live면) 모듈 + slug→컴포넌트 분기 + 자체 SPEC.** 메인 화면을 재설계하지 않는다. coming_soon은 ToolMeta만 있으면 된다.
 
 ## SEO·i18n·동의·광고·CWV 상세
 

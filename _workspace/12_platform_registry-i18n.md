@@ -274,6 +274,6 @@ if (slug === 'qna-a-day') {
 ## References
 
 - **Blueprint:** `_workspace/10_architect_qna-a-day-blueprint.md` (lines 482–528 i18n keys, lines 386–416 implementation notes)
-- **PRD:** `docs/services/mindset/qna-a-day/PRD.md` (sections 7–8, pages_and_interfaces, copy sources)
+- **PRD:** `docs/services/mindset/qna-a-day/SPEC.md` (sections 7–8, pages_and_interfaces, copy sources)
 - **Existing Patterns:** `src/tools/registry.ts`, `src/i18n/messages/ko.json` (ladder tool structure)
 

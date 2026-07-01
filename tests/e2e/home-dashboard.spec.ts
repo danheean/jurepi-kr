@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 /**
- * E2E for the main dashboard (home). Mirrors PRD final_integration_test
+ * E2E for the main dashboard (home). Mirrors SPEC final_integration_test
  * scenario 1 (browse / filter / search / select) plus i18n + locale-prefixed
  * tool links. Selectors prefer roles/visible text over test ids.
  */

@@ -1,12 +1,12 @@
-# Special Symbols — Click-to-Copy Special Character Picker — Service PRD
+# Special Symbols — Click-to-Copy Special Character Picker — Service SPEC
 
-> This document is the **canonical (English) source** consumed by AI coding agents. The Korean translation should live in [`PRD_KR.md`](PRD_KR.md); keep both in sync when either changes.
+> This document is the **canonical (English) source** consumed by AI coding agents. The Korean translation should live in [`SPEC_KR.md`](SPEC_KR.md); keep both in sync when either changes.
 >
 > Build specification for **Special Symbols** (특수문자 / 특수기호 모음) — a grid of small tiles, each holding a hard-to-type special character; one click copies it to the clipboard, and a side panel explains what the symbol is and shows real-world usage examples.
 > Internal service codename: `special-symbol`. Registry id: `special-symbol`. Public URL slug: `/[locale]/tools/special-symbol`.
 >
-> This PRD covers the **tool itself**. The shared shell (header/footer/locale/theme/consent), tool registry, SEO & ad infrastructure, and design tokens are provided by the platform:
-> - Platform PRD: [`docs/PRD.md`](../../../PRD.md) (Korean: [`PRD_KR.md`](../../../PRD_KR.md))
+> This SPEC covers the **tool itself**. The shared shell (header/footer/locale/theme/consent), tool registry, SEO & ad infrastructure, and design tokens are provided by the platform:
+> - Platform SPEC: [`docs/SPEC.md`](../../../SPEC.md) (Korean: [`SPEC_KR.md`](../../../SPEC_KR.md))
 > - Design system (single source of visual truth): [`docs/DESIGN.md`](../../../DESIGN.md)
 
 ```xml
@@ -17,7 +17,7 @@
 <overview>
 Special Symbols solves a small but constant annoyance: people regularly need characters that are not on the keyboard — the middle dot (·), the em dash (—), the inverted question mark (¿), arrows (→), currency marks (€ £ ¥), units (℃ ㎡), and so on — and today they hunt for them every single time (search engines, copying from a random web page, fighting an OS character viewer). This tool puts a curated, searchable grid of those characters in one place. Each character sits in its own small square tile; clicking a tile **copies it instantly** to the clipboard and shows a toast, and at the same time a **detail panel** (to the right on desktop, a bottom sheet on mobile) explains what the symbol is and shows concrete examples of when it is used. Repeat use is frictionless via a "recently copied" row and pinnable favorites.
 
-The tool mounts inside the Jurepi platform shell at `/[locale]/tools/special-symbol`. It uses the platform header/footer, locale (ko/en), theme, consent-gated ad slots, and the DESIGN.md token system. This PRD specifies only the tool: its symbol catalog/data model, the grid + detail-panel interface, the click-to-copy and search interactions, recents/favorites persistence, tool-specific SEO content, and tests.
+The tool mounts inside the Jurepi platform shell at `/[locale]/tools/special-symbol`. It uses the platform header/footer, locale (ko/en), theme, consent-gated ad slots, and the DESIGN.md token system. This SPEC specifies only the tool: its symbol catalog/data model, the grid + detail-panel interface, the click-to-copy and search interactions, recents/favorites persistence, tool-specific SEO content, and tests.
 
 CRITICAL (core interaction): a single click/tap on a symbol tile does TWO things at once — (1) it copies that character to the clipboard immediately (the primary requirement) and (2) it selects the symbol so the detail panel shows its name + usage + examples. Browsing without copying is supported via hover (mouse) and keyboard focus/arrow navigation, which PREVIEW the detail panel without writing to the clipboard. Copy must never silently fail: if the Clipboard API is unavailable, fall back to a legacy copy, and if that also fails, present the character pre-selected for manual copy.
 
