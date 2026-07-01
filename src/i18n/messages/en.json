@@ -60,7 +60,8 @@
     "text": "Text",
     "converter": "Converter",
     "fun": "Fun",
-    "mindset": "Mindset"
+    "mindset": "Mindset",
+    "dev": "Developer"
   },
   "emptyState": {
     "heading": "No results found",
@@ -462,6 +463,140 @@
             "a": "We don't yet have a community submission feature, but we always welcome feedback. Email us at dhan0213@naver.com with terms you'd like to see added."
           }
         ]
+      }
+    },
+    "url-encoder": {
+      "title": "URL Encoder",
+      "description": "Encode and decode URLs and edit query strings. Supports UTF-8 and EUC-KR (legacy Korean URLs).",
+      "lead": "Encode and decode URL text and edit query parameters. Switch instantly between component/full URI modes and UTF-8 and EUC-KR charsets (for legacy Korean URLs).",
+      "mode": {
+        "label": "Mode",
+        "component": {
+          "label": "Component",
+          "help": "Query parameters & fragments. Special characters (<, >, &, :, /) are encoded."
+        },
+        "uri": {
+          "label": "Full URI",
+          "help": "Complete URLs. Structure characters like /, :, ?, & remain unencoded."
+        }
+      },
+      "direction": {
+        "label": "Direction",
+        "encode": "Encode",
+        "decode": "Decode",
+        "toggle": "Toggle direction"
+      },
+      "charset": {
+        "label": "Charset",
+        "utf8": "UTF-8",
+        "euckr": "EUC-KR (CP949)",
+        "help": "Most modern URLs use UTF-8. For older Korean sites, try EUC-KR."
+      },
+      "batch": {
+        "label": "Batch mode",
+        "help": "Enable to process multiple lines at once."
+      },
+      "plusAsSpace": {
+        "label": "Treat + as space",
+        "help": "Legacy form-encoding (application/x-www-form-urlencoded)"
+      },
+      "input": {
+        "placeholder": "Paste URL or text here…",
+        "aria": "URL or text input"
+      },
+      "output": {
+        "aria": "Encoding/decoding result",
+        "copyButton": "Copy result",
+        "copied": "Copied",
+        "copyFail": "Copy failed (check browser settings)"
+      },
+      "alreadyEncoded": {
+        "hint": "This text looks already encoded. Encoding again may double-encode it.",
+        "proceed": "Encode anyway",
+        "cancel": "Cancel"
+      },
+      "queryTable": {
+        "label": "Query String Editor",
+        "parsePrompt": "Paste a query string or add parameters below.",
+        "emptyState": "No parameters.",
+        "keyPlaceholder": "Parameter name",
+        "valuePlaceholder": "Value",
+        "addRow": "Add parameter",
+        "deleteRow": "Delete",
+        "rebuild": "Rebuild query string"
+      },
+      "recents": {
+        "label": "Recent inputs",
+        "clear": "Clear recents",
+        "empty": "No recent inputs."
+      },
+      "errors": {
+        "malformedSequence": "Malformed percent sequence",
+        "malformedDetails": "Check for incomplete hex sequences (e.g., %6 without a second hex digit).",
+        "charsetMismatch": "These bytes are invalid for the selected charset.",
+        "charsetMismatchDetails": "The URL may actually use a different encoding.",
+        "unencodableChar": "Character '{char}' cannot be represented in {charset}.",
+        "unencodableCharDetails": "Switch to UTF-8 or remove this character.",
+        "tableLoadFailed": "Couldn't load the EUC-KR encoder. Check your connection and try again.",
+        "inputTooLong": "Input is too long (max 10,000 characters)."
+      },
+      "shortcuts": {
+        "help": "Keyboard shortcuts",
+        "focus": "/ — Focus input",
+        "toggleRecents": "r — Toggle recents",
+        "toggleDirection": "e — Toggle encode/decode",
+        "toggleMode": "c — Toggle component/URI mode",
+        "toggleCharset": "u — Toggle UTF-8/EUC-KR",
+        "toggleBatch": "b — Toggle batch mode",
+        "process": "Enter — Process",
+        "clear": "Esc — Clear input"
+      },
+      "howTo": {
+        "heading": "How to use URL Encoder",
+        "whatIs": {
+          "title": "What is URL encoding?",
+          "body": "URL encoding converts special characters into percent-encoded sequences starting with '%'. For example, a space becomes %20, and & becomes %26. This makes it safe to pass text in URLs."
+        },
+        "componentVsUri": {
+          "title": "Component vs Full URI",
+          "body": "Component mode is used for encoding query parameters or hash fragments—it encodes reserved characters like /, :, and ?. Full URI mode is for complete URLs—it preserves the URL structure characters (/, :, ?) so the URL remains valid."
+        },
+        "utf8VsEuckr": {
+          "title": "UTF-8 vs EUC-KR",
+          "body": "Most modern websites and systems use UTF-8. However, older Korean sites and legacy systems may use EUC-KR (CP949). For example, %C7%D1 is an invalid UTF-8 sequence, but when decoded as EUC-KR, it becomes the Korean character '한'."
+        }
+      },
+      "faq": {
+        "items": [
+          {
+            "q": "Why is URL encoding necessary?",
+            "a": "Certain characters in URLs (space, &, %, etc.) have special meaning. Encoding them makes it safe to transmit data within URLs."
+          },
+          {
+            "q": "What's the difference between Component and Full URI mode?",
+            "a": "Component mode encodes the values in query strings like ?name=hello&age=30. Full URI mode encodes a complete URL like https://example.com/path?a=1 while preserving the URL structure (/, :, ?)."
+          },
+          {
+            "q": "What is EUC-KR?",
+            "a": "EUC-KR (Extended Unix Code for Korean) is a character encoding for Korean text, also known as CP949. It was widely used by Korean websites in the early 2000s."
+          },
+          {
+            "q": "What happens if I encode already-encoded text?",
+            "a": "It gets double-encoded. For example, %20 becomes %2520. This tool warns you if it detects %xx patterns."
+          },
+          {
+            "q": "What does the Query String Editor do?",
+            "a": "It parses query strings like ?name=Alice&age=30 into a table. Edit the values and click 'Rebuild query string' to get the encoded result."
+          },
+          {
+            "q": "Where is my input data stored?",
+            "a": "All processing happens locally in your browser. Nothing is sent over the network or stored on a server. Only the 10 most recent inputs are saved in localStorage, and you can clear them anytime."
+          }
+        ]
+      },
+      "meta": {
+        "title": "URL Encoder / Decoder — Free Online Tool",
+        "description": "Encode and decode URLs. Supports UTF-8 and EUC-KR (CP949) charsets. Query string editing, batch mode, recent history."
       }
     }
   },

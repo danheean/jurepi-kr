@@ -78,7 +78,7 @@ DESIGN.md의 핵심 4가지를 모든 화면이 보여야 한다(design-quality 
 - [ ] hover/press/focus-visible가 의도적으로 설계됐는가
 - [ ] 균일 강조가 아니라 위계가 있는가
 - [ ] 토큰을 하드코딩하지 않고 CSS 변수로 소비하는가
-- [ ] 새로 쓴 토큰/유틸이 실제로 존재하는가(미존재 토큰은 투명 렌더), 선택/활성 상태가 aria뿐 아니라 시각적으로 뚜렷한가 — **반환 전 grep 하드 게이트**: 변경 파일의 `(bg|text|border|ring|from|to|fill)-<name>` 클래스를 `tailwind.config.ts`의 color/토큰 키와 대조하라. 미존재=팬텀=투명(typecheck·유닛·빌드 모두 그린이라 못 잡음). 실제 재발: `bg-surface-hover`/`hover:bg-surface-hover`는 **존재하지 않는다**(3회째 팬텀). muted 표면 hover는 실재 토큰 `hover:bg-surface-sunken`을 쓴다.
+- [ ] 새로 쓴 토큰/유틸이 실제로 존재하는가(미존재 토큰은 투명 렌더), 선택/활성 상태가 aria뿐 아니라 시각적으로 뚜렷한가 — **반환 전 grep 하드 게이트**: 변경 파일의 `(bg|text|border|ring|from|to|fill)-<name>` 클래스를 `tailwind.config.ts`의 color/토큰 키와 대조하라. 미존재=팬텀=투명(typecheck·유닛·빌드 모두 그린이라 못 잡음). 실제 재발: `bg-surface-hover`/`hover:bg-surface-hover`는 **존재하지 않는다**(3회째 팬텀). muted 표면 hover는 실재 토큰 `hover:bg-surface-sunken`을 쓴다. **시맨틱 색은 `danger`/`warning`/`success`(+`-ink` 고대비 변형)이지 `semantic-*`가 아니다** — `bg-semantic-warning`/`text-semantic-danger`/`bg-semantic-success`는 전부 팬텀(url-encoder에서 14곳 재발). 텍스트는 `text-danger-ink`/`text-warning-ink`, 배경/보더는 `bg-danger`/`bg-warning`/`bg-success`. `color-tokens.test`(scripts/validate-color-tokens.mjs)가 이를 잡으니 반환 전 반드시 실행.
 - [ ] 액센트를 CTA에 쓰지 않았는가(브랜드 바이올렛 유지)
 - [ ] reduced-motion 폴백이 있는가
 - [ ] 떠 있는 레이어(드롭다운/콤보박스/패널)는 명시적 너비 + 엣지 앵커이고, 열어서 너비를 눈으로 확인했는가

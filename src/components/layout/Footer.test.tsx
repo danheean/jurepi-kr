@@ -61,6 +61,7 @@ vi.mock('next-intl/server', async () => {
         'categories.converter': 'Converter',
         'categories.fun': 'Fun',
         'categories.mindset': 'Mindset',
+        'categories.dev': 'Developer',
         'tools.ladder.title': 'Ladder Game',
         'tools.ladder.description': 'Play the ladder game',
         'tools.qna-a-day.title': 'Q&A a Day',
@@ -76,10 +77,10 @@ describe('Footer', () => {
     vi.clearAllMocks();
   });
 
-  it('renders 6 category headings', async () => {
+  it('renders 7 category headings (incl. dev)', async () => {
     const { container } = render(await Footer());
     const headings = container.querySelectorAll('footer h3');
-    expect(headings).toHaveLength(6);
+    expect(headings).toHaveLength(7);
   });
 
   it('renders ladder link under random category', async () => {

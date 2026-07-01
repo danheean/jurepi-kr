@@ -7,6 +7,7 @@
 - [사다리타기 (Ghost Leg)](https://apps.jurepi.kr/ko/tools/ladder): Enter participants and outcomes, then use a fair ladder draw for random selection. Lottery, raffle, impartial drawing.
 - [신조어 용어사전 (New Word)](https://apps.jurepi.kr/ko/tools/new-word): Discover trending MZ slang and modern tech terms with meanings and examples in Korean and English side by side.
 - [1일1질문 (Q&A a Day)](https://apps.jurepi.kr/ko/tools/qna-a-day): Answer one question daily and build a growing personal journal of reflections.
+- [URL 인코더 (URL Encoder)](https://apps.jurepi.kr/ko/tools/url-encoder): Encode and decode URLs with UTF-8 and EUC-KR (CP949) charset support. Edit query parameters and handle percent-encoded characters instantly.
 
 ## About
 

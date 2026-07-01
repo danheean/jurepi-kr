@@ -40,6 +40,21 @@ export const tools: ToolMeta[] = [
     order: 10,
     keywords: ['신조어', '유행어', 'MZ', '밈', '용어', '용어사전', '트렌드', '바이브코딩', '바이브 코딩', '루프엔지니어링', '갓생', '억까', '새로운 말', 'new word', 'slang', 'glossary', 'terms', 'vibe coding', 'trend', 'buzzword'],
   },
+  {
+    id: 'url-encoder',
+    slug: 'url-encoder',
+    category: 'dev',
+    icon: 'Link',
+    accent: 'grape',
+    status: 'live',
+    isNew: true,
+    order: 20,
+    keywords: [
+      'URL', '인코딩', '디코딩', 'encode', 'decode', '%20', 'percent',
+      'query', 'parameter', '쿼리', '매개변수', 'EUC-KR', 'euckr', 'CP949',
+      '한글', 'UTF-8', 'charset', '개발', 'developer', 'tool'
+    ],
+  },
 ];
 
 /** Get all live tools for static generation */

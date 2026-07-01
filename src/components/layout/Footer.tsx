@@ -4,7 +4,7 @@ import { tools } from '@/tools/registry';
 import { toSearchableTools } from '@/lib/searchable-tools';
 import { ConsentReopenButton } from '@/components/consent/ConsentReopenButton';
 
-const FOOTER_CATEGORIES = ['random', 'calculator', 'text', 'converter', 'fun', 'mindset'] as const;
+const FOOTER_CATEGORIES = ['random', 'calculator', 'text', 'converter', 'fun', 'mindset', 'dev'] as const;
 
 /** Public source repository — fixed, non-secret project fact. */
 const REPO_URL = 'https://github.com/danheean/Jurepi-kr';

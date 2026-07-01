@@ -23,6 +23,12 @@ test.describe('Q&A a Day - E2E Integration', () => {
     const composer = page.locator('[data-testid="daily-question-composer"] textarea');
     await expect(composer).toBeVisible({ timeout: 15000 });
 
+    // Click today tab to navigate to TodayPanel (landing is calendar tab)
+    const tabBar = page.locator('[role="tablist"]');
+    const todayTab = tabBar.locator('button').filter({ hasText: '오늘' }).first();
+    await expect(todayTab).toBeVisible({ timeout: 5000 });
+    await todayTab.click();
+
     // Check today's question is displayed (quotation bar + question text)
     const questionDiv = page.locator('#today-panel').locator('p.text-body-lg');
     await expect(questionDiv).toBeVisible({ timeout: 5000 });
@@ -47,6 +53,11 @@ test.describe('Q&A a Day - E2E Integration', () => {
     // Reload the page
     await page.reload();
     await page.waitForLoadState('networkidle');
+
+    // Click today tab again (page reloads on calendar tab)
+    const tabBarReload = page.locator('[role="tablist"]');
+    const todayTabReload = tabBarReload.locator('button').filter({ hasText: '오늘' }).first();
+    await todayTabReload.click();
 
     // Verify the answer persists
     const composerAfterReload = page.locator('[data-testid="daily-question-composer"] textarea');
@@ -188,6 +199,9 @@ test.describe('Q&A a Day - E2E Integration', () => {
     const tabText = await todayTab.textContent();
     expect(tabText).toBe('Today');
 
+    // Click today tab to navigate to TodayPanel (landing is calendar tab)
+    await todayTab.click();
+
     // Check today's question is in English
     const todayPanel = page.locator('#today-panel');
     const questionDiv = todayPanel.locator('p.text-body-lg');
@@ -203,6 +217,11 @@ test.describe('Q&A a Day - E2E Integration', () => {
     await page.goto('/ko/tools/qna-a-day');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
+
+    // Click today tab for Korean version
+    const koTabBar = page.locator('[role="tablist"]');
+    const koTodayTab = koTabBar.locator('button').filter({ hasText: '오늘' }).first();
+    await koTodayTab.click();
 
     const koTodayPanel = page.locator('#today-panel');
     const koQuestionDiv = koTodayPanel.locator('p.text-body-lg');
