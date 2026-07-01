@@ -245,6 +245,7 @@ export function CalendarPanel({
             date={selectedDate}
             initialText={selectedDateEntry?.text || ''}
             onSave={handleSaveAnswer}
+            testId={testId}
           />
         </div>
       )}
