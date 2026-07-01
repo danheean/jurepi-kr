@@ -1,27 +1,22 @@
 'use client';
 
 import Script from 'next/script';
-import { useConsent } from '@/components/consent/ConsentProvider';
-import { isAnalyticsAllowed } from '@/lib/consent/consent';
 
 /**
  * Google Analytics 4 (gtag.js).
  *
- * Renders nothing unless:
- * - `NEXT_PUBLIC_GA_ID` is set
- * - User has granted consent via ConsentBanner
+ * Renders nothing unless `NEXT_PUBLIC_GA_ID` is set. Consent is governed by
+ * Google Consent Mode v2 (see ConsentMode) together with Google's certified
+ * CMP: `analytics_storage` defaults to 'denied' in consent-required regions
+ * (EEA/UK/CH) until the user opts in via the CMP, and runs normally elsewhere.
+ * There is no custom consent gate.
  *
- * Opt-in design: GA is not loaded until the user explicitly accepts analytics.
- * Loaded `afterInteractive` → static-export compatible.
- * GA4 enhanced measurement (on by default) tracks client-side history navigations,
- * so SPA route changes are captured without manual pageview wiring.
+ * Loaded `afterInteractive` → static-export compatible. GA4 enhanced
+ * measurement (on by default) captures SPA route changes without manual wiring.
  */
 export function GoogleAnalytics(): React.ReactNode {
   const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim();
-  const { consent } = useConsent();
-
-  // Only load GA if consent is granted and env is configured
-  if (!gaId || !isAnalyticsAllowed(consent)) {
+  if (!gaId) {
     return null;
   }
 

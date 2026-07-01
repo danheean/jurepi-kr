@@ -10,8 +10,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
-import { ConsentProvider } from '@/components/consent/ConsentProvider';
-import { ConsentBanner } from '@/components/consent/ConsentBanner';
+import { ConsentMode } from '@/components/consent/ConsentMode';
 import { GoogleAdsense } from '@/components/analytics/GoogleAdsense';
 
 type Locale = (typeof routing.locales)[number];
@@ -41,20 +40,18 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} suppressHydrationWarning>
       <head>
         <ThemeBootstrap />
+        <ConsentMode />
         <GoogleAdsense />
       </head>
       <body>
-        <ConsentProvider>
-          <GoogleAnalytics />
-          <NextIntlClientProvider messages={messages}>
-            <ThemeProvider>
-              <Header tools={searchableTools} />
-              <main id="main">{children}</main>
-              <Footer />
-            </ThemeProvider>
-            <ConsentBanner />
-          </NextIntlClientProvider>
-        </ConsentProvider>
+        <GoogleAnalytics />
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider>
+            <Header tools={searchableTools} />
+            <main id="main">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
