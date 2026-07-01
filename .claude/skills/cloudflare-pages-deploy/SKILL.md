@@ -19,6 +19,9 @@ description: >-
 
 이 프로젝트는 Cloudflare **Workers Builds**(Git 연동)에 **정적 에셋(assets-only Worker)**으로 배포한다. 라이브: `https://apps.jurepi.kr`. 아래 절들의 원리(`_headers`·`_redirects`·force-static·검증 게이트)는 그대로 유효하고 **CF 측 배선만 다르다**(Pages의 `pages_build_output_dir`/`wrangler pages …` 대신 assets-only `wrangler.jsonc` + `wrangler deploy`/`wrangler dev`).
 
+> ### 🚀 배포 트리거 = `git push` (프로덕션 분기 `main`)
+> **배포는 `main`에 push하면 끝난다.** CF Workers Builds가 Git push를 감지해 **CF 파이프라인 안에서** `pnpm run build` + `wrangler deploy`를 자동 실행한다. **로컬에서 `wrangler deploy`를 직접 돌리는 워크플로가 아니다** — 아래 "핵심 함정"들의 `wrangler deploy`는 전부 **CF 빌드가 대신 실행**하는 것이고, 함정 예방은 *커밋되는 설정*(`wrangler.jsonc`·force-static·`.env.production`)으로 한다. 개발자/에이전트가 할 일: ① 변경을 `main`에 머지 → ② push → ③ CF 빌드 완료(수십 초~수 분) 대기 → ④ 실제 도메인 `curl -I` 검증. 로컬 사전검증은 `serve out` 또는 `wrangler dev`. (로컬 `wrangler deploy` 수동 실행은 CF 대시보드가 막혔을 때의 **예외 폴백**일 뿐, 정상 경로 아님.)
+
 **핵심 함정 ①: `npx wrangler deploy`의 OpenNext 자동 전환.** repo에 wrangler 설정이 **없으면** wrangler가 Next.js를 감지해 `@opennextjs/cloudflare migrate`를 자동 실행 → 앱을 **풀 SSR Worker**(951 패키지)로 배포하고, 첫 배포에서 `Service binding 'WORKER_SELF_REFERENCE' references Worker '<package.json name>' which was not found [10143]`로 실패한다(self-ref 이름 = package.json `name` ≠ CF 워커명). **예방 = repo에 `wrangler.jsonc`를 커밋**해 정적 에셋 경로로 못박는다(설정이 있으면 wrangler가 그걸 읽고 OpenNext를 건너뜀). 순수 SSG에 OpenNext SSR은 불필요.
 
 `wrangler.jsonc` (repo 루트, `main` 없음 = assets-only):
@@ -146,10 +149,10 @@ pages_build_output_dir = "out"
 compatibility_date = "2025-01-01"
 ```
 
-### 배포 방법 2가지
+### 배포 방법
 
-- **Git 연동(권장):** CF Pages가 푸시마다 위 빌드 설정으로 자동 빌드·배포. 프리뷰 배포 자동 생성.
-- **직접 업로드(CLI):** `pnpm build && wrangler pages deploy out --project-name=jurepi`.
+- **정상 경로 = Git push (유일 워크플로):** `main`에 push하면 CF Workers Builds(Git 연동)가 커밋된 `wrangler.jsonc`로 자동 빌드(`pnpm run build`)·배포한다. 개발자/에이전트는 push만 하면 된다. (위 "🚀 배포 트리거" 참조.)
+- **CLI 수동 업로드(예외 폴백만):** CF 대시보드/Git 연동이 막혔을 때만 로컬에서 `pnpm build && npx wrangler deploy`(커밋된 `wrangler.jsonc` 사용, Pages식 `wrangler pages deploy` 아님). 인증 필요(`wrangler login`). 정상 상황에선 쓰지 않는다.
 
 ## 로컬 프리뷰 (배포 전 검증)
 

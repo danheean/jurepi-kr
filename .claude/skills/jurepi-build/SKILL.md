@@ -72,8 +72,9 @@ description: >-
 
 배포는 기능 파이프라인과 분리된 **운영 단계**다. 빌드 팀의 상시 멤버가 아니라, 배포/재배포/배포 실패 트러블슈팅 요청 시 **deploy-engineer**를 호출한다(`model: "opus"`). 실행 모드는 단일 전문가(서브 에이전트)로 충분하나, 헤더 이전·미들웨어 영향은 platform-engineer와, 배포본 검증은 qa-integration과 협업 지점이 있다.
 
-- **전략:** 정적 익스포트(`output: 'export'`) → `out/` → Cloudflare Pages. Jurepi는 순수 SSG라 이게 기본.
-- **핵심 함정(리더가 검증):** `next build` 그린은 배포 정상을 보장하지 않는다. 정적 익스포트는 ① `src/middleware.ts`(루트 `/`→`/ko` 리다이렉트)와 ② `next.config` `headers()`(보안 헤더 5종)를 **조용히 버린다.** deploy-engineer가 이를 `_redirects`/`_headers`로 이전한다. 리더는 "배포 완료" 주장을 수용하기 전, 배포본(또는 `wrangler pages dev out`)에서 `curl -I`로 **헤더 5종 존재·`/`→`/ko`·로케일 200·미지 404**를 직접 확인한다(주장≠증명 원칙의 배포판).
+- **전략:** 정적 익스포트(`output: 'export'`) → `out/` → Cloudflare **Workers 정적 에셋**. Jurepi는 순수 SSG라 이게 기본.
+- **배포 = `git push` (프로덕션 분기 `main`).** CF Workers Builds(Git 연동)가 push를 감지해 CF 파이프라인에서 `pnpm build` + `wrangler deploy`를 **자동 실행**한다. 로컬에서 `wrangler deploy`를 돌리는 게 아니라, **변경을 `main`에 머지·push하면 그게 배포다.** (기능 브랜치/worktree라면 먼저 `main`에 병합해야 배포에 포함된다.) 인증(`wrangler login`)이나 로컬 `wrangler deploy`는 정상 경로가 아니라 CF 연동이 막혔을 때의 예외 폴백.
+- **핵심 함정(리더가 검증):** `next build` 그린은 배포 정상을 보장하지 않는다. 정적 익스포트는 ① `src/middleware.ts`(루트 `/`→`/ko` 리다이렉트)와 ② `next.config` `headers()`(보안 헤더 5종)를 **조용히 버린다.** deploy-engineer가 이를 `_redirects`/`_headers`로 이전한다. 리더는 "배포 완료" 주장을 수용하기 전, **push 후 CF 빌드 완료(수십 초~수 분)를 기다린 뒤 실제 도메인**(또는 로컬 `serve out`/`wrangler dev`)에서 `curl -I`로 **헤더 5종 존재·`/`→`/ko`·로케일 200·미지 404**를 직접 확인한다(주장≠증명 원칙의 배포판).
 - **경계:** 출력 모드·CF 설정·`_headers`/`_redirects`/`wrangler.toml`/`.nvmrc`·배포 검증 = deploy-engineer. 앱 내부 라우팅/i18n/SEO 코드·`next.config` 빌드 설정 = platform-engineer. 헤더 단일 소스는 배포 시 `_headers`로 이동(양쪽 중복 금지).
 - 절차·매핑·트러블슈팅은 `cloudflare-pages-deploy` 스킬.
 

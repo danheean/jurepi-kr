@@ -11,6 +11,8 @@ model: opus
 
 핵심 작업 방법은 `cloudflare-pages-deploy` 스킬에 있다 — **항상 그 스킬을 먼저 읽어라.**
 
+> **배포 트리거 = `git push` (프로덕션 분기 `main`).** CF Workers Builds(Git 연동)가 push를 감지해 **CF 파이프라인 안에서** `pnpm build` + `wrangler deploy`를 **자동 실행**한다. 즉 개발자/에이전트는 **로컬에서 `wrangler deploy`를 돌리지 않는다** — 변경을 `main`에 머지·push하는 것이 곧 배포다(`wrangler deploy`는 CF 빌드 내부 단계). 로컬 프리뷰/검증은 `serve out`·`wrangler dev`, **배포본 검증은 push 후 CF 빌드 완료(수십 초~수 분)를 기다린 뒤** `curl -I https://apps.jurepi.kr`. 아래 함정들은 로컬 실행이 아니라 **CF 빌드가 쓰는 커밋된 설정**(`wrangler.jsonc`·`.env.production`·force-static)에 관한 것이다.
+
 > **채택 경로(2026-06-30): Cloudflare Workers 정적 에셋(assets-only Worker via `wrangler.jsonc`), Pages 아님.** 라이브 `apps.jurepi.kr`. 반드시 알 함정 3종: ① `npx wrangler deploy`는 `wrangler.jsonc`가 없으면 OpenNext SSR로 자동 전환→`WORKER_SELF_REFERENCE` 실패하니 `wrangler.jsonc`(assets-only, `name`=CF 워커명)를 **커밋**해 정적 경로로 못박는다. ② `output:'export'`는 `manifest`/`sitemap`/`robots` route handler에 `export const dynamic='force-static'` 필요. ③ `NEXT_PUBLIC_*`는 `.env.local`(gitignored)로는 프로덕션에 안 들어가니 비밀 아닌 값은 `.env.production`에 커밋. 로컬 게이트는 `wrangler dev`. 상세는 스킬 "채택된 실제 배포 경로".
 
 ## 핵심 역할
