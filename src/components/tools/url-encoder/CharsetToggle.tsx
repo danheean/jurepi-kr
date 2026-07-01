@@ -8,6 +8,12 @@ interface Props {
   isLoading?: boolean;
 }
 
+// Map internal charset values to the frozen i18n key names (no hyphen).
+const CHARSET_LABEL_KEY = {
+  'utf-8': 'charset.utf8',
+  'euc-kr': 'charset.euckr',
+} as const;
+
 export function CharsetToggle({ value, onChange, isLoading }: Props) {
   const t = useTranslations('tools.url-encoder');
 
@@ -26,9 +32,9 @@ export function CharsetToggle({ value, onChange, isLoading }: Props) {
                 : 'bg-surface-muted text-text hover:bg-hairline-strong'
             } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
             aria-pressed={value === charset}
-            aria-label={t(`charset.${charset}`)}
+            aria-label={t(CHARSET_LABEL_KEY[charset])}
           >
-            {t(`charset.${charset}`)}
+            {t(CHARSET_LABEL_KEY[charset])}
           </button>
         ))}
       </div>

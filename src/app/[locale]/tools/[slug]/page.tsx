@@ -6,6 +6,9 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
 import { buildToolMetadata } from '@/lib/seo';
+import { UrlEncoderIntro } from '@/components/tools/url-encoder/UrlEncoderIntro';
+import { UrlEncoderHowTo } from '@/components/tools/url-encoder/UrlEncoderHowTo';
+import { UrlEncoderFaq } from '@/components/tools/url-encoder/UrlEncoderFaq';
 
 const LadderGame = dynamic(() =>
   import('@/components/tools/ladder/LadderGame').then((m) => ({
@@ -22,6 +25,12 @@ const DailyQuestion = dynamic(() =>
 const NewWord = dynamic(() =>
   import('@/components/tools/new-word/NewWord').then((m) => ({
     default: m.NewWord,
+  }))
+);
+
+const UrlEncoder = dynamic(() =>
+  import('@/components/tools/url-encoder/UrlEncoder').then((m) => ({
+    default: m.UrlEncoder,
   }))
 );
 
@@ -44,6 +53,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title = t('title');
     description = t('lead');
   } else if (slug === 'new-word') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'url-encoder') {
     title = t('meta.title');
     description = t('meta.description');
   } else {
@@ -70,7 +82,7 @@ type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
-async function ToolContent({ slug }: { slug: string }) {
+async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
   const tool = getToolBySlug(slug);
 
   if (!tool || tool.status !== 'live') {
@@ -88,6 +100,17 @@ async function ToolContent({ slug }: { slug: string }) {
 
   if (slug === 'new-word') {
     return <NewWord />;
+  }
+
+  if (slug === 'url-encoder') {
+    return (
+      <>
+        <UrlEncoderIntro />
+        <UrlEncoder locale={locale} />
+        <UrlEncoderHowTo />
+        <UrlEncoderFaq />
+      </>
+    );
   }
 
   notFound();
@@ -115,7 +138,7 @@ export default async function ToolPage({ params }: Props) {
           actionLabel={t('errorAction')}
         >
           <Suspense fallback={<div className="text-text-secondary">{t('loading')}</div>}>
-            <ToolContent slug={slug} />
+            <ToolContent slug={slug} locale={locale} />
           </Suspense>
         </ErrorBoundary>
 
