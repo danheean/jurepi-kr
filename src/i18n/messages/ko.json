@@ -24,7 +24,9 @@
     "privacy": "개인정보 처리방침",
     "terms": "이용약관",
     "contact": "문의",
-    "consentReopen": "개인정보 설정 변경"
+    "consentReopen": "개인정보 설정 변경",
+    "source": "소스 코드",
+    "sourceAria": "GitHub에서 소스 코드 보기 (새 창)"
   },
   "home": {
     "eyebrow": "무료 온라인 도구",
