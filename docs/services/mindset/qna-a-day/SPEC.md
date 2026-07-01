@@ -163,7 +163,7 @@ src/
 
 <pages_and_interfaces>
   <qna_intro>
-    - H1: "1일 1질문" / "One Question a Day" — Gmarket Sans clamp(28px,5vw,40px)/700, var(--text)
+    - H1: "1일 1질문" / "Q&A a Day" — Gmarket Sans clamp(28px,5vw,40px)/700, var(--text)
     - Lead: 1–2 sentences, body-lg 18px var(--text-secondary): the private, year-long reflection ritual; answers stay in this browser.
     - Eyebrow above H1: "매일의 기록" / "DAILY REFLECTION" — eyebrow 12px/700/0.6px, var(--brand)
   </qna_intro>

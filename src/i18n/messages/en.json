@@ -209,15 +209,15 @@
       }
     },
     "qna-a-day": {
-      "title": "One Question a Day",
+      "title": "Q&A a Day",
       "description": "Answer one daily question and keep a year-long personal reflection journal.",
       "meta": {
-        "title": "One Question a Day · Daily Reflection",
+        "title": "Q&A a Day · Daily Reflection",
         "description": "A 365-day self-reflection journal tool. Answer the same question every day and compare your answers year over year. All entries are stored privately in your browser."
       },
       "intro": {
         "eyebrow": "Daily Reflection",
-        "title": "One Question a Day",
+        "title": "Q&A a Day",
         "lead": "Spend a year answering the same question every day. On the same date each year, you'll see your past answer alongside your new one. Every entry stays private in your browser—a personal, safe space to reflect."
       },
       "benefits": {
@@ -327,9 +327,9 @@
         "ringAria": "{answered}/{elapsed} days answered this year"
       },
       "howTo": {
-        "heading": "How to use One Question a Day",
-        "whatTitle": "What is One Question a Day?",
-        "whatBody": "One Question a Day is a year-long self-reflection journal. Every calendar date comes with one fixed, thoughtful question. You answer it once today, then next year on the same date, you'll see your old answer right alongside your new one. This creates a powerful 'then vs. now' mirror: you see exactly how you've changed, what you've learned, and what matters to you. All entries stay private in your browser.",
+        "heading": "How to use Q&A a Day",
+        "whatTitle": "What is Q&A a Day?",
+        "whatBody": "Q&A a Day is a year-long self-reflection journal. Every calendar date comes with one fixed, thoughtful question. You answer it once today, then next year on the same date, you'll see your old answer right alongside your new one. This creates a powerful 'then vs. now' mirror: you see exactly how you've changed, what you've learned, and what matters to you. All entries stay private in your browser.",
         "howTitle": "How to use it",
         "howBody": "The 'Today' tab shows today's question front and center with a text area to write your answer. It auto-saves as you type. Switch to the 'Calendar' tab to browse any date and edit past answers—or even write ahead for future dates. The 'Journal' tab lets you search your entire history and filter by year. Use the 'Settings' tab to back up your entries (download a JSON file), restore from a backup, or reset everything. That's it—simple and private.",
         "whyTitle": "Why answer the same question daily?",
@@ -344,7 +344,7 @@
           },
           {
             "q": "Can I move my entries to another device?",
-            "a": "Yes, via export and import. On your current device, use 'Settings' → 'Export' to download a JSON backup file. On your new device, open One Question a Day, go to 'Settings' → 'Import', and select the file. Choose to merge (combine with any existing entries) or replace (start fresh with the imported entries)."
+            "a": "Yes, via export and import. On your current device, use 'Settings' → 'Export' to download a JSON backup file. On your new device, open Q&A a Day, go to 'Settings' → 'Import', and select the file. Choose to merge (combine with any existing entries) or replace (start fresh with the imported entries)."
           },
           {
             "q": "Can I see what I wrote a year ago today?",
@@ -423,7 +423,7 @@
     "sections": [
       {
         "title": "Information we collect",
-        "body": "We do not directly collect personal information like names, emails, or phone numbers. When you use Jurepi tools, any data you enter—such as participant names in the ladder game or journal entries in One Question a Day—is stored only in your browser's local storage. This data never leaves your device and is not sent to any server."
+        "body": "We do not directly collect personal information like names, emails, or phone numbers. When you use Jurepi tools, any data you enter—such as participant names in the ladder game or journal entries in Q&A a Day—is stored only in your browser's local storage. This data never leaves your device and is not sent to any server."
       },
       {
         "title": "Cookies and third-party services",
