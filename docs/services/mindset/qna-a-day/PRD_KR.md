@@ -163,7 +163,7 @@ src/
 
 <pages_and_interfaces>
   <qna_intro>
-    - H1: "1일 1질문" / "One Question a Day" — Gmarket Sans clamp(28px,5vw,40px)/700, var(--text)
+    - H1: "1일 1질문" / "Q&A a Day" — Gmarket Sans clamp(28px,5vw,40px)/700, var(--text)
     - 리드: 1–2문장, body-lg 18px var(--text-secondary): 비공개·1년짜리 성찰 의식이며, 답변은 이 브라우저에 머문다는 안내.
     - H1 위 눈썹문구: "매일의 기록" / "DAILY REFLECTION" — eyebrow 12px/700/0.6px, var(--brand)
   </qna_intro>
