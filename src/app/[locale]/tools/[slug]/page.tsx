@@ -106,19 +106,8 @@ export default async function ToolPage({ params }: Props) {
           </Suspense>
         </ErrorBoundary>
 
-        {/* AdSlot Stub (fixed height, no render until consent) */}
-        <div className="mt-24 flex justify-center">
-          <div
-            className="w-full max-w-2xl rounded-lg bg-surface-muted"
-            style={{ height: '250px', minHeight: '250px' }}
-            role="region"
-            aria-label="Advertisement"
-          >
-            <div className="flex items-center justify-center h-full text-text-muted text-sm">
-              Ad Slot (Reserved Height)
-            </div>
-          </div>
-        </div>
+        {/* Ads are inserted automatically by Google AdSense Auto Ads
+            (loader in <head>); no manual ad slot is placed here. */}
       </div>
     </div>
   );
