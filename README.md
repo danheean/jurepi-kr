@@ -1,5 +1,7 @@
 # Jurepi · 무료 온라인 도구 허브
 
+<sub>한국어 · **[English](README.en.md)**</sub>
+
 > **필요한 도구, 전부 무료로.** — [apps.jurepi.kr](https://apps.jurepi.kr)
 
 Jurepi는 유용한 웹 도구를 카드 그리드 대시보드에서 골라 쓰는 무료 온라인 도구 모음입니다.
@@ -165,28 +167,27 @@ docs/                    # SPEC · DESIGN 시스템 (요구사항 단일 소스)
 
 ## 🤖 개발 하네스
 
-본 저장소는 `.claude/` 에 클린 아키텍처 + TDD를 강제하는 에이전트 팀과 스킬을 포함합니다
-(`architect` · `domain-engineer` · `ui-engineer` · `platform-engineer` · `qa-integration`).
-도구 빌드·기능 추가는 오케스트레이터 스킬 `jurepi-build` 로 조율됩니다.
+본 저장소는 `.claude/` 에 **클린 아키텍처 + TDD**를 강제하는 에이전트 팀(7종)과 스킬(8종)을 포함합니다.
+빌드 팀(`architect` · `domain-engineer` · `ui-engineer` · `platform-engineer` · `qa-integration`)과
+전문가(`seo-geo-engineer` · `deploy-engineer`)를 오케스트레이터 스킬 `jurepi-build` 가 조율합니다.
+
+📖 자세한 구성·워크플로·비타협 게이트는 **[개발 하네스 문서 → `docs/HARNESS_KR.md`](docs/HARNESS_KR.md)** 를 참고하세요.
 
 ## 🌐 배포
 
-**정적 익스포트(`output: 'export'`) → `out/` → 정적/엣지 호스트**로 배포합니다.
-현재 라이브는 **Cloudflare (정적 에셋 호스팅, `apps.jurepi.kr`)** 이며, `wrangler.jsonc`가 `out/`를 서빙합니다.
+**배포 = `git push` (프로덕션 분기 `main`).** Cloudflare Workers Builds(Git 연동)가 push를 감지해
+CF 파이프라인에서 `pnpm build` + `wrangler deploy`를 **자동 실행**합니다 — 로컬에서 `wrangler deploy`를
+직접 돌리는 게 아닙니다. 기능 브랜치/worktree의 변경은 `main`에 병합해야 배포에 포함됩니다.
 
-정적 익스포트는 `next.config`의 `headers()`와 `src/middleware`를 실행하지 않으므로,
-아래 두 파일로 이전합니다 (빌드 시 `out/`으로 복사됨).
+정적 익스포트(`output: 'export'`)라 `next.config`의 `headers()`·`src/middleware`가 실행되지 않으므로,
+동등 기능을 아래 파일로 이전합니다 (빌드 시 `out/`으로 복사).
 
 - `public/_headers` — 보안 헤더(HSTS·X-Content-Type-Options·Referrer-Policy 등)
 - `public/_redirects` — 루트 `/` → 기본 로케일 `/ko`
 
-```bash
-pnpm build                 # → out/
-npx wrangler deploy        # Cloudflare 정적 에셋 배포 (wrangler.jsonc)
-```
-
-> 배포 후 `curl -I`로 보안 헤더·`/`→`/ko`·로케일 200·미지 경로 404를 검증하세요.
-> `NEXT_PUBLIC_*` 값은 공개·비밀 아님이며 `.env.production`에 커밋되어 빌드에 인라인됩니다.
+> **배포본 검증:** push 후 CF 빌드 완료(수십 초~수 분)를 기다린 뒤 `curl -I https://apps.jurepi.kr`로
+> 보안 헤더·`/`→`/ko`·로케일 200·미지 경로 404를 확인하세요. 로컬 사전검증은 `serve out` / `wrangler dev`.
+> `NEXT_PUBLIC_*`는 공개·비밀 아님이며 `.env.production`에 커밋돼 빌드에 인라인됩니다. 상세: [개발 하네스 문서](docs/HARNESS_KR.md).
 
 ## 📄 라이선스
 
