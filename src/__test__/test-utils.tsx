@@ -123,12 +123,47 @@ const defaultMessages = {
         whatIsBody: 'The Ladder Game is a classic method for fairly deciding outcomes.',
         howToTitle: 'How to play',
         howToBody: 'Start by selecting the number of players.',
+        featuresTitle: 'Handy features',
+        featuresBody: 'Turn on',
+      },
+      useCases: {
+        heading: 'When the Ladder Game comes in handy',
+        lead: 'From a simple bet to an awkward turn order, one round of the ladder settles it cleanly—no arguments afterward.',
+        items: [
+          {
+            title: 'Coffee & lunch runs',
+            body: 'Deciding who buys the coffee or covers lunch today.',
+          },
+          {
+            title: 'Chores & duties',
+            body: 'Splitting up the dishes, recycling, or note-taking.',
+          },
+          {
+            title: 'Presentation & game order',
+            body: 'Speaking order, karaoke turns, who goes first in a board game.',
+          },
+          {
+            title: 'Making teams or groups',
+            body: 'Picking sides or forming groups.',
+          },
+          {
+            title: 'Gift & prize exchanges',
+            body: 'Secret Santa, ladder gifts, prize draws.',
+          },
+        ],
       },
       faq: {
         heading: 'Frequently Asked Questions',
         items: [
           { q: 'Is the ladder game really fair?', a: 'Yes, absolutely.' },
           { q: 'How many players can play?', a: 'You can play with 2 to 10 players.' },
+          { q: 'Does starting position matter?', a: 'No.' },
+          { q: 'Can I reshuffle the ladder?', a: 'Yes.' },
+          { q: 'Can I share the results?', a: 'Of course.' },
+          { q: 'Does it work on mobile?', a: 'Yes.' },
+          { q: 'Are the names I type saved anywhere?', a: 'No.' },
+          { q: 'Can I turn off the sound or animation?', a: 'Yes.' },
+          { q: 'Can I share the result as an image?', a: 'Yes.' },
         ],
       },
     },

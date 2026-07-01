@@ -4,18 +4,24 @@ import { QnaFaq } from './QnaFaq';
 
 // Mock next-intl
 vi.mock('next-intl', () => ({
-  useTranslations: () => (key: string) => {
-    // Return test data based on key
-    if (key === 'faq.heading') return 'FAQ';
-    if (key.startsWith('faq.items.')) {
-      const match = key.match(/faq\.items\.(\d+)\.(q|a)/);
-      if (match) {
-        const idx = match[1];
-        const type = match[2];
-        return type === 'q' ? `Question ${idx}` : `Answer ${idx}`;
+  useTranslations: () => {
+    const t = (key: string) => {
+      if (key === 'faq.heading') return 'FAQ';
+      return key;
+    };
+
+    // Add the raw method
+    t.raw = (key: string) => {
+      if (key === 'faq.items') {
+        return Array.from({ length: 9 }, (_, i) => ({
+          q: `Question ${i}`,
+          a: `Answer ${i}`,
+        }));
       }
-    }
-    return key;
+      return key;
+    };
+
+    return t;
   },
 }));
 
@@ -26,11 +32,11 @@ describe('QnaFaq', () => {
     expect(screen.getByText('FAQ')).toBeInTheDocument();
   });
 
-  it('renders 7 FAQ items', () => {
+  it('renders 9 FAQ items', () => {
     render(<QnaFaq />);
 
-    // Should render 7 questions
-    for (let i = 0; i < 7; i++) {
+    // Should render 9 questions
+    for (let i = 0; i < 9; i++) {
       expect(screen.getByText(`Question ${i}`)).toBeInTheDocument();
     }
   });
@@ -39,7 +45,7 @@ describe('QnaFaq', () => {
     render(<QnaFaq />);
 
     // Each item should be in a details element
-    const questionTexts = Array.from({ length: 7 }, (_, i) => `Question ${i}`);
+    const questionTexts = Array.from({ length: 9 }, (_, i) => `Question ${i}`);
 
     questionTexts.forEach((q) => {
       const element = screen.getByText(q);
@@ -67,7 +73,7 @@ describe('QnaFaq', () => {
     if (faqScript) {
       const json = JSON.parse(faqScript.textContent || '');
       expect(json['@context']).toBe('https://schema.org');
-      expect(json.mainEntity).toHaveLength(7);
+      expect(json.mainEntity).toHaveLength(9);
       expect(json.mainEntity[0]['@type']).toBe('Question');
       expect(json.mainEntity[0].acceptedAnswer['@type']).toBe('Answer');
     }
@@ -76,7 +82,7 @@ describe('QnaFaq', () => {
   it('renders answer text for each FAQ item', () => {
     render(<QnaFaq />);
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 9; i++) {
       expect(screen.getByText(`Answer ${i}`)).toBeInTheDocument();
     }
   });

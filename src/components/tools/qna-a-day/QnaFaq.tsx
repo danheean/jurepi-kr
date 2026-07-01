@@ -4,11 +4,11 @@ import { faqPageJsonLd } from '@/lib/seo';
 export function QnaFaq() {
   const t = useTranslations('tools.qna-a-day');
 
-  // Map i18n FAQ items to schema
-  const faqItems = Array.from({ length: 7 }, (_, i) => ({
-    q: t(`faq.items.${i}.q`),
-    a: t(`faq.items.${i}.a`),
-  }));
+  // Read FAQ items dynamically from i18n data
+  const faqItems = t.raw('faq.items') as Array<{
+    q: string;
+    a: string;
+  }>;
 
   const faqSchema = faqPageJsonLd(faqItems);
 

@@ -48,7 +48,7 @@ describe('LadderHowTo Component', () => {
   it('has article elements for each section', () => {
     const { container } = render(<LadderHowTo />);
     const articles = container.querySelectorAll('article');
-    expect(articles).toHaveLength(2);
+    expect(articles).toHaveLength(3);
   });
 
   it('applies space-y-8 to section inside details', () => {
@@ -137,5 +137,18 @@ describe('LadderHowTo Component', () => {
     expect(details).toHaveTextContent('What is the Ladder Game?');
     expect(details).toHaveTextContent('The Ladder Game is a classic method for fairly deciding outcomes.');
     expect(details).toHaveTextContent('Start by selecting the number of players.');
+  });
+
+  it('renders "Handy features" subheading', () => {
+    render(<LadderHowTo />);
+    const subheadings = screen.getAllByRole('heading', { level: 3 });
+    expect(subheadings[2]).toHaveTextContent('Handy features');
+  });
+
+  it('renders features content with whitespace-pre-wrap', () => {
+    render(<LadderHowTo />);
+    const details = screen.getByTestId('howto-details');
+    expect(details).toHaveTextContent('Handy features');
+    expect(details).toHaveTextContent('Turn on');
   });
 });

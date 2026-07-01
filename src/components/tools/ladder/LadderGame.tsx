@@ -8,6 +8,7 @@ import { PlayerHeader } from './PlayerHeader';
 import { LadderBoard } from './LadderBoard';
 import { PrizeCards } from './PrizeCards';
 import { ResultPanel } from './ResultPanel';
+import { LadderUseCases } from './LadderUseCases';
 import { LadderHowTo } from './LadderHowTo';
 import { LadderFaq } from './LadderFaq';
 import { WinnerConfetti } from './WinnerConfetti';
@@ -129,6 +130,7 @@ export function LadderGame() {
       </div>
 
       {/* SEO content */}
+      <LadderUseCases />
       <LadderHowTo />
       <LadderFaq />
 

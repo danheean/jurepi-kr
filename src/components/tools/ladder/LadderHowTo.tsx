@@ -29,6 +29,15 @@ export function LadderHowTo() {
             {t('howTo.howToBody')}
           </p>
         </article>
+
+        <article className="space-y-4">
+          <h3 className="text-card-title text-text">
+            {t('howTo.featuresTitle')}
+          </h3>
+          <p className="font-body text-text-secondary leading-relaxed whitespace-pre-wrap">
+            {t('howTo.featuresBody')}
+          </p>
+        </article>
       </section>
     </details>
   );

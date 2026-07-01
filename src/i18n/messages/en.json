@@ -136,7 +136,35 @@
         "whatIsTitle": "What is the Ladder Game?",
         "whatIsBody": "The Ladder Game is a classic method for fairly deciding outcomes: who buys coffee, who picks first, who does the chore. You write participant names at the top and outcomes at the bottom, then follow a random ladder of vertical lines and horizontal rungs to determine each person's result. It's simple, fair, and fun—whether you're drawing lots for a team project, deciding chore order, or just having a good laugh.",
         "howToTitle": "How to play",
-        "howToBody": "Start by selecting the number of players. Then enter each player's name and the possible outcomes (e.g., names vs. prizes or chores). If you leave outcomes blank, the game fills them in automatically. Click 'Build ladder' to generate a random ladder. The ladder is built fairly using computer randomness, ensuring every player has an equal 1/N chance of any outcome. Click on a player's name to reveal their result by tracing the path, or use 'Reveal all' to show everyone at once. You can reshuffle for a new ladder or reset to change players and outcomes."
+        "howToBody": "Start by selecting the number of players. Then enter each player's name and the possible outcomes (e.g., names vs. prizes or chores). If you leave outcomes blank, the game fills them in automatically. Click 'Build ladder' to generate a random ladder. The ladder is built fairly using computer randomness, ensuring every player has an equal 1/N chance of any outcome. Click on a player's name to reveal their result by tracing the path, or use 'Reveal all' to show everyone at once. You can reshuffle for a new ladder or reset to change players and outcomes.",
+        "featuresTitle": "Handy features",
+        "featuresBody": "Turn on 'Shuffle results' and the outcome slots are randomized so no one can predict the result in advance. Raise the 'Tension' and the ladder draws more horizontal rungs for a denser, more suspenseful trace—without changing fairness or the final result at all. 'Auto-suggest names' fills the board with fruit emoji and names for a quick start, while sound and confetti add to the fun of each reveal. Download the finished result as an image to share straight to a group chat. You can also play entirely by keyboard—number keys reveal a player, A reveals everyone, and R reshuffles."
+      },
+      "useCases": {
+        "heading": "When the Ladder Game comes in handy",
+        "lead": "From a simple bet to an awkward turn order, one round of the ladder settles it cleanly—no arguments afterward.",
+        "items": [
+          {
+            "title": "Coffee & lunch runs",
+            "body": "Deciding who buys the coffee or covers lunch today. It's fairer than rock-paper-scissors, and because everyone watches the result unfold, no one grumbles about it later."
+          },
+          {
+            "title": "Chores & duties",
+            "body": "Splitting up the dishes, recycling, or note-taking—the jobs no one volunteers for. Just enter the names and the duties, and it pairs them up at random."
+          },
+          {
+            "title": "Presentation & game order",
+            "body": "Speaking order, karaoke turns, who goes first in a board game. When you need a full 1st-to-last ranking, switch to 'Ranking' mode to sort it all at once."
+          },
+          {
+            "title": "Making teams or groups",
+            "body": "Picking sides or forming groups. Put the team names in the outcome slots and players get assigned to teams automatically."
+          },
+          {
+            "title": "Gift & prize exchanges",
+            "body": "Secret Santa, ladder gifts, prize draws—any time you need to decide who gets what. Keep the outcomes hidden and reveal them one at a time to double the suspense."
+          }
+        ]
       },
       "faq": {
         "heading": "Frequently Asked Questions",
@@ -160,6 +188,22 @@
           {
             "q": "Can I share the results?",
             "a": "Of course. Use the 'Copy results' button to copy the outcome mapping as text, then paste it into a message or email to share with your group."
+          },
+          {
+            "q": "Does it work on mobile?",
+            "a": "Yes. The Ladder Game runs right in your mobile browser with nothing to install. If you have many players and the board gets wide, just scroll it left and right to see the whole ladder."
+          },
+          {
+            "q": "Are the names I type saved anywhere?",
+            "a": "No. The player names and outcomes you enter are used only inside your browser and are never sent or stored anywhere. Refreshing the page clears them all, so you can use it without any privacy concerns."
+          },
+          {
+            "q": "Can I turn off the sound or animation?",
+            "a": "Yes. Use 'Sound off' on the results panel to mute the effects. And if you enable 'reduce motion' in your device settings, the ladder-tracing animation and confetti are automatically minimized."
+          },
+          {
+            "q": "Can I share the result as an image?",
+            "a": "Yes. Tap 'Download result' to save an image file showing every player and their outcome at a glance. Post it straight to a group chat or social media to share."
           }
         ]
       }
@@ -175,6 +219,35 @@
         "eyebrow": "Daily Reflection",
         "title": "One Question a Day",
         "lead": "Spend a year answering the same question every day. On the same date each year, you'll see your past answer alongside your new one. Every entry stays private in your browser—a personal, safe space to reflect."
+      },
+      "benefits": {
+        "heading": "What one line a day leaves behind",
+        "items": [
+          {
+            "title": "You can see yourself grow",
+            "body": "Answer the same question a year later and changes you never noticed come into sharp focus. Seeing last year's you and today's you side by side is more honest than any self-help book."
+          },
+          {
+            "title": "Consistency without pressure",
+            "body": "One question a day, a sentence or two—that's plenty. No need to write long, no need to never miss a day. Because it's a small habit, it lasts; and because it lasts, it becomes a record you'll treasure."
+          },
+          {
+            "title": "A space that's entirely yours",
+            "body": "Every answer is stored only in this browser and uploaded nowhere. With no worry about who might see it, you can write down even the things you could never say out loud."
+          }
+        ]
+      },
+      "examples": {
+        "heading": "The kind of questions you'll meet",
+        "lead": "The 365 questions start light and reach all the way to what matters most. A few of the prompts waiting on the calendar:",
+        "items": [
+          "What is your purpose in life?",
+          "What are you reading right now?",
+          "Who do you want to know better?",
+          "This is utterly confusing: _______.",
+          "Is there any present you'd like from Santa Claus?"
+        ],
+        "note": "The question changes automatically each day based on the date."
       },
       "tabBar": {
         "today": "Today",
@@ -292,6 +365,14 @@
           {
             "q": "Is this journal shareable?",
             "a": "Your entries are private by default. No one can see them unless you intentionally share the export file. It's a personal space, just for you."
+          },
+          {
+            "q": "Does it work offline?",
+            "a": "Once the page has loaded, writing and saving all happen inside your browser, so it keeps working even if your internet connection drops. Every answer is stored only on this device."
+          },
+          {
+            "q": "If I switch languages, do the questions change too?",
+            "a": "Yes. There's a separate set of questions in Korean and English, so switching languages shows the same date's question in that language. Answers you've already written are kept intact."
           }
         ]
       }
@@ -316,6 +397,10 @@
       {
         "title": "Tools for every need",
         "body": "We start with tools that solve real problems: a fair lottery game for making group decisions, and a daily journal for self-reflection. More tools are coming soon across categories like math, text, conversions, and fun. Check back often as we expand what Jurepi can do for you."
+      },
+      {
+        "title": "Why is it free?",
+        "body": "Every Jurepi tool is, and will stay, free. We cover our running costs with the ads shown on the page. To keep those ads from getting in the way, we reserve their space and height in advance so the page never jumps around—and we never sell your personal information. You can turn ad and analytics cookies off or on anytime via 'Privacy settings' in the footer."
       },
       {
         "title": "Built in the open",

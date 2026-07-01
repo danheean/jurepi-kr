@@ -4,6 +4,8 @@ import { useEffect, useState, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useDailyJournal } from './useDailyJournal';
 import { QnaIntro } from './QnaIntro';
+import { QnaBenefits } from './QnaBenefits';
+import { QnaExamples } from './QnaExamples';
 import { ProgressChip } from './ProgressChip';
 import { TodayPanel } from './TodayPanel';
 import { CalendarPanel } from './CalendarPanel';
@@ -156,6 +158,8 @@ export function DailyQuestion() {
       )}
 
       {/* SEO long-form + FAQ (with FAQPage JSON-LD) — i18n only, server-rendered */}
+      <QnaBenefits />
+      <QnaExamples />
       <QnaHowTo />
       <QnaFaq />
 

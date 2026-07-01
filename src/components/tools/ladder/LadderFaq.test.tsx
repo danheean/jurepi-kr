@@ -21,6 +21,12 @@ describe('LadderFaq Component', () => {
     expect(detailsElements.length).toBeGreaterThan(0);
   });
 
+  it('renders all 9 FAQ items', () => {
+    const { container } = render(<LadderFaq />);
+    const detailsElements = container.querySelectorAll('details');
+    expect(detailsElements).toHaveLength(9);
+  });
+
   it('renders first FAQ question', () => {
     render(<LadderFaq />);
     expect(screen.getByText('Is the ladder game really fair?')).toBeInTheDocument();
@@ -164,7 +170,7 @@ describe('LadderFaq Component', () => {
     expect(parsed['@type']).toBe('FAQPage');
     expect(parsed.mainEntity).toBeDefined();
     expect(Array.isArray(parsed.mainEntity)).toBe(true);
-    expect(parsed.mainEntity.length).toBe(2);
+    expect(parsed.mainEntity.length).toBe(9);
   });
 
   it('has correct FAQ schema for first question', () => {
