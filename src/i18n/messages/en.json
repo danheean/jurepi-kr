@@ -629,21 +629,26 @@
       "tabs": {
         "all": "All",
         "favorites": "Favorites",
-        "recent": "Recent"
+        "recent": "Recent",
+        "filterLabel": "Filter by field"
       },
       "search": {
         "placeholder": "Search rankings, movies, languages…",
         "aria": "Search rankings",
-        "resultCount": "{count} results"
+        "resultCount": "{count} results",
+        "clearAria": "Clear search"
       },
       "list": {
         "itemCount": "{count} items",
         "toggleFavorite": "Toggle favorite",
         "emptyState": "No rankings match '{query}'",
-        "emptyFavorites": "Save rankings with the star button"
+        "emptyFavorites": "Save rankings with the star button",
+        "noResults": "No rankings found",
+        "clearSearch": "Clear search"
       },
       "detail": {
         "selectHint": "Select a ranking to view details here",
+        "closeAria": "Close detail",
         "provenance": {
           "aria": "Source and date of the ranking",
           "asOfLabel": "As of",
@@ -651,10 +656,14 @@
         },
         "table": {
           "caption": "{title} — {count} items ranking table",
+          "regionLabel": "{title} ranking table",
           "rank": "Rank",
           "name": "Name",
           "description": "Description",
           "link": "Link",
+          "image": "Image",
+          "rankAria": "Rank {rank}",
+          "linkAria": "{name} link",
           "medal": ["🥇", "🥈", "🥉"]
         }
       },

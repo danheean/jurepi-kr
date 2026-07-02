@@ -32,14 +32,14 @@ export function RankingDetail({ ranking, onClose }: RankingDetailProps) {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 className="text-xl font-bold text-text leading-tight">{localeData.title}</h2>
-          <span className="inline-block mt-2 px-2.5 py-1 rounded-full text-xs font-bold uppercase text-accent-rose bg-accent-rose-soft">
+          <span className="inline-block mt-2 px-2.5 py-1 rounded-full text-xs font-bold uppercase text-accent-rose-ink bg-accent-rose-soft">
             {fieldLabel}
           </span>
         </div>
         <button
           onClick={onClose}
-          className="lg:hidden p-1.5 hover:bg-surface-muted rounded-lg transition-colors flex-shrink-0"
-          aria-label="Close detail"
+          className="lg:hidden inline-flex items-center justify-center min-h-11 min-w-11 hover:bg-surface-muted rounded-lg transition-colors flex-shrink-0"
+          aria-label={t('closeAria')}
         >
           <X className="w-5 h-5 text-text-secondary" />
         </button>

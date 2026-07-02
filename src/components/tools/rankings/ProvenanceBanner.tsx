@@ -21,9 +21,9 @@ export function ProvenanceBanner({
     >
       {/* As-of date row */}
       <div className="flex items-start gap-3">
-        <Calendar className="w-5 h-5 text-accent-rose flex-shrink-0 mt-0.5" aria-hidden="true" />
+        <Calendar className="w-5 h-5 text-accent-rose-ink flex-shrink-0 mt-0.5" aria-hidden="true" />
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-bold uppercase tracking-wide text-accent-rose">
+          <p className="text-xs font-bold uppercase tracking-wide text-accent-rose-ink">
             {t('asOfLabel')}
           </p>
           <p className="text-sm font-medium text-text">{asOfDate}</p>
@@ -32,9 +32,9 @@ export function ProvenanceBanner({
 
       {/* Source note row */}
       <div className="flex items-start gap-3">
-        <Info className="w-5 h-5 text-accent-rose flex-shrink-0 mt-0.5" aria-hidden="true" />
+        <Info className="w-5 h-5 text-accent-rose-ink flex-shrink-0 mt-0.5" aria-hidden="true" />
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-bold uppercase tracking-wide text-accent-rose">
+          <p className="text-xs font-bold uppercase tracking-wide text-accent-rose-ink">
             {t('sourceLabel')}
           </p>
           {sourceUrl ? (
@@ -42,7 +42,7 @@ export function ProvenanceBanner({
               href={sourceUrl}
               rel="noopener noreferrer"
               target="_blank"
-              className="text-sm font-medium text-accent-rose underline hover:text-accent-rose-soft transition-colors break-words"
+              className="text-sm font-medium text-accent-rose-ink underline hover:text-text transition-colors break-words"
             >
               {sourceNote}
               <span aria-label="외부 링크" className="ml-1">↗</span>

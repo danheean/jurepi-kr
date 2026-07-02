@@ -32,7 +32,7 @@ export function RankingsList({
         <EmptyState
           heading={t('emptyState', { query })}
           body=""
-          actionLabel="Clear search"
+          actionLabel={t('clearSearch')}
           onAction={onClearQuery}
         />
       );
@@ -49,7 +49,7 @@ export function RankingsList({
     }
     return (
       <EmptyState
-        heading="No rankings found"
+        heading={t('noResults')}
         body=""
         actionLabel=""
         onAction={() => {}}

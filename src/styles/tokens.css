@@ -46,6 +46,7 @@
   --accent-mint-ink: #0f766e; /* 4.82:1 on accent-mint-soft */
   --accent-sun-ink: #92400e; /* 6.32:1 on accent-sun-soft */
   --accent-grape-ink: #8a5300; /* honey-gold ink — 6.3:1 on white, 5.2:1 on accent-grape-soft */
+  --accent-rose-ink: #9f1239; /* dark rose ink — 6.6:1 on accent-rose-soft, 8.0:1 on white */
 
   /* Semantic */
   --success: #22c55e;
@@ -129,6 +130,7 @@
   --warning-ink: #fbbf24; /* 10.05:1 on dark surface */
   --accent-mint-ink: #5eead4; /* light teal — readable on dark surface + dark mint tile */
   --accent-sun-ink: #fcd34d; /* light amber — readable on dark surface + dark sun tile */
+  --accent-rose-ink: #fda4af; /* light rose — readable on dark surface + dark rose tile */
 
   /* Dark accent tints (DESIGN.md Phase 2): low-alpha overlays of the accent over
      --surface replace the pastel *-soft pastels so icon tiles read dark; the
@@ -165,6 +167,7 @@
     --warning-ink: #fbbf24;
     --accent-mint-ink: #5eead4;
     --accent-sun-ink: #fcd34d;
+    --accent-rose-ink: #fda4af;
     --accent-coral-soft: color-mix(in srgb, var(--accent-coral) 22%, var(--surface));
     --accent-mint-soft: color-mix(in srgb, var(--accent-mint) 20%, var(--surface));
     --accent-sky-soft: color-mix(in srgb, var(--accent-sky) 20%, var(--surface));

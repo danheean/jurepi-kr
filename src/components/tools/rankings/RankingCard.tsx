@@ -40,10 +40,10 @@ export function RankingCard({
       onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
-      className={`p-4 rounded-xl border-2 transition-all cursor-pointer ${
+      className={`p-4 rounded-xl border-2 shadow-card transition-[color,box-shadow,border-color,transform] cursor-pointer ${
         isSelected
-          ? 'border-accent-rose bg-accent-rose-soft shadow-md'
-          : 'border-hairline bg-surface hover:shadow-card hover:border-hairline-strong'
+          ? 'border-accent-rose bg-accent-rose-soft shadow-card-hover'
+          : 'border-hairline bg-surface hover:shadow-card-hover hover:border-hairline-strong'
       }`}
       aria-pressed={isSelected}
     >
@@ -51,7 +51,7 @@ export function RankingCard({
       <div className="flex items-start gap-3 mb-3">
         <div className="flex-1 min-w-0">
           <h3 className="font-bold text-lg text-text leading-tight">{localeData.title}</h3>
-          <span className="inline-block mt-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase text-accent-rose bg-accent-rose-soft">
+          <span className="inline-block mt-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase text-accent-rose-ink bg-accent-rose-soft">
             {fieldLabel}
           </span>
         </div>
@@ -62,7 +62,7 @@ export function RankingCard({
           }}
           aria-pressed={isFavorited}
           aria-label={t('list.toggleFavorite')}
-          className="flex-shrink-0 p-1.5 hover:bg-surface-muted rounded-lg transition-colors"
+          className="flex-shrink-0 inline-flex items-center justify-center min-h-11 min-w-11 hover:bg-surface-muted rounded-lg transition-colors"
         >
           <Star
             className={`w-5 h-5 ${

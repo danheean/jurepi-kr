@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import type { MergedRanking } from '@/lib/rankings/schema';
 import { ExternalLink } from 'lucide-react';
 
@@ -21,6 +22,7 @@ interface RankingRowProps {
 }
 
 export function RankingRow({ item, ranking, showLink, showImage }: RankingRowProps) {
+  const t = useTranslations('tools.rankings.detail.table');
   const isMedal = item.rank <= 3;
   const medal = MEDAL_EMOJI[item.rank - 1];
 
@@ -29,11 +31,11 @@ export function RankingRow({ item, ranking, showLink, showImage }: RankingRowPro
       {/* Rank cell */}
       <td className="px-3 py-3 whitespace-nowrap">
         {isMedal ? (
-          <span className="text-lg" aria-label={`Rank ${item.rank}`}>
+          <span className="text-lg" aria-label={t('rankAria', { rank: item.rank })}>
             {medal}
           </span>
         ) : (
-          <span className="font-mono text-sm text-text-secondary" aria-label={`Rank ${item.rank}`}>
+          <span className="font-mono text-sm text-text-secondary" aria-label={t('rankAria', { rank: item.rank })}>
             {item.rank}.
           </span>
         )}
@@ -55,8 +57,8 @@ export function RankingRow({ item, ranking, showLink, showImage }: RankingRowPro
               href={item.link}
               rel="noopener noreferrer"
               target="_blank"
-              className="inline-flex items-center gap-1 text-accent-rose hover:text-accent-rose-soft transition-colors text-sm font-medium"
-              aria-label={`Link: ${item.name}`}
+              className="inline-flex items-center gap-1 text-accent-rose-ink hover:text-text transition-colors text-sm font-medium"
+              aria-label={t('linkAria', { name: item.name })}
             >
               <span>Link</span>
               <ExternalLink className="w-3 h-3" aria-hidden="true" />

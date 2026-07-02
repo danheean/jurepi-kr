@@ -36,13 +36,13 @@ export function RankingSearch({ query, setQuery, resultCount }: RankingSearchPro
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           aria-label={t('aria')}
-          className="w-full pl-9 pr-9 py-2.5 rounded-lg border border-hairline bg-surface text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring transition-all"
+          className="w-full min-h-11 pl-9 pr-11 py-2.5 rounded-lg border border-hairline bg-surface text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring transition-all"
         />
         {query && (
           <button
             onClick={() => setQuery('')}
-            className="absolute right-3 p-1 hover:bg-surface-muted rounded transition-colors"
-            aria-label="Clear search"
+            className="absolute right-1 inline-flex items-center justify-center min-h-11 min-w-11 hover:bg-surface-muted rounded-lg transition-colors"
+            aria-label={t('clearAria')}
           >
             <X className="w-4 h-4 text-text-secondary" />
           </button>

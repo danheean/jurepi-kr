@@ -15,7 +15,7 @@ export function RankingTable({ ranking }: RankingTableProps) {
   const caption = t('caption', { title, count: items.length });
 
   return (
-    <div className="overflow-x-auto" role="region" aria-label={`${title} table`}>
+    <div className="overflow-x-auto" role="region" aria-label={t('regionLabel', { title })}>
       <table className="w-full text-sm border-collapse">
         <caption className="sr-only">{caption}</caption>
         <thead>
@@ -36,13 +36,13 @@ export function RankingTable({ ranking }: RankingTableProps) {
             )}
             {items.some((item) => item.imageUrl) && (
               <th scope="col" className="px-3 py-2 text-center font-bold text-text">
-                Image
+                {t('image')}
               </th>
             )}
           </tr>
         </thead>
         <tbody>
-          {items.map((item, idx) => (
+          {items.map((item) => (
             <RankingRow
               key={`${ranking.slug}-${item.rank}`}
               item={item}

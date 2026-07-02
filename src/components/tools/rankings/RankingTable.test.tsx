@@ -10,10 +10,14 @@ const messages: AbstractIntlMessages = {
       detail: {
         table: {
           caption: '{title} — {count}개 항목 순위표',
+          regionLabel: '{title} 순위표',
           rank: '순위',
           name: '이름',
           description: '설명',
           link: '링크',
+          image: '이미지',
+          rankAria: '{rank}위',
+          linkAria: '{name} 링크',
         },
       },
     },
