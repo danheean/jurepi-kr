@@ -32,6 +32,9 @@ export const BookmarkFileFrontSchema = z.object({
               label: z.string().min(1, 'link label required'),
               url: z.string().url('link url must be valid http(s) URL'),
               description: z.string().max(LINK_DESC_MAX, `link description max ${LINK_DESC_MAX} chars`).optional(),
+              // BAKED by generator (authors don't write these)
+              youtubeId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),
+              image: z.string().url().optional(),
             })
           )
           .min(1, 'section must have ≥1 link'),
@@ -61,6 +64,9 @@ export const MergedTopicSchema = z.object({
             label: z.string(),
             url: z.string(),
             description: z.string().optional(),
+            // BAKED by generator
+            youtubeId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),
+            image: z.string().url().optional(),
           })
         ),
       })
@@ -78,6 +84,9 @@ export const MergedTopicSchema = z.object({
             label: z.string(),
             url: z.string(),
             description: z.string().optional(),
+            // BAKED by generator
+            youtubeId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),
+            image: z.string().url().optional(),
           })
         ),
       })

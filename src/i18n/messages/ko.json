@@ -644,7 +644,8 @@
       },
       "link": {
         "externalLink": "외부 링크",
-        "openInNewTab": "새 탭에서 열기"
+        "openInNewTab": "새 탭에서 열기",
+        "playVideo": "영상 재생"
       },
       "toast": {
         "favoriteAdded": "즐겨찾기에 저장됨",

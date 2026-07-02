@@ -102,6 +102,15 @@ const config: Config = {
         button: ['0.9375rem', { lineHeight: '1.2' }],
         eyebrow: ['0.75rem', { lineHeight: '1.2', letterSpacing: '0.6px' }],
       },
+      animation: {
+        'fade-in': 'fadeIn var(--duration-normal) ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
     },
   },
   plugins: [],

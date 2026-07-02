@@ -2,12 +2,20 @@
 
 /**
  * Build-time generator: scan content/bookmarks/topics/, parse markdown,
- * validate, merge ko+en pairs, and emit bookmarks.generated.json.
+ * validate, merge ko+en pairs, extract YouTube IDs, fetch OG images (with caching),
+ * and emit bookmarks.generated.json.
  *
- * Deterministic: no Date/random, exit 0 on success, 1 on any validation failure.
+ * YouTube ID extraction logic is replicated from src/lib/bookmarks/youtube.ts.
+ * See that file as the single source of truth for the extraction algorithm.
+ *
+ * OG image fetching uses a cache file (content/bookmarks/.og-cache.json) to avoid
+ * redundant network calls and ensure deterministic builds.
+ *
+ * Deterministic: cache-first, exit 0 on success, 1 on any validation failure.
+ * OG fetch failures are logged as warnings and cached as null (never fail the build).
  */
 
-import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import matter from 'gray-matter';
 import { z } from 'zod';
@@ -27,6 +35,8 @@ const BookmarkFileFrontSchema = z.object({
               label: z.string().min(1, 'link label required'),
               url: z.string().url('link url must be valid http(s) URL'),
               description: z.string().max(100, 'link description max 100 chars').optional(),
+              youtubeId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),
+              image: z.string().url().optional(),
             })
           )
           .min(1, 'section must have ≥1 link'),
@@ -48,6 +58,8 @@ const MergedTopicSchema = z.object({
             label: z.string(),
             url: z.string(),
             description: z.string().optional(),
+            youtubeId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),
+            image: z.string().url().optional(),
           })
         ),
       })
@@ -64,6 +76,8 @@ const MergedTopicSchema = z.object({
             label: z.string(),
             url: z.string(),
             description: z.string().optional(),
+            youtubeId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),
+            image: z.string().url().optional(),
           })
         ),
       })
@@ -72,6 +86,140 @@ const MergedTopicSchema = z.object({
 });
 
 const LINKS_MIN_PER_TOPIC = 3;
+const FETCH_TIMEOUT_MS = 5000;
+const BATCH_SIZE = 6;
+
+/**
+ * Extract YouTube video ID from a URL (11-char format).
+ * CRITICAL: This logic must remain IDENTICAL to src/lib/bookmarks/youtube.ts.
+ * See that file as the source of truth.
+ *
+ * Supported: /watch?v=ID, youtu.be/ID, /embed/ID, /shorts/ID
+ * Returns: null for channels, playlists, search, or non-embeddable URLs
+ */
+function extractYoutubeId(url) {
+  if (!url || typeof url !== 'string') {
+    return null;
+  }
+
+  try {
+    const urlObj = new URL(url);
+    const hostname = urlObj.hostname || '';
+
+    if (!hostname.includes('youtube.com') && !hostname.includes('youtu.be')) {
+      return null;
+    }
+
+    if (hostname.includes('youtu.be')) {
+      const pathname = urlObj.pathname;
+      const match = pathname.match(/^\/([A-Za-z0-9_-]{11})$/);
+      return match && match[1] ? match[1] : null;
+    }
+
+    const pathname = urlObj.pathname;
+    const searchParams = urlObj.searchParams;
+
+    if (pathname === '/watch') {
+      const videoId = searchParams.get('v');
+      if (videoId && /^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+        return videoId;
+      }
+      return null;
+    }
+
+    if (pathname.startsWith('/embed/')) {
+      const match = pathname.match(/^\/embed\/([A-Za-z0-9_-]{11})$/);
+      return match && match[1] ? match[1] : null;
+    }
+
+    if (pathname.startsWith('/shorts/')) {
+      const match = pathname.match(/^\/shorts\/([A-Za-z0-9_-]{11})$/);
+      return match && match[1] ? match[1] : null;
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Fetch og:image from a URL, with timeout and retry-free best-effort logic.
+ * Returns null if fetch fails, timeout, or no og:image found.
+ */
+async function fetchOgImage(url) {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      },
+      signal: controller.signal,
+      redirect: 'follow',
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const html = await response.text();
+    const ogImageMatch = html.match(
+      /<meta\s+(?:property="og:image"|name="og:image"|property="twitter:image"|name="twitter:image")\s+content="([^"]+)"/i
+    );
+
+    if (!ogImageMatch || !ogImageMatch[1]) {
+      return null;
+    }
+
+    let imageUrl = ogImageMatch[1];
+
+    // Resolve relative URLs to absolute
+    if (imageUrl.startsWith('/')) {
+      const urlObj = new URL(url);
+      imageUrl = `${urlObj.protocol}//${urlObj.hostname}${imageUrl}`;
+    } else if (!imageUrl.startsWith('http')) {
+      const urlObj = new URL(url);
+      imageUrl = new URL(imageUrl, `${urlObj.protocol}//${urlObj.hostname}`).href;
+    }
+
+    return imageUrl;
+  } catch (err) {
+    return null;
+  }
+}
+
+/**
+ * Load OG cache from disk (or empty object if missing).
+ */
+function loadOgCache(cachePath) {
+  if (existsSync(cachePath)) {
+    try {
+      const content = readFileSync(cachePath, 'utf-8');
+      return JSON.parse(content);
+    } catch {
+      return {};
+    }
+  }
+  return {};
+}
+
+/**
+ * Save OG cache to disk (sorted keys, deterministic).
+ */
+function saveOgCache(cachePath, cache) {
+  const sorted = Object.keys(cache)
+    .sort()
+    .reduce((acc, key) => {
+      acc[key] = cache[key];
+      return acc;
+    }, {});
+  writeFileSync(cachePath, JSON.stringify(sorted, null, 2), 'utf-8');
+}
 
 /**
  * Slugify: convert string to lowercase, remove diacritics, replace spaces with hyphens.
@@ -96,6 +244,35 @@ function resolveSlug(front, filename) {
   }
   const base = filename.replace(/(_en)?\.md$/, '');
   return slugify(base);
+}
+
+/**
+ * Enrich a single link: bake youtubeId if video, or og:image (from cache or fetched).
+ * The link is enriched in-place (mutation) and returned for chaining.
+ */
+function enrichLink(link, ogCache) {
+  // Try to extract YouTube video ID
+  const youtubeId = extractYoutubeId(link.url);
+  if (youtubeId) {
+    link.youtubeId = youtubeId;
+    // Don't fetch OG image for videos; derive thumbnail from ID at render time
+    return link;
+  }
+
+  // For non-video links, check/fetch OG image from cache
+  if (ogCache[link.url] !== undefined) {
+    // Cache hit (could be null if fetch previously failed)
+    if (ogCache[link.url]) {
+      link.image = ogCache[link.url];
+    }
+  }
+  // If not in cache yet, we'll fetch it in a batch later
+  // Mark it as needing fetch with a sentinel value
+  else {
+    link._needsOgFetch = true;
+  }
+
+  return link;
 }
 
 /**
@@ -164,15 +341,93 @@ function validatePair(koFilename, koFront, enFront) {
 }
 
 /**
- * Main generator: scan, parse, validate, merge, emit.
+ * Batch fetch OG images for links that need them, respecting the cache.
+ * Updates ogCache in-place and cleans up _needsOgFetch sentinel.
+ */
+async function fetchMissingOgImages(topics, ogCache) {
+  const urlsToFetch = [];
+  const urlToLinksMap = new Map();
+
+  // Collect all URLs that need OG fetch
+  topics.forEach((topic) => {
+    ['ko', 'en'].forEach((locale) => {
+      topic[locale].sections.forEach((section) => {
+        section.links.forEach((link) => {
+          if (link._needsOgFetch) {
+            if (!urlsToFetch.includes(link.url)) {
+              urlsToFetch.push(link.url);
+            }
+            if (!urlToLinksMap.has(link.url)) {
+              urlToLinksMap.set(link.url, []);
+            }
+            urlToLinksMap.get(link.url).push(link);
+          }
+        });
+      });
+    });
+  });
+
+  if (urlsToFetch.length === 0) {
+    return; // All URLs cached
+  }
+
+  console.log(`Fetching OG images for ${urlsToFetch.length} unique URL(s)...`);
+
+  // Batch fetch with rate limiting (BATCH_SIZE at a time)
+  for (let i = 0; i < urlsToFetch.length; i += BATCH_SIZE) {
+    const batch = urlsToFetch.slice(i, i + BATCH_SIZE);
+    const results = await Promise.allSettled(
+      batch.map(async (url) => {
+        const image = await fetchOgImage(url);
+        return { url, image };
+      })
+    );
+
+    results.forEach((result) => {
+      if (result.status === 'fulfilled') {
+        const { url, image } = result.value;
+        ogCache[url] = image; // Cache (could be null)
+
+        // Apply to all links with this URL
+        const links = urlToLinksMap.get(url) || [];
+        links.forEach((link) => {
+          if (image) {
+            link.image = image;
+          }
+          delete link._needsOgFetch;
+        });
+      } else {
+        // Fetch promise rejected; treat as failed fetch
+        const url = batch[results.indexOf(result)];
+        if (url) {
+          ogCache[url] = null;
+          const links = urlToLinksMap.get(url) || [];
+          links.forEach((link) => {
+            delete link._needsOgFetch;
+          });
+        }
+      }
+    });
+  }
+}
+
+/**
+ * Main generator: scan, parse, validate, merge, enrich (YouTube IDs + OG images), emit.
  */
 async function main() {
   const contentDir = new URL('../content/bookmarks/topics/', import.meta.url).pathname;
   const outputDir = new URL('../src/components/tools/bookmarks/data/', import.meta.url).pathname;
   const outputFile = join(outputDir, 'bookmarks.generated.json');
+  const cacheDir = new URL('../content/bookmarks/', import.meta.url).pathname;
+  const cacheFile = join(cacheDir, '.og-cache.json');
 
   // Ensure output directory exists
   mkdirSync(outputDir, { recursive: true });
+  mkdirSync(cacheDir, { recursive: true });
+
+  // Load OG cache
+  const ogCache = loadOgCache(cacheFile);
+  console.log(`Loaded OG cache with ${Object.keys(ogCache).length} entries`);
 
   console.log(`Scanning ${contentDir}...`);
 
@@ -269,6 +524,25 @@ async function main() {
     console.error(`\n${allErrors.length} error(s) found. Build failed.`);
     process.exit(1);
   }
+
+  // ENRICH: bake youtubeId and og:image for all links
+  console.log('Enriching links with YouTube IDs and OpenGraph metadata...');
+  topics.forEach((topic) => {
+    ['ko', 'en'].forEach((locale) => {
+      topic[locale].sections.forEach((section) => {
+        section.links.forEach((link) => {
+          enrichLink(link, ogCache);
+        });
+      });
+    });
+  });
+
+  // Fetch missing OG images (batched, with timeout)
+  await fetchMissingOgImages(topics, ogCache);
+
+  // Save OG cache (deterministic, sorted)
+  saveOgCache(cacheFile, ogCache);
+  console.log(`Cached OG data to ${cacheFile}`);
 
   // Sort topics by slug (deterministic)
   topics.sort((a, b) => a.slug.localeCompare(b.slug));

@@ -644,7 +644,8 @@
       },
       "link": {
         "externalLink": "External link",
-        "openInNewTab": "Open in new tab"
+        "openInNewTab": "Open in new tab",
+        "playVideo": "Play video"
       },
       "toast": {
         "favoriteAdded": "Added to favorites",

@@ -235,6 +235,90 @@ describe('bookmarks/schema', () => {
       const result = BookmarkFileFrontSchema.safeParse(invalid);
       expect(result.success).toBe(false);
     });
+
+    it('accepts optional youtubeId: 11-char ID', () => {
+      const valid = {
+        title: 'Title',
+        description: 'Description',
+        sections: [
+          {
+            heading: 'Section',
+            links: [
+              {
+                label: 'Link',
+                url: 'https://www.youtube.com/watch?v=hoY1Z08VhH0',
+                youtubeId: 'hoY1Z08VhH0',
+              },
+            ],
+          },
+        ],
+      };
+      const result = BookmarkFileFrontSchema.safeParse(valid);
+      expect(result.success).toBe(true);
+    });
+
+    it('rejects youtubeId: not 11 chars', () => {
+      const invalid = {
+        title: 'Title',
+        description: 'Description',
+        sections: [
+          {
+            heading: 'Section',
+            links: [
+              {
+                label: 'Link',
+                url: 'https://www.youtube.com/watch?v=hoY1Z08VhH0',
+                youtubeId: 'short',
+              },
+            ],
+          },
+        ],
+      };
+      const result = BookmarkFileFrontSchema.safeParse(invalid);
+      expect(result.success).toBe(false);
+    });
+
+    it('accepts optional image: valid HTTPS URL', () => {
+      const valid = {
+        title: 'Title',
+        description: 'Description',
+        sections: [
+          {
+            heading: 'Section',
+            links: [
+              {
+                label: 'Link',
+                url: 'https://example.com',
+                image: 'https://example.com/image.jpg',
+              },
+            ],
+          },
+        ],
+      };
+      const result = BookmarkFileFrontSchema.safeParse(valid);
+      expect(result.success).toBe(true);
+    });
+
+    it('rejects image: not a valid URL', () => {
+      const invalid = {
+        title: 'Title',
+        description: 'Description',
+        sections: [
+          {
+            heading: 'Section',
+            links: [
+              {
+                label: 'Link',
+                url: 'https://example.com',
+                image: 'not-a-url',
+              },
+            ],
+          },
+        ],
+      };
+      const result = BookmarkFileFrontSchema.safeParse(invalid);
+      expect(result.success).toBe(false);
+    });
   });
 
   describe('MergedTopicSchema', () => {

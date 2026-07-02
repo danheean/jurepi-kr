@@ -64,6 +64,13 @@ const defaultMessages = {
     backHome: 'Back to home',
   },
   tools: {
+    bookmarks: {
+      link: {
+        externalLink: 'External link',
+        openInNewTab: 'Open in new tab',
+        playVideo: 'Play video',
+      },
+    },
     ladder: {
       title: 'Ladder Game',
       lead: 'Decide fair orders for your group.',

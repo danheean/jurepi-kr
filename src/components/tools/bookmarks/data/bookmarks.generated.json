@@ -11,22 +11,26 @@
             {
               "label": "오픈클로 (OpenClaw) — GitHub",
               "url": "https://github.com/openclaw/openclaw",
-              "description": "자율형 개인 AI 비서 오픈소스"
+              "description": "자율형 개인 AI 비서 오픈소스",
+              "image": "https://opengraph.githubassets.com/9fb75e12f36abc60875910dab405af1557273e7c296a9cf5b43adaa4baac35c0/openclaw/openclaw"
             },
             {
               "label": "OpenClaw 공식 사이트",
               "url": "https://www.openclaw.ai/",
-              "description": "설치·소개"
+              "description": "설치·소개",
+              "image": "https://openclaw.ai/og-image.png"
             },
             {
               "label": "헤르메스 (Hermes Agent) — GitHub",
               "url": "https://github.com/NousResearch/hermes-agent",
-              "description": "Nous Research의 자기개선 에이전트"
+              "description": "Nous Research의 자기개선 에이전트",
+              "image": "https://opengraph.githubassets.com/91878ff3c3588eada437dd5ac4540a18d23346448eb37c146057eb47c45cd7ad/NousResearch/hermes-agent"
             },
             {
               "label": "Hermes Agent 공식 사이트",
               "url": "https://hermes-agent.org/",
-              "description": "영구 메모리·스킬 자동화"
+              "description": "영구 메모리·스킬 자동화",
+              "image": "https://hermes-agent.org/og-image.png"
             }
           ]
         },
@@ -36,22 +40,26 @@
             {
               "label": "OMC — Oh My Claude Code",
               "url": "https://github.com/yeachan-heo/oh-my-claudecode",
-              "description": "Claude Code 팀 멀티 에이전트 오케스트레이션"
+              "description": "Claude Code 팀 멀티 에이전트 오케스트레이션",
+              "image": "https://repository-images.githubusercontent.com/1130809465/ed0bdc3a-1d1a-4cf6-ab07-7b5c63ae2459"
             },
             {
               "label": "OMO — Oh My OpenAgent",
               "url": "https://github.com/code-yeongyu/oh-my-openagent",
-              "description": "복잡한 코드베이스용 에이전트 하네스"
+              "description": "복잡한 코드베이스용 에이전트 하네스",
+              "image": "https://opengraph.githubassets.com/9534d999dc5a4b1e422013be3a37c4b1d8ab01bb5d31245ff33792d1dacfe548/code-yeongyu/oh-my-openagent"
             },
             {
               "label": "OMA — Oh My Agent",
               "url": "https://github.com/first-fluke/oh-my-agent",
-              "description": "벤더 독립 포터블 에이전트 하네스"
+              "description": "벤더 독립 포터블 에이전트 하네스",
+              "image": "https://opengraph.githubassets.com/c88a087f6d5a89112f40cddea1855ba1b539680cb6138182be5e7f833951274c/first-fluke/oh-my-agent"
             },
             {
               "label": "MoAI — MoAI-ADK",
               "url": "https://github.com/modu-ai/moai-adk",
-              "description": "SPEC-First 에이전틱 개발 키트"
+              "description": "SPEC-First 에이전틱 개발 키트",
+              "image": "https://opengraph.githubassets.com/a2066e63564e00365f3f87f93c4a356737353df4d1dc538f8a8d413f9eaf5b55/modu-ai/moai-adk"
             }
           ]
         }
@@ -67,22 +75,26 @@
             {
               "label": "OpenClaw — GitHub",
               "url": "https://github.com/openclaw/openclaw",
-              "description": "Open-source autonomous personal AI assistant"
+              "description": "Open-source autonomous personal AI assistant",
+              "image": "https://opengraph.githubassets.com/9fb75e12f36abc60875910dab405af1557273e7c296a9cf5b43adaa4baac35c0/openclaw/openclaw"
             },
             {
               "label": "OpenClaw official site",
               "url": "https://www.openclaw.ai/",
-              "description": "Setup & intro"
+              "description": "Setup & intro",
+              "image": "https://openclaw.ai/og-image.png"
             },
             {
               "label": "Hermes Agent — GitHub",
               "url": "https://github.com/NousResearch/hermes-agent",
-              "description": "Self-improving agent by Nous Research"
+              "description": "Self-improving agent by Nous Research",
+              "image": "https://opengraph.githubassets.com/91878ff3c3588eada437dd5ac4540a18d23346448eb37c146057eb47c45cd7ad/NousResearch/hermes-agent"
             },
             {
               "label": "Hermes Agent official site",
               "url": "https://hermes-agent.org/",
-              "description": "Persistent memory & skill automation"
+              "description": "Persistent memory & skill automation",
+              "image": "https://hermes-agent.org/og-image.png"
             }
           ]
         },
@@ -92,22 +104,26 @@
             {
               "label": "OMC — Oh My Claude Code",
               "url": "https://github.com/yeachan-heo/oh-my-claudecode",
-              "description": "Teams-first multi-agent orchestration for Claude Code"
+              "description": "Teams-first multi-agent orchestration for Claude Code",
+              "image": "https://repository-images.githubusercontent.com/1130809465/ed0bdc3a-1d1a-4cf6-ab07-7b5c63ae2459"
             },
             {
               "label": "OMO — Oh My OpenAgent",
               "url": "https://github.com/code-yeongyu/oh-my-openagent",
-              "description": "Agent harness for complex codebases"
+              "description": "Agent harness for complex codebases",
+              "image": "https://opengraph.githubassets.com/9534d999dc5a4b1e422013be3a37c4b1d8ab01bb5d31245ff33792d1dacfe548/code-yeongyu/oh-my-openagent"
             },
             {
               "label": "OMA — Oh My Agent",
               "url": "https://github.com/first-fluke/oh-my-agent",
-              "description": "Portable, vendor-agnostic agent harness"
+              "description": "Portable, vendor-agnostic agent harness",
+              "image": "https://opengraph.githubassets.com/c88a087f6d5a89112f40cddea1855ba1b539680cb6138182be5e7f833951274c/first-fluke/oh-my-agent"
             },
             {
               "label": "MoAI — MoAI-ADK",
               "url": "https://github.com/modu-ai/moai-adk",
-              "description": "SPEC-First Agentic Development Kit"
+              "description": "SPEC-First Agentic Development Kit",
+              "image": "https://opengraph.githubassets.com/a2066e63564e00365f3f87f93c4a356737353df4d1dc538f8a8d413f9eaf5b55/modu-ai/moai-adk"
             }
           ]
         }
@@ -131,12 +147,14 @@
             {
               "label": "What is Context Engineering (Applied AI)",
               "url": "https://appliedai.tools/context-engineering/what-is-context-engineering-learn-approaches-by-openai-anthropic-langchain/",
-              "description": "OpenAI·Anthropic·LangChain 접근 비교"
+              "description": "OpenAI·Anthropic·LangChain 접근 비교",
+              "image": "https://appliedai.tools/wp-content/uploads/2025/11/image-4.png"
             },
             {
               "label": "Contextual Engineering Guide (GitHub)",
               "url": "https://github.com/FareedKhan-dev/contextual-engineering-guide",
-              "description": "LangChain 기반 실습 가이드"
+              "description": "LangChain 기반 실습 가이드",
+              "image": "https://opengraph.githubassets.com/19da5b4d94e449680f9725279cda3ddf0cd67012f412b768380106720135ffb4/FareedKhan-dev/contextual-engineering-guide"
             }
           ]
         },
@@ -146,12 +164,14 @@
             {
               "label": "Context Engineering for AI Agents — 2026 Guide",
               "url": "https://www.paperclipped.de/en/blog/context-engineering-ai-agents/",
-              "description": "메모리 계층·압축 실무"
+              "description": "메모리 계층·압축 실무",
+              "image": "https://www.paperclipped.de/images/posts/context-engineering-ai-agents/context-engineering-ai-agents-cover.jpg"
             },
             {
               "label": "Everything is Context (arXiv)",
               "url": "https://arxiv.org/abs/2512.05470",
-              "description": "에이전트 파일시스템 추상화 논문"
+              "description": "에이전트 파일시스템 추상화 논문",
+              "image": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png"
             },
             {
               "label": "3 Principles for Context Engineering",
@@ -177,12 +197,14 @@
             {
               "label": "What is Context Engineering (Applied AI)",
               "url": "https://appliedai.tools/context-engineering/what-is-context-engineering-learn-approaches-by-openai-anthropic-langchain/",
-              "description": "OpenAI/Anthropic/LangChain approaches"
+              "description": "OpenAI/Anthropic/LangChain approaches",
+              "image": "https://appliedai.tools/wp-content/uploads/2025/11/image-4.png"
             },
             {
               "label": "Contextual Engineering Guide (GitHub)",
               "url": "https://github.com/FareedKhan-dev/contextual-engineering-guide",
-              "description": "Hands-on LangChain-based guide"
+              "description": "Hands-on LangChain-based guide",
+              "image": "https://opengraph.githubassets.com/19da5b4d94e449680f9725279cda3ddf0cd67012f412b768380106720135ffb4/FareedKhan-dev/contextual-engineering-guide"
             }
           ]
         },
@@ -192,12 +214,14 @@
             {
               "label": "Context Engineering for AI Agents — 2026 Guide",
               "url": "https://www.paperclipped.de/en/blog/context-engineering-ai-agents/",
-              "description": "Memory tiers & compression in practice"
+              "description": "Memory tiers & compression in practice",
+              "image": "https://www.paperclipped.de/images/posts/context-engineering-ai-agents/context-engineering-ai-agents-cover.jpg"
             },
             {
               "label": "Everything is Context (arXiv)",
               "url": "https://arxiv.org/abs/2512.05470",
-              "description": "Agentic file system abstraction paper"
+              "description": "Agentic file system abstraction paper",
+              "image": "https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png"
             },
             {
               "label": "3 Principles for Context Engineering",
@@ -221,7 +245,8 @@
             {
               "label": "Figma Design System",
               "url": "https://www.figma.com/community",
-              "description": "오픈소스 디자인 파일"
+              "description": "오픈소스 디자인 파일",
+              "image": "https:&#47;&#47;static.figma.com&#47;uploads&#47;3d791db872a0158f92798fa0134d8eeaf6af5535"
             },
             {
               "label": "Material Design",
@@ -241,7 +266,8 @@
             {
               "label": "Dribbble",
               "url": "https://dribbble.com",
-              "description": "디자인 포트폴리오 플랫폼"
+              "description": "디자인 포트폴리오 플랫폼",
+              "image": "https://cdn.dribbble.com/uploads/68059/original/f95c1a744395b01385a3685ba20daac0.png?1770659618"
             },
             {
               "label": "Behance",
@@ -261,7 +287,8 @@
             {
               "label": "Figma",
               "url": "https://www.figma.com",
-              "description": "협업 디자인 도구"
+              "description": "협업 디자인 도구",
+              "image": "https://cdn.sanity.io/images/599r6htc/regionalized/b08d37520f7d5ad8d6562975b5932dd2d9a862bb-1200x630.gif?w=1200&amp;q=70&amp;fit=max&amp;auto=format"
             },
             {
               "label": "Adobe XD",
@@ -271,7 +298,8 @@
             {
               "label": "Penpot",
               "url": "https://penpot.app",
-              "description": "오픈소스 디자인 플랫폼"
+              "description": "오픈소스 디자인 플랫폼",
+              "image": "https://site-assets.plasmic.app/bd5cdab7f749bba987c8de1f2cbdff60.webp"
             }
           ]
         }
@@ -287,7 +315,8 @@
             {
               "label": "Figma Design System",
               "url": "https://www.figma.com/community",
-              "description": "Open-source design files"
+              "description": "Open-source design files",
+              "image": "https:&#47;&#47;static.figma.com&#47;uploads&#47;3d791db872a0158f92798fa0134d8eeaf6af5535"
             },
             {
               "label": "Material Design",
@@ -307,7 +336,8 @@
             {
               "label": "Dribbble",
               "url": "https://dribbble.com",
-              "description": "Design portfolio platform"
+              "description": "Design portfolio platform",
+              "image": "https://cdn.dribbble.com/uploads/68059/original/f95c1a744395b01385a3685ba20daac0.png?1770659618"
             },
             {
               "label": "Behance",
@@ -327,7 +357,8 @@
             {
               "label": "Figma",
               "url": "https://www.figma.com",
-              "description": "Collaborative design tool"
+              "description": "Collaborative design tool",
+              "image": "https://cdn.sanity.io/images/599r6htc/regionalized/b08d37520f7d5ad8d6562975b5932dd2d9a862bb-1200x630.gif?w=1200&amp;q=70&amp;fit=max&amp;auto=format"
             },
             {
               "label": "Adobe XD",
@@ -337,7 +368,8 @@
             {
               "label": "Penpot",
               "url": "https://penpot.app",
-              "description": "Open-source design platform"
+              "description": "Open-source design platform",
+              "image": "https://site-assets.plasmic.app/bd5cdab7f749bba987c8de1f2cbdff60.webp"
             }
           ]
         }
@@ -361,7 +393,8 @@
             {
               "label": "표준프레임워크 오픈커뮤니티",
               "url": "https://open.egovframe.org/",
-              "description": "개발자 커뮤니티·기술 나눔"
+              "description": "개발자 커뮤니티·기술 나눔",
+              "image": "https://open.egovframe.org/images/screenshot.png"
             },
             {
               "label": "개발환경 설치가이드 (위키)",
@@ -386,27 +419,32 @@
             {
               "label": "eGovFramework (조직)",
               "url": "https://github.com/eGovFramework",
-              "description": "표준프레임워크센터 공식 GitHub"
+              "description": "표준프레임워크센터 공식 GitHub",
+              "image": "https://avatars.githubusercontent.com/u/3771323?s=280&amp;v=4"
             },
             {
               "label": "egovframe-docs",
               "url": "https://github.com/eGovFramework/egovframe-docs",
-              "description": "포털 가이드 문서"
+              "description": "포털 가이드 문서",
+              "image": "https://opengraph.githubassets.com/5058e5b9ab207c8be6efebc4b7c43001aee3c844324904e47168afc1368b9318/eGovFramework/egovframe-docs"
             },
             {
               "label": "egovframe-runtime",
               "url": "https://github.com/eGovFramework/egovframe-runtime",
-              "description": "실행환경 모듈"
+              "description": "실행환경 모듈",
+              "image": "https://opengraph.githubassets.com/02150cbe734047b1c39f8bd9a14cadb8bd3c3ee35d4cf6ebf1380a0259208d97/eGovFramework/egovframe-runtime"
             },
             {
               "label": "egovframe-common-components",
               "url": "https://github.com/eGovFramework/egovframe-common-components",
-              "description": "재사용 공통 컴포넌트 253종"
+              "description": "재사용 공통 컴포넌트 253종",
+              "image": "https://opengraph.githubassets.com/63b9f2727c3ebda7c48dbafabe66e1c008db401cc56e9850c83b287a59be22d9/eGovFramework/egovframe-common-components"
             },
             {
               "label": "egovframe-development",
               "url": "https://github.com/eGovFramework/egovframe-development",
-              "description": "개발 도구 세트"
+              "description": "개발 도구 세트",
+              "image": "https://opengraph.githubassets.com/43119e7e403292308194c2026bc7a117cd0182d70005d7afbe706d8259d2db11/eGovFramework/egovframe-development"
             }
           ]
         },
@@ -416,17 +454,20 @@
             {
               "label": "표준프레임워크 오픈커뮤니티 (채널)",
               "url": "https://www.youtube.com/channel/UCFA9XVr5KlHZ7yW4H93udAA",
-              "description": "온라인 세미나·강의 채널"
+              "description": "온라인 세미나·강의 채널",
+              "image": "https://yt3.googleusercontent.com/JH7LysBU-TCkOdDp0cdwlKmQiZHU6a-ZlttdbO6yTBaqFSeZsqJq0WRGZ_4yoMA7qLZbT0_dDQ=s900-c-k-c0x00ffffff-no-rj"
             },
             {
               "label": "강의01. 표준프레임워크 개요",
               "url": "https://www.youtube.com/watch?v=hoY1Z08VhH0",
-              "description": "입문 개요 강의"
+              "description": "입문 개요 강의",
+              "youtubeId": "hoY1Z08VhH0"
             },
             {
               "label": "강의02. 개발환경 소개 및 개인빌드",
               "url": "https://www.youtube.com/watch?v=1_X8xRrF7DI",
-              "description": "개발환경·구현도구 실습"
+              "description": "개발환경·구현도구 실습",
+              "youtubeId": "1_X8xRrF7DI"
             }
           ]
         }
@@ -447,7 +488,8 @@
             {
               "label": "eGovFrame Open Community",
               "url": "https://open.egovframe.org/",
-              "description": "Developer community & knowledge sharing"
+              "description": "Developer community & knowledge sharing",
+              "image": "https://open.egovframe.org/images/screenshot.png"
             },
             {
               "label": "Dev Environment Install Guide (Wiki)",
@@ -472,27 +514,32 @@
             {
               "label": "eGovFramework (organization)",
               "url": "https://github.com/eGovFramework",
-              "description": "Official GitHub of the framework center"
+              "description": "Official GitHub of the framework center",
+              "image": "https://avatars.githubusercontent.com/u/3771323?s=280&amp;v=4"
             },
             {
               "label": "egovframe-docs",
               "url": "https://github.com/eGovFramework/egovframe-docs",
-              "description": "Portal guide documents"
+              "description": "Portal guide documents",
+              "image": "https://opengraph.githubassets.com/5058e5b9ab207c8be6efebc4b7c43001aee3c844324904e47168afc1368b9318/eGovFramework/egovframe-docs"
             },
             {
               "label": "egovframe-runtime",
               "url": "https://github.com/eGovFramework/egovframe-runtime",
-              "description": "Runtime environment modules"
+              "description": "Runtime environment modules",
+              "image": "https://opengraph.githubassets.com/02150cbe734047b1c39f8bd9a14cadb8bd3c3ee35d4cf6ebf1380a0259208d97/eGovFramework/egovframe-runtime"
             },
             {
               "label": "egovframe-common-components",
               "url": "https://github.com/eGovFramework/egovframe-common-components",
-              "description": "253 reusable common components"
+              "description": "253 reusable common components",
+              "image": "https://opengraph.githubassets.com/63b9f2727c3ebda7c48dbafabe66e1c008db401cc56e9850c83b287a59be22d9/eGovFramework/egovframe-common-components"
             },
             {
               "label": "egovframe-development",
               "url": "https://github.com/eGovFramework/egovframe-development",
-              "description": "Set of development tools"
+              "description": "Set of development tools",
+              "image": "https://opengraph.githubassets.com/43119e7e403292308194c2026bc7a117cd0182d70005d7afbe706d8259d2db11/eGovFramework/egovframe-development"
             }
           ]
         },
@@ -502,17 +549,20 @@
             {
               "label": "eGovFrame Open Community (channel)",
               "url": "https://www.youtube.com/channel/UCFA9XVr5KlHZ7yW4H93udAA",
-              "description": "Online seminars & lecture channel"
+              "description": "Online seminars & lecture channel",
+              "image": "https://yt3.googleusercontent.com/JH7LysBU-TCkOdDp0cdwlKmQiZHU6a-ZlttdbO6yTBaqFSeZsqJq0WRGZ_4yoMA7qLZbT0_dDQ=s900-c-k-c0x00ffffff-no-rj"
             },
             {
               "label": "Lecture 01. Framework Overview",
               "url": "https://www.youtube.com/watch?v=hoY1Z08VhH0",
-              "description": "Introductory overview lecture"
+              "description": "Introductory overview lecture",
+              "youtubeId": "hoY1Z08VhH0"
             },
             {
               "label": "Lecture 02. Dev Environment & Build",
               "url": "https://www.youtube.com/watch?v=1_X8xRrF7DI",
-              "description": "Dev environment & tooling walkthrough"
+              "description": "Dev environment & tooling walkthrough",
+              "youtubeId": "1_X8xRrF7DI"
             }
           ]
         }
@@ -531,17 +581,20 @@
             {
               "label": "GitHub Copilot (무료 체험)",
               "url": "https://github.com/features/copilot",
-              "description": "AI 코드 완성"
+              "description": "AI 코드 완성",
+              "image": "https://images.ctfassets.net/wfutmusr1t3h/4KxWJH8PVVXdqBLs1V3UJ8/0079958c464847c85fe7708ddd990889/github-copilot-social-img.png"
             },
             {
               "label": "VS Code",
               "url": "https://code.visualstudio.com",
-              "description": "무료 엔터프라이즈 에디터"
+              "description": "무료 엔터프라이즈 에디터",
+              "image": "https://code.visualstudio.com/opengraphimg/opengraph-home.png"
             },
             {
               "label": "Replit",
               "url": "https://replit.com",
-              "description": "온라인 IDE"
+              "description": "온라인 IDE",
+              "image": "https://replit.com/public/images/opengraph_rebrand.jpg"
             }
           ]
         },
@@ -551,12 +604,14 @@
             {
               "label": "Vercel",
               "url": "https://vercel.com",
-              "description": "Next.js 최적화 호스팅 (무료)"
+              "description": "Next.js 최적화 호스팅 (무료)",
+              "image": "https://lishhsx6kmthaacj.public.blob.vercel-storage.com/og-home-not-x.png"
             },
             {
               "label": "Netlify",
               "url": "https://www.netlify.com",
-              "description": "정적 사이트 호스팅"
+              "description": "정적 사이트 호스팅",
+              "image": "https://www.netlify.com/images/og-image-default.png"
             },
             {
               "label": "GitHub Pages",
@@ -576,12 +631,14 @@
             {
               "label": "Sentry",
               "url": "https://sentry.io",
-              "description": "에러 추적 (무료 플랜)"
+              "description": "에러 추적 (무료 플랜)",
+              "image": "https://sentry.io/_astro/home-hero-meta.DJDejDMD.webp"
             },
             {
               "label": "Lighthouse CI",
               "url": "https://github.com/GoogleChrome/lighthouse-ci",
-              "description": "성능 모니터링"
+              "description": "성능 모니터링",
+              "image": "https://opengraph.githubassets.com/82b29923bc563df96fca007b8d81d79f9aa99c82672531aabf94c1e2b315a21c/GoogleChrome/lighthouse-ci"
             }
           ]
         }
@@ -597,17 +654,20 @@
             {
               "label": "GitHub Copilot (free trial)",
               "url": "https://github.com/features/copilot",
-              "description": "AI code completion"
+              "description": "AI code completion",
+              "image": "https://images.ctfassets.net/wfutmusr1t3h/4KxWJH8PVVXdqBLs1V3UJ8/0079958c464847c85fe7708ddd990889/github-copilot-social-img.png"
             },
             {
               "label": "VS Code",
               "url": "https://code.visualstudio.com",
-              "description": "Free enterprise editor"
+              "description": "Free enterprise editor",
+              "image": "https://code.visualstudio.com/opengraphimg/opengraph-home.png"
             },
             {
               "label": "Replit",
               "url": "https://replit.com",
-              "description": "Online IDE"
+              "description": "Online IDE",
+              "image": "https://replit.com/public/images/opengraph_rebrand.jpg"
             }
           ]
         },
@@ -617,12 +677,14 @@
             {
               "label": "Vercel",
               "url": "https://vercel.com",
-              "description": "Next.js optimized hosting (free)"
+              "description": "Next.js optimized hosting (free)",
+              "image": "https://lishhsx6kmthaacj.public.blob.vercel-storage.com/og-home-not-x.png"
             },
             {
               "label": "Netlify",
               "url": "https://www.netlify.com",
-              "description": "Static site hosting"
+              "description": "Static site hosting",
+              "image": "https://www.netlify.com/images/og-image-default.png"
             },
             {
               "label": "GitHub Pages",
@@ -642,12 +704,14 @@
             {
               "label": "Sentry",
               "url": "https://sentry.io",
-              "description": "Error tracking (free plan)"
+              "description": "Error tracking (free plan)",
+              "image": "https://sentry.io/_astro/home-hero-meta.DJDejDMD.webp"
             },
             {
               "label": "Lighthouse CI",
               "url": "https://github.com/GoogleChrome/lighthouse-ci",
-              "description": "Performance monitoring"
+              "description": "Performance monitoring",
+              "image": "https://opengraph.githubassets.com/82b29923bc563df96fca007b8d81d79f9aa99c82672531aabf94c1e2b315a21c/GoogleChrome/lighthouse-ci"
             }
           ]
         }
@@ -666,12 +730,14 @@
             {
               "label": "React 공식 문서",
               "url": "https://react.dev",
-              "description": "최신 React 18+ API"
+              "description": "최신 React 18+ API",
+              "image": "https://react.dev/images/og-home.png"
             },
             {
               "label": "Next.js",
               "url": "https://nextjs.org",
-              "description": "풀스택 React 프레임워크"
+              "description": "풀스택 React 프레임워크",
+              "image": "https://h8dxkfmaphn8o0p3.public.blob.vercel-storage.com/nextjs/twitter-card.png"
             },
             {
               "label": "TypeScript 핸드북",
@@ -686,17 +752,20 @@
             {
               "label": "Tailwind CSS",
               "url": "https://tailwindcss.com",
-              "description": "유틸리티 우선 CSS"
+              "description": "유틸리티 우선 CSS",
+              "image": "https://tailwindcss.com/opengraph-image.jpg?opengraph-image.0jwfhnd690..4.jpg"
             },
             {
               "label": "CSS-in-JS Solutions",
               "url": "https://github.com/styled-components/styled-components",
-              "description": "Styled Components"
+              "description": "Styled Components",
+              "image": "https://repository-images.githubusercontent.com/65794292/bdacfa80-6132-11e9-90b9-33e6eee04d1f"
             },
             {
               "label": "CSS Grid & Flexbox",
               "url": "https://css-tricks.com/snippets/css/a-guide-to-flexbox/",
-              "description": "레이아웃 마스터"
+              "description": "레이아웃 마스터",
+              "image": "https://i0.wp.com/css-tricks.com/wp-content/uploads/2018/12/guide-flexbox.png"
             }
           ]
         },
@@ -706,7 +775,8 @@
             {
               "label": "Web Vitals",
               "url": "https://web.dev/vitals/",
-              "description": "Core Web Vitals 가이드"
+              "description": "Core Web Vitals 가이드",
+              "image": "https://web.dev/static/articles/vitals/image/thumbnail.png?hl=ja"
             },
             {
               "label": "Lighthouse",
@@ -732,12 +802,14 @@
             {
               "label": "React Official Docs",
               "url": "https://react.dev",
-              "description": "Latest React 18+ APIs"
+              "description": "Latest React 18+ APIs",
+              "image": "https://react.dev/images/og-home.png"
             },
             {
               "label": "Next.js",
               "url": "https://nextjs.org",
-              "description": "Full-stack React framework"
+              "description": "Full-stack React framework",
+              "image": "https://h8dxkfmaphn8o0p3.public.blob.vercel-storage.com/nextjs/twitter-card.png"
             },
             {
               "label": "TypeScript Handbook",
@@ -752,17 +824,20 @@
             {
               "label": "Tailwind CSS",
               "url": "https://tailwindcss.com",
-              "description": "Utility-first CSS"
+              "description": "Utility-first CSS",
+              "image": "https://tailwindcss.com/opengraph-image.jpg?opengraph-image.0jwfhnd690..4.jpg"
             },
             {
               "label": "CSS-in-JS Solutions",
               "url": "https://github.com/styled-components/styled-components",
-              "description": "Styled Components"
+              "description": "Styled Components",
+              "image": "https://repository-images.githubusercontent.com/65794292/bdacfa80-6132-11e9-90b9-33e6eee04d1f"
             },
             {
               "label": "CSS Grid & Flexbox",
               "url": "https://css-tricks.com/snippets/css/a-guide-to-flexbox/",
-              "description": "Layout mastery"
+              "description": "Layout mastery",
+              "image": "https://i0.wp.com/css-tricks.com/wp-content/uploads/2018/12/guide-flexbox.png"
             }
           ]
         },
@@ -772,7 +847,8 @@
             {
               "label": "Web Vitals",
               "url": "https://web.dev/vitals/",
-              "description": "Core Web Vitals guide"
+              "description": "Core Web Vitals guide",
+              "image": "https://web.dev/static/articles/vitals/image/thumbnail.png?hl=ja"
             },
             {
               "label": "Lighthouse",
@@ -801,7 +877,8 @@
             {
               "label": "Agent Orchestration 101",
               "url": "https://anthropic.com/research",
-              "description": "AI 에이전트 설계의 기초"
+              "description": "AI 에이전트 설계의 기초",
+              "image": "https://cdn.sanity.io/images/4zrzovbb/website/6d4a0d28992ade92d6fa63646fd9c9d318245c6c-2400x1260.jpg"
             },
             {
               "label": "TDD: Test-Driven Development",
@@ -831,7 +908,8 @@
             {
               "label": "Debugging Techniques",
               "url": "https://debuggingbook.org/",
-              "description": "체계적인 버그 추적"
+              "description": "체계적인 버그 추적",
+              "image": "https://www.debuggingbook.org/html/PICS/wordcloud.png"
             }
           ]
         },
@@ -841,12 +919,14 @@
             {
               "label": "Refactoring",
               "url": "https://refactoring.guru/",
-              "description": "코드 개선 카탈로그"
+              "description": "코드 개선 카탈로그",
+              "image": "https://refactoring.guru/images/refactoring/social/facebook-share-preview.png?id=dbf9e98269595be86eb668f365be6868"
             },
             {
               "label": "Design Patterns",
               "url": "https://en.wikipedia.org/wiki/Design_Patterns",
-              "description": "반복되는 설계 문제의 해결책"
+              "description": "반복되는 설계 문제의 해결책",
+              "image": "https://upload.wikimedia.org/wikipedia/en/7/78/Design_Patterns_cover.jpg"
             },
             {
               "label": "Error Handling",
@@ -867,7 +947,8 @@
             {
               "label": "Agent Orchestration 101",
               "url": "https://anthropic.com/research",
-              "description": "Foundations of AI agent design"
+              "description": "Foundations of AI agent design",
+              "image": "https://cdn.sanity.io/images/4zrzovbb/website/6d4a0d28992ade92d6fa63646fd9c9d318245c6c-2400x1260.jpg"
             },
             {
               "label": "TDD: Test-Driven Development",
@@ -897,7 +978,8 @@
             {
               "label": "Debugging Techniques",
               "url": "https://debuggingbook.org/",
-              "description": "Systematic bug tracking"
+              "description": "Systematic bug tracking",
+              "image": "https://www.debuggingbook.org/html/PICS/wordcloud.png"
             }
           ]
         },
@@ -907,12 +989,14 @@
             {
               "label": "Refactoring",
               "url": "https://refactoring.guru/",
-              "description": "Catalog of code improvements"
+              "description": "Catalog of code improvements",
+              "image": "https://refactoring.guru/images/refactoring/social/facebook-share-preview.png?id=dbf9e98269595be86eb668f365be6868"
             },
             {
               "label": "Design Patterns",
               "url": "https://en.wikipedia.org/wiki/Design_Patterns",
-              "description": "Solutions to recurring design problems"
+              "description": "Solutions to recurring design problems",
+              "image": "https://upload.wikimedia.org/wikipedia/en/7/78/Design_Patterns_cover.jpg"
             },
             {
               "label": "Error Handling",
@@ -936,17 +1020,20 @@
             {
               "label": "Anthropic — 프롬프트 엔지니어링 개요",
               "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
-              "description": "Claude 공식 프롬프트 문서"
+              "description": "Claude 공식 프롬프트 문서",
+              "image": "https://platform.claude.com/docs/og?locale=en&amp;path=build-with-claude/prompt-engineering/overview&amp;design-rev=1"
             },
             {
               "label": "Anthropic 인터랙티브 튜토리얼 (GitHub)",
               "url": "https://github.com/anthropics/prompt-eng-interactive-tutorial",
-              "description": "9챕터 실습 튜토리얼"
+              "description": "9챕터 실습 튜토리얼",
+              "image": "https://opengraph.githubassets.com/6db3f855f1083fd10bf4ca85855541c423119c385976107c9e21423c024d9263/anthropics/prompt-eng-interactive-tutorial"
             },
             {
               "label": "OpenAI — Prompt engineering 가이드",
               "url": "https://platform.openai.com/docs/guides/prompt-engineering",
-              "description": "GPT 프롬프트 베스트 프랙티스"
+              "description": "GPT 프롬프트 베스트 프랙티스",
+              "image": "https://developers.openai.com/og/api/docs/guides/prompt-engineering.png"
             },
             {
               "label": "Google — 프롬프트 전략 (Gemini)",
@@ -971,7 +1058,8 @@
             {
               "label": "OpenAI Cookbook",
               "url": "https://cookbook.openai.com/",
-              "description": "실전 예제 모음"
+              "description": "실전 예제 모음",
+              "image": "https://developers.openai.com/open-graph.png"
             }
           ]
         }
@@ -987,17 +1075,20 @@
             {
               "label": "Anthropic — Prompt Engineering Overview",
               "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
-              "description": "Official Claude prompting docs"
+              "description": "Official Claude prompting docs",
+              "image": "https://platform.claude.com/docs/og?locale=en&amp;path=build-with-claude/prompt-engineering/overview&amp;design-rev=1"
             },
             {
               "label": "Anthropic Interactive Tutorial (GitHub)",
               "url": "https://github.com/anthropics/prompt-eng-interactive-tutorial",
-              "description": "9-chapter hands-on tutorial"
+              "description": "9-chapter hands-on tutorial",
+              "image": "https://opengraph.githubassets.com/6db3f855f1083fd10bf4ca85855541c423119c385976107c9e21423c024d9263/anthropics/prompt-eng-interactive-tutorial"
             },
             {
               "label": "OpenAI — Prompt engineering guide",
               "url": "https://platform.openai.com/docs/guides/prompt-engineering",
-              "description": "GPT prompting best practices"
+              "description": "GPT prompting best practices",
+              "image": "https://developers.openai.com/og/api/docs/guides/prompt-engineering.png"
             },
             {
               "label": "Google — Prompting strategies (Gemini)",
@@ -1022,7 +1113,8 @@
             {
               "label": "OpenAI Cookbook",
               "url": "https://cookbook.openai.com/",
-              "description": "Practical example collection"
+              "description": "Practical example collection",
+              "image": "https://developers.openai.com/open-graph.png"
             }
           ]
         }

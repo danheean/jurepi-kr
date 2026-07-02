@@ -22,6 +22,8 @@ export function TopicSections({ sections, locale }: TopicSectionsProps) {
                   url={link.url}
                   description={link.description}
                   locale={locale}
+                  youtubeId={link.youtubeId}
+                  image={link.image}
                 />
               </li>
             ))}
