@@ -246,7 +246,7 @@
               "label": "Figma Design System",
               "url": "https://www.figma.com/community",
               "description": "오픈소스 디자인 파일",
-              "image": "https:&#47;&#47;static.figma.com&#47;uploads&#47;3d791db872a0158f92798fa0134d8eeaf6af5535"
+              "image": "https://static.figma.com/uploads/3d791db872a0158f92798fa0134d8eeaf6af5535"
             },
             {
               "label": "Material Design",
@@ -288,7 +288,7 @@
               "label": "Figma",
               "url": "https://www.figma.com",
               "description": "협업 디자인 도구",
-              "image": "https://cdn.sanity.io/images/599r6htc/regionalized/b08d37520f7d5ad8d6562975b5932dd2d9a862bb-1200x630.gif?w=1200&amp;q=70&amp;fit=max&amp;auto=format"
+              "image": "https://cdn.sanity.io/images/599r6htc/regionalized/b08d37520f7d5ad8d6562975b5932dd2d9a862bb-1200x630.gif?w=1200&q=70&fit=max&auto=format"
             },
             {
               "label": "Adobe XD",
@@ -316,7 +316,7 @@
               "label": "Figma Design System",
               "url": "https://www.figma.com/community",
               "description": "Open-source design files",
-              "image": "https:&#47;&#47;static.figma.com&#47;uploads&#47;3d791db872a0158f92798fa0134d8eeaf6af5535"
+              "image": "https://static.figma.com/uploads/3d791db872a0158f92798fa0134d8eeaf6af5535"
             },
             {
               "label": "Material Design",
@@ -358,7 +358,7 @@
               "label": "Figma",
               "url": "https://www.figma.com",
               "description": "Collaborative design tool",
-              "image": "https://cdn.sanity.io/images/599r6htc/regionalized/b08d37520f7d5ad8d6562975b5932dd2d9a862bb-1200x630.gif?w=1200&amp;q=70&amp;fit=max&amp;auto=format"
+              "image": "https://cdn.sanity.io/images/599r6htc/regionalized/b08d37520f7d5ad8d6562975b5932dd2d9a862bb-1200x630.gif?w=1200&q=70&fit=max&auto=format"
             },
             {
               "label": "Adobe XD",
@@ -420,7 +420,7 @@
               "label": "eGovFramework (조직)",
               "url": "https://github.com/eGovFramework",
               "description": "표준프레임워크센터 공식 GitHub",
-              "image": "https://avatars.githubusercontent.com/u/3771323?s=280&amp;v=4"
+              "image": "https://avatars.githubusercontent.com/u/3771323?s=280&v=4"
             },
             {
               "label": "egovframe-docs",
@@ -515,7 +515,7 @@
               "label": "eGovFramework (organization)",
               "url": "https://github.com/eGovFramework",
               "description": "Official GitHub of the framework center",
-              "image": "https://avatars.githubusercontent.com/u/3771323?s=280&amp;v=4"
+              "image": "https://avatars.githubusercontent.com/u/3771323?s=280&v=4"
             },
             {
               "label": "egovframe-docs",
@@ -1021,7 +1021,7 @@
               "label": "Anthropic — 프롬프트 엔지니어링 개요",
               "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
               "description": "Claude 공식 프롬프트 문서",
-              "image": "https://platform.claude.com/docs/og?locale=en&amp;path=build-with-claude/prompt-engineering/overview&amp;design-rev=1"
+              "image": "https://platform.claude.com/docs/og?locale=en&path=build-with-claude/prompt-engineering/overview&design-rev=1"
             },
             {
               "label": "Anthropic 인터랙티브 튜토리얼 (GitHub)",
@@ -1076,7 +1076,7 @@
               "label": "Anthropic — Prompt Engineering Overview",
               "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
               "description": "Official Claude prompting docs",
-              "image": "https://platform.claude.com/docs/og?locale=en&amp;path=build-with-claude/prompt-engineering/overview&amp;design-rev=1"
+              "image": "https://platform.claude.com/docs/og?locale=en&path=build-with-claude/prompt-engineering/overview&design-rev=1"
             },
             {
               "label": "Anthropic Interactive Tutorial (GitHub)",

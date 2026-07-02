@@ -144,6 +144,25 @@ function extractYoutubeId(url) {
 }
 
 /**
+ * Decode HTML entities in an attribute value. `og:image` is read from a raw
+ * `content="…"` attribute, where URLs are entity-encoded (`&amp;` for query
+ * separators, `&#47;`/`&#x2F;` for slashes). Storing the raw match leaves those
+ * entities in the cached URL, producing broken hosts (`&#47;&#47;host`) or
+ * literal `&amp;` query params. Decode numeric entities first, then named, with
+ * `&amp;` last so a doubly-encoded value isn't collapsed twice.
+ */
+function decodeHtmlEntities(str) {
+  return str
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)))
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
+}
+
+/**
  * Fetch og:image from a URL, with timeout and retry-free best-effort logic.
  * Returns null if fetch fails, timeout, or no og:image found.
  */
@@ -176,7 +195,7 @@ async function fetchOgImage(url) {
       return null;
     }
 
-    let imageUrl = ogImageMatch[1];
+    let imageUrl = decodeHtmlEntities(ogImageMatch[1]);
 
     // Resolve relative URLs to absolute
     if (imageUrl.startsWith('/')) {
