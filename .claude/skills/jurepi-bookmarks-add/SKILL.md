@@ -23,6 +23,7 @@ description: >-
 - 템플릿·작성 규칙: `content/bookmarks/_TEMPLATE.md`, `_TEMPLATE_en.md`, `content/bookmarks/README.md`를 먼저 읽고 그 형식을 따른다.
 - 생성기 `scripts/generate-bookmarks.mjs`가 폴더를 스캔·검증해 `src/components/tools/bookmarks/data/bookmarks.generated.json`으로 굽는다. `predev`/`prebuild`에 배선돼 있어 dev/build 시 자동 실행된다.
 - 토픽 탭·검색·상세는 **카탈로그에서 자동 파생**된다 — 쌍만 넣으면 리스트·검색·상세에 나타난다. 레지스트리/라우트/i18n 변경 불필요(그건 새 *도구*를 만들 때만 — `jurepi-build`).
+- **링크 리치 렌더는 자동(빌드타임 베이킹, 마크다운에 안 씀)**: 생성기가 각 링크에 `youtubeId`(임베드 가능 영상 URL)와 `image`(og:image)를 구워 넣는다. 임베드 가능 YouTube 영상(watch/youtu.be/embed/shorts) → 상세에서 클릭-투-로드 라이트 임베드(`youtube-nocookie` iframe). 그 외(채널·GitHub·웹페이지) → og:image가 있으면 64px 썸네일, 없으면 평범한 행. **OG는 cache-first**: `content/bookmarks/.og-cache.json`(URL→{image})에 있으면 네트워크 없이 재사용, 없으면 5s 타임아웃 fetch 후 캐시(실패는 null 캐시=폴백, 빌드 실패 안 함). **새 링크를 추가하면 로컬에서 생성기를 한 번 돌려 OG를 fetch·캐시한 뒤 `.og-cache.json`을 반드시 함께 커밋**한다(그래야 CF 빌드가 오프라인·결정적). YouTube 영상 썸네일은 id에서 유도하므로 fetch 안 함.
 
 ### frontmatter 필드 (한 파일 기준)
 ```yaml
@@ -80,6 +81,7 @@ pnpm build                    # 정적 export(out/) 그린. /ko·/en tools/bookm
   - **선택 링(sky 링)만 보고 통과 금지 — 상세 패널이 실제로 열려 섹션 heading + 링크 행이 렌더**되는지 스냅샷/스크린샷으로 본다. (과거 실제 결함: 훅이 카탈로그를 `initCatalog` 초기화 안 해 `byId`가 null → 카드 선택 링은 켜지는데 상세가 전혀 안 떴고 tsc·전체 유닛은 그린이었다. 상세 콘텐츠 렌더까지 눈으로 확인해야 잡힌다.)
   - **콘솔 에러 0** — 특히 `MISSING_MESSAGE`(ui가 카탈로그에 없는 i18n 키를 쓰면 런타임에만 터진다). 카드 클릭 시나리오에서 재확인.
   - 각 링크 행에 **외부링크 아이콘**·`target=_blank rel=noopener`, KO는 한글 label/설명, EN은 영문.
+  - **YouTube 영상 링크는 클릭-투-로드 임베드**로 보이는지(썸네일+▶ 파사드 → 클릭 시 `youtube-nocookie` iframe 전환), **og:image 있는 링크는 64px 썸네일**이 뜨는지 확인. og 없는 링크는 평범한 행으로 폴백돼야 한다(깨진 이미지 금지).
   - 320px에서 링크 행이 가로 오버플로 없이 스택되는지.
 - **SEO/GEO 프리렌더 확인**: 새 토픽이 구조화 데이터(ItemList)와 프리렌더 HTML에 반영됐는지(AI 크롤러는 JS 미실행 → 게이트 밖 SSR이어야 노출).
   ```bash
