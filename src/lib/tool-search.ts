@@ -87,9 +87,9 @@ export interface CategoryOption {
 }
 
 /**
- * Stable sort order for categories: all → random → calculator → text → converter → fun → mindset → dev.
+ * Stable sort order for categories: all → random → calculator → text → converter → fun → mindset → dev → news.
  */
-const CATEGORY_ORDER: Array<ToolCategory | 'all'> = [
+export const CATEGORY_ORDER: Array<ToolCategory | 'all'> = [
   'all',
   'random',
   'calculator',
@@ -98,6 +98,7 @@ const CATEGORY_ORDER: Array<ToolCategory | 'all'> = [
   'fun',
   'mindset',
   'dev',
+  'news',
 ];
 
 /**

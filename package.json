@@ -5,9 +5,9 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "predev": "node scripts/generate-glossary.mjs",
+    "predev": "node scripts/generate-glossary.mjs && node scripts/generate-rankings.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/generate-glossary.mjs",
+    "prebuild": "node scripts/generate-glossary.mjs && node scripts/generate-rankings.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

@@ -1,0 +1,256 @@
+[
+  {
+    "slug": "llm-agent-leaderboard",
+    "field": "ai",
+    "asOfDate": "2026-06",
+    "sourceNote": "Agent Arena Leaderboard · 2026-06-29",
+    "sourceUrl": "https://arena.ai/leaderboard/agent",
+    "ko": {
+      "title": "LLM 에이전트 순위",
+      "items": [
+        {
+          "rank": 1,
+          "name": "Claude Fable 5 (High)",
+          "description": "제공: Anthropic · 순개선도 13.34%"
+        },
+        {
+          "rank": 2,
+          "name": "Claude Opus 4.8 (Thinking)",
+          "description": "제공: Anthropic · 순개선도 9.37%"
+        },
+        {
+          "rank": 3,
+          "name": "GPT 5.5 (xHigh)",
+          "description": "제공: OpenAI · 순개선도 8.21%"
+        },
+        {
+          "rank": 4,
+          "name": "Claude Opus 4.7",
+          "description": "제공: Anthropic · 순개선도 8.16%"
+        },
+        {
+          "rank": 5,
+          "name": "Claude Opus 4.7 (Thinking)",
+          "description": "제공: Anthropic · 순개선도 8.07%"
+        },
+        {
+          "rank": 6,
+          "name": "GPT 5.5 (High)",
+          "description": "제공: OpenAI · 순개선도 7.13%"
+        },
+        {
+          "rank": 7,
+          "name": "GLM 5.2 (Max)",
+          "description": "제공: Zhipu AI · 순개선도 6.93%"
+        },
+        {
+          "rank": 8,
+          "name": "GPT 5.4 (High)",
+          "description": "제공: OpenAI · 순개선도 6.65%"
+        },
+        {
+          "rank": 9,
+          "name": "Claude Opus 4.6",
+          "description": "제공: Anthropic · 순개선도 6.47%"
+        },
+        {
+          "rank": 10,
+          "name": "GPT 5.5",
+          "description": "제공: OpenAI · 순개선도 6.22%"
+        }
+      ]
+    },
+    "en": {
+      "title": "LLM Agent Leaderboard",
+      "items": [
+        {
+          "rank": 1,
+          "name": "Claude Fable 5 (High)",
+          "description": "By Anthropic · net improvement 13.34%"
+        },
+        {
+          "rank": 2,
+          "name": "Claude Opus 4.8 (Thinking)",
+          "description": "By Anthropic · net improvement 9.37%"
+        },
+        {
+          "rank": 3,
+          "name": "GPT 5.5 (xHigh)",
+          "description": "By OpenAI · net improvement 8.21%"
+        },
+        {
+          "rank": 4,
+          "name": "Claude Opus 4.7",
+          "description": "By Anthropic · net improvement 8.16%"
+        },
+        {
+          "rank": 5,
+          "name": "Claude Opus 4.7 (Thinking)",
+          "description": "By Anthropic · net improvement 8.07%"
+        },
+        {
+          "rank": 6,
+          "name": "GPT 5.5 (High)",
+          "description": "By OpenAI · net improvement 7.13%"
+        },
+        {
+          "rank": 7,
+          "name": "GLM 5.2 (Max)",
+          "description": "By Zhipu AI · net improvement 6.93%"
+        },
+        {
+          "rank": 8,
+          "name": "GPT 5.4 (High)",
+          "description": "By OpenAI · net improvement 6.65%"
+        },
+        {
+          "rank": 9,
+          "name": "Claude Opus 4.6",
+          "description": "By Anthropic · net improvement 6.47%"
+        },
+        {
+          "rank": 10,
+          "name": "GPT 5.5",
+          "description": "By OpenAI · net improvement 6.22%"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "tiobe-programming-languages",
+    "field": "programming",
+    "asOfDate": "2026-06",
+    "sourceNote": "TIOBE Index · 2026-06",
+    "sourceUrl": "https://www.tiobe.com/tiobe-index/",
+    "ko": {
+      "title": "프로그래밍 언어 인기 순위",
+      "items": [
+        {
+          "rank": 1,
+          "name": "Python",
+          "description": "TIOBE 레이팅 18.96% (전년 대비 -6.91%p)"
+        },
+        {
+          "rank": 2,
+          "name": "C",
+          "description": "TIOBE 레이팅 10.77% (전년 대비 +1.30%p)"
+        },
+        {
+          "rank": 3,
+          "name": "C++",
+          "description": "TIOBE 레이팅 8.03% (전년 대비 -2.65%p)"
+        },
+        {
+          "rank": 4,
+          "name": "Java",
+          "description": "TIOBE 레이팅 7.90% (전년 대비 -0.94%p)"
+        },
+        {
+          "rank": 5,
+          "name": "C#",
+          "description": "TIOBE 레이팅 4.85% (전년 대비 +0.17%p)"
+        },
+        {
+          "rank": 6,
+          "name": "JavaScript",
+          "description": "TIOBE 레이팅 3.04% (전년 대비 -0.17%p)"
+        },
+        {
+          "rank": 7,
+          "name": "Visual Basic",
+          "description": "TIOBE 레이팅 2.80% (전년 대비 +0.59%p)"
+        },
+        {
+          "rank": 8,
+          "name": "SQL",
+          "description": "TIOBE 레이팅 1.77% (전년 대비 +0.23%p)"
+        },
+        {
+          "rank": 9,
+          "name": "R",
+          "description": "TIOBE 레이팅 1.69% (전년 대비 +0.30%p)"
+        },
+        {
+          "rank": 10,
+          "name": "Delphi/Object Pascal",
+          "description": "TIOBE 레이팅 1.54% (전년 대비 -0.60%p)"
+        },
+        {
+          "rank": 11,
+          "name": "Scratch",
+          "description": "TIOBE 레이팅 1.46% (전년 대비 +0.27%p)"
+        },
+        {
+          "rank": 12,
+          "name": "Rust",
+          "description": "TIOBE 레이팅 1.26% (전년 대비 +0.30%p)"
+        }
+      ]
+    },
+    "en": {
+      "title": "Programming Language Popularity",
+      "items": [
+        {
+          "rank": 1,
+          "name": "Python",
+          "description": "TIOBE rating 18.96% (YoY -6.91%p)"
+        },
+        {
+          "rank": 2,
+          "name": "C",
+          "description": "TIOBE rating 10.77% (YoY +1.30%p)"
+        },
+        {
+          "rank": 3,
+          "name": "C++",
+          "description": "TIOBE rating 8.03% (YoY -2.65%p)"
+        },
+        {
+          "rank": 4,
+          "name": "Java",
+          "description": "TIOBE rating 7.90% (YoY -0.94%p)"
+        },
+        {
+          "rank": 5,
+          "name": "C#",
+          "description": "TIOBE rating 4.85% (YoY +0.17%p)"
+        },
+        {
+          "rank": 6,
+          "name": "JavaScript",
+          "description": "TIOBE rating 3.04% (YoY -0.17%p)"
+        },
+        {
+          "rank": 7,
+          "name": "Visual Basic",
+          "description": "TIOBE rating 2.80% (YoY +0.59%p)"
+        },
+        {
+          "rank": 8,
+          "name": "SQL",
+          "description": "TIOBE rating 1.77% (YoY +0.23%p)"
+        },
+        {
+          "rank": 9,
+          "name": "R",
+          "description": "TIOBE rating 1.69% (YoY +0.30%p)"
+        },
+        {
+          "rank": 10,
+          "name": "Delphi/Object Pascal",
+          "description": "TIOBE rating 1.54% (YoY -0.60%p)"
+        },
+        {
+          "rank": 11,
+          "name": "Scratch",
+          "description": "TIOBE rating 1.46% (YoY +0.27%p)"
+        },
+        {
+          "rank": 12,
+          "name": "Rust",
+          "description": "TIOBE rating 1.26% (YoY +0.30%p)"
+        }
+      ]
+    }
+  }
+]

@@ -62,7 +62,8 @@
     "converter": "Converter",
     "fun": "Fun",
     "mindset": "Mindset",
-    "dev": "Developer"
+    "dev": "Developer",
+    "news": "News & Rankings"
   },
   "emptyState": {
     "heading": "No results found",
@@ -603,6 +604,90 @@
       "meta": {
         "title": "URL Encoder / Decoder — Free Online Tool",
         "description": "Encode and decode URLs. Supports UTF-8 and EUC-KR (CP949) charsets. Query string editing, batch mode, recent history."
+      }
+    },
+    "rankings": {
+      "meta": {
+        "title": "Rankings · Curated Top N Lists",
+        "description": "Discover curated rankings across movies, music, games, and more. Editor-selected Top N lists you can trust."
+      },
+      "intro": {
+        "eyebrow": "Rankings Tool",
+        "title": "Various Rankings",
+        "lead": "Discover curated rankings across movies, music, games, programming languages, and more."
+      },
+      "title": "Various Rankings",
+      "description": "Curated rankings across movies, music, games, and more.",
+      "fields": {
+        "ai": "AI & LLM",
+        "programming": "Programming",
+        "tech": "Technology",
+        "games": "Games",
+        "movies": "Movies",
+        "music": "Music"
+      },
+      "tabs": {
+        "all": "All",
+        "favorites": "Favorites",
+        "recent": "Recent"
+      },
+      "search": {
+        "placeholder": "Search rankings, movies, languages…",
+        "aria": "Search rankings",
+        "resultCount": "{count} results"
+      },
+      "list": {
+        "itemCount": "{count} items",
+        "toggleFavorite": "Toggle favorite",
+        "emptyState": "No rankings match '{query}'",
+        "emptyFavorites": "Save rankings with the star button"
+      },
+      "detail": {
+        "selectHint": "Select a ranking to view details here",
+        "provenance": {
+          "aria": "Source and date of the ranking",
+          "asOfLabel": "As of",
+          "sourceLabel": "Source"
+        },
+        "table": {
+          "caption": "{title} — {count} items ranking table",
+          "rank": "Rank",
+          "name": "Name",
+          "description": "Description",
+          "link": "Link",
+          "medal": ["🥇", "🥈", "🥉"]
+        }
+      },
+      "toast": {
+        "favoriteAdded": "Added to favorites",
+        "favoriteRemoved": "Removed from favorites",
+        "copied": "Copied to clipboard"
+      },
+      "howTo": {
+        "heading": "How to Use Rankings",
+        "whatIsTitle": "What is Various Rankings?",
+        "whatIsBody": "Editor-curated Top N lists across a variety of fields. From the latest AI models to programming languages, movies, and music—all from trusted sources.",
+        "howToTitle": "How to Use",
+        "howToBody": "Select a field from the filter or search for keywords. Click a ranking card to see detailed items and sources. Star your favorites to save them.",
+        "featuresTitle": "Key Features",
+        "featuresBody": "Filter by field, search in real-time, save favorites, track recently viewed. Every ranking shows its source and date for transparency."
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "Are rankings updated in real-time?",
+            "a": "No, each ranking is collected from official sources (TIOBE, Arena AI, etc.) on a regular schedule. Update dates are shown on each ranking card."
+          },
+          {
+            "q": "Can I vote on rankings?",
+            "a": "No, all rankings are based on data from official organizations or trusted research institutions."
+          },
+          {
+            "q": "Can I suggest a new ranking?",
+            "a": "We currently feature editor-curated rankings. You can submit new ranking suggestions via the Contact page."
+          }
+        ]
       }
     }
   },

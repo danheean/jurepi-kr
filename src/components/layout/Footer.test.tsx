@@ -77,10 +77,10 @@ describe('Footer', () => {
     vi.clearAllMocks();
   });
 
-  it('renders 7 category headings (incl. dev)', async () => {
+  it('renders 8 category headings (incl. dev, news)', async () => {
     const { container } = render(await Footer());
     const headings = container.querySelectorAll('footer h3');
-    expect(headings).toHaveLength(7);
+    expect(headings).toHaveLength(8);
   });
 
   it('renders ladder link under random category', async () => {

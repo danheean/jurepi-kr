@@ -197,3 +197,36 @@ export function definedTermSetJsonLd({
     })),
   };
 }
+
+/**
+ * Build schema.org ItemList JSON-LD for rankings.
+ * Structured data for search engines to recognize and cite ranked lists in AI-generated answers.
+ */
+export function itemListJsonLd({
+  name,
+  description,
+  url,
+  items,
+}: {
+  name: string;
+  description?: string;
+  url: string;
+  items: Array<{ position: number; name: string; description: string; url?: string }>;
+}): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': url,
+    url,
+    name,
+    description,
+    numberOfItems: items.length,
+    itemListElement: items.map((item) => ({
+      '@type': 'ListItem',
+      position: item.position,
+      name: item.name,
+      description: item.description,
+      url: item.url || url,
+    })),
+  };
+}

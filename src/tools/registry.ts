@@ -55,6 +55,20 @@ export const tools: ToolMeta[] = [
       '한글', 'UTF-8', 'charset', '개발', 'developer', 'tool'
     ],
   },
+  {
+    id: 'rankings',
+    slug: 'rankings',
+    category: 'news',
+    icon: 'Trophy',
+    accent: 'rose',
+    status: 'live',
+    isNew: true,
+    order: 15,
+    keywords: [
+      '별별랭킹', '별별', '랭킹', '순위', '영화', '음식', '여행', '게임', '음악', '책', '앱',
+      'rankings', 'top', 'best', 'curator', 'movies', 'restaurants', 'travel', 'games', 'music'
+    ],
+  },
 ];
 
 /** Get all live tools for static generation */

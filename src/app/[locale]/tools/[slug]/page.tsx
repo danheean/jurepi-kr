@@ -35,6 +35,12 @@ const UrlEncoder = dynamic(() =>
   }))
 );
 
+const Rankings = dynamic(() =>
+  import('@/components/tools/rankings/Rankings').then((m) => ({
+    default: m.Rankings,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -57,6 +63,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'url-encoder') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'rankings') {
     title = t('meta.title');
     description = t('meta.description');
   } else {
@@ -112,6 +121,14 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
         <UrlEncoderHowTo />
         <UrlEncoderFaq />
       </>
+    );
+  }
+
+  if (slug === 'rankings') {
+    return (
+      <Suspense fallback={<div className="text-text-secondary">Loading...</div>}>
+        <Rankings />
+      </Suspense>
     );
   }
 
