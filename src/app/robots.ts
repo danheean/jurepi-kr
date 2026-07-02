@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin', '/.well-known/security.txt'],
+      disallow: ['/admin'],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   };
