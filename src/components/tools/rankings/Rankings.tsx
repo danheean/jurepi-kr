@@ -46,9 +46,12 @@ export function Rankings() {
           in the prerendered HTML for search engines and answer engines. */}
       <RankingsIntro />
 
-      {/* Interactive rankings island — desktop 2-split, mobile stacked */}
+      {/* Interactive rankings island. A ranking is a wide, long table, so the
+          detail is rendered FULL-WIDTH below the selector (not a narrow sticky
+          sidebar) — otherwise the description column wraps character-by-character
+          and half the viewport sits empty. Selector on top, detail below. */}
       {mounted && (
-        <div className="lg:grid lg:grid-cols-[1fr_400px] lg:gap-8 lg:items-start">
+        <div className="space-y-6">
           <div className="min-w-0 space-y-4">
             <RankingSearch
               query={r.query}
@@ -74,17 +77,15 @@ export function Rankings() {
             />
           </div>
 
-          {/* Detail: sticky card on desktop; on mobile only shown once a ranking is picked */}
-          <aside
-            className={`${
-              r.selectedRanking ? 'mt-6 block lg:mt-0' : 'hidden lg:block'
-            } lg:sticky lg:top-8 lg:self-start rounded-3xl border border-hairline bg-surface p-6 shadow-card`}
-          >
-            <RankingDetail
-              ranking={r.selectedRanking}
-              onClose={() => r.select(null)}
-            />
-          </aside>
+          {/* Detail: full-width panel, only shown once a ranking is picked */}
+          {r.selectedRanking && (
+            <section className="rounded-3xl border border-hairline bg-surface p-6 shadow-card">
+              <RankingDetail
+                ranking={r.selectedRanking}
+                onClose={() => r.select(null)}
+              />
+            </section>
+          )}
         </div>
       )}
 

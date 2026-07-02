@@ -20,10 +20,10 @@ export function RankingTable({ ranking }: RankingTableProps) {
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr className="border-b border-hairline">
-            <th scope="col" className="px-3 py-2 text-left font-bold text-text">
+            <th scope="col" className="w-16 px-3 py-2 text-left font-bold text-text">
               {t('rank')}
             </th>
-            <th scope="col" className="px-3 py-2 text-left font-bold text-text">
+            <th scope="col" className="w-1/4 px-3 py-2 text-left font-bold text-text">
               {t('name')}
             </th>
             <th scope="col" className="px-3 py-2 text-left font-bold text-text">

@@ -39,11 +39,13 @@ export function RankingRow({ item, ranking, showLink, showImage }: RankingRowPro
         )}
       </td>
 
-      {/* Name cell */}
-      <td className="px-3 py-3 font-semibold text-text break-words">{item.name}</td>
+      {/* Name cell — keep short names on one line; only wrap at word boundaries */}
+      <td className="px-3 py-3 font-semibold text-text align-top">{item.name}</td>
 
-      {/* Description cell */}
-      <td className="px-3 py-3 text-text-secondary break-words max-w-xs">{item.description}</td>
+      {/* Description cell — flows to fill the full-width table (no max-width cap,
+          which previously forced character-by-character wrapping in the old
+          narrow sidebar). */}
+      <td className="px-3 py-3 text-text-secondary align-top leading-relaxed">{item.description}</td>
 
       {/* Link cell */}
       {showLink && (
