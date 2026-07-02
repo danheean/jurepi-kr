@@ -174,7 +174,7 @@ src/
 <component_hierarchy>
   <rankings>                      <!-- "use client"; field + query + selectedId + useRankingsCatalog() 상태 소유 -->
     <rankings_intro />            <!-- H1 + 리드(가능한 한 서버 렌더) -->
-    <rankings_layout>             <!-- 데스크톱 2분할(목록 | 상세), 모바일 스택 + 바텀시트 -->
+    <rankings_layout>             <!-- 선택기(목록) 상단, 선택 시 전체폭 상세 하단 — 데스크톱·모바일 동일 -->
       <rankings_main>             <!-- 좌/상단 컬럼 -->
         <ranking_search />        <!-- "/" 포커스, clear, 결과 개수 -->
         <field_tabs />            <!-- 전체 / 영화 / 음식점 / … / 즐겨찾기 / 최근 -->
@@ -183,7 +183,7 @@ src/
           <empty_state />         <!-- 결과 없음 / 즐겨찾기 없음 -->
         </rankings_list>
       </rankings_main>
-      <ranking_detail>            <!-- 데스크톱: sticky 우측; 모바일: 바텀시트 -->
+      <ranking_detail>            <!-- 목록 아래 전체폭 패널; 순위 선택 시에만 표시 -->
         <provenance_banner />     <!-- CRITICAL: 강조된 출처 노트 + 기준일(상단, 고대비) -->
         <ranking_table>           <!-- 시맨틱 <table>; thead + caption -->
           <ranking_row />         <!-- × N <tr>: 순위(메달), 썸네일?, 이름, 설명, 링크? -->
@@ -193,7 +193,7 @@ src/
     <rankings_how_to />           <!-- SEO 롱폼 -->
     <rankings_faq />              <!-- FAQPage + ItemList JSON-LD -->
   </rankings>
-  <note>도구 내 SPA: 분야/검색/선택 = 로컬 상태 전환, 라우트 이동 아님. 상세 패널은 같은 컴포넌트를 도킹(데스크톱) 또는 바텀시트(모바일).</note>
+  <note>도구 내 SPA: 분야/검색/선택 = 로컬 상태 전환, 라우트 이동 아님. 상세는 선택기 아래에 렌더되는 전체폭 패널(데스크톱·모바일 동일 컴포넌트) — 사이드바나 바텀시트 아님.</note>
 </component_hierarchy>
 
 <pages_and_interfaces>
@@ -217,7 +217,7 @@ src/
   </field_tabs>
 
   <rankings_list>
-    - 반응형 그리드: <768px 1컬럼; ≥768px 2컬럼(상세 도킹 시).
+    - 반응형 그리드: <768px 1컬럼; ≥768px 2컬럼. 전체 컨테이너 폭 사용(상세는 옆이 아니라 아래에 위치).
     - 각 카드: 제목(headline 18–20px var(--text)/700), 분야 배지(rose 틴트 필), 항목 수("N개 항목"), 별(즐겨찾기 토글), 그리고 압축 출처+날짜 한 줄(상시 표시, hover에서 숨기지 않음): Calendar 아이콘 + 기준일과 잘린 출처 노트 — 예 "📅 2024-12 · 출처: Michelin Guide 2024". 카드의 신뢰 단서이므로 읽히게 유지(var(--text-secondary), 거의 안 보이는 muted 금지).
     - 카드: var(--surface) + 1px var(--hairline), radius var(--radius-lg), padding 16px, shadow --shadow-card.
     - 상태: hover translateY(-2px) + --shadow-card-hover; focus 2px var(--focus-ring); 선택 2px var(--accent-rose) ring.
@@ -226,8 +226,9 @@ src/
   </rankings_list>
 
   <ranking_detail>
-    - 데스크톱(≥1024px): sticky 우측 컬럼, 너비 360px, var(--surface), radius var(--radius-xxl), padding 24px, shadow --shadow-card.
-    - 모바일(<768px): 선택 시 위로 슬라이드하는 바텀시트; grab 핸들 + 닫기; 배경 딤.
+    - 배치: 선택기(검색 + 탭 + 카드 목록) 아래에 렌더되는 **전체폭 패널**, 순위 선택 시에만 표시. 근거: 순위는 넓고 긴 표(10행 이상 × 순위/이름/설명)라 좁은 sticky 사이드바에 넣으면 설명 열이 글자 단위로 줄바꿈되고 화면 절반이 빈다 — 전체폭이라야 표가 숨쉰다. 데스크톱·모바일 동일(단일 컬럼 스택). (폐기된 설계: 이전 360px sticky 우측 사이드바 — 재도입 금지.)
+    - 패널 표면: var(--surface), radius var(--radius-xxl), padding 24px(모바일 16px), 1px var(--hairline), shadow --shadow-card.
+    - 선택 해제: X 버튼(lg:hidden — 모바일)으로 선택 해제; Esc로도 해제.
     - 콘텐츠(위 → 아래):
       1. 제목: 큰 headline 28px var(--text) + 분야 배지.
       2. 프로버넌스 배너 — CRITICAL, 제목 다음으로 가장 눈에 띄는 요소. 뚜렷한 rose 틴트 콜아웃 표면(var(--accent-rose-soft) bg, 1px var(--accent-rose) 또는 hairline, radius --radius-lg, padding 12–16px), 흐릿한 캡션 금지:
@@ -252,7 +253,7 @@ src/
     - 화살표 → 순위 카드/항목 포커스 이동.
     - Enter / Space → 포커스된 순위 상세 열기.
     - "f"(카드 포커스 시) → 즐겨찾기 토글(aria-pressed 반전 + 토스트).
-    - Esc → 검색 초기화 또는 모바일 상세 시트 닫기.
+    - Esc → 검색 초기화 또는 열린 순위 상세 선택 해제.
   </keyboard_shortcuts_reference>
 </pages_and_interfaces>
 
@@ -314,11 +315,11 @@ src/
   </provenance_banner>
   <surfaces>카드/상세 = var(--surface) + 1px var(--hairline); 상세 radius --radius-xxl; 항목 행은 hover 시 var(--surface-muted) 칩. 부드러운 브랜드 틴트 그림자.</surfaces>
   <typography>H1 Gmarket Sans(clamp 28–40px); 순위 제목(카드 18–20px / 상세 28px)/700; 항목 이름 16px/bold; 설명/노트 caption/eyebrow. 상위 3위 메달 이모지.</typography>
-  <motion>transform/opacity만: 카드 hover translateY(-2px) 150ms, 상세 fade-in 150ms, 모바일 시트 slide-up 250ms. 모두 prefers-reduced-motion으로 게이팅.</motion>
+  <motion>transform/opacity만: 카드 hover translateY(-2px) 150ms, 선택 시 상세 fade-in 150ms. 모두 prefers-reduced-motion으로 게이팅.</motion>
   <accessibility>카드/별/링크 = 라벨된 실제 버튼; roving-tabindex 목록; copy/favorite 상태 aria-live="polite"; ≥44px 탭 타깃; 보이는 focus-visible ring var(--focus-ring); 링크 rel=noopener; 이미지 lazy+명시적 크기. 표: 실제 `<table>`/`<thead>`/`<tbody>`/`<th scope="col">` + sr-only `<caption>`; 가로 스크롤 래퍼는 aria-label 있는 포커스 가능 role="region"; 프로버넌스 배너는 aria-label("출처 및 기준일")로 그룹핑. `<div>` 그리드로 표 흉내 금지.</accessibility>
   <responsive>
-    - ≥1024px: 2분할 — main flex:1, 상세 sticky 360px 우측.
-    - <1024px: 단일 컬럼; 상세 바텀시트. 320px에서 오버플로 없음.
+    - 모든 브레이크포인트: 단일 컬럼 — 선택기(검색 + 탭 + 카드 그리드) 상단, 선택 시 전체폭 상세 섹션 하단. 카드 그리드: <768px 1컬럼, ≥768px 2컬럼.
+    - 상세의 `<table>`이 반응형 단위: ≥768px 전체 표; <768px 가로 스크롤 래퍼(overflow-x:auto, 포커스 가능 region). 320px에서 페이지 오버플로 없음.
   </responsive>
   <atmosphere>밝고 신뢰감 있는 "큐레이션 순위": 넉넉한 카드 간격, 메달 이모지, 명확한 기준일. 브라우즈 계층은 발견 가능하고 탭 가능한 카드(빽빽한 목록 아님); 상세 계층은 강조된 출처+날짜 배너에 앵커된 깔끔하고 훑어보기 쉬운 표로 항목을 렌더링. 신뢰 우선, 에디토리얼, 스프레드시트가 아님.</atmosphere>
   <icons>lucide-react: Search, Star/StarOff(즐겨찾기), ExternalLink(링크), Trophy(도구 카드 아이콘), Calendar(기준일), BookMarked/Info(출처 노트). 기본 20px(프로버넌스 배너 내부 16–18px), stroke 1.75, currentColor. 레지스트리 카드 아이콘: `Trophy`.</icons>

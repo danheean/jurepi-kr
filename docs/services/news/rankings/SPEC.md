@@ -174,7 +174,7 @@ src/
 <component_hierarchy>
   <rankings>                      <!-- "use client"; owns field + query + selectedId + useRankingsCatalog() state -->
     <rankings_intro />            <!-- H1 + lead (server-render where possible) -->
-    <rankings_layout>             <!-- Desktop 2-split (list | detail), mobile stacked + bottom-sheet -->
+    <rankings_layout>             <!-- Selector (list) on top, full-width detail below when selected — same on desktop & mobile -->
       <rankings_main>             <!-- Left/top column -->
         <ranking_search />        <!-- "/" focus, clear, result count -->
         <field_tabs />            <!-- All / Movies / Restaurants / … / Favorites / Recent -->
@@ -183,7 +183,7 @@ src/
           <empty_state />         <!-- No results / empty favorites -->
         </rankings_list>
       </rankings_main>
-      <ranking_detail>            <!-- Desktop: sticky right; mobile: bottom-sheet -->
+      <ranking_detail>            <!-- Full-width panel below the list; shown only when a ranking is selected -->
         <provenance_banner />     <!-- CRITICAL: emphasized source note + as-of date (top, high contrast) -->
         <ranking_table>           <!-- Semantic <table>; thead + caption -->
           <ranking_row />         <!-- × N <tr>: rank (medal), thumbnail?, name, desc, link? -->
@@ -193,7 +193,7 @@ src/
     <rankings_how_to />           <!-- SEO long-form -->
     <rankings_faq />              <!-- FAQPage + ItemList JSON-LD -->
   </rankings>
-  <note>SPA within tool: field/search/select = local state switch, NOT route navigation. Detail panel same component docked (desktop) or bottom-sheet (mobile).</note>
+  <note>SPA within tool: field/search/select = local state switch, NOT route navigation. Detail is a full-width panel rendered below the selector (same component on desktop & mobile), not a sidebar or bottom-sheet.</note>
 </component_hierarchy>
 
 <pages_and_interfaces>
@@ -217,7 +217,7 @@ src/
   </field_tabs>
 
   <rankings_list>
-    - Responsive grid: 1-column <768px; 2-column ≥768px (when detail is docked).
+    - Responsive grid: 1-column <768px; 2-column ≥768px. Full container width (the detail sits below, not beside).
     - Each card: title (headline 18–20px var(--text)/700), field badge (rose-tinted pill), item count ("N개 항목"), star (favorite toggle), and a COMPACT SOURCE+DATE line (always visible, not hidden on hover): Calendar icon + as-of date and a truncated source note — e.g. "📅 2024-12 · 출처: Michelin Guide 2024". This is the card's trust cue; keep it legible (var(--text-secondary), not near-invisible muted).
     - Card: var(--surface) + 1px var(--hairline), radius var(--radius-lg), padding 16px, shadow --shadow-card.
     - States: hover translateY(-2px) + --shadow-card-hover; focus 2px var(--focus-ring); selected 2px var(--accent-rose) ring.
@@ -226,8 +226,9 @@ src/
   </rankings_list>
 
   <ranking_detail>
-    - Desktop (≥1024px): sticky right column, width 360px, var(--surface), radius var(--radius-xxl), padding 24px, shadow --shadow-card.
-    - Mobile (<768px): slides-up bottom-sheet on selection; grab handle + close; backdrop dim.
+    - Placement: a FULL-WIDTH panel rendered below the selector (search + tabs + card list), shown only once a ranking is selected. RATIONALE: a ranking is a wide, long table (10+ rows × rank/name/description); a narrow sticky sidebar cramps it — the description column wraps character-by-character and half the viewport sits empty. Full width lets the table breathe. Same layout on desktop and mobile (single column, stacked). (Superseded design: an earlier 360px sticky-right sidebar — do NOT reintroduce it.)
+    - Panel surface: var(--surface), radius var(--radius-xxl), padding 24px (16px on mobile), 1px var(--hairline), shadow --shadow-card.
+    - Deselect affordance: X button (lg:hidden — mobile) to clear the selection; Esc also clears.
     - Content (top → bottom):
       1. Title: large headline 28px var(--text) + field badge.
       2. PROVENANCE BANNER — CRITICAL, most prominent element after the title. A distinct rose-tinted callout surface (var(--accent-rose-soft) bg, 1px var(--accent-rose) or hairline, radius --radius-lg, padding 12–16px), NOT a muted caption:
@@ -252,7 +253,7 @@ src/
     - Arrow keys → ranking card/item focus move.
     - Enter / Space → open focused ranking detail.
     - "f" (card focused) → toggle favorite (aria-pressed flip + toast).
-    - Esc → clear search or close mobile detail sheet.
+    - Esc → clear search or deselect the open ranking detail.
   </keyboard_shortcuts_reference>
 </pages_and_interfaces>
 
@@ -314,11 +315,11 @@ src/
   </provenance_banner>
   <surfaces>Card/detail = var(--surface) + 1px var(--hairline); detail radius --radius-xxl; item rows var(--surface-muted) chips on hover. Soft brand-tinted shadows.</surfaces>
   <typography>H1 Gmarket Sans (clamp 28–40px); ranking title (card 18–20px / detail 28px)/700; item name 16px/bold; description/note caption/eyebrow. Medal emojis for top 3.</typography>
-  <motion>transform/opacity only: card hover translateY(-2px) 150ms, detail fade-in 150ms, mobile sheet slide-up 250ms. All gated by prefers-reduced-motion.</motion>
+  <motion>transform/opacity only: card hover translateY(-2px) 150ms, detail fade-in 150ms on selection. All gated by prefers-reduced-motion.</motion>
   <accessibility>Card/star/link = labeled real buttons; roving-tabindex list; copy/favorite status aria-live="polite"; ≥44px tap targets; visible focus-visible ring var(--focus-ring); links rel=noopener; images lazy+explicit dimensions. TABLE: real `<table>`/`<thead>`/`<tbody>`/`<th scope="col">` + sr-only `<caption>`; horizontal-scroll wrapper is a focusable role="region" with aria-label; provenance banner grouped with aria-label ("출처 및 기준일"). No `<div>`-grid faking a table.</accessibility>
   <responsive>
-    - ≥1024px: 2-split — main flex:1, detail sticky 360px right.
-    - <1024px: single column; detail bottom-sheet. No overflow at 320px.
+    - All breakpoints: single column — selector (search + tabs + card grid) on top, full-width detail section below when a ranking is selected. Card grid: 1-col <768px, 2-col ≥768px.
+    - The detail's `<table>` is the responsive unit: full table ≥768px; <768px horizontal-scroll wrapper (overflow-x:auto, focusable region). No page overflow at 320px.
   </responsive>
   <atmosphere>Bright, trustworthy "curated rankings": generous card spacing, medal emoji, clear as-of dates. The BROWSE layer is discoverable, tappable cards (not a dense list); the DETAIL layer renders the items as a clean, scannable table anchored by the emphasized source+date banner. Trust-first, editorial, not a spreadsheet.</atmosphere>
   <icons>lucide-react: Search, Star/StarOff (favorite), ExternalLink (links), Trophy (tool card icon), Calendar (as-of date), BookMarked/Info (source note). Default 20px (16–18px inside provenance banner), stroke 1.75, currentColor. Registry card icon: `Trophy`.</icons>
