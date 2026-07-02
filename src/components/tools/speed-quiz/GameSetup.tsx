@@ -1,8 +1,11 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useEffect, useRef } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 import { X } from 'lucide-react';
 import type { MergedDeck } from '@/lib/speed-quiz/schema';
+
+const DIALOG_TITLE_ID = 'speed-quiz-setup-title';
 
 interface GameSetupProps {
   deck: MergedDeck | null;
@@ -31,17 +34,67 @@ export function GameSetup({
   onCancel,
 }: GameSetupProps) {
   const t = useTranslations('tools.speed-quiz');
+  const locale = useLocale() as 'ko' | 'en';
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Focus the dialog once on open (mount only — don't steal focus on re-render).
+  useEffect(() => {
+    dialogRef.current?.focus();
+  }, []);
+
+  // Modal a11y: trap Tab within the dialog, close on Escape.
+  useEffect(() => {
+    const node = dialogRef.current;
+    if (!node) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onCancel();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const focusable = node.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    node.addEventListener('keydown', onKeyDown);
+    return () => node.removeEventListener('keydown', onKeyDown);
+  }, [onCancel]);
 
   if (!deck) return null;
 
-  const deckTitle = deck[typeof window !== 'undefined' && window.location.pathname.includes('/en') ? 'en' : 'ko'].title;
+  const deckTitle = deck[locale === 'en' ? 'en' : 'ko'].title;
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/30">
-      <div className="bg-surface rounded-lg border border-hairline shadow-pop max-w-[32rem] w-full mx-4">
+    <div
+      className="fixed inset-0 z-40 flex items-center justify-center bg-black/30"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onCancel();
+      }}
+    >
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={DIALOG_TITLE_ID}
+        tabIndex={-1}
+        className="bg-surface rounded-lg border border-hairline shadow-pop max-w-[32rem] w-full mx-4 focus:outline-none"
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-hairline">
-          <h2 className="text-2xl font-bold text-text">{t('setup.title')}</h2>
+          <h2 id={DIALOG_TITLE_ID} className="text-2xl font-bold text-text">{t('setup.title')}</h2>
           <button
             onClick={onCancel}
             className="p-2 hover:bg-surface-muted rounded-lg"
@@ -54,7 +107,7 @@ export function GameSetup({
         <div className="p-6 space-y-6">
           {/* Deck title display */}
           <div>
-            <p className="text-text-secondary text-sm mb-1">Selected deck</p>
+            <p className="text-text-secondary text-sm mb-1">{t('setup.selectedDeck')}</p>
             <p className="text-lg font-semibold text-text">{deckTitle}</p>
           </div>
 

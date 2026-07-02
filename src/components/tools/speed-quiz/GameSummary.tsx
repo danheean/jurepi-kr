@@ -76,14 +76,14 @@ export function GameSummary({
   const timeoutLabel = labels.timeout.replace('{count}', String(score.timeout));
 
   return (
-    <div className="fixed inset-0 bg-surface overflow-auto p-6 md:p-8 flex flex-col" data-testid="game-summary">
+    <div className="fixed inset-0 z-50 bg-background overflow-auto p-6 md:p-8 flex flex-col" data-testid="game-summary">
       {/* Headline */}
       <h2 className="font-display text-3xl md:text-4xl font-bold text-text mb-8">
         {title}
       </h2>
 
       {/* Score card */}
-      <div className="bg-white rounded-lg border border-hairline p-6 md:p-8 mb-8 space-y-4">
+      <div className="bg-surface shadow-card rounded-lg border border-hairline p-6 md:p-8 mb-8 space-y-4">
         <div className="text-center">
           <p className="text-5xl md:text-6xl font-bold text-brand mb-2">
             {score.correct}

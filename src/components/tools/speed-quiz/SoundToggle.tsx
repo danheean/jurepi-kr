@@ -17,8 +17,9 @@ export function SoundToggle({ soundOn, onToggle }: SoundToggleProps) {
   return (
     <button
       onClick={onToggle}
-      aria-pressed={soundOn}
-      aria-label={soundOn ? t('sound.unmute') : t('sound.mute')}
+      // Action-labeled toggle: the label names what the click does. When sound is
+      // ON the action is to mute; when OFF the action is to unmute.
+      aria-label={soundOn ? t('sound.mute') : t('sound.unmute')}
       className="p-3 hover:bg-surface-muted rounded-lg transition-colors"
       data-testid="sound-toggle"
     >

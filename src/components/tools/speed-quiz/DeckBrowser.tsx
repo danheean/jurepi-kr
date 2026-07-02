@@ -65,20 +65,19 @@ export function DeckBrowser({ quiz, inputRef }: DeckBrowserProps) {
         />
       </div>
 
-      {/* Category pills (roving tabindex) */}
+      {/* Category filters — a group of toggle buttons (aria-pressed), not tabs
+          (there is no tabpanel; selecting one filters the grid in place). */}
       <div
         className="flex flex-wrap gap-2 mb-8"
-        role="tablist"
         data-testid="deck-category-tabs"
       >
         {categoryOptions.map(({ value, label }) => (
           <button
             key={value}
+            type="button"
             onClick={() => quiz.setActiveCategory(value as any)}
-            role="tab"
-            aria-selected={quiz.activeCategory === value}
-            tabIndex={quiz.activeCategory === value ? 0 : -1}
-            className={`px-4 py-2 rounded-full font-medium transition-colors ${
+            aria-pressed={quiz.activeCategory === value}
+            className={`px-4 py-2 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
               quiz.activeCategory === value
                 ? 'bg-brand text-on-brand'
                 : 'bg-surface-muted text-text-secondary hover:bg-hairline'
@@ -115,6 +114,7 @@ export function DeckBrowser({ quiz, inputRef }: DeckBrowserProps) {
               addFavoriteLabel={t('deck.addFavorite')}
               removeFavoriteLabel={t('deck.removeFavorite')}
               difficultyLabel={t(`difficulty.${deck.difficulty}`)}
+              categoryLabel={t(`categories.${deck.category}`)}
             />
           ))}
         </div>

@@ -828,6 +828,7 @@
       },
       "setup": {
         "title": "Game Setup",
+        "selectedDeck": "Selected deck",
         "difficulty": "Difficulty",
         "roundTime": "Round Time",
         "time30": "30 seconds",

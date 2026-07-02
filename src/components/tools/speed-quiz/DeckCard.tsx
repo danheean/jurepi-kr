@@ -1,5 +1,6 @@
 'use client';
 
+import { useLocale } from 'next-intl';
 import { Star } from 'lucide-react';
 import type { MergedDeck } from '@/lib/speed-quiz/schema';
 
@@ -12,6 +13,7 @@ interface DeckCardProps {
   addFavoriteLabel: string;
   removeFavoriteLabel: string;
   difficultyLabel: string;
+  categoryLabel: string;
 }
 
 /**
@@ -27,7 +29,9 @@ export function DeckCard({
   addFavoriteLabel,
   removeFavoriteLabel,
   difficultyLabel,
+  categoryLabel,
 }: DeckCardProps) {
+  const locale = useLocale() as 'ko' | 'en';
   // Difficulty stars
   const stars =
     deck.difficulty === 'easy'
@@ -64,59 +68,54 @@ export function DeckCard({
   }[deck.category] || 'text-accent-sun-ink';
 
   return (
-    <div
-      className="bg-surface border border-hairline rounded-lg p-5 hover:shadow-card-hover transition-shadow cursor-pointer"
-      onClick={onSelect}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.code === 'Enter' || e.code === 'Space') {
-          e.preventDefault();
-          onSelect();
-        }
-      }}
-      data-testid={`deck-card-${deck.slug}`}
-    >
-      {/* Header: Title + Favorite button */}
-      <div className="flex items-start justify-between gap-2 mb-3">
-        <h3 className="text-lg font-bold text-text line-clamp-2 flex-1">
-          {deck[window.location.pathname.includes('/en') ? 'en' : 'ko'].title}
+    // Relative wrapper is non-interactive; the card and the favorite are two
+    // sibling buttons (no nested interactive controls).
+    <div className="relative">
+      <button
+        type="button"
+        onClick={onSelect}
+        className="w-full text-left bg-surface border border-hairline rounded-lg p-5 hover:shadow-card-hover transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        data-testid={`deck-card-${deck.slug}`}
+      >
+        {/* Title (padded right to clear the favorite button) */}
+        <h3 className="text-lg font-bold text-text line-clamp-2 pr-12 mb-3">
+          {deck[locale === 'en' ? 'en' : 'ko'].title}
         </h3>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onFavorite();
-          }}
-          className="flex-shrink-0 p-2 hover:bg-surface-muted rounded-lg transition-colors"
-          aria-pressed={isFavorite}
-          aria-label={isFavorite ? removeFavoriteLabel : addFavoriteLabel}
-          data-testid={`deck-favorite-${deck.slug}`}
-        >
-          <Star
-            size={20}
-            className={`${
-              isFavorite
-                ? 'fill-brand text-brand'
-                : 'text-text-secondary hover:text-text'
-            } transition-colors`}
-          />
-        </button>
-      </div>
 
-      {/* Category badge */}
-      <div className="mb-3">
-        <span
-          className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${accentClass} ${textClass}`}
-        >
-          {deck.category}
-        </span>
-      </div>
+        {/* Category badge */}
+        <div className="mb-3">
+          <span
+            className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${accentClass} ${textClass}`}
+          >
+            {categoryLabel}
+          </span>
+        </div>
 
-      {/* Difficulty stars + Word count */}
-      <div className="flex items-center justify-between text-sm text-text-secondary">
-        <span>{stars}</span>
-        <span>{wordCountLabel}</span>
-      </div>
+        {/* Difficulty stars + Word count */}
+        <div className="flex items-center justify-between text-sm text-text-secondary">
+          <span role="img" aria-label={difficultyLabel}>
+            {stars}
+          </span>
+          <span>{wordCountLabel}</span>
+        </div>
+      </button>
+
+      {/* Favorite toggle — sibling of the card button, ≥44px hit area */}
+      <button
+        type="button"
+        onClick={onFavorite}
+        className="absolute top-3 right-3 flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg hover:bg-surface-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        aria-pressed={isFavorite}
+        aria-label={isFavorite ? removeFavoriteLabel : addFavoriteLabel}
+        data-testid={`deck-favorite-${deck.slug}`}
+      >
+        <Star
+          size={20}
+          className={`${
+            isFavorite ? 'fill-brand text-brand' : 'text-text-secondary'
+          } transition-colors`}
+        />
+      </button>
     </div>
   );
 }

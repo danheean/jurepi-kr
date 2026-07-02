@@ -828,6 +828,7 @@
       },
       "setup": {
         "title": "게임 설정",
+        "selectedDeck": "선택한 게임",
         "difficulty": "난이도",
         "roundTime": "라운드 시간",
         "time30": "30초",
