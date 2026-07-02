@@ -23,46 +23,41 @@ export function RankingCard({
   const localeData = locale === 'ko' ? ranking.ko : ranking.en;
   const fieldLabel = t(`fields.${ranking.field}`);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      onSelect();
-    }
-    if (e.key === 'f' || e.key === 'F') {
-      e.preventDefault();
-      onToggleFavorite();
-    }
-  };
-
   return (
-    <div
-      onClick={onSelect}
-      onKeyDown={handleKeyDown}
-      role="button"
-      tabIndex={0}
-      className={`p-4 rounded-xl border-2 shadow-card transition-[color,box-shadow,border-color,transform] cursor-pointer ${
+    // Non-interactive container. The whole-card click target is the title
+    // button's stretched ::after (relative container + after:inset-0); the
+    // favorite button sits above it via z-10. This keeps the two actions as
+    // DOM siblings — no interactive element nested inside another.
+    <article
+      className={`relative p-4 rounded-xl border-2 shadow-card transition-[color,box-shadow,border-color,transform] ${
         isSelected
           ? 'border-accent-rose bg-accent-rose-soft shadow-card-hover'
           : 'border-hairline bg-surface hover:shadow-card-hover hover:border-hairline-strong'
       }`}
-      aria-pressed={isSelected}
     >
       {/* Header: title + field badge */}
       <div className="flex items-start gap-3 mb-3">
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-lg text-text leading-tight">{localeData.title}</h3>
-          <span className="inline-block mt-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase text-accent-rose-ink bg-accent-rose-soft">
+          <h3 className="leading-tight">
+            <button
+              type="button"
+              onClick={onSelect}
+              aria-pressed={isSelected}
+              className="text-left font-bold text-lg text-text after:absolute after:inset-0 after:rounded-xl after:content-[''] cursor-pointer"
+            >
+              {localeData.title}
+            </button>
+          </h3>
+          <span className="inline-block mt-1.5 px-2.5 py-1 rounded-full text-xs font-bold text-accent-rose-ink bg-accent-rose-soft">
             {fieldLabel}
           </span>
         </div>
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleFavorite();
-          }}
+          type="button"
+          onClick={onToggleFavorite}
           aria-pressed={isFavorited}
           aria-label={t('list.toggleFavorite')}
-          className="flex-shrink-0 inline-flex items-center justify-center min-h-11 min-w-11 hover:bg-surface-muted rounded-lg transition-colors"
+          className="relative z-10 flex-shrink-0 inline-flex items-center justify-center min-h-11 min-w-11 hover:bg-surface-muted rounded-lg transition-colors"
         >
           <Star
             className={`w-5 h-5 ${
@@ -88,6 +83,6 @@ export function RankingCard({
         <span className="text-hairline-strong">·</span>
         <span className="truncate">{localeData.sourceNote}</span>
       </div>
-    </div>
+    </article>
   );
 }
