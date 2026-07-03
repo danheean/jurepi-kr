@@ -1009,6 +1009,165 @@
     }
   },
   {
+    "slug": "langchain",
+    "ko": {
+      "title": "랭체인 (LangChain)",
+      "description": "LLM 앱·에이전트 개발 프레임워크 랭체인 생태계. 공식 문서와 GitHub, LangGraph·LangSmith, 무료 강의까지 모았습니다.",
+      "sections": [
+        {
+          "heading": "공식 사이트·문서",
+          "links": [
+            {
+              "label": "LangChain 공식 사이트",
+              "url": "https://www.langchain.com/",
+              "description": "제품·생태계 소개 홈"
+            },
+            {
+              "label": "LangChain Docs (통합 문서)",
+              "url": "https://docs.langchain.com/",
+              "description": "랭체인·랭그래프·랭스미스 통합 문서 허브",
+              "image": "https://langchain-5e9cc07a.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DDocumentation%26appearance%3Dsystem%26title%3DHome%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-dark-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D5babf1a1962208fd7eed942fa2432ecb%26logoDark%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-light-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D0bcd2a1f2599ed228bcedf0f535b45b1%26primaryColor%3D%2523161F34%26lightColor%3D%25237FC8FF%26darkColor%3D%2523006DDD%26backgroundLight%3D%2523FFFFFF%26backgroundDark%3D%2523030710&w=1200&q=100"
+            },
+            {
+              "label": "LangChain Python 개요",
+              "url": "https://docs.langchain.com/oss/python/langchain/overview",
+              "description": "파이썬 프레임워크 시작 문서",
+              "image": "https://langchain-5e9cc07a.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DDocumentation%26appearance%3Dsystem%26title%3DLangChain%2Boverview%26description%3DLangChain%2Bprovides%2Bcreate_agent%253A%2Ba%2Bminimal%252C%2Bhighly%2Bconfigurable%2Bagent%2Bharness.%2BCompose%2Bexactly%2Bthe%2Bagent%2Byour%2Buse%2Bcase%2Bneeds%2Bfrom%2Bmodel%252C%2Btools%252C%2Bprompt%252C%2Band%2Bmidd%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-dark-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D5babf1a1962208fd7eed942fa2432ecb%26logoDark%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-light-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D0bcd2a1f2599ed228bcedf0f535b45b1%26primaryColor%3D%2523161F34%26lightColor%3D%25237FC8FF%26darkColor%3D%2523006DDD%26backgroundLight%3D%2523FFFFFF%26backgroundDark%3D%2523030710&w=1200&q=100"
+            },
+            {
+              "label": "LangChain JavaScript 개요",
+              "url": "https://docs.langchain.com/oss/javascript/langchain/overview",
+              "description": "JS/TS 프레임워크 시작 문서",
+              "image": "https://langchain-5e9cc07a.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DDocumentation%26appearance%3Dsystem%26title%3DLangChain%2Boverview%26description%3DLangChain%2Bprovides%2Bcreate_agent%253A%2Ba%2Bminimal%252C%2Bhighly%2Bconfigurable%2Bagent%2Bharness.%2BCompose%2Bexactly%2Bthe%2Bagent%2Byour%2Buse%2Bcase%2Bneeds%2Bfrom%2Bmodel%252C%2Btools%252C%2Bprompt%252C%2Band%2Bmidd%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-dark-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D5babf1a1962208fd7eed942fa2432ecb%26logoDark%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-light-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D0bcd2a1f2599ed228bcedf0f535b45b1%26primaryColor%3D%2523161F34%26lightColor%3D%25237FC8FF%26darkColor%3D%2523006DDD%26backgroundLight%3D%2523FFFFFF%26backgroundDark%3D%2523030710&w=1200&q=100"
+            }
+          ]
+        },
+        {
+          "heading": "GitHub",
+          "links": [
+            {
+              "label": "langchain-ai/langchain",
+              "url": "https://github.com/langchain-ai/langchain",
+              "description": "파이썬 본체 저장소",
+              "image": "https://repository-images.githubusercontent.com/552661142/7392d590-2716-4261-b623-a0579df67e0d"
+            },
+            {
+              "label": "langchain-ai/langchainjs",
+              "url": "https://github.com/langchain-ai/langchainjs",
+              "description": "JS/TS 구현 저장소",
+              "image": "https://repository-images.githubusercontent.com/598342280/41cd6da7-4afb-4b7f-b2dd-9fd52b1cc773"
+            },
+            {
+              "label": "langchain-ai/langgraph",
+              "url": "https://github.com/langchain-ai/langgraph",
+              "description": "상태 그래프 기반 에이전트 오케스트레이션",
+              "image": "https://repository-images.githubusercontent.com/676672661/b8343a50-7115-4759-ac4b-9466e1c64b85"
+            }
+          ]
+        },
+        {
+          "heading": "학습·소식",
+          "links": [
+            {
+              "label": "LangChain Academy",
+              "url": "https://academy.langchain.com/",
+              "description": "LangGraph 등 공식 무료 강의"
+            },
+            {
+              "label": "LangChain 블로그",
+              "url": "https://www.langchain.com/blog",
+              "description": "릴리스·사례·기술 아티클"
+            },
+            {
+              "label": "LangChain YouTube 채널",
+              "url": "https://www.youtube.com/@LangChain",
+              "description": "튜토리얼·웨비나 영상",
+              "image": "https://yt3.googleusercontent.com/a37xtLmxeZMFCB5Zj4isLgU9hKznc5qceLU4DOfdCdgiZJi0pORPqlc145VTJU6Sne1Ti6RJ=s900-c-k-c0x00ffffff-no-rj"
+            }
+          ]
+        }
+      ]
+    },
+    "en": {
+      "title": "LangChain",
+      "description": "The LangChain ecosystem for building LLM apps and agents — official docs, GitHub repos, LangGraph, LangSmith, and free courses.",
+      "sections": [
+        {
+          "heading": "Official Site & Docs",
+          "links": [
+            {
+              "label": "LangChain Official Site",
+              "url": "https://www.langchain.com/",
+              "description": "Product and ecosystem home"
+            },
+            {
+              "label": "LangChain Docs (unified)",
+              "url": "https://docs.langchain.com/",
+              "description": "Unified docs hub for LangChain, LangGraph, and LangSmith",
+              "image": "https://langchain-5e9cc07a.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DDocumentation%26appearance%3Dsystem%26title%3DHome%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-dark-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D5babf1a1962208fd7eed942fa2432ecb%26logoDark%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-light-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D0bcd2a1f2599ed228bcedf0f535b45b1%26primaryColor%3D%2523161F34%26lightColor%3D%25237FC8FF%26darkColor%3D%2523006DDD%26backgroundLight%3D%2523FFFFFF%26backgroundDark%3D%2523030710&w=1200&q=100"
+            },
+            {
+              "label": "LangChain Python Overview",
+              "url": "https://docs.langchain.com/oss/python/langchain/overview",
+              "description": "Getting started with the Python framework",
+              "image": "https://langchain-5e9cc07a.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DDocumentation%26appearance%3Dsystem%26title%3DLangChain%2Boverview%26description%3DLangChain%2Bprovides%2Bcreate_agent%253A%2Ba%2Bminimal%252C%2Bhighly%2Bconfigurable%2Bagent%2Bharness.%2BCompose%2Bexactly%2Bthe%2Bagent%2Byour%2Buse%2Bcase%2Bneeds%2Bfrom%2Bmodel%252C%2Btools%252C%2Bprompt%252C%2Band%2Bmidd%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-dark-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D5babf1a1962208fd7eed942fa2432ecb%26logoDark%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-light-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D0bcd2a1f2599ed228bcedf0f535b45b1%26primaryColor%3D%2523161F34%26lightColor%3D%25237FC8FF%26darkColor%3D%2523006DDD%26backgroundLight%3D%2523FFFFFF%26backgroundDark%3D%2523030710&w=1200&q=100"
+            },
+            {
+              "label": "LangChain JavaScript Overview",
+              "url": "https://docs.langchain.com/oss/javascript/langchain/overview",
+              "description": "Getting started with the JS/TS framework",
+              "image": "https://langchain-5e9cc07a.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DDocumentation%26appearance%3Dsystem%26title%3DLangChain%2Boverview%26description%3DLangChain%2Bprovides%2Bcreate_agent%253A%2Ba%2Bminimal%252C%2Bhighly%2Bconfigurable%2Bagent%2Bharness.%2BCompose%2Bexactly%2Bthe%2Bagent%2Byour%2Buse%2Bcase%2Bneeds%2Bfrom%2Bmodel%252C%2Btools%252C%2Bprompt%252C%2Band%2Bmidd%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-dark-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D5babf1a1962208fd7eed942fa2432ecb%26logoDark%3Dhttps%253A%252F%252Fmintcdn.com%252Flangchain-5e9cc07a%252FnQm-sjd_MByLhgeW%252Fimages%252Fbrand%252Flangchain-docs-light-blue.png%253Ffit%253Dmax%2526auto%253Dformat%2526n%253DnQm-sjd_MByLhgeW%2526q%253D85%2526s%253D0bcd2a1f2599ed228bcedf0f535b45b1%26primaryColor%3D%2523161F34%26lightColor%3D%25237FC8FF%26darkColor%3D%2523006DDD%26backgroundLight%3D%2523FFFFFF%26backgroundDark%3D%2523030710&w=1200&q=100"
+            }
+          ]
+        },
+        {
+          "heading": "GitHub",
+          "links": [
+            {
+              "label": "langchain-ai/langchain",
+              "url": "https://github.com/langchain-ai/langchain",
+              "description": "Main Python repository",
+              "image": "https://repository-images.githubusercontent.com/552661142/7392d590-2716-4261-b623-a0579df67e0d"
+            },
+            {
+              "label": "langchain-ai/langchainjs",
+              "url": "https://github.com/langchain-ai/langchainjs",
+              "description": "JS/TS implementation",
+              "image": "https://repository-images.githubusercontent.com/598342280/41cd6da7-4afb-4b7f-b2dd-9fd52b1cc773"
+            },
+            {
+              "label": "langchain-ai/langgraph",
+              "url": "https://github.com/langchain-ai/langgraph",
+              "description": "Stateful graph-based agent orchestration",
+              "image": "https://repository-images.githubusercontent.com/676672661/b8343a50-7115-4759-ac4b-9466e1c64b85"
+            }
+          ]
+        },
+        {
+          "heading": "Learning & News",
+          "links": [
+            {
+              "label": "LangChain Academy",
+              "url": "https://academy.langchain.com/",
+              "description": "Official free courses including LangGraph"
+            },
+            {
+              "label": "LangChain Blog",
+              "url": "https://www.langchain.com/blog",
+              "description": "Releases, case studies, and technical articles"
+            },
+            {
+              "label": "LangChain YouTube Channel",
+              "url": "https://www.youtube.com/@LangChain",
+              "description": "Tutorials and webinar videos",
+              "image": "https://yt3.googleusercontent.com/a37xtLmxeZMFCB5Zj4isLgU9hKznc5qceLU4DOfdCdgiZJi0pORPqlc145VTJU6Sne1Ti6RJ=s900-c-k-c0x00ffffff-no-rj"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
     "slug": "prompt-engineering",
     "ko": {
       "title": "프롬프트 엔지니어링",
