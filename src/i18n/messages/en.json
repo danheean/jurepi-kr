@@ -696,6 +696,11 @@
             "a": "Editors check links regularly, but external sites can change. If you find a broken link, please let us know via the Contact page."
           }
         ]
+      },
+      "spoke": {
+        "metaTitleSuffix": "— curated links | Jurepi",
+        "breadcrumbHome": "Home",
+        "backToHub": "← Browse all topics"
       }
     },
     "rankings": {
