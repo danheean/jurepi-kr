@@ -2,7 +2,7 @@
 
 > This document is the **canonical (English) source** consumed by AI coding agents. The Korean translation should live in [`SPEC_KR.md`](SPEC_KR.md); keep both in sync when either changes.
 >
-> Build specification for **맛집 리스트 / Restaurant List** (Korean display name: **맛집 리스트**; English display name: *Restaurant List*) — a map-based discovery tool where curated place lists (themed restaurants, cafés, bars by region or cuisine) are stored as markdown files with place entries including name, coordinates, category, description, and optional links. At build time a generator reads the folder, validates geospatial integrity, and emits a static catalog. The tool mounts as a client-side SPA offering an **interactive map** (markers, clustering, click-to-pan) synchronized with a **filterable place list** (cards: name, category badge, distance, description, link). Search, region/category tabs, favorites (localStorage), optional geolocation to center the map. The Maps API (Kakao Map JS SDK, client-side public key) is lazy-loaded only on this route; graceful fallback to list-only if SDK fails.
+> Build specification for **맛집 리스트 / Restaurant List** (Korean display name: **맛집 리스트**; English display name: *Restaurant List*) — a map-based discovery tool where curated place lists (themed restaurants, cafés, bars by region or cuisine) are stored as markdown files with place entries including name, coordinates, category, description, and optional links. At build time a generator reads the folder, validates geospatial integrity, and emits a static catalog. The tool mounts as a client-side SPA offering an **interactive map** (markers, clustering, click-to-pan) synchronized with a **filterable place list** (cards: name, category badge, distance, description, link). Search, region/category tabs, favorites (localStorage), optional geolocation to center the map. The Maps API (NAVER Maps JS API v3, client-side public client ID) is lazy-loaded only on this route; graceful fallback to list-only if SDK fails.
 >
 > Internal service codename: `restaurant-map`. Registry id: `restaurant-map`. Public URL slug: `/[locale]/tools/restaurant-map`.
 >
@@ -21,9 +21,9 @@
 
 CRITICAL (trust + usability — map-list sync): the entire UX hinges on **bidirectional sync** between the map and the place list. Click a map marker → the list card highlights and scrolls into view. Click a list card → the map pans/zooms to that marker and opens an info window. The map and list are two views of the same data, always in sync. Search/filter applies to both surfaces simultaneously.
 
-CRITICAL (client-only, SSG): 100% client-side. No backend, no database, no API. The place catalog is built into static JSON at build time, sourced from markdown. The Maps JS SDK (Kakao Map JS SDK, primary for Korea; Naver Maps JS SDK as alternative) is lazy-loaded on route mount via a `<script>` tag with a domain-restricted public API key (`NEXT_PUBLIC_KAKAO_MAP_KEY` committed to .env.production). The only first-party persistence is `localStorage` (favorites + recently viewed). Geolocation (optional, permission-gated) uses native browser Geolocation API. If the Maps SDK fails to load or the key is missing, the tool degrades gracefully to list-only mode with a friendly notice — the tool remains fully usable.
+CRITICAL (client-only, SSG): 100% client-side. No backend, no database, no API. The place catalog is built into static JSON at build time, sourced from markdown. The Maps JS SDK (NAVER Maps JS API v3, primary for Korea; Kakao Map JS SDK as alternative) is lazy-loaded on route mount via a `<script>` tag with a domain-restricted public client ID (`NEXT_PUBLIC_NAVER_MAP_CLIENT_ID` committed to .env.production). The only first-party persistence is `localStorage` (favorites + recently viewed). Geolocation (optional, permission-gated) uses native browser Geolocation API. If the Maps SDK fails to load or the key is missing, the tool degrades gracefully to list-only mode with a friendly notice — the tool remains fully usable.
 
-CRITICAL (presentation — map + list dual-surface): place lists render BOTH as an interactive map (Kakao/Naver Maps) with markers/clustering and as a responsive list of cards. Both surfaces are visible simultaneously on desktop (two-column or full-width map above list). On mobile (320px), the map and list stack vertically or can be toggled via tabs; map never causes page overflow. The map container reserves a fixed height (CLS-safe) and respects `prefers-reduced-motion` (instant pan/zoom, no easing animations).
+CRITICAL (presentation — map + list dual-surface): place lists render BOTH as an interactive map (NAVER Maps) with markers/clustering and as a responsive list of cards. Both surfaces are visible simultaneously on desktop (two-column or full-width map above list). On mobile (320px), the map and list stack vertically or can be toggled via tabs; map never causes page overflow. The map container reserves a fixed height (CLS-safe) and respects `prefers-reduced-motion` (instant pan/zoom, no easing animations).
 
 CRITICAL (SPA, usability-first): every Jurepi tool is a client-side Single-Page Application (SPA) mounted on the SSG shell. All interaction — list filtering, map pan, marker click, geolocation, favorites toggle — happens via local React state with NO route navigation and NO full page reload. Usability comes first: the map loads instantly (pre-rendered SSG shell), search is one keystroke away ("/"), and any place is reachable in under a second.
 </overview>
@@ -33,7 +33,7 @@ CRITICAL (SPA, usability-first): every Jurepi tool is a client-side Single-Page 
   - Provided by the platform (do NOT reimplement): app shell (Header/Footer/LocaleSwitcher/ThemeToggle), ConsentBanner, AdSlot, Toast system, design tokens (tokens.css ↔ DESIGN.md), i18n runtime, Error Boundary around the tool module, lib/seo.ts metadata builder, breadcrumb + in_content ad wrapper.
   - Consumes: i18n namespace `tools.restaurant-map.*` (UI chrome strings: tabs, search, map/list toggle, geolocation prompt, how-to, FAQ, distance unit — NOT place content; that comes from markdown in restaurant-map.generated.json).
   - Platform dependency: this tool lives in the `'fun'` category (재미). NOTE: `'fun'` is PROVISIONAL and NOT YET wired in `ToolCategory`/i18n/`FOOTER_CATEGORIES`/`CATEGORY_ORDER`/accent — **this is a prerequisite flag for the platform to activate**. The tool keeps a chosen accent (coral or rose; TBD per design review) as its own per-tool identity. Plus the standard ONE `ToolMeta` registry entry, a slug→component branch in the tool route, and a `generateMetadata` branch.
-  - CRITICAL ENVIRONMENT: `NEXT_PUBLIC_KAKAO_MAP_KEY` (string, committed to .env.production) — a Kakao Maps JavaScript API key restricted by domain allowlist (production domain + localhost for dev). The key is safe to commit as a public key (no secret) but MUST be domain-restricted in the Kakao Maps console. If the key is absent or invalid, the tool loads in list-only mode with a notice.
+  - CRITICAL ENVIRONMENT: `NEXT_PUBLIC_NAVER_MAP_CLIENT_ID` (string, committed to .env.production) — a NAVER Cloud Platform (NCP) Maps "Web Dynamic Map" client ID restricted by a Web service URL allowlist (production domain + localhost for dev). The client ID is safe to commit as a public identifier (no secret) but MUST be URL-restricted in the NCP console. If the client ID is absent or invalid, the tool loads in list-only mode with a notice.
 </platform_integration>
 
 <scope_boundaries>
@@ -43,7 +43,7 @@ CRITICAL (SPA, usability-first): every Jurepi tool is a client-side Single-Page 
     - Four seed themed lists (e.g., "성수동 감성 카페" 6+ places, "부산 로컬 맛집" 5+ places, "이태원 브런치" 4+ places, "강남 스시집" 3+ places) ko/en with plausible Seoul/Busan/regional coordinates + descriptions.
     - **Place markdown templates**: annotated markdown templates (`content/restaurant-map/_TEMPLATE.md`, `content/restaurant-map/_TEMPLATE_en.md`) and authoring README to make adding new lists easy (fields: name, region, city, asOfDate, sourceNote, places[{name, lat, lng, category, address, description, link?, priceRange?, imageUrl?}]).
     - Region/category tabs: derived from unique regions and categories in the catalog (All / 서울 (Seoul) / 부산 (Busan) / 대구 / ... / (카페 / 한식 / 일식 / 브런치 / ...) / (Favorites) / (Recent)).
-    - Interactive map (Kakao Maps JS SDK): markers for each place, cluster when dense, click marker → highlight list card + pan, info window on click. Graceful fallback (list-only + notice) if SDK fails.
+    - Interactive map (NAVER Maps JS API v3): markers for each place, cluster when dense, click marker → highlight list card + pan, info window on click. Graceful fallback (list-only + notice) if SDK fails.
     - Place list: responsive cards (name, category badge, region, distance from user [if geolocation enabled], short description, optional link + icon). Roving keyboard navigation.
     - Search: place names, categories, regions, cuisines, across BOTH locales, real-time filter (debounced). Case and diacritic insensitive. Applies to both map (filter markers) and list (filter cards).
     - Geolocation (optional, permission-gated): "내 위치" button triggers browser Geolocation API. If granted, centers map on user's lat/lng + shows radius circle + sorts cards by distance. If denied or unsupported, shows graceful message (no error). Distance calculation in km.
@@ -60,7 +60,7 @@ CRITICAL (SPA, usability-first): every Jurepi tool is a client-side Single-Page 
     - Real-time place updates or live reservation integration. Content is static, authored, reviewed, versioned via git.
     - Per-place deep-link URLs (e.g., /tools/restaurant-map/sushi-seongsu-1) — MVP is a single route + client state. (Phase 2 candidate.)
     - Rich HTML/script in markdown body. Descriptions are structured fields (plain text / limited inline emphasis), rendered safely.
-    - Multiple Maps SDK instances or switching between Kakao/Naver at runtime (use Kakao primary; Naver noted as alternative if Kakao unavailable).
+    - Multiple Maps SDK instances or switching between Naver/Kakao at runtime (use NAVER Maps primary; Kakao noted as alternative if NAVER unavailable).
   </out_of_scope>
   <future_considerations>
     - Per-place static deep-link routes + individual place detail pages (SEO) — Phase 2.
@@ -79,7 +79,7 @@ CRITICAL (SPA, usability-first): every Jurepi tool is a client-side Single-Page 
     <content_source>Place lists live as markdown pairs in `content/restaurant-map/`. File system access is build-time only (generator script). Runtime has NO file system access.</content_source>
     <frontmatter_parsing>gray-matter v4.x to parse YAML frontmatter (generator script only, devDependency). Place entries and descriptions are structured frontmatter fields, rendered as plain text.</frontmatter_parsing>
     <validation>zod v3.x (already used in repo) for (1) individual file frontmatter schema (2) merged place-list-record invariants, including geospatial bounds (lat [33–39], lng [124–132] for Korea sanity, but allow global). Schemas are pure and reusable in both generator and runtime loader. Validation failure → build exit non-zero.</validation>
-    <maps_sdk>Kakao Map JS SDK (client-side, public JavaScript API key via `NEXT_PUBLIC_KAKAO_MAP_KEY`) loaded via dynamic script injection on route mount. Alternative: Naver Maps JS SDK if Kakao unavailable. SDK load is async; tool degrades to list-only if SDK fails to load or key is missing (no throw, graceful UX). Map container reserves fixed height (CLS-safe) via CSS aspect-ratio or explicit height + padding-bottom trick.</maps_sdk>
+    <maps_sdk>NAVER Maps JS API v3 (client-side, public NCP client ID via `NEXT_PUBLIC_NAVER_MAP_CLIENT_ID`) loaded via dynamic script injection on route mount. Alternative: Kakao Map JS SDK if NAVER unavailable. SDK load is async; tool degrades to list-only if SDK fails to load or client ID is missing (no throw, graceful UX). Map container reserves fixed height (CLS-safe) via CSS aspect-ratio or explicit height + padding-bottom trick.</maps_sdk>
     <geolocation>Native browser Geolocation API (permission-gated). On grant, calculate distance to each place via Haversine formula (spherical geometry, accurate to ~0.5km for short distances). On deny, show friendly message (no error popup).</geolocation>
     <animation>Native CSS transitions only (card hover lift, map pan smooth, place highlight fade-in, marker pulse on select). Web Maps API pan/zoom animations are library-native (can't disable at granular level, but `prefers-reduced-motion` is respected by user's browser). No custom animation library.</animation>
     <catalog>Generated artifact is a code-split data module (src/components/tools/restaurant-map/data/restaurant-map.generated.json), dynamically imported only on this tool's route so place content never enters the global i18n message bundle (protects platform JS budget — same pattern as new-word/rankings/qna-a-day).</catalog>
@@ -87,7 +87,7 @@ CRITICAL (SPA, usability-first): every Jurepi tool is a client-side Single-Page 
   <libraries>
     <gray_matter>gray-matter v4.0.3 — devDependency, frontmatter parsing in generator script.</gray_matter>
     <zod>zod v3.x — already in repo; reused for frontmatter/catalog validation, geospatial bounds checking.</zod>
-    <kakao_maps>Kakao Map JS SDK — client-side, dynamically loaded via `<script>` tag, public API key (domain-restricted).</kakao_maps>
+    <naver_maps>NAVER Maps JS API v3 — client-side, dynamically loaded via `<script>` tag, public NCP client ID (Web service URL-restricted).</naver_maps>
   </libraries>
 </technology_stack>
 
@@ -110,7 +110,7 @@ src/
 ├── components/tools/restaurant-map/
 │   ├── RestaurantMap.tsx                 # Orchestrator (Client Component) — region/category/query/selectedId state + useRestaurantMapCatalog() owner + map SDK loader
 │   ├── useRestaurantMapCatalog.ts        # Hook: dynamic catalog import + localStorage favorites/recents + derived filter/select + geolocation state
-│   ├── MapContainer.tsx                  # Kakao Map JS SDK wrapper; renders markers, clusters, info window; syncs with list selection
+│   ├── MapContainer.tsx                  # NAVER Maps JS API wrapper; renders markers, clusters, info window; syncs with list selection
 │   ├── MapMarker.tsx                     # Single marker render; click → callback to select place (handled by parent)
 │   ├── PlaceList.tsx                     # Responsive card list; roving tabindex keyboard nav; synced with map selection
 │   ├── PlaceCard.tsx                     # One-place card: name, category badge, region, distance (if geo enabled), short desc, star favorite, optional link
@@ -198,7 +198,7 @@ src/
     <restaurant_map_intro />        <!-- H1 + lead (server-render where possible) -->
     <restaurant_map_layout>         <!-- Desktop: full-width map above or beside responsive list; Mobile: stacked or toggled -->
       <map_column>
-        <map_container />           <!-- Kakao Map JS SDK wrapper; renders markers + clusters + info window; synced with list selection -->
+        <map_container />           <!-- NAVER Maps JS API wrapper; renders markers + clusters + info window; synced with list selection -->
         <map_toggle />              <!-- Mobile-only: toggle between Map View | List View -->
         <map_failover />            <!-- Shown only if SDK fails to load: friendly message + list-only UI -->
       </map_column>
@@ -227,9 +227,9 @@ src/
   </restaurant_map_intro>
 
   <map_container>
-    - Kakao Map JS SDK wrapper: lazy-load script on mount; on ready, instantiate map, render markers (lucide MapPin or custom icon, size 24px), add cluster (if >N markers, cluster them). On marker click, trigger place selection (highlight card, scroll into view, open info window on marker).
+    - NAVER Maps JS API wrapper: lazy-load script on mount; on ready, instantiate map, render markers (lucide MapPin or custom icon, size 24px), add cluster (if >N markers, cluster them). On marker click, trigger place selection (highlight card, scroll into view, open info window on marker).
     - Map height: reserved via CSS (e.g., `aspect-ratio: 16/9` or `h-[400px]` on desktop, `h-[300px]` on mobile) to prevent CLS.
-    - Info window on marker click: show place name + category badge + address, "Open in Maps" link (opens Google Maps/Naver Places).
+    - Info window on marker click: show place name + category badge + address, "Open in Maps" link (opens Naver Map place page / Google Maps).
     - Graceful fallback: if SDK load fails, show MapFailover component (friendly message + list-only UI).
     - Pan/zoom: smooth CSS transitions (library-native); respects `prefers-reduced-motion` at browser level (user-agent controlled, library respects it).
     - User geolocation (if granted): show blue dot on map + radius circle (e.g., 5km accuracy radius); center map on grant, ask permission once per session (don't spam).
@@ -304,7 +304,7 @@ src/
     - Compose with region + category tabs: list = filterPlaces(active-region + active-category subset, query). Favorites/Recent tabs filter their own subsets.
   </search>
   <maps_sdk_loader>
-    - On component mount (useEffect), check if Kakao Map SDK is already loaded in window (global kakao). If not and NEXT_PUBLIC_KAKAO_MAP_KEY exists, dynamically inject `<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=...&libraries=...">`. On load, set mapSDKReady=true in state. On error or missing key, set mapSDKReady=false + show MapFailover (list-only mode).
+    - On component mount (useEffect), check if the NAVER Maps SDK is already loaded in window (global `naver.maps`). If not and NEXT_PUBLIC_NAVER_MAP_CLIENT_ID exists, dynamically inject `<script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=...">`. On load, set mapSDKReady=true in state. On error or missing client ID, set mapSDKReady=false + show MapFailover (list-only mode).
     - Script loads async; MapContainer shows placeholder or spinner until SDK is ready.
     - If SDK load times out (>5s), treat as failure (fallback to list-only).
   </maps_sdk_loader>
@@ -381,7 +381,7 @@ src/
     - Generator validates frontmatter with zod (type/required/length/coordinate bounds).
   </input>
   <maps_api>
-    - API key is public (NEXT_PUBLIC_KAKAO_MAP_KEY) but MUST be domain-restricted in Kakao Maps console (allowlist production domain + localhost). Build fails if key is missing; graceful fallback to list-only if SDK fails to load.
+    - Client ID is public (NEXT_PUBLIC_NAVER_MAP_CLIENT_ID) but MUST be URL-restricted in the NCP console (Web service URL allowlist: production domain + localhost). Build fails if the client ID is missing; graceful fallback to list-only if SDK fails to load.
   </maps_api>
   <privacy>
     - Favorites/recents localStorage-only, never sent. Geolocation lat/lng cached in localStorage for performance, but can be cleared by user (localStorage clear / browser privacy settings).
@@ -414,7 +414,7 @@ src/
   <test_scenario_2>
     <description>Map render + marker click → list sync</description>
     <steps>
-      1. Load /ko/tools/restaurant-map → map renders (Kakao SDK loads, markers show for all places in Seoul).
+      1. Load /ko/tools/restaurant-map → map renders (NAVER Maps SDK loads, markers show for all places in Seoul).
       2. Click a map marker → corresponding list card highlights + scrolls into view (left/right column scroll, not page scroll).
       3. Zoom out → markers cluster (if N>threshold). Click cluster → expands to show individual markers.
       4. Click a place card → map pans/zooms to marker + opens info window (place name + "Open in Maps" link).
@@ -434,8 +434,8 @@ src/
   <test_scenario_4>
     <description>SDK failure → graceful fallback</description>
     <steps>
-      1. Delete NEXT_PUBLIC_KAKAO_MAP_KEY from .env → rebuild → SDK load skipped, MapFailover shown + list-only UI.
-      2. Or: NEXT_PUBLIC_KAKAO_MAP_KEY set but domain not allowlisted in Kakao console → SDK script loads but map init fails → MapFailover + list-only.
+      1. Delete NEXT_PUBLIC_NAVER_MAP_CLIENT_ID from .env → rebuild → SDK load skipped, MapFailover shown + list-only UI.
+      2. Or: NEXT_PUBLIC_NAVER_MAP_CLIENT_ID set but Web service URL not allowlisted in NCP console → SDK script loads but map init fails (auth error callback) → MapFailover + list-only.
       3. List + search + favorites + recents all fully functional without map.
       4. Geolocation button still available (but no map marker feedback).
     </steps>
@@ -471,14 +471,14 @@ src/
 
 <success_criteria>
   <content_model>CRITICAL: drop `<list>.md` + `<list>_en.md` pair in content folder, rebuild, auto-reflect in map + list with zero code change; generator validates pair/region/places/coords, fails build with clear message on violation.</content_model>
-  <functionality>Searchable, region/category-filterable place list (both locales); interactive map (Kakao SDK) with markers + clusters + sync; localStorage favorites + recent; seed 3–4 region lists × 2+ lists each (5+ places per list). Graceful fallback if SDK fails.</functionality>
+  <functionality>Searchable, region/category-filterable place list (both locales); interactive map (NAVER Maps SDK) with markers + clusters + sync; localStorage favorites + recent; seed 3–4 region lists × 2+ lists each (5+ places per list). Graceful fallback if SDK fails.</functionality>
   <trust_surface>Every place has name, coordinates, address, description, and category (filled form). Optional source note at list level + asOfDate (published) establish trust (not per-place, but list-level provenance).</trust_surface>
   <user_experience>Search/filter instant; cards readable; ≥44px targets; visible focus; map/list never overflow at 320px; SPA — no route reload on any interaction. Geolocation permission-gated, gracefully denied.</user_experience>
   <technical_quality>lib/restaurant-map/* pure ≥80% unit coverage (schema/merge/slug/search/geo/favorites); generator validation tests (pair-missing, invalid-coords, <3-places, dupe-slug → fail); TS 0 errors; <800 lines per file; catalog code-split, no i18n bundle bloat.</technical_quality>
   <visual_design>DESIGN.md compliant; tool accent (coral or rose TBD) + brand honey-gold CTA; category badges (colored per type); map markers clear and clickable; list cards have hover lift + selection ring; responsive layout (map/list sync visible on both desktop and mobile); text-node render only.</visual_design>
   <accessibility>Full keyboard (map marker + list roving, "/", Enter, "f", Esc); aria-live state; labeled buttons; geolocation permission prompt accessible; motion-respect; WCAG 2.1 AA.</accessibility>
   <performance>Tool route within platform budget; catalog dynamic import; map SDK lazy-load (doesn't block FCP); CLS <0.1 (map container height reserved); LCP < 2.5s (SSG pre-rendered shell + dynamic SDK).</performance>
-  <maps_integration>Kakao Map JS SDK lazy-loads on route mount; NEXT_PUBLIC_KAKAO_MAP_KEY (domain-restricted) required but optional (graceful fallback); markers render all places; click → sync with list; cluster at high zoom. Maps data is 1st-party (markdown-sourced), not real-time.</maps_integration>
+  <maps_integration>NAVER Maps JS API v3 lazy-loads on route mount; NEXT_PUBLIC_NAVER_MAP_CLIENT_ID (URL-restricted in NCP console) required but optional (graceful fallback); markers render all places; click → sync with list; cluster at high zoom. Maps data is 1st-party (markdown-sourced), not real-time.</maps_integration>
 </success_criteria>
 
 <build_output>
@@ -504,7 +504,7 @@ src/
     Also: add slug→component branch (<RestaurantMap/>) and generateMetadata branch in tool route. Add `'fun'` to ToolCategory enum if not present.
   </platform_registry_change>
   <platform_env_setup>
-    - `NEXT_PUBLIC_KAKAO_MAP_KEY`: String value (public JavaScript API key from Kakao Maps console). Committed to `.env.production`. Domain allowlist configured in Kakao Maps console (production domain + localhost).
+    - `NEXT_PUBLIC_NAVER_MAP_CLIENT_ID`: String value (public client ID from the NAVER Cloud Platform Maps console, "Web Dynamic Map" service). Committed to `.env.production`. Web service URL allowlist configured in the NCP console (production domain + localhost).
     - If key is missing or invalid, SDK fails gracefully (list-only mode).
   </platform_env_setup>
   <critical_paths>
@@ -518,7 +518,7 @@ src/
     2. scripts/generate-restaurant-map.mjs + content/restaurant-map/{_TEMPLATE,_TEMPLATE_en,README} + seed (seongsu-cafes, busan-ramen, seoul-brunch, etc., 2–3 lists, 5+ places each). Validation tests (pair-missing, <3-places, invalid-coords, dupe-slug → fail). predev/prebuild wire.
     3. tools.restaurant-map.* messages (ko/en): region labels, category labels, tabs, search, toasts, empty states, how-to, FAQ, distance unit [km].
     4. useRestaurantMapCatalog hook (dynamic import + localStorage + in-memory fallback + geolocation state).
-    5. MapContainer (Kakao SDK loader + marker render + info window) + MapMarker component.
+    5. MapContainer (NAVER Maps SDK loader + marker render + info window) + MapMarker component.
     6. PlaceSearch + RegionTabs + CategoryFilter + GeolocationButton + PlaceList/PlaceCard (roving tabindex, states) + empty states.
     7. Map-list sync logic: click marker → select card; click card → pan map (component state coordination).
     8. Keyboard shortcuts, motion-reduce, a11y (axe, aria-live).
@@ -541,13 +541,13 @@ src/
     // 5) errors.length ? (stderr + process.exit(1)) : sorted-write(restaurant-map.generated.json)
     ```
   </generator_sketch>
-  <testing_strategy>Pure Vitest ≥80% (schema/merge/slug/search/geo/favorites); generator validation fixtures (pair-missing/<3-places/invalid-coords/dupe cases); component catalog-injected mocks; map SDK mocked (jest.mock kakao maps); E2E scenarios 1–7; localStorage jsdom-isolated.</testing_strategy>
+  <testing_strategy>Pure Vitest ≥80% (schema/merge/slug/search/geo/favorites); generator validation fixtures (pair-missing/<3-places/invalid-coords/dupe cases); component catalog-injected mocks; map SDK mocked (mock global `naver.maps`); E2E scenarios 1–7; localStorage jsdom-isolated.</testing_strategy>
   <maps_sdk_notes>
-    - Kakao Map JS SDK is loaded dynamically on route mount via script injection (not in global _document.tsx). Script src: `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_MAP_KEY}&libraries=clusterer,services`.
+    - NAVER Maps JS API v3 is loaded dynamically on route mount via script injection (not in global _document.tsx). Script src: `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}` (legacy param name `ncpClientId` for older NCP registrations).
     - SDK load is async; component uses state (mapSDKReady) to conditionally render MapContainer. Until SDK is loaded, show placeholder or spinner.
     - On SDK load error, graceful fallback: set mapSDKReady=false → show MapFailover (list-only mode, no error alert).
-    - Maps library provides clustering (kakao.maps.clusterer.Clusterer) — wire it to cluster markers when zoomed out.
-    - info window: use kakao.maps.InfoWindow to show place name + "Open in Maps" link (opens Google Maps or Naver Places link in new tab).
+    - Clustering: NAVER Maps JS API v3 has NO built-in clusterer — vendor a small in-repo clustering utility based on NAVER's official MarkerClustering example (navermaps/marker-tools.js, grid-based), wired to cluster markers when zoomed out. Keep it dependency-free and unit-testable (pure grid-bucketing logic separated from the SDK).
+    - info window: use naver.maps.InfoWindow to show place name + "Open in Maps" link (opens Naver Map place page or Google Maps link in new tab).
   </maps_sdk_notes>
 </key_implementation_notes>
 
