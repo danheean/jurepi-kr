@@ -113,7 +113,7 @@ export function BirthdateInput({
 
         {/* As-of Date Input (shown when toggle is on) */}
         {useAsOf && (
-          <div className="space-y-1 pl-4 border-l-2 border-accent-mint/30">
+          <div className="space-y-1 pl-4 border-l border-hairline">
             <label htmlFor="as-of-date" className="font-semibold text-text text-sm">
               {t('input.asOfDate')}
             </label>

@@ -41,12 +41,7 @@ export function AgeSummary({ age }: Props) {
         {ageCards.map(({ type, value }) => (
           <div
             key={type}
-            className="relative bg-surface border border-hairline rounded-lg p-4 transition-all duration-150 hover:shadow-card hover:translate-y-[-2px]"
-            style={{
-              borderLeftColor: 'var(--accent-mint)',
-              borderLeftWidth: '3px',
-              paddingLeft: 'calc(1rem - 3px)',
-            }}
+            className="bg-surface border border-hairline rounded-lg p-4 transition-[transform,box-shadow] duration-150 hover:shadow-card hover:translate-y-[-2px]"
           >
             {/* Age number */}
             <div className="text-5xl font-bold text-accent-mint-ink mb-2">{value}</div>

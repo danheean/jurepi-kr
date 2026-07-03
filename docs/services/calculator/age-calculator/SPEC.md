@@ -191,7 +191,7 @@ src/
 
   <age_summary>
     - Three cards side-by-side (desktop) or stacked (mobile), each 100% width ÷ 3 on desktop.
-    - Card: var(--surface) + 1px var(--hairline), radius var(--radius-lg), padding 16px. Mint accent bar left (3px var(--accent-mint)).
+    - Card: var(--surface) + full 1px var(--hairline) border, radius var(--radius-lg), padding 16px. Category identity is carried by the large mint-ink age number (var(--accent-mint-ink)), NOT a colored side-stripe (anti-slop: no border-left accent > 1px).
     - Each card: large age number (headline 28px var(--text)/700), label (caption var(--text-secondary), 12px), brief explanation (body-sm 14px var(--text-secondary), 2 lines max).
     - Top card (만 나이): "Legal age (Korea 2023–)"; middle (연 나이): "Calendar year based"; bottom (세는 나이): "Traditional Korean" + small note "(Korea historically used this; unified to 만 나이 in 2023)".
   </age_summary>
@@ -271,7 +271,7 @@ src/
 <aesthetic_guidelines>
   <source>CRITICAL: DESIGN.md is single source of all tokens. Below are tool-specific applications.</source>
   <accent_usage>
-    - Category accent is MINT (var(--accent-mint) / var(--accent-mint-soft)) — "calculator" category identity per DESIGN. Input focus ring, age-summary left bar, zodiac tile bg, favorite star icon.
+    - Category accent is MINT — "calculator" category identity per DESIGN. Carried by the mint-ink age number (var(--accent-mint-ink), text-safe) and zodiac tile bg (var(--accent-mint-soft)). NOT used as a side-stripe. Focus/action = brand honey-gold (var(--focus-ring)/var(--brand)), never accent (principle: accent=identity, brand=action).
     - Primary CTA (Copy) stays brand honey-gold var(--brand). Accent = identity, not action.
   </accent_usage>
   <surfaces>Age cards = var(--surface) + 1px var(--hairline); radius var(--radius-lg); fact chips var(--surface-muted). Soft brand-tinted shadows, hard borders avoided.</surfaces>
