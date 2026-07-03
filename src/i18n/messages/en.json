@@ -902,7 +902,7 @@
       "actions": {
         "copy": "Copy results",
         "copied": "Copied",
-        "enter": "Press Enter to calculate"
+        "enter": "Calculates as you type"
       },
       "howTo": {
         "heading": "How to use Age Calculator",

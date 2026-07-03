@@ -47,8 +47,8 @@ export function DateFacts({ age, locale }: Props) {
     if (currentLocale === 'ko') {
       return `${years}년 ${months}개월 ${days}일`;
     }
-    // English format
-    return `${years}y ${months}m ${days}d`;
+    // English: use unambiguous unit abbreviations (mo for months, not "m" which reads as minutes)
+    return `${years}y ${months}mo ${days}d`;
   };
 
   /**

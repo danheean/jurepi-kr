@@ -902,7 +902,7 @@
       "actions": {
         "copy": "결과 복사",
         "copied": "복사되었습니다",
-        "enter": "Enter 키로 계산"
+        "enter": "입력하면 바로 계산돼요"
       },
       "howTo": {
         "heading": "나이 계산기 사용 방법",
