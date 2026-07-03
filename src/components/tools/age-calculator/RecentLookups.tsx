@@ -1,18 +1,18 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
+import type { RecentEntry } from '@/lib/age-calculator/recents';
 
 interface Props {
-  recents: string[]; // DateKey[]
-  onSelectRecent: (dateKey: string) => void;
+  recents: RecentEntry[];
+  onSelectRecent: (entry: RecentEntry) => void;
   onClear: () => void;
 }
 
 /**
- * RecentLookups: Displays recently calculated birthdates as chips
- * - Only renders when recents.length > 0
- * - Each chip formats the DateKey via Intl.DateTimeFormat
- * - "Clear" button clears all recents
+ * RecentLookups: recently calculated birthdates as chips. Each chip shows the
+ * date formatted for the locale, with a 음력/(윤) marker when it was a lunar
+ * entry, so a returning user recalls exactly what they entered.
  */
 export function RecentLookups({ recents, onSelectRecent, onClear }: Props) {
   const t = useTranslations('tools.age-calculator');
@@ -22,9 +22,6 @@ export function RecentLookups({ recents, onSelectRecent, onClear }: Props) {
     return null;
   }
 
-  /**
-   * Format a DateKey (YYYY-MM-DD) for display using Intl.DateTimeFormat
-   */
   const formatDate = (dateKey: string): string => {
     const [year, month, day] = dateKey.split('-').map(Number);
     const date = new Date(year, month - 1, day);
@@ -34,6 +31,15 @@ export function RecentLookups({ recents, onSelectRecent, onClear }: Props) {
       day: 'numeric',
     }).format(date);
   };
+
+  const label = (entry: RecentEntry): string => {
+    const base = formatDate(entry.date);
+    if (entry.calendarType !== 'lunar') return base;
+    const leap = entry.isLeapMonth ? ` ${t('recents.leapTag')}` : '';
+    return `${base} · ${t('recents.lunarTag')}${leap}`;
+  };
+
+  const keyOf = (e: RecentEntry) => `${e.calendarType}:${e.date}:${e.isLeapMonth ? 'L' : ''}`;
 
   return (
     <section className="space-y-3">
@@ -47,16 +53,15 @@ export function RecentLookups({ recents, onSelectRecent, onClear }: Props) {
         </button>
       </div>
 
-      {/* Chips: horizontal scroll/wrap */}
       <div className="flex flex-wrap gap-2">
-        {recents.map((dateKey) => (
+        {recents.map((entry) => (
           <button
-            key={dateKey}
-            onClick={() => onSelectRecent(dateKey)}
-            aria-label={t('recents.ariaReuse', { datekey: formatDate(dateKey) })}
+            key={keyOf(entry)}
+            onClick={() => onSelectRecent(entry)}
+            aria-label={t('recents.ariaReuse', { datekey: label(entry) })}
             className="px-3 py-2 rounded-full bg-surface-muted border border-hairline text-sm text-text transition-colors min-h-11 min-w-max hover:bg-accent-mint-soft hover:text-accent-mint-ink hover:border-accent-mint"
           >
-            {formatDate(dateKey)}
+            {label(entry)}
           </button>
         ))}
       </div>

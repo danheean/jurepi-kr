@@ -238,4 +238,45 @@ test.describe('Age Calculator - E2E Integration', () => {
       await expect(mainElement).toContainText('용');
     }
   });
+
+  /**
+   * Lunar input: 음력 toggle + 윤달 switch + 간지 fact.
+   */
+  test('Lunar birthdate: toggle 음력, convert, and show 간지', async ({ page }) => {
+    await page.goto('/ko/tools/age-calculator');
+    await page.waitForLoadState('networkidle');
+    await expect(page.locator('#birthdate-year')).toBeVisible({ timeout: 5000 }); // island mounted
+
+    await page.getByRole('button', { name: '음력', exact: true }).click();
+    await expect(page.getByRole('switch')).toBeVisible(); // 윤달 switch appears
+
+    await selectBirthdate(page, '1988-05-10');
+
+    const main = page.locator('main');
+    await expect(main.locator('[class*="surface"]').first()).toBeVisible({ timeout: 5000 });
+    await expect(main).toContainText('간지'); // sexagenary fact rendered for lunar input
+  });
+
+  /**
+   * #3: save the current lookup as a person (prefilled add form, name only).
+   */
+  test('Save the current lookup as a person', async ({ page }) => {
+    await page.goto('/ko/tools/age-calculator');
+    await page.waitForLoadState('networkidle');
+
+    await selectBirthdate(page, '2000-03-15');
+    const main = page.locator('main');
+    await expect(main.locator('[class*="surface"]').first()).toBeVisible({ timeout: 5000 });
+
+    await page.getByRole('button', { name: '이 생년월일 저장' }).click();
+
+    const nameInput = page.locator('#add-name');
+    await expect(nameInput).toBeVisible();
+    // date is prefilled from the lookup
+    await expect(page.locator('#add-year')).toHaveValue('2000');
+    await nameInput.fill('테스트');
+    await page.getByRole('button', { name: '저장', exact: true }).click();
+
+    await expect(main).toContainText('테스트');
+  });
 });

@@ -181,7 +181,7 @@ describe('age-calculator/people', () => {
         ...withPerson,
         people: [
           ...withPerson.people,
-          { id: 'unknown', name: 'Unknown', birthdate: '2000-01-01' as DateKey },
+          { id: 'unknown', name: 'Unknown', birthdate: '2000-01-01' as DateKey, calendarType: 'solar', isLeapMonth: false },
         ],
       };
 

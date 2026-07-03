@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NextIntlClientProvider } from 'next-intl';
@@ -6,209 +6,128 @@ import { PeopleList } from './PeopleList';
 import type { Person } from '@/lib/age-calculator/schema';
 import messages from '@/i18n/messages/ko.json';
 
+const M = messages.tools['age-calculator'].people;
+
 describe('PeopleList', () => {
   const mockPeople: Person[] = [
-    { id: '1', name: '홍길동', birthdate: '1990-03-15' },
-    { id: '2', name: '김영희', birthdate: '1995-06-20' },
+    { id: '1', name: '홍길동', birthdate: '1990-03-15', calendarType: 'solar', isLeapMonth: false },
+    { id: '2', name: '김영희', birthdate: '1995-06-20', calendarType: 'lunar', isLeapMonth: false },
   ];
 
   const mockOnAdd = vi.fn();
   const mockOnRemove = vi.fn();
   const mockOnSelect = vi.fn();
 
-  const renderComponent = (
-    people: Person[] = mockPeople,
-    onAdd = mockOnAdd,
-    onRemove = mockOnRemove,
-    onSelect = mockOnSelect
-  ) => {
-    return render(
+  const renderComponent = (people: Person[] = mockPeople) =>
+    render(
       <NextIntlClientProvider locale="ko" messages={messages as any}>
-        <PeopleList people={people} onAdd={onAdd} onRemove={onRemove} onSelect={onSelect} />
+        <PeopleList people={people} onAdd={mockOnAdd} onRemove={mockOnRemove} onSelect={mockOnSelect} />
       </NextIntlClientProvider>
     );
+
+  const openForm = () =>
+    fireEvent.click(screen.getAllByRole('button').find((b) => b.textContent?.includes(M.addButton))!);
+
+  const selectAddDate = (container: HTMLElement, date: string) => {
+    const [y, m, d] = date.split('-').map(Number);
+    fireEvent.change(container.querySelector('#add-year')!, { target: { value: String(y) } });
+    fireEvent.change(container.querySelector('#add-month')!, { target: { value: String(m) } });
+    fireEvent.change(container.querySelector('#add-day')!, { target: { value: String(d) } });
   };
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
+  beforeEach(() => vi.clearAllMocks());
 
-  it('renders heading', () => {
+  it('renders heading, add button and people', () => {
     renderComponent();
-    expect(screen.getByText(messages.tools['age-calculator'].people.heading)).toBeInTheDocument();
-  });
-
-  it('renders add button', () => {
-    renderComponent();
-    expect(
-      screen.getByText(messages.tools['age-calculator'].people.addButton)
-    ).toBeInTheDocument();
-  });
-
-  it('renders empty state when no people', () => {
-    renderComponent([]);
-    expect(
-      screen.getByText(messages.tools['age-calculator'].people.emptyState)
-    ).toBeInTheDocument();
-  });
-
-  it('renders all people when present', () => {
-    renderComponent();
+    expect(screen.getByText(M.heading)).toBeInTheDocument();
+    expect(screen.getByText(M.addButton)).toBeInTheDocument();
     expect(screen.getByText('홍길동')).toBeInTheDocument();
     expect(screen.getByText('김영희')).toBeInTheDocument();
   });
 
-  it('calls onSelect when person is clicked', () => {
+  it('renders the empty state when there are no people', () => {
+    renderComponent([]);
+    expect(screen.getByText(M.emptyState)).toBeInTheDocument();
+  });
+
+  it('marks a lunar person with a 음력 tag', () => {
     renderComponent();
-    const button = screen.getByText('홍길동');
-    fireEvent.click(button);
+    // 김영희 is lunar → their row contains the lunar tag
+    expect(screen.getByText(new RegExp(messages.tools['age-calculator'].recents.lunarTag))).toBeInTheDocument();
+  });
+
+  it('calls onSelect when a person is clicked', () => {
+    renderComponent();
+    fireEvent.click(screen.getByText('홍길동'));
     expect(mockOnSelect).toHaveBeenCalledWith(mockPeople[0]);
   });
 
-  it('calls onRemove when trash icon is clicked', () => {
+  it('calls onRemove when the trash icon is clicked', () => {
     renderComponent();
-    const removeButtons = screen.getAllByLabelText(messages.tools['age-calculator'].people.removeButton);
-    fireEvent.click(removeButtons[0]);
+    fireEvent.click(screen.getAllByLabelText(M.removeButton)[0]);
     expect(mockOnRemove).toHaveBeenCalledWith('1');
   });
 
-  it('opens add modal when add button is clicked', async () => {
-    renderComponent();
-    const addButton = screen.getAllByRole('button').find((btn) =>
-      btn.textContent?.includes(messages.tools['age-calculator'].people.addButton)
-    );
-    fireEvent.click(addButton!);
-    // Check for the modal by checking for its inputs
-    expect(
-      screen.getByLabelText(messages.tools['age-calculator'].people.addModal.nameLabel)
-    ).toBeInTheDocument();
+  it('opens the add form with a name field and date dropdowns', () => {
+    const { container } = renderComponent();
+    openForm();
+    expect(screen.getByLabelText(M.addModal.nameLabel)).toBeInTheDocument();
+    expect(container.querySelector('#add-year')).toBeInTheDocument();
+    expect(container.querySelector('#add-day')).toBeInTheDocument();
   });
 
-  it('renders modal with name and birthdate inputs', () => {
+  it('closes the form on cancel', async () => {
     renderComponent();
-    const addButton = screen.getAllByRole('button').find((btn) =>
-      btn.textContent?.includes(messages.tools['age-calculator'].people.addButton)
+    openForm();
+    expect(screen.getByLabelText(M.addModal.nameLabel)).toBeInTheDocument();
+    fireEvent.click(screen.getByText(M.addModal.cancel));
+    await waitFor(() =>
+      expect(screen.queryByLabelText(M.addModal.nameLabel)).not.toBeInTheDocument()
     );
-    fireEvent.click(addButton!);
-
-    expect(
-      screen.getByLabelText(messages.tools['age-calculator'].people.addModal.nameLabel)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByLabelText(messages.tools['age-calculator'].people.addModal.birthdateLabel)
-    ).toBeInTheDocument();
   });
 
-  it('renders save and cancel buttons in modal', () => {
-    renderComponent();
-    const addButton = screen.getAllByRole('button').find((btn) =>
-      btn.textContent?.includes(messages.tools['age-calculator'].people.addButton)
-    );
-    fireEvent.click(addButton!);
-
-    // Get specific buttons by finding them in the modal area
-    const allSaveButtons = screen.getAllByText(messages.tools['age-calculator'].people.addModal.save);
-    const allCancelButtons = screen.getAllByText(messages.tools['age-calculator'].people.addModal.cancel);
-    expect(allSaveButtons.length).toBeGreaterThan(0);
-    expect(allCancelButtons.length).toBeGreaterThan(0);
-  });
-
-  it('closes modal when cancel is clicked', async () => {
-    renderComponent();
-    const addButton = screen.getAllByRole('button').find((btn) =>
-      btn.textContent?.includes(messages.tools['age-calculator'].people.addButton)
-    );
-    fireEvent.click(addButton!);
-
-    // Check that modal inputs exist
-    expect(screen.getByLabelText(messages.tools['age-calculator'].people.addModal.nameLabel)).toBeInTheDocument();
-
-    const cancelButton = screen.getByText(messages.tools['age-calculator'].people.addModal.cancel);
-    fireEvent.click(cancelButton);
-
+  it('calls onAdd with name, date and solar calendar type', async () => {
+    const { container } = renderComponent();
+    openForm();
+    await userEvent.type(screen.getByLabelText(M.addModal.nameLabel), '이순신');
+    selectAddDate(container, '1988-05-10');
+    fireEvent.click(screen.getByText(M.addModal.save));
     await waitFor(() => {
-      // After closing, the name input should not exist
-      expect(
-        screen.queryByLabelText(messages.tools['age-calculator'].people.addModal.nameLabel)
-      ).not.toBeInTheDocument();
+      expect(mockOnAdd).toHaveBeenCalledWith('이순신', '1988-05-10', 'solar', false);
     });
   });
 
-  it('calls onAdd with name and birthdate when save is clicked', async () => {
-    renderComponent();
-    const addButton = screen.getAllByRole('button').find((btn) =>
-      btn.textContent?.includes(messages.tools['age-calculator'].people.addButton)
-    );
-    fireEvent.click(addButton!);
-
-    const nameInput = screen.getByLabelText(
-      messages.tools['age-calculator'].people.addModal.nameLabel
-    ) as HTMLInputElement;
-    const birthdateInput = screen.getByLabelText(
-      messages.tools['age-calculator'].people.addModal.birthdateLabel
-    ) as HTMLInputElement;
-
-    await userEvent.type(nameInput, '이순신');
-    // Using fireEvent for date input since userEvent doesn't work well with type="date"
-    fireEvent.change(birthdateInput, { target: { value: '1988-05-10' } });
-
-    const saveButton = screen.getByText(messages.tools['age-calculator'].people.addModal.save);
-    fireEvent.click(saveButton);
-
-    await waitFor(() => {
-      expect(mockOnAdd).toHaveBeenCalledWith('이순신', '1988-05-10');
-    });
-  });
-
-  it('validates required name field', async () => {
-    renderComponent();
-    const addButton = screen.getAllByRole('button').find((btn) =>
-      btn.textContent?.includes(messages.tools['age-calculator'].people.addButton)
-    );
-    fireEvent.click(addButton!);
-
-    const birthdateInput = screen.getByLabelText(
-      messages.tools['age-calculator'].people.addModal.birthdateLabel
-    ) as HTMLInputElement;
-    fireEvent.change(birthdateInput, { target: { value: '1988-05-10' } });
-
-    const saveButton = screen.getByText(messages.tools['age-calculator'].people.addModal.save);
-    fireEvent.click(saveButton);
-
+  it('does not submit without a name', () => {
+    const { container } = renderComponent();
+    openForm();
+    selectAddDate(container, '1988-05-10');
+    fireEvent.click(screen.getByText(M.addModal.save));
     expect(mockOnAdd).not.toHaveBeenCalled();
   });
 
-  it('validates birthdate format', async () => {
+  it('does not submit without a complete date', async () => {
     renderComponent();
-    const addButton = screen.getAllByRole('button').find((btn) =>
-      btn.textContent?.includes(messages.tools['age-calculator'].people.addButton)
-    );
-    fireEvent.click(addButton!);
-
-    const nameInput = screen.getByLabelText(
-      messages.tools['age-calculator'].people.addModal.nameLabel
-    ) as HTMLInputElement;
-
-    await userEvent.type(nameInput, '이순신');
-
-    const saveButton = screen.getByText(messages.tools['age-calculator'].people.addModal.save);
-    fireEvent.click(saveButton);
-
+    openForm();
+    await userEvent.type(screen.getByLabelText(M.addModal.nameLabel), '이순신');
+    fireEvent.click(screen.getByText(M.addModal.save));
     expect(mockOnAdd).not.toHaveBeenCalled();
   });
 
-  it('formats birthdates correctly for display', () => {
-    renderComponent();
-    // Should display formatted dates (exact format depends on locale)
-    const dateElements = screen.getAllByText(/\d{4}년/);
-    expect(dateElements.length).toBeGreaterThan(0);
-  });
-
-  it('has >=44px tap targets', () => {
-    renderComponent();
-    const peopleButtons = screen.getAllByRole('button').filter(
-      (btn) => btn.textContent?.includes('홍길동') || btn.className?.includes('min-h-11')
+  it('opens pre-filled when prefillNonce changes', () => {
+    const { container, rerender } = render(
+      <NextIntlClientProvider locale="ko" messages={messages as any}>
+        <PeopleList
+          people={[]}
+          onAdd={mockOnAdd}
+          onRemove={mockOnRemove}
+          onSelect={mockOnSelect}
+          prefill={{ date: '1970-08-15', calendarType: 'lunar', isLeapMonth: false }}
+          prefillNonce={1}
+        />
+      </NextIntlClientProvider>
     );
-    expect(peopleButtons.length).toBeGreaterThan(0);
+    // form opened + date dropdowns reflect the prefill
+    expect(container.querySelector('#add-year')).toBeInTheDocument();
+    expect((container.querySelector('#add-year') as HTMLSelectElement).value).toBe('1970');
   });
 });

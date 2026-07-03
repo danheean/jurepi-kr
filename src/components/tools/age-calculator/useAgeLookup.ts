@@ -4,26 +4,31 @@ import type { DateKey } from '@/lib/age-calculator/date';
 import { today, parseDateKey } from '@/lib/age-calculator/date';
 import { parseBirthdateInput, parsePeopleStore, type Person, type PeopleStore } from '@/lib/age-calculator/schema';
 import { addPerson, removePerson } from '@/lib/age-calculator/people';
-import { pushRecent, serializeRecents, deserializeRecents } from '@/lib/age-calculator/recents';
+import { pushRecent, serializeRecents, deserializeRecents, type RecentEntry } from '@/lib/age-calculator/recents';
+import { resolveBirthdate, isResolveError, type CalendarType } from '@/lib/age-calculator/resolve';
+
+export type AgeError = 'invalid' | 'future' | 'too-old' | 'no-leap';
 
 export interface UseAgeLookupState {
   birthdate: string | null;
+  calendarType: CalendarType;
+  isLeapMonth: boolean;
   asOfDate: string;
   useAsOf: boolean;
   age: AgeResult | null;
-  error: string | null; // 'invalid', 'future', 'too-old'
+  error: AgeError | null;
   people: Person[];
-  recents: string[]; // DateKey[]
+  recents: RecentEntry[];
   selectedPersonId: string | null;
 }
 
 export interface UseAgeLookupActions {
-  setBirthdate(dateKey: DateKey | null): void;
+  setBirthdate(dateKey: DateKey | null, calendarType?: CalendarType, isLeapMonth?: boolean): void;
   setAsOfDate(dateKey: DateKey): void;
   setUseAsOf(use: boolean): void;
-  addPerson(name: string, birthdate: DateKey): void;
+  addPerson(name: string, birthdate: DateKey, calendarType?: CalendarType, isLeapMonth?: boolean): void;
   removePerson(personId: string): void;
-  selectRecent(dateKey: DateKey): void;
+  selectRecent(entry: RecentEntry): void;
   clearRecents(): void;
   clearError(): void;
   copyResultToClipboard(): Promise<boolean>;
@@ -31,34 +36,37 @@ export interface UseAgeLookupActions {
 
 export type UseAgeLookupReturn = UseAgeLookupState & UseAgeLookupActions;
 
-/** Delay before a settled birthdate is written to recents (avoids recording
- *  intermediate year/month/day dropdown states). */
+/** Delay before a settled birthdate is written to recents. */
 const RECENTS_DEBOUNCE_MS = 600;
 
+const emptyStore = (): PeopleStore => {
+  const now = Date.now();
+  return { version: 1, people: [], meta: { createdAt: now, updatedAt: now } };
+};
+
 /**
- * useAgeLookup: Main state management hook for age calculator.
- * - On mount: load people + recents from localStorage
- * - On birthdate change: parse, validate, calculate age
- * - On valid calculation: push to recents
- * - Copy: format and copy to clipboard
+ * useAgeLookup: state management for the age calculator.
+ * - Age/zodiac are computed by an async effect that resolves the entered date
+ *   (solar OR lunar) to a canonical solar date via the lunar engine, so the
+ *   Korean zodiac is accurate (lunar-year based) and 간지 is available.
  */
 export function useAgeLookup(): UseAgeLookupReturn {
   const [birthdate, setBirthdateState] = useState<string | null>(null);
+  const [calendarType, setCalendarType] = useState<CalendarType>('solar');
+  const [isLeapMonth, setIsLeapMonth] = useState(false);
   const [asOfDate, setAsOfDateState] = useState<string>('');
   const [useAsOf, setUseAsOf] = useState(false);
   const [age, setAge] = useState<AgeResult | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<AgeError | null>(null);
   const [people, setPeople] = useState<Person[]>([]);
   const [peopleStore, setPeopleStore] = useState<PeopleStore | null>(null);
-  const [recents, setRecents] = useState<string[]>([]);
+  const [recents, setRecents] = useState<RecentEntry[]>([]);
   const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null);
 
-  // On mount: load from localStorage
+  // On mount: load people + recents from localStorage (graceful fail).
   useEffect(() => {
-    const now = today();
-    setAsOfDateState(now);
+    setAsOfDateState(today());
 
-    // Load people
     try {
       const peopleJson = localStorage.getItem('jurepi-age-calculator-people');
       if (peopleJson) {
@@ -66,149 +74,115 @@ export function useAgeLookup(): UseAgeLookupReturn {
         setPeopleStore(store);
         setPeople(store.people);
       } else {
-        const now = Date.now();
-        const emptyStore: PeopleStore = {
-          version: 1,
-          people: [],
-          meta: { createdAt: now, updatedAt: now },
-        };
-        setPeopleStore(emptyStore);
+        setPeopleStore(emptyStore());
       }
     } catch {
-      // Graceful fail on parse error
-      const now = Date.now();
-      const emptyStore: PeopleStore = {
-        version: 1,
-        people: [],
-        meta: { createdAt: now, updatedAt: now },
-      };
-      setPeopleStore(emptyStore);
+      setPeopleStore(emptyStore());
     }
 
-    // Load recents
     try {
       const recentsJson = localStorage.getItem('jurepi-age-calculator-recents');
-      if (recentsJson) {
-        const parsed = deserializeRecents(recentsJson);
-        setRecents(parsed);
-      }
+      if (recentsJson) setRecents(deserializeRecents(recentsJson));
     } catch {
-      // Graceful fail on parse error
       setRecents([]);
     }
   }, []);
 
-  // When birthdate changes: validate and calculate age
   const setBirthdate = useCallback(
-    (dateKey: DateKey | null) => {
+    (dateKey: DateKey | null, ct: CalendarType = 'solar', leap = false) => {
       setBirthdateState(dateKey);
-      setError(null);
+      setCalendarType(ct);
+      setIsLeapMonth(ct === 'solar' ? false : leap);
       setSelectedPersonId(null);
+      setError(null);
+      if (!dateKey) setAge(null);
+      // Age is computed by the async effect below.
+    },
+    []
+  );
 
-      if (!dateKey) {
+  // Compute age from the entered date (solar or lunar). Async because the lunar
+  // engine loads on demand; latest-wins via the cancelled guard.
+  useEffect(() => {
+    if (!birthdate) {
+      setAge(null);
+      return;
+    }
+
+    let cancelled = false;
+    (async () => {
+      const resolved = await resolveBirthdate(birthdate, calendarType, isLeapMonth);
+      if (cancelled) return;
+
+      if (isResolveError(resolved)) {
         setAge(null);
+        setError(resolved.error === 'no-leap' ? 'no-leap' : resolved.error === 'range' ? 'too-old' : 'invalid');
         return;
       }
 
-      // Parse and validate
-      const parsed = parseBirthdateInput({ birthdate: dateKey });
-      if (!parsed) {
-        // Figure out which error
-        const [y, m, d] = dateKey.split('-').map(Number);
-        const date = new Date(y, m - 1, d);
-
-        // Check if it's an invalid date (e.g., Feb 30)
-        if (date.getMonth() !== m - 1 || date.getDate() !== d) {
-          setError('invalid');
-          setAge(null);
-          return;
-        }
-
-        // Check if future
+      // Validate the resolved SOLAR date (future / too-old / invalid).
+      if (!parseBirthdateInput({ birthdate: resolved.solarDate })) {
+        const [y, m, d] = resolved.solarDate.split('-').map(Number);
+        const dt = new Date(y, m - 1, d);
         const now = new Date();
-        if (date > now) {
+        if (dt > now) {
           setError('future');
-          setAge(null);
-          return;
+        } else {
+          const oldest = new Date();
+          oldest.setFullYear(oldest.getFullYear() - 150);
+          setError(dt < oldest ? 'too-old' : 'invalid');
         }
-
-        // Check if too old
-        const oneHundredFiftyYearsAgo = new Date();
-        oneHundredFiftyYearsAgo.setFullYear(
-          oneHundredFiftyYearsAgo.getFullYear() - 150
-        );
-        if (date < oneHundredFiftyYearsAgo) {
-          setError('too-old');
-          setAge(null);
-          return;
-        }
-
-        setError('invalid');
         setAge(null);
         return;
       }
 
-      // Valid input: calculate age
-      const birthDate = parseDateKey(parsed.birthdate);
-      const asOf = useAsOf ? parseDateKey(asOfDate) : new Date();
-      const result = calculateAge(birthDate, asOf);
+      const asOf = useAsOf && asOfDate ? parseDateKey(asOfDate) : new Date();
+      const result = calculateAge(parseDateKey(resolved.solarDate), asOf);
+      result.zodiacKey = resolved.zodiacKey;
+      result.sexagenary = resolved.sexagenary;
       setAge(result);
       setError(null);
-      // Recents are recorded by a debounced effect (below), not here — so that
-      // stepping year→month→day in the dropdowns doesn't record intermediate dates.
-    },
-    [asOfDate, useAsOf]
-  );
+    })();
 
-  const setAsOfDate = useCallback(
-    (dateKey: DateKey) => {
-      setAsOfDateState(dateKey);
+    return () => {
+      cancelled = true;
+    };
+  }, [birthdate, calendarType, isLeapMonth, asOfDate, useAsOf]);
 
-      // Recalculate age if birthdate is set
-      if (birthdate) {
-        const parsed = parseBirthdateInput({ birthdate });
-        if (parsed) {
-          const birthDate = parseDateKey(parsed.birthdate);
-          const asOf = parseDateKey(dateKey);
-          const result = calculateAge(birthDate, asOf);
-          setAge(result);
-        }
-      }
-    },
-    [birthdate]
-  );
+  // Record the settled, successfully-calculated lookup into recents (debounced,
+  // so stepping year→month→day doesn't save intermediate dates).
+  useEffect(() => {
+    if (!birthdate || !age) return;
+    const entry: RecentEntry = { date: birthdate, calendarType, isLeapMonth };
+    const timer = setTimeout(() => {
+      setRecents((prev) => pushRecent(prev, entry, 10));
+    }, RECENTS_DEBOUNCE_MS);
+    return () => clearTimeout(timer);
+  }, [birthdate, calendarType, isLeapMonth, age]);
 
-  const handleSetUseAsOf = useCallback(
-    (use: boolean) => {
-      setUseAsOf(use);
+  // Persist recents whenever they change (skip the first empty render).
+  useEffect(() => {
+    if (recents.length === 0 && birthdate === null) return;
+    try {
+      localStorage.setItem('jurepi-age-calculator-recents', serializeRecents(recents));
+    } catch {
+      /* quota — keep in-memory */
+    }
+  }, [recents, birthdate]);
 
-      // If toggling on, use today's date; if toggling off, recalculate with today
-      if (birthdate) {
-        const parsed = parseBirthdateInput({ birthdate });
-        if (parsed) {
-          const birthDate = parseDateKey(parsed.birthdate);
-          const asOf = use ? parseDateKey(asOfDate) : new Date();
-          const result = calculateAge(birthDate, asOf);
-          setAge(result);
-        }
-      }
-    },
-    [birthdate, asOfDate]
-  );
+  const setAsOfDate = useCallback((dateKey: DateKey) => setAsOfDateState(dateKey), []);
+  const handleSetUseAsOf = useCallback((use: boolean) => setUseAsOf(use), []);
 
   const handleAddPerson = useCallback(
-    (name: string, newBirthdate: DateKey) => {
+    (name: string, newBirthdate: DateKey, ct: CalendarType = 'solar', leap = false) => {
       if (!peopleStore) return;
-
-      const updated = addPerson(peopleStore, name, newBirthdate);
+      const updated = addPerson(peopleStore, name, newBirthdate, ct, leap);
       setPeopleStore(updated);
       setPeople(updated.people);
-
-      // Persist to localStorage
       try {
         localStorage.setItem('jurepi-age-calculator-people', JSON.stringify(updated));
       } catch {
-        // Quota exceeded; keep in-memory state (fully usable)
+        /* quota — keep in-memory */
       }
     },
     [peopleStore]
@@ -217,28 +191,22 @@ export function useAgeLookup(): UseAgeLookupReturn {
   const handleRemovePerson = useCallback(
     (personId: string) => {
       if (!peopleStore) return;
-
       const updated = removePerson(peopleStore, personId);
       setPeopleStore(updated);
       setPeople(updated.people);
-
-      // Persist to localStorage
       try {
         localStorage.setItem('jurepi-age-calculator-people', JSON.stringify(updated));
       } catch {
-        // Quota exceeded; keep in-memory state
+        /* quota */
       }
-
-      if (selectedPersonId === personId) {
-        setSelectedPersonId(null);
-      }
+      if (selectedPersonId === personId) setSelectedPersonId(null);
     },
     [peopleStore, selectedPersonId]
   );
 
   const selectRecent = useCallback(
-    (dateKey: DateKey) => {
-      setBirthdate(dateKey);
+    (entry: RecentEntry) => {
+      setBirthdate(entry.date as DateKey, entry.calendarType, entry.isLeapMonth);
     },
     [setBirthdate]
   );
@@ -248,65 +216,34 @@ export function useAgeLookup(): UseAgeLookupReturn {
     try {
       localStorage.setItem('jurepi-age-calculator-recents', '[]');
     } catch {
-      // Quota exceeded; keep empty in-memory
+      /* quota */
     }
   }, []);
 
-  const clearError = useCallback(() => {
-    setError(null);
-  }, []);
-
-  // Record the settled birthdate into recents, debounced. Because the year /
-  // month / day dropdowns emit a new valid DateKey on every field change,
-  // recording immediately would save intermediate dates (e.g. 2000-12-01 while
-  // moving from 2000-03-15 to 1990-12-01). The debounce keeps only the date the
-  // user lands on. Invalid / future / too-old dates are never recorded.
-  useEffect(() => {
-    if (!birthdate) return;
-    const parsed = parseBirthdateInput({ birthdate });
-    if (!parsed) return;
-    const timer = setTimeout(() => {
-      setRecents((prev) => pushRecent(prev, birthdate, 10));
-    }, RECENTS_DEBOUNCE_MS);
-    return () => clearTimeout(timer);
-  }, [birthdate]);
-
-  // Persist recents to localStorage whenever they change
-  useEffect(() => {
-    if (recents.length === 0 && birthdate === null) return; // Don't write on first load
-
-    try {
-      localStorage.setItem('jurepi-age-calculator-recents', serializeRecents(recents));
-    } catch {
-      // Quota exceeded; keep in-memory state (fully usable)
-    }
-  }, [recents, birthdate]);
+  const clearError = useCallback(() => setError(null), []);
 
   const copyResultToClipboard = useCallback(async (): Promise<boolean> => {
     if (!age || !birthdate) return false;
-
-    // Format summary text
     const lines = [
       `나이 계산기 결과`,
-      `생년월일: ${birthdate}`,
+      `생년월일: ${birthdate}${calendarType === 'lunar' ? ' (음력)' : ''}`,
       `만 나이: ${age.manNai}세`,
       `연 나이: ${age.yeonNai}세`,
       `세는 나이: ${age.seeneunNai}세`,
       `살아온 날: ${age.daysLived}일`,
     ];
-
-    const text = lines.join('\n');
-
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(lines.join('\n'));
       return true;
     } catch {
       return false;
     }
-  }, [age, birthdate]);
+  }, [age, birthdate, calendarType]);
 
   return {
     birthdate,
+    calendarType,
+    isLeapMonth,
     asOfDate,
     useAsOf,
     age,

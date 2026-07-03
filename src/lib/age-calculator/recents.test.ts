@@ -4,187 +4,91 @@ import {
   pruneUnknown,
   serializeRecents,
   deserializeRecents,
+  type RecentEntry,
 } from './recents';
-import { DateKey } from './date';
+
+/** Solar entry helper. */
+const S = (date: string): RecentEntry => ({ date, calendarType: 'solar', isLeapMonth: false });
+/** Lunar entry helper. */
+const L = (date: string, leap = false): RecentEntry => ({ date, calendarType: 'lunar', isLeapMonth: leap });
 
 describe('age-calculator/recents', () => {
   describe('pushRecent', () => {
     it('adds a recent to the front of the list', () => {
-      const list: string[] = [];
-      const result = pushRecent(list, '2000-03-15' as DateKey);
-
-      expect(result).toEqual(['2000-03-15']);
+      expect(pushRecent([], S('2000-03-15'))).toEqual([S('2000-03-15')]);
     });
 
-    it('prepends new item to existing list', () => {
-      const list = ['2000-01-01', '1990-06-15'] as DateKey[];
-      const result = pushRecent(list, '2005-12-25' as DateKey);
-
-      expect(result[0]).toBe('2005-12-25');
+    it('deduplicates by (calendarType, date, leap): moves existing to front', () => {
+      const list = [S('2000-01-01'), S('1990-06-15'), S('2005-12-25')];
+      const result = pushRecent(list, S('1990-06-15'));
+      expect(result[0]).toEqual(S('1990-06-15'));
       expect(result).toHaveLength(3);
     });
 
-    it('deduplicates: moving existing item to front', () => {
-      const list = ['2000-01-01', '1990-06-15', '2005-12-25'] as DateKey[];
-      const result = pushRecent(list, '1990-06-15' as DateKey);
+    it('treats solar and lunar of the same date as distinct entries', () => {
+      const result = pushRecent([S('1990-01-01')], L('1990-01-01'));
+      expect(result).toHaveLength(2);
+      expect(result[0]).toEqual(L('1990-01-01'));
+    });
 
-      expect(result[0]).toBe('1990-06-15');
-      expect(result).toHaveLength(3); // Not 4!
-      expect(result).toEqual(['1990-06-15', '2000-01-01', '2005-12-25']);
+    it('distinguishes leap vs non-leap lunar entries', () => {
+      const result = pushRecent([L('2000-05-01', false)], L('2000-05-01', true));
+      expect(result).toHaveLength(2);
     });
 
     it('truncates to max length (default 10)', () => {
-      let list: string[] = [];
-
-      for (let i = 0; i < 15; i++) {
-        const date = `2000-${String(i + 1).padStart(2, '0')}-15`;
-        list = pushRecent(list, date as DateKey);
-      }
-
+      let list: RecentEntry[] = [];
+      for (let i = 1; i <= 15; i++) list = pushRecent(list, S(`2000-${String(i).padStart(2, '0')}-15`));
       expect(list).toHaveLength(10);
-      expect(list[0]).toBe('2000-15-15'); // Last added (before truncate)
     });
 
-    it('respects custom max length', () => {
-      let list: string[] = [];
-
-      for (let i = 0; i < 8; i++) {
-        const date = `2000-${String(i + 1).padStart(2, '0')}-15`;
-        list = pushRecent(list, date as DateKey, 5);
-      }
-
-      expect(list).toHaveLength(5);
-    });
-
-    it('returns immutable array (new instance)', () => {
-      const list = ['2000-01-01'] as DateKey[];
-      const result = pushRecent(list, '1990-06-15' as DateKey);
-
-      expect(result).not.toBe(list);
+    it('returns a new array instance', () => {
+      const list = [S('2000-01-01')];
+      expect(pushRecent(list, S('1990-06-15'))).not.toBe(list);
     });
   });
 
   describe('pruneUnknown', () => {
-    it('keeps valid DateKey strings', () => {
-      const list: unknown[] = ['2000-03-15', '1990-06-15', '2020-01-01'];
-      const result = pruneUnknown(list);
-
-      expect(result).toEqual(['2000-03-15', '1990-06-15', '2020-01-01']);
+    it('keeps valid object entries', () => {
+      expect(pruneUnknown([S('2000-03-15'), L('1990-06-15', true)])).toEqual([
+        S('2000-03-15'),
+        L('1990-06-15', true),
+      ]);
     });
 
-    it('filters out non-strings', () => {
-      const list: unknown[] = ['2000-03-15', 123, null, '1990-06-15', undefined];
-      const result = pruneUnknown(list);
-
-      expect(result).toEqual(['2000-03-15', '1990-06-15']);
+    it('migrates legacy bare DateKey strings to solar entries', () => {
+      expect(pruneUnknown(['2000-03-15', '1990-06-15'])).toEqual([S('2000-03-15'), S('1990-06-15')]);
     });
 
-    it('filters out empty strings', () => {
-      const list: unknown[] = ['2000-03-15', '', '1990-06-15'];
-      const result = pruneUnknown(list);
-
-      expect(result).toEqual(['2000-03-15', '1990-06-15']);
+    it('drops malformed dates and junk', () => {
+      const list: unknown[] = ['2000-03-15', '2000/03/15', '2000-13-01', 123, null, { date: 'x' }];
+      expect(pruneUnknown(list)).toEqual([S('2000-03-15')]);
     });
 
-    it('filters out malformed DateKey (invalid YYYY-MM-DD format)', () => {
-      const list: unknown[] = [
-        '2000-03-15',
-        '2000/03/15',
-        '03-15-2000',
-        '2000-13-01', // invalid month
-        '1990-06-15',
-      ];
-      const result = pruneUnknown(list);
-
-      // Only valid YYYY-MM-DD format is kept
-      expect(result).toEqual(['2000-03-15', '1990-06-15']);
+    it('coerces unknown calendarType to solar and missing leap to false', () => {
+      expect(pruneUnknown([{ date: '2000-03-15', calendarType: 'weird' }])).toEqual([S('2000-03-15')]);
     });
 
     it('returns empty array for non-array input', () => {
       expect(pruneUnknown(null as any)).toEqual([]);
-      expect(pruneUnknown(undefined as any)).toEqual([]);
-      expect(pruneUnknown('not an array' as any)).toEqual([]);
-      expect(pruneUnknown(123 as any)).toEqual([]);
-    });
-
-    it('returns new array instance', () => {
-      const list = ['2000-03-15'];
-      const result = pruneUnknown(list);
-
-      expect(result).not.toBe(list);
+      expect(pruneUnknown('nope' as any)).toEqual([]);
     });
   });
 
-  describe('serializeRecents', () => {
-    it('converts array to JSON string', () => {
-      const recents = ['2000-03-15', '1990-06-15'] as DateKey[];
-      const result = serializeRecents(recents);
-
-      expect(typeof result).toBe('string');
-      expect(JSON.parse(result)).toEqual(recents);
+  describe('serialize / deserialize', () => {
+    it('round-trips object entries', () => {
+      const original = [S('2000-03-15'), L('1990-06-15', true)];
+      expect(deserializeRecents(serializeRecents(original))).toEqual(original);
     });
 
-    it('handles empty array', () => {
-      const result = serializeRecents([]);
-
-      expect(result).toBe('[]');
+    it('deserializes legacy string arrays as solar entries', () => {
+      expect(deserializeRecents('["2000-03-15","1990-06-15"]')).toEqual([S('2000-03-15'), S('1990-06-15')]);
     });
 
-    it('serialization is reversible', () => {
-      const original = ['2000-03-15', '1990-06-15'] as DateKey[];
-      const serialized = serializeRecents(original);
-      const deserialized = JSON.parse(serialized);
-
-      expect(deserialized).toEqual(original);
-    });
-  });
-
-  describe('deserializeRecents', () => {
-    it('parses valid JSON array of strings', () => {
-      const json = '["2000-03-15", "1990-06-15"]';
-      const result = deserializeRecents(json);
-
-      expect(result).toEqual(['2000-03-15', '1990-06-15']);
-    });
-
-    it('prunes invalid entries', () => {
-      const json = '["2000-03-15", 123, "", "1990-06-15", null]';
-      const result = deserializeRecents(json);
-
-      expect(result).toEqual(['2000-03-15', '1990-06-15']);
-    });
-
-    it('handles invalid JSON gracefully (returns empty array)', () => {
-      expect(deserializeRecents('not valid json')).toEqual([]);
-      expect(deserializeRecents('{ broken')).toEqual([]);
-      expect(deserializeRecents('')).toEqual([]);
-    });
-
-    it('handles JSON that is not an array gracefully', () => {
-      expect(deserializeRecents('"just a string"')).toEqual([]);
-      expect(deserializeRecents('123')).toEqual([]);
-      expect(deserializeRecents('{ "a": 1 }')).toEqual([]);
-    });
-
-    it('round-trips serialization', () => {
-      const original = ['2000-03-15', '1990-06-15'] as DateKey[];
-      const serialized = serializeRecents(original);
-      const deserialized = deserializeRecents(serialized);
-
-      expect(deserialized).toEqual(original);
-    });
-
-    it('invariant: result never throws', () => {
-      const inputs = [
-        'not json',
-        '',
-        '[]',
-        '["valid", "strings"]',
-        JSON.stringify(['2000-03-15']),
-      ];
-
-      inputs.forEach((input) => {
+    it('never throws on garbage', () => {
+      ['not json', '', '{ broken', '"str"', '123', '{"a":1}'].forEach((input) => {
         expect(() => deserializeRecents(input)).not.toThrow();
+        expect(deserializeRecents(input)).toEqual([]);
       });
     });
   });

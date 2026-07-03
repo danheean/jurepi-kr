@@ -832,7 +832,12 @@
         "selectDay": "일",
         "unitYear": "년",
         "unitMonth": "월",
-        "unitDay": "일"
+        "unitDay": "일",
+        "calendarTypeLabel": "달력 종류",
+        "calendarSolar": "양력",
+        "calendarLunar": "음력",
+        "leapMonth": "윤달",
+        "errorNoLeap": "해당 연도에 윤달이 없습니다"
       },
       "ageSummary": {
         "title": "나이",
@@ -860,7 +865,8 @@
         "dayOfWeek": "요일",
         "daysLived": "살아온 날",
         "breakdown": "정확한 나이",
-        "countdown": "다음 생일까지"
+        "countdown": "다음 생일까지",
+        "sexagenary": "간지"
       },
       "zodiac": {
         "rat": "쥐띠",
@@ -893,7 +899,9 @@
       "recents": {
         "heading": "최근 계산",
         "clear": "전체 지우기",
-        "ariaReuse": "{datekey}로 다시 계산"
+        "ariaReuse": "{datekey}로 다시 계산",
+        "lunarTag": "음력",
+        "leapTag": "윤"
       },
       "people": {
         "heading": "자주 계산하는 사람들",
@@ -916,7 +924,8 @@
       "actions": {
         "copy": "결과 복사",
         "copied": "복사되었습니다",
-        "enter": "입력하면 바로 계산돼요"
+        "enter": "입력하면 바로 계산돼요",
+        "saveAsPerson": "이 생년월일 저장"
       },
       "howTo": {
         "heading": "나이 계산기 사용 방법",

@@ -10,6 +10,9 @@ export interface AgeResult {
   nextBirthdayCountdown: number;
   zodiacKey: string;
   starSignKey: string;
+  /** Sexagenary (60갑자), set when the birthdate has been resolved via the lunar
+   *  engine (name = "을유", hanja = "乙酉"). Null until resolved / on solar-only fallback. */
+  sexagenary?: { name: string; hanja: string } | null;
 }
 
 /**

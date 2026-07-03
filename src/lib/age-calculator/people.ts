@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { Person, PeopleStore } from './schema';
 import { DateKey } from './date';
+import type { CalendarType } from './resolve';
 
 const MAX_PEOPLE = 20;
 
@@ -9,7 +10,13 @@ const MAX_PEOPLE = 20;
  * Immutable: returns new store with person appended.
  * Enforces max 20 people (caps if adding would exceed).
  */
-export function addPerson(store: PeopleStore, name: string, birthdate: DateKey): PeopleStore {
+export function addPerson(
+  store: PeopleStore,
+  name: string,
+  birthdate: DateKey,
+  calendarType: CalendarType = 'solar',
+  isLeapMonth = false
+): PeopleStore {
   if (store.people.length >= MAX_PEOPLE) {
     return store;
   }
@@ -18,6 +25,8 @@ export function addPerson(store: PeopleStore, name: string, birthdate: DateKey):
     id: nanoid(),
     name,
     birthdate,
+    calendarType,
+    isLeapMonth,
   };
 
   return {

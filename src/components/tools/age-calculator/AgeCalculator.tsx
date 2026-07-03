@@ -1,23 +1,25 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Copy } from 'lucide-react';
+import { Copy, UserPlus } from 'lucide-react';
+import type { DateKey } from '@/lib/age-calculator/date';
 import { useAgeLookup } from './useAgeLookup';
 import { BirthdateInput } from './BirthdateInput';
 import { AgeCalculatorEmptyState } from './AgeCalculatorEmptyState';
-
-// Import presentational components from B (locked interfaces)
 import { AgeSummary } from './AgeSummary';
 import { DateFacts } from './DateFacts';
 import { RecentLookups } from './RecentLookups';
 import { PeopleList } from './PeopleList';
+import type { CalendarDateValue } from './CalendarDateInput';
 
 export function AgeCalculator() {
   const t = useTranslations('tools.age-calculator');
   const locale = useLocale();
   const {
     birthdate,
+    calendarType,
+    isLeapMonth,
     age,
     error,
     people,
@@ -37,21 +39,25 @@ export function AgeCalculator() {
 
   const [mounted, setMounted] = useState(false);
   const [copyState, setCopyState] = useState<'idle' | 'success' | 'fail'>('idle');
+  const [prefill, setPrefill] = useState<CalendarDateValue | null>(null);
+  const [prefillNonce, setPrefillNonce] = useState(0);
+  const peopleRef = useRef<HTMLDivElement>(null);
 
-  // Mounted gate for localStorage-dependent interactive parts
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const handleCopy = async () => {
     const success = await copyResultToClipboard();
-    if (success) {
-      setCopyState('success');
-      setTimeout(() => setCopyState('idle'), 1600);
-    } else {
-      setCopyState('fail');
-      setTimeout(() => setCopyState('idle'), 2000);
-    }
+    setCopyState(success ? 'success' : 'fail');
+    setTimeout(() => setCopyState('idle'), success ? 1600 : 2000);
+  };
+
+  const handleSaveAsPerson = () => {
+    if (!birthdate) return;
+    setPrefill({ date: birthdate as DateKey, calendarType, isLeapMonth });
+    setPrefillNonce((n) => n + 1);
+    peopleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   if (!mounted) {
@@ -60,44 +66,51 @@ export function AgeCalculator() {
 
   return (
     <div className="space-y-12">
-      {/* Main content area: 2-split desktop, stacked mobile */}
+      {/* Main: 2-split desktop, stacked mobile */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Left column: input */}
         <div className="space-y-6">
           <BirthdateInput
             value={birthdate}
+            calendarType={calendarType}
+            isLeapMonth={isLeapMonth}
             asOfDate={asOfDate}
             useAsOf={useAsOf}
             error={error}
-            onChange={setBirthdate}
+            onBirthdateChange={(v) => setBirthdate(v.date, v.calendarType, v.isLeapMonth)}
             onAsOfDateChange={setAsOfDate}
             onUseAsOfChange={setUseAsOf}
             onClearError={clearError}
           />
         </div>
 
-        {/* Right column: result */}
         <div className="lg:sticky lg:top-8 h-fit space-y-6">
           {age ? (
             <>
-              {/* Age summary cards */}
               <AgeSummary age={age} />
 
-              {/* Copy button */}
-              <button
-                onClick={handleCopy}
-                className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-colors ${
-                  copyState === 'success'
-                    ? 'bg-success text-on-success'
-                    : 'bg-brand text-on-brand hover:bg-brand-strong'
-                }`}
-                aria-label={t('actions.copy')}
-              >
-                <Copy className="w-4 h-4" strokeWidth={1.75} />
-                {copyState === 'success' ? t('actions.copied') : t('actions.copy')}
-              </button>
+              {/* Actions: copy + save as person */}
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  onClick={handleCopy}
+                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-colors ${
+                    copyState === 'success'
+                      ? 'bg-success text-on-success'
+                      : 'bg-brand text-on-brand hover:bg-brand-strong'
+                  }`}
+                  aria-label={t('actions.copy')}
+                >
+                  <Copy className="w-4 h-4" strokeWidth={1.75} />
+                  {copyState === 'success' ? t('actions.copied') : t('actions.copy')}
+                </button>
+                <button
+                  onClick={handleSaveAsPerson}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium text-sm border border-hairline text-text hover:bg-surface-muted transition-colors"
+                >
+                  <UserPlus className="w-4 h-4" strokeWidth={1.75} />
+                  {t('actions.saveAsPerson')}
+                </button>
+              </div>
 
-              {/* Date facts */}
               <DateFacts age={age} locale={locale} />
             </>
           ) : (
@@ -106,21 +119,22 @@ export function AgeCalculator() {
         </div>
       </div>
 
-      {/* Recents section */}
-      {mounted && recents.length > 0 && (
-        <div className="space-y-3">
-          <h2 className="text-lg font-semibold text-text">{t('recents.heading')}</h2>
-          <RecentLookups recents={recents} onSelectRecent={selectRecent} onClear={clearRecents} />
-        </div>
+      {/* Recents */}
+      {recents.length > 0 && (
+        <RecentLookups recents={recents} onSelectRecent={selectRecent} onClear={clearRecents} />
       )}
 
-      {/* People favorites section */}
-      {mounted && (
-        <div className="space-y-3">
-          <h2 className="text-lg font-semibold text-text">{t('people.heading')}</h2>
-          <PeopleList people={people} onAdd={addPerson} onRemove={removePerson} onSelect={(p) => setBirthdate(p.birthdate)} />
-        </div>
-      )}
+      {/* People favorites */}
+      <div ref={peopleRef} className="scroll-mt-8">
+        <PeopleList
+          people={people}
+          onAdd={addPerson}
+          onRemove={removePerson}
+          onSelect={(p) => setBirthdate(p.birthdate as DateKey, p.calendarType, p.isLeapMonth)}
+          prefill={prefill}
+          prefillNonce={prefillNonce}
+        />
+      </div>
     </div>
   );
 }

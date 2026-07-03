@@ -4,37 +4,56 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Trash2, Plus, X } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import type { Person } from '@/lib/age-calculator/schema';
+import type { CalendarType } from '@/lib/age-calculator/resolve';
+import { CalendarDateInput, type CalendarDateValue } from './CalendarDateInput';
 
 interface Props {
   people: Person[];
-  onAdd: (name: string, birthdate: string) => void;
+  onAdd: (name: string, birthdate: string, calendarType: CalendarType, isLeapMonth: boolean) => void;
   onRemove: (personId: string) => void;
   onSelect: (person: Person) => void;
+  /** When `prefillNonce` changes, open the add form pre-filled with these values. */
+  prefill?: CalendarDateValue | null;
+  prefillNonce?: number;
 }
 
 const NAME_MAX = 40;
 
 /**
- * PeopleList: Displays saved people and allows add/remove operations.
- * The "add" affordance is an inline expanding form (not a modal overlay) —
- * per the product register, modals are a last resort; an inline form keeps
- * focus in flow, needs no focus-trap/scrim, and stays keyboard-simple.
+ * PeopleList: saved people + inline add form. The birthdate uses the same
+ * CalendarDateInput (solar/lunar dropdowns + leap) as the main input, and the
+ * form can be opened pre-filled from the result panel ("이 생년월일 저장").
  */
-export function PeopleList({ people, onAdd, onRemove, onSelect }: Props) {
+export function PeopleList({ people, onAdd, onRemove, onSelect, prefill, prefillNonce }: Props) {
   const t = useTranslations('tools.age-calculator');
   const locale = useLocale();
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [addName, setAddName] = useState('');
-  const [addBirthdate, setAddBirthdate] = useState('');
+  const [addValue, setAddValue] = useState<CalendarDateValue>({ date: null, calendarType: 'solar', isLeapMonth: false });
   const [addError, setAddError] = useState<'name' | 'birthdate' | null>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
-  // Move focus into the form when it opens (accessible keyboard flow).
+  // Focus the name field when the form opens.
   useEffect(() => {
-    if (isAddOpen) {
-      nameInputRef.current?.focus();
-    }
+    if (isAddOpen) nameInputRef.current?.focus();
   }, [isAddOpen]);
+
+  // Open + prefill from the result panel. Guard on a truthy nonce so the form
+  // does not auto-open on first mount (initial nonce is 0).
+  useEffect(() => {
+    if (!prefillNonce) return;
+    if (prefill) setAddValue(prefill);
+    setAddError(null);
+    setIsAddOpen(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prefillNonce]);
+
+  const resetForm = () => {
+    setAddName('');
+    setAddValue({ date: null, calendarType: 'solar', isLeapMonth: false });
+    setAddError(null);
+    setIsAddOpen(false);
+  };
 
   const handleAddSubmit = () => {
     if (!addName.trim()) {
@@ -42,39 +61,32 @@ export function PeopleList({ people, onAdd, onRemove, onSelect }: Props) {
       nameInputRef.current?.focus();
       return;
     }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(addBirthdate)) {
+    if (!addValue.date) {
       setAddError('birthdate');
       return;
     }
-    onAdd(addName.trim(), addBirthdate);
-    setAddName('');
-    setAddBirthdate('');
-    setAddError(null);
-    setIsAddOpen(false);
-  };
-
-  const handleAddCancel = () => {
-    setAddName('');
-    setAddBirthdate('');
-    setAddError(null);
-    setIsAddOpen(false);
+    onAdd(addName.trim(), addValue.date, addValue.calendarType, addValue.isLeapMonth);
+    resetForm();
   };
 
   const handleFormKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       e.preventDefault();
-      handleAddCancel();
+      resetForm();
     }
   };
 
-  const formatBirthdate = (dateKey: string): string => {
-    const [year, month, day] = dateKey.split('-').map(Number);
+  const formatBirthdate = (person: Person): string => {
+    const [year, month, day] = person.birthdate.split('-').map(Number);
     const date = new Date(year, month - 1, day);
-    return new Intl.DateTimeFormat(locale === 'ko' ? 'ko-KR' : 'en-US', {
+    const base = new Intl.DateTimeFormat(locale === 'ko' ? 'ko-KR' : 'en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     }).format(date);
+    if (person.calendarType !== 'lunar') return base;
+    const leap = person.isLeapMonth ? ` ${t('recents.leapTag')}` : '';
+    return `${base} · ${t('recents.lunarTag')}${leap}`;
   };
 
   return (
@@ -92,16 +104,13 @@ export function PeopleList({ people, onAdd, onRemove, onSelect }: Props) {
         )}
       </div>
 
-      {/* Inline add form (replaces the old modal overlay) */}
+      {/* Inline add form */}
       {isAddOpen && (
-        <div
-          className="bg-surface-muted border border-hairline rounded-lg p-4 space-y-4"
-          onKeyDown={handleFormKeyDown}
-        >
+        <div className="bg-surface-muted border border-hairline rounded-lg p-4 space-y-4" onKeyDown={handleFormKeyDown}>
           <div className="flex items-center justify-between">
             <h4 className="text-sm font-semibold text-text">{t('people.addModal.title')}</h4>
             <button
-              onClick={handleAddCancel}
+              onClick={resetForm}
               aria-label={t('people.addModal.cancel')}
               className="inline-flex items-center justify-center w-8 h-8 rounded-md text-text-secondary hover:bg-surface-sunken hover:text-text transition-colors"
             >
@@ -109,7 +118,7 @@ export function PeopleList({ people, onAdd, onRemove, onSelect }: Props) {
             </button>
           </div>
 
-          {/* Name input */}
+          {/* Name */}
           <div className="space-y-1.5">
             <label htmlFor="add-name" className="block text-sm font-semibold text-text">
               {t('people.addModal.nameLabel')}
@@ -128,9 +137,7 @@ export function PeopleList({ people, onAdd, onRemove, onSelect }: Props) {
               aria-invalid={addError === 'name'}
               aria-describedby={addError === 'name' ? 'add-name-error' : undefined}
               className={`w-full px-3 py-2 rounded-lg border text-sm bg-surface transition-colors ${
-                addError === 'name'
-                  ? 'border-danger'
-                  : 'border-hairline hover:border-hairline-strong focus:border-accent-mint'
+                addError === 'name' ? 'border-danger' : 'border-hairline hover:border-hairline-strong focus:border-accent-mint'
               }`}
             />
             {addError === 'name' && (
@@ -140,39 +147,31 @@ export function PeopleList({ people, onAdd, onRemove, onSelect }: Props) {
             )}
           </div>
 
-          {/* Birthdate input */}
+          {/* Birthdate — same solar/lunar dropdowns as the main input */}
           <div className="space-y-1.5">
-            <label htmlFor="add-birthdate" className="block text-sm font-semibold text-text">
-              {t('people.addModal.birthdateLabel')}
-            </label>
-            <input
-              id="add-birthdate"
-              type="date"
-              value={addBirthdate}
-              onChange={(e) => {
-                setAddBirthdate(e.target.value);
+            <span className="block text-sm font-semibold text-text">{t('people.addModal.birthdateLabel')}</span>
+            <CalendarDateInput
+              date={addValue.date}
+              calendarType={addValue.calendarType}
+              isLeapMonth={addValue.isLeapMonth}
+              onChange={(v) => {
+                setAddValue(v);
                 if (addError === 'birthdate') setAddError(null);
               }}
-              placeholder={t('people.addModal.birthdatePlaceholder')}
-              aria-invalid={addError === 'birthdate'}
-              aria-describedby={addError === 'birthdate' ? 'add-birthdate-error' : undefined}
-              className={`w-full px-3 py-2 rounded-lg border text-sm bg-surface transition-colors ${
-                addError === 'birthdate'
-                  ? 'border-danger'
-                  : 'border-hairline hover:border-hairline-strong focus:border-accent-mint'
-              }`}
+              idPrefix="add"
+              ariaLabel={t('people.addModal.birthdateLabel')}
+              invalid={addError === 'birthdate'}
             />
             {addError === 'birthdate' && (
-              <p id="add-birthdate-error" className="text-xs text-danger-ink" role="alert" aria-live="polite">
+              <p className="text-xs text-danger-ink" role="alert" aria-live="polite">
                 {t('people.addModal.errorBirthdate')}
               </p>
             )}
           </div>
 
-          {/* Buttons */}
           <div className="flex gap-3 justify-end">
             <button
-              onClick={handleAddCancel}
+              onClick={resetForm}
               className="px-4 py-2 rounded-lg border border-hairline text-text text-sm font-semibold hover:bg-surface-sunken transition-colors"
             >
               {t('people.addModal.cancel')}
@@ -205,7 +204,7 @@ export function PeopleList({ people, onAdd, onRemove, onSelect }: Props) {
                 aria-label={t('people.selectAria', { name: person.name })}
               >
                 <div className="font-medium text-text break-words">{person.name}</div>
-                <div className="text-xs text-text-secondary">{formatBirthdate(person.birthdate)}</div>
+                <div className="text-xs text-text-secondary">{formatBirthdate(person)}</div>
               </button>
               <button
                 onClick={() => onRemove(person.id)}

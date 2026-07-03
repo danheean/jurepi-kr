@@ -68,6 +68,15 @@ export function DateFacts({ age, locale }: Props) {
       label: t('dateFacts.zodiac'),
       value: t(`zodiac.${age.zodiacKey}`),
     },
+    ...(age.sexagenary
+      ? [
+          {
+            key: 'sexagenary',
+            label: t('dateFacts.sexagenary'),
+            value: `${age.sexagenary.name} (${age.sexagenary.hanja})`,
+          },
+        ]
+      : []),
     {
       key: 'starSign',
       label: t('dateFacts.starSign'),

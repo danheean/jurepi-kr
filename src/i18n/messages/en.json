@@ -832,7 +832,12 @@
         "selectDay": "Day",
         "unitYear": "",
         "unitMonth": "",
-        "unitDay": ""
+        "unitDay": "",
+        "calendarTypeLabel": "Calendar",
+        "calendarSolar": "Solar",
+        "calendarLunar": "Lunar",
+        "leapMonth": "Leap month",
+        "errorNoLeap": "This year has no leap month"
       },
       "ageSummary": {
         "title": "Age",
@@ -860,7 +865,8 @@
         "dayOfWeek": "Day of week",
         "daysLived": "Days lived",
         "breakdown": "Exact age",
-        "countdown": "Days until birthday"
+        "countdown": "Days until birthday",
+        "sexagenary": "Sexagenary"
       },
       "zodiac": {
         "rat": "Year of the Rat",
@@ -893,7 +899,9 @@
       "recents": {
         "heading": "Recent calculations",
         "clear": "Clear all",
-        "ariaReuse": "Calculate again with {datekey}"
+        "ariaReuse": "Calculate again with {datekey}",
+        "lunarTag": "Lunar",
+        "leapTag": "Leap"
       },
       "people": {
         "heading": "Frequently calculated people",
@@ -916,7 +924,8 @@
       "actions": {
         "copy": "Copy results",
         "copied": "Copied",
-        "enter": "Calculates as you type"
+        "enter": "Calculates as you type",
+        "saveAsPerson": "Save as person"
       },
       "howTo": {
         "heading": "How to use Age Calculator",

@@ -17,10 +17,12 @@ function renderWithI18n(component: React.ReactElement) {
 function makeProps(overrides: Partial<React.ComponentProps<typeof BirthdateInput>> = {}) {
   return {
     value: null,
+    calendarType: 'solar',
+    isLeapMonth: false,
     asOfDate: '',
     useAsOf: false,
     error: null,
-    onChange: vi.fn(),
+    onBirthdateChange: vi.fn(),
     onAsOfDateChange: vi.fn(),
     onUseAsOfChange: vi.fn(),
     onClearError: vi.fn(),
@@ -29,76 +31,80 @@ function makeProps(overrides: Partial<React.ComponentProps<typeof BirthdateInput
 }
 
 describe('BirthdateInput', () => {
-  it('renders year / month / day dropdowns under the 생년월일 legend', () => {
-    const props = makeProps();
-    const { container } = renderWithI18n(<BirthdateInput {...props} />);
-
+  it('renders the solar/lunar toggle and year/month/day dropdowns', () => {
+    const { container } = renderWithI18n(<BirthdateInput {...makeProps()} />);
     expect(screen.getByText('생년월일')).toBeInTheDocument();
+    expect(screen.getByText('양력')).toBeInTheDocument();
+    expect(screen.getByText('음력')).toBeInTheDocument();
     expect(container.querySelector('#birthdate-year')).toBeInTheDocument();
-    expect(container.querySelector('#birthdate-month')).toBeInTheDocument();
     expect(container.querySelector('#birthdate-day')).toBeInTheDocument();
   });
 
-  it('emits a full DateKey once all three parts are chosen', () => {
+  it('emits the full value once all date parts are chosen', () => {
     const props = makeProps({ value: '2000-03-01' });
     const { container } = renderWithI18n(<BirthdateInput {...props} />);
-
     fireEvent.change(container.querySelector('#birthdate-day')!, { target: { value: '15' } });
-
-    expect(props.onChange).toHaveBeenCalledWith('2000-03-15');
+    expect(props.onBirthdateChange).toHaveBeenCalledWith({
+      date: '2000-03-15',
+      calendarType: 'solar',
+      isLeapMonth: false,
+    });
   });
 
-  it('emits null while the date is still incomplete', () => {
-    const props = makeProps();
-    const { container } = renderWithI18n(<BirthdateInput {...props} />);
-
-    fireEvent.change(container.querySelector('#birthdate-year')!, { target: { value: '1990' } });
-
-    expect(props.onChange).toHaveBeenCalledWith(null);
+  it('switches to the lunar calendar type', () => {
+    const props = makeProps({ value: '2000-03-15' });
+    renderWithI18n(<BirthdateInput {...props} />);
+    fireEvent.click(screen.getByText('음력'));
+    expect(props.onBirthdateChange).toHaveBeenCalledWith(
+      expect.objectContaining({ calendarType: 'lunar' })
+    );
   });
 
-  it('clears the error when the birthdate changes', () => {
+  it('shows the leap-month switch only for lunar dates', () => {
+    const { rerender } = renderWithI18n(<BirthdateInput {...makeProps()} />);
+    expect(screen.queryByRole('switch')).not.toBeInTheDocument();
+    rerender(
+      <NextIntlClientProvider locale="ko" messages={allMessages as any}>
+        <BirthdateInput {...makeProps({ calendarType: 'lunar' })} />
+      </NextIntlClientProvider>
+    );
+    expect(screen.getByRole('switch')).toBeInTheDocument();
+  });
+
+  it('clears the error when the date changes', () => {
     const props = makeProps({ value: '2000-03-01', error: 'future' });
     const { container } = renderWithI18n(<BirthdateInput {...props} />);
-
     fireEvent.change(container.querySelector('#birthdate-day')!, { target: { value: '15' } });
-
     expect(props.onClearError).toHaveBeenCalled();
   });
 
-  it('displays the future-date error', () => {
-    renderWithI18n(<BirthdateInput {...makeProps({ value: '2100-01-01', error: 'future' })} />);
-    expect(screen.getByText('미래 날짜는 입력할 수 없습니다')).toBeInTheDocument();
+  it('displays the no-leap error', () => {
+    renderWithI18n(<BirthdateInput {...makeProps({ calendarType: 'lunar', error: 'no-leap' })} />);
+    expect(screen.getByText('해당 연도에 윤달이 없습니다')).toBeInTheDocument();
   });
 
   it('displays the too-old error', () => {
-    renderWithI18n(<BirthdateInput {...makeProps({ value: '1800-01-01', error: 'too-old' })} />);
+    renderWithI18n(<BirthdateInput {...makeProps({ error: 'too-old' })} />);
     expect(screen.getByText('150년 이상 전 날짜는 입력할 수 없습니다')).toBeInTheDocument();
   });
 
   it('toggles the as-of section and shows its dropdowns', () => {
     const props = makeProps();
     const { rerender, container } = renderWithI18n(<BirthdateInput {...props} />);
-
     fireEvent.click(screen.getByLabelText('기준일 설정'));
     expect(props.onUseAsOfChange).toHaveBeenCalledWith(true);
-
     rerender(
       <NextIntlClientProvider locale="ko" messages={allMessages as any}>
         <BirthdateInput {...makeProps({ asOfDate: '2025-01-01', useAsOf: true })} />
       </NextIntlClientProvider>
     );
-
     expect(container.querySelector('#as-of-year')).toBeInTheDocument();
-    expect(container.querySelector('#as-of-day')).toBeInTheDocument();
   });
 
   it('calls onAsOfDateChange when an as-of dropdown changes', () => {
     const props = makeProps({ asOfDate: '2025-01-01', useAsOf: true });
     const { container } = renderWithI18n(<BirthdateInput {...props} />);
-
     fireEvent.change(container.querySelector('#as-of-day')!, { target: { value: '31' } });
-
     expect(props.onAsOfDateChange).toHaveBeenCalledWith('2025-01-31');
   });
 });

@@ -49,7 +49,12 @@ export type BirthdateInput = z.infer<typeof BirthdateInputSchema>;
 export const PersonSchema = z.object({
   id: z.string().min(1, 'ID required'),
   name: z.string().min(1, 'Name required'),
+  // The birthdate as ENTERED — solar or lunar depending on calendarType.
   birthdate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'YYYY-MM-DD format required'),
+  // Calendar the birthdate was entered in. Older records without these fields
+  // default to solar (backward compatible).
+  calendarType: z.enum(['solar', 'lunar']).default('solar'),
+  isLeapMonth: z.boolean().default(false),
 });
 
 export type Person = z.infer<typeof PersonSchema>;

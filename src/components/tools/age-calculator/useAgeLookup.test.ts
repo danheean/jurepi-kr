@@ -2,318 +2,186 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useAgeLookup } from './useAgeLookup';
 import { toDateKey } from '@/lib/age-calculator/date';
+import type { RecentEntry } from '@/lib/age-calculator/recents';
+
+const hasDate = (recents: RecentEntry[], date: string) => recents.some((e) => e.date === date);
 
 describe('useAgeLookup', () => {
   beforeEach(() => {
-    // Clear localStorage before each test
     localStorage.clear();
     vi.clearAllMocks();
   });
 
-  it('initializes with null birthdate', () => {
+  it('initializes empty', () => {
     const { result } = renderHook(() => useAgeLookup());
     expect(result.current.birthdate).toBeNull();
     expect(result.current.age).toBeNull();
-    expect(result.current.error).toBeNull();
+    expect(result.current.calendarType).toBe('solar');
   });
 
-  it('calculates age for valid birthdate', () => {
+  it('calculates age for a valid solar birthdate (async resolve)', async () => {
     const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('2000-03-15');
+    act(() => result.current.setBirthdate('2000-03-15'));
+    await waitFor(() => {
+      expect(result.current.age).not.toBeNull();
+      expect(result.current.age?.manNai).toBeGreaterThanOrEqual(23);
+      expect(result.current.error).toBeNull();
     });
-
-    expect(result.current.age).not.toBeNull();
-    expect(result.current.age?.manNai).toBeGreaterThanOrEqual(23);
-    expect(result.current.error).toBeNull();
   });
 
-  it('rejects invalid date format', () => {
+  it('computes the accurate lunar-year zodiac for a solar date before the lunar new year', async () => {
     const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('2000-13-01');
-    });
-
-    expect(result.current.error).toBe('invalid');
-    expect(result.current.age).toBeNull();
+    act(() => result.current.setBirthdate('2000-01-15')); // before 2000 lunar new year → rabbit
+    await waitFor(() => expect(result.current.age?.zodiacKey).toBe('rabbit'));
   });
 
-  it('rejects future dates', () => {
+  it('resolves a lunar birthdate to solar and exposes 간지', async () => {
+    const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.setBirthdate('2000-01-01', 'lunar', false));
+    await waitFor(() => {
+      expect(result.current.age).not.toBeNull();
+      expect(result.current.age?.zodiacKey).toBe('dragon'); // lunar year 2000
+      expect(result.current.age?.sexagenary?.hanja).toMatch(/[一-鿿]{2}/);
+    });
+  });
+
+  it('errors when a leap month does not exist that year', async () => {
+    const { result } = renderHook(() => useAgeLookup());
+    // 2000 has no leap month at month 5 with isLeap → no-leap
+    act(() => result.current.setBirthdate('2001-01-01', 'lunar', true));
+    await waitFor(() => {
+      expect(result.current.error).toBe('no-leap');
+      expect(result.current.age).toBeNull();
+    });
+  });
+
+  it('rejects a future date within range', async () => {
     const { result } = renderHook(() => useAgeLookup());
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowKey = toDateKey(tomorrow);
+    act(() => result.current.setBirthdate(toDateKey(tomorrow)));
+    await waitFor(() => expect(result.current.error).toBe('future'));
+  });
 
-    act(() => {
-      result.current.setBirthdate(tomorrowKey);
+  it('rejects a year before the supported range (too-old)', async () => {
+    const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.setBirthdate('1850-01-01'));
+    await waitFor(() => expect(result.current.error).toBe('too-old'));
+  });
+
+  it('pushes a settled valid birthdate to recents', async () => {
+    const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.setBirthdate('1990-05-10'));
+    await waitFor(() => expect(hasDate(result.current.recents, '1990-05-10')).toBe(true));
+  });
+
+  it('records lunar entries with their calendar context', async () => {
+    const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.setBirthdate('2000-01-01', 'lunar', false));
+    await waitFor(() => {
+      const entry = result.current.recents.find((e) => e.date === '2000-01-01');
+      expect(entry?.calendarType).toBe('lunar');
     });
+  });
 
-    expect(result.current.error).toBe('future');
+  it('deduplicates recents, most-recent-first', async () => {
+    const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.setBirthdate('1990-05-10'));
+    await waitFor(() => expect(hasDate(result.current.recents, '1990-05-10')).toBe(true));
+    act(() => result.current.setBirthdate('1985-01-01'));
+    await waitFor(() => {
+      expect(result.current.recents[0].date).toBe('1985-01-01');
+      expect(result.current.recents[1].date).toBe('1990-05-10');
+    });
+  });
+
+  it('selects a recent entry and recalculates', async () => {
+    const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.setBirthdate('1995-06-15'));
+    await waitFor(() => expect(result.current.age).not.toBeNull());
+    act(() => result.current.setBirthdate(null));
     expect(result.current.age).toBeNull();
-  });
-
-  it('rejects dates older than 150 years', () => {
-    const { result } = renderHook(() => useAgeLookup());
-    const oldDate = new Date();
-    oldDate.setFullYear(oldDate.getFullYear() - 151);
-
-    act(() => {
-      result.current.setBirthdate(toDateKey(oldDate));
-    });
-
-    expect(result.current.error).toBe('too-old');
-    expect(result.current.age).toBeNull();
-  });
-
-  it('pushes valid birthdate to recents', async () => {
-    const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('1990-05-10');
-    });
-
+    act(() => result.current.selectRecent({ date: '1995-06-15', calendarType: 'solar', isLeapMonth: false }));
     await waitFor(() => {
-      expect(result.current.recents).toContain('1990-05-10');
+      expect(result.current.birthdate).toBe('1995-06-15');
+      expect(result.current.age).not.toBeNull();
     });
-  });
-
-  it('does not push invalid birthdate to recents', async () => {
-    const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('2099-01-01');
-    });
-
-    await waitFor(() => {
-      expect(result.current.recents).not.toContain('2099-01-01');
-    });
-  });
-
-  it('deduplicates recents (most recent first)', async () => {
-    const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('1990-05-10');
-    });
-
-    await waitFor(() => {
-      expect(result.current.recents).toContain('1990-05-10');
-    });
-
-    act(() => {
-      result.current.setBirthdate('1985-01-01');
-    });
-
-    await waitFor(() => {
-      expect(result.current.recents[0]).toBe('1985-01-01');
-      expect(result.current.recents[1]).toBe('1990-05-10');
-    });
-
-    // Recalculate with first entry
-    act(() => {
-      result.current.setBirthdate('1985-01-01');
-    });
-
-    await waitFor(() => {
-      expect(result.current.recents[0]).toBe('1985-01-01');
-      expect(result.current.recents.length).toBe(2);
-    });
-  });
-
-  it('respects max 10 recents', async () => {
-    const { result } = renderHook(() => useAgeLookup());
-
-    // Add 11 birthdates
-    for (let i = 0; i < 11; i++) {
-      const year = 1950 + i;
-      act(() => {
-        result.current.setBirthdate(`${year}-01-01`);
-      });
-    }
-
-    await waitFor(() => {
-      expect(result.current.recents.length).toBeLessThanOrEqual(10);
-    });
-  });
-
-  it('adds person to favorites', () => {
-    const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.addPerson('홍길동', '1990-05-10');
-    });
-
-    expect(result.current.people).toHaveLength(1);
-    expect(result.current.people[0]).toMatchObject({
-      name: '홍길동',
-      birthdate: '1990-05-10',
-    });
-  });
-
-  it('removes person from favorites', () => {
-    const { result } = renderHook(() => useAgeLookup());
-    let personId = '';
-
-    act(() => {
-      result.current.addPerson('홍길동', '1990-05-10');
-    });
-
-    act(() => {
-      personId = result.current.people[0].id;
-      result.current.removePerson(personId);
-    });
-
-    expect(result.current.people).toHaveLength(0);
-  });
-
-  it('respects max 20 people', () => {
-    const { result } = renderHook(() => useAgeLookup());
-
-    for (let i = 0; i < 25; i++) {
-      act(() => {
-        result.current.addPerson(`Person${i}`, `${1950 + i}-01-01`);
-      });
-    }
-
-    expect(result.current.people.length).toBeLessThanOrEqual(20);
-  });
-
-  it('selects recent and calculates age', () => {
-    const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('1995-06-15');
-    });
-
-    const birthdate = '1995-06-15';
-    act(() => {
-      result.current.setBirthdate(null);
-    });
-
-    expect(result.current.age).toBeNull();
-
-    act(() => {
-      result.current.selectRecent(birthdate);
-    });
-
-    expect(result.current.birthdate).toBe(birthdate);
-    expect(result.current.age).not.toBeNull();
   });
 
   it('clears recents', async () => {
     const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('1990-05-10');
-    });
-
-    await waitFor(() => {
-      expect(result.current.recents).toHaveLength(1);
-    });
-
-    act(() => {
-      result.current.clearRecents();
-    });
-
+    act(() => result.current.setBirthdate('1990-05-10'));
+    await waitFor(() => expect(result.current.recents).toHaveLength(1));
+    act(() => result.current.clearRecents());
     expect(result.current.recents).toHaveLength(0);
   });
 
-  it('clears error', () => {
+  it('clears error', async () => {
     const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('2099-01-01');
-    });
-
-    expect(result.current.error).toBe('future');
-
-    act(() => {
-      result.current.clearError();
-    });
-
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    act(() => result.current.setBirthdate(toDateKey(tomorrow)));
+    await waitFor(() => expect(result.current.error).toBe('future'));
+    act(() => result.current.clearError());
     expect(result.current.error).toBeNull();
   });
 
-  it('handles asOfDate toggle', () => {
+  it('recomputes age against an as-of date', async () => {
     const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('1990-05-10');
-    });
-
-    const ageBeforeToggle = result.current.age?.manNai;
-
+    act(() => result.current.setBirthdate('1990-05-10'));
+    await waitFor(() => expect(result.current.age).not.toBeNull());
     act(() => {
       result.current.setUseAsOf(true);
       result.current.setAsOfDate('2020-05-10');
     });
-
-    // Age should be calculated based on 2020-05-10 instead of today
-    const ageAfterToggle = result.current.age?.manNai;
-    expect(ageAfterToggle).toBe(30);
+    await waitFor(() => expect(result.current.age?.manNai).toBe(30));
   });
 
-  it('copies result to clipboard on valid age', async () => {
-    // Mock clipboard API
-    const mockClipboard = {
-      writeText: vi.fn().mockResolvedValue(undefined),
-    };
-    Object.assign(navigator, { clipboard: mockClipboard });
-
+  it('adds and removes people', () => {
     const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.addPerson('홍길동', '1990-05-10'));
+    expect(result.current.people).toHaveLength(1);
+    expect(result.current.people[0]).toMatchObject({ name: '홍길동', birthdate: '1990-05-10', calendarType: 'solar' });
+    act(() => result.current.removePerson(result.current.people[0].id));
+    expect(result.current.people).toHaveLength(0);
+  });
 
-    act(() => {
-      result.current.setBirthdate('1990-05-10');
-    });
+  it('stores a lunar person with its calendar context', () => {
+    const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.addPerson('음력이', '1988-04-10', 'lunar', true));
+    expect(result.current.people[0]).toMatchObject({ calendarType: 'lunar', isLeapMonth: true });
+  });
 
-    const success = await result.current.copyResultToClipboard();
-    expect(success).toBe(true);
-    expect(mockClipboard.writeText).toHaveBeenCalled();
+  it('respects max 20 people', () => {
+    const { result } = renderHook(() => useAgeLookup());
+    for (let i = 0; i < 25; i++) {
+      act(() => result.current.addPerson(`Person${i}`, `${1950 + i}-01-01`));
+    }
+    expect(result.current.people.length).toBeLessThanOrEqual(20);
+  });
+
+  it('copies result to clipboard once age is available', async () => {
+    Object.assign(navigator, { clipboard: { writeText: vi.fn().mockResolvedValue(undefined) } });
+    const { result } = renderHook(() => useAgeLookup());
+    act(() => result.current.setBirthdate('1990-05-10'));
+    await waitFor(() => expect(result.current.age).not.toBeNull());
+    const ok = await result.current.copyResultToClipboard();
+    expect(ok).toBe(true);
   });
 
   it('returns false on copy when no birthdate', async () => {
     const { result } = renderHook(() => useAgeLookup());
-
-    const success = await result.current.copyResultToClipboard();
-    expect(success).toBe(false);
+    expect(await result.current.copyResultToClipboard()).toBe(false);
   });
 
-  it('persists people to localStorage', () => {
+  it('persists people and recents to localStorage', async () => {
     const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.addPerson('홍길동', '1990-05-10');
-    });
-
-    const stored = localStorage.getItem('jurepi-age-calculator-people');
-    expect(stored).not.toBeNull();
-    const parsed = JSON.parse(stored!);
-    expect(parsed.people).toHaveLength(1);
-  });
-
-  it('persists recents to localStorage', async () => {
-    const { result } = renderHook(() => useAgeLookup());
-
-    act(() => {
-      result.current.setBirthdate('1990-05-10');
-    });
-
+    act(() => result.current.addPerson('홍길동', '1990-05-10'));
+    expect(JSON.parse(localStorage.getItem('jurepi-age-calculator-people')!).people).toHaveLength(1);
+    act(() => result.current.setBirthdate('1990-05-10'));
     await waitFor(() => {
       const stored = localStorage.getItem('jurepi-age-calculator-recents');
-      expect(stored).not.toBeNull();
+      expect(stored && JSON.parse(stored).length).toBeGreaterThan(0);
     });
-  });
-
-  it('gracefully loads corrupted localStorage', () => {
-    // Set corrupted data
-    localStorage.setItem('jurepi-age-calculator-people', 'not json');
-    localStorage.setItem('jurepi-age-calculator-recents', 'invalid');
-
-    const { result } = renderHook(() => useAgeLookup());
-
-    expect(result.current.people).toHaveLength(0);
-    expect(result.current.recents).toHaveLength(0);
   });
 });

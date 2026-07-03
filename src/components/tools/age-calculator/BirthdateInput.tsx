@@ -2,14 +2,18 @@
 
 import { useTranslations } from 'next-intl';
 import type { DateKey } from '@/lib/age-calculator/date';
+import type { CalendarType } from '@/lib/age-calculator/resolve';
 import { DateSelect } from './DateSelect';
+import { CalendarDateInput, type CalendarDateValue } from './CalendarDateInput';
 
 interface Props {
   value: string | null;
+  calendarType: CalendarType;
+  isLeapMonth: boolean;
   asOfDate: string;
   useAsOf: boolean;
   error: string | null;
-  onChange: (dateKey: DateKey | null) => void;
+  onBirthdateChange: (v: CalendarDateValue) => void;
   onAsOfDateChange: (dateKey: DateKey) => void;
   onUseAsOfChange: (use: boolean) => void;
   onClearError: () => void;
@@ -19,54 +23,50 @@ const ERROR_MESSAGE_KEY: Record<string, string> = {
   invalid: 'input.errorInvalidDate',
   future: 'input.errorFutureDate',
   'too-old': 'input.errorTooOld',
+  'no-leap': 'input.errorNoLeap',
 };
+
+const AS_OF_MIN_YEAR = 1901;
 
 export function BirthdateInput({
   value,
+  calendarType,
+  isLeapMonth,
   asOfDate,
   useAsOf,
   error,
-  onChange,
+  onBirthdateChange,
   onAsOfDateChange,
   onUseAsOfChange,
   onClearError,
 }: Props) {
   const t = useTranslations('tools.age-calculator');
 
-  const handleBirthdateChange = (dateKey: DateKey | null) => {
-    onChange(dateKey);
-    if (error) {
-      onClearError();
-    }
-  };
-
   return (
     <div className="space-y-6">
-      {/* Birthdate — year / month / day dropdowns (elderly-friendly) */}
+      {/* Birthdate — solar/lunar toggle + year/month/day dropdowns + leap switch */}
       <fieldset className="space-y-2">
-        <legend className="font-semibold text-text text-sm">
-          {t('input.birthdateLegend')}
-        </legend>
-        <DateSelect
-          value={value}
-          onChange={handleBirthdateChange}
+        <legend className="font-semibold text-text text-sm">{t('input.birthdateLegend')}</legend>
+        <CalendarDateInput
+          date={value}
+          calendarType={calendarType}
+          isLeapMonth={isLeapMonth}
+          onChange={(v) => {
+            onBirthdateChange(v);
+            if (error) onClearError();
+          }}
           idPrefix="birthdate"
           ariaLabel={t('input.birthdateLegend')}
           invalid={!!error}
         />
         {error && (
-          <div
-            id="birthdate-error"
-            className="text-danger-ink text-sm"
-            role="alert"
-            aria-live="polite"
-          >
+          <div id="birthdate-error" className="text-danger-ink text-sm" role="alert" aria-live="polite">
             {t(ERROR_MESSAGE_KEY[error] || 'input.errorInvalidDate')}
           </div>
         )}
       </fieldset>
 
-      {/* As-of Date Toggle */}
+      {/* As-of Date Toggle (solar only) */}
       <div className="space-y-3">
         <button
           onClick={() => onUseAsOfChange(!useAsOf)}
@@ -87,18 +87,16 @@ export function BirthdateInput({
           <span>{t('input.asOfToggle')}</span>
         </button>
 
-        {/* As-of Date (shown when toggle is on) — same dropdowns for consistency */}
         {useAsOf && (
           <div className="space-y-1 pl-4 border-l border-hairline">
-            <span className="block font-semibold text-text text-sm">
-              {t('input.asOfDate')}
-            </span>
+            <span className="block font-semibold text-text text-sm">{t('input.asOfDate')}</span>
             <DateSelect
               value={asOfDate}
               onChange={(dateKey) => {
                 if (dateKey) onAsOfDateChange(dateKey);
               }}
               idPrefix="as-of"
+              minYear={AS_OF_MIN_YEAR}
               ariaLabel={t('input.asOfDate')}
             />
             <p className="text-text-secondary text-xs">{t('input.asOfHelp')}</p>

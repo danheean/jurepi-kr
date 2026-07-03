@@ -2,15 +2,18 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from '@testing-library/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { RecentLookups } from './RecentLookups';
+import type { RecentEntry } from '@/lib/age-calculator/recents';
 import messages from '@/i18n/messages/ko.json';
 
+const S = (date: string): RecentEntry => ({ date, calendarType: 'solar', isLeapMonth: false });
+
 describe('RecentLookups', () => {
-  const mockRecents = ['1999-03-15', '2000-06-20', '1985-12-25'];
+  const mockRecents: RecentEntry[] = [S('1999-03-15'), S('2000-06-20'), S('1985-12-25')];
   const mockOnSelectRecent = vi.fn();
   const mockOnClear = vi.fn();
 
   const renderComponent = (
-    recents: string[] = mockRecents,
+    recents: RecentEntry[] = mockRecents,
     onSelectRecent = mockOnSelectRecent,
     onClear = mockOnClear
   ) => {
@@ -54,7 +57,7 @@ describe('RecentLookups', () => {
       (btn) => !btn.textContent?.includes(messages.tools['age-calculator'].recents.clear)
     );
     fireEvent.click(buttons[0]);
-    expect(mockOnSelectRecent).toHaveBeenCalledWith('1999-03-15');
+    expect(mockOnSelectRecent).toHaveBeenCalledWith(S('1999-03-15'));
   });
 
   it('calls onClear when clear button is clicked', () => {
@@ -98,7 +101,7 @@ describe('RecentLookups', () => {
   });
 
   it('renders with single recent', () => {
-    renderComponent(['2000-01-01']);
+    renderComponent([S('2000-01-01')]);
     const buttons = screen.getAllByRole('button').filter(
       (btn) => !btn.textContent?.includes(messages.tools['age-calculator'].recents.clear)
     );
