@@ -980,7 +980,8 @@
           "sms": "Enter phone number and message."
         },
         "charCount": "{current} / {max}",
-        "tooLong": "Max {max} characters."
+        "tooLong": "Max {max} characters.",
+        "label": "Content to encode"
       },
       "wifi": {
         "ssidLabel": "Network Name (SSID)",
@@ -988,22 +989,33 @@
         "encryptionLabel": "Security Type",
         "wep": "WEP",
         "wpa": "WPA",
-        "nopass": "No Security"
+        "nopass": "No Security",
+        "ssidPh": "Network name",
+        "passwordPh": "Password"
       },
       "vcard": {
         "nameLabel": "Name *",
         "phoneLabel": "Phone Number",
         "emailLabel": "Email",
-        "urlLabel": "Website"
+        "urlLabel": "Website",
+        "namePh": "Full name",
+        "phonePh": "Phone number",
+        "emailPh": "Email address",
+        "urlPh": "Website"
       },
       "email": {
         "emailLabel": "Email Address *",
         "subjectLabel": "Subject",
-        "bodyLabel": "Body"
+        "bodyLabel": "Body",
+        "emailPh": "user@example.com",
+        "subjectPh": "Email subject",
+        "bodyPh": "Email body"
       },
       "sms": {
         "phoneLabel": "Phone Number *",
-        "messageLabel": "Message"
+        "messageLabel": "Message",
+        "phonePh": "Phone number",
+        "messagePh": "Message"
       },
       "ecc": {
         "label": "Error Correction Level",
@@ -1023,7 +1035,19 @@
         "contrast": "Contrast: {value}",
         "contrastGood": "Good",
         "contrastWarn": "Warning",
-        "contrastPoor": "Poor"
+        "contrastPoor": "Poor",
+        "applyFg": "Apply as foreground: {color}",
+        "applyBg": "Apply as background: {color}",
+        "names": {
+          "coral": "Coral",
+          "mint": "Mint",
+          "sky": "Sky",
+          "sun": "Sun",
+          "grape": "Grape",
+          "rose": "Rose",
+          "black": "Black",
+          "white": "White"
+        }
       },
       "logo": {
         "label": "Logo (Optional)",
@@ -1089,6 +1113,16 @@
             "a": "Yes, but keep it simple. The logo can cover about 25% of the center area without breaking the code, but complex logos might prevent scanners from reading it. A simple, small logo works best."
           }
         ]
+      },
+      "empty": {
+        "placeholder": "Your QR code will appear here"
+      },
+      "errors": {
+        "encodingFailed": "Couldn’t generate the QR code. Check your input and try again.",
+        "dismiss": "Dismiss"
+      },
+      "preview": {
+        "ariaLabel": "Generated QR code preview"
       }
     },
     "speed-quiz": {

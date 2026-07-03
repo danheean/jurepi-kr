@@ -106,6 +106,7 @@ export function InputArea({
           value={value}
           onChange={(e) => handleRawTextChange(e.target.value)}
           placeholder={placeholder}
+          aria-label={t('inputArea.label')}
           disabled={isLoading}
           maxLength={maxLength}
           rows={5}
@@ -118,7 +119,7 @@ export function InputArea({
             isTooLong
               ? 'text-danger-ink'
               : isNearLimit
-                ? 'text-accent-sun'
+                ? 'text-warning-ink'
                 : 'text-text-secondary'
           }`}
         >
@@ -145,7 +146,7 @@ export function InputArea({
             type="text"
             value={fieldState.wifi.ssid}
             onChange={(e) => handleWifiChange({ ssid: e.target.value })}
-            placeholder="Network name"
+            placeholder={t('wifi.ssidPh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -160,7 +161,7 @@ export function InputArea({
             type="password"
             value={fieldState.wifi.password}
             onChange={(e) => handleWifiChange({ password: e.target.value })}
-            placeholder="Password"
+            placeholder={t('wifi.passwordPh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -202,7 +203,7 @@ export function InputArea({
             type="text"
             value={fieldState.vcard.name}
             onChange={(e) => handleVcardChange({ name: e.target.value })}
-            placeholder="Full name"
+            placeholder={t('vcard.namePh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -217,7 +218,7 @@ export function InputArea({
             type="tel"
             value={fieldState.vcard.phone || ''}
             onChange={(e) => handleVcardChange({ phone: e.target.value })}
-            placeholder="Phone number"
+            placeholder={t('vcard.phonePh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -232,7 +233,7 @@ export function InputArea({
             type="email"
             value={fieldState.vcard.email || ''}
             onChange={(e) => handleVcardChange({ email: e.target.value })}
-            placeholder="Email address"
+            placeholder={t('vcard.emailPh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -247,7 +248,7 @@ export function InputArea({
             type="url"
             value={fieldState.vcard.url || ''}
             onChange={(e) => handleVcardChange({ url: e.target.value })}
-            placeholder="Website"
+            placeholder={t('vcard.urlPh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -272,7 +273,7 @@ export function InputArea({
             type="email"
             value={fieldState.email.email}
             onChange={(e) => handleEmailChange({ email: e.target.value })}
-            placeholder="user@example.com"
+            placeholder={t('email.emailPh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -287,7 +288,7 @@ export function InputArea({
             type="text"
             value={fieldState.email.subject || ''}
             onChange={(e) => handleEmailChange({ subject: e.target.value })}
-            placeholder="Email subject"
+            placeholder={t('email.subjectPh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -301,7 +302,7 @@ export function InputArea({
             id="qr-email-body"
             value={fieldState.email.body || ''}
             onChange={(e) => handleEmailChange({ body: e.target.value })}
-            placeholder="Email body"
+            placeholder={t('email.bodyPh')}
             disabled={isLoading}
             rows={3}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50 resize-none"
@@ -327,7 +328,7 @@ export function InputArea({
             type="tel"
             value={fieldState.sms.phone}
             onChange={(e) => handleSmsChange({ phone: e.target.value })}
-            placeholder="Phone number"
+            placeholder={t('sms.phonePh')}
             disabled={isLoading}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50"
           />
@@ -341,7 +342,7 @@ export function InputArea({
             id="qr-sms-message"
             value={fieldState.sms.message || ''}
             onChange={(e) => handleSmsChange({ message: e.target.value })}
-            placeholder="Message"
+            placeholder={t('sms.messagePh')}
             disabled={isLoading}
             rows={3}
             className="w-full px-3 py-2 rounded-md border border-hairline bg-surface text-text focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none disabled:opacity-50 resize-none"

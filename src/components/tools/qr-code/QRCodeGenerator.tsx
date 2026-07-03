@@ -28,6 +28,12 @@ export function QRCodeGenerator({ locale }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
+  const contrastValue = Math.round(deltaE(state.options.fgColor, state.options.bgColor));
+  const isContrastAcceptable = state.result?.contrastAcceptable ?? true;
+  // The effective download gate: low contrast is downloadable once the user
+  // confirms "Generate anyway". Buttons AND keyboard shortcuts share this gate.
+  const canDownloadWithContrast = isContrastAcceptable || confirmLowContrast;
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -37,10 +43,10 @@ export function QRCodeGenerator({ locale }: Props) {
     const handleKeyDown = (e: KeyboardEvent) => {
       const isCmdOrCtrl = e.metaKey || e.ctrlKey;
 
-      // Cmd+S / Ctrl+S → Download PNG
+      // Cmd+S / Ctrl+S → Download PNG (respects the contrast gate)
       if (isCmdOrCtrl && e.key === 's') {
         e.preventDefault();
-        if (canvasRef.current && state.result) {
+        if (canvasRef.current && state.result && canDownloadWithContrast) {
           downloadPNG();
         }
       }
@@ -53,7 +59,7 @@ export function QRCodeGenerator({ locale }: Props) {
           (e.target instanceof HTMLElement && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA'))
       ) {
         e.preventDefault();
-        if (canvasRef.current && state.result) {
+        if (canvasRef.current && state.result && canDownloadWithContrast) {
           copyToClipboard();
         }
       }
@@ -61,7 +67,7 @@ export function QRCodeGenerator({ locale }: Props) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [state.result]);
+  }, [state.result, canDownloadWithContrast]);
 
   const downloadPNG = () => {
     if (!canvasRef.current) return;
@@ -98,16 +104,30 @@ export function QRCodeGenerator({ locale }: Props) {
     }
   };
 
-  const contrastValue = Math.round(deltaE(state.options.fgColor, state.options.bgColor));
-  const isContrastAcceptable = state.result?.contrastAcceptable ?? true;
-
   // Show warning if contrast is low and user hasn't confirmed
   useEffect(() => {
     setShowContrastWarning(!isContrastAcceptable && !confirmLowContrast);
   }, [isContrastAcceptable, confirmLowContrast]);
 
+  // Pre-hydration skeleton: reserves the real layout shape so nothing shifts
+  // (CLS) when the interactive tool mounts. Honors reduced-motion.
   if (!mounted) {
-    return null;
+    const shimmer = prefersReducedMotion ? '' : 'animate-pulse';
+    return (
+      <div className="space-y-8" aria-hidden="true">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-6">
+            <div className={`h-11 rounded-full bg-surface-muted ${shimmer}`} />
+            <div className={`h-32 rounded-md bg-surface-muted ${shimmer}`} />
+            <div className={`h-24 rounded-md bg-surface-muted ${shimmer}`} />
+            <div className={`h-40 rounded-md bg-surface-muted ${shimmer}`} />
+          </div>
+          <div className="lg:col-span-1">
+            <div className={`w-full aspect-square rounded-lg bg-surface-muted ${shimmer}`} />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -135,12 +155,12 @@ export function QRCodeGenerator({ locale }: Props) {
           {/* Error message if encoding failed */}
           {state.error && (
             <div className="rounded-md bg-surface-muted border border-danger px-4 py-3">
-              <p className="text-danger-ink text-sm font-medium">{state.error.message}</p>
+              <p className="text-danger-ink text-sm font-medium">{t('errors.encodingFailed')}</p>
               <button
                 onClick={actions.clearError}
                 className="text-xs text-danger-ink underline hover:no-underline mt-1"
               >
-                Dismiss
+                {t('errors.dismiss')}
               </button>
             </div>
           )}
@@ -185,7 +205,7 @@ export function QRCodeGenerator({ locale }: Props) {
             <DownloadButtons
               canvasRef={canvasRef}
               svg={state.result?.svg}
-              isContrastAcceptable={isContrastAcceptable}
+              isContrastAcceptable={canDownloadWithContrast}
               onDownload={() => actions.addRecent(state.input)}
               onConfirmLowContrast={() => setConfirmLowContrast(true)}
             />

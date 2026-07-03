@@ -1,6 +1,7 @@
 'use client';
 
 import { forwardRef, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import type { QRGenerationResult } from '@/lib/qr-code';
 
 interface Props {
@@ -24,6 +25,7 @@ export const QRPreview = forwardRef<HTMLCanvasElement, Props>(
     { result, isLoading, error, size, quietZone, fgColor, bgColor, logoUrl, prefersReducedMotion },
     ref
   ) => {
+    const t = useTranslations('tools.qr-code');
     const [logoImage, setLogoImage] = useState<HTMLImageElement | null>(null);
 
     // Load logo image when logoUrl changes
@@ -88,7 +90,7 @@ export const QRPreview = forwardRef<HTMLCanvasElement, Props>(
     if (error) {
       return (
         <div className="flex items-center justify-center w-full aspect-square bg-surface border border-hairline rounded-lg">
-          <p className="text-center text-sm text-danger-ink">{error.message}</p>
+          <p className="text-center text-sm text-danger-ink">{t('errors.encodingFailed')}</p>
         </div>
       );
     }
@@ -96,7 +98,7 @@ export const QRPreview = forwardRef<HTMLCanvasElement, Props>(
     if (isLoading) {
       return (
         <div className="flex items-center justify-center w-full aspect-square bg-surface border border-hairline rounded-lg">
-          <div className="animate-spin">
+          <div className={prefersReducedMotion ? '' : 'animate-spin'}>
             <div className="w-8 h-8 border-2 border-accent-sky/30 border-t-accent-sky rounded-full" />
           </div>
         </div>
@@ -106,7 +108,7 @@ export const QRPreview = forwardRef<HTMLCanvasElement, Props>(
     if (!result) {
       return (
         <div className="flex items-center justify-center w-full aspect-square bg-surface border border-hairline rounded-lg">
-          <p className="text-center text-sm text-text-secondary">QR code will appear here</p>
+          <p className="text-center text-sm text-text-secondary">{t('empty.placeholder')}</p>
         </div>
       );
     }
@@ -115,6 +117,8 @@ export const QRPreview = forwardRef<HTMLCanvasElement, Props>(
       <div className="flex justify-center w-full">
         <canvas
           ref={ref}
+          role="img"
+          aria-label={t('preview.ariaLabel')}
           className="border border-hairline rounded-lg max-w-full"
           style={{
             maxWidth: '100%',

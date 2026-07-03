@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 const PALETTE_COLORS = [
@@ -32,7 +31,6 @@ export function ColorPickers({
   isContrastAcceptable = true,
 }: Props) {
   const t = useTranslations('tools.qr-code');
-  const [activeTarget, setActiveTarget] = useState<'fg' | 'bg' | null>(null);
 
   const getContrastStatus = (value: number) => {
     if (value >= 50) return 'good';
@@ -102,10 +100,10 @@ export function ColorPickers({
             <button
               key={`fg-${name}`}
               onClick={() => onFgChange(hex)}
-              className="w-8 h-8 rounded border-2 border-hairline hover:border-brand transition-colors"
+              className="w-11 h-11 rounded-lg border-2 border-hairline hover:border-brand focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none transition-colors"
               style={{ backgroundColor: hex }}
-              title={name}
-              aria-label={`Foreground ${name}`}
+              title={t(`colors.names.${name}`)}
+              aria-label={t('colors.applyFg', { color: t(`colors.names.${name}`) })}
             />
           ))}
         </div>
@@ -132,10 +130,10 @@ export function ColorPickers({
             <button
               key={`bg-${name}`}
               onClick={() => onBgChange(hex)}
-              className="w-8 h-8 rounded border-2 border-hairline hover:border-brand transition-colors"
+              className="w-11 h-11 rounded-lg border-2 border-hairline hover:border-brand focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-none transition-colors"
               style={{ backgroundColor: hex }}
-              title={name}
-              aria-label={`Background ${name}`}
+              title={t(`colors.names.${name}`)}
+              aria-label={t('colors.applyBg', { color: t(`colors.names.${name}`) })}
             />
           ))}
         </div>

@@ -128,7 +128,7 @@ export function DownloadButtons({
       {!isContrastAcceptable && (
         <button
           onClick={onConfirmLowContrast}
-          className="w-full px-4 py-2 text-sm text-warning-ink font-medium hover:bg-brand-soft rounded-md transition-colors border border-warning"
+          className="w-full px-4 py-2 text-sm text-warning-ink font-medium hover:bg-surface-muted rounded-md transition-colors border border-warning"
         >
           {t('buttons.confirmLowContrast')}
         </button>

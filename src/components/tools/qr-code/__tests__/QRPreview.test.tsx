@@ -1,7 +1,20 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { NextIntlClientProvider } from 'next-intl';
 import { QRPreview } from '../QRPreview';
 import type { QRGenerationResult } from '@/lib/qr-code';
+import enMessages from '@/i18n/messages/en.json';
+
+// Render QRPreview inside a real i18n context (it consumes tools.qr-code.*).
+function renderWithProvider(ui: React.ReactElement) {
+  return render(
+    <NextIntlClientProvider locale="en" messages={enMessages}>
+      {ui}
+    </NextIntlClientProvider>
+  );
+}
+
+const qr = enMessages.tools['qr-code'];
 
 describe('QRPreview', () => {
   const mockMatrix: boolean[][] = [
@@ -21,7 +34,7 @@ describe('QRPreview', () => {
   };
 
   it('renders empty state when no result', () => {
-    render(
+    renderWithProvider(
       <QRPreview
         size={300}
         quietZone={4}
@@ -30,11 +43,11 @@ describe('QRPreview', () => {
       />
     );
 
-    expect(screen.getByText(/QR code will appear here/i)).toBeInTheDocument();
+    expect(screen.getByText(qr.empty.placeholder)).toBeInTheDocument();
   });
 
   it('renders canvas when result is provided', () => {
-    const { container } = render(
+    const { container } = renderWithProvider(
       <QRPreview
         result={mockResult}
         size={300}
@@ -50,7 +63,7 @@ describe('QRPreview', () => {
   });
 
   it('renders loading spinner when isLoading is true', () => {
-    const { container } = render(
+    const { container } = renderWithProvider(
       <QRPreview
         isLoading={true}
         size={300}
@@ -65,9 +78,9 @@ describe('QRPreview', () => {
     expect(spinnerDiv).toBeInTheDocument();
   });
 
-  it('renders error message when error is provided', () => {
+  it('renders localized error message when error is provided', () => {
     const error = new Error('Test error message');
-    render(
+    renderWithProvider(
       <QRPreview
         error={error}
         size={300}
@@ -77,12 +90,13 @@ describe('QRPreview', () => {
       />
     );
 
-    expect(screen.getByText(/Test error message/i)).toBeInTheDocument();
+    // Raw domain error text is not surfaced; a localized message is shown instead.
+    expect(screen.getByText(qr.errors.encodingFailed)).toBeInTheDocument();
   });
 
   it('forwards ref to canvas element', () => {
     const ref = { current: null as HTMLCanvasElement | null };
-    const { container } = render(
+    const { container } = renderWithProvider(
       <QRPreview
         ref={ref}
         result={mockResult}
@@ -98,7 +112,7 @@ describe('QRPreview', () => {
 
   it('sets canvas width and height when result changes', () => {
     const ref = { current: null as HTMLCanvasElement | null };
-    render(
+    renderWithProvider(
       <QRPreview
         ref={ref}
         result={mockResult}
@@ -117,7 +131,7 @@ describe('QRPreview', () => {
 
   it('draws modules with correct colors', () => {
     const ref = { current: null as HTMLCanvasElement | null };
-    render(
+    renderWithProvider(
       <QRPreview
         ref={ref}
         result={mockResult}
