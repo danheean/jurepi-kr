@@ -1,0 +1,1049 @@
+{
+  "generatedAt": "2026-07-03T17:24:53.858Z",
+  "version": 1,
+  "peoples": [
+    {
+      "slug": "geoffrey-hinton",
+      "tags": [
+        "ai",
+        "deep-learning"
+      ],
+      "era": "1980-2000",
+      "nationality": "UK",
+      "ko": {
+        "name": "제프리 힌턴",
+        "knownFor": "역전파(backpropagation) 알고리즘의 선구자, 현대 딥러닝의 아버지.\n신경망 학습의 기초 이론을 개발하여 인공지능 혁명을 일으킨 과학자.\n",
+        "aliases": [
+          "Geoffrey E. Hinton",
+          "Geoffrey Everist Hinton",
+          "힌턴"
+        ],
+        "biography_body": "\n## 소개\n\n제프리 힌턴은 영국 런던 태생의 인지 심리학자이자 신경망 연구의 거장으로, 현대 인공지능의 이론적 기초를 다진 핵심 인물이다. 1986년 데이비드 루멜하트, 로널드 윌리엄스와 함께 역전파(backpropagation) 알고리즘을 개선·발표했다. 이 알고리즘은 다층 신경망이 복잡한 패턴을 학습할 수 있음을 증명했으며, 현재 거의 모든 딥러닝 모델의 기초가 되어있다.\n\n1980년대부터 2000년대 초반까지 많은 학자들이 신경망의 가능성에 회의적이었던 시기에, 힌턴은 꾸준히 신경망 이론을 발전시켜왔다. 2006년 그는 Deep Belief Networks를 개발하여 딥러닝의 부흥을 촉발했다. 이는 다층 신경망이 효율적으로 학습될 수 있다는 것을 보여준 역사적인 논문이다. 2018년에는 Yann LeCun, Yoshua Bengio와 함께 \"딥 신경망 분야에서의 획기적 발견\"으로 튜링상을 수상했다. 그리고 2024년, 88세의 나이에 인공지능의 기초 이론 공헌으로 노벨물리학상을 수상하여 과학의 최고 영예를 얻었다.\n\n힌턴은 캐나다 토론토 대학에서 대부분의 경력을 쌓았으며, 그곳에서 수많은 제자를 배출했다. 그의 학생들과 동료들은 오늘날 OpenAI, Google, Meta 등 AI 선도 기업들의 핵심 연구자로 활약하고 있다. 그의 철학은 \"생물학에서 영감을 받되, 엄밀한 수학으로 검증하라\"는 신념에 기반해 있다.\n\n## 일화\n\n힌턴은 심리학자 어머니의 영향으로 뇌와 인지에 관심을 가졌다. 어린 시절부터 신경과학과 수학에 깊은 관심을 보였으며, 이 두 분야의 교집합인 신경망 연구로 자연스럽게 진입했다. 그는 종종 \"물리학자와 생물학자의 대화를 돕고 싶었다\"고 말했는데, 이것이 그의 연구의 본질을 잘 드러낸다.\n\n1986년 역전파 알고리즘 논문은 당시 신경망 커뮤니티에 혁명을 일으켰다. 하지만 그 후 10여 년간 신경망은 \"AI 겨울\"을 맞이했다. 많은 연구자들이 떠났지만 힌턴은 꾸준히 신경망의 가능성을 믿고 연구를 계속했다. 2006년 그의 Deep Belief Networks 논문이 발표되자, 전 세계 과학자들이 다시 신경망에 주목하기 시작했다. 이는 과학 역사에서 올바른 신념이 얼마나 중요한지를 보여주는 사례다.\n\n2024년 노벨물리학상 수상 때, 힌턴은 인공지능의 발전 속도가 인류의 예상을 뛰어넘었다며 동시에 책임감 있는 개발의 중요성을 강조했다. 그는 \"과학자로서의 자부심과 경고의 책임이 함께 존재한다\"고 말하며, 기술의 진보만큼이나 윤리와 안전을 중시하는 태도를 보여주었다.\n"
+      },
+      "en": {
+        "name": "Geoffrey Hinton",
+        "knownFor": "Pioneer of backpropagation algorithm, father of modern deep learning.\nDeveloper of foundational neural network theory who triggered the artificial intelligence revolution.\n",
+        "aliases": [
+          "Geoffrey E. Hinton",
+          "Geoffrey Everist Hinton"
+        ],
+        "biography_body": "\n## About\n\nGeoffrey Hinton is a British-born cognitive psychologist and neural network researcher who laid the theoretical foundations of modern artificial intelligence. In 1986, he, David Rumelhart, and Ronald Williams refined and published the backpropagation algorithm, demonstrating that multilayer neural networks could learn complex patterns. This algorithm is now the foundation of nearly all deep learning models worldwide.\n\nFrom the 1980s through the early 2000s, when many scholars were skeptical of neural networks, Hinton steadfastly advanced neural network theory. In 2006, he developed Deep Belief Networks, sparking the deep learning renaissance—a seminal paper proving that deep neural networks could be trained efficiently. In 2018, he shared the Turing Award with Yann LeCun and Yoshua Bengio for \"conceptual and engineering breakthroughs that have made deep neural networks a critical component of computing.\" In 2024, at age 88, he received the Nobel Prize in Physics for contributions to foundational AI theory, achieving science's highest honor.\n\nHinton built most of his career at the University of Toronto in Canada, where he trained numerous students now serving as key researchers at leading AI companies including OpenAI, Google, and Meta. His philosophy rests on being \"inspired by biology, but verified by rigorous mathematics,\" bridging cognitive science and machine learning.\n\n## Anecdotes\n\nHinton's interest in brains and cognition was shaped by his psychologist mother. From childhood, he demonstrated deep interest in neuroscience and mathematics, naturally leading him to neural network research at their intersection. He often said he wanted to \"help physicists and biologists talk to each other,\" capturing the essence of his work.\n\nThe 1986 backpropagation paper revolutionized the neural network community. Yet over the following decade, neural networks entered an \"AI winter.\" While many researchers abandoned the field, Hinton continued developing neural networks with unwavering faith. When his Deep Belief Networks paper appeared in 2006, the scientific world refocused on neural networks. This exemplifies how scientific conviction and persistence can reshape an entire field.\n\nUpon receiving the 2024 Nobel Prize in Physics, Hinton acknowledged that AI's development exceeded humanity's expectations while emphasizing responsible development. He stated, \"Scientific pride and the responsibility to warn coexist,\" demonstrating that he values ethics and safety as much as technological progress.\n"
+      },
+      "birthYear": 1947,
+      "photo": "geoffrey-hinton.jpg",
+      "photoCredit": "Wikimedia Commons © Cmichel67, CC BY-SA 4.0",
+      "achievements": [
+        {
+          "year": 1986,
+          "ko": "역전파 알고리즘 개선 및 발표",
+          "en": "Advanced and published the backpropagation algorithm"
+        },
+        {
+          "year": 2006,
+          "ko": "Deep Belief Networks 개발로 딥러닝 부흥 시작",
+          "en": "Developed Deep Belief Networks, initiating the deep learning renaissance"
+        },
+        {
+          "year": 2018,
+          "ko": "Yann LeCun, Yoshua Bengio와 함께 튜링상 수상",
+          "en": "Received Turing Award with Yann LeCun and Yoshua Bengio"
+        },
+        {
+          "year": 2024,
+          "ko": "인공지능의 기초 이론 공헌으로 노벨물리학상 수상",
+          "en": "Awarded Nobel Prize in Physics for foundational AI theory contributions"
+        }
+      ],
+      "books": [
+        {
+          "ko": "Artificial Neural Networks",
+          "en": "Artificial Neural Networks",
+          "year": 1992
+        }
+      ],
+      "related": [
+        "yann-lecun",
+        "andrej-karpathy"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia (한국어)",
+          "url": "https://ko.wikipedia.org/wiki/제프리_힌턴"
+        },
+        {
+          "label": "Wikipedia (English)",
+          "url": "https://en.wikipedia.org/wiki/Geoffrey_Hinton"
+        },
+        {
+          "label": "Google Scholar 프로필",
+          "url": "https://scholar.google.com/citations?user=JicYSOEAAAAJ"
+        }
+      ]
+    },
+    {
+      "slug": "robert-c-martin",
+      "tags": [
+        "clean-code",
+        "architecture",
+        "agile",
+        "design-patterns"
+      ],
+      "era": "1980-2000",
+      "nationality": "US",
+      "ko": {
+        "name": "로버트 C. 마틴",
+        "knownFor": "'클린 코드' 저자이자 SOLID 원칙 정립자. Agile Manifesto 서명자로, \n소프트웨어 장인정신과 객체지향 설계의 원칙을 3십 년 이상 전파해온 거장.\nObject Mentor 창립자.\n",
+        "aliases": [
+          "Uncle Bob",
+          "로버트 마틴"
+        ],
+        "biography_body": "\n## 소개\n\n로버트 C. 마틴은 1952년생의 미국 소프트웨어 공학자로, 업계에서 \"Uncle Bob\"이라 불리며 존경받고 있습니다. 17세에 자기 교육으로 프로그래밍을 시작한 그는, 수십 년의 경력을 통해 소프트웨어 설계의 원칙과 실천을 체계화한 선구자가 되었습니다.\n\n1991년 설립한 Object Mentor는 Extreme Programming과 Agile 방법론을 기업에 교육하는 기관이 되었습니다. 2001년 마틴은 Agile Manifesto의 17명 서명자 중 한 명이 되어, \"개인과 상호 작용을 공정과 도구보다, 작동하는 소프트웨어를 종합 문서보다 가치 있게 본다\"는 선언에 참여했습니다.\n\n그러나 마틴의 진정한 영향력은 2009년 출판된 '클린 코드(Clean Code)'에서 비롯됩니다. 이 책은 \"코드는 읽히는 횟수가 쓰이는 횟수보다 훨씬 많다\"는 소박하지만 심오한 진리를 강조하며, 전 세계 수백만 프로그래머들의 손에 들려졌습니다. SOLID 원칙(단일 책임, 개방-폐쇄, 리스코프 치환, 인터페이스 분리, 의존성 역전)은 객체지향 설계의 기둥이 되었습니다.\n\n## 일화\n\n\"코드의 왕\"이라 불린 마틴은 자신의 기준이 얼마나 엄격한지로도 유명합니다. 그가 \"좋은 코드\"라고 평가한 코드는 동료와 후배들의 표준이 되었고, 그의 \"나쁜 코드\" 사례들은 프로그래머들이 피해야 할 안티패턴으로 유명해졌습니다.\n\nUncle Bob의 강연은 전 세계 컨퍼런스에서 필수 세션이 되었습니다. 그의 프레젠테이션은 데이터 슬라이드보다 이야기와 철학을 중심으로 하며, 청중들은 \"코드란 무엇인가\", \"프로그래머의 책임이란 무엇인가\"라는 본질적 질문을 깊이 있게 생각하도록 이끌려집니다.\n\n마틴이 객체지향의 전도사로 유명했던 초년에, 함수형 프로그래밍의 부상을 목격한 그는 겸손하게 \"객체지향도 중요하고, 함수형도 중요하다\"며 관점을 확장했습니다. 이러한 유연함은 그가 단순한 교리자가 아니라 실용적 현자임을 보여줍니다.\n"
+      },
+      "en": {
+        "name": "Robert C. Martin",
+        "knownFor": "Author of Clean Code and architect of SOLID principles for object-oriented design.\nCo-signer of the Agile Manifesto. Founded Object Mentor and spent three decades\nchampioning software craftsmanship and professional programming standards.\n",
+        "aliases": [
+          "Uncle Bob",
+          "Robert Martin"
+        ],
+        "biography_body": "\n## About\n\nRobert C. Martin, known affectionately as \"Uncle Bob,\" is an American software engineer and author who has shaped professional programming standards for over three decades. Born in 1952, Martin began his career as a self-taught programmer at seventeen and has spent his career systematizing the principles and practices of software design.\n\nIn 1991, Martin founded Object Mentor, an organization dedicated to training companies in Extreme Programming and Agile methodologies. A decade later, in 2001, he became one of seventeen signatories of the Agile Manifesto, contributing to its central thesis: valuing individuals and interactions over processes, working software over documentation, and responding to change over following a plan.\n\nMartin's most profound influence came with the 2009 publication of *Clean Code*, a book premised on a deceptively simple yet profound observation: \"Code is read far more often than it is written.\" The book distilled decades of practical wisdom into principles and practices that became standard across the industry. His SOLID principles—Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion—became pillars of object-oriented design.\n\n## Anecdotes\n\nUncle Bob is known for his uncompromising standards. His \"good code\" examples became benchmarks for the industry, while his \"bad code\" illustrations became anti-patterns that programmers learned to recognize and avoid. His name on a piece of code is an endorsement; his criticism is taken seriously.\n\nMartin's conference talks are legendary. Rather than data-heavy presentations, he engages audiences with stories and philosophical inquiry, leaving them to wrestle with fundamental questions: \"What is code?\" \"What is a programmer's responsibility?\" These talks often become pivotal moments in attendees' careers.\n\nEarly in his career, Martin was an unequivocal advocate of object-oriented programming. As functional programming gained traction, he demonstrated intellectual honesty by acknowledging that both paradigms have merit. This flexibility—refusing to be dogmatic—exemplifies his pragmatism; he is a practitioner of wisdom, not a preacher of doctrine.\n"
+      },
+      "birthYear": 1952,
+      "photo": "robert-c-martin.jpg",
+      "photoCredit": "Wikimedia Commons © Angelacleancoder, CC BY-SA 4.0",
+      "achievements": [
+        {
+          "year": 1991,
+          "ko": "Object Mentor 설립 (Extreme Programming 교육)",
+          "en": "Founded Object Mentor for Extreme Programming training"
+        },
+        {
+          "year": 2001,
+          "ko": "Agile Manifesto 공동 저술 및 서명",
+          "en": "Co-authored and signed the Agile Manifesto"
+        },
+        {
+          "year": 2009,
+          "ko": "『클린 코드(Clean Code)』 출판",
+          "en": "Published Clean Code, a seminal work on code quality"
+        },
+        {
+          "year": 2017,
+          "ko": "'클린 아키텍처(Clean Architecture)' 출판",
+          "en": "Published Clean Architecture, addressing system-level design"
+        }
+      ],
+      "books": [
+        {
+          "ko": "클린 코드: 애자일 소프트웨어 장인정신 (Clean Code)",
+          "en": "Clean Code: A Handbook of Agile Software Craftsmanship",
+          "year": 2009
+        },
+        {
+          "ko": "클린 코더: 전문 프로그래머의 행동 강령 (The Clean Coder)",
+          "en": "The Clean Coder: A Code of Conduct for Professional Programmers",
+          "year": 2011
+        },
+        {
+          "ko": "클린 아키텍처 (Clean Architecture)",
+          "en": "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
+          "year": 2017
+        },
+        {
+          "ko": "클린 애자일 (Clean Agile)",
+          "en": "Clean Agile: Back to Basics",
+          "year": 2019
+        }
+      ],
+      "related": [
+        "kent-beck",
+        "martin-fowler"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Robert_C._Martin"
+        },
+        {
+          "label": "Uncle Bob 공식 블로그",
+          "url": "https://blog.cleancoder.com"
+        }
+      ]
+    },
+    {
+      "slug": "erich-gamma",
+      "tags": [
+        "design-patterns",
+        "java",
+        "architecture"
+      ],
+      "era": "1980-2000",
+      "nationality": "CH",
+      "ko": {
+        "name": "에리히 감마",
+        "knownFor": "Gang of Four 디자인 패턴의 저자. 소프트웨어 재사용과 우아한 설계의 거장.\nEclipse JDT 개발 주도, VS Code 개발에 기여. \n객체지향 설계와 개발 도구 혁신의 선구자.\n",
+        "aliases": [
+          "Gamma",
+          "Gang of Four",
+          "패턴의 거장"
+        ],
+        "biography_body": "\n## 소개\n\n에리히 감마는 1961년생의 스위스 컴퓨터 과학자로, 소프트웨어 설계의 역사에 영원히 기록될 한 명입니다. 1994년 그가 Grady Booch, Richard Helm, Ralph Johnson과 함께 출판한 \"Design Patterns: Elements of Reusable Object-Oriented Software\"는 단순한 기술 서적을 넘어 소프트웨어 설계의 언어 자체가 되었습니다.\n\n이 책에서 소개된 23개의 디자인 패턴—Singleton, Factory, Observer, Strategy, Visitor 등—은 프로그래머들이 반복되는 설계 문제에 이름을 부여하고 소통할 수 있게 했습니다. 건축에서 \"아트리움(atrium)\"이나 \"갤러리(gallery)\"라는 용어가 공간 설계의 언어라면, 감마의 패턴들은 소프트웨어 설계의 어휘가 되었습니다. \"패턴을 말하다\"라는 것은 추상적인 문제를 구체적인 해결책으로 변환하는 능력을 의미하게 되었습니다.\n\n감마의 실제 영향력은 이론을 넘어 구현에 있었습니다. 1995년부터 그는 Eclipse IDE의 Java Development Tools(JDT) 개발을 주도하며, \"정적 분석, 리팩토링 지원, 강력한 자동완성\"이라는 개념을 IDE에 처음 도입했습니다. 이는 단순한 텍스트 편집기를 지능형 개발 환경으로 진화시킨 혁신이었습니다.\n\n이후 감마는 Microsoft의 Zürich 연구소로 자리를 옮겨, Visual Studio Code의 개발에 기여했습니다. VS Code가 현대 개발자의 주력 편집기가 된 데는 감마 같은 설계자들의 통찰력이 있었습니다. 그는 30년 이상 소프트웨어 설계와 개발 도구의 경계에서 혁신을 이루어왔습니다.\n\n## 일화\n\n감마의 디자인 패턴 책은 출판 당시 기존 프로그래밍 서적과 완전히 달랐습니다. 대부분의 기술 서적이 \"어떻게 하는가\"를 설명했다면, 감마의 책은 \"왜 이 방식인가\"를 묻고, \"언제 이 패턴을 쓸 것인가\"를 가르쳤습니다. 이는 프로그래머들에게 깊은 설계 감각을 키울 수 있도록 했습니다.\n\nEclipse IDE의 초기 버전은 Java 개발에 혁명을 일으켰습니다. 기존의 \"코드 작성 → 컴파일 → 오류 수정\"의 순환을 벗어나, IDE 자체가 프로그래머의 의도를 읽고 오류를 미리 알려주고 리팩토링을 자동화했습니다. 이는 감마와 그의 팀이 설계 패턴을 실제 도구에 녹여낸 사례였습니다.\n\n감마가 만들어온 결과물들은 도구와 언어가 설계자의 생각을 반영해야 한다는 일관된 태도를 보여줍니다. 그가 설계한 도구들은 언제나 깊은 이론 위에 세워져 있으면서도, 동시에 개발자의 손에서 자연스럽게 작동했습니다. 이는 희귀한 조화입니다.\n"
+      },
+      "en": {
+        "name": "Erich Gamma",
+        "knownFor": "Co-author of the seminal \"Design Patterns\" (Gang of Four). Pioneer of IDEs and\nsoftware reusability. Led Eclipse JDT development; contributed to Visual Studio Code.\nMaster of elegant design and practical tool innovation.\n",
+        "aliases": [
+          "Gamma",
+          "Gang of Four",
+          "Master of Patterns"
+        ],
+        "biography_body": "\n## About\n\nErich Gamma, born in 1961, is a Swiss computer scientist whose contributions to software engineering have been formative for generations of developers. In 1994, alongside Grady Booch, Richard Helm, and Ralph Johnson, Gamma published \"Design Patterns,\" a work that transcended being a mere technical book and became the vocabulary of software design itself.\n\nThe twenty-three design patterns presented in that book—Singleton, Factory, Observer, Strategy, Visitor, and others—gave programmers a shared language for recurring design problems. In the same way that architecture uses terms like \"atrium\" or \"loggia\" to denote spatial concepts, Gamma's patterns offered software designers a repertoire of named solutions. To \"speak in patterns\" became synonymous with the ability to translate abstract requirements into concrete architectural decisions.\n\nYet Gamma's influence extended beyond theory into practice. Starting in 1995, he led the development of Eclipse's Java Development Tools (JDT), pioneering features now taken for granted: static analysis, refactoring support, intelligent code completion, and real-time error detection. Eclipse transformed the IDE from a simple text editor into an intelligent programming partner—a transformation rooted in Gamma's conviction that tools should understand and support the designer's intent.\n\nLater, Gamma joined Microsoft's Zürich lab, where he contributed to Visual Studio Code, which has become the dominant editor for a generation of developers. Throughout his career—spanning over three decades—Gamma has operated at the intersection of design theory and practical tooling, demonstrating that deep understanding of design principles produces better tools.\n\n## Anecdotes\n\nThe Design Patterns book was revolutionary not merely for what it said, but for how it was written. While most programming books explained \"how-to,\" Gamma's book asked \"why\" and \"when.\" It taught readers not just to apply patterns but to *reason* about design, elevating craftsmanship beyond recipe-following.\n\nEclipse's impact on Java development was transformative. By moving error detection and refactoring into the IDE itself, Eclipse changed the development experience from \"write-compile-debug\" cycles to continuous real-time feedback. This was Gamma translating design patterns into practice—the Observer pattern, for instance, enabled the IDE to react instantly to code changes.\n\nGamma's philosophy remains consistent: tools and languages are the physical manifestations of a designer's thinking. Therefore, tools he designs are always grounded in deep theory yet appear effortless in practice. This rare synthesis—theoretical rigor combined with intuitive usability—distinguishes his work and explains its lasting influence.\n"
+      },
+      "birthYear": 1961,
+      "achievements": [
+        {
+          "year": 1994,
+          "ko": "『Design Patterns: Elements of Reusable Object-Oriented Software』 출판 (GoF)",
+          "en": "Co-authored \"Design Patterns: Elements of Reusable Object-Oriented Software\""
+        },
+        {
+          "year": 1995,
+          "ko": "Eclipse JDT(Java Development Tools) 개발 주도",
+          "en": "Led development of Eclipse IDE's Java Development Tools (JDT)"
+        },
+        {
+          "year": 2015,
+          "ko": "VS Code 개발 기여 (Microsoft Zürich lab)",
+          "en": "Contributed to Visual Studio Code at Microsoft Zürich lab"
+        }
+      ],
+      "books": [
+        {
+          "ko": "디자인 패턴: 재사용 가능한 객체지향 소프트웨어의 요소 (Design Patterns)",
+          "en": "Design Patterns: Elements of Reusable Object-Oriented Software",
+          "year": 1994
+        }
+      ],
+      "related": [
+        "kent-beck",
+        "james-gosling"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia English",
+          "url": "https://en.wikipedia.org/wiki/Erich_Gamma"
+        },
+        {
+          "label": "Eclipse 프로젝트",
+          "url": "https://www.eclipse.org"
+        },
+        {
+          "label": "VS Code 공식",
+          "url": "https://code.visualstudio.com"
+        }
+      ]
+    },
+    {
+      "slug": "richard-stallman",
+      "tags": [
+        "free-software",
+        "c",
+        "linux",
+        "education"
+      ],
+      "era": "1980-2000",
+      "nationality": "US",
+      "ko": {
+        "name": "리처드 스톨먼",
+        "knownFor": "GNU 프로젝트와 자유소프트웨어 재단(FSF) 창립자. GPL 라이선스 저술로 오픈소스 운동의 법적 기초를 제시. Emacs, GCC 개발. 소프트웨어 자유의 철학적 거장.\n",
+        "aliases": [
+          "RMS",
+          "스톨먼",
+          "자유소프트웨어의 아버지"
+        ],
+        "biography_body": "\n## 소개\n\n리처드 스톨먼은 1953년생의 미국 프로그래머이자 철학자로, 소프트웨어 자유 운동의 창시자입니다. MIT 인공지능 실험실의 해커 문화 속에서 성장한 그는, 1980년대 소프트웨어가 상용화되고 폐쇄되어가는 현상을 목격하며 반발합니다.\n\n1983년 GNU 프로젝트를 선언하며, \"프로그래머는 모든 소프트웨어를 자유롭게 수정하고 배포할 권리가 있다\"는 철학을 펼쳤습니다. GNU는 \"GNU's Not Unix\"의 재귀적 약자로, Unix와 호환되지만 완전히 자유로운 운영체제를 만들겠다는 야심 찬 목표였습니다.\n\n1985년 자유소프트웨어 재단(FSF)을 설립한 스톨먼은, 1989년 GNU General Public License(GPL)를 발표합니다. GPL은 단순한 라이선스가 아니라, 소프트웨어 자유의 법적 기초를 제시한 혁신입니다. \"카피레프트(copyleft)\"라는 개념을 통해, 누군가 GPL 소프트웨어를 수정하면 그 수정본도 GPL로 배포해야 하도록 강제함으로써, 자유가 대물림되도록 설계했습니다.\n\nGNU Emacs(가장 강력한 텍스트 편집기)와 GNU Compiler Collection(GCC, C 언어 컴파일러)은 스톨먼의 실천 철학을 보여줍니다. 이들은 프로프리터리 도구의 대안이 되었고, 나중에 Linux와 결합되어 자유로운 완전한 운영체제 생태계를 만들었습니다.\n\n## 일화\n\n스톨먼은 자신의 신념을 몸소 실천하는 인물로 유명합니다. 그는 프로프리터리 소프트웨어가 포함된 컴퓨터를 사용하지 않으며, 강연을 할 때도 자신이 쓰는 기기에 자유소프트웨어만 설치되어 있음을 확인합니다.\n\nMIT의 한 프린터 사건은 그의 해킹 철학을 잘 보여줍니다. 프린터가 정크되자, 스톨먼은 제조업체에 소스 코드를 공개해달라고 요청했습니다. 거부당한 그는 자신이 직접 드라이버를 수정할 수 있도록 소스 코드 공개를 위한 \"정보 자유\"의 중요성을 깨달았고, 이것이 자유소프트웨어 운동의 철학적 계기가 되었습니다.\n\n그의 강연과 글에서 스톨먼은 항상 \"자유소프트웨어는 정치 운동이고, 오픈소스는 개발 모델\"이라고 강조합니다. 이는 단순한 라이선스 문제가 아니라, 인류의 지적 자산과 자유에 관한 근본적 물음이라는 그의 신념을 드러냅니다.\n"
+      },
+      "en": {
+        "name": "Richard Stallman",
+        "knownFor": "Founder of the GNU Project and the Free Software Foundation; architect of the GPL.\nPioneered \"copyleft\" as a legal mechanism to preserve software freedom in perpetuity.\nCreated GNU Emacs and GCC. Philosopher of software freedom and digital liberty.\n",
+        "aliases": [
+          "RMS",
+          "Stallman",
+          "Father of Free Software"
+        ],
+        "biography_body": "\n## About\n\nRichard Stallman, born in 1953, is an American programmer and philosopher who founded the free software movement. Raised in MIT's legendary hacker culture of the 1970s, Stallman witnessed the erosion of software freedom in the 1980s—manufacturers began locking down source code, restricting modification and sharing. He resolved to reverse this trend.\n\nIn 1983, Stallman announced the GNU Project with an audacious goal: create a completely free, Unix-compatible operating system. GNU, a recursive acronym for \"GNU's Not Unix,\" symbolized both homage to Unix's principles and defiant independence. This wasn't merely a technical project; it was a stand for freedom.\n\nIn 1985, Stallman founded the Free Software Foundation (FSF) to provide institutional backing and legal defense for free software. Two years later, he published the GNU General Public License (GPL), a revolutionary legal instrument that did more than permit code reuse—it established \"copyleft,\" a mechanism ensuring that software freedom is preserved across generations. If you modify GPL code, you must share that freedom forward; the license is designed so that liberty cannot be revoked.\n\nStallman's creations—GNU Emacs (arguably the most powerful text editor) and the GNU Compiler Collection (GCC, the foundation of C compilation worldwide)—proved that free software could match or exceed proprietary tools in power and reliability. When combined with Linus Torvalds' Linux kernel, GNU tools formed the complete free operating system ecosystem that powers billions of devices today.\n\n## Anecdotes\n\nStallman is known for his uncompromising commitment to principle. He uses only free software and famously refuses to use devices with proprietary firmware. His conviction is not performative; it flows from a coherent philosophy.\n\nThe printer incident at MIT encapsulates his reasoning. When the lab's printer malfunctioned, Stallman requested the source code to fix it. Denied, he realized that software users are powerless without access to the code they depend on. This moment crystallized his understanding that software freedom is not a luxury but a necessity—and that source code access is a form of freedom of information essential to human autonomy.\n\nStallman distinguishes sharply between \"free software\" (a matter of freedom) and \"open source\" (a development model). In his view, software freedom is a political and ethical issue, not merely a technical convenience. This philosophical rigor, sometimes frustrating to pragmatists, has been his greatest strength: it rooted the free software movement in principle rather than corporate interest, allowing it to survive and thrive even as \"open source\" became a business strategy.\n"
+      },
+      "birthYear": 1953,
+      "photo": "richard-stallman.jpg",
+      "photoCredit": "Wikimedia Commons © Patafisik, CC BY-SA 4.0",
+      "achievements": [
+        {
+          "year": 1983,
+          "ko": "GNU 프로젝트 시작 선언",
+          "en": "Announced the GNU Project, declaring intent to create a free Unix-like system"
+        },
+        {
+          "year": 1985,
+          "ko": "자유소프트웨어 재단(FSF) 설립",
+          "en": "Founded the Free Software Foundation (FSF)"
+        },
+        {
+          "year": 1989,
+          "ko": "GNU General Public License (GPL) v1 발표",
+          "en": "Published the GNU General Public License (GPL), establishing copyleft"
+        },
+        {
+          "year": 1991,
+          "ko": "GNU Emacs, GCC 등 핵심 도구 완성",
+          "en": "Core GNU tools (Emacs, GCC) mature; foundation for Linux ecosystem"
+        }
+      ],
+      "books": [
+        {
+          "ko": "자유 소프트웨어, 자유 사회 (Free Software, Free Society)",
+          "en": "Free Software, Free Society: Selected Essays of Richard M. Stallman",
+          "year": 2015
+        },
+        {
+          "ko": "GNU Emacs 매뉴얼",
+          "en": "GNU Emacs Manual",
+          "year": 2002
+        }
+      ],
+      "related": [
+        "linus-torvalds"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia 한국어",
+          "url": "https://ko.wikipedia.org/wiki/리처드_스톨먼"
+        },
+        {
+          "label": "Wikipedia English",
+          "url": "https://en.wikipedia.org/wiki/Richard_Stallman"
+        },
+        {
+          "label": "자유소프트웨어 재단",
+          "url": "https://www.fsf.org"
+        },
+        {
+          "label": "GNU 프로젝트",
+          "url": "https://www.gnu.org"
+        }
+      ]
+    },
+    {
+      "slug": "james-gosling",
+      "tags": [
+        "java",
+        "architecture"
+      ],
+      "era": "1980-2000",
+      "nationality": "CA",
+      "ko": {
+        "name": "제임스 고슬링",
+        "knownFor": "Java 프로그래밍 언어의 발명자. Sun Microsystems에서 주도하여 \n현대 소프트웨어 생태계를 근본적으로 변화시킨 \"한 번 쓰고 어디든 실행\"의 언어를 창출.\n30년 이상 소프트웨어 아키텍처와 설계의 거장.\n",
+        "aliases": [
+          "Gosling",
+          "Java의 아버지"
+        ],
+        "biography_body": "\n## 소개\n\n제임스 고슬링은 1955년생의 캐나다 소프트웨어 공학자로, 현대 소프트웨어의 얼굴이라 할 수 있는 Java 언어의 설계자입니다. Sun Microsystems에서 1990년대 초 그는 \"네트워크에 분산된 장치들을 통합하는 언어\"를 만들려는 야심 찬 프로젝트를 주도했습니다.\n\n1994년 고슬링이 주도적으로 설계한 Java는 1995년 공식 발표되었고, \"한 번 쓰고 어디든 실행한다(Write Once, Run Anywhere, WORA)\"는 슬로건은 곧 신화가 되었습니다. Java 가상 머신(JVM)이라는 혁신적 아이디어—중간 바이트코드로 컴파일한 후 다양한 플랫폼에서 같은 코드를 실행하는 방식—은 당시로서는 놀라운 개념이었고, 이는 현대 소프트웨어 개발의 기초가 되었습니다.\n\nJava는 단순히 문법과 라이브러리 이상을 제공했습니다. 강력한 표준 라이브러리, 자동 메모리 관리, 멀티스레딩 지원, 그리고 네트워크 중심의 설계—이 모든 것이 기업 시스템, 웹 애플리케이션, 모바일 기술의 표준이 되는 데 기여했습니다. 오늘날 수십억 개의 장치가 Java를 실행하고 있으며, 많은 기업 백엔드 시스템이 Java로 구축되어 있습니다.\n\n고슬링은 또한 박식한 아키텍트로, 언어 설계뿐 아니라 네트워크 프로토콜과 분산 시스템에 깊은 지식을 갖추고 있었습니다. Sun Microsystems 인수 후 Oracle에서도 Java의 진화를 이끌었고, 2024년 은퇴하기 전까지 수십 년간 소프트웨어 설계의 최전선에서 활동했습니다.\n\n## 일화\n\nJava의 이름은 흥미로운 유래를 가지고 있습니다. 고슬링은 Java의 오크나무(자바 섬의 상징)에 영감을 받아 이름을 지었다고 알려져 있습니다. 이는 기술적 우아함뿐 아니라 문화적 감각도 갖춘 설계자임을 보여줍니다.\n\n고슬링은 개발자 커뮤니티의 참여를 중시했습니다. Java의 초기 설계 과정에서 커뮤니티의 의견을 적극 수렴했고, 이는 Java가 실용적이면서도 표준화된 언어가 될 수 있게 했습니다. 단순한 \"언어 설계자\"가 아니라 생태계의 설계자로서의 통찰력이 있었던 것입니다.\n\nJava의 \"한 번 쓰고 어디든 실행\" 약속이 모든 상황에서 완벽히 지켜진 것은 아니지만, 이 비전은 크로스 플랫폼 호환성의 중요성을 업계에 각인시켰습니다. 오늘날의 Docker, Kubernetes, 클라우드 컴퓨팅 같은 기술들도 고슬링이 제시한 \"어디든 실행\"의 이상을 계승하고 있습니다.\n"
+      },
+      "en": {
+        "name": "James Gosling",
+        "knownFor": "Inventor of the Java programming language and architect of the Java Virtual Machine.\nCreated the defining language of enterprise computing with the promise of\n\"Write Once, Run Anywhere.\" Shaped modern software development for three decades.\n",
+        "aliases": [
+          "Gosling",
+          "Father of Java"
+        ],
+        "biography_body": "\n## About\n\nJames Gosling, born in 1955, is a Canadian computer scientist and the primary architect of Java, the language that arguably defined modern enterprise software. In the early 1990s at Sun Microsystems, Gosling led an ambitious initiative to create a language for heterogeneous networked devices—a vision that would shape computing for decades.\n\nReleased in 1995, Java introduced a revolutionary abstraction: the Java Virtual Machine (JVM). Rather than compiling directly to machine code, Java programs compile to platform-independent bytecode, which runs on any JVM regardless of underlying hardware. The slogan \"Write Once, Run Anywhere\" (WORA) captured this promise, and while reality proved more nuanced, the principle transformed how developers thought about portability.\n\nBeyond the virtual machine, Gosling's design choices proved prescient. Strong standard libraries, automatic memory management through garbage collection, first-class support for multithreading and networking, and a rigorous specification—all reflected a deep understanding of what distributed systems needed. Java became the lingua franca of enterprise backends, powering banks, telecommunications systems, and modern cloud infrastructure. Today, billions of devices run Java, and countless Fortune 500 companies operate on Java-built systems.\n\nGosling was not merely a language designer but a systems architect. His knowledge of network protocols, distributed systems, and the practical constraints of real-world deployment infused Java with pragmatism. Whether designing syntax or advocating for platform compatibility, Gosling consistently chose solutions that worked at scale.\n\n## Anecdotes\n\nJava's name itself reveals Gosling's character. He chose it as a tribute to the island of Java and its coffee culture, suggesting both cosmopolitanism and approachability. Some claim the acronym stood for \"Just Another Vague Acronym,\" a humorous nod to programming culture. Either way, the choice was memorable—no small feat in a field drowning in acronyms.\n\nGosling valued community input in Java's design. Unlike language designers who impose a vision, he actively solicited feedback from developers, shaping Java into a language that was both innovative and grounded in practical need. This collaborative approach contributed to Java's widespread adoption and cultural staying power.\n\nThe promise of \"write once, run anywhere\" was not without irony and compromise. Platform quirks, library variations, and the sheer complexity of achieving true write-once-run-anywhere meant that developers often encountered Java's aspirations clashing with reality. Yet Gosling's vision endured: the principle of platform independence became so ingrained that modern technologies like Docker containers, microservices, and cloud-native architectures inherited his philosophy—if not always in Java's original form.\n"
+      },
+      "birthYear": 1955,
+      "photo": "james-gosling.jpg",
+      "photoCredit": "Wikimedia Commons © Peter Campbell, CC BY-SA 4.0",
+      "achievements": [
+        {
+          "year": 1994,
+          "ko": "Java 프로그래밍 언어 발명 및 설계",
+          "en": "Designed and developed the Java programming language"
+        },
+        {
+          "year": 1995,
+          "ko": "Java 공식 발표 (Sun Microsystems)",
+          "en": "Publicly released Java and the Java Virtual Machine"
+        },
+        {
+          "year": 1996,
+          "ko": "Java 언어 명세 출판",
+          "en": "Published The Java Language Specification, standardizing the language"
+        },
+        {
+          "year": 2010,
+          "ko": "Oracle에 의한 Sun Microsystems 인수 후 Java 진화 주도",
+          "en": "Continued Java evolution post-Oracle acquisition of Sun Microsystems"
+        }
+      ],
+      "books": [
+        {
+          "ko": "The Java Programming Language (자바 프로그래밍 언어)",
+          "en": "The Java Programming Language",
+          "year": 1996
+        },
+        {
+          "ko": "The Java Language Specification (자바 언어 명세)",
+          "en": "The Java Language Specification",
+          "year": 1996
+        },
+        {
+          "ko": "The NeWS Book: An Introduction to the Network/Extensible Window System",
+          "en": "The NeWS Book: An Introduction to the Network/Extensible Window System",
+          "year": 1989
+        }
+      ],
+      "related": [
+        "erich-gamma",
+        "guido-van-rossum"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia 한국어",
+          "url": "https://ko.wikipedia.org/wiki/제임스_고슬링"
+        },
+        {
+          "label": "Wikipedia English",
+          "url": "https://en.wikipedia.org/wiki/James_Gosling"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/jgosling"
+        }
+      ]
+    },
+    {
+      "slug": "brendan-eich",
+      "tags": [
+        "javascript",
+        "web"
+      ],
+      "era": "1980-2000",
+      "nationality": "US",
+      "ko": {
+        "name": "브렌던 아이크",
+        "knownFor": "JavaScript 프로그래밍 언어의 개발자, 웹 브라우저 기술의 개척자.\n1995년 10일 만에 JavaScript를 설계하여 현대 웹의 기초를 마련한 엔지니어.\n",
+        "aliases": [
+          "Brendan Eich",
+          "아이크"
+        ],
+        "biography_body": "\n## 소개\n\n브렌던 아이크는 미국의 프로그래머이자 웹 기술의 개척자로, JavaScript 프로그래밍 언어의 창시자이다. 1995년 Netscape Navigator의 웹 브라우저에 스크립트 언어를 추가하기 위해 아이크에게 주어진 기간은 단 10일이었다. 불가능해 보이는 이 기한 속에서 그는 JavaScript를 설계하고 구현했다. 처음에는 \"Mocha\", \"LiveScript\"라고 불렸던 이 언어는 나중에 Java와의 마케팅 연관성을 위해 JavaScript로 명명되었으며, 오늘날 웹 개발의 가장 핵심적인 언어가 되었다.\n\nJavaScript는 초기에 간단한 웹페이지 상호작용을 위한 스크립트 언어로 시작했으나, 시간이 지나면서 V8, JavaScriptCore, SpiderMonkey 등의 성능 개선 엔진들이 개발되면서 복잡한 웹 애플리케이션을 지원할 수 있는 풍부한 언어로 성장했다. Node.js의 등장으로는 서버 개발에까지 사용되게 되었다. 오늘날 JavaScript는 프론트엔드와 백엔드 양쪽에서 가장 널리 사용되는 프로그래밍 언어 중 하나다.\n\n아이크는 1998년 Netscape가 경영 위기에 처하자 회사의 소스코드를 오픈소스화하도록 주장했고, 이는 Mozilla 재단 설립으로 이어졌다. Mozilla는 Firefox 웹 브라우저를 개발하여 인터넷 익스플로러의 독점체제를 깨뜨렸다. 이후 아이크는 2011년부터 Brave 웹 브라우저를 개발하여 사용자 프라이버시를 최우선으로 하는 새로운 브라우징 경험을 제공하고 있다.\n\n## 일화\n\n아이크가 JavaScript를 10일 만에 설계했다는 이야기는 기술 업계의 전설이 되었다. 이는 단순히 빠른 개발을 의미하는 것이 아니라, 강한 목적 의식과 엔지니어링 직관이 결합되었을 때 얼마나 빠르게 혁신이 이루어질 수 있는지를 보여준다. 아이크 자신도 이후에 JavaScript가 10일이라는 짧은 시간에 설계되었다는 사실이 언어의 어떤 부분에는 긍정적이고 어떤 부분에는 부정적인 영향을 미쳤다고 회고했다.\n\n1998년 Netscape가 AOL에 인수되고 경영이 어려워지자, 아이크는 회사의 소스코드를 공개하는 것이 최선의 길이라고 주장했다. 이 결정은 당시로서는 매우 대담한 것이었지만, 결국 Mozilla 재단의 설립으로 이어졌고, 이는 오픈소스 소프트웨어 역사에서 중요한 전환점이 되었다. Firefox의 성공은 Microsoft의 Internet Explorer 독점에 맞선 성공적인 사례로 기억되고 있다.\n\n2015년 Mozilla 회장직에서 물러난 후, 아이크는 웹의 미래에 대해 고민했다. 그는 사용자의 프라이버시와 광고 추적 문제를 해결하기 위해 Brave 브라우저를 개발했다. Brave는 기본적으로 추적 광고를 차단하고 사용자에게 더 나은 브라우징 경험을 제공하는 혁신적인 접근을 시도했으며, 암호화폐 기반의 광고 모델도 실험하고 있다.\n"
+      },
+      "en": {
+        "name": "Brendan Eich",
+        "knownFor": "Creator of the JavaScript programming language, pioneer of web browser technology.\nEngineer who designed JavaScript in just 10 days in 1995, laying the foundation for the modern web.\n",
+        "aliases": [
+          "Brendan Eich"
+        ],
+        "biography_body": "\n## About\n\nBrendan Eich is an American programmer and web technology pioneer who created the JavaScript programming language. In 1995, faced with a mere 10-day deadline to add a scripting language to Netscape Navigator, Eich designed and implemented JavaScript. Initially called \"Mocha\" and then \"LiveScript,\" the language received its current name for marketing alignment with Java and has become the most essential language in web development.\n\nJavaScript began as a simple scripting language for basic web page interactions but evolved into a rich language supporting complex web applications through performance-enhancing engines like V8, JavaScriptCore, and SpiderMonkey. Node.js extended its reach to server-side development. Today, JavaScript is among the most widely used programming languages on both frontend and backend.\n\nWhen Netscape faced financial crisis in 1998, Eich advocated for open-sourcing the company's code, leading to Mozilla Foundation's establishment. Mozilla developed the Firefox web browser, breaking Internet Explorer's monopoly. Subsequently, from 2011, Eich developed the Brave web browser, providing privacy-first browsing experiences and challenging the traditional advertising-based web model.\n\n## Anecdotes\n\nThe story of Eich designing JavaScript in 10 days has become a technology industry legend. It demonstrates not merely rapid development but the remarkable speed at which innovation can occur when strong purpose combines with engineering intuition. Eich later reflected that JavaScript's 10-day genesis both blessed and cursed certain aspects of the language design.\n\nIn 1998, as Netscape faced acquisition by AOL and financial difficulty, Eich argued that open-sourcing the code was the best path forward. This was an exceptionally bold decision for its time but ultimately led to Mozilla Foundation's establishment, marking a crucial turning point in open-source software history. Firefox's success exemplified a successful challenge against Microsoft's Internet Explorer monopoly.\n\nAfter stepping down as Mozilla Chair in 2015, Eich focused on the web's future. Concerned about user privacy and ad tracking, he developed Brave Browser to provide better browsing privacy by default. Brave pioneered innovative approaches including built-in tracking prevention and began experimenting with cryptocurrency-based ad models, representing a fundamental rethinking of web economics.\n"
+      },
+      "birthYear": 1961,
+      "photo": "brendan-eich.jpg",
+      "photoCredit": "Wikimedia Commons © Darcy Padilla, CC BY-SA 3.0",
+      "achievements": [
+        {
+          "year": 1995,
+          "ko": "JavaScript 프로그래밍 언어 10일 만에 설계·개발",
+          "en": "Designed and developed JavaScript programming language in 10 days"
+        },
+        {
+          "year": 1998,
+          "ko": "Mozilla 재단 설립 및 Netscape 오픈소스화",
+          "en": "Advocated for Netscape open-sourcing, leading to Mozilla Foundation establishment"
+        },
+        {
+          "year": 2011,
+          "ko": "Brave 웹 브라우저 프로젝트 시작",
+          "en": "Initiated development of the Brave web browser project"
+        }
+      ],
+      "books": [
+        {
+          "ko": "Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript",
+          "en": "Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript",
+          "year": 2012
+        }
+      ],
+      "related": [
+        "james-gosling"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia (한국어)",
+          "url": "https://ko.wikipedia.org/wiki/브렌던_아이크"
+        },
+        {
+          "label": "Wikipedia (English)",
+          "url": "https://en.wikipedia.org/wiki/Brendan_Eich"
+        },
+        {
+          "label": "GitHub 프로필",
+          "url": "https://github.com/brendaneich"
+        },
+        {
+          "label": "Brave 브라우저",
+          "url": "https://brave.com"
+        }
+      ]
+    },
+    {
+      "slug": "linus-torvalds",
+      "tags": [
+        "linux",
+        "git",
+        "c"
+      ],
+      "era": "1980-2000",
+      "nationality": "FI",
+      "ko": {
+        "name": "리누스 토발즈",
+        "knownFor": "Linux 운영체제의 창시자, Git 버전 관리 시스템의 개발자.\n오픈소스 소프트웨어의 역사를 크게 바꾼 핵심 인물.\n",
+        "aliases": [
+          "Linus Benedict Torvalds",
+          "토발즈"
+        ],
+        "biography_body": "\n## 소개\n\n리누스 토발즈는 핀란드의 소프트웨어 엔지니어로, 1991년 대학 시절 개인 프로젝트로 Linux 커널을 개발했다. 초기 Linux는 Unix 운영체제의 기능을 작은 규모에서 무료로 제공하는 대안으로 시작되었으나, 오픈소스 커뮤니티의 협력으로 현재는 서버, 모바일(Android), IoT 기기 등 전 세계 수십억 디바이스에서 실행 중인 가장 광범위하게 사용되는 운영체제가 되었다.\n\n2005년에는 Git이라는 분산 버전 관리 시스템을 개발했다. Git은 Linux 커널의 개발 과정에서 필요성을 느껴 만들어졌으며, 오늘날 GitHub, GitLab 등의 플랫폼으로 소프트웨어 개발 협업의 표준 도구가 되었다. 토발즈의 실용적이고 대담한 엔지니어링 철학은 수십 년간 Linux 진화의 중심에 있다.\n\n그의 유명한 말 \"코드는 거짓말을 하지 않지만, 주석은 거짓말을 할 수 있다\"는 프로그래머들 사이에서 오랫동안 인용되어 온다. 토발즈는 소프트웨어 엔지니어로서 기술적 우수함과 진정한 개방성을 추구하는 인물로 알려져 있다.\n\n## 일화\n\n토발즈가 Linux를 개발하기로 결정한 계기는 당시 대학 시절 사용하던 Minix 운영체제의 라이선스 비용 때문이었다. 그는 자신의 필요에 맞춘 운영체제를 직접 만드는 것이 더 저렴하고 효과적일 것이라 생각했다. 처음에는 단순한 개인 프로젝트였지만, 인터넷에 소스코드를 공개하자 전 세계 개발자들이 참여하기 시작했고, 이것이 오늘날의 Linux 생태계의 기초가 되었다.\n\nGit을 개발한 이유도 흥미롭다. 당시 Linux 커널 개발 팀은 BitKeeper라는 상용 버전 관리 시스템을 사용하고 있었는데, 라이선스 분쟁이 발생하자 토발즈는 2주 만에 Git을 완성했다고 알려져 있다. 이는 그의 빠른 실행력과 문제 해결 능력을 잘 보여준다.\n\n토발즈는 기술 커뮤니티에서 솔직하고 직설적인 태도로도 유명하다. 그는 불완전한 코드나 설계에 대해 거리낌 없이 비판해왔으며, 이러한 문화가 Linux와 Git의 높은 품질 유지에 기여했다는 평가를 받는다.\n"
+      },
+      "en": {
+        "name": "Linus Torvalds",
+        "knownFor": "Creator of the Linux operating system kernel, developer of the Git version control system.\nA pivotal figure who fundamentally changed the history of open-source software.\n",
+        "aliases": [
+          "Linus Benedict Torvalds"
+        ],
+        "biography_body": "\n## About\n\nLinus Torvalds is a Finnish software engineer who created the Linux kernel in 1991 as a personal university project. Initially conceived as a free Unix-like alternative for small-scale use, Linux evolved through open-source community collaboration into the world's most widely deployed operating system, running on billions of devices worldwide including servers, mobile phones (Android), and IoT devices.\n\nIn 2005, Torvalds developed Git, a distributed version control system created out of necessity during Linux kernel development. Git became the standard tool for software collaboration, powering platforms like GitHub and GitLab. Torvalds' pragmatic and bold engineering philosophy has remained central to Linux's evolution over decades, establishing principles of meritocracy and technical excellence within the open-source community.\n\nOne of his most quoted sayings, \"Code never lies, but comments can,\" reflects a philosophy that has resonated throughout the software engineering community. Torvalds is recognized as an engineer who relentlessly pursues technical excellence and genuine openness in software development.\n\n## Anecdotes\n\nTorvalds' decision to create Linux was motivated by the licensing costs of the Minix operating system he used as a university student. He reasoned that writing his own operating system tailored to his needs would be cheaper and more effective. What began as a modest personal project evolved into a global phenomenon when he posted the source code online, attracting developers worldwide and laying the foundation for today's Linux ecosystem.\n\nThe creation of Git reflects Torvalds' problem-solving speed and pragmatism. When the Linux kernel development team faced licensing disputes over BitKeeper, their existing version control system, Torvalds reportedly completed Git in just two weeks. This story exemplifies his ability to rapidly execute and solve critical problems.\n\nTorvalds is also renowned in the technology community for his frank and direct communication style. He has never hesitated to criticize incomplete code or flawed designs, and this uncompromising approach to quality is widely credited with maintaining the high standards of both Linux and Git throughout their development.\n"
+      },
+      "birthYear": 1969,
+      "photo": "linus-torvalds.jpg",
+      "photoCredit": "Wikimedia Commons © Krd (photo)Von Sprat (crop/extraction), CC BY-SA 4.0",
+      "achievements": [
+        {
+          "year": 1991,
+          "ko": "Linux 커널 0.01 릴리스",
+          "en": "Released Linux kernel version 0.01"
+        },
+        {
+          "year": 2000,
+          "ko": "Linux 커널 2.4 안정화",
+          "en": "Stabilized Linux kernel 2.4"
+        },
+        {
+          "year": 2005,
+          "ko": "Git 버전 관리 시스템 개발",
+          "en": "Developed Git distributed version control system"
+        }
+      ],
+      "books": [
+        {
+          "ko": "Just for Fun: The Story of an Accidental Revolutionary",
+          "en": "Just for Fun: The Story of an Accidental Revolutionary",
+          "year": 2001
+        }
+      ],
+      "related": [
+        "richard-stallman"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia (한국어)",
+          "url": "https://ko.wikipedia.org/wiki/리누스_토발즈"
+        },
+        {
+          "label": "Wikipedia (English)",
+          "url": "https://en.wikipedia.org/wiki/Linus_Torvalds"
+        },
+        {
+          "label": "GitHub 프로필",
+          "url": "https://github.com/torvalds"
+        }
+      ]
+    },
+    {
+      "slug": "guido-van-rossum",
+      "tags": [
+        "python"
+      ],
+      "era": "1980-2000",
+      "nationality": "NL",
+      "ko": {
+        "name": "귀도 반 로섐",
+        "knownFor": "Python 프로그래밍 언어의 개발자이자 설계자.\n비전공자도 읽을 수 있는 우아한 언어를 만들어 \n현대 데이터 과학, AI, 웹 개발의 핵심 언어로 만든 엔지니어.\n",
+        "aliases": [
+          "Guido van Rossum",
+          "Guido",
+          "반 로섐"
+        ],
+        "biography_body": "\n## 소개\n\n귀도 반 로섐은 네덜란드의 프로그래머이자 Python 프로그래밍 언어의 창시자이다. 1989년 귀도는 \"학습 언어\"로서 간단하면서도 강력한 프로그래밍 언어를 만들기로 결심했고, 1991년 Python 0.9.0을 공식 발표했다. Python은 \"가독성 있는 코드\", \"한 가지 명확한 방법\", \"비전공자도 이해할 수 있는 문법\"을 추구하는 철학 위에 설계되었다.\n\n초기 Python은 작은 커뮤니티에서 시작했지만, 웹 프레임워크(Django, Flask), 과학 컴퓨팅(NumPy, SciPy, Pandas), 데이터 분석, 머신러닝(TensorFlow, PyTorch), 자동화 등 다양한 분야로 확산되었다. 오늘날 Python은 전 세계에서 가장 많이 사용되는 프로그래밍 언어 중 하나이며, 특히 인공지능과 데이터 과학 분야의 표준 언어다.\n\n귀도는 2005년 Python 3.0의 로드맵을 제시했고, 2008년 Python 3.0을 정식 발표했다. 이는 이전 버전과의 호환성을 버리는 대담한 결정이었지만, 언어의 설계를 더욱 정교하게 다듬을 수 있게 했다. 귀도는 30년 가까이 Python 커뮤니티의 \"자비로운 종신독재자(Benevolent Dictator for Life, BDFL)\"로서 언어의 설계 방향을 이끌어왔으나, 2018년 이 역할에서 물러났다고 발표했다.\n\n## 일화\n\n귀도가 Python이라는 이름을 선택한 배경은 흥미롭다. 그는 당시 읽고 있던 영국 코미디 시리즈 \"Monty Python\"에서 영감을 얻어 이름을 지었다고 한다. 따라서 Python 커뮤니티에서는 종종 \"Monty Python\" 유머를 사용하곤 한다. 이는 귀도의 인성을 잘 드러내는 일화로, 기술 언어도 즐거움과 유머를 담을 수 있다는 태도를 반영한다.\n\n\"가독성은 중요하다(Readability counts)\"라는 Python의 철학은 귀도가 PEP(Python Enhancement Proposal) 20번 \"The Zen of Python\"에서 명시했다. \"명시적이 암시적보다 낫다\", \"단순함이 복잡함보다 낫다\", \"지금 하는 것이 나중보다 낫다\"는 등 19개의 원칙이 실려있으며, 이는 Python 커뮤니티의 설계 철학으로 계속 영향을 미치고 있다.\n\n2018년 BDFL 역할에서 물러나기로 결정한 것도 귀도의 신중한 리더십을 보여준다. 그는 너무 오랫동안 한 사람의 최종 결정권이 언어 발전에 제약이 될 수 있다는 것을 깨달았고, 커뮤니티에 더 많은 권한을 나누기로 결정했다. 이는 오픈소스 리더십의 책임감 있는 사례로 기억되고 있다.\n"
+      },
+      "en": {
+        "name": "Guido van Rossum",
+        "knownFor": "Creator and designer of the Python programming language.\nEngineer who created an elegant language readable by non-programmers,\nmaking it the core language of modern data science, AI, and web development.\n",
+        "aliases": [
+          "Guido van Rossum",
+          "Guido"
+        ],
+        "biography_body": "\n## About\n\nGuido van Rossum is a Dutch programmer and the creator of the Python programming language. In 1989, Guido decided to design a simple yet powerful language for learning, and officially released Python 0.9.0 in 1991. Python was designed around a philosophy emphasizing \"readable code,\" \"one clear way to do things,\" and \"syntax understandable to non-programmers.\"\n\nThough starting in a small community, Python expanded into diverse domains: web frameworks (Django, Flask), scientific computing (NumPy, SciPy, Pandas), data analysis, machine learning (TensorFlow, PyTorch), and automation. Today, Python ranks among the world's most widely used programming languages and is the standard language for artificial intelligence and data science.\n\nIn 2005, Guido proposed Python 3.0's roadmap and officially released Python 3.0 in 2008—a bold decision to break backward compatibility, yet one that allowed more refined language design. Guido served as Python's \"Benevolent Dictator for Life\" for nearly 30 years, directing language design, until announcing his retirement from the role in 2018.\n\n## Anecdotes\n\nThe origin of Python's name is fascinating. Guido chose it inspired by the British comedy series \"Monty Python\" he was reading at the time. The Python community regularly embraces Monty Python humor, reflecting Guido's personality: technical languages can embody joy and humor.\n\nPython's philosophy of \"readability counts\" was formalized by Guido in PEP 20, \"The Zen of Python,\" containing 19 principles including \"Explicit is better than implicit,\" \"Simple is better than complex,\" and \"Now is better than never.\" These principles continue to shape Python community design philosophy.\n\nGuido's 2018 decision to step down as BDFL demonstrates thoughtful leadership. He recognized that concentrating decision-making power in one person for too long could limit language evolution. Instead, he chose to distribute power within the community—a model of responsible open-source leadership now studied and emulated by other projects.\n"
+      },
+      "birthYear": 1956,
+      "photo": "guido-van-rossum.jpg",
+      "photoCredit": "Wikimedia Commons © Kushal Das, CC BY-SA 4.0",
+      "achievements": [
+        {
+          "year": 1991,
+          "ko": "Python 프로그래밍 언어 첫 공식 버전 0.9.0 릴리스",
+          "en": "Released Python programming language official version 0.9.0"
+        },
+        {
+          "year": 2005,
+          "ko": "PEP 3000 제안 — Python 3.0 로드맵 시작",
+          "en": "Proposed PEP 3000 — Python 3.0 roadmap initiation"
+        },
+        {
+          "year": 2018,
+          "ko": "'자비로운 종신독재자(BDFL)' 역할에서 물러남",
+          "en": "Stepped down from \"Benevolent Dictator for Life\" role"
+        }
+      ],
+      "books": [
+        {
+          "ko": "The Python Programming Language",
+          "en": "The Python Programming Language",
+          "year": 2010
+        }
+      ],
+      "related": [
+        "james-gosling",
+        "brendan-eich"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia (한국어)",
+          "url": "https://ko.wikipedia.org/wiki/귀도_반_로섐"
+        },
+        {
+          "label": "Wikipedia (English)",
+          "url": "https://en.wikipedia.org/wiki/Guido_van_Rossum"
+        },
+        {
+          "label": "GitHub 프로필",
+          "url": "https://github.com/gvanrossum"
+        }
+      ]
+    },
+    {
+      "slug": "martin-fowler",
+      "tags": [
+        "refactoring",
+        "architecture",
+        "agile"
+      ],
+      "era": "1980-2000",
+      "nationality": "UK",
+      "ko": {
+        "name": "마틴 파울러",
+        "knownFor": "'Refactoring' 저자로 코드 개선의 이론을 정립. Agile Manifesto 서명자.\n엔터프라이즈 아키텍처, 도메인 주도 설계, 마이크로서비스의 거장.\n30년 이상 소프트웨어 설계의 최전선에서 활동해온 사상가.\n",
+        "aliases": [
+          "Fowler",
+          "리팩토링의 거장",
+          "엔터프라이즈 아키텍처의 대가"
+        ],
+        "biography_body": "\n## 소개\n\n마틴 파울러는 1963년생의 영국 소프트웨어 엔지니어로, 현대 소프트웨어 아키텍처의 가장 영향력 있는 사상가입니다. 그의 저작과 사고는 수십 년에 걸쳐 프로젝트, 조직, 산업 전체의 설계 방식을 형성해왔습니다.\n\n파울러의 첫 주요 저작 \"Analysis Patterns\"(1996)은 업무 로직과 데이터 모델의 재사용 가능한 패턴을 제시했습니다. 이어 1999년 발표된 \"Refactoring\"은 그의 인생 최고의 업적이 되었습니다. \"리팩토링\"이라는 단어를 프로그래밍 문화에 도입한 사람은 파울러이며, 그는 리팩토링을 단순한 \"코드 정리\"에서 \"설계를 개선하면서도 외부 행동을 보존하는 체계적 실천\"으로 승격시켰습니다.\n\n2001년 Agile Manifesto의 서명자로, 파울러는 \"응답성 있는 설계\"의 철학을 대표했습니다. 그 이후 2002년의 \"Patterns of Enterprise Application Architecture\"는 대규모 시스템 설계의 교과서가 되었습니다. Active Record, Data Mapper, Repository, Service Locator, Event Sourcing 같은 패턴들은 웹 프레임워크와 엔터프라이즈 아키텍처의 기초가 되었습니다.\n\n파울러는 학자가 아니라 실무가이며, 그의 주장은 실제 프로젝트에서의 경험에서 비롯됩니다. 마이크로서비스라는 개념이 인기를 얻기 시작했을 때, 그는 신중하게 \"마이크로서비스는 모든 문제의 해결책이 아니\"라고 경고했으며, 그 대신 조직과 기술의 맥락에서 트레이드오프를 고려하도록 가르쳤습니다. 이는 유행을 따르지 않고 깊이 있게 사고하는 그의 성격을 보여줍니다.\n\n## 일화\n\n파울러의 \"martinfowler.com\" 블로그는 소프트웨어 아키텍처의 현존하는 가장 중요한 자료 중 하나입니다. 그의 글들은 명확하고, 구체적이며, 실용적입니다. 그는 추상적인 이론보다 \"실제로 프로젝트에서는 어떻게 될 것인가\"를 강조합니다.\n\n\"Refactoring\"이 출판되었을 때, 많은 개발자들은 \"리팩토링은 사치 아닌가?\"라고 물었습니다. 파울러의 대답은 명료했습니다: \"리팩토링이 없으면 코드는 부패한다. 부패한 코드로는 빠르게 개발할 수 없다. 따라서 리팩토링은 속도를 높인다.\" 이 역설은 수십 년이 지난 지금도 유효합니다.\n\n파울러는 또한 \"노스탤지어 없이\" 기술을 평가하려 노력합니다. Java의 과도한 복잡성을 지적했을 때도, Python의 단순함을 칭찬할 때도, 항상 구체적인 트레이드오프를 설명했습니다. 이러한 균형 잡힌 사고는 그의 권고를 신뢰할 수 있게 만들었습니다. 그의 의견은 개인적 취향이 아니라 원칙 있는 분석의 결과로 받아들여집니다.\n"
+      },
+      "en": {
+        "name": "Martin Fowler",
+        "knownFor": "Author of Refactoring, who elevated code improvement from hobby to discipline.\nAgile Manifesto signatory. Master of enterprise architecture, domain-driven design,\nand distributed systems. Thought leader who shapes industry conversation without dogma.\n",
+        "aliases": [
+          "Fowler",
+          "Master of Refactoring",
+          "Enterprise Architecture Authority"
+        ],
+        "biography_body": "\n## About\n\nMartin Fowler, born in 1963, is a British software engineer and author whose ideas have shaped how the world designs and refactors large systems. Unlike theorists who write from abstraction, Fowler thinks with his hands on real projects, and his advice carries the weight of lived experience.\n\n*Refactoring* (1999) is Fowler's masterwork. Before this book, \"refactoring\" was a vague activity—tidying code in your spare time, something done between feature sprints. Fowler's contribution was to systematize it: refactoring is a set of small, behavior-preserving transformations that improve design without changing external behavior. By naming specific refactorings (Extract Method, Introduce Parameter Object, Move Method, etc.), he gave developers a shared vocabulary and a disciplined practice.\n\n*Patterns of Enterprise Application Architecture* (2002) distilled Fowler's consulting experience into twenty-four enterprise patterns: Active Record, Data Mapper, Repository, Service Locator, Event Sourcing, and others. These patterns became the foundation of web frameworks and enterprise systems worldwide. Unlike Gang of Four patterns, which are design-level abstractions, Fowler's patterns address architectural decisions at the system level.\n\nA signatory of the Agile Manifesto (2001), Fowler embodied its values: pragmatism over ideology. When microservices gained hype, Fowler didn't simply endorse them; he carefully analyzed their trade-offs, advocating for architectural fitness rather than fashion. His blog, martinfowler.com, remains one of the most authoritative and practical resources on software architecture.\n\n## Anecdotes\n\nFowler's martinfowler.com is arguably the finest technical blog in existence. Each post is clear, concrete, and grounded in real constraints. He refuses to abstract away the messy details that matter in practice. When discussing database technology, he doesn't present NoSQL as inherently superior to SQL; instead, he describes polyglot persistence—choosing the right tool for each component.\n\nWhen *Refactoring* was published, skeptics asked: \"Isn't refactoring a luxury? Shouldn't we just ship?\" Fowler's response was incisive: without refactoring, code decays, complexity grows, and development slows. Therefore, refactoring *is* the path to speed. This paradox—that \"slowing down to improve code\" is actually faster—has proven durable.\n\nFowler also evaluates technology without nostalgia. He has criticized Java's bloat and praised Python's simplicity, but always with specific reasoning, not sentiment. This intellectual integrity means his recommendations carry authority beyond mere opinion; they are the result of principled analysis. He thinks clearly in public and changes his mind when evidence warrants—a model of intellectual honesty that commands respect across the industry.\n"
+      },
+      "birthYear": 1963,
+      "achievements": [
+        {
+          "year": 1996,
+          "ko": "『Analysis Patterns: Reusable Object Models』 출판",
+          "en": "Published Analysis Patterns, introducing reusable patterns for business logic"
+        },
+        {
+          "year": 1999,
+          "ko": "\"Refactoring: Improving the Design of Existing Code\" 출판 (리팩토링 운동 시작)",
+          "en": "Published Refactoring, which popularized systematic code improvement"
+        },
+        {
+          "year": 2001,
+          "ko": "Agile Manifesto 공동 저술 및 서명",
+          "en": "Co-authored and signed the Agile Manifesto"
+        },
+        {
+          "year": 2002,
+          "ko": "\"Patterns of Enterprise Application Architecture\" 출판",
+          "en": "Published Patterns of Enterprise Application Architecture, defining enterprise patterns"
+        }
+      ],
+      "books": [
+        {
+          "ko": "Analysis Patterns: Reusable Object Models",
+          "en": "Analysis Patterns: Reusable Object Models",
+          "year": 1996
+        },
+        {
+          "ko": "UML Distilled: A Brief Guide to the Standard Object Modeling Language",
+          "en": "UML Distilled: A Brief Guide to the Standard Object Modeling Language",
+          "year": 1997
+        },
+        {
+          "ko": "Refactoring: Improving the Design of Existing Code",
+          "en": "Refactoring: Improving the Design of Existing Code",
+          "year": 1999
+        },
+        {
+          "ko": "Planning Extreme Programming",
+          "en": "Planning Extreme Programming",
+          "year": 2000
+        },
+        {
+          "ko": "Patterns of Enterprise Application Architecture",
+          "en": "Patterns of Enterprise Application Architecture",
+          "year": 2002
+        },
+        {
+          "ko": "Domain-Specific Languages",
+          "en": "Domain-Specific Languages",
+          "year": 2010
+        },
+        {
+          "ko": "NoSQL Distilled",
+          "en": "NoSQL Distilled",
+          "year": 2012
+        }
+      ],
+      "related": [
+        "kent-beck",
+        "robert-c-martin"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia English",
+          "url": "https://en.wikipedia.org/wiki/Martin_Fowler_(software_engineer)"
+        },
+        {
+          "label": "martinfowler.com (공식 블로그)",
+          "url": "https://martinfowler.com"
+        },
+        {
+          "label": "Refactoring Guru",
+          "url": "https://refactoring.guru"
+        }
+      ]
+    },
+    {
+      "slug": "kent-beck",
+      "tags": [
+        "tdd",
+        "agile",
+        "design-patterns"
+      ],
+      "era": "1980-2000",
+      "nationality": "US",
+      "ko": {
+        "name": "켄트 벡",
+        "knownFor": "Test-Driven Development(TDD)의 창시자. Extreme Programming(XP) 선구자.\nJUnit 공동 개발자. Agile Manifesto 서명자. \n소프트웨어 품질과 개발 프로세스의 혁신자.\n",
+        "aliases": [
+          "Beck",
+          "TDD의 아버지",
+          "Extreme Programming의 창시자"
+        ],
+        "biography_body": "\n## 소개\n\n켄트 벡은 1961년생의 미국 소프트웨어 엔지니어로, 현대 소프트웨어 개발의 가장 영향력 있는 인물 중 한 명입니다. 1990년대 Smalltalk 커뮤니티에서 시작한 그의 아이디어들은 이제 전 산업의 표준이 되었습니다.\n\n벡의 가장 위대한 기여는 Test-Driven Development(TDD)의 정식화입니다. 1999년 \"Extreme Programming Explained\"에서 그가 소개한 TDD는 단순하면서도 혁명적입니다: 먼저 실패하는 테스트를 작성하고(Red), 최소한의 코드로 그 테스트를 통과시키고(Green), 코드를 개선한다(Refactor). 이 Red-Green-Refactor 사이클은 소프트웨어 개발의 리듬을 근본적으로 바꿨습니다.\n\n2001년 벡은 열일곱 명의 다른 선구자들과 함께 Agile Manifesto에 서명했습니다. Extreme Programming(XP)이라는 자신의 방법론은 TDD, Pair Programming, Continuous Integration, Simple Design 같은 실천법들을 포함했으며, 이는 Agile 운동의 가장 급진적이고 실천적인 형태였습니다.\n\n벡은 또한 Erich Gamma와 함께 JUnit을 만들어, 자동화된 테스트 프레임워크의 표준을 정립했습니다. JUnit이 없었다면 오늘의 테스트 자동화 문화는 존재하지 않았을 것입니다. 그의 영향력은 프로그래밍 언어와 프레임워크를 넘어 개발 프로세스와 팀 문화 전반을 변화시켰습니다.\n\n## 일화\n\n벡의 진정한 위대함은 그가 \"불필요하다고 생각되는 것을 하도록 엔지니어들을 설득\"했다는 점입니다. TDD를 처음 소개했을 때, 많은 개발자들은 \"테스트를 먼저 쓰면 느리고 비효율적이지 않을까?\"라고 물었습니다. 벡은 데이터와 경험으로 이를 반박했고, 수십 년 후 TDD는 최고의 팀들의 기본 실천이 되었습니다.\n\n2002년 \"Test-Driven Development by Example\"은 TDD를 실제 코드 예제로 보여주며, 이론이 아닌 실천을 강조했습니다. 이 책의 가장 유명한 문구는 \"깨끗한 코드로의 길은 깨끗한 테스트로부터 시작된다\"이며, 이는 간단하지만 수십 년이 지난 지금도 유효한 지혜입니다.\n\n벡은 또한 자신의 아이디어가 \"한 번만 옳은 것\"이 아님을 인정했습니다. 2023년 발표한 \"Tidy First?\"에서 그는 TDD의 제약과 한계를 솔직히 논의하고, 리팩토링과 설계의 다른 관점들을 탐구했습니다. 이는 진정한 사상가의 자세입니다—자신의 기여를 신성화하지 않고, 계속 배우고 진화합니다.\n"
+      },
+      "en": {
+        "name": "Kent Beck",
+        "knownFor": "Pioneer and formulator of Test-Driven Development (TDD). Founder of Extreme Programming.\nCo-creator of JUnit. Agile Manifesto signatory. Revolutionized software quality practices\nand team dynamics through radical transparency and technical excellence.\n",
+        "aliases": [
+          "Beck",
+          "Father of TDD",
+          "Founder of Extreme Programming"
+        ],
+        "biography_body": "\n## About\n\nKent Beck, born in 1961, is an American software engineer whose ideas have shaped how the world builds software. Working in the Smalltalk community in the 1990s, Beck synthesized decades of programming experience into practices that are now industry standard.\n\nBeck's greatest contribution is the formulation of Test-Driven Development (TDD). The practice is deceptively simple: write a failing test (Red), write minimal code to pass it (Green), then improve the code (Refactor). This Red-Green-Refactor cycle transformed software development from an intuitive craft into a disciplined, iterative process. TDD reframes the developer's relationship with code: testing is not a post-hoc validation but the primary design tool.\n\nIn 1999, Beck published \"Extreme Programming Explained,\" a methodology combining TDD, Pair Programming, Continuous Integration, Simple Design, and other practices. XP was Agile at its most radical and demanding. Two years later, Beck was one of seventeen signatories of the Agile Manifesto, helping legitimize values he had already been practicing: \"individuals and interactions over processes and tools, working software over comprehensive documentation.\"\n\nWith Erich Gamma, Beck co-created JUnit, which established the standard for automated testing frameworks. Without JUnit, the testing culture that dominates today would not exist. His influence transcends programming languages and architectures, reshaping team dynamics, development rhythms, and quality standards across the industry.\n\n## Anecdotes\n\nBeck's achievement lies partly in persuading skeptics to embrace counterintuitive practices. When TDD was introduced, many developers objected: \"Writing tests first is slow and wasteful.\" Beck answered with empirical data and lived experience. Decades later, TDD is a hallmark of excellent teams, and the skepticism has largely evaporated.\n\n*Test-Driven Development by Example* (2002) is among the most influential technical books because it opts for demonstration over argument. The book teaches TDD through worked examples, allowing readers to experience the rhythm of Red-Green-Refactor. One of its most enduring insights: \"Clean code via clean tests\"—a seemingly simple truth that has guided millions of decisions.\n\nBeck has also shown intellectual humility. In *Tidy First?* (2023), published two decades after his foundational work, he candidly discusses TDD's limitations and explores refactoring and design from other perspectives. This is the mark of a true thinker: he refuses to canonize his own contributions, instead continuing to learn and evolve. He embodies the Agile value: \"Individuals and interactions\" include the interaction of the thinker with new evidence and ideas.\n"
+      },
+      "birthYear": 1961,
+      "photo": "kent-beck.jpg",
+      "photoCredit": "Wikimedia Commons © Improve It, CC BY-SA 2.0",
+      "achievements": [
+        {
+          "year": 1996,
+          "ko": "『Kent Beck's Guide to Better Smalltalk』 출판",
+          "en": "Published Kent Beck's Guide to Better Smalltalk"
+        },
+        {
+          "year": 1999,
+          "ko": "\"Extreme Programming Explained\" 출판 (XP 방법론 정립)",
+          "en": "Published Extreme Programming Explained, formalizing XP methodology"
+        },
+        {
+          "year": 2001,
+          "ko": "Agile Manifesto 공동 저술 및 서명",
+          "en": "Co-authored and signed the Agile Manifesto"
+        },
+        {
+          "year": 2002,
+          "ko": "\"Test-Driven Development by Example\" 출판",
+          "en": "Published Test-Driven Development by Example, demonstrating TDD in practice"
+        }
+      ],
+      "books": [
+        {
+          "ko": "Kent Beck's Guide to Better Smalltalk",
+          "en": "Kent Beck's Guide to Better Smalltalk",
+          "year": 1996
+        },
+        {
+          "ko": "Extreme Programming Explained: Embrace Change",
+          "en": "Extreme Programming Explained: Embrace Change",
+          "year": 1999
+        },
+        {
+          "ko": "Test-Driven Development by Example",
+          "en": "Test-Driven Development by Example",
+          "year": 2002
+        },
+        {
+          "ko": "Extreme Programming Explained, 2nd Edition",
+          "en": "Extreme Programming Explained, 2nd Edition",
+          "year": 2004
+        },
+        {
+          "ko": "Tidy First?: A Personal Exercise in Empirical Software Design",
+          "en": "Tidy First?: A Personal Exercise in Empirical Software Design",
+          "year": 2023
+        }
+      ],
+      "related": [
+        "robert-c-martin",
+        "martin-fowler",
+        "erich-gamma"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia English",
+          "url": "https://en.wikipedia.org/wiki/Kent_Beck"
+        },
+        {
+          "label": "공식 블로그",
+          "url": "https://www.kentbeck.com"
+        }
+      ]
+    },
+    {
+      "slug": "yann-lecun",
+      "tags": [
+        "ai",
+        "deep-learning"
+      ],
+      "era": "2000-present",
+      "nationality": "FR",
+      "ko": {
+        "name": "얀 르쿤",
+        "knownFor": "합성곱 신경망(CNN)의 선구자, 현대 딥러닝의 기초 이론 개발자.\nMeta(Facebook) AI 연구소 수석 과학자, 튜링상 수상.\n",
+        "aliases": [
+          "Yann LeCun",
+          "르쿤"
+        ],
+        "biography_body": "\n## 소개\n\n얀 르쿤은 프랑스 태생의 컴퓨터 과학자이자 머신러닝 연구의 거장으로, 딥러닝 혁명의 핵심 인물 중 한 명이다. 그는 1989년 합성곱 신경망(CNN)을 개발했으며, 이는 이미지 인식, 자동차 자율주행, 의료 진단, 자연어 처리 등 현대 인공지능의 거의 모든 분야에서 기본이 되는 아키텍처다. 그의 초기 연구는 신경망이 대규모 실제 문제를 해결할 수 있음을 증명했다.\n\n1998년 르쿤은 LeNet-5 모델을 통해 손글씨 숫자 인식에 성공함으로써 신경망의 실용성을 입증했다. 이후 그는 Facebook(현 Meta) AI 연구소의 수석 과학자로서 인공지능 연구를 계속 이끌어왔다. 2018년에는 Geoffrey Hinton, Yoshua Bengio와 함께 \"깊은 신경망 분야에서의 획기적 발견\"으로 튜링상을 수상했다. 튜링상은 컴퓨터과학의 노벨상이라 불리며, 르쿤은 이 영예로써 딥러닝이 얼마나 기본적이고 중요한 기술인지를 국제 학술계가 인정했음을 증명했다.\n\n르쿤은 단순한 연구자를 넘어 인공지능의 미래에 대한 정직한 사유자이기도 하다. 그는 현재의 생성형 AI 시스템의 한계와 앞으로 나아가야 할 방향을 거리낌 없이 언급하며, 기술의 책임감 있는 발전을 강조해왔다.\n\n## 일화\n\n르쿤의 CNN 연구가 처음 발표되었을 때, 많은 학자들은 신경망이 현실적인 문제를 해결할 수 없다고 회의적이었다. 하지만 르쿤은 실제 은행 수표의 손글씨 숫자를 인식하는 LeNet-5 시스템을 만들어 미국 우편 서비스에서 채용되도록 했다. 이는 신경망 이론이 단순한 학문이 아니라 실제 산업에 가치를 줄 수 있다는 것을 증명한 획기적 사례다.\n\n르쿤은 또한 개방적인 과학 정신의 옹호자다. 그는 자신의 연구 코드와 데이터를 공개하여 다른 연구자들의 진입장벽을 낮추었고, 이는 오늘날 깊은 학습 커뮤니티의 협력 문화를 형성하는 데 큰 역할을 했다. 그의 철학은 \"과학은 개방적이어야 하며, 진리는 경쟁이 아니라 협력으로 찾아진다\"는 신념에 기반해 있다.\n\n2023년경부터 생성형 AI의 급속한 발전에 대해서도 균형잡힌 관점을 제시해왔으며, 자신의 이름을 딴 LeCun Lectures on Deep Learning은 전 세계 대학생들의 필독 자료가 되었다.\n"
+      },
+      "en": {
+        "name": "Yann LeCun",
+        "knownFor": "Pioneer of Convolutional Neural Networks (CNNs), developer of foundational deep learning theory.\nChief AI Scientist at Meta, Turing Award recipient.\n",
+        "aliases": [
+          "Yann LeCun"
+        ],
+        "biography_body": "\n## About\n\nYann LeCun is a French-born computer scientist and a pioneer of deep learning research, representing one of the key figures in the artificial intelligence revolution. In 1989, he developed Convolutional Neural Networks (CNNs), which became the foundational architecture for nearly all modern AI applications including image recognition, autonomous vehicles, medical diagnostics, and natural language processing. His early work demonstrated that neural networks could solve large-scale real-world problems.\n\nIn 1998, LeCun proved the practical utility of neural networks through LeNet-5, achieving reliable handwritten digit recognition. He subsequently served as Chief AI Scientist at Meta (formerly Facebook) AI Research, continuing to lead artificial intelligence research at the industry's highest level. In 2018, he shared the Turing Award with Geoffrey Hinton and Yoshua Bengio \"for conceptual and engineering breakthroughs that have made deep neural networks a critical component of computing.\" The Turing Award, often called the Nobel Prize of computer science, validated the fundamental importance of deep learning.\n\nBeyond research, LeCun is a thoughtful voice on AI's future. He openly discusses both the capabilities and limitations of current generative AI systems, emphasizing responsible technology development and long-term vision for the field.\n\n## Anecdotes\n\nWhen LeCun's CNN research was first published, many scholars were skeptical that neural networks could address real-world problems. LeCun countered by building LeNet-5, a system that recognized handwritten digits on actual bank checks and was adopted by the U.S. Postal Service. This milestone demonstrated that neural network theory was not mere academia but could deliver genuine industrial value.\n\nLeCun is also an advocate of open science. He shared research code and datasets publicly, lowering barriers to entry for other researchers and contributing significantly to today's collaborative deep learning community culture. His philosophy rests on the conviction that \"science must be open, and truth is discovered through collaboration, not competition.\"\n\nHis open approach to knowledge sharing has made him beloved in academic circles, where accessibility and mentorship are as valued as groundbreaking research. His principles influenced a generation of AI researchers to prioritize reproducibility and public datasets, establishing norms that strengthened the entire field.\n"
+      },
+      "birthYear": 1960,
+      "photo": "yann-lecun.jpg",
+      "photoCredit": "Wikimedia Commons © Jérémy Barande, CC BY-SA 2.0",
+      "achievements": [
+        {
+          "year": 1989,
+          "ko": "합성곱 신경망(CNN) 아키텍처 개발",
+          "en": "Developed Convolutional Neural Network (CNN) architecture"
+        },
+        {
+          "year": 1998,
+          "ko": "LeNet-5를 통한 손글씨 숫자 인식 성공",
+          "en": "Achieved handwritten digit recognition with LeNet-5"
+        },
+        {
+          "year": 2018,
+          "ko": "Geoffrey Hinton, Yoshua Bengio와 함께 튜링상 수상",
+          "en": "Received Turing Award with Geoffrey Hinton and Yoshua Bengio"
+        }
+      ],
+      "books": [
+        {
+          "ko": "The Unreasonable Effectiveness of Deep Learning",
+          "en": "The Unreasonable Effectiveness of Deep Learning",
+          "year": 2022
+        }
+      ],
+      "related": [
+        "geoffrey-hinton",
+        "andrej-karpathy"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia (한국어)",
+          "url": "https://ko.wikipedia.org/wiki/얀_르쿤"
+        },
+        {
+          "label": "Wikipedia (English)",
+          "url": "https://en.wikipedia.org/wiki/Yann_LeCun"
+        },
+        {
+          "label": "Meta AI 프로필",
+          "url": "https://www.facebook.com/yann"
+        }
+      ]
+    },
+    {
+      "slug": "andrej-karpathy",
+      "tags": [
+        "ai",
+        "deep-learning",
+        "education"
+      ],
+      "era": "2000-present",
+      "nationality": "SK",
+      "ko": {
+        "name": "안드레이 카파시",
+        "knownFor": "컨볼루션 신경망(CNN)과 딥러닝 분야의 선도 연구자이자 교육자.\nTesla 자율주행 AI 총괄, OpenAI 공동 창립자, \nStanford CS231n을 통해 수천 명의 학생에게 딥러닝을 가르쳤음.\n",
+        "aliases": [
+          "karpathy",
+          "CS231n의 아버지"
+        ],
+        "biography_body": "\n## 소개\n\n안드레이 카파시는 1986년 체코슬로바키아 브라티슬라바에서 태어나 15세에 캐나다로 이주했습니다. 그는 현대 딥러닝 교육의 개척자로, Stanford 대학의 CS231n 강좌를 통해 초기 150명에서 최종 750명으로 확대된 강의실에서 수천 명의 학생들에게 컨볼루션 신경망을 가르쳤습니다.\n\n2015년 Stanford 박사 학위를 취득한 후, 카파시는 OpenAI의 공동 창립자로 참여하며 딥러닝 연구의 최전선에 섰습니다. 2017년부터 2022년까지 Tesla에서 자율주행 기술의 핵심인 시각 인식 AI를 총괄하며 업계에 혁신을 가져왔습니다. 2023년부터는 YouTube 시리즈 \"신경망: 영에서 히어로까지\"와 LLM101n 교육 플랫폼을 통해 AI를 대중적으로 전파하는 데 집중해왔습니다.\n\n2024년에는 Eureka Labs라는 AI 교육 회사를 창립하고 Time의 \"AI 분야 가장 영향력 있는 인물 100인\"에 선정되었습니다. 2026년 현재 Anthropic의 사전학습(pretraining) 팀에 참여하며 계속 AI의 미래를 설계하고 있습니다.\n\n## 일화\n\n카파시는 기술과 교육의 경계를 허무는 인물입니다. Stanford에서의 CS231n 강의는 단순한 학술 강좌가 아니라, \"누구나 이해할 수 있는 딥러닝\"을 보여주는 운동이 되었습니다. 한 세대의 AI 엔지니어들이 그의 강의 노트와 할당 과제를 통해 기초를 다졌고, 이는 현재의 AI 혁명을 일으킨 인재 풀의 상당 부분을 교육했습니다.\n\n그의 YouTube 시리즈 \"신경망: 영에서 히어로까지\"는 신경망을 처음 배우려는 사람들을 위해 미분부터 시작해 복잡한 아키텍처까지 단계적으로 설명합니다. 이는 전 세계 수백만 명의 학습자들에게 AI 학습의 진입로가 되었습니다.\n\nTesla에서의 경험은 그에게 \"연구에서 현실로\"의 가치를 깨달으며, 자율주행 기술의 어려움과 가능성을 동시에 경험하게 했습니다. 이러한 실전 경험이 그의 교육에 녹아들어, 단순한 이론가가 아닌 실천가로서의 신뢰를 얻게 만들었습니다.\n"
+      },
+      "en": {
+        "name": "Andrej Karpathy",
+        "knownFor": "Pioneer of deep learning and convolutional neural networks; prolific AI educator\nwho taught thousands through Stanford CS231n. Led Tesla's autonomous vehicle\nvision AI and co-founded OpenAI's research direction.\n",
+        "aliases": [
+          "Karpathy",
+          "Creator of CS231n"
+        ],
+        "biography_body": "\n## About\n\nAndrej Karpathy was born in 1986 in Bratislava, Czechoslovakia, and immigrated to Canada at age fifteen. He is a pioneering figure in deep learning education, having taught convolutional neural networks to thousands of students through Stanford's CS231n course—a class that grew from an initial 150 students to 750. His doctoral research at Stanford on \"Connecting Images and Natural Language\" positioned him at the intersection of computer vision and natural language understanding, foundational to modern multimodal AI.\n\nIn 2015, Karpathy earned his PhD and became a co-founder of OpenAI, bringing research rigor to the organization's early years. From 2017 to 2022, he served as Director of AI and Tesla Autopilot Vision, applying deep learning to real-world autonomous driving—one of the most complex and safety-critical challenges in AI. Since 2023, he has focused on public education, launching \"Neural Networks: Zero To Hero\" on YouTube and the LLM101n platform, democratizing AI knowledge to millions worldwide. In 2024, he founded Eureka Labs, an AI education company, and was named to Time magazine's \"100 Most Influential People in AI.\"\n\n## Anecdotes\n\nKarpathy's CS231n course transcended traditional academia, becoming a cultural phenomenon in AI education. His lecture notes and assignments shaped an entire generation of AI engineers; many credit his course with igniting their passion for deep learning. Unlike purely theoretical treatments, Karpathy emphasized intuition and hands-on experimentation, making complex mathematics accessible.\n\nHis \"Neural Networks: Zero To Hero\" YouTube series exemplifies his philosophy: start with backpropagation from first principles and build upward. The series has become a standard resource for aspiring AI practitioners worldwide, reaching hundreds of millions of views.\n\nAt Tesla, Karpathy experienced the gap between research papers and production systems. The challenges of autonomous driving vision—handling edge cases, ensuring robustness, deploying at scale—taught him that theoretical elegance means little without real-world reliability. This experience infused his later educational efforts with a pragmatism that distinguishes him from purely academic expositors.\n"
+      },
+      "birthYear": 1986,
+      "photo": "andrej-karpathy.jpg",
+      "photoCredit": "Wikimedia Commons © Gladwin Analytics, CC BY 3.0",
+      "achievements": [
+        {
+          "year": 2015,
+          "ko": "Stanford 박사 학위 취득 및 OpenAI 공동 창립",
+          "en": "PhD from Stanford University and co-founded OpenAI"
+        },
+        {
+          "year": 2017,
+          "ko": "Tesla 자율주행 비전 AI 총괄 담당",
+          "en": "Director of AI and Tesla Autopilot Vision"
+        },
+        {
+          "year": 2020,
+          "ko": "MIT Technology Review '35세 이하 혁신가' 선정",
+          "en": "Named MIT Technology Review's \"Innovators Under 35\""
+        },
+        {
+          "year": 2023,
+          "ko": "YouTube 교육 시리즈 '신경망: 영에서 히어로까지' 공개",
+          "en": "Launched public educational series \"Neural Networks: Zero To Hero\""
+        }
+      ],
+      "books": [
+        {
+          "ko": "Neural Networks: Zero To Hero (LLM101n 코스)",
+          "en": "Neural Networks: Zero To Hero (LLM101n course)",
+          "year": 2023
+        }
+      ],
+      "related": [
+        "yann-lecun",
+        "geoffrey-hinton",
+        "jocoding"
+      ],
+      "links": [
+        {
+          "label": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Andrej_Karpathy"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/karpathy"
+        },
+        {
+          "label": "Anthropic",
+          "url": "https://www.anthropic.com"
+        }
+      ]
+    },
+    {
+      "slug": "jocoding",
+      "tags": [
+        "education",
+        "youtube",
+        "ai"
+      ],
+      "era": "2000-present",
+      "nationality": "KR",
+      "ko": {
+        "name": "조코딩 (조동근)",
+        "knownFor": "비전공자와 초보자를 대상으로 코딩과 AI 활용법을 쉽고 재미있게 가르치는 유튜브 교육자.\n10분 이내의 짧은 영상으로 복잡한 개발 개념을 명확하게 설명하는 커뮤니케이터.\n",
+        "aliases": [
+          "Jo Dong-geun",
+          "조동근"
+        ],
+        "biography_body": "\n## 소개\n\n조코딩(조동근)은 대한민국의 유튜브 교육자로, 프로그래밍과 인공지능을 비전공자도 이해할 수 있게 설명하는 것으로 알려져 있다. 그의 채널 '조코딩'은 10분 전후의 짧은 영상으로 코딩, AI, 머신러닝 관련 주제를 다루며, 복잡한 기술 개념을 누구나 쉽게 따라할 수 있는 수준으로 단순화하는 재능으로 평가받는다.\n\n조코딩은 \"코딩이 어렵다고 생각하는 사람들을 위해 진입 장벽을 낮추자\"는 철학으로 활동해왔다. 그의 영상들은 대학생, 취업 준비생, 직장인, 심지어 초등학생 부모들까지 광범위한 시청자층을 확보하고 있으며, 한국 내 AI와 코딩 교육 대중화에 기여하고 있다. 특히 최근 AI와 생성형 AI에 대한 관심이 높아지면서, 조코딩의 AI 관련 영상들은 많은 사람들의 첫 학습 자료가 되고 있다.\n\n그의 콘텐츠는 \"왜 이런 방식일까\"라는 근본적인 질문부터 시작해, 단계적이고 체계적인 설명을 제공한다. 복잡한 알고리즘도 비유와 시각화를 통해 직관적으로 이해할 수 있도록 돕는 그의 교수법은 전 세계 한국인 개발자 커뮤니티에서도 인정받고 있다. 2024년 현재도 지속적으로 새로운 기술과 트렌드에 대한 영상을 업로드하며 활동하고 있다.\n\n## 일화\n\n조코딩이 유튜브를 시작한 배경은 개인적인 경험에 기반해 있다. 프로그래밍을 배우며 어려움을 겪었던 그는, 복잡한 개념을 더 단순하고 명확하게 설명할 수 있다면 좋을 것이라는 생각으로 콘텐츠 제작을 시작했다. 이러한 초심은 그의 콘텐츠 제작 철학의 중심을 이루고 있다.\n\n조코딩의 영상이 짧은 이유도 철학적이다. 바쁜 현대 생활 속에서도 핵심 개념을 빠르게 이해할 수 있어야 한다는 신념 아래, 간결함, 정확함, 빠른 전달을 콘텐츠의 원칙으로 삼았다. 결과적으로 짧은 영상이 효율적인 학습 자료로 인정받으며, 초심자부터 전문가까지 폭넓은 시청층에게 환영받았다.\n\n2023년부터 AI 시대가 급속도로 도래하자, 조코딩은 \"AI를 두려워하지 말고 제대로 이해하자\"는 메시지로 ChatGPT, 이미지 생성 AI, 음성 AI 등 최신 기술들을 빠르게 콘텐츠화했다. 많은 사람들이 조코딩의 영상을 통해 처음으로 AI의 기본 원리와 활용 방법을 접하게 되었다.\n"
+      },
+      "en": {
+        "name": "JoCoding (Jo Dong-geun)",
+        "knownFor": "YouTube educator who makes coding and AI accessible to non-technical beginners.\nCreator known for explaining complex programming and AI concepts in clear, engaging video lessons.\n",
+        "aliases": [
+          "Jo Dong-geun",
+          "조동근"
+        ],
+        "biography_body": "\n## About\n\nJoCoding (Jo Dong-geun) is a South Korean YouTube educator renowned for making programming and artificial intelligence understandable to non-technical audiences. His channel \"JoCoding\" features short videos—typically under 10 minutes—on coding, AI, and machine learning, earning recognition for his talent in simplifying complex technical concepts to a level accessible to everyone.\n\nJoCoding operates from the philosophy of \"lowering entry barriers for those who think coding is difficult.\" His videos reach a broad audience including university students, job seekers, professionals, and even parents of elementary school children, contributing to AI and coding education democratization in Korea. As interest in AI and generative AI has surged, JoCoding's AI content has become an initial learning resource for many.\n\nHis teaching approach starts from fundamental questions like \"why is this done this way?\" and progresses through systematic explanations. Complex algorithms become intuitive through analogy and visualization. His pedagogy is recognized within the global Korean developer community. As of 2024, he continues regularly uploading content on emerging technologies and trends.\n\n## Anecdotes\n\nJoCoding's motivation to start YouTube stems from personal experience. Drawing from challenges faced while learning programming, he recognized the value of explaining complex concepts in simpler, clearer ways. This foundational insight shaped his approach to content creation.\n\nThe brevity of JoCoding's videos reflects deliberate philosophy. Operating from the principle that busy modern life demands efficient learning, he established consistency, clarity, and rapid delivery as core content principles. Short videos became an effective learning format, welcomed by audiences ranging from beginners to advanced learners.\n\nWhen the AI era accelerated in 2023, JoCoding pivoted with the message \"understand AI without fear.\" He rapidly covered emerging technologies—ChatGPT, image generation AI, voice AI—making them accessible content. Many people first encountered AI's foundational principles and practical applications through JoCoding's explanations.\n"
+      },
+      "achievements": [
+        {
+          "year": 2018,
+          "ko": "유튜브 채널 '조코딩' 개설 (2018년 11월 24일)",
+          "en": "Launched the 'JoCoding' YouTube channel (November 24, 2018)"
+        },
+        {
+          "year": 2022,
+          "ko": "수십만 구독자 달성 및 AI 콘텐츠 확대",
+          "en": "Reached hundreds of thousands of subscribers and expanded AI content"
+        },
+        {
+          "year": 2024,
+          "ko": "코딩 교육 플랫폼 활동 지속",
+          "en": "Continued activity across coding education platforms"
+        }
+      ],
+      "related": [
+        "andrej-karpathy"
+      ],
+      "links": [
+        {
+          "label": "YouTube 채널",
+          "url": "https://www.youtube.com/@jocoding"
+        }
+      ]
+    }
+  ]
+}

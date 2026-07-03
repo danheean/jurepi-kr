@@ -1403,6 +1403,118 @@
           }
         ]
       }
+    },
+    "dev-people": {
+      "title": "Developer People Dictionary",
+      "description": "Explore stories of influential software engineers and computer scientists who shaped technology history. From programming language designers to open-source pioneers and architecture visionaries.",
+      "list": {
+        "regionHeading": "People list"
+      },
+      "toast": {
+        "favoriteAdded": "Added to favorites",
+        "favoriteRemoved": "Removed from favorites"
+      },
+      "faqTitle": "Frequently Asked Questions",
+      "meta": {
+        "title": "Developer People Dictionary · Great Figures Who Created Software",
+        "description": "Explore biographies and achievements of influential figures in software and computer science. From language designers to open-source pioneers, discover the stories behind technological revolution."
+      },
+      "intro": {
+        "eyebrow": "Developer Tools",
+        "title": "Developer People Dictionary",
+        "lead": "Meet the great figures who shaped software and computer science. From programming language designers to open-source pioneers."
+      },
+      "search": {
+        "label": "Search by name, tags, or era…",
+        "placeholder": "Search by name, tags, or era…",
+        "aria": "Search people",
+        "resultCount": "{count} people"
+      },
+      "tabs": {
+        "filterLabel": "Filter people",
+        "all": "All",
+        "favorites": "Favorites",
+        "recent": "Recently viewed"
+      },
+      "tags": {
+        "java": "Java",
+        "python": "Python",
+        "javascript": "JavaScript",
+        "c": "C",
+        "cpp": "C++",
+        "linux": "Linux",
+        "git": "Git",
+        "ai": "AI",
+        "deep-learning": "Deep Learning",
+        "clean-code": "Clean Code",
+        "architecture": "Architecture",
+        "tdd": "TDD",
+        "agile": "Agile",
+        "refactoring": "Refactoring",
+        "design-patterns": "Design Patterns",
+        "free-software": "Free Software",
+        "web": "Web",
+        "game": "Game Dev",
+        "education": "Education",
+        "youtube": "YouTube"
+      },
+      "eras": {
+        "all": "All eras",
+        "1940-1960": "1940–1960",
+        "1960-1980": "1960–1980",
+        "1980-2000": "1980–2000",
+        "2000-present": "2000–Present"
+      },
+      "empty": {
+        "noResults": "No people found matching '{query}'",
+        "noFavorites": "Click the star button to save your favorite people",
+        "noRecent": "Recently viewed people will appear here"
+      },
+      "card": {
+        "toggleFavorite": "Toggle favorite",
+        "ageDisplay": "Age {age}",
+        "ageAtDeath": "Lived to {age}"
+      },
+      "spoke": {
+        "breadcrumbHome": "Home",
+        "born": "b. {year}",
+        "about": "About",
+        "anecdotes": "Anecdotes",
+        "achievements": "Achievements",
+        "books": "Books",
+        "related": "Related figures",
+        "links": "Links",
+        "disclaimer": "This information has been compiled by editors and may be inaccurate. Please verify key facts with the original sources linked below."
+      },
+      "howTo": {
+        "heading": "Who Shaped the History of Software?",
+        "whatIsTitle": "What is Developer People Dictionary?",
+        "whatIsBody": "Developer People Dictionary is a curated library of biographies and achievements of key figures who shaped software and computer science. From programming language designers and open-source pioneers to architecture visionaries and AI revolutionaries—explore the stories that contextualize technological progress. Discover 13 carefully selected figures and their lasting contributions to computing.",
+        "howToTitle": "How to use",
+        "howToBody": "Search for people by name, tag (Java, Python, AI, etc.), or era. Click on any person card to explore their detailed profile, including biography, major achievements, publications, and related links. Save your frequently referenced figures to Favorites using the star button for quick access.",
+        "featuresTitle": "Key features",
+        "featuresBody": "13 influential figures · Filter by tags (programming languages, domains, eras) · Real-time search · Save to favorites · Auto-tracked recent views · Detailed biographies and achievements · Related people recommendations"
+      },
+      "faq": {
+        "items": [
+          {
+            "question": "What is Developer People Dictionary?",
+            "answer": "A curated library of biographies of key figures who shaped software and computer science. Explore stories of programming language designers, open-source pioneers, and architecture visionaries to understand the context of technological development."
+          },
+          {
+            "question": "Who is included?",
+            "answer": "13 influential developers including Geoffrey Hinton (father of deep learning), Robert C. Martin (Clean Code author), Erich Gamma (Design Patterns), Richard Stallman (GNU founder), James Gosling (Java creator), Brendan Eich (JavaScript creator), and Linus Torvalds (Linux creator)."
+          },
+          {
+            "question": "Where does the information come from?",
+            "answer": "All content is compiled from reliable public sources including Wikipedia, official biographies, academic papers, and news articles. Each person's profile includes direct links to original sources so you can verify and explore further."
+          },
+          {
+            "question": "Can I suggest new people to add?",
+            "answer": "Yes! We welcome your feedback and suggestions. Visit our Contact page to suggest new figures you'd like to see in the dictionary."
+          }
+        ]
+      }
     }
   },
   "about": {

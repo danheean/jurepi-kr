@@ -13,6 +13,7 @@
 - [별별 랭킹 (Various Rankings)](https://apps.jurepi.kr/ko/tools/rankings): Curated Top N ranked lists across AI models, programming languages, movies, music, and more from trusted sources.
 - [스피드퀴즈 제시어 (Speed Quiz Prompt Words)](https://apps.jurepi.kr/ko/tools/speed-quiz): Run a real-time party word-reveal game with category selection, difficulty levels, countdown timer, and score tracking. Perfect for classrooms, parties, and team events.
 - [QR 코드 생성기 (QR Code Generator)](https://apps.jurepi.kr/ko/tools/qr-code): Generate QR codes from text, URLs, Wi-Fi details, emails, and contacts. Customize colors, choose error correction levels, and download as PNG or SVG.
+- [개발 인물 사전 (Developer People Dictionary)](https://apps.jurepi.kr/ko/tools/dev-people): Explore biographies and achievements of influential software engineers and computer scientists who shaped technology history. From programming language creators to open-source pioneers and architecture visionaries.
 
 ## About
 

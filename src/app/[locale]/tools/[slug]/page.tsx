@@ -27,6 +27,10 @@ import { QRCodeIntro } from '@/components/tools/qr-code/QRCodeIntro';
 import { QRCodeHowTo } from '@/components/tools/qr-code/QRCodeHowTo';
 import { QRCodeFaq } from '@/components/tools/qr-code/QRCodeFaq';
 import { QRCodeStructuredData } from '@/components/tools/qr-code/QRCodeStructuredData';
+import { DevPeopleIntro } from '@/components/tools/dev-people/DevPeopleIntro';
+import { DevPeopleHowTo } from '@/components/tools/dev-people/DevPeopleHowTo';
+import { DevPeopleFaq } from '@/components/tools/dev-people/DevPeopleFaq';
+import { DevPeopleStructuredData } from '@/components/tools/dev-people/DevPeopleStructuredData';
 
 const LadderGame = dynamic(() =>
   import('@/components/tools/ladder/LadderGame').then((m) => ({
@@ -88,6 +92,12 @@ const QRCodeGenerator = dynamic(() =>
   }))
 );
 
+const DevPeople = dynamic(() =>
+  import('@/components/tools/dev-people/DevPeople').then((m) => ({
+    default: m.DevPeople,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -128,6 +138,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'qr-code') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'dev-people') {
     title = t('meta.title');
     description = t('meta.description');
   } else {
@@ -246,6 +259,18 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
         <QRCodeGenerator locale={locale} />
         <QRCodeHowTo />
         <QRCodeFaq />
+      </>
+    );
+  }
+
+  if (slug === 'dev-people') {
+    return (
+      <>
+        <DevPeopleStructuredData />
+        <DevPeopleIntro />
+        <DevPeople />
+        <DevPeopleHowTo />
+        <DevPeopleFaq />
       </>
     );
   }

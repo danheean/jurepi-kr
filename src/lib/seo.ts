@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { MergedPerson } from './dev-people/schema';
 
 /**
  * Build metadata for a tool page.
@@ -338,4 +339,77 @@ export function breadcrumbListJsonLd(items: Array<{ name: string; url: string }>
       item: item.url,
     })),
   };
+}
+
+/**
+ * Build a Person JSON-LD for developer/engineer spoke pages.
+ * Used on individual person profile pages to mark up biographical information.
+ */
+export function personJsonLd(person: MergedPerson, locale: string): Record<string, unknown> {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jurepi.kr';
+  const personUrl = `${siteUrl}/${locale}/tools/dev-people/${person.slug}`;
+  const localePerson = locale === 'ko' ? person.ko : person.en;
+
+  const ld: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: localePerson.name,
+    description: localePerson.knownFor,
+    url: personUrl,
+  };
+
+  // Birth date (year precision)
+  if (person.birthYear) {
+    ld.birthDate = `${person.birthYear}`;
+  }
+
+  // Death date (year precision)
+  if (person.deathYear) {
+    ld.deathDate = `${person.deathYear}`;
+  }
+
+  // Nationality (two-letter country code mapping)
+  const countryMap: Record<string, string> = {
+    US: 'United States',
+    UK: 'United Kingdom',
+    CA: 'Canada',
+    FI: 'Finland',
+    CH: 'Switzerland',
+  };
+  if (person.nationality && countryMap[person.nationality]) {
+    ld.nationality = {
+      '@type': 'Country',
+      name: countryMap[person.nationality],
+    };
+  }
+
+  // Tags/Knowledge areas
+  if (person.tags && person.tags.length > 0) {
+    ld.knowsAbout = person.tags;
+  }
+
+  // External links (Wikipedia, GitHub, etc.)
+  const sameAsLinks: string[] = [];
+  if (person.links && person.links.length > 0) {
+    person.links.forEach((link) => {
+      if (link.url.includes('wikipedia.org') || link.url.includes('github.com')) {
+        sameAsLinks.push(link.url);
+      }
+    });
+  }
+  if (sameAsLinks.length > 0) {
+    ld.sameAs = sameAsLinks;
+  }
+
+  // Photo/image (if available)
+  if (person.photo) {
+    const photoUrl = `${siteUrl}/images/dev-people/${person.photo}`;
+    ld.image = {
+      '@type': 'ImageObject',
+      url: photoUrl,
+      name: `${localePerson.name} portrait`,
+    };
+  }
+
+  return ld;
 }

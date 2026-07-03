@@ -128,6 +128,24 @@ export const tools: ToolMeta[] = [
       '변환', 'converter', 'scan', '스캔'
     ],
   },
+  {
+    id: 'dev-people',
+    slug: 'dev-people',
+    category: 'dev',
+    icon: 'Users',
+    accent: 'sky',
+    status: 'live',
+    isNew: true,
+    order: 22,
+    keywords: [
+      '개발인물','개발인물사전','개발자','프로그래머','컴퓨터과학','인물','전기','biography',
+      '제프리힌턴','로버트마틴','에리히감마','리처드스톨먼','제임스고슬링','브렌던아이크','리누스토발즈',
+      '귀도반로섐','마틴파울러','켄트벡','얀르쿤','안드레이카파시','조코딩',
+      'Geoffrey Hinton','Robert Martin','Erich Gamma','Richard Stallman','James Gosling','Brendan Eich','Linus Torvalds',
+      'Guido van Rossum','Martin Fowler','Kent Beck','Yann LeCun','Andrej Karpathy',
+      'Java','Python','JavaScript','C','Linux','Git','AI','Deep Learning','Clean Code','Architecture','TDD'
+    ],
+  },
 ];
 
 /** Get all live tools for static generation */
