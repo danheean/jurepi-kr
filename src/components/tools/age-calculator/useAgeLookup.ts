@@ -140,6 +140,16 @@ export function useAgeLookup(): UseAgeLookupReturn {
       const result = calculateAge(parseDateKey(resolved.solarDate), asOf);
       result.zodiacKey = resolved.zodiacKey;
       result.sexagenary = resolved.sexagenary;
+      // Show the SAME birthday in the other calendar: entered lunar → solar
+      // counterpart, entered solar → lunar counterpart (with leap-month flag).
+      result.counterpartBirthday =
+        calendarType === 'lunar'
+          ? { calendar: 'solar', date: resolved.solarDate }
+          : {
+              calendar: 'lunar',
+              date: resolved.lunarDate.date,
+              isLeapMonth: resolved.lunarDate.isLeapMonth,
+            };
       setAge(result);
       setError(null);
     })();

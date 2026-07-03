@@ -880,7 +880,9 @@
         "daysLived": "Days lived",
         "breakdown": "Exact age",
         "countdown": "Days until birthday",
-        "sexagenary": "Sexagenary"
+        "sexagenary": "Sexagenary",
+        "solarBirthday": "Solar birthday",
+        "lunarBirthday": "Lunar birthday"
       },
       "zodiac": {
         "rat": "Year of the Rat",

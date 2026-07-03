@@ -35,6 +35,30 @@ describe('resolveBirthdate', () => {
     expect(r.zodiacKey).toBe('dragon'); // lunar year 2000
   });
 
+  it('exposes the lunar counterpart for a SOLAR-entered birthdate', async () => {
+    // Solar 2000-03-15 → lunar 2000-02-10 (verify against the conversion lib itself).
+    const expected = await solarToLunar(2000, 3, 15);
+    if ('error' in expected) throw new Error('setup conversion failed');
+    const pad = (n: number) => String(n).padStart(2, '0');
+    const expectedKey = `${expected.lunarDate.year}-${pad(expected.lunarDate.month)}-${pad(expected.lunarDate.day)}`;
+
+    const r = await resolveBirthdate('2000-03-15', 'solar', false);
+    expect(isResolveError(r)).toBe(false);
+    if (isResolveError(r)) return;
+    expect(r.lunarDate.date).toBe(expectedKey);
+    expect(r.lunarDate.isLeapMonth).toBe(expected.lunarDate.isLeap);
+  });
+
+  it('exposes the lunar date (echo) for a LUNAR-entered birthdate, preserving leap flag', async () => {
+    // 2023 has a leap 2nd month: lunar 2023-02-15(leap) → solar 2023-04-05.
+    const r = await resolveBirthdate('2023-02-15', 'lunar', true);
+    expect(isResolveError(r)).toBe(false);
+    if (isResolveError(r)) return;
+    expect(r.solarDate).toBe('2023-04-05');
+    expect(r.lunarDate.date).toBe('2023-02-15');
+    expect(r.lunarDate.isLeapMonth).toBe(true);
+  });
+
   it('returns range error for a year outside 1901–2050', async () => {
     const r = await resolveBirthdate('1850-01-01', 'solar', false);
     expect(r).toEqual({ error: 'range' });

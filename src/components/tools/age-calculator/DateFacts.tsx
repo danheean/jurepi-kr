@@ -62,6 +62,30 @@ export function DateFacts({ age, locale }: Props) {
     return `${age.nextBirthdayCountdown} day${age.nextBirthdayCountdown === 1 ? '' : 's'}`;
   };
 
+  /**
+   * Format the counterpart birthday (the same birthdate in the other calendar).
+   * Solar counterpart uses Intl (month names are meaningful); lunar counterpart
+   * uses numeric formatting in English — Gregorian month names would be factually
+   * wrong for a lunar month (same convention as the lunar-converter tool).
+   */
+  const getCounterpartFormatted = (): string => {
+    const c = age.counterpartBirthday;
+    if (!c) return '';
+    const [y, m, d] = c.date.split('-').map(Number);
+    if (c.calendar === 'solar') {
+      return new Intl.DateTimeFormat(locale === 'ko' ? 'ko-KR' : 'en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }).format(new Date(y, m - 1, d));
+    }
+    const leap = c.isLeapMonth ? (locale === 'ko' ? ' (윤달)' : ' (leap month)') : '';
+    if (locale === 'ko') {
+      return `${y}년 ${m}월 ${d}일${leap}`;
+    }
+    return `${c.date}${leap}`;
+  };
+
   const facts = [
     {
       key: 'zodiac',
@@ -74,6 +98,18 @@ export function DateFacts({ age, locale }: Props) {
             key: 'sexagenary',
             label: t('dateFacts.sexagenary'),
             value: `${age.sexagenary.name} (${age.sexagenary.hanja})`,
+          },
+        ]
+      : []),
+    ...(age.counterpartBirthday
+      ? [
+          {
+            key: 'counterpartBirthday',
+            label:
+              age.counterpartBirthday.calendar === 'solar'
+                ? t('dateFacts.solarBirthday')
+                : t('dateFacts.lunarBirthday'),
+            value: getCounterpartFormatted(),
           },
         ]
       : []),

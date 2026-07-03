@@ -238,6 +238,20 @@ const defaultMessages = {
       },
     },
   },
+  share: {
+    heading: 'Share',
+    targets: {
+      naver: 'Share on Naver (Blog·Cafe)',
+      x: 'Share on X (Twitter)',
+      facebook: 'Share on Facebook',
+      threads: 'Share on Threads',
+      telegram: 'Share on Telegram',
+      whatsapp: 'Share on WhatsApp',
+    },
+    copyLink: 'Copy link',
+    copied: 'Link copied!',
+    native: 'Share via another app (Instagram, KakaoTalk, …)',
+  },
 };
 
 function AllTheProviders({ children }: { children: ReactNode }) {

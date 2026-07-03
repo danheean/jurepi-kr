@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { DateFacts } from './DateFacts';
 import type { AgeResult } from '@/lib/age-calculator/age';
 import messages from '@/i18n/messages/ko.json';
+import enMessages from '@/i18n/messages/en.json';
 
 describe('DateFacts', () => {
   const mockAge: AgeResult = {
@@ -102,5 +103,65 @@ describe('DateFacts', () => {
     expect(screen.getByText(messages.tools['age-calculator'].starSign.pisces)).toBeInTheDocument();
     expect(screen.getByText('54년 9개월 20일')).toBeInTheDocument();
     expect(screen.getByText('100일')).toBeInTheDocument();
+  });
+
+  it('shows the LUNAR counterpart birthday when the birthdate was entered as solar (ko)', () => {
+    renderComponent({
+      ...mockAge,
+      counterpartBirthday: { calendar: 'lunar', date: '2000-02-10', isLeapMonth: false },
+    });
+    expect(
+      screen.getByText(messages.tools['age-calculator'].dateFacts.lunarBirthday)
+    ).toBeInTheDocument();
+    expect(screen.getByText('2000년 2월 10일')).toBeInTheDocument();
+  });
+
+  it('marks a leap-month lunar counterpart with (윤달)', () => {
+    renderComponent({
+      ...mockAge,
+      counterpartBirthday: { calendar: 'lunar', date: '2023-02-15', isLeapMonth: true },
+    });
+    expect(screen.getByText('2023년 2월 15일 (윤달)')).toBeInTheDocument();
+  });
+
+  it('shows the SOLAR counterpart birthday when the birthdate was entered as lunar (ko)', () => {
+    renderComponent({
+      ...mockAge,
+      counterpartBirthday: { calendar: 'solar', date: '2000-03-15' },
+    });
+    expect(
+      screen.getByText(messages.tools['age-calculator'].dateFacts.solarBirthday)
+    ).toBeInTheDocument();
+    expect(screen.getByText('2000년 3월 15일')).toBeInTheDocument();
+  });
+
+  it('renders the lunar counterpart in English without Korean characters (en locale)', () => {
+    render(
+      <NextIntlClientProvider locale="en" messages={enMessages as any}>
+        <DateFacts
+          age={{
+            ...mockAge,
+            counterpartBirthday: { calendar: 'lunar', date: '2023-02-15', isLeapMonth: true },
+          }}
+          locale="en"
+        />
+      </NextIntlClientProvider>
+    );
+    expect(
+      screen.getByText(enMessages.tools['age-calculator'].dateFacts.lunarBirthday)
+    ).toBeInTheDocument();
+    const value = screen.getByText('2023-02-15 (leap month)');
+    expect(value).toBeInTheDocument();
+    expect(value.textContent).not.toMatch(/[가-힣]/);
+  });
+
+  it('omits the counterpart row when not resolved', () => {
+    renderComponent(mockAge);
+    expect(
+      screen.queryByText(messages.tools['age-calculator'].dateFacts.lunarBirthday)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(messages.tools['age-calculator'].dateFacts.solarBirthday)
+    ).not.toBeInTheDocument();
   });
 });

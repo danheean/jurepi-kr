@@ -7,6 +7,8 @@ export type CalendarType = 'solar' | 'lunar';
 export interface ResolvedBirthdate {
   /** Canonical solar date (YYYY-MM-DD) used for all age/day/star calculations. */
   solarDate: DateKey;
+  /** Lunar counterpart of the same birthdate (echoes the input when entered as lunar). */
+  lunarDate: { date: DateKey; isLeapMonth: boolean };
   /** Accurate Korean zodiac key, derived from the LUNAR year (rat..pig). */
   zodiacKey: string;
   /** Sexagenary (60갑자): { name: "을유", hanja: "乙酉" }. */
@@ -53,8 +55,13 @@ export async function resolveBirthdate(
   }
 
   const s = result.solarDate;
+  const l = result.lunarDate;
   return {
     solarDate: `${s.year}-${pad(s.month)}-${pad(s.day)}` as DateKey,
+    lunarDate: {
+      date: `${l.year}-${pad(l.month)}-${pad(l.day)}` as DateKey,
+      isLeapMonth: l.isLeap,
+    },
     zodiacKey: result.zodiac.key,
     sexagenary: { name: result.sexagenary.name, hanja: result.sexagenary.hanja },
   };

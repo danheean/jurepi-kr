@@ -880,7 +880,9 @@
         "daysLived": "살아온 날",
         "breakdown": "정확한 나이",
         "countdown": "다음 생일까지",
-        "sexagenary": "간지"
+        "sexagenary": "간지",
+        "solarBirthday": "양력 생일",
+        "lunarBirthday": "음력 생일"
       },
       "zodiac": {
         "rat": "쥐띠",
