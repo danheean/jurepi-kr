@@ -321,4 +321,57 @@ test.describe('Rankings Tool - E2E Integration', () => {
       await expect(caption).toBeVisible();
     }
   });
+
+  test('Spoke pages: ranking detail route renders table, breadcrumb, back nav', async ({
+    page,
+  }) => {
+    const consoleErrors: string[] = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') consoleErrors.push(msg.text());
+    });
+
+    // Direct navigation to a ranking spoke page (SEO entity URL)
+    await page.goto('/ko/tools/rankings/tiobe-programming-languages');
+    await page.waitForLoadState('networkidle');
+
+    // H1 is the ranking title
+    const h1 = page.locator('h1');
+    await expect(h1).toBeVisible({ timeout: 5000 });
+    await expect(h1).toContainText('프로그래밍 언어');
+
+    // Breadcrumb: 홈 › 별별 랭킹 › 타이틀
+    const breadcrumb = page.locator('[data-testid="rankings-spoke-breadcrumb"]');
+    await expect(breadcrumb).toBeVisible();
+    await expect(breadcrumb).toContainText('홈');
+
+    // Full ranking table is SSR'd on the spoke page
+    const table = page.locator('main table').first();
+    await expect(table).toBeVisible();
+    await expect(table).toContainText('Python');
+
+    // Back-to-hub link returns to the rankings hub
+    const backLink = page.locator('[data-testid="rankings-spoke-back-to-hub"]');
+    await expect(backLink).toHaveAttribute('href', '/ko/tools/rankings');
+    await backLink.click();
+    await page.waitForLoadState('networkidle');
+    await expect(page).toHaveURL(/\/ko\/tools\/rankings$/);
+
+    expect(consoleErrors).toEqual([]);
+  });
+
+  test('Hub cards are crawlable links to ranking spoke pages', async ({ page }) => {
+    await page.goto('/ko/tools/rankings');
+    await page.waitForLoadState('networkidle');
+
+    // Each ranking card is a real anchor pointing at its spoke URL (prerendered)
+    const firstCard = page.locator('[data-testid^="ranking-card-"]').first();
+    const href = await firstCard.getAttribute('href');
+    expect(href).toMatch(/^\/ko\/tools\/rankings\/[a-z0-9-]+$/);
+
+    await page.goto(href!);
+    await page.waitForLoadState('networkidle');
+    await expect(
+      page.locator('[data-testid="rankings-spoke-breadcrumb"]')
+    ).toBeVisible({ timeout: 5000 });
+  });
 });

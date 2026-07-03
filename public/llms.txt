@@ -11,6 +11,7 @@
 - [URL 인코더 (URL Encoder)](https://apps.jurepi.kr/ko/tools/url-encoder): Encode and decode URLs with UTF-8 and EUC-KR (CP949) charset support. Edit query parameters and handle percent-encoded characters instantly.
 - [별별 랭킹 (Various Rankings)](https://apps.jurepi.kr/ko/tools/rankings): Curated Top N ranked lists across AI models, programming languages, movies, music, and more from trusted sources.
 - [스피드퀴즈 제시어 (Speed Quiz Prompt Words)](https://apps.jurepi.kr/ko/tools/speed-quiz): Run a real-time party word-reveal game with category selection, difficulty levels, countdown timer, and score tracking. Perfect for classrooms, parties, and team events.
+- [QR 코드 생성기 (QR Code Generator)](https://apps.jurepi.kr/ko/tools/qr-code): Generate QR codes from text, URLs, Wi-Fi details, emails, and contacts. Customize colors, choose error correction levels, and download as PNG or SVG.
 
 ## About
 

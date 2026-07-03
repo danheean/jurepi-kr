@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import type { MergedRanking } from '@/lib/rankings/schema';
 import rankingsData from './data/rankings.generated.json';
@@ -24,12 +24,6 @@ export function Rankings() {
   const r = useRankingsCatalog(CATALOG);
 
   const [toast, setToast] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  // Gate interactive content to mounted state (SSR + client hydration safety)
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleToggleFav = useCallback(
     (slug: string) => {
@@ -49,9 +43,11 @@ export function Rankings() {
       {/* Interactive rankings island. A ranking is a wide, long table, so the
           detail is rendered FULL-WIDTH below the selector (not a narrow sticky
           sidebar) — otherwise the description column wraps character-by-character
-          and half the viewport sits empty. Selector on top, detail below. */}
-      {mounted && (
-        <div className="space-y-6">
+          and half the viewport sits empty. Selector on top, detail below.
+          Rendered outside any mounted gate so the card grid (and its crawlable
+          spoke links) lands in the prerendered HTML — favorites/recents load
+          client-side via useEffect (SSR-safe empty initial state). */}
+      <div className="space-y-6">
           <div className="min-w-0 space-y-4">
             <RankingSearch
               query={r.query}
@@ -86,8 +82,7 @@ export function Rankings() {
               />
             </section>
           )}
-        </div>
-      )}
+      </div>
 
       {/* SEO/GEO sections */}
       <RankingsHowTo />

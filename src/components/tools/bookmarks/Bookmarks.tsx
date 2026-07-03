@@ -25,7 +25,6 @@ export function Bookmarks() {
   const r = useBookmarksCatalog(CATALOG);
 
   const [toast, setToast] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   // Detail focus management: move focus + scroll to the panel on open, and
@@ -35,11 +34,6 @@ export function Bookmarks() {
   const detailRef = useRef<HTMLElement>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
   const selectedSlug = r.selectedSlug;
-
-  // Gate interactive content to mounted state (SSR + client hydration safety)
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // On select, bring the detail panel into view and focus it.
   useEffect(() => {
@@ -83,21 +77,20 @@ export function Bookmarks() {
 
   return (
     <div className="space-y-16">
-      {/* SEO/GEO: rendered unconditionally (outside mounted gate) so it lands
+      {/* SEO/GEO: rendered unconditionally so it lands
           in the prerendered HTML for search engines and answer engines. */}
       <BookmarksIntro />
 
       {/* Interactive bookmarks island. Stacked on mobile; on desktop it splits
           into a two-pane layout (selector left, sticky detail right) once a
           topic is picked, so the detail no longer sits below the whole grid. */}
-      {mounted && (
-        <div
-          className={`space-y-6 ${
-            r.selectedTopic
-              ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-6 lg:space-y-0'
-              : ''
-          }`}
-        >
+      <div
+        className={`space-y-6 ${
+          r.selectedTopic
+            ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-6 lg:space-y-0'
+            : ''
+        }`}
+      >
           <div className="min-w-0 space-y-4">
             <BookmarksSearch
               query={r.query}
@@ -126,23 +119,22 @@ export function Bookmarks() {
             />
           </div>
 
-          {/* Detail: full-width panel, only shown once a topic is picked */}
-          {r.selectedTopic && (
-            <section
-              ref={detailRef}
-              tabIndex={-1}
-              aria-labelledby="bookmarks-detail-heading"
-              className="scroll-mt-20 rounded-3xl border border-hairline bg-surface p-6 shadow-card focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto"
-            >
-              <TopicDetail
-                topic={r.selectedTopic}
-                onClose={handleCloseDetail}
-                locale={locale}
-              />
-            </section>
-          )}
-        </div>
-      )}
+        {/* Detail: full-width panel, only shown once a topic is picked */}
+        {r.selectedTopic && (
+          <section
+            ref={detailRef}
+            tabIndex={-1}
+            aria-labelledby="bookmarks-detail-heading"
+            className="scroll-mt-20 rounded-3xl border border-hairline bg-surface p-6 shadow-card focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto"
+          >
+            <TopicDetail
+              topic={r.selectedTopic}
+              onClose={handleCloseDetail}
+              locale={locale}
+            />
+          </section>
+        )}
+      </div>
 
       {/* SEO/GEO sections */}
       <BookmarksHowTo />
