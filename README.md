@@ -165,6 +165,14 @@ docs/                    # SPEC · DESIGN 시스템 (요구사항 단일 소스)
 
 > `coming_soon` 도구는 레지스트리 항목만으로 "준비중" 카드가 노출됩니다.
 
+## 📚 도구별 문서
+
+각 도구의 요구사항·아키텍처·콘텐츠 저작 방법은 `docs/services/<category>/<tool>/README.md`에 있습니다.
+
+| 도구 | 문서 |
+|------|------|
+| 맛집 리스트 (Restaurant List) | [`docs/services/fun/restaurant-map/README.md`](docs/services/fun/restaurant-map/README.md) |
+
 ## 🤖 개발 하네스
 
 본 저장소는 `.claude/` 에 **클린 아키텍처 + TDD**를 강제하는 에이전트 팀(7종)과 스킬(8종)을 포함합니다.
