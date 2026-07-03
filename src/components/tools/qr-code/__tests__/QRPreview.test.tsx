@@ -8,7 +8,7 @@ import enMessages from '@/i18n/messages/en.json';
 // Render QRPreview inside a real i18n context (it consumes tools.qr-code.*).
 function renderWithProvider(ui: React.ReactElement) {
   return render(
-    <NextIntlClientProvider locale="en" messages={enMessages}>
+    <NextIntlClientProvider locale="en" messages={enMessages as any}>
       {ui}
     </NextIntlClientProvider>
   );
