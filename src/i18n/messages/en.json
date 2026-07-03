@@ -952,6 +952,143 @@
         ]
       }
     },
+    "qr-code": {
+      "title": "QR Code Generator",
+      "description": "Convert text, URLs, Wi-Fi info, and contact details into QR codes. Customize colors and download as PNG or SVG.",
+      "meta": {
+        "title": "QR Code Generator Tool | Jurepi",
+        "description": "Free QR code generator. Convert text, URLs, Wi-Fi, email, SMS, and vCard to QR codes. Adjust colors, choose error correction levels, download as PNG or SVG."
+      },
+      "modes": {
+        "label": "Input Type",
+        "text": "Text",
+        "url": "URL",
+        "wifi": "Wi-Fi",
+        "vcard": "vCard",
+        "email": "Email",
+        "sms": "SMS"
+      },
+      "inputArea": {
+        "placeholder": {
+          "text": "Enter text.",
+          "url": "Enter URL (e.g., https://jurepi.kr)",
+          "wifi": "Enter Wi-Fi details.",
+          "vcard": "Enter contact information.",
+          "email": "Enter email address.",
+          "sms": "Enter phone number and message."
+        },
+        "charCount": "{current} / {max}",
+        "tooLong": "Max {max} characters."
+      },
+      "wifi": {
+        "ssidLabel": "Network Name (SSID)",
+        "passwordLabel": "Password",
+        "encryptionLabel": "Security Type",
+        "wep": "WEP",
+        "wpa": "WPA",
+        "nopass": "No Security"
+      },
+      "vcard": {
+        "nameLabel": "Name *",
+        "phoneLabel": "Phone Number",
+        "emailLabel": "Email",
+        "urlLabel": "Website"
+      },
+      "email": {
+        "emailLabel": "Email Address *",
+        "subjectLabel": "Subject",
+        "bodyLabel": "Body"
+      },
+      "sms": {
+        "phoneLabel": "Phone Number *",
+        "messageLabel": "Message"
+      },
+      "ecc": {
+        "label": "Error Correction Level",
+        "l": "L (7% recovery)",
+        "m": "M (15% recovery)",
+        "q": "Q (25% recovery)",
+        "h": "H (30% recovery)",
+        "help": "Higher levels survive more damage but make the code denser."
+      },
+      "size": {
+        "label": "Size: {size}px",
+        "quietZoneLabel": "Quiet Zone: {qz}px"
+      },
+      "colors": {
+        "fgLabel": "Foreground (Dark)",
+        "bgLabel": "Background (Light)",
+        "contrast": "Contrast: {value}",
+        "contrastGood": "Good",
+        "contrastWarn": "Warning",
+        "contrastPoor": "Poor"
+      },
+      "logo": {
+        "label": "Logo (Optional)",
+        "upload": "Choose Image",
+        "remove": "Remove",
+        "help": "PNG, JPG, or SVG. Placed at the center at ~25% of the QR size."
+      },
+      "buttons": {
+        "downloadPng": "Download PNG",
+        "downloadSvg": "Download SVG",
+        "copyClipboard": "Copy to Clipboard",
+        "confirmLowContrast": "Generate Anyway"
+      },
+      "warnings": {
+        "lowContrast": "Low contrast may reduce scannability. Adjust colors or confirm to proceed.",
+        "invalidUrl": "Invalid URL."
+      },
+      "toasts": {
+        "downloadSuccess": "QR code downloaded.",
+        "copySuccess": "Copied to clipboard.",
+        "copyFail": "Failed to copy to clipboard."
+      },
+      "intro": {
+        "headline": "QR Code Generator",
+        "lead": "Convert text, URLs, Wi-Fi credentials, and contact info into QR codes. Customize colors and download as PNG or SVG."
+      },
+      "howTo": {
+        "title": "How to generate a QR code",
+        "content": "1. **Select a mode** — Choose from the tabs at the top: Text, URL, Wi-Fi, vCard, Email, or SMS.\n\n2. **Enter your data** — Depending on the mode, enter the relevant information. For text and URLs, just type. For Wi-Fi, enter the network name and password. For vCard, add your name and contact details.\n\n3. **Adjust the style** — (Optional) Customize the foreground color (dark) and background color (light). You can also adjust the size and quiet zone (white margin). Make sure there's enough contrast between colors for easy scanning.\n\n4. **Choose an error correction level** — Pick from L (7%), M (15%), Q (25%), or H (30%). Higher levels can recover from more damage but make the code larger.\n\n5. **Add a logo** — (Optional) Upload an image to place in the center of the QR code. Use a simple logo to avoid interfering with scanners.\n\n6. **Download or copy** — Save the QR code as PNG or SVG, or copy it to your clipboard to paste directly elsewhere."
+      },
+      "faq": {
+        "items": [
+          {
+            "q": "What is a QR code?",
+            "a": "A QR code (Quick Response Code) is a 2D barcode that stores information. Scan it with a smartphone camera or QR reader to quickly retrieve the encoded data. This tool lets you create QR codes from text, URLs, Wi-Fi info, contact details, and more."
+          },
+          {
+            "q": "Do QR codes work with custom colors?",
+            "a": "Yes, they work with any colors as long as there's enough contrast between the foreground (dark) and background (light). This tool warns you if contrast is too low to be easily scanned. Aim for a contrast value of 50 or higher."
+          },
+          {
+            "q": "Where is my generated QR code stored?",
+            "a": "Your QR code is generated only in your browser—nowhere else. It exists only on this page until you download or copy it. No data is sent to any server, so you can use this tool with complete privacy."
+          },
+          {
+            "q": "What's the difference between PNG and SVG?",
+            "a": "PNG is a raster image—small file size, but may look blurry if enlarged. SVG is a vector image—larger file size, but infinitely scalable without loss of quality. Use SVG for printing or large displays, PNG for web and messaging."
+          },
+          {
+            "q": "How do I use a Wi-Fi QR code?",
+            "a": "Scan the QR code with your phone's camera or a QR reader app. Your device will automatically detect the Wi-Fi network details and let you connect with one tap. Great for sharing Wi-Fi without saying the password out loud."
+          },
+          {
+            "q": "What does error correction level do?",
+            "a": "It lets QR codes tolerate damage. L recovers from ~7% damage, M from ~15%, Q from ~25%, and H from ~30%. Higher levels create more complex codes, so they're larger for the same data. Choose higher levels if your QR code might get dirty or damaged."
+          },
+          {
+            "q": "What's the maximum amount of data I can put in a QR code?",
+            "a": "Text can hold up to ~2953 characters depending on the error correction level. URLs and Wi-Fi info have shorter limits. The tool will tell you if your input is too long."
+          },
+          {
+            "q": "Can I put a logo in the middle of a QR code?",
+            "a": "Yes, but keep it simple. The logo can cover about 25% of the center area without breaking the code, but complex logos might prevent scanners from reading it. A simple, small logo works best."
+          }
+        ]
+      }
+    },
     "speed-quiz": {
       "title": "Speed Quiz Prompt Words",
       "description": "A party & classroom speed-quiz game: reveal category prompt words (animals, food, Olympics & more) one at a time on a big screen and race the timer to guess.",

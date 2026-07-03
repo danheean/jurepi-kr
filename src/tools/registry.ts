@@ -102,6 +102,21 @@ export const tools: ToolMeta[] = [
     order: 3,
     keywords: ['나이','나이 계산','나이 계산기','만 나이','연 나이','세는 나이','생년월일','생일','띠','별자리','요일','살아온 날','age','age calculator','how old','birthday','zodiac','star sign','manNai','korean age'],
   },
+  {
+    id: 'qr-code',
+    slug: 'qr-code',
+    category: 'converter',
+    icon: 'QrCode',
+    accent: 'sky',
+    status: 'live',
+    isNew: true,
+    order: 21,
+    keywords: [
+      'QR', 'QR코드', 'QR코드생성', '큐알코드', 'QR generator', 'QR code',
+      'Wi-Fi', 'vCard', 'URL', '이메일', '문자', 'email', 'SMS',
+      '변환', 'converter', 'scan', '스캔'
+    ],
+  },
 ];
 
 /** Get all live tools for static generation */
