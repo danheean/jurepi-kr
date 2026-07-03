@@ -941,6 +941,109 @@
         ]
       }
     },
+    "lunar-converter": {
+      "title": "Lunar-Solar Calendar Converter",
+      "description": "Convert dates between lunar and solar calendars, and discover the sexagenary cycle and zodiac animal for any year.",
+      "meta": {
+        "title": "Lunar-Solar Calendar Converter - Sexagenary & Zodiac Finder",
+        "description": "Easily convert between Gregorian (solar) and Korean lunar calendar dates. See the sexagenary (간지) and zodiac animal (십간십이지) for any year from 1391 to 2050. Find traditional festival dates like Lunar New Year and Chuseok."
+      },
+      "intro": {
+        "eyebrow": "Conversion Tool",
+        "title": "Lunar-Solar Calendar Converter",
+        "lead": "Effortlessly convert between Gregorian (solar) and lunar calendar dates, and explore the sexagenary cycle (60-year zodiac) and 12 zodiac animals. Perfect for finding traditional Korean festival dates like Lunar New Year and Chuseok."
+      },
+      "solar": {
+        "label": "Solar (Gregorian)",
+        "year": "Year",
+        "month": "Month",
+        "day": "Day"
+      },
+      "lunar": {
+        "label": "Lunar",
+        "year": "Year",
+        "month": "Month",
+        "day": "Day",
+        "leapMonthLabel": "Leap Month"
+      },
+      "today": "Check Today",
+      "result": {
+        "solarLabel": "Solar",
+        "lunarLabel": "Lunar",
+        "sexagenary": "Sexagenary (Gapja)",
+        "zodiac": "Zodiac Animal",
+        "leap": "(leap)",
+        "copyButtons": {
+          "solar": "Copy Solar",
+          "lunar": "Copy Lunar",
+          "both": "Copy Both",
+          "copied": "Copied!"
+        }
+      },
+      "zodiac": {
+        "rat": "Rat",
+        "ox": "Ox",
+        "tiger": "Tiger",
+        "rabbit": "Rabbit",
+        "dragon": "Dragon",
+        "snake": "Snake",
+        "horse": "Horse",
+        "goat": "Goat",
+        "monkey": "Monkey",
+        "rooster": "Rooster",
+        "dog": "Dog",
+        "pig": "Pig"
+      },
+      "recents": {
+        "title": "Recent Conversions",
+        "empty": "No recent conversions yet.",
+        "clear": "Clear All"
+      },
+      "errors": {
+        "out_of_range": "Unsupported year (1391–2050 only).",
+        "no_leap_month": "This year has no leap month.",
+        "invalid_date": "Invalid date."
+      },
+      "copyToast": "Copied!",
+      "howTo": {
+        "heading": "How to Use the Lunar-Solar Calendar Converter",
+        "whatIsTitle": "What's the difference between lunar and solar calendars?",
+        "whatIsBody": "The lunar calendar (陰曆) is based on the moon's phases and is used for traditional Korean festivals like Lunar New Year (설날) and Chuseok (추석). The solar (Gregorian) calendar is based on Earth's orbit around the sun and is the international standard. The same date has different notations in each system—this tool makes conversion between them simple.",
+        "sexagenaryTitle": "What are the sexagenary cycle and zodiac animals?",
+        "sexagenaryBody": "The sexagenary cycle (干支, Gapja) combines 10 heavenly stems and 12 earthly branches, repeating every 60 years. For example, 2024 is '갑진년' (Wood Dragon), and 2023 is '계묘년' (Water Rabbit). The 12 zodiac animals represent the 12 earthly branches: Rat (자), Ox (축), Tiger (인), Rabbit (묘), Dragon (진), Snake (사), Horse (오), Goat (미), Monkey (신), Rooster (유), Dog (술), Pig (해). Used for age reckoning and fortune-telling in Korea, China, Japan, and beyond.",
+        "howToTitle": "How to Use",
+        "howToBody": "Enter a solar (Gregorian) date in the 'Solar' tab, and the tool shows the equivalent lunar date, sexagenary, and zodiac. Or enter a lunar date in the 'Lunar' tab to convert to solar. If the year has a leap month, toggle the 'Leap Month' checkbox for accurate conversion. Click 'Check Today' to instantly see the lunar date and sexagenary for the current date."
+      },
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is a leap month (윤달) in the lunar calendar?",
+            "a": "The lunar calendar is shorter than the solar year by about 11 days. To keep it aligned with the seasons, a 'leap month' (윤달) is inserted approximately 7 times every 19 years instead of a regular month. For example, 2023 had a leap second month (윤2월). The position of the leap month varies by year—use this tool to find it."
+          },
+          {
+            "q": "How can I quickly find Lunar New Year and Chuseok dates?",
+            "a": "Enter the year in the Solar tab and try lunar month 1, day 1 for Lunar New Year (설날), and lunar month 8, day 15 for Chuseok (추석). The tool will convert them to solar dates. For example, Lunar New Year 2024 (음력 1월 1일) = February 10, 2024."
+          },
+          {
+            "q": "What is the date range for this tool?",
+            "a": "This converter supports dates from 1391 to 2050. Dates outside this range cannot be calculated."
+          },
+          {
+            "q": "Is the sexagenary calculation accurate?",
+            "a": "Yes, the sexagenary cycle is calculated from a fixed formula: (year - 4) % 60, so it is precise. However, some traditions use the winter solstice (冬至) as the reference point, so different schools or practices may have slightly different conventions."
+          },
+          {
+            "q": "Where are recent conversions stored?",
+            "a": "Recent conversions are stored only in your browser's local storage and are never sent to any server. If you clear your browser data, the history will be deleted."
+          },
+          {
+            "q": "Does it work on mobile?",
+            "a": "Yes, the converter works perfectly on mobile browsers with no app installation needed."
+          }
+        ]
+      }
+    },
     "speed-quiz": {
       "title": "Speed Quiz Prompt Words",
       "description": "A party & classroom speed-quiz game: reveal category prompt words (animals, food, Olympics & more) one at a time on a big screen and race the timer to guess.",

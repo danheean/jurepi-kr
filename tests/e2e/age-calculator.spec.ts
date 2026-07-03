@@ -85,7 +85,7 @@ test.describe('Age Calculator - E2E Integration', () => {
     expect(inputValue).toBe('1996-02-29');
 
     // Check console for no errors (ErrorBoundary would show error)
-    const consoleMessages = [];
+    const consoleMessages: string[] = [];
     page.on('console', (msg) => consoleMessages.push(msg.type()));
     await page.waitForTimeout(200);
     // Should not have error messages

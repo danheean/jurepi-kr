@@ -8,6 +8,7 @@
 - [신조어 용어사전 (New Word)](https://apps.jurepi.kr/ko/tools/new-word): Discover trending MZ slang and modern tech terms with meanings and examples in Korean and English side by side.
 - [1일1질문 (Q&A a Day)](https://apps.jurepi.kr/ko/tools/qna-a-day): Answer one question daily and build a growing personal journal of reflections.
 - [나이 계산기 (Age Calculator)](https://apps.jurepi.kr/ko/tools/age-calculator): Calculate your exact age in three ways: legal age (만 나이), calendar-year age, and traditional Korean counting age. See your zodiac sign, birth day of week, and days lived.
+- [음력·양력 변환기 (Lunar-Solar Calendar Converter)](https://apps.jurepi.kr/ko/tools/lunar-converter): Convert between Gregorian and lunar calendar dates (1391–2050), explore the sexagenary (간지, 60-year cycle) and zodiac animals. Perfect for finding traditional Korean festival dates.
 - [URL 인코더 (URL Encoder)](https://apps.jurepi.kr/ko/tools/url-encoder): Encode and decode URLs with UTF-8 and EUC-KR (CP949) charset support. Edit query parameters and handle percent-encoded characters instantly.
 - [별별 랭킹 (Various Rankings)](https://apps.jurepi.kr/ko/tools/rankings): Curated Top N ranked lists across AI models, programming languages, movies, music, and more from trusted sources.
 - [스피드퀴즈 제시어 (Speed Quiz Prompt Words)](https://apps.jurepi.kr/ko/tools/speed-quiz): Run a real-time party word-reveal game with category selection, difficulty levels, countdown timer, and score tracking. Perfect for classrooms, parties, and team events.

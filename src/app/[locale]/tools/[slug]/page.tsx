@@ -18,6 +18,10 @@ import { AgeCalculatorIntro } from '@/components/tools/age-calculator/AgeCalcula
 import { AgeCalculatorHowTo } from '@/components/tools/age-calculator/AgeCalculatorHowTo';
 import { AgeCalculatorFaq } from '@/components/tools/age-calculator/AgeCalculatorFaq';
 import { AgeCalculatorStructuredData } from '@/components/tools/age-calculator/AgeCalculatorStructuredData';
+import { LunarConverterIntro } from '@/components/tools/lunar-converter/LunarConverterIntro';
+import { LunarConverterHowTo } from '@/components/tools/lunar-converter/LunarConverterHowTo';
+import { LunarConverterFaq } from '@/components/tools/lunar-converter/LunarConverterFaq';
+import { LunarConverterStructuredData } from '@/components/tools/lunar-converter/LunarConverterStructuredData';
 
 const LadderGame = dynamic(() =>
   import('@/components/tools/ladder/LadderGame').then((m) => ({
@@ -67,6 +71,12 @@ const AgeCalculator = dynamic(() =>
   }))
 );
 
+const LunarConverter = dynamic(() =>
+  import('@/components/tools/lunar-converter/LunarConverter').then((m) => ({
+    default: m.LunarConverter,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -101,6 +111,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'age-calculator') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'lunar-converter') {
     title = t('meta.title');
     description = t('meta.description');
   } else {
@@ -195,6 +208,18 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
         <AgeCalculator />
         <AgeCalculatorHowTo />
         <AgeCalculatorFaq />
+      </>
+    );
+  }
+
+  if (slug === 'lunar-converter') {
+    return (
+      <>
+        <LunarConverterStructuredData />
+        <LunarConverterIntro />
+        <LunarConverter locale={locale} />
+        <LunarConverterHowTo />
+        <LunarConverterFaq />
       </>
     );
   }

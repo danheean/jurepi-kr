@@ -102,6 +102,17 @@ export const tools: ToolMeta[] = [
     order: 3,
     keywords: ['나이','나이 계산','나이 계산기','만 나이','연 나이','세는 나이','생년월일','생일','띠','별자리','요일','살아온 날','age','age calculator','how old','birthday','zodiac','star sign','manNai','korean age'],
   },
+  {
+    id: 'lunar-converter',
+    slug: 'lunar-converter',
+    category: 'converter',
+    icon: 'CalendarSync',
+    accent: 'grape',
+    status: 'live',
+    isNew: true,
+    order: 4,
+    keywords: ['음력','양력','음력변환','양력변환','음력달력','간지','갑자','띠','윤달','설날','생일 음력','음양력변환','달력','korean lunar','lunar calendar','solar calendar','lunar converter','sexagenary','zodiac','leap month','korean calendar','date conversion','gapja','干支'],
+  },
 ];
 
 /** Get all live tools for static generation */

@@ -17,6 +17,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "korean-lunar-calendar": "^0.4.0",
     "lucide-react": "^0.468.0",
     "markdown-to-jsx": "^9.8.2",
     "nanoid": "^5.1.0",
