@@ -1027,7 +1027,9 @@
       },
       "size": {
         "label": "Size: {size}px",
-        "quietZoneLabel": "Quiet Zone: {qz}px"
+        "quietZoneLabel": "Quiet Zone: {qz}px",
+        "qzMin": "4 modules",
+        "qzMax": "8 modules"
       },
       "colors": {
         "fgLabel": "Foreground (Dark)",
@@ -1053,7 +1055,8 @@
         "label": "Logo (Optional)",
         "upload": "Choose Image",
         "remove": "Remove",
-        "help": "PNG, JPG, or SVG. Placed at the center at ~25% of the QR size."
+        "help": "PNG, JPG, or SVG. Placed at the center at ~25% of the QR size.",
+        "previewAlt": "Logo preview"
       },
       "buttons": {
         "downloadPng": "Download PNG",

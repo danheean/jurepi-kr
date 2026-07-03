@@ -1027,7 +1027,9 @@
       },
       "size": {
         "label": "크기: {size}px",
-        "quietZoneLabel": "조용한 영역: {qz}px"
+        "quietZoneLabel": "조용한 영역: {qz}px",
+        "qzMin": "4 모듈",
+        "qzMax": "8 모듈"
       },
       "colors": {
         "fgLabel": "전경색 (어두운색)",
@@ -1053,7 +1055,8 @@
         "label": "로고 (선택)",
         "upload": "이미지 선택",
         "remove": "제거",
-        "help": "PNG·JPG·SVG 지원. 코드 중앙에 약 25% 크기로 배치됩니다."
+        "help": "PNG·JPG·SVG 지원. 코드 중앙에 약 25% 크기로 배치됩니다.",
+        "previewAlt": "로고 미리보기"
       },
       "buttons": {
         "downloadPng": "PNG 다운로드",

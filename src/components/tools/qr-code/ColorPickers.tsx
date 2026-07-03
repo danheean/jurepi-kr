@@ -81,8 +81,9 @@ export function ColorPickers({
 
       {/* FG color */}
       <div className="space-y-2">
-        <label className="text-sm font-medium text-text">{t('colors.fgLabel')}</label>
+        <label htmlFor="qr-fg-color" className="text-sm font-medium text-text">{t('colors.fgLabel')}</label>
         <input
+          id="qr-fg-color"
           type="text"
           value={fgColor}
           onChange={(e) => {
@@ -93,7 +94,7 @@ export function ColorPickers({
             }
           }}
           placeholder="#2a2411"
-          className="w-full px-3 py-2 border border-hairline rounded-md bg-surface font-mono text-sm focus:outline-none focus:ring-2 focus:ring-focus-ring"
+          className="w-full px-3 py-3 border border-hairline rounded-md bg-surface font-mono text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
         />
         <div className="flex flex-wrap gap-2">
           {PALETTE_COLORS.map(({ name, hex }) => (
@@ -111,8 +112,9 @@ export function ColorPickers({
 
       {/* BG color */}
       <div className="space-y-2">
-        <label className="text-sm font-medium text-text">{t('colors.bgLabel')}</label>
+        <label htmlFor="qr-bg-color" className="text-sm font-medium text-text">{t('colors.bgLabel')}</label>
         <input
+          id="qr-bg-color"
           type="text"
           value={bgColor}
           onChange={(e) => {
@@ -123,7 +125,7 @@ export function ColorPickers({
             }
           }}
           placeholder="#ffffff"
-          className="w-full px-3 py-2 border border-hairline rounded-md bg-surface font-mono text-sm focus:outline-none focus:ring-2 focus:ring-focus-ring"
+          className="w-full px-3 py-3 border border-hairline rounded-md bg-surface font-mono text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
         />
         <div className="flex flex-wrap gap-2">
           {PALETTE_COLORS.map(({ name, hex }) => (

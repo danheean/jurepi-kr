@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { useQRCode } from './useQRCode';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import { InputModeSelector } from './InputModeSelector';
+import { InputModeSelector, INPUT_PANEL_ID } from './InputModeSelector';
 import { InputArea } from './InputArea';
 import { ECCSelector } from './ECCSelector';
 import { SizeControls } from './SizeControls';
@@ -141,8 +141,8 @@ export function QRCodeGenerator({ locale }: Props) {
             <InputModeSelector mode={state.mode} onModeChange={actions.setMode} />
           </div>
 
-          {/* Input area */}
-          <div>
+          {/* Input area — tabpanel controlled by the InputModeSelector tabs */}
+          <div id={INPUT_PANEL_ID} role="tabpanel" aria-label={t('modes.label')}>
             <InputArea
               mode={state.mode}
               value={state.input}

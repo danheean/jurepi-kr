@@ -37,8 +37,7 @@ export function ECCSelector({ value, onChange }: ECCSelectorProps) {
         ))}
       </div>
       <p className="text-xs text-text-secondary leading-relaxed">
-        {t('ecc.help') ||
-          'Higher levels can recover from more damage, but make the QR code larger.'}
+        {t('ecc.help')}
       </p>
     </fieldset>
   );

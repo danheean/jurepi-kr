@@ -11,6 +11,9 @@ interface InputModeSelectorProps {
 
 const MODES: InputMode[] = ['text', 'url', 'wifi', 'vcard', 'email', 'sms'];
 
+/** id of the input-area tabpanel these tabs control (owned by QRCodeGenerator). */
+export const INPUT_PANEL_ID = 'qr-input-panel';
+
 export function InputModeSelector({ mode, onModeChange }: InputModeSelectorProps) {
   const t = useTranslations('tools.qr-code');
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -50,6 +53,7 @@ export function InputModeSelector({ mode, onModeChange }: InputModeSelectorProps
           ref={(el) => { tabRefs.current[i] = el; }}
           role="tab"
           aria-selected={mode === m}
+          aria-controls={INPUT_PANEL_ID}
           tabIndex={mode === m ? 0 : -1}
           onClick={() => onModeChange(m)}
           className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap transition-colors min-h-[44px] flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:outline-none ${

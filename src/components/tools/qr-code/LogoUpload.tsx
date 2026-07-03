@@ -63,7 +63,7 @@ export function LogoUpload({ logoUrl, onLogoUrlChange }: LogoUploadProps) {
             <div className="w-24 h-24 rounded-md border border-hairline overflow-hidden bg-surface flex items-center justify-center">
               <img
                 src={logoUrl}
-                alt="Logo preview"
+                alt={t('logo.previewAlt')}
                 className="w-full h-full object-contain"
               />
             </div>
@@ -79,7 +79,7 @@ export function LogoUpload({ logoUrl, onLogoUrlChange }: LogoUploadProps) {
       </div>
 
       <p className="text-xs text-text-secondary leading-relaxed">
-        {t('logo.help') || 'Simple logos work best. Avoid complex images.'}
+        {t('logo.help')}
       </p>
     </div>
   );

@@ -21,10 +21,11 @@ export function SizeControls({
     <div className="space-y-6">
       {/* Size Slider */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-text">
+        <label htmlFor="qr-size" className="block text-sm font-semibold text-text">
           {t('size.label', { size })}
         </label>
         <input
+          id="qr-size"
           type="range"
           min="200"
           max="500"
@@ -32,7 +33,6 @@ export function SizeControls({
           value={size}
           onChange={(e) => onSizeChange(Number(e.target.value))}
           className="w-full h-2 bg-surface-muted rounded-lg appearance-none cursor-pointer accent-accent-sky focus-visible:ring-2 focus-visible:ring-focus-ring"
-          aria-label="QR code size"
         />
         <div className="flex justify-between text-xs text-text-secondary">
           <span>200px</span>
@@ -42,10 +42,11 @@ export function SizeControls({
 
       {/* Quiet Zone Slider */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-text">
+        <label htmlFor="qr-quietzone" className="block text-sm font-semibold text-text">
           {t('size.quietZoneLabel', { qz: quietZone })}
         </label>
         <input
+          id="qr-quietzone"
           type="range"
           min="4"
           max="8"
@@ -53,11 +54,10 @@ export function SizeControls({
           value={quietZone}
           onChange={(e) => onQzChange(Number(e.target.value))}
           className="w-full h-2 bg-surface-muted rounded-lg appearance-none cursor-pointer accent-accent-sky focus-visible:ring-2 focus-visible:ring-focus-ring"
-          aria-label="Quiet zone (white margin)"
         />
         <div className="flex justify-between text-xs text-text-secondary">
-          <span>4 modules</span>
-          <span>8 modules</span>
+          <span>{t('size.qzMin')}</span>
+          <span>{t('size.qzMax')}</span>
         </div>
       </div>
     </div>
