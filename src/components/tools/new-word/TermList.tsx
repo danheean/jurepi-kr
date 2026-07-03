@@ -31,7 +31,9 @@ export function TermList({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const items = containerRef.current?.querySelectorAll('[role="button"]') ?? [];
+      // Cards are crawlable <a> anchors (data-testid="term-card-…"), not role=button.
+      const items =
+        containerRef.current?.querySelectorAll('[data-testid^="term-card-"]') ?? [];
       const currentIdx = Array.from(items).findIndex(
         (item) => document.activeElement === item
       );
@@ -77,8 +79,12 @@ export function TermList({
         case 'f':
           if (currentIdx >= 0) {
             e.preventDefault();
-            const card = items[currentIdx] as HTMLButtonElement;
-            const starBtn = card.querySelector('[aria-pressed]') as HTMLButtonElement;
+            const card = items[currentIdx] as HTMLElement;
+            // Star toggle is a sibling of the card anchor (button-not-in-anchor),
+            // so look it up on the card's wrapper, not inside the anchor.
+            const starBtn = card.parentElement?.querySelector(
+              '[aria-pressed]'
+            ) as HTMLButtonElement | undefined;
             starBtn?.click();
           }
           break;

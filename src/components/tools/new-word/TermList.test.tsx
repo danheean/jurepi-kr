@@ -158,7 +158,7 @@ describe('TermList', () => {
     );
 
     const listContainer = container.querySelector('[role="list"]') as HTMLElement;
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
 
     (cards[0] as HTMLElement).focus();
     await userEvent.keyboard('{ArrowDown}');
@@ -181,7 +181,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[1] as HTMLElement).focus();
     await userEvent.keyboard('{Home}');
 
@@ -203,7 +203,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[0] as HTMLElement).focus();
     await userEvent.keyboard('{End}');
 
@@ -226,7 +226,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[0] as HTMLElement).focus();
     await userEvent.keyboard('f');
 
@@ -286,7 +286,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[1] as HTMLElement).focus();
     await userEvent.keyboard('{ArrowUp}');
 
@@ -308,7 +308,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[0] as HTMLElement).focus();
     await userEvent.keyboard('{ArrowUp}');
 
@@ -330,7 +330,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[cards.length - 1] as HTMLElement).focus();
     await userEvent.keyboard('{ArrowDown}');
 
@@ -353,7 +353,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[0] as HTMLElement).focus();
     await userEvent.keyboard('{Enter}');
 
@@ -376,7 +376,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[0] as HTMLElement).focus();
     await userEvent.keyboard(' ');
 
@@ -398,7 +398,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     // Position in the middle
     (cards[1] as HTMLElement).focus();
     await userEvent.keyboard('{ArrowLeft}');
@@ -421,7 +421,7 @@ describe('TermList', () => {
       />
     );
 
-    const cards = container.querySelectorAll('[role="button"]');
+    const cards = container.querySelectorAll('[data-testid^="term-card-"]');
     (cards[0] as HTMLElement).focus();
     await userEvent.keyboard('{ArrowRight}');
 
