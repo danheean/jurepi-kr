@@ -95,7 +95,9 @@ export const QRPreview = forwardRef<HTMLCanvasElement, Props>(
       );
     }
 
-    if (isLoading) {
+    // Only show the spinner on the first encode (no prior QR). Once a QR exists,
+    // keep it visible during re-encode (live typing) so it never flickers away.
+    if (isLoading && !result) {
       return (
         <div className="flex items-center justify-center w-full aspect-square bg-surface border border-hairline rounded-lg">
           <div className={prefersReducedMotion ? '' : 'animate-spin'}>

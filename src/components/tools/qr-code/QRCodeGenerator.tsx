@@ -148,7 +148,6 @@ export function QRCodeGenerator({ locale }: Props) {
               value={state.input}
               onChange={actions.setInput}
               maxLength={MAX_INPUT_LENGTH}
-              isLoading={state.isEncoding}
             />
           </div>
 
