@@ -12,6 +12,7 @@ import {
   absoluteToolUrl,
 } from '@/lib/seo';
 import { NewWordSpoke } from '@/components/tools/new-word/NewWordSpoke';
+import { ShareButtons } from '@/components/share';
 
 type Props = {
   params: Promise<{ locale: 'ko' | 'en'; term: string }>;
@@ -93,6 +94,11 @@ export default async function SpokeToolPage({ params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
         />
+
+        {/* SNS share (shared template affordance across tool + spoke pages) */}
+        <div className="mb-6 flex justify-end">
+          <ShareButtons />
+        </div>
 
         {/* Spoke Content */}
         <NewWordSpoke term={item} locale={locale as 'ko' | 'en'} catalog={catalog} />

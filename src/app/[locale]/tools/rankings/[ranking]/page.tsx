@@ -11,6 +11,7 @@ import {
   absoluteToolUrl,
 } from '@/lib/seo';
 import { RankingsSpoke } from '@/components/tools/rankings/RankingsSpoke';
+import { ShareButtons } from '@/components/share';
 
 type Props = {
   params: Promise<{ locale: 'ko' | 'en'; ranking: string }>;
@@ -95,6 +96,11 @@ export default async function SpokeToolPage({ params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
         />
+
+        {/* SNS share (shared template affordance across tool + spoke pages) */}
+        <div className="mb-6 flex justify-end">
+          <ShareButtons />
+        </div>
 
         {/* Spoke Content */}
         <RankingsSpoke ranking={item} locale={locale as 'ko' | 'en'} />

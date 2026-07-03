@@ -54,6 +54,20 @@
     "errorBody": "도구에서 오류가 발생했습니다. 페이지를 새로고침해 주세요.",
     "errorAction": "새로고침"
   },
+  "share": {
+    "heading": "공유하기",
+    "targets": {
+      "naver": "네이버로 공유 (블로그·카페)",
+      "x": "X(트위터)로 공유",
+      "facebook": "페이스북으로 공유",
+      "threads": "쓰레드로 공유",
+      "telegram": "텔레그램으로 공유",
+      "whatsapp": "왓츠앱으로 공유"
+    },
+    "copyLink": "링크 복사",
+    "copied": "링크를 복사했습니다!",
+    "native": "다른 앱으로 공유 (인스타그램·카카오톡 등)"
+  },
   "categories": {
     "all": "전체",
     "random": "랜덤/추첨",

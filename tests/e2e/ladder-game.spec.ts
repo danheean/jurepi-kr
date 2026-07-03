@@ -63,7 +63,7 @@ test.describe('Ladder Game - E2E Integration', () => {
     await expect.poll(() => prizeCardsAllRevealed(prizeCards, 6), { timeout: 3000 }).toBeGreaterThan(0);
 
     // aria-live announcement region present
-    await expect(page.locator('[aria-live="polite"]')).toBeVisible();
+    await expect(page.locator('[role="region"][aria-live="polite"]')).toBeVisible();
 
     // Reveal all
     await page.locator('button:has-text("전체 결과 보기")').click();
@@ -195,7 +195,7 @@ test.describe('Ladder Game - E2E Integration', () => {
     }
 
     // aria-live region exists for announcements
-    await expect(page.locator('[aria-live="polite"]')).toBeVisible();
+    await expect(page.locator('[role="region"][aria-live="polite"]')).toBeVisible();
   });
 
   test('Smoke test: Home page loads', async ({ page }) => {

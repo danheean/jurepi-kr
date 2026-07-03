@@ -11,6 +11,7 @@ import {
   absoluteToolUrl,
 } from '@/lib/seo';
 import { BookmarksSpoke } from '@/components/tools/bookmarks/BookmarksSpoke';
+import { ShareButtons } from '@/components/share';
 
 type Props = {
   params: Promise<{ locale: 'ko' | 'en'; topic: string }>;
@@ -97,6 +98,11 @@ export default async function SpokeToolPage({ params }: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
         />
+
+        {/* SNS share (shared template affordance across tool + spoke pages) */}
+        <div className="mb-6 flex justify-end">
+          <ShareButtons />
+        </div>
 
         {/* Spoke Content */}
         <BookmarksSpoke topic={tp} locale={locale as 'ko' | 'en'} />

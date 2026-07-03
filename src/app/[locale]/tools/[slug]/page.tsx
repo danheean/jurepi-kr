@@ -22,6 +22,7 @@ import { LunarConverterIntro } from '@/components/tools/lunar-converter/LunarCon
 import { LunarConverterHowTo } from '@/components/tools/lunar-converter/LunarConverterHowTo';
 import { LunarConverterFaq } from '@/components/tools/lunar-converter/LunarConverterFaq';
 import { LunarConverterStructuredData } from '@/components/tools/lunar-converter/LunarConverterStructuredData';
+import { ShareButtons } from '@/components/share';
 import { QRCodeIntro } from '@/components/tools/qr-code/QRCodeIntro';
 import { QRCodeHowTo } from '@/components/tools/qr-code/QRCodeHowTo';
 import { QRCodeFaq } from '@/components/tools/qr-code/QRCodeFaq';
@@ -260,11 +261,13 @@ export default async function ToolPage({ params }: Props) {
   return (
     <div className="bg-background">
       <div className="mx-auto max-w-container px-6 py-16">
-        {/* Breadcrumb */}
-        <div className="mb-8">
+        {/* Breadcrumb + SNS share (share is part of the tool-page template:
+            every current and future tool gets it automatically) */}
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
           <a href={`/${locale}`} className="text-brand-ink hover:text-brand-ink-strong">
             ← {t('back')}
           </a>
+          <ShareButtons />
         </div>
 
         {/* Tool Content with Error Boundary */}
