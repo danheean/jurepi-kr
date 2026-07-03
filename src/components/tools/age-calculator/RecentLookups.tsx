@@ -41,7 +41,7 @@ export function RecentLookups({ recents, onSelectRecent, onClear }: Props) {
         <h3 className="text-sm font-semibold text-text">{t('recents.heading')}</h3>
         <button
           onClick={onClear}
-          className="text-xs text-text-secondary hover:text-text transition-colors underline"
+          className="-mr-2 px-2 py-1 text-xs text-text-secondary hover:text-text transition-colors underline"
         >
           {t('recents.clear')}
         </button>

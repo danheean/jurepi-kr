@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import type { AgeResult } from '@/lib/age-calculator/age';
 
 interface Props {
@@ -12,10 +12,11 @@ interface Props {
  * DateFacts: Displays 6 facts about the birthdate
  * - 2×2 grid on desktop, 1-col on mobile
  * - Zodiac, StarSign, DayOfWeek, DaysLived, Breakdown, Countdown
+ * `locale` (BCP-47 from the parent's useLocale) is the single locale source —
+ * used for both Intl formatting and the ko/en text branches.
  */
 export function DateFacts({ age, locale }: Props) {
   const t = useTranslations('tools.age-calculator');
-  const currentLocale = useLocale();
 
   /**
    * Format day of week using Intl.DateTimeFormat
@@ -44,7 +45,7 @@ export function DateFacts({ age, locale }: Props) {
    */
   const getBreakdownFormatted = (): string => {
     const { years, months, days } = age.breakdown;
-    if (currentLocale === 'ko') {
+    if (locale === 'ko') {
       return `${years}년 ${months}개월 ${days}일`;
     }
     // English: use unambiguous unit abbreviations (mo for months, not "m" which reads as minutes)
@@ -55,7 +56,7 @@ export function DateFacts({ age, locale }: Props) {
    * Format countdown: "N일" (Korean) or "N days" (English)
    */
   const getCountdownFormatted = (): string => {
-    if (currentLocale === 'ko') {
+    if (locale === 'ko') {
       return `${age.nextBirthdayCountdown}일`;
     }
     return `${age.nextBirthdayCountdown} day${age.nextBirthdayCountdown === 1 ? '' : 's'}`;
@@ -103,7 +104,7 @@ export function DateFacts({ age, locale }: Props) {
         {facts.map((fact) => (
           <div
             key={fact.key}
-            className="bg-surface-muted border border-hairline rounded-md p-4 transition-all duration-150"
+            className="bg-surface-muted border border-hairline rounded-md p-4"
           >
             <div className="text-xs font-semibold text-text-secondary mb-1.5">
               {fact.label}

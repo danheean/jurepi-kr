@@ -18,7 +18,9 @@ describe('DateFacts', () => {
     starSignKey: 'aries',
   };
 
-  const renderComponent = (age: AgeResult = mockAge, locale: string = 'ko-KR') => {
+  // The parent passes locale from useLocale() → the BCP-47 base ('ko' | 'en'),
+  // NOT a regional tag like 'ko-KR'. DateFacts maps that to a regional Intl locale.
+  const renderComponent = (age: AgeResult = mockAge, locale: string = 'ko') => {
     return render(
       <NextIntlClientProvider locale="ko" messages={messages as any}>
         <DateFacts age={age} locale={locale} />
@@ -75,6 +77,14 @@ describe('DateFacts', () => {
       /수|wed/i.test(content)
     );
     expect(dayOfWeekText).toBeInTheDocument();
+  });
+
+  it('formats breakdown and countdown consistently from the single locale prop (en)', () => {
+    // Regression guard: breakdown/countdown must follow the SAME locale as the
+    // rest of the facts (previously breakdown used a second useLocale() source).
+    renderComponent(mockAge, 'en');
+    expect(screen.getByText('25y 2mo 15d')).toBeInTheDocument();
+    expect(screen.getByText('50 days')).toBeInTheDocument();
   });
 
   it('renders with different age values', () => {

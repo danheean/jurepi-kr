@@ -94,7 +94,7 @@ export function BirthdateInput({
       <div className="space-y-3">
         <button
           onClick={() => onUseAsOfChange(!useAsOf)}
-          className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg border font-medium text-sm transition-colors ${
+          className={`inline-flex items-center gap-2 min-h-11 px-3 py-2 rounded-lg border font-medium text-sm transition-colors ${
             useAsOf
               ? 'bg-accent-mint/10 border-accent-mint/30 text-accent-mint-ink'
               : 'bg-surface-muted border-hairline text-text hover:border-text-secondary'
