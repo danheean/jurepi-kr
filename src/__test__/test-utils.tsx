@@ -382,6 +382,99 @@ const defaultMessages = {
         ],
       },
     },
+    'character-counter': {
+      title: 'Character & Word Counter',
+      description: 'Count characters, words, sentences in real-time.',
+      intro: {
+        eyebrow: 'TEXT TOOL',
+        heading: 'Character & Word Counter',
+        lead: 'Count characters, words, sentences in real-time.',
+      },
+      textarea: {
+        placeholder: 'Paste or type text here…',
+        ariaLabel: 'Text input',
+      },
+      hint: '{chars} characters ({noSpace} without spaces)',
+      metrics: {
+        label: {
+          charactersWithSpaces: 'Characters (with spaces)',
+          charactersWithoutSpaces: 'Characters (no spaces)',
+          words: 'Words',
+          sentences: 'Sentences',
+          paragraphs: 'Paragraphs',
+          lines: 'Lines',
+          byteSize: 'Bytes (UTF-8)',
+          readingTime: 'Reading time',
+          speakingTime: 'Speaking time',
+        },
+        unit: {
+          minutes: 'min',
+        },
+      },
+      limit: {
+        label: 'Character Limit',
+        preset: {
+          twitter: 'Twitter (280)',
+          meta: 'Meta Description (160)',
+          custom: 'Custom',
+          none: 'None',
+        },
+        customInput: {
+          ariaLabel: 'Custom character limit input',
+        },
+        progress: {
+          status: {
+            under: '{current} / {limit} (OK)',
+            near: '{current} / {limit} (80%)',
+            over: '{current} / {limit} (OVER)',
+          },
+        },
+      },
+      button: {
+        copyText: 'Copy text',
+        copyStats: 'Copy stats',
+        clear: 'Clear',
+      },
+      toast: {
+        copiedText: 'Copied!',
+        copiedStats: 'Stats copied!',
+        cleared: 'Cleared!',
+      },
+      howTo: {
+        title: 'How to Use',
+        steps: [
+          { step: 1, text: 'Paste or type text into the input field.' },
+          { step: 2, text: 'All metrics update in real-time as you type.' },
+          { step: 3, text: 'Optionally select a character limit (Twitter, Meta, custom).' },
+          { step: 4, text: 'Copy the text or metrics for use elsewhere.' },
+        ],
+      },
+      faq: {
+        title: 'FAQ',
+        items: [
+          {
+            q: 'Why do character counts with and without spaces differ?',
+            a: 'Spaces include tabs, line breaks, etc. Most apps set limits by character count including spaces.',
+          },
+          {
+            q: 'How are emoji counted?',
+            a: 'Emoji and ZWJ sequences count as 1 character each (via Intl.Segmenter).',
+          },
+          {
+            q: 'How is reading time calculated?',
+            a: 'We divide word count by your reading speed (default 200 WPM).',
+          },
+          {
+            q: 'How is speaking time calculated?',
+            a: 'We divide word count by your speaking speed (default 130 WPM).',
+          },
+          {
+            q: 'Why do bytes differ from character count?',
+            a: 'In UTF-8, Korean characters and emoji take multiple bytes. Byte limits are common in programming.',
+          },
+        ],
+      },
+    },
   },
 };
 
