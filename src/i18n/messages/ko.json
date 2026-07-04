@@ -1279,6 +1279,7 @@
       "upload": {
         "label": "이미지 업로드",
         "text": "클릭해서 업로드하거나 드래그하세요",
+        "button": "파일 선택",
         "formats": "PNG, JPEG, WebP",
         "fileName": "파일명",
         "fileSize": "파일 크기",
@@ -1291,6 +1292,8 @@
         "hexInput": "색 코드 (#RRGGBB)",
         "currentColor": "선택된 색",
         "eyedropperMode": "색 가져오기 모드 활성화",
+        "eyedropperActive": "이미지를 탭하거나 클릭해 색상을 선택하세요",
+        "eyedropperCancel": "취소",
         "hexPlaceholder": "#ffffff"
       },
       "controls": {
@@ -1312,7 +1315,8 @@
         "detecting": "배경색을 감지하는 중…",
         "empty": "이미지를 업로드해서 미리보기를 보세요",
         "dimensions": "원본: {width}×{height} → PNG로 내보내기",
-        "downscaled": "이미지가 크므로 최장 변이 4096px로 축소되었습니다"
+        "downscaled": "이미지가 크므로 최장 변이 4096px로 축소되었습니다",
+        "resultAlt": "배경이 제거된 결과 이미지 미리보기"
       },
       "export": {
         "download": "PNG 다운로드",
@@ -1321,6 +1325,7 @@
         "downloadSuccess": "다운로드되었습니다!",
         "copySuccess": "클립보드에 복사되었습니다!",
         "downloadFail": "다운로드 실패. 다시 시도해주세요",
+        "copyFail": "복사 실패. 브라우저가 클립보드 이미지 복사를 지원하지 않을 수 있습니다",
         "fileName": "transparent-{timestamp}.png"
       },
       "errors": {

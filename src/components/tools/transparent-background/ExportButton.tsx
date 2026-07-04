@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Download, Copy, Check } from 'lucide-react';
+import { Download, Copy, Check, AlertTriangle } from 'lucide-react';
 
 interface ExportButtonProps {
   resultBlob?: Blob;
   canExport: boolean;
   onDownload: () => Promise<Blob | null>;
-  onCopyClipboard: () => Promise<void>;
+  onCopyClipboard: () => Promise<boolean>;
 }
+
+type FeedbackState = 'idle' | 'success' | 'fail';
+
+const FEEDBACK_DURATION_MS = 2000;
 
 export function ExportButton({
   resultBlob,
@@ -16,13 +20,26 @@ export function ExportButton({
   onCopyClipboard,
 }: ExportButtonProps) {
   const t = useTranslations('tools.transparent-background');
-  const [downloadSuccess, setDownloadSuccess] = useState(false);
-  const [copySuccess, setCopySuccess] = useState(false);
+  const [downloadState, setDownloadState] = useState<FeedbackState>('idle');
+  const [copyState, setCopyState] = useState<FeedbackState>('idle');
+
+  const showDownloadFeedback = (state: FeedbackState) => {
+    setDownloadState(state);
+    setTimeout(() => setDownloadState('idle'), FEEDBACK_DURATION_MS);
+  };
+
+  const showCopyFeedback = (state: FeedbackState) => {
+    setCopyState(state);
+    setTimeout(() => setCopyState('idle'), FEEDBACK_DURATION_MS);
+  };
 
   const handleDownload = async () => {
     try {
       const blob = await onDownload();
-      if (!blob) return;
+      if (!blob) {
+        showDownloadFeedback('fail');
+        return;
+      }
 
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -33,20 +50,18 @@ export function ExportButton({
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      setDownloadSuccess(true);
-      setTimeout(() => setDownloadSuccess(false), 2000);
+      showDownloadFeedback('success');
     } catch (err) {
-      console.error('Download failed', err);
+      showDownloadFeedback('fail');
     }
   };
 
   const handleCopy = async () => {
     try {
-      await onCopyClipboard();
-      setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000);
+      const succeeded = await onCopyClipboard();
+      showCopyFeedback(succeeded ? 'success' : 'fail');
     } catch (err) {
-      console.error('Copy failed', err);
+      showCopyFeedback('fail');
     }
   };
 
@@ -55,19 +70,29 @@ export function ExportButton({
       <button
         onClick={handleDownload}
         disabled={!canExport}
+        aria-live="polite"
         className={`flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium transition-colors ${
-          canExport
-            ? 'bg-brand text-on-brand hover:bg-brand-strong'
-            : 'cursor-not-allowed bg-surface-muted text-text-muted'
+          downloadState === 'fail'
+            ? 'bg-danger text-white'
+            : canExport
+              ? 'bg-brand text-on-brand hover:bg-brand-strong'
+              : 'cursor-not-allowed bg-surface-muted text-text-muted'
         }`}
         title={!canExport ? t('export.downloadDisabled') : undefined}
       >
-        {downloadSuccess ? (
+        {downloadState === 'success' && (
           <>
             <Check className="h-5 w-5" />
             {t('export.downloadSuccess')}
           </>
-        ) : (
+        )}
+        {downloadState === 'fail' && (
+          <>
+            <AlertTriangle className="h-5 w-5" />
+            {t('export.downloadFail')}
+          </>
+        )}
+        {downloadState === 'idle' && (
           <>
             <Download className="h-5 w-5" />
             {t('export.download')}
@@ -78,19 +103,29 @@ export function ExportButton({
       <button
         onClick={handleCopy}
         disabled={!canExport}
+        aria-live="polite"
         className={`flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium transition-colors ${
-          canExport
-            ? 'border border-hairline bg-surface-muted text-text hover:bg-surface-sunken'
-            : 'cursor-not-allowed border border-hairline bg-surface-muted text-text-muted'
+          copyState === 'fail'
+            ? 'border border-danger bg-surface-muted text-danger-ink'
+            : canExport
+              ? 'border border-hairline bg-surface-muted text-text hover:bg-surface-sunken'
+              : 'cursor-not-allowed border border-hairline bg-surface-muted text-text-muted'
         }`}
         title={!canExport ? t('export.downloadDisabled') : undefined}
       >
-        {copySuccess ? (
+        {copyState === 'success' && (
           <>
             <Check className="h-5 w-5" />
             {t('export.copySuccess')}
           </>
-        ) : (
+        )}
+        {copyState === 'fail' && (
+          <>
+            <AlertTriangle className="h-5 w-5" />
+            {t('export.copyFail')}
+          </>
+        )}
+        {copyState === 'idle' && (
           <>
             <Copy className="h-5 w-5" />
             {t('export.copy')}

@@ -279,6 +279,7 @@ const defaultMessages = {
       upload: {
         label: 'Upload Image',
         text: 'Click to upload or drag your image',
+        button: 'Choose file',
         formats: 'PNG, JPEG, WebP',
         fileName: 'Filename',
         fileSize: 'File size',
@@ -291,6 +292,8 @@ const defaultMessages = {
         hexInput: 'Color Code (#RRGGBB)',
         currentColor: 'Selected Color',
         eyedropperMode: 'Enable eyedropper mode',
+        eyedropperActive: 'Tap or click the image to pick a color',
+        eyedropperCancel: 'Cancel',
         hexPlaceholder: '#ffffff',
       },
       controls: {
@@ -310,8 +313,10 @@ const defaultMessages = {
       preview: {
         label: 'Preview',
         detecting: 'Detecting background color…',
+        empty: 'Upload an image to see the preview',
         dimensions: 'Original: {width}×{height} → Export as transparent PNG',
         downscaled: 'Image is large, so the longest edge has been downscaled to 4096px',
+        resultAlt: 'Preview of the result image with the background removed',
       },
       export: {
         download: 'Download PNG',
@@ -320,6 +325,7 @@ const defaultMessages = {
         downloadSuccess: 'Downloaded!',
         copySuccess: 'Copied to clipboard!',
         downloadFail: 'Download failed. Try again',
+        copyFail: 'Copy failed. Your browser may not support copying images to the clipboard',
         fileName: 'transparent-{timestamp}.png',
       },
       errors: {

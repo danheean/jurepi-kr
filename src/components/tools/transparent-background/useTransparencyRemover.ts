@@ -37,7 +37,7 @@ interface UseTransparencyRemoverActions {
   detectBackground: () => Promise<void>;
   updateOptions: (opts: Partial<{ tolerance: number; feather: number; mode: 'flood-fill' | 'global'; bgColor?: RGB }>) => void;
   exportPNG: () => Promise<Blob | null>;
-  copyToClipboard: () => Promise<void>;
+  copyToClipboard: () => Promise<boolean>;
   reset: () => void;
 }
 
@@ -156,7 +156,7 @@ export function useTransparencyRemover(): UseTransparencyRemoverState & UseTrans
       };
 
       const startTime = performance.now();
-      const resultImageData = applyTransparency(imageData, opts.bgColor, opts.tolerance, opts.feather, opts.mode);
+      const resultImageData = await applyTransparency(imageData, opts.bgColor, opts.tolerance, opts.feather, opts.mode);
 
       // Render result to canvas
       const resultCanvas = document.createElement('canvas');
@@ -291,7 +291,7 @@ export function useTransparencyRemover(): UseTransparencyRemoverState & UseTrans
       if (!ctx) throw new Error('Canvas context failed');
 
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const resultData = applyTransparency(imageData, opts.bgColor, opts.tolerance, opts.feather, opts.mode);
+      const resultData = await applyTransparency(imageData, opts.bgColor, opts.tolerance, opts.feather, opts.mode);
 
       // Render result to a new canvas
       const resultCanvas = document.createElement('canvas');
@@ -365,8 +365,8 @@ export function useTransparencyRemover(): UseTransparencyRemoverState & UseTrans
     }
   }, []);
 
-  const copyToClipboard = useCallback(async () => {
-    if (!stateRef.current.resultCanvas) return;
+  const copyToClipboard = useCallback(async (): Promise<boolean> => {
+    if (!stateRef.current.resultCanvas) return false;
 
     try {
       const blob = await canvasToBlob(stateRef.current.resultCanvas);
@@ -375,8 +375,12 @@ export function useTransparencyRemover(): UseTransparencyRemoverState & UseTrans
           'image/png': blob,
         }),
       ]);
+      return true;
     } catch (err) {
-      // Silently fail (copy is nice-to-have)
+      // Clipboard write can fail (unsupported browser, denied permission,
+      // insecure context) — the caller surfaces this to the user instead of
+      // showing a false "Copied!" success state.
+      return false;
     }
   }, []);
 

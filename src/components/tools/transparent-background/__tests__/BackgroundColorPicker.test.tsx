@@ -72,6 +72,45 @@ describe('BackgroundColorPicker', () => {
     expect(swatch).toHaveStyle('background-color: #6496c8');
   });
 
+  it('gives the color swatch a localized aria-label (not a hardcoded English string)', () => {
+    const { container } = render(
+      <NextIntlClientProvider locale="en" messages={messages.en}>
+        <BackgroundColorPicker
+          bgColor={{ r: 100, g: 150, b: 200 }}
+          onColorChange={mockCallbacks.onColorChange}
+          onAutoDetect={mockCallbacks.onAutoDetect}
+          onEyedropperMode={mockCallbacks.onEyedropperMode}
+        />
+      </NextIntlClientProvider>
+    );
+
+    const swatch = container.querySelector('div[role="img"]');
+    expect(swatch).toHaveAttribute(
+      'aria-label',
+      `${messages.en.tools['transparent-background'].colorPicker.currentColor}: #6496c8`
+    );
+  });
+
+  it('does not hardcode the English swatch label in the Korean locale', () => {
+    const { container } = render(
+      <NextIntlClientProvider locale="ko" messages={messages.ko}>
+        <BackgroundColorPicker
+          bgColor={{ r: 100, g: 150, b: 200 }}
+          onColorChange={mockCallbacks.onColorChange}
+          onAutoDetect={mockCallbacks.onAutoDetect}
+          onEyedropperMode={mockCallbacks.onEyedropperMode}
+        />
+      </NextIntlClientProvider>
+    );
+
+    const swatch = container.querySelector('div[role="img"]');
+    expect(swatch?.getAttribute('aria-label')).not.toMatch(/Current color/i);
+    expect(swatch).toHaveAttribute(
+      'aria-label',
+      `${messages.ko.tools['transparent-background'].colorPicker.currentColor}: #6496c8`
+    );
+  });
+
   it('calls onAutoDetect when auto-detect button is clicked', async () => {
     render(
       <NextIntlClientProvider locale="ko" messages={messages.ko}>

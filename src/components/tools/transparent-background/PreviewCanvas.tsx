@@ -61,6 +61,8 @@ export function PreviewCanvas({
             ref={canvasRef}
             className="block max-h-full max-w-full"
             style={{ imageRendering: 'crisp-edges' }}
+            role="img"
+            aria-label={t('preview.resultAlt')}
           />
         ) : (
           <div className="flex flex-col items-center justify-center gap-3 p-8 text-center">

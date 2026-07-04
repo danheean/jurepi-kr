@@ -17,9 +17,11 @@ describe('TransparentBgIntro', () => {
     // Verify H1 is present (title from i18n)
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
 
-    // Verify eyebrow text is present (sky accent color)
+    // Verify eyebrow text is present, using the contrast-safe ink variant.
+    // --accent-sky alone is ~2.14:1 on white (fails WCAG AA); --accent-sky-ink
+    // is the token built for text use (~5.95:1).
     const eyebrow = screen.getByText((_, el) =>
-      Boolean(el?.className?.includes('text-accent-sky'))
+      Boolean(el?.className?.includes('text-accent-sky-ink'))
     );
     expect(eyebrow).toBeInTheDocument();
   });

@@ -94,7 +94,7 @@ export function BackgroundColorPicker({
               backgroundColor: rgbToHex(bgColor),
             }}
             role="img"
-            aria-label={`Current color: ${rgbToHex(bgColor)}`}
+            aria-label={`${t('colorPicker.currentColor')}: ${rgbToHex(bgColor)}`}
           />
           <span className="text-xs text-text-secondary">{t('colorPicker.currentColor')}</span>
         </div>

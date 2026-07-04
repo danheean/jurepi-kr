@@ -72,6 +72,27 @@ describe('PreviewCanvas', () => {
     expect(canvas).toBeInTheDocument();
   });
 
+  it('gives the result canvas an accessible name (canvas pixels have no inherent text alternative)', () => {
+    const mockCanvas = document.createElement('canvas');
+    mockCanvas.width = 200;
+    mockCanvas.height = 150;
+
+    render(
+      <NextIntlClientProvider locale="ko" messages={messages.ko}>
+        <PreviewCanvas
+          resultCanvas={mockCanvas}
+          isProcessing={false}
+          sourceWidth={200}
+          sourceHeight={150}
+        />
+      </NextIntlClientProvider>
+    );
+
+    expect(
+      screen.getByRole('img', { name: messages.ko.tools['transparent-background'].preview.resultAlt })
+    ).toBeInTheDocument();
+  });
+
   it('displays image dimensions when provided', () => {
     render(
       <NextIntlClientProvider locale="ko" messages={messages.ko}>

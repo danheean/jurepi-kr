@@ -10,7 +10,7 @@ export function TransparentBgIntro() {
 
   return (
     <header className="space-y-4 mb-8">
-      <p className="text-xs font-bold tracking-wider text-accent-sky uppercase">
+      <p className="text-xs font-bold tracking-wider text-accent-sky-ink uppercase">
         {t('intro.eyebrow')}
       </p>
       <h1 className="font-display text-4xl md:text-5xl font-bold text-text leading-tight">

@@ -1,10 +1,48 @@
 import type { RGB } from './schema';
-import { TOLERANCE_MAX_DISTANCE, FEATHER_MAX_PX } from './schema';
+import { TOLERANCE_MAX_DISTANCE, CHUNK_SIZE } from './schema';
 import { euclideanDistance } from './color-distance';
+
+/**
+ * Yield control back to the browser between chunks so a full-image pass
+ * doesn't block the main thread for its entire duration. Falls back to a
+ * macrotask when `requestAnimationFrame` isn't available (e.g. some test
+ * environments).
+ */
+function yieldToFrame(): Promise<void> {
+  if (typeof requestAnimationFrame === 'function') {
+    return new Promise((resolve) => requestAnimationFrame(() => resolve()));
+  }
+  return new Promise((resolve) => setTimeout(resolve, 0));
+}
+
+/**
+ * Alpha multiplier for a pixel at the given color distance from the
+ * background, given whether it was marked for removal (BFS-connected in
+ * flood-fill mode, or distance-matched in global mode) and the feather width.
+ * Pixels right at the tolerance boundary — marked or not — get a linear
+ * fade instead of a hard cutoff.
+ */
+function computeAlphaMultiplier(
+  distance: number,
+  maxDistance: number,
+  feather: number,
+  isMarked: boolean,
+): number {
+  const inFeatherZone = feather > 0 && distance >= maxDistance - feather && distance <= maxDistance;
+
+  if (isMarked) {
+    return inFeatherZone ? 1 - (distance - (maxDistance - feather)) / feather : 0;
+  }
+  return inFeatherZone ? 1 - (distance - (maxDistance - feather)) / feather : 1;
+}
 
 /**
  * Apply transparency to an image by removing pixels matching the background color.
  * Creates a new ImageData; the input is not mutated.
+ *
+ * Processes in `CHUNK_SIZE`-pixel chunks, yielding to the browser between
+ * chunks (via requestAnimationFrame) so large images don't freeze the tab
+ * while the user is dragging the tolerance/feather sliders.
  *
  * @param imageData - Source image data
  * @param bgColor - Background color to remove
@@ -13,13 +51,13 @@ import { euclideanDistance } from './color-distance';
  * @param mode - 'flood-fill' (only connected region) or 'global' (all matching colors)
  * @returns New ImageData with alpha modified
  */
-export function applyTransparency(
+export async function applyTransparency(
   imageData: ImageData,
   bgColor: RGB,
   tolerance: number,
   feather: number,
   mode: 'flood-fill' | 'global',
-): ImageData {
+): Promise<ImageData> {
   // Map tolerance (0–100) to max distance (0–85)
   const maxDistance = TOLERANCE_MAX_DISTANCE * (tolerance / 100);
 
@@ -27,11 +65,14 @@ export function applyTransparency(
   const result = new ImageData(new Uint8ClampedArray(imageData.data), imageData.width, imageData.height);
 
   if (mode === 'flood-fill') {
-    // Mark connected regions from corners for removal
-    markFloodFillRegion(result, bgColor, maxDistance, feather);
+    // Mark connected regions from corners for removal, then apply feathered alpha.
+    const visited = await markFloodFillRegion(result, bgColor, maxDistance);
+    await applyMaskedAlpha(result, visited, bgColor, maxDistance, feather);
   } else {
-    // Mark all matching colors globally
-    markGlobalMatching(result, bgColor, maxDistance, feather);
+    // Global mode marks and applies alpha in a single pass — a pixel's mark
+    // state is exactly `distance <= maxDistance`, so there's no need for a
+    // separate marking pass (unlike flood-fill's BFS, which does need one).
+    await applyGlobalAlpha(result, bgColor, maxDistance, feather);
   }
 
   return result;
@@ -41,12 +82,11 @@ export function applyTransparency(
  * Mark connected regions starting from the four corners for removal.
  * Uses BFS to find all connected pixels matching the background color (within tolerance).
  */
-function markFloodFillRegion(
+async function markFloodFillRegion(
   imageData: ImageData,
   bgColor: RGB,
   maxDistance: number,
-  feather: number,
-): void {
+): Promise<Uint8Array> {
   const { width, height, data } = imageData;
   const visited = new Uint8Array(width * height);
 
@@ -58,7 +98,6 @@ function markFloodFillRegion(
     [width - 1, height - 1],
   ];
 
-  // BFS from each corner
   const queue: [number, number][] = [];
 
   for (const [sx, sy] of seeds) {
@@ -72,7 +111,8 @@ function markFloodFillRegion(
     }
   }
 
-  // BFS
+  let processedSinceYield = 0;
+
   while (queue.length > 0) {
     const [x, y] = queue.shift()!;
 
@@ -98,80 +138,65 @@ function markFloodFillRegion(
         queue.push([nx, ny]);
       }
     }
+
+    processedSinceYield++;
+    if (processedSinceYield >= CHUNK_SIZE) {
+      processedSinceYield = 0;
+      await yieldToFrame();
+    }
   }
 
-  // Apply transparency to visited pixels
-  applyTransparencyMask(imageData, visited, bgColor, maxDistance, feather);
+  return visited;
 }
 
 /**
- * Mark all pixels matching the background color for removal.
+ * Global mode: mark and apply alpha for every pixel in a single chunked pass.
  */
-function markGlobalMatching(
+async function applyGlobalAlpha(
   imageData: ImageData,
   bgColor: RGB,
   maxDistance: number,
   feather: number,
-): void {
+): Promise<void> {
   const { width, height, data } = imageData;
-  const visited = new Uint8Array(width * height);
+  const totalPixels = width * height;
 
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const color = getPixelColor(data, width, x, y);
-      if (euclideanDistance(color, bgColor) <= maxDistance) {
-        visited[y * width + x] = 1;
-      }
+  for (let i = 0; i < totalPixels; i++) {
+    const idx = i * 4;
+    const distance = euclideanDistance({ r: data[idx], g: data[idx + 1], b: data[idx + 2] }, bgColor);
+    const isMarked = distance <= maxDistance;
+    const alphaMultiplier = computeAlphaMultiplier(distance, maxDistance, feather, isMarked);
+
+    data[idx + 3] = Math.round(data[idx + 3] * alphaMultiplier);
+
+    if ((i + 1) % CHUNK_SIZE === 0) {
+      await yieldToFrame();
     }
   }
-
-  applyTransparencyMask(imageData, visited, bgColor, maxDistance, feather);
 }
 
 /**
- * Apply alpha changes to marked pixels, with optional feathering.
+ * Flood-fill mode: apply feathered alpha using the BFS-marked pixel mask.
  */
-function applyTransparencyMask(
+async function applyMaskedAlpha(
   imageData: ImageData,
   visited: Uint8Array,
   bgColor: RGB,
   maxDistance: number,
   feather: number,
-): void {
+): Promise<void> {
   const { width, height, data } = imageData;
+  const totalPixels = width * height;
 
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const idx = (y * width + x) * 4;
-      const distance = euclideanDistance(
-        { r: data[idx], g: data[idx + 1], b: data[idx + 2] },
-        bgColor,
-      );
+  for (let i = 0; i < totalPixels; i++) {
+    const idx = i * 4;
+    const distance = euclideanDistance({ r: data[idx], g: data[idx + 1], b: data[idx + 2] }, bgColor);
+    const alphaMultiplier = computeAlphaMultiplier(distance, maxDistance, feather, visited[i] === 1);
 
-      // Determine alpha multiplier for this pixel
-      let alphaMultiplier = 1; // Default: keep pixel
+    data[idx + 3] = Math.round(data[idx + 3] * alphaMultiplier);
 
-      if (visited[y * width + x]) {
-        // Pixel is marked for removal
-        if (feather > 0 && distance >= maxDistance - feather && distance <= maxDistance) {
-          // Feather zone: blend alpha linearly
-          const featherRange = feather;
-          const distFromBoundary = distance - (maxDistance - featherRange);
-          alphaMultiplier = 1 - distFromBoundary / featherRange;
-        } else {
-          // Full removal
-          alphaMultiplier = 0;
-        }
-      } else if (feather > 0 && distance >= maxDistance - feather && distance <= maxDistance) {
-        // Pixel is NOT marked, but in feather zone (can happen at edges due to discrete pixelation)
-        const featherRange = feather;
-        const distFromBoundary = distance - (maxDistance - featherRange);
-        alphaMultiplier = 1 - distFromBoundary / featherRange;
-      }
-
-      // Apply alpha change, preserving existing alpha
-      const oldAlpha = data[idx + 3];
-      data[idx + 3] = Math.round(oldAlpha * alphaMultiplier);
+    if ((i + 1) % CHUNK_SIZE === 0) {
+      await yieldToFrame();
     }
   }
 }

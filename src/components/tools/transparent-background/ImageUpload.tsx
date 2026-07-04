@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Upload } from 'lucide-react';
 
@@ -10,15 +11,32 @@ interface ImageUploadProps {
 
 export function ImageUpload({ onFileSelect, isLoading, fileName, fileSize }: ImageUploadProps) {
   const t = useTranslations('tools.transparent-background');
+  const [isDragActive, setIsDragActive] = useState(false);
+
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
+  };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
   };
 
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // Ignore leave events fired when the pointer moves onto a child element
+    // (icon, text, input) — only clear once it actually leaves the dropzone.
+    if (e.currentTarget.contains(e.relatedTarget as Node | null)) return;
+    setIsDragActive(false);
+  };
+
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    setIsDragActive(false);
     const files = Array.from(e.dataTransfer.files);
     if (files.length > 0) {
       onFileSelect(files[0]);
@@ -39,9 +57,16 @@ export function ImageUpload({ onFileSelect, isLoading, fileName, fileSize }: Ima
       </label>
 
       <div
+        data-testid="upload-dropzone"
+        onDragEnter={handleDragEnter}
         onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className="relative rounded-lg border-2 border-dashed border-hairline-strong bg-surface-sunken p-8 text-center transition-colors duration-200 hover:border-accent-sky hover:bg-accent-sky-soft"
+        className={`relative rounded-lg border-2 border-dashed p-8 text-center transition-colors duration-200 ${
+          isDragActive
+            ? 'border-accent-sky bg-accent-sky-soft'
+            : 'border-hairline-strong bg-surface-sunken hover:border-accent-sky hover:bg-accent-sky-soft'
+        }`}
       >
         <input
           id="file-upload"
@@ -56,7 +81,9 @@ export function ImageUpload({ onFileSelect, isLoading, fileName, fileSize }: Ima
         <div className="flex flex-col items-center justify-center gap-3">
           <Upload className="h-6 w-6 text-text-muted" />
           <div className="space-y-1">
-            <p className="font-medium text-text">{t('upload.text')}</p>
+            <p className="font-medium text-text">
+              {isDragActive ? t('upload.dragActive') : t('upload.text')}
+            </p>
             <p className="text-xs text-text-secondary">
               {t('upload.formats')}
             </p>
@@ -65,7 +92,7 @@ export function ImageUpload({ onFileSelect, isLoading, fileName, fileSize }: Ima
 
         <div className="mt-4">
           <label htmlFor="file-upload" className="inline-block cursor-pointer rounded-md bg-brand px-4 py-2 text-sm font-medium text-on-brand transition-colors hover:bg-brand-strong disabled:opacity-50">
-            {isLoading ? t('preview.detecting') : t('upload.text')}
+            {isLoading ? t('preview.detecting') : t('upload.button')}
           </label>
         </div>
       </div>

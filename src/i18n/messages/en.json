@@ -1279,6 +1279,7 @@
       "upload": {
         "label": "Upload Image",
         "text": "Click to upload or drag and drop",
+        "button": "Choose file",
         "formats": "PNG, JPEG, WebP",
         "fileName": "File name",
         "fileSize": "File size",
@@ -1291,6 +1292,8 @@
         "hexInput": "Color Code (#RRGGBB)",
         "currentColor": "Selected Color",
         "eyedropperMode": "Eyedropper mode active",
+        "eyedropperActive": "Tap or click the image to pick a color",
+        "eyedropperCancel": "Cancel",
         "hexPlaceholder": "#ffffff"
       },
       "controls": {
@@ -1312,7 +1315,8 @@
         "detecting": "Detecting background color…",
         "empty": "Upload an image to see the preview",
         "dimensions": "Original: {width}×{height} → Export as transparent PNG",
-        "downscaled": "Image scaled down to 4096px longest edge for performance"
+        "downscaled": "Image scaled down to 4096px longest edge for performance",
+        "resultAlt": "Preview of the result image with the background removed"
       },
       "export": {
         "download": "Download PNG",
@@ -1321,6 +1325,7 @@
         "downloadSuccess": "Downloaded!",
         "copySuccess": "Copied to clipboard!",
         "downloadFail": "Download failed. Please try again",
+        "copyFail": "Copy failed. Your browser may not support copying images to the clipboard",
         "fileName": "transparent-{timestamp}.png"
       },
       "errors": {

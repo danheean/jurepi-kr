@@ -135,6 +135,30 @@ describe('RemovalControls', () => {
     expect(mockCallbacks.onModeChange).toHaveBeenCalledWith('global');
   });
 
+  it('uses the contrast-safe accent-ink token (not the raw ~2.1:1 accent) for value labels', () => {
+    const { container } = render(
+      <NextIntlClientProvider locale="ko" messages={messages.ko}>
+        <RemovalControls
+          tolerance={50}
+          onToleranceChange={mockCallbacks.onToleranceChange}
+          feather={2}
+          onFeatherChange={mockCallbacks.onFeatherChange}
+          mode="flood-fill"
+          onModeChange={mockCallbacks.onModeChange}
+        />
+      </NextIntlClientProvider>
+    );
+
+    // --accent-sky is documented at ~2.14:1 on white (fails WCAG AA 4.5:1);
+    // --accent-sky-ink is the token built for text use (~5.95:1). CSS class
+    // selectors match whole tokens, so this only matches the raw (unsafe) class.
+    const rawAccentTextNodes = container.querySelectorAll('.text-accent-sky');
+    expect(rawAccentTextNodes.length).toBe(0);
+
+    const valueLabels = container.querySelectorAll('.text-accent-sky-ink');
+    expect(valueLabels.length).toBe(2); // tolerance value + feather value
+  });
+
   it('displays help text when flood-fill mode is selected', () => {
     const { container } = render(
       <NextIntlClientProvider locale="ko" messages={messages.ko}>

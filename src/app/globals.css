@@ -108,3 +108,30 @@ button:not(:disabled),
     animation: none;
   }
 }
+
+/* Range slider touch target — browser-default thumbs render well under this
+   project's 44px touch-target floor (transparent-background's tolerance/feather
+   sliders, qr-code's size controls). The input itself grows to 44px so the
+   larger thumb has room without overflowing into neighboring label/help text;
+   the visible dot inside stays small via a radial-gradient so it doesn't look
+   oversized against the thin track. */
+input[type='range'] {
+  height: 44px;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, var(--accent-sky) 0 22%, transparent 23%);
+  cursor: pointer;
+}
+input[type='range']::-moz-range-thumb {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, var(--accent-sky) 0 22%, transparent 23%);
+  cursor: pointer;
+}

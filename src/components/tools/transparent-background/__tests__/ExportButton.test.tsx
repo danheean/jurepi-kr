@@ -147,4 +147,62 @@ describe('ExportButton', () => {
     // Button text changes to show success
     await screen.findByText(/Downloaded|다운로드되었습니다/, { selector: 'button' });
   });
+
+  it('shows a failure message instead of a false success state when copy fails', async () => {
+    mockCallbacks.onCopyClipboard.mockResolvedValue(false);
+
+    const mockBlob = new Blob(['test'], { type: 'image/png' });
+
+    render(
+      <ExportButton
+        resultBlob={mockBlob}
+        canExport={true}
+        onDownload={mockCallbacks.onDownload}
+        onCopyClipboard={mockCallbacks.onCopyClipboard}
+      />
+    );
+
+    const copyBtn = screen.getByRole('button', { name: /Copy|복사/i });
+    fireEvent.click(copyBtn);
+
+    await screen.findByText(/Copy failed|복사 실패/);
+    expect(screen.queryByText(/Copied|복사되었습니다/)).not.toBeInTheDocument();
+  });
+
+  it('shows a failure message instead of silently doing nothing when download fails', async () => {
+    mockCallbacks.onDownload.mockResolvedValue(null);
+
+    render(
+      <ExportButton
+        resultBlob={undefined}
+        canExport={true}
+        onDownload={mockCallbacks.onDownload}
+        onCopyClipboard={mockCallbacks.onCopyClipboard}
+      />
+    );
+
+    const downloadBtn = screen.getByRole('button', { name: /Download PNG|PNG 다운로드/i });
+    fireEvent.click(downloadBtn);
+
+    await screen.findByText(/Download failed|다운로드 실패/);
+  });
+
+  it('announces download/copy success to screen readers via aria-live (matches ShareButtons convention)', () => {
+    const mockBlob = new Blob(['test'], { type: 'image/png' });
+
+    render(
+      <ExportButton
+        resultBlob={mockBlob}
+        canExport={true}
+        onDownload={mockCallbacks.onDownload}
+        onCopyClipboard={mockCallbacks.onCopyClipboard}
+      />
+    );
+
+    const downloadBtn = screen.getByRole('button', { name: /Download PNG|PNG 다운로드/i });
+    const copyBtn = screen.getByRole('button', { name: /Copy|복사/i });
+
+    expect(downloadBtn).toHaveAttribute('aria-live', 'polite');
+    expect(copyBtn).toHaveAttribute('aria-live', 'polite');
+  });
 });

@@ -76,8 +76,8 @@ describe('useTransparencyRemover', () => {
     expect(blob).toBeNull();
   });
 
-  it('copyToClipboard does not throw when resultCanvas is null', async () => {
+  it('copyToClipboard resolves false (not a silent no-op) when resultCanvas is null', async () => {
     const { result } = renderHook(() => useTransparencyRemover());
-    await expect(result.current.copyToClipboard()).resolves.toBeUndefined();
+    await expect(result.current.copyToClipboard()).resolves.toBe(false);
   });
 });

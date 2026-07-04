@@ -28,7 +28,7 @@ export function RemovalControls({
           <label htmlFor="tolerance-slider" className="text-sm font-medium text-text">
             {t('controls.toleranceLabel')}
           </label>
-          <span className="text-sm font-semibold text-accent-sky">
+          <span className="text-sm font-semibold text-accent-sky-ink">
             {t('controls.toleranceValue', { value: tolerance })}
           </span>
         </div>
@@ -42,7 +42,7 @@ export function RemovalControls({
           onChange={(e) => onToleranceChange(Number(e.target.value))}
           aria-label={t('controls.toleranceLabel')}
           aria-valuetext={`${tolerance}%`}
-          className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-accent-sky-soft accent-accent-sky"
+          className="w-full cursor-pointer appearance-none rounded-lg bg-accent-sky-soft accent-accent-sky"
         />
       </div>
 
@@ -52,7 +52,7 @@ export function RemovalControls({
           <label htmlFor="feather-slider" className="text-sm font-medium text-text">
             {t('controls.featherLabel')}
           </label>
-          <span className="text-sm font-semibold text-accent-sky">
+          <span className="text-sm font-semibold text-accent-sky-ink">
             {t('controls.featherValue', { value: feather })}
           </span>
         </div>
@@ -66,7 +66,7 @@ export function RemovalControls({
           onChange={(e) => onFeatherChange(Number(e.target.value))}
           aria-label={t('controls.featherLabel')}
           aria-valuetext={`${feather}px`}
-          className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-accent-sky-soft accent-accent-sky"
+          className="w-full cursor-pointer appearance-none rounded-lg bg-accent-sky-soft accent-accent-sky"
         />
       </div>
 
