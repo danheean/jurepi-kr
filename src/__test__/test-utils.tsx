@@ -266,6 +266,92 @@ const defaultMessages = {
         ],
       },
     },
+    'json-formatter': {
+      title: 'JSON Formatter & Validator',
+      description: 'Format, validate, and analyze JSON with ease',
+      meta: {
+        title: 'JSON Formatter & Validator — Jurepi',
+        description: 'Prettify minified JSON, validate syntax, and find errors with precise line and column numbers.',
+      },
+      urlLoader: {
+        label: 'Load from URL',
+        placeholder: 'https://api.example.com/data.json',
+        loadButton: 'Load',
+        loading: 'Loading…',
+        errors: {
+          invalid_url: 'Please enter a valid http(s) URL',
+          cors_or_network: 'The server does not allow cross-origin access (CORS) or there is a network error. Please download the file and paste it instead.',
+          http_error: 'Server returned status {status}',
+          too_large: 'File is too large to process (max 10MB)',
+          empty_body: 'Response body is empty',
+        },
+      },
+      input: {
+        placeholder: 'Paste JSON here…',
+        label: 'JSON Input',
+      },
+      options: {
+        indent: 'Indentation',
+        spaces2: '2 spaces',
+        spaces4: '4 spaces',
+        tab: 'Tab',
+        sortKeys: 'Sort keys',
+        statusValid: 'Valid',
+        statusInvalid: 'Error',
+      },
+      output: {
+        label: 'Output',
+        formatTab: 'Formatted',
+        treeTab: 'Tree',
+        copy: 'Copy',
+        copySuccess: 'Copied!',
+        download: 'Download',
+        downloadFilename: 'data.json',
+      },
+      actions: {
+        format: 'Format',
+        minify: 'Minify',
+        clear: 'Clear',
+      },
+      errors: {
+        title: 'Error',
+        line: 'Line',
+        column: 'Column',
+        parseError: "Line {line}, column {column}: Unexpected token ''{token}''",
+      },
+      stats: {
+        size: 'Size',
+        elements: 'Elements',
+        depth: 'Depth',
+        display: '{size} · {elements} items · depth {depth}',
+      },
+      shortcuts: {
+        format: 'Ctrl+Enter',
+        minify: 'Ctrl+Shift+M',
+        copy: 'Ctrl+C',
+      },
+      intro: {
+        eyebrow: 'Developer Tool',
+        title: 'JSON Formatter & Validator',
+        lead: 'Prettify minified JSON, validate syntax, and find errors with precise line and column numbers.',
+      },
+      howTo: {
+        title: 'How to Use',
+        items: [
+          { title: 'Step 1: Paste', description: 'Paste JSON into the input area.' },
+          { title: 'Step 2: Configure', description: 'Choose indentation style and whether to sort keys.' },
+          { title: 'Step 3: Download', description: 'Copy the formatted JSON or download it as a file.' },
+        ],
+      },
+      faq: {
+        items: [
+          { q: 'What is JSON?', a: "JSON (JavaScript Object Notation) is a text format for structured data. It's widely used in web APIs and configuration files." },
+          { q: 'Why format JSON?', a: 'Formatted JSON is easier to read, debug, and compare in version control.' },
+          { q: 'Is my data private?', a: 'Yes, all processing happens in your browser. Your JSON never leaves your device.' },
+          { q: 'Can I load from a URL?', a: 'Yes, paste the URL of a public JSON API or .json file. The server must allow CORS.' },
+        ],
+      },
+    },
     'transparent-background': {
       title: 'Transparent Background Maker',
       description: 'Remove solid-color backgrounds locally. No upload.',

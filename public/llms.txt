@@ -19,6 +19,7 @@
 - [개발 인물 사전 (Developer People Dictionary)](https://apps.jurepi.kr/ko/tools/dev-people): Explore biographies and achievements of influential software engineers and computer scientists who shaped technology history. From programming language creators to open-source pioneers and architecture visionaries.
 - [글자·단어 카운터 (Character & Word Counter)](https://apps.jurepi.kr/ko/tools/character-counter): Text metrics: character/word/sentence/paragraph/line/byte count, reading time, character limits.
 - [내 아이피 찾기 (My IP Address)](https://apps.jurepi.kr/ko/tools/my-ip): Find your public IP address (IPv4 and IPv6) instantly, with optional approximate geolocation and ISP information from a disclosed third-party IP lookup service. Jurepi never logs or stores your IP.
+- [JSON 정렬 및 검증 (JSON Formatter & Validator)](https://apps.jurepi.kr/ko/tools/json-formatter): Format minified JSON, validate syntax, and find errors with precise line/column numbers. Minify, sort keys, download results. 100% browser-side processing—your data stays private.
 
 ## About
 

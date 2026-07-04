@@ -180,6 +180,17 @@ export const tools: ToolMeta[] = [
     keywords: ['맛집', '맛집리스트', '맛집지도', '카페', '라면', '족발', '참치', '음식', '추천', '지도', 'restaurant', 'map', 'food', 'cafe', 'ramen', 'tuna', 'local favorite', 'curator', 'dining', 'lunch', 'dinner'],
   },
   {
+    id: 'json-formatter',
+    slug: 'json-formatter',
+    category: 'dev',
+    icon: 'Braces',
+    accent: 'sky',
+    status: 'live',
+    isNew: true,
+    order: 29,
+    keywords: ['JSON', '포맷', '검증', '정렬', '개발', '도구', 'URL', 'formatter', 'validator', 'minify', 'prettify'],
+  },
+  {
     id: 'character-counter',
     slug: 'character-counter',
     category: 'text',

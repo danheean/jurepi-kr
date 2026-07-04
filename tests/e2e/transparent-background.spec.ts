@@ -480,7 +480,7 @@ test.describe('Transparent Background Maker - E2E Scenarios', () => {
 test.describe('Environment setup', () => {
   test('webServer is running and serving static build', async ({ page, request }) => {
     // Verify the webServer is up and serving the home page
-    const response = await request.get('http://localhost:3000/ko');
+    const response = await request.get('/ko');
     expect(response.status()).toBe(200);
 
     // Verify the response contains expected HTML (not an error page)

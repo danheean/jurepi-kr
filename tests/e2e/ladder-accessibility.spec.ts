@@ -222,15 +222,18 @@ test.describe('Ladder Game - Accessibility', () => {
     expect(readableButtons).toBeGreaterThan(0);
   });
 
-  test('Reduced motion: page respects prefers-reduced-motion', async ({ browser }) => {
-    // Create context with reduced motion preference
+  test('Reduced motion: page respects prefers-reduced-motion', async ({ browser, baseURL }) => {
+    // Create context with reduced motion preference (carry baseURL — a fresh
+    // context does not inherit it, and a hardcoded port hits whatever server
+    // happens to own :3000, possibly another worktree's stale build)
     const context = await browser?.newContext({
-      reducedMotion: 'reduce'
+      reducedMotion: 'reduce',
+      baseURL,
     }) as any;
 
     if (context) {
       const page = await context.newPage();
-      await page.goto('http://localhost:3000/ko/tools/ladder');
+      await page.goto('/ko/tools/ladder');
       await page.waitForLoadState('networkidle');
 
       // Build and reveal all

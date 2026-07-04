@@ -2,7 +2,7 @@
 
 > This document is the **canonical (English) source** consumed by AI coding agents. The Korean translation should live in [`SPEC_KR.md`](SPEC_KR.md); keep both in sync when either changes.
 >
-> Build specification for **JSON Formatter & Validator** (JSON 정리) — a browser-based tool that prettifies, minifies, validates, and analyzes JSON with precise error messages (line & column), optional key sorting, syntax highlighting, collapsible tree view, and download/copy. Pure client-side: input JSON → live preview with line/col error mapping on invalid input.
+> Build specification for **JSON Formatter & Validator** (JSON 정리) — a browser-based tool that prettifies, minifies, validates, and analyzes JSON with precise error messages (line & column), optional key sorting, syntax highlighting, collapsible tree view, download/copy, and **Load from URL** (fetch JSON from a user-provided web address, directly from the browser). Pure client-side: input JSON → live preview with line/col error mapping on invalid input.
 > Internal service codename: `json-formatter`. Registry id: `json-formatter`. Public URL slug: `/[locale]/tools/json-formatter`.
 >
 > This SPEC covers the **tool itself**. The shared shell (header/footer/locale/theme/consent), tool registry, SEO & ad infrastructure, and design tokens are provided by the platform:
@@ -18,9 +18,11 @@
 <overview>
 JSON Formatter is a zero-backend utility for developers: paste invalid or minified JSON and instantly see it prettified, validated, and analyzed. The tool transforms raw JSON strings into readable, indented output with configurable spacing (2 spaces, 4 spaces, or tabs). Users can minify with one click, toggle recursive key sorting, and download the result as a `.json` file. Every keystroke triggers a silent, debounced parse; if JSON is invalid, a precise error (line number, column, offending token) replaces the output. A collapsible tree view shows JSON structure at a glance; copy and size stats (bytes, elements) appear below.
 
-This is **pure JavaScript** — no backend, no API, no file upload. All processing runs in the browser: `JSON.parse`, `JSON.stringify`, and a lightweight hand-written tokenizer for error-position mapping (or a small lib like jsonc-parser v3.x for JSONC comment support if extended, but MVP is JSON only). The tool is entirely client-side; input never leaves the device.
+This is **pure JavaScript** — no backend, no first-party API, no file upload. All processing runs in the browser: `JSON.parse`, `JSON.stringify`, and a lightweight hand-written tokenizer for error-position mapping (or a small lib like jsonc-parser v3.x for JSONC comment support if extended, but MVP is JSON only). The tool is entirely client-side; pasted input never leaves the device.
 
-CRITICAL (client-only, SSG): 100% client-side, no backend, no database, no network calls. The only first-party persistence is localStorage for user preferences (indent style, sort setting, last input). Input is never sent, stored remotely, or logged.
+In addition to paste, the tool supports **Load from URL**: the user enters a web address (e.g., a public API endpoint or a raw `.json` file URL) and the browser fetches it directly with `fetch()` — no proxy, no backend relay. The response body is loaded into the input area and parsed like pasted text. Because the request is a plain cross-origin browser fetch, it only succeeds when the target server allows CORS; when CORS blocks the request, the tool shows a friendly, honest explanation (not a generic failure) telling the user to download the file and paste instead.
+
+CRITICAL (client-only, SSG): 100% client-side, no backend, no database. The ONLY network call is the optional, user-initiated Load-from-URL fetch, which goes directly from the user's browser to the user-provided address (never through a Jurepi or third-party proxy). Pasted/loaded JSON is never sent anywhere else, stored remotely, or logged. The only first-party persistence is localStorage for user preferences (indent style, sort setting, last input).
 
 CRITICAL (SPA, usability-first): per the platform rule, every Jurepi tool is a client-side Single-Page Application (SPA) mounted on the SSG shell. All interaction — paste, format, minify, sort, tree toggle, copy, download — happens via local React state with NO route navigation and NO full page reload. The tool shell is statically generated (SSG) for SEO; the interactive formatter is a single client component. Parsing and error reporting happen live (debounced 200ms) as the user types.
 
@@ -33,12 +35,13 @@ CRITICAL (XSS-safe rendering): the tree view and error messages render user-supp
   - Route: /[locale]/tools/json-formatter (SSG; registry slug "json-formatter", id "json-formatter", status "live", accent "sky", category "dev").
   - Provided by the platform (do NOT reimplement): app shell (Header/Footer/LocaleSwitcher/ThemeToggle), ConsentBanner, AdSlot, Toast system, design tokens (tokens.css ↔ DESIGN.md), i18n runtime, Error Boundary around the tool module, lib/seo.ts metadata builder, breadcrumb + in_content ad wrapper.
   - Consumes: i18n namespace `tools.json-formatter.*` (UI chrome strings: options labels, error messages, copy toast, download prompt, how-to, FAQ — NOT JSON data; that comes from user input).
-  - **CRITICAL PLATFORM PREREQUISITE**: The `'dev'` category exists in the `ToolCategory` type union but is NOT yet wired in the platform (no i18n label, not in `CATEGORY_ORDER` or `FOOTER_CATEGORIES`). Adding this tool REQUIRES activating the category: ① add i18n label `tools.categories.dev` (ko: "개발" / en: "Developer"), ② add 'dev' to `CATEGORY_ORDER` in registry, ③ add 'dev' to `FOOTER_CATEGORIES`, ④ confirm accent "sky" in category. This is a one-time platform change, not tool-specific.
+  - NOTE (updated 2026-07-04): the `'dev'` category is ALREADY live in the platform (url-encoder, base64-encoder, bookmarks, dev-people ship under it — i18n label, `CATEGORY_ORDER`, `FOOTER_CATEGORIES` all wired). No platform prerequisite remains; this tool only adds its own registry entry.
 </platform_integration>
 
 <scope_boundaries>
   <in_scope>
     - JSON input (raw string) via a large textarea or paste area.
+    - Load from URL: user enters an http(s) address → browser fetches it directly (`fetch`, user-initiated, no proxy) → response text fills the input and is parsed. Loading state, response-size guard (same 10MB cap), and friendly CORS/network/HTTP error messages.
     - Live validation: parse on keystroke (debounced 200ms); if invalid, return precise error (line, column, token, context).
     - Format output: pretty-print with selectable indent (2 spaces / 4 spaces / tab); minify (no whitespace); sort object keys (optional, recursive, alphabetical).
     - Syntax highlighting: color tokens by type (string/number/boolean/null/key) using DESIGN.md sky accent palette.
@@ -93,10 +96,12 @@ src/
 │   ├── minify.ts                          # minifyJson(jsonStr): {output, error?}
 │   ├── sort-keys.ts                       # sortKeysRecursive(json, deep): object with sorted keys
 │   ├── tree-nodes.ts                      # jsonToTreeNodes(json): TreeNode[] (structure for tree view)
+│   ├── fetch-url.ts                       # validateJsonUrl(url) + fetchJsonFromUrl(url, {maxBytes, fetchImpl}): {text} | {error: typed code}
 │   └── stats.ts                           # getStats(json): {byteSize, elementCount, depth}
 ├── components/tools/json-formatter/
 │   ├── JsonFormatter.tsx                  # Orchestrator (Client Component) — state owner
 │   ├── useJsonFormatter.ts                # Hook: parse state, options, localStorage persist
+│   ├── UrlLoader.tsx                      # URL input + load button, loading/error states
 │   ├── JsonInput.tsx                      # Large textarea, live onChange → parse
 │   ├── FormatOptions.tsx                  # Indent select, sort toggle, action buttons (format/minify)
 │   ├── OutputPane.tsx                     # Formatted output (read-only) + copy/download buttons
@@ -175,6 +180,12 @@ src/
     - Lead: "복잡한 JSON을 한눈에 정리하고, 무효한 JSON의 정확한 오류 위치를 확인하세요." (body-lg 18px var(--text-secondary)).
   </json_formatter_intro>
 
+  <url_loader>
+    - Single row above the input textarea: URL text input (placeholder "https://api.example.com/data.json") + [불러오기] / [Load] button (secondary style; brand CTA stays Format).
+    - Enter key in the URL input triggers load. While loading: button disabled + spinner, input read-only.
+    - Error message renders directly below the row (danger styling per DESIGN tokens); success clears the message and fills the JSON textarea.
+  </url_loader>
+
   <json_input>
     - Large textarea, full width (desktop) or mobile stacked, placeholder "JSON을 붙여넣으세요…" / "Paste JSON here…", monospace font (Menlo/Monaco/Courier New fallback).
     - Syntax highlighting in textarea optional (MVP: plain, Phase 2: CodeMirror-lite).
@@ -228,6 +239,13 @@ src/
     - copyJson(text): navigator.clipboard.writeText(text), fallback to execCommand('copy') if unavailable. Silent fail (no false success).
     - downloadJson(json, filename='data.json'): create Blob from JSON.stringify, generate download link, trigger synthetic click.
   </copy_and_download>
+  <load_from_url>
+    - validateJsonUrl(raw): trim, require http:// or https:// scheme (reject javascript:, data:, file:, ftp:, blank). Return typed result {ok, url?} | {ok:false, error:'invalid_url'}.
+    - fetchJsonFromUrl(url, {maxBytes=10MB, fetchImpl}): user-initiated only (button/Enter). Browser `fetch(url)` with Accept: application/json. Typed error codes (NOT raw exception text): 'cors_or_network' (TypeError from fetch — browsers do not distinguish CORS vs offline), 'http_error' (response.ok false, include status), 'too_large' (Content-Length or body length > maxBytes), 'empty_body'. Success returns {text} — the raw body; parsing/validation is the normal input pipeline's job (a non-JSON body simply produces the standard precise parse error).
+    - fetchImpl is injectable for unit tests (pure domain function, no jsdom fetch dependency).
+    - UI: UrlLoader renders a single-line URL input + [Load] button above the textarea; while loading, button shows spinner and is disabled; on success input textarea is replaced with fetched text (undo = user's own paste); on error a friendly i18n message per error code, with the CORS message explicitly suggesting "download the file and paste it here" as the fallback path.
+    - The loaded URL is NOT persisted to localStorage (privacy); only the standard prefs are.
+  </load_from_url>
   <persistence>
     - Mount: read `jurepi-json-formatter` from localStorage → zod parse → load indent + sort prefs; fail → start fresh (no throw).
     - Change: debounced setItem after every option change (indent, sort toggle). lastInput optional (takes space; disabled by default).
@@ -248,7 +266,14 @@ src/
   <storage>
     - localStorage unavailable (private mode) → prefs in-memory, no scary error. Tool fully functional.
   </storage>
-  <note>No first-party network calls; no API error surface.</note>
+  <url_load_failure>
+    - invalid_url → "올바른 http(s) 주소를 입력하세요" / "Enter a valid http(s) address".
+    - cors_or_network → honest CORS explanation: "해당 서버가 브라우저에서의 접근(CORS)을 허용하지 않거나 네트워크 오류입니다. 파일을 내려받아 붙여넣어 주세요." / equivalent EN. Never a blank or generic "failed".
+    - http_error → include status code ("서버 응답 404" / "Server responded 404").
+    - too_large → same message as the 10MB input guard.
+    - Errors are shown in the UrlLoader area and never clear the user's existing textarea content.
+  </url_load_failure>
+  <note>No first-party API; the only network surface is the user-initiated Load-from-URL fetch above.</note>
 </error_handling>
 
 <aesthetic_guidelines>
@@ -272,7 +297,12 @@ src/
     - Copy button copies plain text only (no rich HTML).
   </input>
   <clipboard>User-initiated; never read clipboard. Write-only.</clipboard>
-  <privacy>Input never sent. localStorage stores only user prefs (indent choice), not JSON data (opt-in lastInput is disabled by default).</privacy>
+  <url_fetch>
+    - User-initiated only; no automatic fetch on paste/typing of a URL. Scheme allowlist http/https (reject javascript:, data:, file:).
+    - The browser's same-origin policy / CORS is the security boundary — the tool never proxies, so it cannot be used to bypass CORS or reach private networks beyond what the user's own browser allows.
+    - The fetched URL and body are never sent to Jurepi or any third party, and the URL is not persisted.
+  </url_fetch>
+  <privacy>Input never sent (except the user's own Load-from-URL request going directly to the address the user typed). localStorage stores only user prefs (indent choice), not JSON data (opt-in lastInput is disabled by default).</privacy>
   <performance>Parsing debounced 200ms; input capped at 10MB (guard freeze). No memory leak (tree/tokenizer garbage-collected per parse).</performance>
   <note>No secrets, no network, no 3rd-party storage.</note>
 </security_considerations>
@@ -331,10 +361,19 @@ src/
       4. axe scan → no violations.
     </steps>
   </test_scenario_5>
+  <test_scenario_6>
+    <description>Load from URL (mocked), CORS failure path</description>
+    <steps>
+      1. Enter a valid https URL serving JSON (E2E: route-intercepted/mocked response) → click [Load] → textarea fills with response body → auto-parse → formatted output renders.
+      2. Enter a URL whose fetch rejects (mocked network/CORS failure) → friendly CORS/network message appears in the loader area; existing textarea content is NOT cleared.
+      3. Enter "not-a-url" → invalid_url message, no fetch attempted.
+      4. Unit tests cover fetchJsonFromUrl with injected fetchImpl: success, HTTP 404, TypeError (cors_or_network), oversized body.
+    </steps>
+  </test_scenario_6>
 </final_integration_test>
 
 <success_criteria>
-  <functionality>Paste invalid JSON → precise error (line/col); paste valid → format (2/4/tab), minify, sort; tree view; copy + download; stats (size, elements); keyboard shortcuts (Ctrl+Enter, Ctrl+C).</functionality>
+  <functionality>Paste invalid JSON → precise error (line/col); paste valid → format (2/4/tab), minify, sort; tree view; copy + download; Load from URL (direct browser fetch, typed friendly errors incl. CORS); stats (size, elements); keyboard shortcuts (Ctrl+Enter, Ctrl+C).</functionality>
   <user_experience>Keystroke → parse in ≤200ms visible (no lag); copy toast; download immediate; ≥44px targets; visible focus; SPA — no route reload.</user_experience>
   <technical_quality>lib/json-formatter/* pure ≥80% unit coverage (tokenizer, format, sort, stats); TS 0 errors; <800 lines per file; error message test fixtures (invalid JSON cases).</technical_quality>
   <visual_design>DESIGN.md compliant; sky accent identity; monospace I/O (readable); control bar clean; light-first (bright, not dark IDE).</visual_design>
@@ -358,14 +397,11 @@ src/
       icon: 'Braces',           // lucide-react
       accent: 'sky',
       status: 'live',
-      isNew: false,
-      order: 20,
-      keywords: ['JSON','포맷','정렬','검증','개발','도구','minify','prettify','formatter','validator'],
+      isNew: true,
+      order: 25,               // 20 is already taken (bookmarks); next free slot after 24
+      keywords: ['JSON','포맷','정렬','검증','개발','도구','URL','minify','prettify','formatter','validator'],
     },
-    // Platform changes (one-time):
-    // 1. i18n: add tools.categories.dev = { ko: "개발", en: "Developer" }
-    // 2. registry: add 'dev' to CATEGORY_ORDER and FOOTER_CATEGORIES
-    // 3. DESIGN.md accent 'sky' mapped to 'dev' category
+    // No platform prerequisite: 'dev' category is already fully wired (see platform_integration note).
     ```
   </platform_registry_change>
   <critical_paths>
@@ -375,9 +411,9 @@ src/
     4. XSS-safe rendering: text nodes + CSS classes, no HTML injection.
   </critical_paths>
   <recommended_implementation_order>
-    1. lib/json-formatter/{tokenizer, format, minify, sort-keys, tree-nodes, stats, schema}.ts (Vitest ≥80%).
-    2. tools.json-formatter.* messages (ko/en): labels, error messages, button text, how-to, FAQ.
-    3. JsonInput + FormatOptions (controlled input, debounced onChange).
+    1. lib/json-formatter/{tokenizer, format, minify, sort-keys, tree-nodes, stats, fetch-url, schema}.ts (Vitest ≥80%).
+    2. tools.json-formatter.* messages (ko/en): labels, error messages (incl. urlLoad.*), button text, how-to, FAQ.
+    3. JsonInput + UrlLoader + FormatOptions (controlled input, debounced onChange).
     4. OutputPane (Formatted + Tree tabs, syntax highlighting, copy/download).
     5. useJsonFormatter hook (state management, localStorage, error handling).
     6. JsonFormatter orchestrator + keyboard shortcuts.
@@ -387,7 +423,7 @@ src/
     10. E2E 1–5 scenarios; visual regression 320/768/1024 both themes.
   </recommended_implementation_order>
   <testing_strategy>
-    - Unit (Vitest ≥80%): tokenizer (various parse errors), format (indent options, sort), tree-nodes, stats, copy fallback.
+    - Unit (Vitest ≥80%): tokenizer (various parse errors), format (indent options, sort), tree-nodes, stats, copy fallback, fetch-url (injected fetchImpl: success/404/TypeError/oversize/invalid scheme).
     - Component: JsonInput state, FormatOptions toggle, OutputPane tab switch, SyntaxHighlight token rendering.
     - E2E (Playwright): scenarios 1–5 (paste + error, format/minify/sort, tree, download, i18n/a11y).
     - Visual regression: 320/768/1024 both themes, large JSON (scroll), error state, tree expanded.
