@@ -196,13 +196,17 @@ describe('PrecisionSlider', () => {
     expect(wrapper).toBeInTheDocument();
   });
 
-  it('should display the slider with proper height', () => {
+  it('uses the shared range track styling (height comes from the global 44px rule)', () => {
     const { container } = render(
       <PrecisionSlider value={2} onChange={mockOnChange} />
     );
 
     const slider = container.querySelector('input[type="range"]');
-    expect(slider?.className).toContain('h-2');
+    // No `h-2` override: the global `input[type=range] { height: 44px }` rule
+    // provides the touch target; the visible track is the soft accent fill.
+    expect(slider?.className).not.toContain('h-2');
+    expect(slider?.className).toContain('bg-accent-sky-soft');
+    expect(slider?.className).toContain('w-full');
   });
 
   it('should have proper border radius', () => {

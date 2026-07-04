@@ -49,7 +49,7 @@ export function ConversionTable({ category, fromUnit, fromValue = 1, precision }
                 key={unit.id}
                 className="p-4 bg-surface border border-hairline rounded-lg"
               >
-                <div className="text-xs text-text-muted mb-2">{unit.id}</div>
+                <div className="text-xs text-text-muted mb-2">{t(`units.${unit.id}`)}</div>
                 <div className="font-semibold text-text">
                   {formatted} <span className="ml-1 text-sm">{unit.symbol}</span>
                 </div>

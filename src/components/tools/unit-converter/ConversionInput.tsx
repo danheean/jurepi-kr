@@ -35,7 +35,7 @@ export function ConversionInput({ value, onChange, error }: Props) {
             ${
               error
                 ? 'border-danger/50 bg-danger/5 text-text'
-                : 'border-hairline bg-surface hover:border-hairline'
+                : 'border-hairline bg-surface hover:border-hairline-strong'
             }
           `}
         />

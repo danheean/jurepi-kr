@@ -118,7 +118,7 @@ describe('RecentsPanel', () => {
 
       // Find and click the entry button (not the clear button)
       const buttons = screen.getAllByRole('button');
-      const entryButton = buttons.find(btn => btn.textContent?.includes('meter'));
+      const entryButton = buttons.find(btn => btn.textContent?.includes('Meter'));
 
       await user.click(entryButton!);
 
@@ -213,7 +213,7 @@ describe('RecentsPanel', () => {
 
       // Find entry button with title attribute
       const buttons = container.querySelectorAll('button');
-      const entryButton = Array.from(buttons).find(btn => btn.textContent?.includes('meter'));
+      const entryButton = Array.from(buttons).find(btn => btn.textContent?.includes('Meter'));
 
       expect(entryButton?.hasAttribute('title')).toBe(true);
     });

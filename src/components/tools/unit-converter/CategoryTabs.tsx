@@ -62,6 +62,7 @@ export function CategoryTabs({ active, onChange }: Props) {
     <div
       ref={containerRef}
       role="tablist"
+      aria-label={t('categoriesLabel')}
       className="flex gap-2 overflow-x-auto pb-2 scroll-smooth"
     >
       {CATEGORIES.map((category, idx) => {
@@ -71,8 +72,10 @@ export function CategoryTabs({ active, onChange }: Props) {
         return (
           <button
             key={category.id}
+            id={`uc-tab-${category.id}`}
             role="tab"
             aria-selected={isActive}
+            aria-controls="uc-tabpanel"
             tabIndex={focusedIndex === idx ? 0 : -1}
             onClick={() => {
               setFocusedIndex(idx);
@@ -81,7 +84,7 @@ export function CategoryTabs({ active, onChange }: Props) {
             onKeyDown={handleKeyDown}
             onFocus={() => setFocusedIndex(idx)}
             className={`
-              px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap
+              inline-flex items-center min-h-[44px] px-4 rounded-lg font-medium text-sm whitespace-nowrap
               transition-all duration-150
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring
               ${

@@ -20,7 +20,7 @@ export function PrecisionSlider({ value, onChange }: Props) {
         <label htmlFor="precision-slider" className="text-sm font-medium text-text">
           {t('precision.label')}
         </label>
-        <span className="text-sm font-semibold text-accent-sky">
+        <span className="text-sm font-semibold text-accent-sky-ink">
           {t('precision.caption', { count: value })}
         </span>
       </div>
@@ -31,7 +31,7 @@ export function PrecisionSlider({ value, onChange }: Props) {
         max={PRECISION_MAX}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full h-2 bg-surface-muted rounded-lg appearance-none cursor-pointer accent-accent-sky"
+        className="w-full bg-accent-sky-soft rounded-lg appearance-none cursor-pointer accent-accent-sky"
         aria-valuemin={PRECISION_MIN}
         aria-valuemax={PRECISION_MAX}
         aria-valuenow={value}

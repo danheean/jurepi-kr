@@ -135,7 +135,7 @@ export function UnitPicker({ category, selectedId, onChange, id, ariaLabel }: Pr
           ${
             isOpen
               ? 'border-accent-sky bg-accent-sky-soft'
-              : 'border-hairline bg-surface hover:border-hairline'
+              : 'border-hairline bg-surface hover:border-hairline-strong'
           }
         `}
       >
@@ -163,7 +163,7 @@ export function UnitPicker({ category, selectedId, onChange, id, ariaLabel }: Pr
               setFocusedIndex(0);
             }}
             onKeyDown={handleKeyDown}
-            placeholder="Search units..."
+            placeholder={t('picker.search')}
             className="px-3 py-2 border-b border-hairline text-sm focus-visible:outline-none"
           />
 
@@ -189,13 +189,13 @@ export function UnitPicker({ category, selectedId, onChange, id, ariaLabel }: Pr
                 >
                   <span>
                     <span className="font-medium">{unit.symbol}</span>
-                    <span className="text-text-muted ml-2 text-xs">{unit.id}</span>
+                    <span className="text-text-muted ml-2 text-xs">{t(`units.${unit.id}`)}</span>
                   </span>
-                  {selectedId === unit.id && <Check size={14} className="text-accent-sky" />}
+                  {selectedId === unit.id && <Check size={14} className="text-accent-sky-ink" />}
                 </button>
               ))
             ) : (
-              <div className="px-3 py-2 text-sm text-text-muted">No units match</div>
+              <div className="px-3 py-2 text-sm text-text-muted">{t('picker.noMatch')}</div>
             )}
           </div>
         </div>

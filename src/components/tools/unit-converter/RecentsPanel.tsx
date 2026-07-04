@@ -71,7 +71,7 @@ export function RecentsPanel({ recents, onRestore, onClear }: Props) {
             title={formatTime(entry.timestamp)}
           >
             <div className="font-medium text-text">
-              {entry.fromValue} {entry.fromUnit} → {entry.toUnit}
+              {entry.fromValue} {t(`units.${entry.fromUnit}`)} → {t(`units.${entry.toUnit}`)}
             </div>
             <div className="text-xs text-text-muted">{formatTime(entry.timestamp)}</div>
           </button>

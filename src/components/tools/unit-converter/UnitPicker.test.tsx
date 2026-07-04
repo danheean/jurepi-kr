@@ -43,7 +43,7 @@ describe('UnitPicker', () => {
     await user.click(button);
 
     // Menu should be visible with units
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
     expect(searchInput).toBeInTheDocument();
   });
 
@@ -60,7 +60,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
     expect(searchInput).toBeInTheDocument();
 
     // Press Escape
@@ -111,7 +111,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
     await user.type(searchInput, 'km');
 
     // Should show filtered results
@@ -134,7 +134,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
 
     // Focus should be on search input
     expect(searchInput).toHaveFocus();
@@ -159,7 +159,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
 
     // Press ArrowDown to move to first item
     await user.keyboard('{ArrowDown}');
@@ -184,7 +184,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
 
     // Move down to first item
     await user.keyboard('{ArrowDown}');
@@ -208,7 +208,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
 
     // Press End to go to last item
     await user.keyboard('{End}');
@@ -233,7 +233,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
 
     // Press End to go to last item
     await user.keyboard('{End}');
@@ -255,7 +255,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
     await user.type(searchInput, 'xyz12345');
 
     await waitFor(() => {
@@ -300,7 +300,7 @@ describe('UnitPicker', () => {
     const button = screen.getByRole('button');
     await user.click(button);
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
     expect(searchInput).toBeInTheDocument();
 
     // Click outside
@@ -327,7 +327,7 @@ describe('UnitPicker', () => {
 
     // Open and type in search
     await user.click(button);
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
     await user.type(searchInput, 'km');
 
     // Close menu by pressing Escape
@@ -335,7 +335,7 @@ describe('UnitPicker', () => {
 
     // Open again - filter should be reset
     await user.click(button);
-    const newSearchInput = screen.getByPlaceholderText('Search units...');
+    const newSearchInput = screen.getByPlaceholderText('Search units…');
     expect(newSearchInput).toHaveValue('');
   });
 
@@ -368,7 +368,7 @@ describe('UnitPicker', () => {
     // Press Enter to open
     await user.keyboard('{Enter}');
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
     expect(searchInput).toBeInTheDocument();
   });
 
@@ -388,7 +388,7 @@ describe('UnitPicker', () => {
     // Press Space to open
     await user.keyboard(' ');
 
-    const searchInput = screen.getByPlaceholderText('Search units...');
+    const searchInput = screen.getByPlaceholderText('Search units…');
     expect(searchInput).toBeInTheDocument();
   });
 });

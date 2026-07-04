@@ -35,7 +35,6 @@ export function SwapButton({ fromUnit, toUnit, onClick }: Props) {
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring
         flex items-center justify-center
         min-h-[44px] min-w-[44px]
-        ${isRotating ? 'scale-95' : ''}
       `}
       style={{
         transform: isRotating ? 'rotate(180deg) scale(0.95)' : 'rotate(0deg)',
