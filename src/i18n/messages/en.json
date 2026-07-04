@@ -1639,7 +1639,7 @@
     },
     "restaurant-map": {
       "title": "Restaurant List",
-      "description": "Discover local favorites by region, cuisine, and category",
+      "description": "Explore curator-picked restaurants by region, cuisine, and category on the map.",
       "meta": {
         "title": "Restaurant List — Find Local Favorites on the Map",
         "description": "Discover restaurants and cafes across South Korea on an interactive map."
