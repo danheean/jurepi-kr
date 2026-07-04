@@ -35,6 +35,10 @@ import { TransparentBgIntro } from '@/components/tools/transparent-background/Tr
 import { TransparentBgHowTo } from '@/components/tools/transparent-background/TransparentBgHowTo';
 import { TransparentBgFaq } from '@/components/tools/transparent-background/TransparentBgFaq';
 import { TransparentBgStructuredData } from '@/components/tools/transparent-background/TransparentBgStructuredData';
+import { RouletteIntro } from '@/components/tools/roulette/RouletteIntro';
+import { RouletteHowTo } from '@/components/tools/roulette/RouletteHowTo';
+import { RouletteFaq } from '@/components/tools/roulette/RouletteFaq';
+import { RouletteStructuredData } from '@/components/tools/roulette/RouletteStructuredData';
 
 const LadderGame = dynamic(() =>
   import('@/components/tools/ladder/LadderGame').then((m) => ({
@@ -114,6 +118,12 @@ const RestaurantMap = dynamic(() =>
   }))
 );
 
+const Roulette = dynamic(() =>
+  import('@/components/tools/roulette/Roulette').then((m) => ({
+    default: m.Roulette,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -163,6 +173,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'restaurant-map') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'roulette') {
     title = t('meta.title');
     description = t('meta.description');
   } else {
@@ -305,6 +318,18 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
         <TransparentBackgroundMaker />
         <TransparentBgHowTo />
         <TransparentBgFaq />
+      </>
+    );
+  }
+
+  if (slug === 'roulette') {
+    return (
+      <>
+        <RouletteStructuredData />
+        <RouletteIntro />
+        <Roulette />
+        <RouletteHowTo />
+        <RouletteFaq />
       </>
     );
   }

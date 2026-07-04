@@ -5,6 +5,7 @@
 ## Tools
 
 - [사다리타기 (Ghost Leg)](https://apps.jurepi.kr/ko/tools/ladder): Enter participants and outcomes, then use a fair ladder draw for random selection. Lottery, raffle, impartial drawing.
+- [결정의 룰렛 (Decision Roulette)](https://apps.jurepi.kr/ko/tools/roulette): Add choices, assign optional weights, spin to decide fairly. Includes sequential draw mode, sound effects, and save/load option sets locally.
 - [신조어 용어사전 (New Word)](https://apps.jurepi.kr/ko/tools/new-word): Discover trending MZ slang and modern tech terms with meanings and examples in Korean and English side by side.
 - [1일1질문 (Q&A a Day)](https://apps.jurepi.kr/ko/tools/qna-a-day): Answer one question daily and build a growing personal journal of reflections.
 - [나이 계산기 (Age Calculator)](https://apps.jurepi.kr/ko/tools/age-calculator): Calculate your exact age in three ways: legal age (만 나이), calendar-year age, and traditional Korean counting age. See your zodiac sign, birth day of week, and days lived.

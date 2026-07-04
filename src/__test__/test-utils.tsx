@@ -150,7 +150,10 @@ const defaultMessages = {
         downloaded: 'Downloaded',
       },
       announce: {
-        result: "{name}'s result is {prize}",
+        result: '{name} is the winner',
+      },
+      legend: {
+        title: 'Options Legend',
       },
       howTo: {
         heading: 'How to play',
@@ -378,6 +381,97 @@ const defaultMessages = {
           {
             q: 'Is there a maximum image size?',
             a: 'No limit. Images larger than 4096px are automatically downscaled for performance.',
+          },
+        ],
+      },
+    },
+    roulette: {
+      title: 'Decision Roulette',
+      description: 'Spin to decide fairly from your options.',
+      intro: {
+        eyebrow: 'Random Tool',
+        headline: 'Decision Roulette',
+        lead: 'Spin to decide fairly from your options.',
+      },
+      options: {
+        label: 'Add Option',
+        add: 'Add',
+        placeholder: 'e.g., Pizza',
+        weight: 'Weight',
+        delete: 'Delete',
+        reorderUp: 'Move up',
+        reorderDown: 'Move down',
+        empty: 'Please add at least one option.',
+        tooMany: 'Maximum 30 options allowed.',
+        duplicate: 'This option already exists.',
+      },
+      spin: {
+        button: 'Spin Now!',
+        disabled: 'You need at least 2 options',
+        spinning: 'Spinning…',
+      },
+      result: {
+        eyebrow: 'Congratulations!',
+        spinAgain: 'Spin Again',
+        removeAndSpin: 'Remove & Re-spin',
+      },
+      announce: {
+        result: '{name} is the winner',
+      },
+      legend: {
+        title: 'Options Legend',
+      },
+      toasts: {
+        saved: 'Set saved successfully',
+        loaded: 'Set loaded',
+        deleted: 'Set deleted',
+        emptyLabel: 'Please enter an option label',
+        duplicateLabel: 'This option already exists',
+        maxOptions: 'Maximum 30 options reached',
+      },
+      save: {
+        label: 'Save This Set',
+        button: 'Save',
+        input: 'Set name (max 50 characters)',
+        placeholder: 'Set name',
+        default: 'Untitled',
+      },
+      load: {
+        label: 'Saved Sets',
+        empty: 'Save a set to see it here',
+        itemCount: '{count} options',
+        delete: 'Delete',
+      },
+      settings: {
+        title: 'Settings',
+        sound: 'Sound',
+        volume: 'Volume',
+        removeWinner: 'Remove Winner Mode',
+      },
+      howTo: {
+        heading: 'How to Use the Roulette',
+        step1Title: 'Add Options',
+        step1Body: 'Enter your options in the input field.',
+        step2Title: 'Adjust Weights',
+        step2Body: 'Optional: set weights to change probabilities.',
+        step3Title: 'Spin',
+        step3Body: 'Click the Spin Now button to reveal the winner.',
+        tipsTitle: 'Tips',
+        tipsBody: 'Save sets for quick reuse. Use Remove Winner Mode for sequential selections.',
+      },
+      faq: {
+        items: [
+          {
+            q: 'Is the roulette truly fair?',
+            a: 'Yes, it uses cryptographic random number generation.',
+          },
+          {
+            q: 'How many options can I add?',
+            a: 'Between 2 and 30 options.',
+          },
+          {
+            q: 'Where are my sets stored?',
+            a: 'In your browser local storage, never sent anywhere.',
           },
         ],
       },

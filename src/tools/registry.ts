@@ -158,6 +158,17 @@ export const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'roulette',
+    slug: 'roulette',
+    category: 'random',
+    icon: 'RotateCcw',
+    accent: 'rose',
+    status: 'live',
+    isNew: true,
+    order: 25,
+    keywords: ['룰렛', '랜덤', '추첨', '선택', '결정', '돌림판', '뽑기', 'roulette', 'random', 'spin', 'decision', 'picker', 'wheel', 'lucky draw'],
+  },
+  {
     id: 'restaurant-map',
     slug: 'restaurant-map',
     category: 'fun',
