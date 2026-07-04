@@ -5,6 +5,7 @@ import { absoluteEntityUrl } from '@/lib/seo';
 import termsData from '@/components/tools/new-word/data/terms.generated.json';
 import rankingsData from '@/components/tools/rankings/data/rankings.generated.json';
 import bookmarksData from '@/components/tools/bookmarks/data/bookmarks.generated.json';
+import devPeopleData from '@/components/tools/dev-people/data/dev-people.generated.json';
 
 // Required for output: 'export' — emit a static sitemap at build time.
 export const dynamic = 'force-static';
@@ -89,6 +90,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   (bookmarksData as Array<{ slug: string }>).forEach((topic) => {
     entries.push(
       ...localizedEntries((locale) => absoluteEntityUrl(locale, 'bookmarks', topic.slug), {
+        priority: 0.7,
+        changeFrequency: 'monthly',
+      }),
+    );
+  });
+
+  // Developer people profiles
+  (devPeopleData as { peoples: Array<{ slug: string }> }).peoples.forEach((person) => {
+    entries.push(
+      ...localizedEntries((locale) => absoluteEntityUrl(locale, 'dev-people', person.slug), {
         priority: 0.7,
         changeFrequency: 'monthly',
       }),

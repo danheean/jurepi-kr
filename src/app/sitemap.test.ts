@@ -5,6 +5,7 @@ import { getLiveTools } from '@/tools/registry';
 import termsData from '@/components/tools/new-word/data/terms.generated.json';
 import rankingsData from '@/components/tools/rankings/data/rankings.generated.json';
 import bookmarksData from '@/components/tools/bookmarks/data/bookmarks.generated.json';
+import devPeopleData from '@/components/tools/dev-people/data/dev-people.generated.json';
 
 const STATIC_PAGE_COUNT = 5; // home, about, privacy, terms, contact
 
@@ -17,7 +18,8 @@ describe('sitemap (bot-optimized for Google Search Console)', () => {
       getLiveTools().length +
       termsData.length +
       rankingsData.length +
-      bookmarksData.length;
+      bookmarksData.length +
+      (devPeopleData as { peoples: Array<{ slug: string }> }).peoples.length;
     expect(entries).toHaveLength(routing.locales.length * perLocale);
   });
 

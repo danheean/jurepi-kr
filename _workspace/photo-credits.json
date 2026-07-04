@@ -1,0 +1,87 @@
+[
+  {
+    "slug": "andrej-karpathy",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Andrej_Karpathy,_OpenAI.png",
+    "author": "Gladwin Analytics",
+    "license": "CC BY 3.0",
+    "credit": "Wikimedia Commons © Gladwin Analytics, CC BY 3.0"
+  },
+  {
+    "slug": "robert-c-martin",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Robert_C._Martin_surrounded_by_computers_(cropped).jpg",
+    "author": "Angelacleancoder",
+    "license": "CC BY-SA 4.0",
+    "credit": "Wikimedia Commons © Angelacleancoder, CC BY-SA 4.0"
+  },
+  {
+    "slug": "richard-stallman",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Richard_Stallman_Bologna_2024_abc1.jpg",
+    "author": "Patafisik",
+    "license": "CC BY-SA 4.0",
+    "credit": "Wikimedia Commons © Patafisik, CC BY-SA 4.0"
+  },
+  {
+    "slug": "james-gosling",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:James_Gosling_2008.jpg",
+    "author": "Peter Campbell",
+    "license": "CC BY-SA 4.0",
+    "credit": "Wikimedia Commons © Peter Campbell, CC BY-SA 4.0"
+  },
+  {
+    "slug": "erich-gamma",
+    "status": "skipped",
+    "reason": "License not eligible or image not found"
+  },
+  {
+    "slug": "kent-beck",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Kent_Beck_no_Workshop_Mapping_XP.jpg",
+    "author": "Improve It",
+    "license": "CC BY-SA 2.0",
+    "credit": "Wikimedia Commons © Improve It, CC BY-SA 2.0"
+  },
+  {
+    "slug": "martin-fowler",
+    "status": "skipped",
+    "reason": "License not eligible or image not found"
+  },
+  {
+    "slug": "linus-torvalds",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:LinuxCon_Europe_Linus_Torvalds_03_(cropped).jpg",
+    "author": "Krd (photo)Von Sprat (crop/extraction)",
+    "license": "CC BY-SA 4.0",
+    "credit": "Wikimedia Commons © Krd (photo)Von Sprat (crop/extraction), CC BY-SA 4.0"
+  },
+  {
+    "slug": "yann-lecun",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Laura_Chaubard_&_Yann_Le_Cun_-_2024_(53814052697)_(cropped).jpg",
+    "author": "Jérémy Barande",
+    "license": "CC BY-SA 2.0",
+    "credit": "Wikimedia Commons © Jérémy Barande, CC BY-SA 2.0"
+  },
+  {
+    "slug": "geoffrey-hinton",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_in_2026.jpg",
+    "author": "Cmichel67",
+    "license": "CC BY-SA 4.0",
+    "credit": "Wikimedia Commons © Cmichel67, CC BY-SA 4.0"
+  },
+  {
+    "slug": "brendan-eich",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Brendan_Eich_Mozilla_Foundation_official_photo.jpg",
+    "author": "Darcy Padilla",
+    "license": "CC BY-SA 3.0",
+    "credit": "Wikimedia Commons © Darcy Padilla, CC BY-SA 3.0"
+  },
+  {
+    "slug": "guido-van-rossum",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Guido_van_Rossum_in_PyConUS24_(cropped).jpg",
+    "author": "Kushal Das",
+    "license": "CC BY-SA 4.0",
+    "credit": "Wikimedia Commons © Kushal Das, CC BY-SA 4.0"
+  },
+  {
+    "slug": "jocoding",
+    "status": "skipped",
+    "reason": "No Commons image available"
+  }
+]

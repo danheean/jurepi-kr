@@ -165,6 +165,27 @@ docs/                    # SPEC · DESIGN 시스템 (요구사항 단일 소스)
 
 > `coming_soon` 도구는 레지스트리 항목만으로 "준비중" 카드가 노출됩니다.
 
+### 콘텐츠 도구에 항목 추가하기 (코드 변경 0)
+
+마크다운 컬렉션 기반 도구(신조어 사전·별별 랭킹·즐겨찾기·**개발 인물 사전**)는
+마크다운 쌍(`<slug>.md` + `<slug>_en.md`)만 넣고 빌드하면 허브 카드·상세(스포크) 페이지·sitemap이
+자동으로 따라옵니다. 각 도구는 Claude Code **스킬**로 절차가 캡슐화되어 있어 자연어로 요청하면 됩니다.
+
+```text
+# Claude Code에서 — dev-people-author 스킬이 자동 트리거되어
+# 사실 검증 → 사진 라이선스(Commons PD/CC) → 마크다운 쌍 → 검증 → 배포까지 수행
+앨런 튜링을 인물 사전에 추가해줘
+```
+
+## 📚 도구별 문서
+
+각 도구의 요구사항·아키텍처·콘텐츠 저작 방법은 `docs/services/<category>/<tool>/README.md`에 있습니다.
+
+| 도구 | 문서 |
+|------|------|
+| 개발 인물 사전 (Developer People Dictionary) | [`docs/services/dev/dev-people/README.md`](docs/services/dev/dev-people/README.md) — 스킬 사용 예시·콘텐츠 파이프라인·작성 가이드 |
+| 맛집 리스트 (Restaurant List) | [`docs/services/fun/restaurant-map/README.md`](docs/services/fun/restaurant-map/README.md) |
+
 ## 🤖 개발 하네스
 
 본 저장소는 `.claude/` 에 **클린 아키텍처 + TDD**를 강제하는 에이전트 팀(7종)과 스킬(8종)을 포함합니다.

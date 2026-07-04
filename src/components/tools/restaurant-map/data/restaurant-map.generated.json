@@ -1,0 +1,582 @@
+[
+  {
+    "slug": "seoul-jokbal",
+    "region": "seoul",
+    "city": "여러 구",
+    "asOfDate": "2026-07-04",
+    "sourceUrl": "https://blog.naver.com/dhan0213",
+    "ko": {
+      "title": "서울지역 족발",
+      "sourceNote": "직접 다녀온 곳 위주, 2026년 상반기 기준",
+      "places": [
+        {
+          "name": "장충동 왕족발집",
+          "lat": 37.5605,
+          "lng": 127.0089,
+          "category": "korean",
+          "address": "서울 중구 장충단로 174",
+          "description": "1970년대부터 이어온 원조 장충동 족발. 쫄깃한 껍질과 진한 양념이 특징.",
+          "personalNote": "겉바속촉이란 말이 족발에도 쓰일 줄 몰랐어요. 웨이팅 각오는 필수.",
+          "link": "https://map.naver.com/p/entry/place/11592234",
+          "priceRange": "₩30,000–45,000",
+          "id": "seoul-jokbal#0"
+        },
+        {
+          "name": "이태원 앞다리 족발",
+          "lat": 37.5347,
+          "lng": 126.9946,
+          "category": "korean",
+          "address": "서울 용산구 이태원로 220",
+          "description": "앞다리살만 사용해 기름기가 적고 담백한 족발.",
+          "personalNote": "느끼한 거 싫어하는 사람한테 강추. 저는 이 집만 갑니다.",
+          "priceRange": "₩28,000–40,000",
+          "id": "seoul-jokbal#1"
+        },
+        {
+          "name": "성수동 미스족발",
+          "lat": 37.5445,
+          "lng": 127.0557,
+          "category": "korean",
+          "address": "서울 성동구 성수이로 100",
+          "description": "매운 양념족발이 시그니처인 로컬 맛집.",
+          "personalNote": "맵찔이는 순한맛부터 시작하세요. 저는 매운맛 먹고 후회했어요.",
+          "priceRange": "₩32,000–42,000",
+          "id": "seoul-jokbal#2"
+        },
+        {
+          "name": "강남 족발의 신",
+          "lat": 37.4979,
+          "lng": 127.0276,
+          "category": "korean",
+          "address": "서울 강남구 테헤란로 152",
+          "description": "프리미엄 족발 특화점, 신선한 재료와 정성스러운 양념",
+          "personalNote": "가격은 조금 나가지만 정말 품질이 달라요. 특별한 날에 가기 좋습니다.",
+          "priceRange": "₩45,000–65,000",
+          "id": "seoul-jokbal#3"
+        }
+      ]
+    },
+    "en": {
+      "title": "Seoul Pork Hock (Jokbal) Spots",
+      "sourceNote": "First-hand visits only, as of H1 2026",
+      "places": [
+        {
+          "name": "Jangchung-dong Original Jokbal",
+          "lat": 37.5605,
+          "lng": 127.0089,
+          "category": "korean",
+          "address": "174 Jangchungdan-ro, Jung-gu, Seoul",
+          "description": "Serving jokbal since the 1970s — chewy skin, rich sauce, the neighborhood's namesake.",
+          "personalNote": "Didn't expect 'crispy outside, tender inside' to apply to pork hock. Budget time for the line.",
+          "link": "https://map.naver.com/p/entry/place/11592234",
+          "priceRange": "₩30,000–45,000",
+          "id": "seoul-jokbal#0"
+        },
+        {
+          "name": "Itaewon Front-Leg Jokbal",
+          "lat": 37.5347,
+          "lng": 126.9946,
+          "category": "korean",
+          "address": "220 Itaewon-ro, Yongsan-gu, Seoul",
+          "description": "Uses only front-leg cuts for a leaner, less fatty jokbal.",
+          "personalNote": "My go-to if you don't like greasy food — I only go to this one.",
+          "priceRange": "₩28,000–40,000",
+          "id": "seoul-jokbal#1"
+        },
+        {
+          "name": "Seongsu Miss Jokbal",
+          "lat": 37.5445,
+          "lng": 127.0557,
+          "category": "korean",
+          "address": "100 Seongsu-iro, Seongdong-gu, Seoul",
+          "description": "Local favorite known for its spicy sauce-marinated jokbal.",
+          "personalNote": "Start with mild if you're spice-sensitive — I went straight for spicy and regretted it.",
+          "priceRange": "₩32,000–42,000",
+          "id": "seoul-jokbal#2"
+        },
+        {
+          "name": "Gangnam Jokbal Shin",
+          "lat": 37.4979,
+          "lng": 127.0276,
+          "category": "korean",
+          "address": "152 Teheran-ro, Gangnam-gu, Seoul",
+          "description": "Premium jokbal specialist with fresh ingredients and meticulous sauce",
+          "personalNote": "The price is a bit higher but the quality is noticeably different. Great for special occasions.",
+          "priceRange": "₩45,000–65,000",
+          "id": "seoul-jokbal#3"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "seongsu-cafes",
+    "region": "seoul",
+    "city": "성동구",
+    "asOfDate": "2026-07-04",
+    "sourceUrl": "https://blog.naver.com/dhan0213",
+    "ko": {
+      "title": "성수동 감성 카페",
+      "sourceNote": "직접 다녀온 곳 위주, 2026년 상반기 기준",
+      "places": [
+        {
+          "name": "카페 하늘",
+          "lat": 37.5445,
+          "lng": 127.0557,
+          "category": "cafe",
+          "address": "서울 성동구 성수이로 1길 10",
+          "description": "햇빛이 잘 드는 2층 카페, 시그니처 라떼와 자체 로스팅 원두",
+          "personalNote": "창문 좌석에서 해가 지는 모습이 정말 예쁜데, 웨이팅이 길어요.",
+          "link": "https://map.naver.com/p/entry/place/example1",
+          "priceRange": "₩5,000–8,000",
+          "id": "seongsu-cafes#0"
+        },
+        {
+          "name": "가든 베이커리",
+          "lat": 37.5465,
+          "lng": 127.0575,
+          "category": "brunch",
+          "address": "서울 성동구 성수이로 2길 15",
+          "description": "자신 있는 크로와상과 신선한 재료의 브런치 세트",
+          "personalNote": "버터 냄새가 코를 자극할 정도로 신선해요. 주말에 가면 꼭 웨이팅을 각오해야 합니다.",
+          "priceRange": "₩12,000–18,000",
+          "id": "seongsu-cafes#1"
+        },
+        {
+          "name": "로스터즈 숍",
+          "lat": 37.548,
+          "lng": 127.054,
+          "category": "cafe",
+          "address": "서울 성동구 성수이로 3길 22",
+          "description": "싱글오리진 특화점, 조용한 분위기",
+          "personalNote": "커피를 정말 좋아하는 사람이 운영하는 느낌이 납니다. 커피 추천도 친절해요.",
+          "id": "seongsu-cafes#2"
+        },
+        {
+          "name": "디저트 하우스",
+          "lat": 37.542,
+          "lng": 127.052,
+          "category": "dessert",
+          "address": "서울 성동구 성수이로 4길 8",
+          "description": "수제 초콜릿과 타르트 전문점",
+          "personalNote": "무염버터로만 만든다는 게 정말 맞게 느껴져요. 밀크 초콜릿이 최고입니다.",
+          "id": "seongsu-cafes#3"
+        },
+        {
+          "name": "와인 바 세로",
+          "lat": 37.549,
+          "lng": 127.059,
+          "category": "bar",
+          "address": "서울 성동구 성수이로 5길 30",
+          "description": "와인 전문 소믈리에, 칵테일도 훌륭함",
+          "personalNote": "직원 분들이 와인 지식이 정말 풍부해요. 추천받은 와인으로 저녁을 보내는 게 최곤데요.",
+          "priceRange": "₩8,000–25,000",
+          "id": "seongsu-cafes#4"
+        },
+        {
+          "name": "국수 전문 카주",
+          "lat": 37.5435,
+          "lng": 127.0565,
+          "category": "korean",
+          "address": "서울 성동구 성수이로 6길 12",
+          "description": "수제 면사, 진한 국물로 유명한 우동과 소바",
+          "personalNote": "국물이 정말 깊어요. 여름에도 뜨거운 국수를 먹는데 중독성 있어요.",
+          "priceRange": "₩9,000–12,000",
+          "id": "seongsu-cafes#5"
+        }
+      ]
+    },
+    "en": {
+      "title": "Seongsu-dong Aesthetic Cafés",
+      "sourceNote": "First-hand visits only, as of H1 2026",
+      "places": [
+        {
+          "name": "Café Sky",
+          "lat": 37.5445,
+          "lng": 127.0557,
+          "category": "cafe",
+          "address": "10 Seongsu-iro 1-gil, Seongdong-gu, Seoul",
+          "description": "Bright 2-floor café with excellent light, signature lattes, and in-house roasted beans",
+          "personalNote": "The sunset view from the window seats is absolutely gorgeous. Just expect a wait.",
+          "link": "https://map.naver.com/p/entry/place/example1",
+          "priceRange": "₩5,000–8,000",
+          "id": "seongsu-cafes#0"
+        },
+        {
+          "name": "Garden Bakery",
+          "lat": 37.5465,
+          "lng": 127.0575,
+          "category": "brunch",
+          "address": "15 Seongsu-iro 2-gil, Seongdong-gu, Seoul",
+          "description": "Confident croissants and fresh-ingredient brunch sets",
+          "personalNote": "The butter aroma is overwhelming—everything is that fresh. Weekends guarantee a line.",
+          "priceRange": "₩12,000–18,000",
+          "id": "seongsu-cafes#1"
+        },
+        {
+          "name": "Roasters' Shop",
+          "lat": 37.548,
+          "lng": 127.054,
+          "category": "cafe",
+          "address": "22 Seongsu-iro 3-gil, Seongdong-gu, Seoul",
+          "description": "Single-origin specialist with quiet vibes",
+          "personalNote": "You can tell the owner genuinely loves coffee. Recommendations are thoughtful.",
+          "id": "seongsu-cafes#2"
+        },
+        {
+          "name": "Dessert House",
+          "lat": 37.542,
+          "lng": 127.052,
+          "category": "dessert",
+          "address": "8 Seongsu-iro 4-gil, Seongdong-gu, Seoul",
+          "description": "Handcrafted chocolates and tart specialists",
+          "personalNote": "Made with unsalted butter only, and you can taste it. The milk chocolate is outstanding.",
+          "id": "seongsu-cafes#3"
+        },
+        {
+          "name": "Wine Bar Cero",
+          "lat": 37.549,
+          "lng": 127.059,
+          "category": "bar",
+          "address": "30 Seongsu-iro 5-gil, Seongdong-gu, Seoul",
+          "description": "Wine-focused sommelier, excellent cocktails",
+          "personalNote": "The staff's wine knowledge is incredible. An evening guided by their recommendations is the best way to spend an evening.",
+          "priceRange": "₩8,000–25,000",
+          "id": "seongsu-cafes#4"
+        },
+        {
+          "name": "Noodle Specialist Caju",
+          "lat": 37.5435,
+          "lng": 127.0565,
+          "category": "korean",
+          "address": "12 Seongsu-iro 6-gil, Seongdong-gu, Seoul",
+          "description": "House-made noodles, famous for deep broths in udon and soba",
+          "personalNote": "The broth is really deep. Even in summer I crave their hot noodles—super addictive.",
+          "priceRange": "₩9,000–12,000",
+          "id": "seongsu-cafes#5"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "suyu-sundae-gukbap",
+    "region": "seoul",
+    "city": "강북구",
+    "asOfDate": "2026-07-04",
+    "sourceUrl": "https://blog.naver.com/dhan0213",
+    "ko": {
+      "title": "수유동 순대국밥",
+      "sourceNote": "직접 다녀온 곳 위주, 2026년 상반기 기준",
+      "places": [
+        {
+          "name": "수유 시장 순대국",
+          "lat": 37.6387,
+          "lng": 127.0253,
+          "category": "korean",
+          "address": "서울 강북구 도봉로 앞 수유재래시장 내",
+          "description": "수유재래시장 안 노포. 진한 사골 육수에 직접 만든 찹쌀순대를 아낌없이 넣어준다.",
+          "personalNote": "시장 국밥은 역시 양으로 승부하네요. 새우젓 간이 기본기라 첫 술은 간 없이 드셔보세요.",
+          "priceRange": "₩9,000–12,000",
+          "id": "suyu-sundae-gukbap#0"
+        },
+        {
+          "name": "강북 할머니 순대국밥",
+          "lat": 37.6402,
+          "lng": 127.0247,
+          "category": "korean",
+          "address": "서울 강북구 삼양로 수유역 인근",
+          "description": "24시간 운영하는 동네 사랑방. 머릿고기와 내장 비율을 취향대로 고를 수 있다.",
+          "personalNote": "해장으로 새벽에 가면 택시 기사님들 사이에 앉게 됩니다. 그게 맛집의 증거죠.",
+          "priceRange": "₩10,000–13,000",
+          "id": "suyu-sundae-gukbap#1"
+        },
+        {
+          "name": "수유동 뽀얀집",
+          "lat": 37.6371,
+          "lng": 127.0265,
+          "category": "korean",
+          "address": "서울 강북구 노해로 수유동",
+          "description": "잡내 없는 뽀얀 국물이 시그니처. 들깨가루와 다대기를 따로 내준다.",
+          "personalNote": "순대국 특유의 냄새 때문에 못 먹던 친구도 여기선 한 그릇 뚝딱했어요. 입문용 강추.",
+          "priceRange": "₩9,500–12,500",
+          "id": "suyu-sundae-gukbap#2"
+        }
+      ]
+    },
+    "en": {
+      "title": "Suyu-dong Sundae Gukbap (Blood Sausage Soup)",
+      "sourceNote": "First-hand visits only, as of H1 2026",
+      "places": [
+        {
+          "name": "Suyu Market Sundae-guk",
+          "lat": 37.6387,
+          "lng": 127.0253,
+          "category": "korean",
+          "address": "Inside Suyu Traditional Market, Dobong-ro, Gangbuk-gu, Seoul",
+          "description": "Old-school spot inside Suyu Market — rich bone broth loaded with house-made sticky-rice sundae.",
+          "personalNote": "Market gukbap wins on portions. The salted-shrimp seasoning is the backbone — try the first spoonful unseasoned.",
+          "priceRange": "₩9,000–12,000",
+          "id": "suyu-sundae-gukbap#0"
+        },
+        {
+          "name": "Gangbuk Grandma's Sundae Gukbap",
+          "lat": 37.6402,
+          "lng": 127.0247,
+          "category": "korean",
+          "address": "Near Suyu Station, Samyang-ro, Gangbuk-gu, Seoul",
+          "description": "A 24-hour neighborhood institution. Pick your own ratio of head meat to offal.",
+          "personalNote": "Go at dawn for hangover soup and you'll be seated among taxi drivers — that's the proof it's good.",
+          "priceRange": "₩10,000–13,000",
+          "id": "suyu-sundae-gukbap#1"
+        },
+        {
+          "name": "Suyu-dong Milky Broth House",
+          "lat": 37.6371,
+          "lng": 127.0265,
+          "category": "korean",
+          "address": "Nohae-ro, Suyu-dong, Gangbuk-gu, Seoul",
+          "description": "Signature milky broth with zero gaminess. Perilla-seed powder and spicy paste served on the side.",
+          "personalNote": "A friend who couldn't handle the usual sundae-guk smell finished a whole bowl here. Best entry point.",
+          "priceRange": "₩9,500–12,500",
+          "id": "suyu-sundae-gukbap#2"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "busan-ramen",
+    "region": "busan",
+    "city": "중구·동구",
+    "asOfDate": "2026-07-04",
+    "sourceUrl": "https://blog.naver.com/busan-local",
+    "ko": {
+      "title": "부산 로컬 라면 맛집",
+      "sourceNote": "부산 거주 3년 차, 매주 다니는 국수 집 리스트",
+      "places": [
+        {
+          "name": "남포동 돈코츠",
+          "lat": 35.098,
+          "lng": 129.0306,
+          "category": "japanese",
+          "address": "부산 중구 남포동 자갈치로 12",
+          "description": "현지인이 즐겨 찾는 돈코츠 전문점, 12시간 우린 육수",
+          "personalNote": "관광지 물가가 아닌 로컬 가격이라 부산 갈 때마다 들러요.",
+          "link": "https://map.naver.com/p/entry/place/busan-ramen-1",
+          "priceRange": "₩10,000–13,000",
+          "id": "busan-ramen#0"
+        },
+        {
+          "name": "동광동 탄탄면",
+          "lat": 35.1045,
+          "lng": 129.042,
+          "category": "chinese",
+          "address": "부산 중구 동광로 50",
+          "description": "마라 향이 살아있는 탄탄면, 현지식 레시피",
+          "personalNote": "맵긴 한데 중독성 있어요. 회사원들 점심시간에 가면 웨이팅 필수입니다.",
+          "priceRange": "₩8,500–11,000",
+          "id": "busan-ramen#1"
+        },
+        {
+          "name": "초량동 미소라멘",
+          "lat": 35.112,
+          "lng": 129.055,
+          "category": "japanese",
+          "address": "부산 동구 초량로 200",
+          "description": "8년 전통의 미소 국물, 자체 숙성 버터",
+          "personalNote": "들어가자마자 풍기는 국물 냄새가 정말 좋아요. 저녁에 가도 줄을 서야 합니다.",
+          "id": "busan-ramen#2"
+        },
+        {
+          "name": "대창 라멘",
+          "lat": 35.095,
+          "lng": 129.038,
+          "category": "korean",
+          "address": "부산 중구 남포동 매축로 120",
+          "description": "라면 위에 숯불 대창을 얹은 특이한 조합",
+          "personalNote": "웬지 이상할 것 같았는데 정말 맛있어요. 부산만의 독특한 맛입니다.",
+          "priceRange": "₩12,000–15,000",
+          "id": "busan-ramen#3"
+        },
+        {
+          "name": "해운대 쇼유라멘",
+          "lat": 35.1605,
+          "lng": 129.1605,
+          "category": "japanese",
+          "address": "부산 해운대구 마린시티로 30",
+          "description": "간장 국물에 신선한 생선 육수를 블렌딩한 독특한 맛",
+          "personalNote": "부산의 신선함이 담긴 맛이에요. 해운대에 오면 이 집 라면은 필수입니다.",
+          "priceRange": "₩11,000–14,000",
+          "id": "busan-ramen#4"
+        }
+      ]
+    },
+    "en": {
+      "title": "Busan Local Ramen Favorites",
+      "sourceNote": "3-year Busan resident, weekly noodle house explorer",
+      "places": [
+        {
+          "name": "Nampo-dong Tonkotsu",
+          "lat": 35.098,
+          "lng": 129.0306,
+          "category": "japanese",
+          "address": "12 Jagalchi-ro, Jung-gu, Busan",
+          "description": "Locals' favorite tonkotsu specialist, broth simmered 12 hours",
+          "personalNote": "Local pricing, not tourist prices — I visit every time I'm in Busan.",
+          "link": "https://map.naver.com/p/entry/place/busan-ramen-1",
+          "priceRange": "₩10,000–13,000",
+          "id": "busan-ramen#0"
+        },
+        {
+          "name": "Donggwang-dong Tantanmen",
+          "lat": 35.1045,
+          "lng": 129.042,
+          "category": "chinese",
+          "address": "50 Donggwang-ro, Jung-gu, Busan",
+          "description": "Numbing málà flavor with authentic local recipe",
+          "personalNote": "It's spicy but super addictive. Expect a lunch-hour wait with office workers.",
+          "priceRange": "₩8,500–11,000",
+          "id": "busan-ramen#1"
+        },
+        {
+          "name": "Choryang-dong Miso Ramen",
+          "lat": 35.112,
+          "lng": 129.055,
+          "category": "japanese",
+          "address": "200 Choryang-ro, Dong-gu, Busan",
+          "description": "8-year-old miso broth tradition with house-aged butter",
+          "personalNote": "The aroma as you enter is incredible. Even at dinner, you'll be waiting in line.",
+          "id": "busan-ramen#2"
+        },
+        {
+          "name": "Daechang Ramen",
+          "lat": 35.095,
+          "lng": 129.038,
+          "category": "korean",
+          "address": "120 Maechuk-ro, Nampo-dong, Jung-gu, Busan",
+          "description": "Ramen topped with charcoal-grilled daechang (beef intestine)",
+          "personalNote": "Seemed odd at first but it's genuinely delicious. A uniquely Busan creation.",
+          "priceRange": "₩12,000–15,000",
+          "id": "busan-ramen#3"
+        },
+        {
+          "name": "Haeundae Shoyu Ramen",
+          "lat": 35.1605,
+          "lng": 129.1605,
+          "category": "japanese",
+          "address": "30 Marine City-ro, Haeundae-gu, Busan",
+          "description": "Soy-based broth blended with fresh seafood stock, unique flavor",
+          "personalNote": "This captures Busan's freshness in a bowl. A must-try when you visit Haeundae.",
+          "priceRange": "₩11,000–14,000",
+          "id": "busan-ramen#4"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "national-tuna",
+    "region": "nationwide",
+    "asOfDate": "2026-07-04",
+    "sourceUrl": "https://blog.naver.com/tuna-hunter",
+    "ko": {
+      "title": "전국 참치 맛집",
+      "sourceNote": "지역 상관없이 참치 하나로 뽑은 리스트",
+      "places": [
+        {
+          "name": "서울 강남 참치명가",
+          "lat": 37.4979,
+          "lng": 127.0276,
+          "category": "japanese",
+          "address": "서울 강남구 테헤란로 152",
+          "description": "참다랑어 오마카세로 유명한 강남 참치집. 신선함이 최고.",
+          "personalNote": "가격은 사악하지만 대뱃살 한 점이면 다 용서됩니다.",
+          "link": "https://map.naver.com/p/entry/place/seoul-tuna-1",
+          "priceRange": "₩80,000–150,000",
+          "id": "national-tuna#0"
+        },
+        {
+          "name": "부산 남포동 원조참치",
+          "lat": 35.098,
+          "lng": 129.0306,
+          "category": "japanese",
+          "address": "부산 중구 남포동 자갈치로 12",
+          "description": "현지인이 즐겨 찾는 가성비 참치 오마카세.",
+          "personalNote": "관광지 물가 아닌 로컬 가격이라 부산 갈 때마다 들러요.",
+          "priceRange": "₩50,000–80,000",
+          "id": "national-tuna#1"
+        },
+        {
+          "name": "목포 어시장 신鮮참치",
+          "lat": 34.8118,
+          "lng": 126.39,
+          "category": "japanese",
+          "address": "전남 목포시 항구로 100",
+          "description": "아침마다 수입되는 생참치, 회전율이 높아 신선함 보장",
+          "personalNote": "목포에 가면 무조건 여기 들러요. 씹는 식감이 다릅니다.",
+          "priceRange": "₩35,000–55,000",
+          "id": "national-tuna#2"
+        },
+        {
+          "name": "인천 강화도 토종참치",
+          "lat": 37.7454,
+          "lng": 126.5734,
+          "category": "japanese",
+          "address": "인천 강화군 해변로 88",
+          "description": "주변 청정 해역에서 잡은 토종 참치로 유명",
+          "personalNote": "맛이 진하고 깔끔해요. 인천 거주자들의 비책 같은 집입니다.",
+          "priceRange": "₩40,000–65,000",
+          "id": "national-tuna#3"
+        }
+      ]
+    },
+    "en": {
+      "title": "Nationwide Tuna Specialists",
+      "sourceNote": "Curated tuna spots across Korea, region-agnostic",
+      "places": [
+        {
+          "name": "Seoul Gangnam Tuna Excellence",
+          "lat": 37.4979,
+          "lng": 127.0276,
+          "category": "japanese",
+          "address": "152 Teheran-ro, Gangnam-gu, Seoul",
+          "description": "Bluefin tuna omakase, top-tier freshness",
+          "personalNote": "The price is outrageous but one piece of toro erases all doubt.",
+          "link": "https://map.naver.com/p/entry/place/seoul-tuna-1",
+          "priceRange": "₩80,000–150,000",
+          "id": "national-tuna#0"
+        },
+        {
+          "name": "Busan Nampo-dong Original Tuna",
+          "lat": 35.098,
+          "lng": 129.0306,
+          "category": "japanese",
+          "address": "12 Jagalchi-ro, Jung-gu, Busan",
+          "description": "Local favorite tuna omakase with great value",
+          "personalNote": "Local pricing, not tourist prices — I visit every Busan trip.",
+          "priceRange": "₩50,000–80,000",
+          "id": "national-tuna#1"
+        },
+        {
+          "name": "Mokpo Fish Market Fresh Tuna",
+          "lat": 34.8118,
+          "lng": 126.39,
+          "category": "japanese",
+          "address": "100 Hanggु-ro, Mokpo, Jeollanam-do",
+          "description": "Daily imports of live tuna, high turnover guarantees freshness",
+          "personalNote": "Must-visit whenever in Mokpo. The chew is completely different.",
+          "priceRange": "₩35,000–55,000",
+          "id": "national-tuna#2"
+        },
+        {
+          "name": "Incheon Ganghwa Indigenous Tuna",
+          "lat": 37.7454,
+          "lng": 126.5734,
+          "category": "japanese",
+          "address": "88 Haebyon-ro, Ganghwa-gun, Incheon",
+          "description": "Wild-caught tuna from pristine nearby waters",
+          "personalNote": "Rich, clean flavor. It's an insider secret among Incheon locals.",
+          "priceRange": "₩40,000–65,000",
+          "id": "national-tuna#3"
+        }
+      ]
+    }
+  }
+]

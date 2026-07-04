@@ -139,6 +139,35 @@ export const tools: ToolMeta[] = [
     order: 22,
     keywords: ['배경제거', '투명', '배경투명', '로컬', 'remove background', 'transparent', 'single-color', 'local', 'privacy'],
   },
+  {
+    id: 'dev-people',
+    slug: 'dev-people',
+    category: 'dev',
+    icon: 'Users',
+    accent: 'sky',
+    status: 'live',
+    isNew: true,
+    order: 23,
+    keywords: [
+      '개발인물','개발인물사전','개발자','프로그래머','컴퓨터과학','인물','전기','biography',
+      '제프리힌턴','로버트마틴','에리히감마','리처드스톨먼','제임스고슬링','브렌던아이크','리누스토발즈',
+      '귀도반로섐','마틴파울러','켄트벡','얀르쿤','안드레이카파시','조코딩',
+      'Geoffrey Hinton','Robert Martin','Erich Gamma','Richard Stallman','James Gosling','Brendan Eich','Linus Torvalds',
+      'Guido van Rossum','Martin Fowler','Kent Beck','Yann LeCun','Andrej Karpathy',
+      'Java','Python','JavaScript','C','Linux','Git','AI','Deep Learning','Clean Code','Architecture','TDD'
+    ],
+  },
+  {
+    id: 'restaurant-map',
+    slug: 'restaurant-map',
+    category: 'fun',
+    icon: 'MapPin',
+    accent: 'rose',
+    status: 'live',
+    isNew: true,
+    order: 24,
+    keywords: ['맛집', '맛집리스트', '맛집지도', '카페', '라면', '족발', '참치', '음식', '추천', '지도', 'restaurant', 'map', 'food', 'cafe', 'ramen', 'tuna', 'local favorite', 'curator', 'dining', 'lunch', 'dinner'],
+  },
 ];
 
 /** Get all live tools for static generation */
