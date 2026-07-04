@@ -165,6 +165,23 @@ docs/                    # SPEC · DESIGN system (requirements single source)
 
 > A `coming_soon` tool shows a "coming soon" card from the registry entry alone.
 
+### Adding an entry to a content tool (zero code changes)
+
+Markdown-collection tools (New Word Glossary, Rankings, Bookmarks, **Developer People Dictionary**)
+only need a markdown pair (`<slug>.md` + `<slug>_en.md`): rebuild and the hub card, detail (spoke)
+page, and sitemap all follow automatically. Each tool ships with a Claude Code **skill** that
+encapsulates the whole procedure — just ask in natural language.
+
+```text
+# In Claude Code — the dev-people-author skill triggers automatically and handles
+# fact verification → photo licensing (Commons PD/CC) → markdown pair → validation → deploy
+Add Alan Turing to the people dictionary
+```
+
+📖 **[Developer People Dictionary tool docs → `docs/services/dev/dev-people/README.md`](docs/services/dev/dev-people/README.md)**
+— content pipeline, skill usage examples, manual authoring guide, and content principles
+(fact verification, photo licensing).
+
 ## 🤖 Development Harness
 
 This repo includes an agent team (7) and skills (8) under `.claude/` that enforce **Clean Architecture + TDD**.
