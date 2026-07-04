@@ -32,7 +32,7 @@ CRITICAL (SPA, usability-first): Every Jurepi tool is a client-side Single-Page 
 
 <scope_boundaries>
   <in_scope>
-    - Option list management: add (2..N options), edit label, remove, reorder (drag or arrow buttons)
+    - Option list management: add (2..30 options), edit label, remove, reorder (drag or arrow buttons)
     - Per-option weight: optional numeric weight (default 1, min 1); display as slice size in SVG
     - Spin: CSS animated rotation (transform: rotate) over ~4s with ease-out; reduced-motion reveals winner instantly
     - Winner reveal: highlight slice + option name prominently + play optional sound (Web Audio API, toggle in settings)
@@ -63,7 +63,7 @@ CRITICAL (SPA, usability-first): Every Jurepi tool is a client-side Single-Page 
 <technology_stack>
   <inherited>Next.js 15 App Router, React 19, TS strict, Tailwind v4 + DESIGN.md tokens, next-intl (ko/en) — all inherited from the platform.</inherited>
   <module_specific>
-    <wheel_svg>Rendered as pure SVG: circle + slices (path elements), tick marks, center label area. CSS `transform: rotate()` animates spin. Slice angle = (weight / total weight) × 360°. Label centered in slice (positioned via `textPath` for arc alignment).</wheel_svg>
+    <wheel_svg>Rendered as pure SVG: circle + slices (path elements), tick marks, center label area. CSS `transform: rotate()` animates spin. Slice angle = (weight / total weight) × 360°. Labels are rendered **radially** (rotated to the slice's mid-angle, reading inner→outer along the radius) so thin wedges still fit text; font size auto-scales with option count (clamp) and long labels truncate with `…` (full name preserved via `<title>`/aria-label). Above LEGEND_THRESHOLD options the slice shows its **index number** instead of the name and a numbered legend list maps number→full label beside/below the wheel.</wheel_svg>
     <random_selection>crypto.getRandomValues → uniform float [0, 1) × total weight → binary search to land on slice. Independent of visual angle (fair, bias-free).</random_selection>
     <animation>CSS transitions (rotate 4s ease-out); Web Audio API beeps (oscillator + gain); CSS keyframe confetti (scale, fade); all gated by `prefers-reduced-motion` (instant reveal, no motion).</animation>
     <persistence>localStorage key `jurepi-roulette`: { version, sets: { [name]: { options: [{label, weight}...] } }, lastSetName }. Read on mount → zod parse → pruneUnknown. Write on every change (no debounce — instant sync).</persistence>
@@ -86,7 +86,7 @@ src/
 ├── components/tools/roulette/
 │   ├── Roulette.tsx                    # Client Component; owns state (options, weights, spinning, selectedIndex, savedSets)
 │   ├── useRoulette.ts                  # Hook: wheel geometry, random pick, localStorage persistence (favorites/sets)
-│   ├── WheelSVG.tsx                    # Pure SVG wheel render (slices, ticks, center label, winner highlight)
+│   ├── WheelSVG.tsx                    # Pure SVG wheel render (slices, ticks, center label, winner highlight); adaptive radial labels, index-number mode + numbered legend above LEGEND_THRESHOLD
 │   ├── OptionList.tsx                  # Add input + option row (label, weight, delete button)
 │   ├── SpinButton.tsx                  # Main CTA; disabled when <2 options
 │   ├── ResultPanel.tsx                 # Winner reveal (name, "spin again?" prompt, confetti)
@@ -118,7 +118,8 @@ src/
     Invariant: read is zod-parsed; fail → start fresh (no throw).
   </roulette_store>
   <constants>
-    - MIN_OPTIONS = 2, MAX_OPTIONS = 12; MIN_WEIGHT = 1, MAX_WEIGHT = 1000
+    - MIN_OPTIONS = 2, MAX_OPTIONS = 30; MIN_WEIGHT = 1, MAX_WEIGHT = 1000
+    - LEGEND_THRESHOLD = 16 (≤ this: full names on slices; > this: index numbers on slices + numbered legend list)
     - SPIN_DURATION_MS = 4000; TICK_FREQ_HZ = 800; WIN_FREQ_HZ = 1200; CONFETTI_COUNT = 50
   </constants>
 </core_data_entities>
@@ -139,7 +140,7 @@ src/
         <result_panel />        <!-- Winner name + "spin again" + confetti -->
       </wheel_column>
       <control_column>
-        <option_list />         <!-- Add input, option rows (label, weight input, delete), min 2 max 12 -->
+        <option_list />         <!-- Add input, option rows (label, weight input, delete), min 2 max 30 -->
         <spin_button />         <!-- Large CTA, disabled if <2 options or spinning -->
         <save_load_panel />     <!-- Save → name input + button; Load → grid of saved sets -->
         <settings_panel />      <!-- Sound toggle + volume slider; remove-winner checkbox -->
@@ -158,12 +159,13 @@ src/
   </roulette_intro>
 
   <wheel_svg>
-    - Container: 320px square (scales on mobile); center at (160, 160)
+    - Container: 320px square (scales on mobile); center at (160, 160). For dense wheels (many options) the SVG viewBox may enlarge (e.g. up to 400px) to preserve arc length while still scaling responsively.
     - Radius: 140px (outer), 40px (center label area)
     - Each slice: path with arc from angle[i] to angle[i+1], wedge to center
     - Slice color: rose accent `var(--accent-rose)` all slices, with slight tint variance per index (rose-soft to rose saturated)
-    - Center label: winner name (non-spinning text, always visible above spinning slices)
-    - Tick marks: 24 small radial lines around edge for spin-tick animation
+    - Slice label (adaptive): rendered radially (rotated to slice mid-angle, reading inner→outer). Font size auto-scales down as option count rises (clamp, floor ~9px); overflow truncated with `…`, full label in `<title>`/aria-label. ≤ LEGEND_THRESHOLD (16): full names on slices. > 16: slice shows index number; a numbered legend (1→name, 2→name…) renders beside/below the wheel so all options stay scannable pre-spin.
+    - Center label: winner name (non-spinning text, always visible above spinning slices) — always full name regardless of slice density, so the result is never obscured by thin wedges
+    - Tick marks: 24 small radial lines around edge for spin-tick animation (decorative; decoupled from slice count)
     - Selected slice highlight: 2px var(--accent-rose) outline + glow on result
     - Animation: `transform: rotate(0deg → finalAngle)` 4s ease-out, 0s on reduced-motion
   </wheel_svg>
@@ -172,7 +174,7 @@ src/
     - Heading "옵션 추가" / "Add Option" — 16px var(--text)
     - Input row: text field (max 50 chars, placeholder "예: 점심 추천") + weight spinner (1–1000) + delete button (—)
     - Option rows: each has label + weight input + delete button; drag handle (six dots) for reorder
-    - Min 2 options to enable spin; max 12 to keep wheel readable
+    - Min 2 options to enable spin; max 30. Readability at high counts is handled by adaptive labels (radial + auto-scale + `…` truncation) and, above LEGEND_THRESHOLD (16), a numbered legend — not by a hard low cap
     - Min weight 1; if user sets 0 → default to 1
     - States: focused input 2px var(--accent-rose) ring; option row hover lifts
   </option_list>
@@ -244,7 +246,7 @@ src/
     - Empty label → toast "옵션 이름을 입력하세요" / "Enter an option name"; focus input
     - Duplicate label (case-insensitive) → toast "이미 있는 옵션입니다"; focus input
     - < 2 options → spin button disabled; tooltip "옵션이 2개 이상 필요해요"
-    - > 12 options → toast "최대 12개까지 추가 가능합니다"; block add
+    - > 30 options → toast "최대 30개까지 추가 가능합니다"; block add
   </option_validation>
   <storage>
     <unavailable>Private mode/quota → localStorage fails silently; recents in-memory only (full usable, non-persistent)</unavailable>
@@ -281,6 +283,7 @@ src/
   <remove_winner_mode>If enabled, "다시 돌리기" button re-spins excluding the last winner, allowing sequential draws from the same wheel</remove_winner_mode>
   <sound_control>Toggle + volume slider for audio feedback on spin/win</sound_control>
   <set_persistence>Save unlimited named option sets; load any set in one tap; sets stored locally and survive reload</set_persistence>
+  <dense_wheel_legibility>Up to 30 options supported. Slice labels adapt to density: radial orientation + auto-scaled font + `…` truncation (full name in aria/`<title>`). Above LEGEND_THRESHOLD (16), slices carry index numbers and a numbered legend (number→full name) renders alongside the wheel for pre-spin scanning. The winner is always shown full-size in the ResultPanel + center label, so density never obscures the outcome.</dense_wheel_legibility>
 </advanced_functionality>
 
 <final_integration_test>
@@ -339,7 +342,7 @@ src/
     <steps>
       1. Switch to /en → chrome English; wheel interaction identical.
       2. HTML has SoftwareApplication + FAQPage JSON-LD; how-to/FAQ localized; no JavaScript-gated SEO content.
-      3. Add 12 options (max) → add button disables; delete one → button re-enables.
+      3. Add 30 options (max) → add button disables; delete one → button re-enables. Above 16 options, slices show index numbers + a numbered legend renders; result panel still shows the full winner name.
       4. Add empty label → toast error, no option added; input focused.
       5. localStorage quota hit → save set fails silently, in-memory state continues; re-enable storage → next save succeeds.
     </steps>
