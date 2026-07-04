@@ -4,7 +4,7 @@ export function DevPeopleIntro() {
   const t = useTranslations('tools.dev-people.intro');
 
   return (
-    <section className="space-y-4 text-center md:text-left">
+    <section className="space-y-4 text-center md:text-left mb-8">
       <p className="text-xs font-bold uppercase tracking-wider text-accent-sky-ink">
         {t('eyebrow')}
       </p>

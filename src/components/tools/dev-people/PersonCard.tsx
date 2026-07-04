@@ -43,7 +43,7 @@ export function PersonCard({
         href={spokeUrl}
         data-testid={`person-card-${person.slug}`}
         className="
-          block relative text-left p-4 rounded-xl border border-hairline bg-surface
+          flex flex-col h-full relative text-left p-4 rounded-xl border border-hairline bg-surface
           transition-[color,box-shadow,border-color,transform] no-underline cursor-pointer
           hover:shadow-card-hover hover:translate-y-[-2px]
           focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring
@@ -70,12 +70,13 @@ export function PersonCard({
         </div>
 
         {/* knownFor clamp-2-lines */}
-        <p className="text-sm text-text-secondary mb-3 line-clamp-2">
+        <p className="text-sm text-text-secondary mb-3 line-clamp-2 min-h-[2.5rem]">
           {localeData.knownFor}
         </p>
 
-        {/* Tags and era badges */}
-        <div className="flex flex-wrap gap-1.5 mb-3">
+        {/* Tags and era badges — reserve 2 rows so the photo aligns across cards.
+            NOTE: assumes ≤4 tags (+era) → fits 2 rows; 5+ tags would overflow to 3 rows. */}
+        <div className="flex flex-wrap content-start gap-1.5 mb-3 min-h-[3.75rem]">
           {person.tags.map((tag) => (
             <span
               key={tag}

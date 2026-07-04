@@ -20,7 +20,7 @@ export function DevPeopleFaq() {
   );
 
   return (
-    <section className="space-y-6" aria-labelledby="dev-people-faq-heading">
+    <section className="space-y-6 mt-12 mb-8 border-t border-hairline pt-8" aria-labelledby="dev-people-faq-heading">
       <h2 id="dev-people-faq-heading" className="text-2xl font-bold text-text">
         {t('faqTitle')}
       </h2>
