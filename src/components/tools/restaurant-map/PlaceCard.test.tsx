@@ -169,10 +169,10 @@ describe('PlaceCard', () => {
     expect(star).toHaveClass('fill-accent-rose');
   });
 
-  it('renders external link button when link is provided', () => {
+  it('uses a real authored link as the external map href', () => {
     const placeWithLink: Place = {
       ...testPlace,
-      link: 'https://example.com/place',
+      link: 'https://map.naver.com/p/entry/place/12345',
     };
     const onSelect = vi.fn();
     const onToggleFavorite = vi.fn();
@@ -188,11 +188,12 @@ describe('PlaceCard', () => {
 
     const externalLink = screen.getByLabelText('Open in external map');
     expect(externalLink).toBeInTheDocument();
-    expect(externalLink).toHaveAttribute('href', 'https://example.com/place');
+    expect(externalLink).toHaveAttribute('href', 'https://map.naver.com/p/entry/place/12345');
     expect(externalLink).toHaveAttribute('target', '_blank');
   });
 
-  it('does not render external link when link is not provided', () => {
+  it('always renders an external map link, falling back to a NAVER search URL', () => {
+    // Even without an authored link, every place gets a working maps link.
     const onSelect = vi.fn();
     const onToggleFavorite = vi.fn();
     renderWithIntl(
@@ -205,8 +206,9 @@ describe('PlaceCard', () => {
       />
     );
 
-    const externalLink = screen.queryByLabelText('Open in external map');
-    expect(externalLink).not.toBeInTheDocument();
+    const externalLink = screen.getByLabelText('Open in external map');
+    expect(externalLink).toBeInTheDocument();
+    expect(externalLink).toHaveAttribute('href', expect.stringContaining('map.naver.com/p/search'));
   });
 
   it('renders address information', () => {

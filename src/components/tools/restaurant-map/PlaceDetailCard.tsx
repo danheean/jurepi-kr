@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { X, Copy, ExternalLink } from 'lucide-react';
 import { avatarSrc } from '@/lib/restaurant-map/curators';
+import { placeMapUrl } from '@/lib/restaurant-map/maps-link';
 import type { Place } from '@/lib/restaurant-map/schema';
 
 /**
@@ -41,23 +42,14 @@ export function PlaceDetailCard({ place, onClose }: PlaceDetailCardProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-40 md:static md:z-auto">
-      {/* Overlay (mobile only) */}
-      <div
-        className="fixed inset-0 bg-black/20 md:hidden z-40"
-        onClick={onClose}
-        aria-hidden
-      />
-
-      {/* Panel */}
-      <div className="fixed bottom-0 left-0 right-0 md:static md:max-h-96 overflow-y-auto z-40 bg-surface rounded-t-3xl md:rounded-lg border-t md:border border-hairline p-6 shadow-card flex flex-col gap-4">
-        {/* Header */}
+    <div className="flex flex-col gap-4 rounded-lg border border-hairline bg-surface p-6 shadow-card">
+      {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-text mb-2">{place.name}</h2>
             <div className="flex flex-wrap gap-2">
               <span className="px-2 py-1 rounded-full bg-surface-muted text-xs font-medium text-text-secondary">
-                {place.category}
+                {t(`categories.${place.category}`)}
               </span>
               {place.priceRange && (
                 <span className="px-2 py-1 rounded-full bg-surface-muted text-xs font-medium text-text-secondary">
@@ -132,19 +124,16 @@ export function PlaceDetailCard({ place, onClose }: PlaceDetailCardProps) {
           />
         )}
 
-        {/* External link */}
-        {place.link && (
-          <a
-            href={place.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-3 bg-brand text-on-brand rounded-lg font-medium hover:opacity-90 transition text-sm"
-          >
-            <ExternalLink className="w-4 h-4" />
-            {t('placeDetail.openInMaps')}
-          </a>
-        )}
+        {/* External link — always present, always resolvable (placeMapUrl) */}
+        <a
+          href={placeMapUrl(place)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-3 bg-brand text-on-brand rounded-lg font-medium hover:opacity-90 transition text-sm"
+        >
+          <ExternalLink className="w-4 h-4" />
+          {t('placeDetail.openInMaps')}
+        </a>
       </div>
-    </div>
   );
 }

@@ -35,6 +35,14 @@ import { TransparentBgIntro } from '@/components/tools/transparent-background/Tr
 import { TransparentBgHowTo } from '@/components/tools/transparent-background/TransparentBgHowTo';
 import { TransparentBgFaq } from '@/components/tools/transparent-background/TransparentBgFaq';
 import { TransparentBgStructuredData } from '@/components/tools/transparent-background/TransparentBgStructuredData';
+import { RouletteIntro } from '@/components/tools/roulette/RouletteIntro';
+import { RouletteHowTo } from '@/components/tools/roulette/RouletteHowTo';
+import { RouletteFaq } from '@/components/tools/roulette/RouletteFaq';
+import { RouletteStructuredData } from '@/components/tools/roulette/RouletteStructuredData';
+import { CounterIntro } from '@/components/tools/character-counter/CounterIntro';
+import { CounterHowTo } from '@/components/tools/character-counter/CounterHowTo';
+import { CounterFaq } from '@/components/tools/character-counter/CounterFaq';
+import { CounterStructuredData } from '@/components/tools/character-counter/CounterStructuredData';
 import { Base64EncoderIntro } from '@/components/tools/base64-encoder/Base64EncoderIntro';
 import { Base64EncoderHowTo } from '@/components/tools/base64-encoder/Base64EncoderHowTo';
 import { Base64EncoderFaq } from '@/components/tools/base64-encoder/Base64EncoderFaq';
@@ -118,6 +126,18 @@ const RestaurantMap = dynamic(() =>
   }))
 );
 
+const Roulette = dynamic(() =>
+  import('@/components/tools/roulette/Roulette').then((m) => ({
+    default: m.Roulette,
+  }))
+);
+
+const CharacterCounter = dynamic(() =>
+  import('@/components/tools/character-counter/CharacterCounter').then((m) => ({
+    default: m.CharacterCounter,
+  }))
+);
+
 const Base64Encoder = dynamic(() =>
   import('@/components/tools/base64-encoder/Base64Encoder').then((m) => ({
     default: m.Base64Encoder,
@@ -172,7 +192,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } else if (slug === 'transparent-background') {
     title = t('meta.title');
     description = t('meta.description');
+  } else if (slug === 'character-counter') {
+    title = t('meta.title');
+    description = t('meta.description');
   } else if (slug === 'restaurant-map') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'roulette') {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'base64-encoder') {
@@ -318,6 +344,30 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
         <TransparentBackgroundMaker />
         <TransparentBgHowTo />
         <TransparentBgFaq />
+      </>
+    );
+  }
+
+  if (slug === 'roulette') {
+    return (
+      <>
+        <RouletteStructuredData />
+        <RouletteIntro />
+        <Roulette />
+        <RouletteHowTo />
+        <RouletteFaq />
+      </>
+    );
+  }
+
+  if (slug === 'character-counter') {
+    return (
+      <>
+        <CounterStructuredData />
+        <CounterIntro />
+        <CharacterCounter />
+        <CounterHowTo />
+        <CounterFaq />
       </>
     );
   }

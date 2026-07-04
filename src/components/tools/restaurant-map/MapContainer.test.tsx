@@ -90,7 +90,7 @@ describe('MapContainer', () => {
 
     const mapDiv = container.querySelector('[aria-label="Map"]');
     expect(mapDiv).toBeInTheDocument();
-    expect(mapDiv).toHaveClass('w-full', 'h-[400px]', 'rounded-lg', 'border', 'border-hairline');
+    expect(mapDiv).toHaveClass('w-full', 'h-[420px]', 'rounded-lg', 'border', 'border-hairline');
   });
 
   it('does not render map when mapSDKReady=false', () => {

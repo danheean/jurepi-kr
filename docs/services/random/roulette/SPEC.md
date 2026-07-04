@@ -386,5 +386,3 @@ src/
 
 </project_specification>
 ```
-
-SPEC.md written: 358 lines.

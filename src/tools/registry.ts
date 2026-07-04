@@ -158,6 +158,17 @@ export const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'roulette',
+    slug: 'roulette',
+    category: 'random',
+    icon: 'RotateCcw',
+    accent: 'rose',
+    status: 'live',
+    isNew: true,
+    order: 26,
+    keywords: ['룰렛', '랜덤', '추첨', '선택', '결정', '돌림판', '뽑기', 'roulette', 'random', 'spin', 'decision', 'picker', 'wheel', 'lucky draw'],
+  },
+  {
     id: 'restaurant-map',
     slug: 'restaurant-map',
     category: 'fun',
@@ -169,6 +180,21 @@ export const tools: ToolMeta[] = [
     keywords: ['맛집', '맛집리스트', '맛집지도', '카페', '라면', '족발', '참치', '음식', '추천', '지도', 'restaurant', 'map', 'food', 'cafe', 'ramen', 'tuna', 'local favorite', 'curator', 'dining', 'lunch', 'dinner'],
   },
   {
+    id: 'character-counter',
+    slug: 'character-counter',
+    category: 'text',
+    icon: 'Type',
+    accent: 'mint',
+    status: 'live',
+    isNew: true,
+    order: 25,
+    keywords: [
+      '글자', '글자수', '글자세기', '단어', '단어수', '문장', '문단', '바이트',
+      'character counter', 'word count', 'text metrics', 'character limit',
+      'twitter limit', 'meta description', 'readability', 'reading time'
+    ],
+  },
+  {
     id: 'base64-encoder',
     slug: 'base64-encoder',
     category: 'dev',
@@ -176,7 +202,7 @@ export const tools: ToolMeta[] = [
     accent: 'coral',
     status: 'live',
     isNew: true,
-    order: 25,
+    order: 27,
     keywords: ['base64', '인코딩', '디코딩', 'encode', 'decode', '변환', 'encoding', '파일', '텍스트', 'UTF-8', 'base64 converter', 'encoder', 'decoder'],
   },
 ];

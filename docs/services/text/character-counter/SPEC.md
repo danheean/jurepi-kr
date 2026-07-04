@@ -30,6 +30,7 @@ CRITICAL (usability-first, SPA): every Jurepi tool is a client-side Single-Page 
   - Route: /[locale]/tools/character-counter (SSG; registry slug "character-counter", id "character-counter", status "live", accent "mint", category "text").
   - Provided by the platform (do NOT reimplement): app shell (Header/Footer/LocaleSwitcher/ThemeToggle), ConsentBanner, AdSlot, Toast system, design tokens (tokens.css ↔ DESIGN.md), i18n runtime, Error Boundary around the tool module, lib/seo.ts metadata builder, breadcrumb + in_content ad wrapper.
   - Consumes: i18n namespace `tools.character-counter.*` (UI strings: textarea placeholder, metric labels, copy-done/clear toast, limit slider label, reading-time unit).
+  - REQUIRED i18n top-level keys (ko/en): `tools.character-counter.title` + `tools.character-counter.description` — consumed by the registry-driven `searchable-tools`, footer, home card, and header search. Missing these renders literal keys in shared surfaces (recurring defect). Also add `meta.title`/`meta.description` for generateMetadata.
   - Platform dependency: the `'text'` category + `'mint'` accent already exist (shared with new-word, special-symbol). Only platform change is ONE `ToolMeta` registry entry, a slug→component branch in the tool route, and a `generateMetadata` branch. No new category/accent needed.
 </platform_integration>
 
@@ -37,6 +38,12 @@ CRITICAL (usability-first, SPA): every Jurepi tool is a client-side Single-Page 
   <in_scope>
     - Textarea input (multiline, full-width, resizable, auto-focus, placeholder).
     - Live metrics computation: character (with spaces), character (no spaces), words, sentences, paragraphs, lines, UTF-8 byte size, estimated reading time (default 200 WPM), estimated speaking time (default 130 WPM).
+    - DETERMINISTIC COUNTING RULES (pin tests to these):
+      - sentences: split on /[.!?…]+/, trim each segment, count non-empty. A non-empty text with NO sentence-ending punctuation = 1 sentence (e.g. "안녕하세요" → 1). Empty text → 0.
+      - words: trim, split on /\s+/, count non-empty. Empty → 0.
+      - paragraphs: split on /\n\s*\n/ (blank-line separated), count non-empty trimmed blocks. Empty → 0.
+      - lines: split on /\r\n|\r|\n/; empty text → 0, otherwise segments.length.
+      - characters: grapheme count via Intl.Segmenter (emoji/ZWJ = 1); "no spaces" removes /\s/ graphemes.
     - Grapheme-aware character counting (emoji/ZWJ sequences = 1 character, use Intl.Segmenter with fallback).
     - Optional preset target limits: Twitter/X 280, Meta description 160, custom input, or none (slider toggleable).
     - Visual limit indicator (color-coded: green under, yellow near 80%, red over).
@@ -44,6 +51,7 @@ CRITICAL (usability-first, SPA): every Jurepi tool is a client-side Single-Page 
     - localStorage persistence: last text (key `jurepi-char-counter-text`, auto-prune on reload), last limit (key `jurepi-char-counter-limit`), preferences (dark/light toggle, WPM preference).
     - Full keyboard support: Tab to inputs, Ctrl+A selects textarea, keyboard-accessible limit picker.
     - Tool-specific SEO long-form ("How to count characters and words") + FAQ (FAQPage JSON-LD).
+    - JSON-LD SINGLE OWNERSHIP: FAQPage is emitted ONLY by CounterFaq (via `faqPageJsonLd` over the visible faq.items); SoftwareApplication (+ breadcrumb) ONLY by the StructuredData/route. Never emit FAQPage from two components (duplication defect). All must render OUTSIDE any `mounted` gate so they exist in prerendered HTML.
     - Reduced-motion fallbacks; WCAG 2.1 AA accessibility.
   </in_scope>
   <out_of_scope>
@@ -180,8 +188,9 @@ src/
     - If Custom → inline input field (width 80px) to set a number.
     - Visual progress bar: height 8px, radius var(--radius-sm), background var(--surface-muted).
       - ≤ 80% of limit: fill var(--accent-mint), text var(--text-secondary) "N / M".
-      - 80–100%: fill var(--semantic-warning), text var(--semantic-warning) "N / M (80%)".
-      - \> 100%: fill var(--semantic-danger), text var(--semantic-danger) "N / M (OVER)".
+      - 80–100%: fill var(--warning), text var(--warning-ink) "N / M (80%)".
+      - \> 100%: fill var(--danger), text var(--danger-ink) "N / M (OVER)".
+      - NOTE: use REAL tokens only. `--semantic-*` does NOT exist; fills = `--warning`/`--danger`, text = `--warning-ink`/`--danger-ink` (AA contrast).
     - Disable progress if "None" selected (no bar shown).
   </limit_indicator>
 
@@ -249,6 +258,7 @@ src/
   <accent_usage>Mint (var(--accent-mint) / var(--accent-mint-soft)) — "text" category identity. Progress bar fill ≤80%, metric card accent line. CTA (copy/clear) = brand honey-gold (not mint).</accent_usage>
   <typography>H1 Gmarket Sans; textarea, metrics, labels Pretendard. Metric values 18px/700; labels 13px/500.</typography>
   <motion>Debounce textarea computations (no lag); progress bar color transition 150ms --ease-out; copy toast fade-in 150ms. No transform/scale motion (counting is instant data, not playful).</motion>
+  <tokens>CRITICAL: use only tokens that exist in tokens.css. Limit indicator: fill `--warning`/`--danger`, text `--warning-ink`/`--danger-ink` (NOT `--semantic-*`). Mint identity: `--accent-mint`/`--accent-mint-soft`, mint text `--accent-mint-ink`. No Tailwind default palette (gray-/sky-/text-white).</tokens>
   <responsive>Desktop: 2-column (textarea left, metrics sidebar right sticky); Mobile: single column, textarea full-width, metrics below. Textarea height 280–480px; limit controls full-width on narrow.</responsive>
   <accessibility>Textarea aria-label "Text input"; limit preset buttons aria-label include "characters" (e.g. "Twitter limit: 280 characters"). Copy/clear buttons labeled. Progress bar aria-live="polite" announces limit status on change. ≥44px tap targets. WCAG 2.1 AA contrast.</accessibility>
 </aesthetic_guidelines>
@@ -265,7 +275,7 @@ src/
     <description>Type and paste, live metrics</description>
     <steps>
       1. Visit /ko/tools/character-counter.
-      2. Type "안녕하세요" (5 syllables) → metrics update: 5 characters, 1 word, 1 sentence (no punctuation, count=0 sentences or 1 para), 1 line.
+      2. Type "안녕하세요" (5 syllables) → metrics update: 5 characters, 1 word, 1 sentence (non-empty no-punctuation = 1 per counting rules), 1 paragraph, 1 line.
       3. Paste long text (Lorem ipsum) → all metrics update live, no lag.
       4. Select all (Ctrl+A), copy → clipboard has text; success toast.
     </steps>
@@ -283,9 +293,9 @@ src/
   <test_scenario_3>
     <description>Persistence, emoji, copy stats</description>
     <steps>
-      1. Type "Hello 👋 world" → metrics: 12 characters (1 emoji = 1 grapheme, if Segmenter present), 2 words.
+      1. Type "Hello 👋 world" → metrics: 13 characters with spaces / 11 without (1 emoji = 1 grapheme, if Segmenter present), 2 words. (Verified via Intl.Segmenter — do NOT pin to a hand-counted value; assert against the domain function output.)
       2. Reload page → text "Hello 👋 world" persists + limit "Twitter 280" persists.
-      3. Click "통계 복사" (copy stats) → clipboard has "Characters: 12\nCharacters (no spaces): 11\nWords: 2\n…"; toast "복사됨!".
+      3. Click "통계 복사" (copy stats) → clipboard has "Characters: 13\nCharacters (no spaces): 11\nWords: 2\n…"; toast "복사됨!".
       4. Switch to /en → metrics labels change to English; text persists.
     </steps>
   </test_scenario_3>
@@ -344,5 +354,3 @@ src/
 
 </project_specification>
 ```
-
-**SPEC.md written successfully to `/Users/jurepi/Work/Jurepi-Company/Jurepi.kr/docs/services/text/character-counter/SPEC.md` — 364 lines.**

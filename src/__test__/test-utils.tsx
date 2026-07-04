@@ -150,7 +150,10 @@ const defaultMessages = {
         downloaded: 'Downloaded',
       },
       announce: {
-        result: "{name}'s result is {prize}",
+        result: '{name} is the winner',
+      },
+      legend: {
+        title: 'Options Legend',
       },
       howTo: {
         heading: 'How to play',
@@ -438,6 +441,192 @@ const defaultMessages = {
           { q: 'What is URL-safe Base64?', a: 'URL-safe Base64 uses - and _ instead of + and /.' },
           { q: 'Is my data uploaded?', a: 'No, all processing is local.' },
           { q: 'What is the file size limit?', a: 'Maximum 5MB.' },
+        ],
+      },
+    },
+    roulette: {
+      title: 'Decision Roulette',
+      description: 'Spin to decide fairly from your options.',
+      intro: {
+        eyebrow: 'Random Tool',
+        headline: 'Decision Roulette',
+        lead: 'Spin to decide fairly from your options.',
+      },
+      options: {
+        label: 'Add Option',
+        add: 'Add',
+        placeholder: 'e.g., Pizza',
+        weight: 'Weight',
+        delete: 'Delete',
+        reorderUp: 'Move up',
+        reorderDown: 'Move down',
+        empty: 'Please add at least one option.',
+        tooMany: 'Maximum 30 options allowed.',
+        duplicate: 'This option already exists.',
+      },
+      spin: {
+        button: 'Spin Now!',
+        disabled: 'You need at least 2 options',
+        spinning: 'Spinning…',
+      },
+      result: {
+        eyebrow: 'Congratulations!',
+        spinAgain: 'Spin Again',
+        removeAndSpin: 'Remove & Re-spin',
+      },
+      announce: {
+        result: '{name} is the winner',
+      },
+      legend: {
+        title: 'Options Legend',
+      },
+      toasts: {
+        saved: 'Set saved successfully',
+        loaded: 'Set loaded',
+        deleted: 'Set deleted',
+        emptyLabel: 'Please enter an option label',
+        duplicateLabel: 'This option already exists',
+        maxOptions: 'Maximum 30 options reached',
+      },
+      save: {
+        label: 'Save This Set',
+        button: 'Save',
+        input: 'Set name (max 50 characters)',
+        placeholder: 'Set name',
+        default: 'Untitled',
+      },
+      load: {
+        label: 'Saved Sets',
+        empty: 'Save a set to see it here',
+        itemCount: '{count} options',
+        delete: 'Delete',
+      },
+      settings: {
+        title: 'Settings',
+        sound: 'Sound',
+        volume: 'Volume',
+        removeWinner: 'Remove Winner Mode',
+      },
+      howTo: {
+        heading: 'How to Use the Roulette',
+        step1Title: 'Add Options',
+        step1Body: 'Enter your options in the input field.',
+        step2Title: 'Adjust Weights',
+        step2Body: 'Optional: set weights to change probabilities.',
+        step3Title: 'Spin',
+        step3Body: 'Click the Spin Now button to reveal the winner.',
+        tipsTitle: 'Tips',
+        tipsBody: 'Save sets for quick reuse. Use Remove Winner Mode for sequential selections.',
+      },
+      faq: {
+        items: [
+          {
+            q: 'Is the roulette truly fair?',
+            a: 'Yes, it uses cryptographic random number generation.',
+          },
+          {
+            q: 'How many options can I add?',
+            a: 'Between 2 and 30 options.',
+          },
+          {
+            q: 'Where are my sets stored?',
+            a: 'In your browser local storage, never sent anywhere.',
+          },
+        ],
+      },
+    },
+    'character-counter': {
+      title: 'Character & Word Counter',
+      description: 'Count characters, words, sentences in real-time.',
+      intro: {
+        eyebrow: 'TEXT TOOL',
+        heading: 'Character & Word Counter',
+        lead: 'Count characters, words, sentences in real-time.',
+      },
+      textarea: {
+        placeholder: 'Paste or type text here…',
+        ariaLabel: 'Text input',
+      },
+      hint: '{chars} characters ({noSpace} without spaces)',
+      metrics: {
+        label: {
+          charactersWithSpaces: 'Characters (with spaces)',
+          charactersWithoutSpaces: 'Characters (no spaces)',
+          words: 'Words',
+          sentences: 'Sentences',
+          paragraphs: 'Paragraphs',
+          lines: 'Lines',
+          byteSize: 'Bytes (UTF-8)',
+          readingTime: 'Reading time',
+          speakingTime: 'Speaking time',
+        },
+        unit: {
+          minutes: 'min',
+        },
+      },
+      limit: {
+        label: 'Character Limit',
+        preset: {
+          twitter: 'Twitter (280)',
+          meta: 'Meta Description (160)',
+          custom: 'Custom',
+          none: 'None',
+        },
+        customInput: {
+          ariaLabel: 'Custom character limit input',
+          placeholder: 'e.g., 500',
+        },
+        progress: {
+          ariaLabel: 'Character count progress',
+          status: {
+            under: '{current} / {limit} (OK)',
+            near: '{current} / {limit} (80%)',
+            over: '{current} / {limit} (OVER)',
+          },
+        },
+      },
+      button: {
+        copyText: 'Copy text',
+        copyStats: 'Copy stats',
+        clear: 'Clear',
+      },
+      toast: {
+        copiedText: 'Copied!',
+        copiedStats: 'Stats copied!',
+        cleared: 'Cleared!',
+      },
+      howTo: {
+        title: 'How to Use',
+        steps: [
+          { step: 1, text: 'Paste or type text into the input field.' },
+          { step: 2, text: 'All metrics update in real-time as you type.' },
+          { step: 3, text: 'Optionally select a character limit (Twitter, Meta, custom).' },
+          { step: 4, text: 'Copy the text or metrics for use elsewhere.' },
+        ],
+      },
+      faq: {
+        title: 'FAQ',
+        items: [
+          {
+            q: 'Why do character counts with and without spaces differ?',
+            a: 'Spaces include tabs, line breaks, etc. Most apps set limits by character count including spaces.',
+          },
+          {
+            q: 'How are emoji counted?',
+            a: 'Emoji and ZWJ sequences count as 1 character each (via Intl.Segmenter).',
+          },
+          {
+            q: 'How is reading time calculated?',
+            a: 'We divide word count by your reading speed (default 200 WPM).',
+          },
+          {
+            q: 'How is speaking time calculated?',
+            a: 'We divide word count by your speaking speed (default 130 WPM).',
+          },
+          {
+            q: 'Why do bytes differ from character count?',
+            a: 'In UTF-8, Korean characters and emoji take multiple bytes. Byte limits are common in programming.',
+          },
         ],
       },
     },

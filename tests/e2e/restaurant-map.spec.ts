@@ -123,6 +123,37 @@ test.describe('Restaurant Map - E2E', () => {
     expect(errors).toEqual([]);
   });
 
+  test('detail shows below the map with an always-present maps link; no on-map popup; SEO at bottom', async ({
+    page,
+  }) => {
+    const errors = collectPageErrors(page);
+
+    await page.goto('/ko/tools/restaurant-map');
+    const main = page.locator('main');
+    await expect(page.getByRole('searchbox')).toBeVisible({ timeout: 10_000 });
+
+    // Before selection: a hint sits under the map
+    await expect(main.getByText('장소를 선택하면', { exact: false })).toBeVisible();
+
+    // Select a place → detail renders with an always-present, resolvable maps link
+    await main.locator('#place-list [role="button"]').first().click();
+    const openInMaps = main.getByRole('link', { name: '지도에서 보기' });
+    await expect(openInMaps).toBeVisible();
+    await expect(openInMaps).toHaveAttribute('href', /^https?:\/\//);
+
+    // The old on-map info popup ("Open in Maps →") is gone (it covered the map)
+    await expect(page.getByText('Open in Maps →')).toHaveCount(0);
+
+    // SEO long-form (HowTo/FAQ) moved to the bottom — assert it renders below the list
+    const faqHeading = page.getByRole('heading', { name: '자주 묻는 질문' });
+    await expect(faqHeading).toBeVisible();
+    const listBox = await main.locator('#place-list').boundingBox();
+    const faqBox = await faqHeading.boundingBox();
+    expect(faqBox!.y).toBeGreaterThan(listBox!.y);
+
+    expect(errors).toEqual([]);
+  });
+
   test('every rendered category filter yields at least one place (no dead filters)', async ({
     page,
   }) => {

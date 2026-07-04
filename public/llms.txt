@@ -5,6 +5,7 @@
 ## Tools
 
 - [사다리타기 (Ghost Leg)](https://apps.jurepi.kr/ko/tools/ladder): Enter participants and outcomes, then use a fair ladder draw for random selection. Lottery, raffle, impartial drawing.
+- [결정의 룰렛 (Decision Roulette)](https://apps.jurepi.kr/ko/tools/roulette): Add choices, assign optional weights, spin to decide fairly. Includes sequential draw mode, sound effects, and save/load option sets locally.
 - [신조어 용어사전 (New Word)](https://apps.jurepi.kr/ko/tools/new-word): Discover trending MZ slang and modern tech terms with meanings and examples in Korean and English side by side.
 - [1일1질문 (Q&A a Day)](https://apps.jurepi.kr/ko/tools/qna-a-day): Answer one question daily and build a growing personal journal of reflections.
 - [나이 계산기 (Age Calculator)](https://apps.jurepi.kr/ko/tools/age-calculator): Calculate your exact age in three ways: legal age (만 나이), calendar-year age, and traditional Korean counting age. See your zodiac sign, birth day of week, and days lived.
@@ -16,6 +17,7 @@
 - [QR 코드 생성기 (QR Code Generator)](https://apps.jurepi.kr/ko/tools/qr-code): Generate QR codes from text, URLs, Wi-Fi details, emails, and contacts. Customize colors, choose error correction levels, and download as PNG or SVG.
 - [배경 투명 만들기 (Transparent Background Maker)](https://apps.jurepi.kr/ko/tools/transparent-background): Remove solid-color backgrounds from product photos, logos, and scans instantly. 100% local processing, no upload, no external dependencies.
 - [개발 인물 사전 (Developer People Dictionary)](https://apps.jurepi.kr/ko/tools/dev-people): Explore biographies and achievements of influential software engineers and computer scientists who shaped technology history. From programming language creators to open-source pioneers and architecture visionaries.
+- [글자·단어 카운터 (Character & Word Counter)](https://apps.jurepi.kr/[locale]/tools/character-counter) — Text metrics: character/word/sentence/paragraph/line/byte count, reading time, character limits
 
 ## About
 

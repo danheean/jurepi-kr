@@ -1757,7 +1757,216 @@
         "heading": "Frequently Asked Questions"
       },
       "placeDetail": {
-        "openInMaps": "Open in Maps"
+        "openInMaps": "Open in Maps",
+        "selectHint": "Select a place from the map markers or the list to see its details here."
+      }
+    },
+    "character-counter": {
+      "title": "Character & Word Counter",
+      "description": "Count characters, words, sentences in real-time.",
+      "meta": {
+        "title": "Character & Word Counter — Real-time Text Analysis",
+        "description": "Verify character limits for social media, forms, and essays. Real-time metrics: with/without spaces, words, sentences, paragraphs, lines, UTF-8 bytes, reading time."
+      },
+      "intro": {
+        "eyebrow": "TEXT TOOL",
+        "heading": "Character & Word Counter",
+        "lead": "Count characters, words, sentences in real-time."
+      },
+      "textarea": {
+        "placeholder": "Paste or type text here…",
+        "ariaLabel": "Text input"
+      },
+      "hint": "{chars} characters ({noSpace} without spaces)",
+      "metrics": {
+        "label": {
+          "charactersWithSpaces": "Characters (with spaces)",
+          "charactersWithoutSpaces": "Characters (no spaces)",
+          "words": "Words",
+          "sentences": "Sentences",
+          "paragraphs": "Paragraphs",
+          "lines": "Lines",
+          "byteSize": "Bytes (UTF-8)",
+          "readingTime": "Reading time",
+          "speakingTime": "Speaking time"
+        },
+        "unit": {
+          "minutes": "min"
+        }
+      },
+      "limit": {
+        "label": "Character Limit",
+        "preset": {
+          "twitter": "Twitter (X) — 280",
+          "meta": "Meta Description — 160",
+          "custom": "Custom",
+          "none": "None"
+        },
+        "customInput": {
+          "ariaLabel": "Custom character limit input",
+          "placeholder": "e.g., 500"
+        },
+        "progress": {
+          "ariaLabel": "Character count progress",
+          "status": {
+            "under": "{current} / {limit} (OK)",
+            "near": "{current} / {limit} (80%)",
+            "over": "{current} / {limit} (OVER)"
+          }
+        }
+      },
+      "button": {
+        "copyText": "Copy text",
+        "copyStats": "Copy stats",
+        "clear": "Clear"
+      },
+      "toast": {
+        "copiedText": "Copied!",
+        "copiedStats": "Stats copied!",
+        "cleared": "Cleared!"
+      },
+      "faq": {
+        "title": "FAQ",
+        "items": [
+          {
+            "q": "Why do character counts with and without spaces differ?",
+            "a": "Spaces include tabs, line breaks, etc. Most apps (social media, forms) set limits by character count including spaces."
+          },
+          {
+            "q": "How are emoji counted?",
+            "a": "Emoji and ZWJ sequences count as 1 character each (via Intl.Segmenter)."
+          },
+          {
+            "q": "How is reading time calculated?",
+            "a": "We divide word count by your reading speed (default 200 WPM)."
+          },
+          {
+            "q": "How is speaking time calculated?",
+            "a": "We divide word count by your speaking speed (default 130 WPM)."
+          },
+          {
+            "q": "Why do bytes differ from character count?",
+            "a": "In UTF-8, Korean characters and emoji take multiple bytes. Byte limits are common in programming."
+          }
+        ]
+      },
+      "howTo": {
+        "title": "How to Use",
+        "steps": [
+          { "step": 1, "text": "Paste or type text into the input field." },
+          { "step": 2, "text": "All metrics update in real-time as you type." },
+          { "step": 3, "text": "Optionally select a character limit (Twitter, Meta, custom)." },
+          { "step": 4, "text": "Copy the text or metrics for use elsewhere." }
+        ]
+      }
+    },
+    "roulette": {
+      "title": "Decision Roulette",
+      "description": "Spin to decide fairly from your options.",
+      "meta": {
+        "title": "Decision Roulette | Jurepi",
+        "description": "A fair random decision-making tool. Add options, adjust weights, spin, and let the wheel decide. Customizable sounds and animations."
+      },
+      "intro": {
+        "eyebrow": "Random Tool",
+        "headline": "Decision Roulette",
+        "lead": "Spin to decide fairly from your options."
+      },
+      "options": {
+        "label": "Add Option",
+        "add": "Add",
+        "placeholder": "e.g., Pizza",
+        "weight": "Weight",
+        "delete": "Delete",
+        "empty": "Please add at least one option.",
+        "tooMany": "Maximum 30 options allowed.",
+        "duplicate": "This option already exists.",
+        "reorderUp": "Move up",
+        "reorderDown": "Move down",
+        "countLabel": "{count} options"
+      },
+      "spin": {
+        "button": "Spin Now!",
+        "disabled": "You need at least 2 options",
+        "spinning": "Spinning…"
+      },
+      "result": {
+        "eyebrow": "Congratulations!",
+        "spinAgain": "Spin Again",
+        "removeAndSpin": "Remove & Re-spin"
+      },
+      "save": {
+        "label": "Save This Set",
+        "button": "Save",
+        "input": "Set name (max 50 characters)",
+        "placeholder": "Set name",
+        "default": "Untitled"
+      },
+      "load": {
+        "label": "Saved Sets",
+        "empty": "Save a set to see it here",
+        "itemCount": "{count} options",
+        "delete": "Delete"
+      },
+      "settings": {
+        "title": "Settings",
+        "sound": "Sound",
+        "volume": "Volume",
+        "removeWinner": "Remove Winner Mode"
+      },
+      "legend": {
+        "title": "Options Legend"
+      },
+      "toasts": {
+        "emptyLabel": "Please enter an option name",
+        "duplicateLabel": "This option already exists",
+        "maxOptions": "Maximum 30 options allowed",
+        "saved": "Set saved",
+        "loaded": "Set loaded",
+        "deleted": "Set deleted"
+      },
+      "announce": {
+        "result": "{name} is the winner"
+      },
+      "howTo": {
+        "title": "How to Use the Roulette",
+        "content": "**Step 1: Add Options**\nEnter your options in the input field at the top. You can add between 2 and 30 options, such as \"Lunch\", \"Cafe\", \"Movie\", etc.\n\n**Step 2: Adjust Weights (Optional)**\nYou can adjust the weight of each option to change the probability of being selected. Options with higher weights are more likely to win. The default weight is 1 for all options.\n\n**Step 3: Spin**\nClick the \"Spin Now!\" button to make the wheel spin and reveal the winner.\n\n**Step 4: View Result**\nThe selected option is displayed prominently, with optional sound and animation effects.\n\n**Additional Features:**\n- **Save Sets**: Save frequently used option combinations with custom names for quick reuse.\n- **Remove Winner Mode**: Enable \"Remove Winner Mode\" to exclude previously selected options and continue spinning.\n- **Volume Control**: Adjust the volume slider or mute the sound effects in the settings."
+      },
+      "faq": {
+        "items": [
+          {
+            "q": "Is the roulette truly fair?",
+            "a": "Yes, it's 100% fair. This tool uses cryptographic random number generation (crypto.getRandomValues) to ensure each option has an equal probability. If you set weights, the probability is determined by the exact ratio of the weights."
+          },
+          {
+            "q": "How many options can I add?",
+            "a": "You can add a minimum of 2 and a maximum of 30 options. The more options you add, the denser the wheel becomes, but all options remain visible."
+          },
+          {
+            "q": "How do weights work?",
+            "a": "Each option's weight is proportional to its winning probability. For example, if option A has weight 1 and option B has weight 2, then B is twice as likely to be selected as A."
+          },
+          {
+            "q": "Where are my saved sets stored?",
+            "a": "All sets are saved in your browser's local storage and are never sent anywhere. Your saved sets will remain even after refreshing the page."
+          },
+          {
+            "q": "What is Remove Winner Mode?",
+            "a": "This mode allows you to exclude the previously selected option and spin again. It's useful when you need to make multiple sequential selections, such as determining the order for a group."
+          },
+          {
+            "q": "Why is there no sound?",
+            "a": "Your browser or device may be muted. Check your browser's audio settings and the device's volume. Also, if your OS has \"Reduce Motion\" enabled, sounds may not play. Check the sound toggle in the Settings tab as well."
+          },
+          {
+            "q": "Can I edit options?",
+            "a": "Yes, you can edit the option names in the input field next to each option. You can also adjust the weight. To remove an option entirely, click the delete button (×)."
+          },
+          {
+            "q": "Does it work on mobile devices?",
+            "a": "Yes, it works on all devices. The interface is touch-friendly and fully responsive, optimized for small screens."
+          }
+        ]
       }
     },
     "base64-encoder": {

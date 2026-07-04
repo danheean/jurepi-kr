@@ -70,7 +70,7 @@ describe('PlaceDetailCard', () => {
     const onClose = vi.fn();
     renderWithIntl(<PlaceDetailCard place={testPlace} onClose={onClose} />);
 
-    expect(screen.getByText('korean')).toBeInTheDocument();
+    expect(screen.getByText('Korean')).toBeInTheDocument();
     expect(screen.getByText('$$')).toBeInTheDocument();
   });
 
@@ -125,10 +125,10 @@ describe('PlaceDetailCard', () => {
     expect(copyButton).toHaveAttribute('title', 'Copy address');
   });
 
-  it('renders external link when place.link is provided', () => {
+  it('uses a real authored link for the external map href', () => {
     const placeWithLink: Place = {
       ...testPlace,
-      link: 'https://maps.example.com/place-1',
+      link: 'https://map.naver.com/p/entry/place/777',
     };
     const onClose = vi.fn();
     renderWithIntl(
@@ -136,17 +136,19 @@ describe('PlaceDetailCard', () => {
     );
 
     const externalLink = screen.getByRole('link');
-    expect(externalLink).toHaveAttribute('href', 'https://maps.example.com/place-1');
+    expect(externalLink).toHaveAttribute('href', 'https://map.naver.com/p/entry/place/777');
     expect(externalLink).toHaveAttribute('target', '_blank');
     expect(externalLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
-  it('does not render external link when place.link is undefined', () => {
+  it('always renders the maps link, falling back to a NAVER search URL', () => {
+    // The "Open in Maps" link is always present (placeMapUrl), even with no
+    // authored link — this is what the layout redesign guarantees.
     const onClose = vi.fn();
     renderWithIntl(<PlaceDetailCard place={testPlace} onClose={onClose} />);
 
-    const externalLink = screen.queryByRole('link');
-    expect(externalLink).not.toBeInTheDocument();
+    const externalLink = screen.getByRole('link');
+    expect(externalLink).toHaveAttribute('href', expect.stringContaining('map.naver.com/p/search'));
   });
 
   it('renders image when place.imageUrl is provided', () => {
@@ -237,15 +239,16 @@ describe('PlaceDetailCard', () => {
     expect(heading).toHaveTextContent('Amazing Restaurant');
   });
 
-  it('panel has proper positioning for mobile and desktop', () => {
+  it('renders as a static inline card (no fixed overlay covering the map)', () => {
     const onClose = vi.fn();
     const { container } = renderWithIntl(
       <PlaceDetailCard place={testPlace} onClose={onClose} />
     );
 
-    const panel = container.querySelector('[class*="fixed bottom-0"]');
-    expect(panel).toBeInTheDocument();
-    expect(panel).toHaveClass('md:static', 'md:max-h-96');
+    // The detail now renders inline below the map, not as a fixed bottom sheet.
+    expect(container.querySelector('[class*="fixed"]')).not.toBeInTheDocument();
+    const card = container.firstElementChild;
+    expect(card).toHaveClass('rounded-lg', 'border', 'border-hairline', 'bg-surface');
   });
 
   it('handles missing personalNote gracefully', () => {
@@ -261,29 +264,22 @@ describe('PlaceDetailCard', () => {
     expect(container).toBeDefined();
   });
 
-  it('shows overlay when place is provided (mobile only)', () => {
+  it('does not render a dimming overlay (inline card, not a bottom sheet)', () => {
     const onClose = vi.fn();
     const { container } = renderWithIntl(
       <PlaceDetailCard place={testPlace} onClose={onClose} />
     );
 
-    const overlay = container.querySelector('[class*="bg-black/20"]');
-    expect(overlay).toBeInTheDocument();
-    expect(overlay).toHaveClass('md:hidden');
+    expect(container.querySelector('[class*="bg-black/20"]')).not.toBeInTheDocument();
   });
 
-  it('closes panel when overlay is clicked (mobile)', async () => {
+  it('closes when the close (×) button is clicked', async () => {
     const onClose = vi.fn();
     const user = userEvent.setup();
-    const { container } = renderWithIntl(
-      <PlaceDetailCard place={testPlace} onClose={onClose} />
-    );
+    renderWithIntl(<PlaceDetailCard place={testPlace} onClose={onClose} />);
 
-    const overlay = container.querySelector('[class*="bg-black/20"]');
-    if (overlay) {
-      await user.click(overlay);
-      expect(onClose).toHaveBeenCalledOnce();
-    }
+    await user.click(screen.getByRole('button', { name: 'Close' }));
+    expect(onClose).toHaveBeenCalledOnce();
   });
 
   it('renders curator avatar and name near personal note', () => {

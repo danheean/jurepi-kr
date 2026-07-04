@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
 import { useMapsSDKLoader } from './useMapsSDKLoader';
 import { useMapClusteringUtil } from './useMapClusteringUtil';
 import { MapFailover } from './MapFailover';
@@ -18,6 +17,8 @@ export interface MapContainerProps {
   selectedPlaceId?: string;
   userGeo?: { lat: number; lng: number } | null;
   onMarkerClick: (placeId: string) => void;
+  /** Clicking an empty area of the map deselects the current place. */
+  onBackgroundClick?: () => void;
 }
 
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.978 };
@@ -27,16 +28,16 @@ export function MapContainer({
   selectedPlaceId,
   userGeo,
   onMarkerClick,
+  onBackgroundClick,
 }: MapContainerProps) {
-  const locale = useLocale() as 'ko' | 'en';
-  const t = useTranslations('tools.restaurant-map');
   const { mapSDKReady, mapError } = useMapsSDKLoader();
 
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const markersRef = useRef<Map<string, any>>(new Map());
-  const infoWindowRef = useRef<any>(null);
   const userGeoMarkerRef = useRef<any>(null);
+  const onBackgroundClickRef = useRef(onBackgroundClick);
+  onBackgroundClickRef.current = onBackgroundClick;
 
   const [zoom, setZoom] = useState(11);
   const [bounds, setBounds] = useState<{
@@ -99,20 +100,10 @@ export function MapContainer({
 
     updateBounds();
 
-    // Initialize info window
-    infoWindowRef.current = new naver.InfoWindow({
-      minWidth: 200,
-      disableAnchor: true,
-      borderColor: 'var(--hairline)',
-      backgroundColor: 'var(--surface)',
+    // Clicking an empty area of the map deselects the current place
+    map.addListener('click', () => {
+      onBackgroundClickRef.current?.();
     });
-
-    return () => {
-      // Cleanup on unmount
-      if (infoWindowRef.current) {
-        infoWindowRef.current.close();
-      }
-    };
   }, [mapSDKReady, userGeo?.lat, userGeo?.lng]);
 
   // Render user geolocation marker and circle
@@ -140,7 +131,7 @@ export function MapContainer({
         },
       });
     }
-  }, [userGeo, mapSDKReady, t]);
+  }, [userGeo, mapSDKReady]);
 
   // Render place markers and clusters
   useEffect(() => {
@@ -204,13 +195,10 @@ export function MapContainer({
     }
   }, [places, selectedPlaceId, mapSDKReady]);
 
-  // Pan and open info window on selected place change
+  // Pan to the selected place. The clicked place's details render in the panel
+  // below the map (no on-map info popup — it covered the map and never closed).
   useEffect(() => {
-    if (
-      !mapInstanceRef.current ||
-      !selectedPlaceId ||
-      !infoWindowRef.current
-    ) {
+    if (!mapInstanceRef.current || !selectedPlaceId) {
       return;
     }
 
@@ -219,26 +207,8 @@ export function MapContainer({
 
     const naver = (window as any).naver?.maps;
     if (!naver) return;
-    const position = new naver.LatLng(place.lat, place.lng);
 
-    // Pan to place
-    mapInstanceRef.current.panTo(position);
-
-    // Open info window
-    const content = `
-      <div style="padding: 8px; font-size: 13px; max-width: 250px;">
-        <div style="font-weight: 600; margin-bottom: 4px;">${place.name}</div>
-        <div style="color: var(--text-secondary); font-size: 12px; margin-bottom: 6px;">${t(`categories.${place.category}`)}</div>
-        <div style="color: var(--text-secondary); font-size: 11px; margin-bottom: 6px;">${place.address}</div>
-        ${
-          place.link
-            ? `<a href="${place.link}" target="_blank" rel="noopener noreferrer" style="color: var(--brand); text-decoration: none; font-size: 12px;">Open in Maps →</a>`
-            : ''
-        }
-      </div>
-    `;
-    infoWindowRef.current.setContent(content);
-    infoWindowRef.current.open(mapInstanceRef.current, position);
+    mapInstanceRef.current.panTo(new naver.LatLng(place.lat, place.lng));
   }, [selectedPlaceId, places]);
 
   if (mapError) {
@@ -248,7 +218,7 @@ export function MapContainer({
   return (
     <div
       ref={mapRef}
-      className="w-full h-[400px] md:h-96 rounded-lg border border-hairline overflow-hidden"
+      className="w-full h-[420px] lg:h-[600px] rounded-lg border border-hairline overflow-hidden"
       aria-label="Map"
     />
   );
