@@ -36,50 +36,45 @@ export function CharacterCounter() {
   });
 
   return (
-    <div className="space-y-8">
-      {/* Textarea Section */}
-      <div className="space-y-2">
+    /* Desktop: 2-column (textarea left, metrics sidebar right), height-aligned. Mobile: single column stack. */
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:items-stretch">
+      {/* Left: Text input (3/5) — flex column so textarea fills the row height to match the sidebar */}
+      <div className="md:col-span-3 flex flex-col gap-2">
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={t('textarea.placeholder')}
           aria-label={t('textarea.ariaLabel')}
-          className="w-full min-h-72 max-h-96 p-4 rounded-lg border border-hairline bg-surface text-text placeholder-text-secondary resize-vertical focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand font-mono"
+          className="flex-1 min-h-72 p-4 rounded-lg border border-hairline bg-surface text-text placeholder-text-secondary resize-y focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand font-mono"
         />
         <div className="text-sm text-text-secondary">{hintText}</div>
       </div>
 
-      {/* Main Layout: Textarea left, Metrics sidebar right (desktop) / Stacked (mobile) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left: Empty space on desktop for visual balance (textarea above) */}
-        <div className="lg:col-span-1" />
+      {/* Right: Limit + Metrics + Actions sidebar (2/5) */}
+      <div className="md:col-span-2 space-y-6">
+        {/* Limit Indicator */}
+        <LimitIndicator
+          limit={limit}
+          currentCount={metrics.charactersWithSpaces}
+          customInput={customLimitInput}
+          onLimitChange={setLimit}
+          onCustomInputChange={setCustomLimitInput}
+        />
 
-        {/* Right: Metrics & Controls Sidebar */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Limit Indicator */}
-          <LimitIndicator
-            limit={limit}
-            currentCount={metrics.charactersWithSpaces}
-            customInput={customLimitInput}
-            onLimitChange={setLimit}
-            onCustomInputChange={setCustomLimitInput}
+        {/* Metrics Card */}
+        <CounterMetrics metrics={metrics} />
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3">
+          <CopyButton
+            onClick={copyText}
+            labelKey="button.copyText"
           />
-
-          {/* Metrics Card */}
-          <CounterMetrics metrics={metrics} />
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <CopyButton
-              onClick={copyText}
-              labelKey="button.copyText"
-            />
-            <CopyButton
-              onClick={copyMetrics}
-              labelKey="button.copyStats"
-            />
-            <ClearButton onClick={clearText} />
-          </div>
+          <CopyButton
+            onClick={copyMetrics}
+            labelKey="button.copyStats"
+          />
+          <ClearButton onClick={clearText} />
         </div>
       </div>
     </div>
