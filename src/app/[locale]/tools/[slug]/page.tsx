@@ -35,6 +35,10 @@ import { TransparentBgIntro } from '@/components/tools/transparent-background/Tr
 import { TransparentBgHowTo } from '@/components/tools/transparent-background/TransparentBgHowTo';
 import { TransparentBgFaq } from '@/components/tools/transparent-background/TransparentBgFaq';
 import { TransparentBgStructuredData } from '@/components/tools/transparent-background/TransparentBgStructuredData';
+import { JsonFormatterIntro } from '@/components/tools/json-formatter/JsonFormatterIntro';
+import { JsonFormatterHowTo } from '@/components/tools/json-formatter/JsonFormatterHowTo';
+import { JsonFormatterFaq } from '@/components/tools/json-formatter/JsonFormatterFaq';
+import { JsonFormatterStructuredData } from '@/components/tools/json-formatter/JsonFormatterStructuredData';
 
 const LadderGame = dynamic(() =>
   import('@/components/tools/ladder/LadderGame').then((m) => ({
@@ -114,6 +118,12 @@ const RestaurantMap = dynamic(() =>
   }))
 );
 
+const JsonFormatter = dynamic(() =>
+  import('@/components/tools/json-formatter/JsonFormatter').then((m) => ({
+    default: m.JsonFormatter,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -163,6 +173,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'restaurant-map') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'json-formatter') {
     title = t('meta.title');
     description = t('meta.description');
   } else {
@@ -311,6 +324,18 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
 
   if (slug === 'restaurant-map') {
     return <RestaurantMap />;
+  }
+
+  if (slug === 'json-formatter') {
+    return (
+      <>
+        <JsonFormatterStructuredData />
+        <JsonFormatterIntro />
+        <JsonFormatter />
+        <JsonFormatterHowTo />
+        <JsonFormatterFaq />
+      </>
+    );
   }
 
   notFound();
