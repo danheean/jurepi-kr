@@ -168,6 +168,17 @@ export const tools: ToolMeta[] = [
     order: 24,
     keywords: ['맛집', '맛집리스트', '맛집지도', '카페', '라면', '족발', '참치', '음식', '추천', '지도', 'restaurant', 'map', 'food', 'cafe', 'ramen', 'tuna', 'local favorite', 'curator', 'dining', 'lunch', 'dinner'],
   },
+  {
+    id: 'base64-encoder',
+    slug: 'base64-encoder',
+    category: 'dev',
+    icon: 'Binary',
+    accent: 'coral',
+    status: 'live',
+    isNew: true,
+    order: 25,
+    keywords: ['base64', '인코딩', '디코딩', 'encode', 'decode', '변환', 'encoding', '파일', '텍스트', 'UTF-8', 'base64 converter', 'encoder', 'decoder'],
+  },
 ];
 
 /** Get all live tools for static generation */

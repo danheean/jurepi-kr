@@ -1759,6 +1759,91 @@
       "placeDetail": {
         "openInMaps": "지도에서 보기"
       }
+    },
+    "base64-encoder": {
+      "title": "Base64 인코더/디코더",
+      "description": "텍스트와 파일을 Base64로 변환하고, Base64를 원본으로 복원하세요. UTF-8 안전하고 표준/URL-safe 모드 지원.",
+      "mode": {
+        "label": "모드",
+        "text": "텍스트",
+        "file": "파일"
+      },
+      "variant": {
+        "label": "방식",
+        "standard": "표준 (A-Za-z0-9+/)",
+        "urlSafe": "URL-safe (A-Za-z0-9-_)"
+      },
+      "direction": {
+        "label": "방향",
+        "encode": "인코딩 →",
+        "decode": "← 디코딩"
+      },
+      "input": {
+        "label": "입력",
+        "fileSelect": "파일 선택",
+        "textPlaceholder": "텍스트 또는 Base64를 붙여넣으세요…",
+        "fileLabel": "파일을 드래그하거나 클릭해 선택",
+        "fileSuccess": "파일 선택됨: {filename} ({size})"
+      },
+      "process": {
+        "button": "변환",
+        "loading": "처리 중…"
+      },
+      "output": {
+        "label": "출력",
+        "placeholder": "출력이 여기에 표시됩니다",
+        "copyBase64": "Base64 복사",
+        "copyDataUri": "Data-URI 복사",
+        "copyText": "텍스트 복사",
+        "download": "다운로드",
+        "copied": "복사되었습니다!"
+      },
+      "errors": {
+        "invalidBase64": "잘못된 Base64 형식입니다. A-Za-z0-9+/= 문자만 포함되어야 합니다(표준) 또는 A-Za-z0-9-_= (URL-safe).",
+        "emptyInput": "텍스트 또는 파일을 입력하세요.",
+        "fileTooLarge": "파일이 5MB를 초과합니다.",
+        "notUtf8": "UTF-8로 디코딩할 수 없습니다.",
+        "fileReadError": "파일을 읽지 못했습니다. 다시 시도해주세요."
+      },
+      "meta": {
+        "title": "Base64 Encoder/Decoder — 텍스트 & 파일 변환",
+        "description": "텍스트와 파일을 Base64로 안전하게 변환하세요. UTF-8 안전성, 표준/URL-safe 지원, 파일 업로드/다운로드."
+      },
+      "intro": {
+        "category": "개발 도구",
+        "heading": "Base64 인코더 / 디코더",
+        "lead": "텍스트와 파일을 Base64로 변환하고 역변환하세요. UTF-8 안전하고, 표준/URL-safe 방식을 모두 지원합니다."
+      },
+      "howTo": {
+        "title": "Base64란 무엇인가?",
+        "items": [
+          "Base64는 바이너리 데이터를 텍스트로 표현하는 인코딩 방식입니다. 일반적으로 문자를 64개의 출력 가능한 ASCII 문자로 인코딩합니다.",
+          "표준 Base64는 +와 / 문자를 사용하고, URL-safe 방식은 -와 _를 사용합니다. URL에서 안전하게 사용할 수 있도록 설계되었습니다.",
+          "이 도구는 UTF-8 안전성을 보장하므로 이모지, 한글, 개행 등 모든 문자를 손상 없이 인코딩할 수 있습니다.",
+          "Base64는 암호화가 아닙니다. 데이터를 보호하려면 암호화를 사용해야 합니다."
+        ]
+      },
+      "faq": {
+        "heading": "자주 묻는 질문",
+        "items": [
+          {
+            "q": "Base64는 암호화인가요?",
+            "a": "아니오. Base64는 인코딩일 뿐 암호화가 아닙니다. 누구나 Base64를 디코딩할 수 있으므로 민감한 정보 보호에는 사용할 수 없습니다. 민감한 데이터는 반드시 암호화를 사용하세요."
+          },
+          {
+            "q": "표준과 URL-safe의 차이는?",
+            "a": "표준 Base64는 +와 / 문자를 사용합니다. URL-safe 방식은 이들을 -와 _로 바꿔서 URL이나 파일명에서 안전하게 사용할 수 있습니다."
+          },
+          {
+            "q": "파일 크기 제한은 얼마인가요?",
+            "a": "이 도구는 최대 5MB까지의 파일을 처리할 수 있습니다. 더 큰 파일은 여러 번에 나눠서 처리해야 합니다."
+          },
+          {
+            "q": "내 데이터는 서버에 저장되나요?",
+            "a": "아니오. 모든 처리가 브라우저에서만 일어나고, 서버에 전송되거나 저장되지 않습니다. 마지막 사용한 모드 설정만 로컬 저장소에 저장됩니다."
+          }
+        ]
+      }
     }
   },
   "about": {

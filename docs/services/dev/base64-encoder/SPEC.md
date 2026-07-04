@@ -27,7 +27,7 @@ CRITICAL (SPA, usability-first): per the platform rule, every Jurepi tool is a c
   - Route: /[locale]/tools/base64-encoder (SSG; registry slug "base64-encoder", id "base64-encoder", status "live", accent "coral", category "dev").
   - Provided by the platform (do NOT reimplement): app shell (Header/Footer/LocaleSwitcher/ThemeToggle), ConsentBanner, AdSlot, Toast system, design tokens (tokens.css ↔ DESIGN.md), i18n runtime, Error Boundary around the tool module, lib/seo.ts metadata builder.
   - Consumes: i18n namespace `tools.base64-encoder.*` (UI chrome: mode toggle, variant toggle, file input label, copy buttons, error messages, FAQ).
-  - Platform dependency (CRITICAL): the `'dev'` category exists in the `ToolCategory` type union but is NOT yet wired (no `categories.dev` i18n label, not in `CATEGORY_ORDER` or `FOOTER_CATEGORIES`). Activating the `dev` category is a one-time platform prerequisite: add i18n label ko "개발"/en "Developer", wire `CATEGORY_ORDER`, add to `FOOTER_CATEGORIES`, assign category accent (suggested: `coral`, but design-system owner confirms).
+  - Platform dependency (SATISFIED): the `'dev'` category is already fully wired and live (i18n label `categories.dev` = ko "개발 도구" / en equivalent, present in `CATEGORY_ORDER` and `FOOTER_CATEGORIES`; sibling live dev tools: url-encoder, bookmarks, dev-people). No category setup work remains — only the registry entry, route branch, and i18n namespace for this tool. Accent `coral` is free among dev tools (currently only ladder uses coral).
 </platform_integration>
 
 <scope_boundaries>
@@ -89,12 +89,14 @@ src/
 │   ├── useBase64.ts                   # Hook: state management + localStorage + copy adapter
 │   ├── ModeToggle.tsx                 # Text / File radio segment
 │   ├── VariantToggle.tsx              # Standard / URL-safe radio segment
+│   ├── DirectionToggle.tsx            # Encode / Decode radio segment
 │   ├── TextInput.tsx                  # Textarea for plaintext input
 │   ├── FileInput.tsx                  # Drag-drop + file picker, size validation
 │   ├── OutputDisplay.tsx              # Result textarea (read-only), copy button, download button
-│   ├── Base64Intro.tsx                # H1 + lead (SEO; server-render)
-│   ├── Base64HowTo.tsx                # "What is Base64?" (SEO long-form)
-│   ├── Base64Faq.tsx                  # Q&A + FAQPage JSON-LD
+│   ├── Base64EncoderIntro.tsx         # H1 + lead (SEO; server-render; tool-prefixed name per repo convention)
+│   ├── Base64EncoderHowTo.tsx         # "What is Base64?" (SEO long-form)
+│   ├── Base64EncoderFaq.tsx           # Q&A + FAQPage JSON-LD (single owner of FAQPage)
+│   ├── Base64EncoderStructuredData.tsx # SoftwareApplication JSON-LD only (route renders; NEVER FAQPage here)
 │   └── data/
 │       └── (no generated artifacts)
 └── i18n/messages/{ko,en}.json         # tools.base64-encoder.* (mode/variant labels, buttons, errors, FAQ)
@@ -154,6 +156,7 @@ src/
     <base64_faq />                    <!-- Q&A + FAQPage JSON-LD -->
   </base64_encoder>
   <note>SPA within tool: mode/variant/direction switch = local state, NOT route navigation.</note>
+  <note>Repo convention: the [slug] route renders StructuredData + Intro + (ErrorBoundary+Suspense around the SPA orchestrator) + HowTo + Faq + ShareButtons as siblings — SEO sections live OUTSIDE any mounted gate and are owned by the route branch, mirroring url-encoder.</note>
 </component_hierarchy>
 
 <pages_and_interfaces>
@@ -326,7 +329,7 @@ src/
 <key_implementation_notes>
   <platform_registry_change>
     ```typescript
-    // src/tools/registry.ts — add ONE entry. 'dev' category + 'coral' accent setup first (platform prerequisite).
+    // src/tools/registry.ts — add ONE entry. 'dev' category is already live (no platform prerequisite).
     {
       id: 'base64-encoder',
       slug: 'base64-encoder',
@@ -335,11 +338,11 @@ src/
       accent: 'coral',
       status: 'live',            // 'coming_soon' until module complete
       isNew: true,
-      order: 1,                  // first dev tool
+      order: 25,                 // next global order (restaurant-map = 24)
       keywords: ['base64','encode','decode','encoding','binary','텍스트변환','파일변환','인코딩','디코딩','base64 converter'],
     },
     ```
-    Also add slug→component branch (<Base64Encoder/>) and generateMetadata branch in tool route alongside ladder/qna-a-day. Add i18n label `categories.dev` (ko: "개발", en: "Developer"), wire CATEGORY_ORDER, add FOOTER_CATEGORIES entry, confirm accent.
+    Also add slug→component branch (<Base64Encoder/>) and generateMetadata branch in tool route alongside ladder/qna-a-day. `categories.dev` i18n label, CATEGORY_ORDER, FOOTER_CATEGORIES are already wired — do NOT re-add. i18n namespace `tools.base64-encoder.*` MUST include top-level `title`/`description` (consumed by searchable-tools: home cards, footer, header search). Register the tool in `public/llms.txt`. SNS share buttons come free from the route template (no per-tool wiring). FAQPage JSON-LD is owned by the `<Base64EncoderFaq>` component (single owner, visible items); `SoftwareApplication` JSON-LD via platform seo helpers with url == canonical.
   </platform_registry_change>
   <critical_paths>
     1. UTF-8 safety: TextEncoder + base64-js (or safe native) + TextDecoder. Never raw `btoa`/`atob` (breaks on non-Latin1).
@@ -353,7 +356,7 @@ src/
     3. useBase64 hook (state machine + localStorage + copy adapter).
     4. ModeToggle + VariantToggle + DirectionToggle + TextInput + FileInput + OutputDisplay (form UX + validation).
     5. Keyboard a11y, motion-reduce, WCAG AA (axe).
-    6. Base64Intro/HowTo/Faq + SoftwareApplication + FAQPage JSON-LD via platform lib/seo.ts.
+    6. Base64EncoderIntro/HowTo/Faq + Base64EncoderStructuredData (SoftwareApplication) + FAQPage JSON-LD (Faq-owned) via platform lib/seo.ts.
     7. Registry status→live; slug→component + generateMetadata branches; E2E 1–4; visual regression 320/768/1024 both themes.
   </recommended_implementation_order>
   <testing_strategy>Pure Vitest ≥80% (schema/encoder/base64/mime); file FileReader mocked; copy clipboard mocked; component catalog-injected state; E2E scenarios 1–4; Lighthouse CWV; axe a11y.</testing_strategy>

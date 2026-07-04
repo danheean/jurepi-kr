@@ -382,6 +382,65 @@ const defaultMessages = {
         ],
       },
     },
+    'base64-encoder': {
+      title: 'Base64 Encoder/Decoder',
+      description: 'Convert text and files to/from Base64 with UTF-8 integrity.',
+      mode: {
+        label: 'Mode',
+        text: 'Text',
+        file: 'File',
+      },
+      variant: {
+        label: 'Variant',
+        standard: 'Standard (A-Za-z0-9+/)',
+        urlSafe: 'URL-Safe (A-Za-z0-9-_)',
+      },
+      direction: {
+        label: 'Direction',
+        encode: 'Encode →',
+        decode: '← Decode',
+      },
+      input: {
+        label: 'Input',
+        fileSelect: 'Select file',
+        textPlaceholder: 'Paste text or Base64…',
+        fileLabel: 'Drag files or click to browse',
+        fileSuccess: 'File selected: {filename} ({size})',
+      },
+      process: {
+        button: 'Convert',
+        loading: 'Processing…',
+      },
+      output: {
+        label: 'Output',
+        placeholder: 'Output will appear here',
+        copyBase64: 'Copy Base64',
+        copyDataUri: 'Copy Data-URI',
+        copyText: 'Copy Text',
+        download: 'Download',
+        copied: 'Copied!',
+      },
+      meta: {
+        title: 'Base64 Encoder/Decoder — Text & File Conversion',
+        description: 'Safely convert text and files to/from Base64 with UTF-8 integrity.',
+      },
+      errors: {
+        invalidBase64: 'Invalid Base64 format.',
+        emptyInput: 'Enter text or file.',
+        fileTooLarge: 'File exceeds 5MB limit.',
+        notUtf8: 'Unable to decode as UTF-8.',
+        fileReadError: 'Failed to read the file.',
+      },
+      faq: {
+        heading: 'Frequently Asked Questions',
+        items: [
+          { q: 'What is Base64?', a: 'Base64 is a binary-to-text encoding scheme.' },
+          { q: 'What is URL-safe Base64?', a: 'URL-safe Base64 uses - and _ instead of + and /.' },
+          { q: 'Is my data uploaded?', a: 'No, all processing is local.' },
+          { q: 'What is the file size limit?', a: 'Maximum 5MB.' },
+        ],
+      },
+    },
   },
 };
 
