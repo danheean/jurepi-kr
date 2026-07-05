@@ -27,7 +27,7 @@ export function SavedProjects({
     }
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSaveClick()
     }
@@ -47,7 +47,7 @@ export function SavedProjects({
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyDown}
           placeholder={t('tools.knitting-gauge.projects.placeholder')}
           disabled={isFull}
           className="flex-1 rounded-md border border-hairline bg-surface px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:bg-surface-muted disabled:text-text-muted"
@@ -55,7 +55,7 @@ export function SavedProjects({
         <button
           onClick={handleSaveClick}
           disabled={isFull || !inputValue.trim()}
-          className="rounded-md border border-hairline bg-surface-muted px-4 py-2 text-sm font-medium text-text transition-colors hover:bg-surface-muted/80 active:bg-surface-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:bg-surface-muted/50 disabled:text-text-muted"
+          className="min-h-[44px] rounded-md bg-brand px-4 py-2 text-sm font-semibold text-on-brand transition-colors hover:bg-brand/90 active:bg-brand/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:bg-surface-muted/50 disabled:text-text-muted"
         >
           {t('tools.knitting-gauge.actions.save')}
         </button>
@@ -87,13 +87,13 @@ export function SavedProjects({
                 <div className="flex gap-2">
                   <button
                     onClick={() => onApply(project.name)}
-                    className="rounded-md border border-hairline bg-surface-muted px-3 py-1 text-xs font-medium text-text transition-colors hover:bg-surface-muted/80 active:bg-surface-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                    className="min-h-[44px] min-w-[44px] rounded-md border border-hairline bg-surface-muted px-3 py-2 text-sm font-medium text-text transition-colors hover:bg-surface-muted/80 active:bg-surface-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                   >
                     {t('tools.knitting-gauge.actions.apply')}
                   </button>
                   <button
                     onClick={() => onRemove(project.name)}
-                    className="rounded-md border border-hairline bg-surface-muted px-3 py-1 text-xs font-medium text-text transition-colors hover:bg-surface-muted/80 active:bg-surface-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                    className="min-h-[44px] min-w-[44px] rounded-md border border-hairline bg-surface-muted px-3 py-2 text-sm font-medium text-text transition-colors hover:bg-surface-muted/80 active:bg-surface-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                   >
                     {t('tools.knitting-gauge.actions.delete')}
                   </button>

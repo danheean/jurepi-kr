@@ -2289,10 +2289,10 @@
       }
     },
     "knitting-gauge": {
-      "title": "뜨개질 게이지 계산기",
+      "title": "뜨개 게이지 계산기",
       "description": "게이지에서 필요한 코·단 수, 패턴 환산을 계산합니다",
       "meta": {
-        "title": "뜨개질 게이지 계산기",
+        "title": "뜨개 게이지 계산기",
         "description": "게이지에서 필요한 코·단 수, 패턴 환산을 계산합니다"
       },
       "eyebrow": "계산 도구",
@@ -2300,7 +2300,8 @@
       "modes": {
         "dimToCounts": "크기 → 코·단 수",
         "countsToDim": "코·단 수 → 크기",
-        "patternRescale": "패턴 환산"
+        "patternRescale": "패턴 환산",
+        "label": "계산 모드 선택"
       },
       "fields": {
         "stitches": "코 수",

@@ -53,8 +53,9 @@ describe('ModeTabs', () => {
       { wrapper: AllTheProviders }
     )
 
-    const tablist = screen.getByRole('tablist')
-    fireEvent.keyDown(tablist, { key: 'ArrowRight' })
+    const activeTab = screen.getByRole('tab', { selected: true })
+    activeTab.focus()
+    fireEvent.keyDown(activeTab, { key: 'ArrowRight' })
 
     expect(handleModeChange).toHaveBeenCalledWith('countsToDim')
   })
@@ -67,8 +68,9 @@ describe('ModeTabs', () => {
       { wrapper: AllTheProviders }
     )
 
-    const tablist = screen.getByRole('tablist')
-    fireEvent.keyDown(tablist, { key: 'ArrowRight' })
+    const activeTab = screen.getByRole('tab', { selected: true })
+    activeTab.focus()
+    fireEvent.keyDown(activeTab, { key: 'ArrowRight' })
 
     expect(handleModeChange).toHaveBeenCalledWith('dimToCounts')
   })
@@ -81,8 +83,9 @@ describe('ModeTabs', () => {
       { wrapper: AllTheProviders }
     )
 
-    const tablist = screen.getByRole('tablist')
-    fireEvent.keyDown(tablist, { key: 'ArrowLeft' })
+    const activeTab = screen.getByRole('tab', { selected: true })
+    activeTab.focus()
+    fireEvent.keyDown(activeTab, { key: 'ArrowLeft' })
 
     expect(handleModeChange).toHaveBeenCalledWith('dimToCounts')
   })
@@ -95,8 +98,9 @@ describe('ModeTabs', () => {
       { wrapper: AllTheProviders }
     )
 
-    const tablist = screen.getByRole('tablist')
-    fireEvent.keyDown(tablist, { key: 'ArrowLeft' })
+    const activeTab = screen.getByRole('tab', { selected: true })
+    activeTab.focus()
+    fireEvent.keyDown(activeTab, { key: 'ArrowLeft' })
 
     expect(handleModeChange).toHaveBeenCalledWith('patternRescale')
   })
@@ -170,5 +174,46 @@ describe('ModeTabs', () => {
 
     buttons = screen.getAllByRole('tab')
     expect(buttons[1]).toHaveAttribute('aria-selected', 'true')
+  })
+})
+
+
+describe('ModeTabs — roving tabindex (WAI-ARIA tabs pattern)', () => {
+  it('only the focused tab is a tab stop; others are tabIndex -1', () => {
+    const handleModeChange = vi.fn()
+    render(<ModeTabs mode="dimToCounts" onModeChange={handleModeChange} />, {
+      wrapper: AllTheProviders,
+    })
+
+    const tabs = screen.getAllByRole('tab')
+    const stops = tabs.map((t) => t.tabIndex)
+    expect(stops.filter((i) => i === 0)).toHaveLength(1)
+    expect(stops.filter((i) => i === -1)).toHaveLength(2)
+  })
+
+  it('every tab has aria-controls pointing at the tabpanel id', () => {
+    const handleModeChange = vi.fn()
+    render(<ModeTabs mode="dimToCounts" onModeChange={handleModeChange} />, {
+      wrapper: AllTheProviders,
+    })
+
+    for (const tab of screen.getAllByRole('tab')) {
+      expect(tab).toHaveAttribute('aria-controls', 'kg-tabpanel')
+      expect(tab.id).toMatch(/^kg-tab-/)
+    }
+  })
+
+  it('ArrowRight moves DOM focus to the newly selected tab', () => {
+    const handleModeChange = vi.fn()
+    render(<ModeTabs mode="dimToCounts" onModeChange={handleModeChange} />, {
+      wrapper: AllTheProviders,
+    })
+
+    const tabs = screen.getAllByRole('tab')
+    tabs[0].focus()
+    fireEvent.keyDown(tabs[0], { key: 'ArrowRight' })
+
+    expect(handleModeChange).toHaveBeenCalledWith('countsToDim')
+    expect(document.activeElement).toBe(tabs[1])
   })
 })

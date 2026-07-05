@@ -720,6 +720,7 @@ const defaultMessages = {
       title: 'Knitting Gauge Calculator',
       description: 'Calculate cast-on stitches/rows from your gauge and rescale patterns',
       modes: {
+        label: 'Calculation modes',
         dimToCounts: 'Dimensions → Stitches/Rows',
         countsToDim: 'Stitches/Rows → Dimensions',
         patternRescale: 'Pattern Rescale',

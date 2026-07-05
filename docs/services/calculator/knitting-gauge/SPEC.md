@@ -2,7 +2,7 @@
 
 > This document is the **canonical (English) source** consumed by AI coding agents. The Korean translation should live in [`SPEC_KR.md`](SPEC_KR.md); keep both in sync when either changes.
 >
-> Build specification for **뜨개질 게이지 계산기 / Knitting Gauge Calculator** (Korean display name: **뜨개질 게이지 계산기**; English display name: *Knitting Gauge Calculator*) — a client-side calculator that turns a knitter's (or crocheter's) **swatch gauge** (stitches and rows measured over a known length) into the numbers they actually need: how many **stitches to cast on** and **rows to knit** for a target finished width/length, and how to **rescale a pattern** written for a different gauge to their own. Supports cm/inch units and a 10cm/4inch gauge convention. 100% client-side, pure math, localStorage for recent projects. The tool mounts as a client-side SPA on the platform shell.
+> Build specification for **뜨개질 게이지 계산기 / Knitting Gauge Calculator** (Korean display name: **뜨개 게이지 계산기**; English display name: *Knitting Gauge Calculator*) — a client-side calculator that turns a knitter's (or crocheter's) **swatch gauge** (stitches and rows measured over a known length) into the numbers they actually need: how many **stitches to cast on** and **rows to knit** for a target finished width/length, and how to **rescale a pattern** written for a different gauge to their own. Supports cm/inch units and a 10cm/4inch gauge convention. 100% client-side, pure math, localStorage for recent projects. The tool mounts as a client-side SPA on the platform shell.
 >
 > Internal service codename: `knitting-gauge`. Registry id: `knitting-gauge`. Public URL slug: `/[locale]/tools/knitting-gauge`.
 >

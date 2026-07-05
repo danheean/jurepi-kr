@@ -2300,7 +2300,8 @@
       "modes": {
         "dimToCounts": "Dimensions → Stitches/Rows",
         "countsToDim": "Stitches/Rows → Dimensions",
-        "patternRescale": "Pattern Rescale"
+        "patternRescale": "Pattern Rescale",
+        "label": "Calculation modes"
       },
       "fields": {
         "stitches": "Stitches",

@@ -109,6 +109,24 @@ button:not(:disabled),
   }
 }
 
+/* Tab-panel / mode-switch entrance (opacity only; instant under reduced motion) */
+@keyframes panel-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.panel-fade-in {
+  animation: panel-fade-in var(--duration-fast) var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  .panel-fade-in {
+    animation: none;
+  }
+}
+
 /* Range slider touch target — browser-default thumbs render well under this
    project's 44px touch-target floor (transparent-background's tolerance/feather
    sliders, qr-code's size controls). The input itself grows to 44px so the

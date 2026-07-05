@@ -132,7 +132,7 @@ export function PatternRescale({
             </label>
             <input
               id="pattern-st"
-              type="number"
+              type="text"
               inputMode="decimal"
               value={patternStDraft}
               onChange={handlePatternStChange}
@@ -150,7 +150,7 @@ export function PatternRescale({
             </label>
             <input
               id="pattern-rw"
-              type="number"
+              type="text"
               inputMode="decimal"
               value={patternRwDraft}
               onChange={handlePatternRwChange}
@@ -168,7 +168,7 @@ export function PatternRescale({
             </label>
             <input
               id="pattern-sw"
-              type="number"
+              type="text"
               inputMode="decimal"
               value={patternSwDraft}
               onChange={handlePatternSwChange}
@@ -186,7 +186,7 @@ export function PatternRescale({
             </label>
             <input
               id="pattern-sh"
-              type="number"
+              type="text"
               inputMode="decimal"
               value={patternShDraft}
               onChange={handlePatternShChange}
@@ -207,7 +207,7 @@ export function PatternRescale({
         </label>
         <input
           id="pattern-count"
-          type="number"
+          type="text"
           inputMode="decimal"
           value={patternCtDraft}
           onChange={handlePatternCtChange}

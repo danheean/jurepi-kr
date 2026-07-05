@@ -72,7 +72,7 @@ export function CountsToDim({
           </label>
           <input
             id="counts-to-dim-stitch"
-            type="number"
+            type="text"
             inputMode="decimal"
             value={stitchDraft}
             onChange={handleStitchChange}
@@ -90,7 +90,7 @@ export function CountsToDim({
           </label>
           <input
             id="counts-to-dim-row"
-            type="number"
+            type="text"
             inputMode="decimal"
             value={rowDraft}
             onChange={handleRowChange}

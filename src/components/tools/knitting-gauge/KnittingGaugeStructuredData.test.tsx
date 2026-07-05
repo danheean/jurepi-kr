@@ -35,7 +35,7 @@ describe('KnittingGaugeStructuredData', () => {
 
     const script = container.querySelector('script[type="application/ld+json"]');
     const jsonLd = JSON.parse(script?.textContent || '{}');
-    expect(jsonLd.name).toContain('뜨개질');
+    expect(jsonLd.name).toContain('뜨개 게이지');
     expect(jsonLd.url).toContain('/ko/tools/knitting-gauge');
   });
 

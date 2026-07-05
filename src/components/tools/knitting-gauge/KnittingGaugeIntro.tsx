@@ -5,7 +5,7 @@ export function KnittingGaugeIntro() {
 
   return (
     <section className="space-y-4">
-      <p className="text-sm font-semibold uppercase tracking-wide text-text-secondary">
+      <p className="text-sm font-semibold uppercase tracking-wide text-accent-sun-ink">
         {t('eyebrow')}
       </p>
       <h1 className="text-4xl font-bold text-text">{t('title')}</h1>

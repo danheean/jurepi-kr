@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useKnittingGauge } from './useKnittingGauge'
 import { GaugeInput } from './GaugeInput'
 import { ModeTabs } from './ModeTabs'
@@ -16,7 +16,22 @@ import { SavedProjects } from './SavedProjects'
  */
 export function KnittingGauge() {
   const t = useTranslations()
+  const locale = useLocale()
   const hook = useKnittingGauge()
+
+  const nf = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 })
+  const unitLabel =
+    hook.unit === 'cm' ? t('tools.knitting-gauge.units.cm') : t('tools.knitting-gauge.units.inch')
+
+  // One persistent live region announces the active mode's result
+  // (WCAG 2.1 SC 4.1.3); panels unmount on mode switch, so the
+  // orchestrator owns it to keep the region mounted.
+  const announcement =
+    hook.mode === 'dimToCounts'
+      ? `${t('tools.knitting-gauge.results.castOnStitches')} ${nf.format(hook.dimToCountsResult.stitches.rounded)}, ${t('tools.knitting-gauge.results.rows')} ${nf.format(hook.dimToCountsResult.rows.rounded)}`
+      : hook.mode === 'countsToDim'
+        ? `${t('tools.knitting-gauge.fields.width')} ${nf.format(hook.countsToDimResult.width)}${unitLabel}, ${t('tools.knitting-gauge.fields.length')} ${nf.format(hook.countsToDimResult.length)}${unitLabel}`
+        : `${t('tools.knitting-gauge.results.rescaledCount')} ${nf.format(hook.patternRescaleResult.stitches.rounded)}`
 
   return (
     <div className="space-y-6">
@@ -31,7 +46,15 @@ export function KnittingGauge() {
       {/* Mode tabs */}
       <ModeTabs mode={hook.mode} onModeChange={hook.setMode} />
 
-      {/* Mode-specific panels */}
+      {/* Mode-specific panels — tabpanel ties the active tab to its controls.
+          No tabIndex: the first form control inside is the natural stop. */}
+      <div
+        key={hook.mode}
+        id="kg-tabpanel"
+        role="tabpanel"
+        aria-labelledby={`kg-tab-${hook.mode}`}
+        className="panel-fade-in"
+      >
       {hook.mode === 'dimToCounts' && (
         <DimToCounts
           targetWidth={hook.targetWidth}
@@ -76,6 +99,12 @@ export function KnittingGauge() {
           }
         />
       )}
+      </div>
+
+      {/* Persistent result announcement for screen readers */}
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {announcement}
+      </div>
 
       {/* Saved projects section */}
       <SavedProjects

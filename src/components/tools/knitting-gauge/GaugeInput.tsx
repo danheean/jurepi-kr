@@ -241,7 +241,7 @@ export function GaugeInput({
               type="button"
               onClick={() => unit !== 'cm' && onUnitToggle()}
               aria-pressed={unit === 'cm'}
-              className={`flex-1 px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+              className={`flex-1 min-h-[44px] px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
                 unit === 'cm'
                   ? 'bg-brand text-on-brand'
                   : 'bg-surface text-text hover:bg-surface-muted'
@@ -253,7 +253,7 @@ export function GaugeInput({
               type="button"
               onClick={() => unit !== 'inch' && onUnitToggle()}
               aria-pressed={unit === 'inch'}
-              className={`flex-1 px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
+              className={`flex-1 min-h-[44px] px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
                 unit === 'inch'
                   ? 'bg-brand text-on-brand'
                   : 'bg-surface text-text hover:bg-surface-muted'

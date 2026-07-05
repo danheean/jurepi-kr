@@ -148,8 +148,11 @@ test.describe('Knitting Gauge - E2E Integration', () => {
     );
     expect(mainText).not.toMatch(/[가-힣]/);
 
-    // Result region announces politely
-    await expect(main.locator('[aria-live="polite"]').first()).toBeAttached();
+    // Result region announces politely (scoped to the tool's own status
+    // region — a bare [aria-live] would false-match ShareButtons' copy button)
+    const status = main.locator('[role="status"][aria-live="polite"]');
+    await expect(status).toBeAttached();
+    await expect(status).toContainText(/110|Cast-On/);
 
     // 320px viewport: no horizontal overflow
     await page.setViewportSize({ width: 320, height: 900 });

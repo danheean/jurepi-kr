@@ -77,7 +77,7 @@ export function DimToCounts({
           </label>
           <input
             id="dim-to-counts-width"
-            type="number"
+            type="text"
             inputMode="decimal"
             value={widthDraft}
             onChange={handleWidthChange}
@@ -95,7 +95,7 @@ export function DimToCounts({
           </label>
           <input
             id="dim-to-counts-length"
-            type="number"
+            type="text"
             inputMode="decimal"
             value={lengthDraft}
             onChange={handleLengthChange}

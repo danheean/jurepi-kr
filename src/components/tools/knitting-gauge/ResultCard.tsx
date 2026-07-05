@@ -56,7 +56,7 @@ export function ResultCard({
           {/* Rounded value - large, prominent */}
           <div className="mb-3">
             <p
-              className="font-sans text-5xl font-bold tracking-tight"
+              className="font-sans text-5xl font-bold tracking-tight text-accent-sun-ink"
               style={{ fontVariantNumeric: 'tabular-nums' }}
             >
               {nf.format(result.rounded)}
@@ -84,7 +84,7 @@ export function ResultCard({
           {copySummary && (
             <button
               onClick={handleCopy}
-              className="mt-4 inline-flex items-center gap-2 rounded-md border border-hairline bg-surface-muted px-3 py-2 text-sm font-medium text-text transition-colors hover:bg-surface-muted/80 active:bg-surface-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              className="mt-4 inline-flex min-h-[44px] items-center gap-2 rounded-md border border-hairline bg-surface-muted px-3 py-2 text-sm font-medium text-text transition-colors hover:bg-surface-muted/80 active:bg-surface-muted/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               aria-label={t(copied ? 'tools.knitting-gauge.actions.copied' : 'tools.knitting-gauge.actions.copy')}
             >
               <svg
