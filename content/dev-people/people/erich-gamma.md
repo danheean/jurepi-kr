@@ -1,5 +1,5 @@
 ---
-name: 에리히 감마
+name: 에릭 감마
 slug: erich-gamma
 knownFor: |
   Gang of Four 디자인 패턴의 저자. 소프트웨어 재사용과 우아한 설계의 거장.
@@ -11,6 +11,8 @@ tags:
   - architecture
 era: 1980-2000
 nationality: CH
+photo: erich-gamma.jpg
+photoCredit: "© 전자신문 (etnews.com)"
 birthYear: 1961
 achievements:
   - year: 1994
@@ -23,6 +25,7 @@ books:
   - title: "디자인 패턴: 재사용 가능한 객체지향 소프트웨어의 요소 (Design Patterns)"
     year: 1994
 aliases:
+  - "에리히 감마"
   - "Gamma"
   - "Gang of Four"
   - "패턴의 거장"
@@ -40,7 +43,7 @@ links:
 
 ## 소개
 
-에리히 감마는 1961년생의 스위스 컴퓨터 과학자로, 소프트웨어 설계의 역사에 영원히 기록될 한 명입니다. 1994년 그가 Grady Booch, Richard Helm, Ralph Johnson과 함께 출판한 "Design Patterns: Elements of Reusable Object-Oriented Software"는 단순한 기술 서적을 넘어 소프트웨어 설계의 언어 자체가 되었습니다.
+에릭 감마는 1961년생의 스위스 컴퓨터 과학자로, 소프트웨어 설계의 역사에 영원히 기록될 한 명입니다. 1994년 그가 Grady Booch, Richard Helm, Ralph Johnson과 함께 출판한 "Design Patterns: Elements of Reusable Object-Oriented Software"는 단순한 기술 서적을 넘어 소프트웨어 설계의 언어 자체가 되었습니다.
 
 이 책에서 소개된 23개의 디자인 패턴—Singleton, Factory, Observer, Strategy, Visitor 등—은 프로그래머들이 반복되는 설계 문제에 이름을 부여하고 소통할 수 있게 했습니다. 건축에서 "아트리움(atrium)"이나 "갤러리(gallery)"라는 용어가 공간 설계의 언어라면, 감마의 패턴들은 소프트웨어 설계의 어휘가 되었습니다. "패턴을 말하다"라는 것은 추상적인 문제를 구체적인 해결책으로 변환하는 능력을 의미하게 되었습니다.
 

@@ -10,6 +10,8 @@ tags:
   - ai
 era: 2000-present
 nationality: KR
+photo: jocoding.jpg
+photoCredit: "© 고대신문 (kunews.ac.kr)"
 achievements:
   - year: 2018
     title: 유튜브 채널 '조코딩' 개설 (2018년 11월 24일)

@@ -10,7 +10,10 @@ import messagesEn from '@/i18n/messages/en.json';
 
 const CATALOG = (peopleData as any).peoples as MergedPerson[];
 const geoffrey = CATALOG.find((p) => p.slug === 'geoffrey-hinton')!;
-const ericGamma = CATALOG.find((p) => p.slug === 'erich-gamma')!; // person without photo
+// Synthetic no-photo fixture: every cataloged person now has a photo,
+// so avatar fallback must be exercised with photo stripped.
+const ericGammaBase = CATALOG.find((p) => p.slug === 'erich-gamma')!;
+const ericGamma: MergedPerson = { ...ericGammaBase, photo: undefined, photoCredit: undefined };
 
 function renderKo(person: MergedPerson, isFavorited = false, onToggleFavorite = vi.fn()) {
   return render(
@@ -90,11 +93,11 @@ describe('PersonCard', () => {
   });
 
   it('displays avatar initial when photo is not available', () => {
-    renderKo(ericGamma); // Erich Gamma has no photo
+    renderKo(ericGamma); // photo stripped above
 
     const avatar = screen.getByTestId('person-avatar');
     expect(avatar).toBeInTheDocument();
-    // Ko locale renders "에리히 감마", so initial is "에"
+    // Ko locale renders "에릭 감마", so initial is "에"
     expect(avatar).toHaveTextContent('에');
   });
 

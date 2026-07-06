@@ -11,6 +11,8 @@ tags:
   - agile
 era: 1980-2000
 nationality: UK
+photo: martin-fowler.jpg
+photoCredit: "© Thoughtworks (thoughtworks.com)"
 birthYear: 1963
 achievements:
   - year: 1996
