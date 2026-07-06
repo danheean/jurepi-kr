@@ -10,11 +10,12 @@ import { ResultPanel } from './ResultPanel';
 import { SaveLoadPanel } from './SaveLoadPanel';
 import { SettingsPanel } from './SettingsPanel';
 import { Toast } from '@/components/ui/Toast';
-import { MIN_OPTIONS, MAX_OPTIONS, SPIN_DURATION_MS } from '@/lib/roulette/schema';
+import { MIN_OPTIONS, MAX_OPTIONS } from '@/lib/roulette/schema';
 import { isDuplicateLabel } from '@/lib/roulette/sets';
 import { playTone, toneSpec } from '@/lib/roulette/sound';
 
-const TICK_COUNT = 12;
+// 스핀 시간이 랜덤이므로 틱 개수는 시간에 비례해 밀도를 유지한다
+const TICK_SPACING_MS = 300;
 
 interface ToastState {
   message: string;
@@ -65,10 +66,11 @@ export function Roulette() {
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     if (!roulette.prefersReducedMotion) {
-      for (let i = 0; i < TICK_COUNT; i += 1) {
-        const progress = i / TICK_COUNT;
+      const tickCount = Math.round(roulette.spinDurationMs / TICK_SPACING_MS);
+      for (let i = 0; i < tickCount; i += 1) {
+        const progress = i / tickCount;
         // 회전량 균등 간격을 ease-out 시간축으로 역변환
-        const atMs = SPIN_DURATION_MS * (1 - Math.cbrt(1 - progress));
+        const atMs = roulette.spinDurationMs * (1 - Math.cbrt(1 - progress));
         timers.push(
           setTimeout(() => {
             const spec = toneSpec('tick');
@@ -82,6 +84,7 @@ export function Roulette() {
     roulette.spinning,
     roulette.soundOn,
     roulette.volume,
+    roulette.spinDurationMs,
     roulette.prefersReducedMotion,
     getAudioContext,
   ]);
@@ -168,13 +171,15 @@ export function Roulette() {
           <WheelSVG
             options={roulette.options}
             sliceGeometry={roulette.sliceGeometry}
-            selectedIndex={roulette.selectedIndex}
+            selectedIndex={roulette.spinning ? null : roulette.selectedIndex}
             spinning={roulette.spinning}
-            finalAngle={roulette.finalAngle}
+            rotation={roulette.rotation}
+            spinDurationMs={roulette.spinDurationMs}
             prefersReducedMotion={roulette.prefersReducedMotion}
           />
 
-          {roulette.selectedIndex !== null && (
+          {/* 스핀 중 결과 노출 금지 — 승자 이름이 미리 보이면 긴장감이 죽는다 */}
+          {!roulette.spinning && roulette.selectedIndex !== null && (
             <ResultPanel
               selectedIndex={roulette.selectedIndex}
               options={roulette.options}

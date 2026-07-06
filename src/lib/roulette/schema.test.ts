@@ -10,7 +10,10 @@ import {
   MIN_WEIGHT,
   MAX_WEIGHT,
   LEGEND_THRESHOLD,
-  SPIN_DURATION_MS,
+  SPIN_MIN_FULL_TURNS,
+  SPIN_MAX_FULL_TURNS,
+  SPIN_DURATION_MIN_MS,
+  SPIN_DURATION_MAX_MS,
   CONFETTI_COUNT,
 } from './schema';
 
@@ -254,7 +257,12 @@ describe('schema.ts', () => {
       expect(MIN_WEIGHT).toBe(1);
       expect(MAX_WEIGHT).toBe(1000);
       expect(LEGEND_THRESHOLD).toBe(16);
-      expect(SPIN_DURATION_MS).toBe(4000);
+      expect(SPIN_MIN_FULL_TURNS).toBe(5);
+      expect(SPIN_MAX_FULL_TURNS).toBe(8);
+      expect(SPIN_DURATION_MIN_MS).toBe(4000);
+      expect(SPIN_DURATION_MAX_MS).toBe(7000);
+      expect(SPIN_DURATION_MAX_MS).toBeGreaterThan(SPIN_DURATION_MIN_MS);
+      expect(SPIN_MAX_FULL_TURNS).toBeGreaterThanOrEqual(SPIN_MIN_FULL_TURNS);
       expect(CONFETTI_COUNT).toBe(50);
     });
   });

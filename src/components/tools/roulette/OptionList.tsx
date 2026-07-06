@@ -38,8 +38,11 @@ export function OptionList({
     addInputRef.current?.focus();
   };
 
-  const handleAddKeyDown = (e: React.KeyboardEvent) => {
+  const handleAddKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      // 한글 IME 조합 확정 Enter(isComposing)는 실제 Enter와 연달아 발화해
+      // 옵션이 중복 추가된다 — 조합 중 이벤트는 무시 (keyCode 229 = 구형 브라우저)
+      if (e.nativeEvent.isComposing || e.keyCode === 229) return;
       handleAddClick();
     } else if (e.key === 'Backspace' && !addLabel) {
       setAddLabel('');

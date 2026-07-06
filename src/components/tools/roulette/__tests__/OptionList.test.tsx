@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, userEvent } from '@/__test__/test-utils';
+import { render, screen, userEvent, fireEvent } from '@/__test__/test-utils';
 import { OptionList } from '../OptionList';
 import type { Option } from '@/lib/roulette/schema';
 
@@ -81,6 +81,33 @@ describe('OptionList', () => {
     await userEvent.type(labelInput, 'Burger{Enter}');
 
     expect(onAdd).toHaveBeenCalledWith('Burger', 3);
+  });
+
+  it('ignores Enter fired during IME composition (한글 조합 중 Enter 중복 추가 방지)', async () => {
+    // 한글 IME에서 "자장면"+Enter는 조합 확정 keydown(isComposing=true)과
+    // 실제 keydown(isComposing=false)을 연달아 발화한다 — 조합 중 이벤트를
+    // 처리하면 "자장면"과 잔여 글자 "면"이 두 번 추가된다.
+    const onAdd = vi.fn();
+    render(
+      <OptionList
+        options={[]}
+        onAdd={onAdd}
+        onUpdate={vi.fn()}
+        onRemove={vi.fn()}
+      />
+    );
+
+    const labelInput = screen.getByPlaceholderText('e.g., Pizza');
+    fireEvent.change(labelInput, { target: { value: '자장면' } });
+
+    // 조합 중 Enter → 무시되어야 한다
+    fireEvent.keyDown(labelInput, { key: 'Enter', isComposing: true });
+    expect(onAdd).not.toHaveBeenCalled();
+
+    // 조합 종료 후 실제 Enter → 1회만 추가
+    fireEvent.keyDown(labelInput, { key: 'Enter', isComposing: false });
+    expect(onAdd).toHaveBeenCalledTimes(1);
+    expect(onAdd).toHaveBeenCalledWith('자장면', 1);
   });
 
   it('clears input fields after successful add', async () => {

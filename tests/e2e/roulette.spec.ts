@@ -28,12 +28,12 @@ test.describe('Roulette - E2E Integration', () => {
     // Click spin
     await page.locator('[data-testid="roulette-spin-button"]').click();
 
-    // Wait for spin animation (4s) + buffer
-    await page.waitForTimeout(4500);
-
-    // Result panel should appear with a winner
+    // 스핀 중에는 결과 패널이 보이지 않아야 한다 (스포일러 방지)
     const resultPanel = page.locator('[data-testid="roulette-result-panel"]');
-    await expect(resultPanel).toBeVisible({ timeout: 2000 });
+    await expect(resultPanel).not.toBeVisible();
+
+    // 스핀 시간은 4~7s 랜덤 — 공개까지 결정적으로 대기
+    await expect(resultPanel).toBeVisible({ timeout: 9000 });
 
     // Winner name should be one of the options
     const resultName = await page.locator('[data-testid="roulette-result-name"]').textContent();
@@ -266,20 +266,61 @@ test.describe('Roulette - E2E Integration', () => {
     // Enable remove-winner mode
     await page.locator('[data-testid="roulette-remove-winner-toggle"]').click();
 
-    // Spin
+    // Spin (스핀 시간은 4~7s 랜덤 — 공개까지 결정적으로 대기)
     await page.locator('[data-testid="roulette-spin-button"]').click();
-    await page.waitForTimeout(4500);
 
     // Result panel with "Remove & Spin" button should appear
     const removeBtn = page.locator('[data-testid="roulette-remove-and-spin-btn"]');
-    await expect(removeBtn).toBeVisible();
+    await expect(removeBtn).toBeVisible({ timeout: 9000 });
 
     // Click it
     await removeBtn.click();
-    await page.waitForTimeout(4500);
 
     // Result should change
-    const resultName = await page.locator('[data-testid="roulette-result-name"]').textContent();
-    expect(resultName).toBeTruthy();
+    const resultName = page.locator('[data-testid="roulette-result-name"]');
+    await expect(resultName).toBeVisible({ timeout: 9000 });
+    expect(await resultName.textContent()).toBeTruthy();
+  });
+
+  /**
+   * Regression: 연속 스핀에서 휠이 항상 실제로 회전해야 한다.
+   * (버그: 회전각이 [0,360) finalAngle에 매핑돼 같은 각도가 다시 뽑히면
+   *  "돌리는 중"인데 휠이 정지 — 누적 회전각으로 매 스핀 5바퀴 이상 전진)
+   */
+  test('Regression: wheel rotation strictly increases on every spin', async ({ page }) => {
+    await page.goto('/ko/tools/roulette');
+    await page.waitForLoadState('networkidle');
+
+    for (const option of ['A', 'B']) {
+      await page.locator('[data-testid="roulette-add-input"]').fill(option);
+      await page.locator('[data-testid="roulette-add-button"]').click();
+      await page.waitForTimeout(100);
+    }
+
+    const readRotation = async (): Promise<number> => {
+      const style = await page
+        .locator('[data-testid="roulette-wheel"] > g')
+        .first()
+        .getAttribute('style');
+      const match = style?.match(/rotate\((-?[\d.]+)deg\)/);
+      return match ? parseFloat(match[1]) : 0;
+    };
+
+    const resultPanel = page.locator('[data-testid="roulette-result-panel"]');
+    let prevRotation = await readRotation();
+    expect(prevRotation).toBe(0);
+
+    // 옵션 2개면 같은 승자가 반복될 확률이 높다 — 3회 연속 스핀 모두 전진해야 함
+    for (let i = 0; i < 3; i += 1) {
+      const spinBtn = i === 0
+        ? page.locator('[data-testid="roulette-spin-button"]')
+        : page.locator('[data-testid="roulette-spin-again-btn"]');
+      await spinBtn.click();
+      await expect(resultPanel).toBeVisible({ timeout: 9000 });
+
+      const rotation = await readRotation();
+      expect(rotation - prevRotation).toBeGreaterThanOrEqual(5 * 360);
+      prevRotation = rotation;
+    }
   });
 });

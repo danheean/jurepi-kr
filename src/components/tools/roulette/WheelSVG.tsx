@@ -1,16 +1,18 @@
 'use client';
 
-import { useMemo } from 'react';
 import type { Option } from '@/lib/roulette/schema';
 import type { SliceInfo } from '@/lib/roulette/geometry';
-import { LEGEND_THRESHOLD, SPIN_DURATION_MS } from '@/lib/roulette/schema';
+import { LEGEND_THRESHOLD } from '@/lib/roulette/schema';
 
 export interface WheelSVGProps {
   options: Option[];
   sliceGeometry: SliceInfo[];
   selectedIndex: number | null;
   spinning: boolean;
-  finalAngle: number | null;
+  /** 누적 회전각(deg) — 스핀마다 단조 증가해 휠이 항상 실제로 돈다 */
+  rotation: number;
+  /** 이번 스핀의 애니메이션 시간(ms) — 스핀마다 랜덤 */
+  spinDurationMs: number;
   prefersReducedMotion: boolean;
 }
 
@@ -68,7 +70,8 @@ export function WheelSVG({
   sliceGeometry,
   selectedIndex,
   spinning,
-  finalAngle,
+  rotation,
+  spinDurationMs,
   prefersReducedMotion,
 }: WheelSVGProps) {
   const showLegend = options.length > LEGEND_THRESHOLD;
@@ -77,16 +80,7 @@ export function WheelSVG({
   const viewBoxSize = showLegend ? 400 : 320;
   const center = viewBoxSize / 2;
 
-  // Current rotation angle (for animation)
-  const rotationAngle = useMemo(() => {
-    if (spinning) {
-      // Animate to final angle (CSS will handle this)
-      return finalAngle ?? 0;
-    }
-    return finalAngle ?? 0;
-  }, [spinning, finalAngle]);
-
-  const spinDuration = prefersReducedMotion ? 0 : SPIN_DURATION_MS;
+  const spinDuration = prefersReducedMotion ? 0 : spinDurationMs;
   const shouldAnimate = spinning && !prefersReducedMotion;
 
   return (
@@ -102,7 +96,7 @@ export function WheelSVG({
         {/* Rotating group for wheel slices and center label */}
         <g
           style={{
-            transform: `rotate(${rotationAngle}deg)`,
+            transform: `rotate(${rotation}deg)`,
             transformOrigin: `${center}px ${center}px`,
             transition: shouldAnimate
               ? `transform ${spinDuration}ms cubic-bezier(0.16, 1, 0.3, 1)`

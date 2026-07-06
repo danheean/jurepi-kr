@@ -9,12 +9,13 @@ import {
   MAX_OPTIONS,
   MIN_WEIGHT,
   MAX_WEIGHT,
-  SPIN_DURATION_MS,
+  SPIN_DURATION_MIN_MS,
   parseStore,
 } from '@/lib/roulette/schema';
 import {
   buildSliceGeometry,
   finalSpinAngle,
+  buildSpinPlan,
   type SliceInfo,
 } from '@/lib/roulette/geometry';
 import { fairWeightedPick } from '@/lib/roulette/random';
@@ -43,6 +44,11 @@ export interface UseRouletteReturn {
   // Derived geometry
   sliceGeometry: SliceInfo[];
   finalAngle: number | null;
+
+  // Spin animation plan (cumulative rotation — always increases so the wheel
+  // visibly spins even when the same winner is picked twice in a row)
+  rotation: number;
+  spinDurationMs: number;
 
   // Callbacks (stable)
   addOption: (label: string, weight?: number) => void;
@@ -84,6 +90,8 @@ export function useRoulette(): UseRouletteReturn {
   const [soundOn, setSoundOn] = useState(true);
   const [removingWinner, setRemovingWinner] = useState(false);
   const [volume, setVolume] = useState(100);
+  const [rotation, setRotation] = useState(0);
+  const [spinDurationMs, setSpinDurationMs] = useState(SPIN_DURATION_MIN_MS);
   const prefersReducedMotion = useReducedMotion();
   const reducedMotionRef = useRef(false);
   reducedMotionRef.current = prefersReducedMotion;
@@ -95,6 +103,7 @@ export function useRoulette(): UseRouletteReturn {
   const removingWinnerRef = useRef(false);
   const spinningRef = useRef(false);
   const spinTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rotationRef = useRef(0);
 
   const commitOptions = useCallback((next: Option[]) => {
     optionsRef.current = next;
@@ -235,8 +244,17 @@ export function useRoulette(): UseRouletteReturn {
     spinningRef.current = true;
     setSpinning(true);
 
+    // 누적 회전 계획: 항상 전진(같은 승자 재선정 시에도 휠이 실제로 돈다)
+    // + 회전수·시간 랜덤화로 공개 시점 예측 불가 (긴장감)
+    const slices = buildSliceGeometry(opts);
+    const landingAngle = finalSpinAngle(actualIndex, slices);
+    const plan = buildSpinPlan(rotationRef.current, landingAngle);
+    rotationRef.current = plan.targetRotation;
+    setRotation(plan.targetRotation);
+    setSpinDurationMs(plan.durationMs);
+
     // reduced-motion: 회전 없이 즉시 공개 (SPEC)
-    const duration = reducedMotionRef.current ? 0 : SPIN_DURATION_MS;
+    const duration = reducedMotionRef.current ? 0 : plan.durationMs;
     if (spinTimerRef.current) clearTimeout(spinTimerRef.current);
     spinTimerRef.current = setTimeout(() => {
       spinningRef.current = false;
@@ -330,6 +348,9 @@ export function useRoulette(): UseRouletteReturn {
       sliceGeometry,
       finalAngle,
 
+      rotation,
+      spinDurationMs,
+
       addOption,
       updateOption,
       removeOption,
@@ -360,6 +381,8 @@ export function useRoulette(): UseRouletteReturn {
       volume,
       sliceGeometry,
       finalAngle,
+      rotation,
+      spinDurationMs,
       addOption,
       updateOption,
       removeOption,

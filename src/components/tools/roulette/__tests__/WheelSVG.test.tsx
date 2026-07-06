@@ -30,7 +30,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -56,7 +56,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -82,7 +82,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -113,7 +113,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -147,7 +147,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -173,7 +173,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={2}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -197,7 +197,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={1}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -225,7 +225,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -250,7 +250,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={false}
-        finalAngle={0}
+        rotation={0} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -265,7 +265,7 @@ describe('WheelSVG', () => {
     expect(legendLists.length).toBe(0);
   });
 
-  it('applies rotation transform based on finalAngle', () => {
+  it('applies rotation transform based on cumulative rotation', () => {
     const options: Option[] = [
       { label: 'Pizza', weight: 1 },
       { label: 'Pasta', weight: 1 },
@@ -278,7 +278,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={false}
-        finalAngle={45}
+        rotation={45} spinDurationMs={4000}
         prefersReducedMotion={false}
       />
     );
@@ -308,7 +308,7 @@ describe('WheelSVG', () => {
         sliceGeometry={slices}
         selectedIndex={null}
         spinning={true}
-        finalAngle={90}
+        rotation={90} spinDurationMs={4000}
         prefersReducedMotion={true}
       />
     );
@@ -323,5 +323,30 @@ describe('WheelSVG', () => {
       }
     });
     expect(foundNoTransition).toBe(true);
+  });
+
+  it('supports cumulative rotation beyond 360° and animates with the given spinDurationMs', () => {
+    const options: Option[] = [
+      { label: 'Pizza', weight: 1 },
+      { label: 'Pasta', weight: 1 },
+    ];
+    const slices = createSliceGeometry(2);
+
+    const { container } = render(
+      <WheelSVG
+        options={options}
+        sliceGeometry={slices}
+        selectedIndex={null}
+        spinning={true}
+        rotation={2250} spinDurationMs={5678}
+        prefersReducedMotion={false}
+      />
+    );
+
+    const styles = Array.from(container.querySelectorAll('g')).map(
+      (g) => g.getAttribute('style') || ''
+    );
+    expect(styles.some((s) => s.includes('rotate(2250deg)'))).toBe(true);
+    expect(styles.some((s) => s.includes('5678ms'))).toBe(true);
   });
 });
