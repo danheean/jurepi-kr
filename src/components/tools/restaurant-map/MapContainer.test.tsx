@@ -21,6 +21,8 @@ const createMockNaverMaps = () => ({
       getSW: vi.fn(),
     }));
     this.panTo = vi.fn();
+    // Real SDK: Map.setZoom(zoom, useEffect?) — documented NAVER Maps v3 API
+    this.setZoom = vi.fn();
     this.addListener = vi.fn();
   }),
   LatLng: vi.fn(function (this: any, lat: number, lng: number) {
@@ -32,8 +34,11 @@ const createMockNaverMaps = () => ({
     this.y = y;
   }),
   Marker: vi.fn(function (this: any, options: any) {
+    this.title = options?.title;
     this.setMap = vi.fn();
     this.setIcon = vi.fn();
+    // Real SDK: Marker.setPosition(coord) — documented NAVER Maps v3 API
+    this.setPosition = vi.fn();
     this.addListener = vi.fn();
   }),
   // Real SDK value: an enum object (polyline arrow shapes). Kept as a plain
@@ -358,6 +363,71 @@ describe('MapContainer', () => {
         expect(typeof options.icon.content).toBe('string');
         expect(options.icon.anchor).toBeDefined();
       }
+    });
+  });
+
+  it('pans (and zooms in) to the user location obtained after map init', async () => {
+    // Regression: the init effect early-returns once the map exists, so a
+    // location obtained via the "내 위치" button never moved the map.
+    const onMarkerClick = vi.fn();
+    const { rerender } = renderWithIntl(
+      <MapContainer places={testPlaces} onMarkerClick={onMarkerClick} userGeo={null} />
+    );
+
+    const MapConstructor = (window as any).naver.maps.Map;
+    await waitFor(() => expect(MapConstructor).toHaveBeenCalled());
+    const mapInstance = MapConstructor.mock.results[0]?.value;
+    mapInstance.panTo.mockClear();
+
+    rerender(
+      <MapContainer
+        places={testPlaces}
+        onMarkerClick={onMarkerClick}
+        userGeo={{ lat: 37.55, lng: 127.05 }}
+      />
+    );
+
+    await waitFor(() => {
+      expect(mapInstance.panTo).toHaveBeenCalled();
+      const coord = mapInstance.panTo.mock.calls.at(-1)?.[0];
+      expect(coord).toMatchObject({ lat: 37.55, lng: 127.05 });
+      // default zoom (11) is wider than the focus zoom → zooms in
+      expect(mapInstance.setZoom).toHaveBeenCalled();
+    });
+  });
+
+  it('moves the existing user marker via setPosition when userGeo updates', async () => {
+    const onMarkerClick = vi.fn();
+    const { rerender } = renderWithIntl(
+      <MapContainer
+        places={testPlaces}
+        onMarkerClick={onMarkerClick}
+        userGeo={{ lat: 37.5, lng: 127.0 }}
+      />
+    );
+
+    const MarkerConstructor = (window as any).naver.maps.Marker;
+    await waitFor(() => {
+      expect(
+        MarkerConstructor.mock.results.some((r: any) => r.value?.title?.includes('Location'))
+      ).toBe(true);
+    });
+    const userMarker = MarkerConstructor.mock.results.find((r: any) =>
+      r.value?.title?.includes('Location')
+    )!.value;
+
+    rerender(
+      <MapContainer
+        places={testPlaces}
+        onMarkerClick={onMarkerClick}
+        userGeo={{ lat: 37.6, lng: 127.1 }}
+      />
+    );
+
+    await waitFor(() => {
+      expect(userMarker.setPosition).toHaveBeenCalled();
+      const coord = userMarker.setPosition.mock.calls.at(-1)?.[0];
+      expect(coord).toMatchObject({ lat: 37.6, lng: 127.1 });
     });
   });
 

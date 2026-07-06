@@ -64,7 +64,11 @@ export function RestaurantMap({ catalog = DEFAULT_CATALOG }: RestaurantMapProps)
         <main className="space-y-6 px-4 py-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-start">
             <PlaceSearch query={hook.queryDraft} onQueryChange={hook.setQuery} resultCount={hook.resultCount} />
-            <GeolocationButton requestGeolocation={hook.requestGeolocation} />
+            <GeolocationButton
+              requestGeolocation={hook.requestGeolocation}
+              clearGeolocation={hook.clearGeolocation}
+              geoStatus={hook.geoStatus}
+            />
           </div>
 
           <div className="space-y-4">

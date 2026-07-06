@@ -22,6 +22,8 @@ export interface MapContainerProps {
 }
 
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.978 };
+// Zoom level used when centering on the user's location (city-wide 11 → district)
+const USER_FOCUS_ZOOM = 13;
 
 export function MapContainer({
   places,
@@ -106,7 +108,9 @@ export function MapContainer({
     });
   }, [mapSDKReady, userGeo?.lat, userGeo?.lng]);
 
-  // Render user geolocation marker and circle
+  // Render the user geolocation marker and bring the map to the user.
+  // The init effect early-returns once the map exists, so a location obtained
+  // later (via the "내 위치" button) must recenter here, not there.
   useEffect(() => {
     if (!mapInstanceRef.current || !userGeo) {
       if (userGeoMarkerRef.current) {
@@ -119,9 +123,11 @@ export function MapContainer({
     const naver = (window as any).naver?.maps;
     if (!naver) return;
 
+    const position = new naver.LatLng(userGeo.lat, userGeo.lng);
+
     if (!userGeoMarkerRef.current) {
       userGeoMarkerRef.current = new naver.Marker({
-        position: new naver.LatLng(userGeo.lat, userGeo.lng),
+        position,
         map: mapInstanceRef.current,
         title: 'Your Location',
         // NAVER Maps marker icons are HtmlIcon object literals, not constructors
@@ -130,6 +136,13 @@ export function MapContainer({
           anchor: new naver.Point(8, 8),
         },
       });
+    } else {
+      userGeoMarkerRef.current.setPosition(position);
+    }
+
+    mapInstanceRef.current.panTo(position);
+    if (mapInstanceRef.current.getZoom() < USER_FOCUS_ZOOM) {
+      mapInstanceRef.current.setZoom(USER_FOCUS_ZOOM);
     }
   }, [userGeo, mapSDKReady]);
 

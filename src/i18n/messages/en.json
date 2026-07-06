@@ -1694,13 +1694,15 @@
       "buttons": {
         "myLocation": "My Location",
         "clearSearch": "Clear",
-        "resetFilters": "Reset filters"
+        "resetFilters": "Reset filters",
+        "clearLocation": "Clear location"
       },
       "geolocation": {
         "granted": "Location access granted",
         "denied": "Location access denied",
         "error": "Unable to get location",
-        "loading": "Getting location…"
+        "loading": "Getting location…",
+        "unsupported": "Geolocation is not supported in this browser."
       },
       "personalNote": {
         "label": "Personal Take"

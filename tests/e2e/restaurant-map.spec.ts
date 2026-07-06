@@ -240,6 +240,70 @@ test.describe('Restaurant Map - E2E', () => {
     expect(errors).toEqual([]);
   });
 
+  test('my location: nearest-first sort, distance badges, and clear toggle (ko)', async ({
+    page,
+    context,
+  }) => {
+    const errors = collectPageErrors(page);
+    await context.grantPermissions(['geolocation']);
+    // User stands next to 성수족발 — last in catalog order, so a correct
+    // nearest-first sort must move it to the top.
+    await context.setGeolocation({ latitude: 37.5461, longitude: 127.0544 });
+
+    await page.goto('/ko/tools/restaurant-map');
+    const main = page.locator('main');
+    await expect(page.getByRole('searchbox')).toBeVisible({ timeout: 10_000 });
+
+    // Catalog order before using location: 대광어회집 first
+    await expect(main.locator('#place-list [role="button"]').first()).toContainText(
+      '대광어회집'
+    );
+
+    await page.getByRole('button', { name: '내 위치' }).click();
+
+    // Nearest-first re-sort + distance badges on cards
+    await expect(main.locator('#place-list [role="button"]').first()).toContainText(
+      '성수족발'
+    );
+    await expect(
+      main.locator('#place-list').getByText(/^\d+(\.\d+)?km$/).first()
+    ).toBeVisible();
+
+    // The button becomes a pressed clear-toggle; clearing restores catalog order
+    const clearBtn = page.getByRole('button', { name: '위치 해제' });
+    await expect(clearBtn).toHaveAttribute('aria-pressed', 'true');
+    await clearBtn.click();
+    await expect(main.locator('#place-list [role="button"]').first()).toContainText(
+      '대광어회집'
+    );
+    await expect(main.locator('#place-list').getByText(/^\d+(\.\d+)?km$/)).toHaveCount(0);
+
+    expect(errors).toEqual([]);
+  });
+
+  test('my location denied shows an i18n alert without crashing (ko)', async ({
+    page,
+  }) => {
+    // No grantPermissions → Playwright auto-denies the geolocation prompt.
+    const errors = collectPageErrors(page);
+
+    await page.goto('/ko/tools/restaurant-map');
+    await expect(page.getByRole('searchbox')).toBeVisible({ timeout: 10_000 });
+
+    await page.getByRole('button', { name: '내 위치' }).click();
+
+    await expect(
+      page.getByRole('alert').filter({ hasText: '위치 권한이 거부되었습니다.' })
+    ).toBeVisible();
+    // Tool keeps working (no ErrorBoundary, list intact)
+    await expect(page.getByText('문제가 발생했어요')).toHaveCount(0);
+    await expect(
+      page.locator('main #place-list [role="button"]').first()
+    ).toBeVisible();
+
+    expect(errors).toEqual([]);
+  });
+
   test('en locale renders localized content without ErrorBoundary', async ({
     page,
   }) => {

@@ -74,47 +74,63 @@ describe('GeolocationButton', () => {
     expect(button).toBeDisabled();
   });
 
-  it('displays error message when requestGeolocation throws', async () => {
-    const mockRequestGeo = vi.fn().mockRejectedValueOnce(
-      new Error('Permission denied')
+  it('displays i18n denied message when geoStatus=denied (ko)', () => {
+    const mockRequestGeo = vi.fn();
+    renderWithIntl(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="denied" />,
+      { locale: 'ko' }
     );
-    const user = userEvent.setup();
-    renderWithIntl(<GeolocationButton requestGeolocation={mockRequestGeo} />);
-
-    const button = screen.getByRole('button');
-    await user.click(button);
 
     const errorAlert = screen.getByRole('alert');
     expect(errorAlert).toBeInTheDocument();
-    expect(errorAlert).toHaveTextContent('Location permission denied');
+    expect(errorAlert).toHaveTextContent('위치 권한이 거부되었습니다.');
   });
 
-  it('clears error message when clicking button again successfully', async () => {
-    const mockRequestGeo = vi.fn()
-      .mockRejectedValueOnce(new Error('First error'))
-      .mockResolvedValueOnce(undefined);
-    const user = userEvent.setup();
-    renderWithIntl(<GeolocationButton requestGeolocation={mockRequestGeo} />);
+  it('displays i18n error message when geoStatus=error (en)', () => {
+    const mockRequestGeo = vi.fn();
+    renderWithIntl(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="error" />,
+      { locale: 'en' }
+    );
 
-    const button = screen.getByRole('button');
+    expect(screen.getByRole('alert')).toHaveTextContent('Unable to get location');
+  });
 
-    // First click — error
-    await user.click(button);
+  it('displays i18n unsupported message when geoStatus=unsupported (ko)', () => {
+    const mockRequestGeo = vi.fn();
+    renderWithIntl(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="unsupported" />,
+      { locale: 'ko' }
+    );
+
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      '이 브라우저에서는 위치 기능을 사용할 수 없습니다.'
+    );
+  });
+
+  it('clears the alert when geoStatus returns to idle/loading', () => {
+    const mockRequestGeo = vi.fn();
+    const { rerender } = renderWithIntl(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="denied" />
+    );
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    // Second click — success, error should clear
-    await user.click(button);
+    rerender(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="loading" />
+    );
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 
-  it('does not display error message on successful geolocation', async () => {
-    const mockRequestGeo = vi.fn().mockResolvedValueOnce(undefined);
-    const user = userEvent.setup();
-    renderWithIntl(<GeolocationButton requestGeolocation={mockRequestGeo} />);
+  it('does not display error message on idle or active status', () => {
+    const mockRequestGeo = vi.fn();
+    const { rerender } = renderWithIntl(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="idle" />
+    );
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
 
-    const button = screen.getByRole('button');
-    await user.click(button);
-
+    rerender(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="active" />
+    );
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 
@@ -165,18 +181,17 @@ describe('GeolocationButton', () => {
     expect(button.textContent).toBeTruthy();
   });
 
-  it('propagates requestGeolocation error to error message', async () => {
-    const testError = new Error('Network error');
-    const mockRequestGeo = vi.fn().mockRejectedValueOnce(testError);
-    const user = userEvent.setup();
-    renderWithIntl(<GeolocationButton requestGeolocation={mockRequestGeo} />);
+  it('never renders a hardcoded English error (all alert copy is i18n)', () => {
+    // Regression: the old component hardcoded "Location permission denied".
+    const mockRequestGeo = vi.fn();
+    renderWithIntl(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="denied" />,
+      { locale: 'ko' }
+    );
 
-    const button = screen.getByRole('button');
-    await user.click(button);
-
-    // Error message should be the standard "Location permission denied"
-    const errorAlert = screen.getByRole('alert');
-    expect(errorAlert).toHaveTextContent('Location permission denied');
+    expect(screen.getByRole('alert')).not.toHaveTextContent('Location permission denied');
+    // ko locale alert must not leak English words
+    expect(screen.getByRole('alert').textContent).not.toMatch(/[A-Za-z]{4,}/);
   });
 
   it('button has opacity transition on hover when enabled', () => {
@@ -200,5 +215,71 @@ describe('GeolocationButton', () => {
 
     const button = screen.getByRole('button');
     expect(button).toHaveClass('disabled:opacity-50');
+  });
+
+  it('keeps the label on a single line (whitespace-nowrap + shrink-0)', () => {
+    // Regression: in the search row the button shrank and "내 위치" wrapped
+    // vertically as "내 위 / 치".
+    const mockRequestGeo = vi.fn();
+    renderWithIntl(<GeolocationButton requestGeolocation={mockRequestGeo} />);
+
+    const button = screen.getByRole('button');
+    expect(button).toHaveClass('whitespace-nowrap', 'shrink-0');
+  });
+
+  it('geoStatus=loading disables the button and shows the loading label (ko)', () => {
+    const mockRequestGeo = vi.fn();
+    renderWithIntl(
+      <GeolocationButton requestGeolocation={mockRequestGeo} geoStatus="loading" />,
+      { locale: 'ko' }
+    );
+
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
+    expect(button).toHaveTextContent('위치 가져오는 중…');
+  });
+
+  it('geoStatus=active: aria-pressed, clear label, click calls clearGeolocation only', async () => {
+    const mockRequestGeo = vi.fn();
+    const mockClearGeo = vi.fn();
+    const user = userEvent.setup();
+    renderWithIntl(
+      <GeolocationButton
+        requestGeolocation={mockRequestGeo}
+        clearGeolocation={mockClearGeo}
+        geoStatus="active"
+      />,
+      { locale: 'ko' }
+    );
+
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('aria-pressed', 'true');
+    expect(button).toHaveTextContent('위치 해제');
+
+    await user.click(button);
+    expect(mockClearGeo).toHaveBeenCalledOnce();
+    expect(mockRequestGeo).not.toHaveBeenCalled();
+  });
+
+  it('geoStatus=idle: aria-pressed=false and click requests geolocation', async () => {
+    const mockRequestGeo = vi.fn();
+    const mockClearGeo = vi.fn();
+    const user = userEvent.setup();
+    renderWithIntl(
+      <GeolocationButton
+        requestGeolocation={mockRequestGeo}
+        clearGeolocation={mockClearGeo}
+        geoStatus="idle"
+      />,
+      { locale: 'ko' }
+    );
+
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('aria-pressed', 'false');
+    expect(button).toHaveTextContent('내 위치');
+
+    await user.click(button);
+    expect(mockRequestGeo).toHaveBeenCalledOnce();
+    expect(mockClearGeo).not.toHaveBeenCalled();
   });
 });

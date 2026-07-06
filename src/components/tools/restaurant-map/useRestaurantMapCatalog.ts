@@ -10,6 +10,7 @@ import {
   type Place,
 } from '@/lib/restaurant-map/schema';
 import { filterPlaces } from '@/lib/restaurant-map/search';
+import { haversineDistance } from '@/lib/restaurant-map/geo';
 import {
   toggleFavorite,
   pushRecent,
@@ -22,6 +23,12 @@ import { byPlaceId } from '@/lib/restaurant-map/catalog';
 const STORAGE_KEY = 'jurepi-restaurant-map';
 const SEARCH_DEBOUNCE = 120;
 const GEOLOCATION_STALE_MS = 1 * 60 * 60 * 1000; // 1 hour
+
+/**
+ * Geolocation lifecycle. The request promise always resolves (never rejects) —
+ * consumers read the outcome from this status instead of a thrown error.
+ */
+export type GeoStatus = 'idle' | 'loading' | 'active' | 'denied' | 'error' | 'unsupported';
 
 export interface UseRestaurantMapCatalogReturn {
   catalog: MergedPlaceList[];
@@ -44,6 +51,7 @@ export interface UseRestaurantMapCatalogReturn {
   select: (placeId: string | null) => void;
   mounted: boolean;
   userGeo: { lat: number; lng: number } | null;
+  geoStatus: GeoStatus;
   requestGeolocation: () => Promise<void>;
   clearGeolocation: () => void;
 }
@@ -59,6 +67,7 @@ interface State {
   activeCurator: string;
   mounted: boolean;
   userGeo: { lat: number; lng: number } | null;
+  geoStatus: GeoStatus;
 }
 
 type Action =
@@ -72,6 +81,7 @@ type Action =
   | { type: 'SET_CURATOR'; payload: string }
   | { type: 'TOGGLE_FAVORITE'; payload: string }
   | { type: 'SET_GEOLOCATION'; payload: { lat: number; lng: number } }
+  | { type: 'SET_GEO_STATUS'; payload: GeoStatus }
   | { type: 'CLEAR_GEOLOCATION' }
   | { type: 'SYNC_STORE'; payload: RestaurantMapStore };
 
@@ -92,6 +102,7 @@ function initialState(catalog: MergedPlaceList[] = []): State {
     activeCurator: 'all',
     mounted: false,
     userGeo: null,
+    geoStatus: 'idle',
   };
 }
 
@@ -130,15 +141,19 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         userGeo: action.payload,
+        geoStatus: 'active',
         store: {
           ...state.store,
           userGeo: { ...action.payload, timestamp: Date.now() },
         },
       };
+    case 'SET_GEO_STATUS':
+      return { ...state, geoStatus: action.payload };
     case 'CLEAR_GEOLOCATION':
       return {
         ...state,
         userGeo: null,
+        geoStatus: 'idle',
         store: {
           ...state.store,
           userGeo: undefined,
@@ -240,8 +255,18 @@ export function useRestaurantMapCatalog(
     // Apply search filter
     places = filterPlaces(places, state.query, locale);
 
+    // With an active user location, nearest places come first (immutable sort)
+    const geo = state.userGeo;
+    if (geo) {
+      places = [...places].sort(
+        (a, b) =>
+          haversineDistance(geo.lat, geo.lng, a.lat, a.lng) -
+          haversineDistance(geo.lat, geo.lng, b.lat, b.lng)
+      );
+    }
+
     return places;
-  }, [state.catalog, state.activeRegion, state.activeCurator, state.activeCategory, state.query, locale, state.store]);
+  }, [state.catalog, state.activeRegion, state.activeCurator, state.activeCategory, state.query, locale, state.store, state.userGeo]);
 
   const selectedPlace = useMemo(() => {
     if (!state.selectedPlaceId) return null;
@@ -273,7 +298,11 @@ export function useRestaurantMapCatalog(
   }, []);
 
   const handleRequestGeolocation = useCallback(async () => {
-    if (!navigator.geolocation) return;
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+      dispatch({ type: 'SET_GEO_STATUS', payload: 'unsupported' });
+      return;
+    }
+    dispatch({ type: 'SET_GEO_STATUS', payload: 'loading' });
     return new Promise<void>((resolve) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -286,8 +315,12 @@ export function useRestaurantMapCatalog(
           });
           resolve();
         },
-        () => {
-          // User denied or error — silently fail
+        (err) => {
+          // Never rejects — outcome is exposed via geoStatus (1 = PERMISSION_DENIED)
+          dispatch({
+            type: 'SET_GEO_STATUS',
+            payload: err?.code === 1 ? 'denied' : 'error',
+          });
           resolve();
         },
         { enableHighAccuracy: false, timeout: 10000 }
@@ -320,6 +353,7 @@ export function useRestaurantMapCatalog(
     select: handleSelect,
     mounted: state.mounted,
     userGeo: state.userGeo,
+    geoStatus: state.geoStatus,
     requestGeolocation: handleRequestGeolocation,
     clearGeolocation: handleClearGeolocation,
   };
