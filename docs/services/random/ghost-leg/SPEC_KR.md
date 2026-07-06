@@ -87,7 +87,7 @@ src/
 
 <core_data_entities>
   <ladder_game_state note="클라이언트 React 상태만; 서버에 영속화하지 않음">
-    - playerCount: number (2–10, 기본 4)
+    - playerCount: number (2–10, 기본 5)
     - players: { id: string; name: string }[] (길이 = playerCount; name 최대 12자; 공백 → "참가자 N")
     - prizes: { id: string; label: string }[] (길이 = playerCount; label 최대 12자; 공백 → 기본값 예: "꽝"/"당첨" 패턴)
     - rows: number (사다리 가로줄 레벨 수 = ladderFromPermutation이 생성한 레벨 수; 순열의 역위(inversion) 개수와 동일, 보기 좋은 최소 높이를 위해 상쇄용 미끼(decoy) 레벨을 선택적으로 추가; 보드는 맞춰 스케일/스크롤 — 고정 공식 아님)
@@ -135,7 +135,7 @@ src/
 
   <ladder_setup phase="setup">
     - 카드: var(--surface), radius var(--radius-xl), padding 24px, shadow --shadow-card
-    - 참가자 수: 스테퍼 "참가자 수" — 값 2–10 기본 4; − / + 40px 버튼; 값 24px/700; 경계에서 버튼 비활성화
+    - 참가자 수: 스테퍼 "참가자 수" — 값 2–10 기본 5; − / + 40px 버튼; 값 24px/700; 경계에서 버튼 비활성화
     - 2열(768px 미만에서 세로 스택): "참가자" 입력(상단)과 "결과" 입력(하단)
       - 각 행: TextInput 44px, rounded var(--radius-md), placeholder "참가자 1"/"결과 1", 최대 12자(한도 근처에서 카운터 표시)
       - 행별 색상 점(color-dot) 접두가 액센트 팔레트(coral→mint→sky→sun→grape→rose)를 순환하여 시각적 페어링
@@ -256,7 +256,7 @@ src/
   <test_scenario_1>
     <description>결과 가린 상태로 전체 게임 진행</description>
     <steps>
-      1. /ko/tools/ladder에서 설정 카드 확인: 참가자 수 기본 4, "결과 가리기" ON
+      1. /ko/tools/ladder에서 설정 카드 확인: 참가자 수 기본 5, "결과 가리기" ON
       2. + 두 번 클릭 → 참가자 6행, 결과 6행; 기존 값 유지
       3. 이름 "민수,영희,철수,지은,현우,수빈", 결과 "꽝,커피,꽝,당첨,꽝,청소" 입력
       4. "사다리 만들기" 클릭 → SVG가 세로줄 6개 + 유효한 가로줄 렌더(어느 레벨에도 인접한 두 가로줄 없음)

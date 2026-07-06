@@ -2,22 +2,22 @@ import { test, expect } from '@playwright/test';
 
 /**
  * E2E Tests for Shuffle Results Feature
- * - Default 7 players (instead of 4)
+ * - Default 5 players
  * - Shuffle results toggle (instead of hide results)
  * - Download button gating (only in done phase)
  * - Prize cards always show '?' until revealed
  */
 
 test.describe('Ladder Game - Shuffle Results', () => {
-  test('Setup page has default 7 player input fields', async ({ page }) => {
+  test('Setup page has default 5 player input fields', async ({ page }) => {
     await page.goto('/ko/tools/ladder');
     await page.waitForLoadState('networkidle');
 
     const playerInputs = page.locator('[data-testid="player-input"]');
     const count = await playerInputs.count();
 
-    // Default should be 7 players
-    expect(count).toBe(7);
+    // Default should be 5 players
+    expect(count).toBe(5);
   });
 
   test('Shuffle results toggle exists and is checked by default', async ({
@@ -68,7 +68,7 @@ test.describe('Ladder Game - Shuffle Results', () => {
     // Prize cards should show '?'
     const prizeCards = page.locator('[data-testid="prize-card"]');
     const count = await prizeCards.count();
-    expect(count).toBe(7); // Default 7 players
+    expect(count).toBe(5); // Default 5 players
 
     // All cards should show '?'
     for (let i = 0; i < count; i++) {
@@ -143,14 +143,14 @@ test.describe('Ladder Game - Shuffle Results', () => {
     expect(hasReveal).toBe(true);
   });
 
-  test('English version also has 7 players by default', async ({ page }) => {
+  test('English version also has 5 players by default', async ({ page }) => {
     await page.goto('/en/tools/ladder');
     await page.waitForLoadState('networkidle');
 
     const playerInputs = page.locator('[data-testid="player-input"]');
     const count = await playerInputs.count();
 
-    expect(count).toBe(7);
+    expect(count).toBe(5);
   });
 
   test.describe('Tension Control', () => {
@@ -183,13 +183,13 @@ test.describe('Ladder Game - Shuffle Results', () => {
       await page.goto('/ko/tools/ladder');
       await page.waitForLoadState('networkidle');
 
-      // Step the count down from default 7 to 4 via the stepper buttons. At n=4 the
+      // Step the count down from default 5 to 4 via the stepper buttons. At n=4 the
       // high-tension target (~8 rungs) always exceeds the max possible low-tension
       // rung count (6 inversions), so high > low is deterministic (no permutation-
       // variance flake). The Stepper uses +/- buttons, not a number input.
       const minusBtn = page.locator('[data-testid="stepper-decrement"]').first();
       await expect(minusBtn).toBeVisible({ timeout: 5000 });
-      for (let i = 0; i < 3; i++) await minusBtn.click();
+      for (let i = 0; i < 1; i++) await minusBtn.click();
 
       // Build with LOW tension
       const lowBtn = page.locator('[data-testid="tension-option-low"]');
