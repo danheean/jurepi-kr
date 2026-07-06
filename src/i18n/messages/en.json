@@ -1889,7 +1889,7 @@
       "options": {
         "label": "Add Option",
         "add": "Add",
-        "placeholder": "e.g., Pizza",
+        "placeholder": "e.g., Pizza, Pasta, Salad (commas add several)",
         "weight": "Weight",
         "delete": "Delete",
         "empty": "Please add at least one option.",
@@ -1937,14 +1937,15 @@
         "maxOptions": "Maximum 30 options allowed",
         "saved": "Set saved",
         "loaded": "Set loaded",
-        "deleted": "Set deleted"
+        "deleted": "Set deleted",
+        "bulkAdded": "{count} options added"
       },
       "announce": {
         "result": "{name} is the winner"
       },
       "howTo": {
         "title": "How to Use the Roulette",
-        "content": "**Step 1: Add Options**\nEnter your options in the input field at the top. You can add between 2 and 30 options, such as \"Lunch\", \"Cafe\", \"Movie\", etc.\n\n**Step 2: Adjust Weights (Optional)**\nYou can adjust the weight of each option to change the probability of being selected. Options with higher weights are more likely to win. The default weight is 1 for all options.\n\n**Step 3: Spin**\nClick the \"Spin Now!\" button to make the wheel spin and reveal the winner.\n\n**Step 4: View Result**\nThe selected option is displayed prominently, with optional sound and animation effects.\n\n**Additional Features:**\n- **Save Sets**: Save frequently used option combinations with custom names for quick reuse.\n- **Remove Winner Mode**: Enable \"Remove Winner Mode\" to exclude previously selected options and continue spinning.\n- **Volume Control**: Adjust the volume slider or mute the sound effects in the settings."
+        "content": "**Step 1: Add Options**\nEnter your options in the input field at the top. You can add between 2 and 30 options, such as \"Lunch\", \"Cafe\", \"Movie\", etc. Separate names with commas to add several at once (\"Pizza, Pasta, Salad\"), or paste a newline-separated list to add every line in one go.\n\n**Step 2: Adjust Weights (Optional)**\nYou can adjust the weight of each option to change the probability of being selected. Options with higher weights are more likely to win. The default weight is 1 for all options.\n\n**Step 3: Spin**\nClick the \"Spin Now!\" button to make the wheel spin and reveal the winner.\n\n**Step 4: View Result**\nThe selected option is displayed prominently, with optional sound and animation effects.\n\n**Additional Features:**\n- **Save Sets**: Save frequently used option combinations with custom names for quick reuse.\n- **Remove Winner Mode**: Enable \"Remove Winner Mode\" to exclude previously selected options and continue spinning.\n- **Volume Control**: Adjust the volume slider or mute the sound effects in the settings."
       },
       "faq": {
         "items": [
@@ -1955,6 +1956,10 @@
           {
             "q": "How many options can I add?",
             "a": "You can add a minimum of 2 and a maximum of 30 options. The more options you add, the denser the wheel becomes, but all options remain visible."
+          },
+          {
+            "q": "Can I add multiple options at once?",
+            "a": "Yes. Type comma-separated names in the input (\"Pizza, Pasta, Salad\") to add them all at once. You can also paste a newline-separated list copied from a notes app — each line becomes an option. Duplicate names are skipped automatically."
           },
           {
             "q": "How do weights work?",

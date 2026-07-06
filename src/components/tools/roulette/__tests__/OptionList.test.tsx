@@ -35,7 +35,7 @@ describe('OptionList', () => {
       />
     );
 
-    const input = screen.getByPlaceholderText('e.g., Pizza');
+    const input = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)');
     expect(input).toBeInTheDocument();
   });
 
@@ -50,7 +50,7 @@ describe('OptionList', () => {
       />
     );
 
-    const labelInput = screen.getByPlaceholderText('e.g., Pizza') as HTMLInputElement;
+    const labelInput = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)') as HTMLInputElement;
     const weightInput = screen.getByRole('spinbutton', { name: 'Weight' }) as HTMLInputElement;
     const addButton = screen.getByRole('button', { name: 'Add' });
 
@@ -73,7 +73,7 @@ describe('OptionList', () => {
       />
     );
 
-    const labelInput = screen.getByPlaceholderText('e.g., Pizza');
+    const labelInput = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)');
     const weightInput = screen.getByRole('spinbutton', { name: 'Weight' });
 
     await userEvent.clear(weightInput);
@@ -97,7 +97,7 @@ describe('OptionList', () => {
       />
     );
 
-    const labelInput = screen.getByPlaceholderText('e.g., Pizza');
+    const labelInput = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)');
     fireEvent.change(labelInput, { target: { value: '자장면' } });
 
     // 조합 중 Enter → 무시되어야 한다
@@ -121,7 +121,7 @@ describe('OptionList', () => {
       />
     );
 
-    const labelInput = screen.getByPlaceholderText('e.g., Pizza') as HTMLInputElement;
+    const labelInput = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)') as HTMLInputElement;
     const weightInput = screen.getByRole('spinbutton', { name: 'Weight' }) as HTMLInputElement;
     const addButton = screen.getByRole('button', { name: 'Add' });
 
@@ -143,7 +143,7 @@ describe('OptionList', () => {
       />
     );
 
-    const labelInput = screen.getByPlaceholderText('e.g., Pizza');
+    const labelInput = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)');
     const weightInput = screen.getByRole('spinbutton', { name: 'Weight' });
     const addButton = screen.getByRole('button', { name: 'Add' });
 

@@ -38,6 +38,18 @@ export function OptionList({
     addInputRef.current?.focus();
   };
 
+  // 콤마/줄바꿈이 포함된 목록 붙여넣기 → 즉시 일괄 추가
+  // (text input은 붙여넣기 시 줄바꿈을 버리므로 기본 동작 전에 가로챈다)
+  const handleAddPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const text = e.clipboardData.getData('text');
+    if (!/[,\r\n]/.test(text)) return; // 단일 라벨은 기본 붙여넣기 유지
+    e.preventDefault();
+    const weight = parseInt(addWeight, 10) || 1;
+    onAdd(text, weight);
+    setAddLabel('');
+    addInputRef.current?.focus();
+  };
+
   const handleAddKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       // 한글 IME 조합 확정 Enter(isComposing)는 실제 Enter와 연달아 발화해
@@ -63,9 +75,9 @@ export function OptionList({
           value={addLabel}
           onChange={(e) => setAddLabel(e.target.value)}
           onKeyDown={handleAddKeyDown}
+          onPaste={handleAddPaste}
           data-testid="roulette-add-input"
           placeholder={t('options.placeholder')}
-          maxLength={50}
           disabled={maxReached}
           className="flex-1 px-3 py-2 border border-hairline rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-rose disabled:opacity-50"
           aria-label={t('options.label')}

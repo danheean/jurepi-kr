@@ -12,6 +12,7 @@ import { SettingsPanel } from './SettingsPanel';
 import { Toast } from '@/components/ui/Toast';
 import { MIN_OPTIONS, MAX_OPTIONS } from '@/lib/roulette/schema';
 import { isDuplicateLabel } from '@/lib/roulette/sets';
+import { splitOptionLabels } from '@/lib/roulette/parse';
 import { playTone, toneSpec } from '@/lib/roulette/sound';
 
 // 스핀 시간이 랜덤이므로 틱 개수는 시간에 비례해 밀도를 유지한다
@@ -110,22 +111,40 @@ export function Roulette() {
   }, []);
 
   // 검증 → 토스트 → 도메인 op (SPEC error_handling)
+  // 콤마/줄바꿈으로 구분된 여러 옵션을 한 번에 추가할 수 있다 (일괄 입력)
   const handleAdd = useCallback(
     (label: string, weight?: number) => {
-      const trimmed = label.trim();
-      if (!trimmed) {
+      const labels = splitOptionLabels(label);
+      if (labels.length === 0) {
         showToast(t('toasts.emptyLabel'), 'error');
         return;
       }
-      if (isDuplicateLabel(roulette.options, trimmed)) {
-        showToast(t('toasts.duplicateLabel'), 'error');
+
+      const existing = [...roulette.options];
+      let added = 0;
+      let hitMax = false;
+      for (const one of labels) {
+        if (existing.length >= MAX_OPTIONS) {
+          hitMax = true;
+          break;
+        }
+        if (isDuplicateLabel(existing, one)) continue;
+        roulette.addOption(one, weight);
+        existing.push({ label: one, weight: weight ?? 1 });
+        added += 1;
+      }
+
+      if (added === 0) {
+        showToast(t(hitMax ? 'toasts.maxOptions' : 'toasts.duplicateLabel'), 'error');
         return;
       }
-      if (roulette.options.length >= MAX_OPTIONS) {
+      if (hitMax) {
         showToast(t('toasts.maxOptions'), 'error');
         return;
       }
-      roulette.addOption(trimmed, weight);
+      if (labels.length > 1) {
+        showToast(t('toasts.bulkAdded', { count: added }), 'success');
+      }
     },
     [roulette, showToast, t]
   );

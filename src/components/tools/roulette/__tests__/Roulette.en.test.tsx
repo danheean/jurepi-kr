@@ -31,7 +31,7 @@ describe('Roulette.en (English localization)', () => {
     // After mount, placeholder should be gone
     vi.runAllTimers();
 
-    expect(container.querySelector('input[placeholder="e.g., Pizza"]')).toBeInTheDocument();
+    expect(container.querySelector('input[placeholder="e.g., Pizza, Pasta, Salad (commas add several)"]')).toBeInTheDocument();
   });
 
   it('displays English UI text for options label', async () => {
@@ -53,7 +53,7 @@ describe('Roulette.en (English localization)', () => {
     const { container } = renderWithEnMessages(<Roulette />);
     vi.runAllTimers();
 
-    const input = screen.getByPlaceholderText('e.g., Pizza');
+    const input = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)');
     expect(input).toBeInTheDocument();
   });
 
@@ -118,7 +118,7 @@ describe('Roulette.en (English localization)', () => {
     const { container } = renderWithEnMessages(<Roulette />);
     vi.runAllTimers();
 
-    const addInput = screen.getByPlaceholderText('e.g., Pizza');
+    const addInput = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)');
     const ariaLabel = addInput.getAttribute('aria-label');
     expect(ariaLabel).toBeDefined();
     expect(ariaLabel).not.toMatch(KOREAN_CHARS);
@@ -150,7 +150,7 @@ describe('Roulette.en (English localization)', () => {
 
     // Add an option to verify English UI response (fireEvent — fake timers와
     // userEvent delay 조합은 데드락)
-    const labelInput = screen.getByPlaceholderText('e.g., Pizza');
+    const labelInput = screen.getByPlaceholderText('e.g., Pizza, Pasta, Salad (commas add several)');
     const addButton = screen.getByRole('button', { name: 'Add' });
 
     fireEvent.change(labelInput, { target: { value: 'Pizza' } });

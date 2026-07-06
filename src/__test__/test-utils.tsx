@@ -541,7 +541,7 @@ const defaultMessages = {
       options: {
         label: 'Add Option',
         add: 'Add',
-        placeholder: 'e.g., Pizza',
+        placeholder: 'e.g., Pizza, Pasta, Salad (commas add several)',
         weight: 'Weight',
         delete: 'Delete',
         reorderUp: 'Move up',
@@ -571,6 +571,7 @@ const defaultMessages = {
         loaded: 'Set loaded',
         deleted: 'Set deleted',
         emptyLabel: 'Please enter an option label',
+        bulkAdded: '{count} options added',
         duplicateLabel: 'This option already exists',
         maxOptions: 'Maximum 30 options reached',
       },

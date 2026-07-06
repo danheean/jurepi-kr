@@ -283,6 +283,25 @@ test.describe('Roulette - E2E Integration', () => {
   });
 
   /**
+   * Bulk add: 콤마로 구분해 여러 옵션을 한 번에 추가.
+   */
+  test('Bulk add: comma-separated entry adds multiple options at once', async ({ page }) => {
+    await page.goto('/ko/tools/roulette');
+    await page.waitForLoadState('networkidle');
+
+    await page.locator('[data-testid="roulette-add-input"]').fill('자장면, 짬뽕, 치킨, 피자');
+    await page.locator('[data-testid="roulette-add-button"]').click();
+
+    // 4개 슬라이스가 한 번에 생성
+    await expect(page.locator('[data-testid^="roulette-slice-"]')).toHaveCount(4);
+
+    // 중복 포함 재입력 → 새 항목만 추가
+    await page.locator('[data-testid="roulette-add-input"]').fill('짬뽕, 탕수육');
+    await page.locator('[data-testid="roulette-add-button"]').click();
+    await expect(page.locator('[data-testid^="roulette-slice-"]')).toHaveCount(5);
+  });
+
+  /**
    * Regression: 연속 스핀에서 휠이 항상 실제로 회전해야 한다.
    * (버그: 회전각이 [0,360) finalAngle에 매핑돼 같은 각도가 다시 뽑히면
    *  "돌리는 중"인데 휠이 정지 — 누적 회전각으로 매 스핀 5바퀴 이상 전진)
