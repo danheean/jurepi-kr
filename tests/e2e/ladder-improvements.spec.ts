@@ -96,10 +96,10 @@ test.describe('Ladder Game - Improvements', () => {
     await page.goto('/ko/tools/ladder');
     await page.waitForLoadState('networkidle');
 
-    // Setup with default 4 players
+    // Setup with default 5 players
     const playerInputs = page.locator('[data-testid="player-input"]');
     const prizeInputs = page.locator('[data-testid="prize-input"]');
-    await expect(playerInputs).toHaveCount(7);
+    await expect(playerInputs).toHaveCount(5);
 
     const playerCount = await playerInputs.count();
     for (let i = 0; i < playerCount; i++) {

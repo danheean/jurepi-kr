@@ -85,7 +85,7 @@ src/
 
 <core_data_entities>
   <ladder_game_state note="client-side React state only; never persisted server-side">
-    - playerCount: number (2–10, default 4)
+    - playerCount: number (2–10, default 5)
     - players: { id: string; name: string }[] (length = playerCount; name max 12 chars; blank → "참가자 N")
     - prizes: { id: string; label: string }[] (length = playerCount; label max 12 chars; blank → default e.g. "꽝"/"당첨" pattern)
     - rows: number (ladder rung-levels = levels produced by ladderFromPermutation; equals the permutation's inversion count, optionally + canceling decoy levels to pad a pleasant minimum height; board scales/scrolls to fit — NOT a fixed formula)
@@ -133,7 +133,7 @@ src/
 
   <ladder_setup phase="setup">
     - Card: var(--surface), radius var(--radius-xl), padding 24px, shadow --shadow-card
-    - Player count: Stepper "참가자 수" — value 2–10 default 4; − / + 40px buttons; value 24px/700; buttons disable at bounds
+    - Player count: Stepper "참가자 수" — value 2–10 default 5; − / + 40px buttons; value 24px/700; buttons disable at bounds
     - Two columns (stack &lt;768px): "참가자" inputs (top) and "결과" inputs (bottom)
       - Each row: TextInput 44px, rounded var(--radius-md), placeholder "참가자 1"/"결과 1", max 12 chars with counter near limit
       - Color-dot prefix per row cycles the accent palette (coral→mint→sky→sun→grape→rose) for visual pairing
@@ -254,7 +254,7 @@ src/
   <test_scenario_1>
     <description>Full game with hidden results</description>
     <steps>
-      1. On /ko/tools/ladder, verify setup card: player count default 4, "결과 가리기" ON
+      1. On /ko/tools/ladder, verify setup card: player count default 5, "결과 가리기" ON
       2. Click + twice → 6 player rows and 6 prize rows; existing values preserved
       3. Enter names "민수,영희,철수,지은,현우,수빈" and prizes "꽝,커피,꽝,당첨,꽝,청소"
       4. Click "사다리 만들기" → SVG renders 6 vertical lines + valid rungs (no two adjacent rungs in any level)

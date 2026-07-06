@@ -7,12 +7,12 @@ describe('useLadder Hook', () => {
     vi.clearAllMocks();
   });
 
-  it('initializes with count=7 by default', () => {
+  it('initializes with count=5 by default', () => {
     const { result } = renderHook(() => useLadder());
-    expect(result.current.state.playerCount).toBe(7);
+    expect(result.current.state.playerCount).toBe(5);
     expect(result.current.state.phase).toBe('setup');
-    expect(result.current.state.players).toHaveLength(7);
-    expect(result.current.state.prizes).toHaveLength(7);
+    expect(result.current.state.players).toHaveLength(5);
+    expect(result.current.state.prizes).toHaveLength(5);
   });
 
   it('clamped count to 2..10', () => {

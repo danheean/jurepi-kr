@@ -34,7 +34,7 @@ export interface UseLadderReturn {
   prefers_reduced_motion: boolean;
 }
 
-export function useLadder(initialCount: number = 7): UseLadderReturn {
+export function useLadder(initialCount: number = 5): UseLadderReturn {
   const [state, dispatch] = useReducer(
     ladderReducer,
     initialCount,
