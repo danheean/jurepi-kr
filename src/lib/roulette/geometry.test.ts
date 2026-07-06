@@ -3,9 +3,16 @@ import {
   sliceAngle,
   buildSliceGeometry,
   finalSpinAngle,
+  buildSpinPlan,
   type SliceInfo,
 } from './geometry';
 import type { Option } from './schema';
+import {
+  SPIN_MIN_FULL_TURNS,
+  SPIN_MAX_FULL_TURNS,
+  SPIN_DURATION_MIN_MS,
+  SPIN_DURATION_MAX_MS,
+} from './schema';
 
 describe('geometry.ts', () => {
   describe('sliceAngle', () => {
@@ -235,6 +242,55 @@ describe('geometry.ts', () => {
       expect(angle0).not.toBeCloseTo(angle1, 1);
       expect(angle1).not.toBeCloseTo(angle2, 1);
       expect(angle0).not.toBeCloseTo(angle2, 1);
+    });
+  });
+
+  describe('buildSpinPlan', () => {
+    it('always moves forward by at least SPIN_MIN_FULL_TURNS even when the same angle is picked again', () => {
+      // 같은 승자가 연속으로 뽑혀도(finalAngle 동일) 회전이 반드시 전진해야
+      // "돌리는 중인데 휠이 멈춰있는" 결함이 재발하지 않는다.
+      const plan = buildSpinPlan(720, 0, () => 0); // currentRotation % 360 === finalAngle
+      expect(plan.targetRotation - 720).toBeGreaterThanOrEqual(SPIN_MIN_FULL_TURNS * 360);
+    });
+
+    it('lands on the requested finalAngle modulo 360', () => {
+      for (const [current, angle] of [
+        [0, 90],
+        [123.4, 270],
+        [3600, 45.5],
+        [777, 0],
+      ] as const) {
+        const plan = buildSpinPlan(current, angle, () => 0.5);
+        const landed = ((plan.targetRotation % 360) + 360) % 360;
+        expect(landed).toBeCloseTo(angle, 5);
+      }
+    });
+
+    it('spins between SPIN_MIN_FULL_TURNS and SPIN_MAX_FULL_TURNS extra turns', () => {
+      const minPlan = buildSpinPlan(0, 180, () => 0);
+      const maxPlan = buildSpinPlan(0, 180, () => 0.999999);
+      expect(minPlan.targetRotation).toBe(SPIN_MIN_FULL_TURNS * 360 + 180);
+      expect(maxPlan.targetRotation).toBe(SPIN_MAX_FULL_TURNS * 360 + 180);
+    });
+
+    it('randomizes duration within [SPIN_DURATION_MIN_MS, SPIN_DURATION_MAX_MS]', () => {
+      expect(buildSpinPlan(0, 0, () => 0).durationMs).toBe(SPIN_DURATION_MIN_MS);
+      expect(buildSpinPlan(0, 0, () => 0.999999).durationMs).toBeLessThanOrEqual(SPIN_DURATION_MAX_MS);
+      expect(buildSpinPlan(0, 0, () => 0.999999).durationMs).toBeGreaterThan(SPIN_DURATION_MIN_MS);
+      for (let i = 0; i < 50; i += 1) {
+        const { durationMs } = buildSpinPlan(0, 0, Math.random);
+        expect(durationMs).toBeGreaterThanOrEqual(SPIN_DURATION_MIN_MS);
+        expect(durationMs).toBeLessThanOrEqual(SPIN_DURATION_MAX_MS);
+      }
+    });
+
+    it('is strictly monotonic across consecutive spins', () => {
+      let rotation = 0;
+      for (let i = 0; i < 20; i += 1) {
+        const plan = buildSpinPlan(rotation, (i * 37) % 360, Math.random);
+        expect(plan.targetRotation).toBeGreaterThan(rotation);
+        rotation = plan.targetRotation;
+      }
     });
   });
 

@@ -6,7 +6,11 @@ export const MAX_OPTIONS = 30;
 export const MIN_WEIGHT = 1;
 export const MAX_WEIGHT = 1000;
 export const LEGEND_THRESHOLD = 16;
-export const SPIN_DURATION_MS = 4000;
+// 스핀 긴장감: 매 스핀 회전수·시간을 랜덤화해 결과를 예측 불가로 유지
+export const SPIN_MIN_FULL_TURNS = 5;
+export const SPIN_MAX_FULL_TURNS = 8;
+export const SPIN_DURATION_MIN_MS = 4000;
+export const SPIN_DURATION_MAX_MS = 7000;
 export const CONFETTI_COUNT = 50;
 
 export const OptionSchema = z.object({

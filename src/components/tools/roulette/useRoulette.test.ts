@@ -1,6 +1,11 @@
 import { renderHook, act } from '@testing-library/react';
 import { useRoulette } from './useRoulette';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
+import {
+  SPIN_MIN_FULL_TURNS,
+  SPIN_DURATION_MIN_MS,
+  SPIN_DURATION_MAX_MS,
+} from '@/lib/roulette/schema';
 
 describe('useRoulette', () => {
   beforeEach(() => {
@@ -230,7 +235,7 @@ describe('useRoulette', () => {
       expect([0, 1]).toContain(result.current.selectedIndex);
     });
 
-    it('sets spinning to false after SPIN_DURATION_MS', () => {
+    it('sets spinning to false after the (randomized) spin duration elapses', () => {
       const { result } = renderHook(() => useRoulette());
 
       act(() => {
@@ -245,10 +250,69 @@ describe('useRoulette', () => {
       expect(result.current.spinning).toBe(true);
 
       act(() => {
-        vi.advanceTimersByTime(4000);
+        vi.advanceTimersByTime(SPIN_DURATION_MAX_MS);
       });
 
       expect(result.current.spinning).toBe(false);
+    });
+
+    it('advances cumulative rotation by at least SPIN_MIN_FULL_TURNS per spin (wheel always visibly spins)', () => {
+      const { result } = renderHook(() => useRoulette());
+
+      act(() => {
+        result.current.addOption('Pizza', 1);
+        result.current.addOption('Pasta', 1);
+      });
+
+      expect(result.current.rotation).toBe(0);
+
+      let prevRotation = 0;
+      // 연속 스핀에서도(같은 승자가 다시 뽑혀도) 회전이 항상 전진해야 한다
+      for (let i = 0; i < 5; i += 1) {
+        act(() => {
+          result.current.spin();
+        });
+        act(() => {
+          vi.advanceTimersByTime(SPIN_DURATION_MAX_MS);
+        });
+        expect(result.current.rotation - prevRotation).toBeGreaterThanOrEqual(
+          SPIN_MIN_FULL_TURNS * 360
+        );
+        prevRotation = result.current.rotation;
+      }
+    });
+
+    it('rotation lands on finalAngle modulo 360', () => {
+      const { result } = renderHook(() => useRoulette());
+
+      act(() => {
+        result.current.addOption('Pizza', 1);
+        result.current.addOption('Pasta', 1);
+        result.current.addOption('Salad', 1);
+      });
+
+      act(() => {
+        result.current.spin();
+      });
+
+      const landed = ((result.current.rotation % 360) + 360) % 360;
+      expect(landed).toBeCloseTo(result.current.finalAngle!, 5);
+    });
+
+    it('randomizes spinDurationMs within [SPIN_DURATION_MIN_MS, SPIN_DURATION_MAX_MS]', () => {
+      const { result } = renderHook(() => useRoulette());
+
+      act(() => {
+        result.current.addOption('Pizza', 1);
+        result.current.addOption('Pasta', 1);
+      });
+
+      act(() => {
+        result.current.spin();
+      });
+
+      expect(result.current.spinDurationMs).toBeGreaterThanOrEqual(SPIN_DURATION_MIN_MS);
+      expect(result.current.spinDurationMs).toBeLessThanOrEqual(SPIN_DURATION_MAX_MS);
     });
 
     it('does not spin if less than 2 options', () => {
@@ -284,7 +348,7 @@ describe('useRoulette', () => {
 
       // Enable remove winner mode and spin again
       act(() => {
-        vi.advanceTimersByTime(4000);
+        vi.advanceTimersByTime(SPIN_DURATION_MAX_MS);
         result.current.toggleRemoveWinner();
         result.current.spin();
       });
