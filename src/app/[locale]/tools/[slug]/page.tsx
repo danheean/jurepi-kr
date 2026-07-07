@@ -6,6 +6,7 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
 import { buildToolMetadata } from '@/lib/seo';
+import guidesData from '@/components/tools/howto/data/guides.generated.json';
 import { UrlEncoderIntro } from '@/components/tools/url-encoder/UrlEncoderIntro';
 import { UrlEncoderHowTo } from '@/components/tools/url-encoder/UrlEncoderHowTo';
 import { UrlEncoderFaq } from '@/components/tools/url-encoder/UrlEncoderFaq';
@@ -63,6 +64,10 @@ import { KnittingGaugeIntro } from '@/components/tools/knitting-gauge/KnittingGa
 import { KnittingGaugeHowTo } from '@/components/tools/knitting-gauge/KnittingGaugeHowTo';
 import { KnittingGaugeFaq } from '@/components/tools/knitting-gauge/KnittingGaugeFaq';
 import { KnittingGaugeStructuredData } from '@/components/tools/knitting-gauge/KnittingGaugeStructuredData';
+import { HowtoIntro } from "@/components/tools/howto/HowtoIntro";
+import { HowtoHowTo } from "@/components/tools/howto/HowtoHowTo";
+import { HowtoFaq } from "@/components/tools/howto/HowtoFaq";
+import { HowtoStructuredData } from "@/components/tools/howto/HowtoStructuredData";
 
 const LadderGame = dynamic(() =>
   import('@/components/tools/ladder/LadderGame').then((m) => ({
@@ -184,6 +189,12 @@ const KnittingGauge = dynamic(() =>
   }))
 );
 
+const Howto = dynamic(() =>
+  import('@/components/tools/howto/Howto').then((m) => ({
+    default: m.Howto,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -254,6 +265,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'knitting-gauge') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'howto') {
     title = t('meta.title');
     description = t('meta.description');
   } else {
@@ -495,6 +509,20 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     );
   }
 
+
+  if (slug === 'howto') {
+    return (
+      <>
+        <HowtoStructuredData catalog={guidesData as any} />
+        <HowtoIntro />
+        <Suspense fallback={<div className="text-text-secondary">Loading...</div>}>
+          <Howto />
+        </Suspense>
+        <HowtoHowTo />
+        <HowtoFaq />
+      </>
+    );
+  }
   notFound();
 }
 

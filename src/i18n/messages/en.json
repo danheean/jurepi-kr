@@ -2501,6 +2501,96 @@
           }
         ]
       }
+    },
+    "howto": {
+      "title": "How-To Guides",
+      "description": "Step-by-step guides — installing Claude Code, issuing API tokens — with images, diagrams, and code.",
+      "intro": {
+        "eyebrow": "DEV TOOL",
+        "title": "How-To Guides",
+        "lead": "Read practical guides — installing Claude Code, issuing tokens — step by step, with images, diagrams, and code."
+      },
+      "search": {
+        "placeholder": "Search by title, topic, or tag (e.g. Claude Code, token, git)",
+        "label": "Search guides",
+        "resultCount": "{count} results",
+        "clear": "Clear"
+      },
+      "tabs": {
+        "all": "All",
+        "favorites": "Favorites",
+        "recent": "Recent"
+      },
+      "topics": {
+        "setup": "Setup",
+        "ai-tools": "AI Tools",
+        "git": "Git",
+        "api": "API",
+        "cli": "CLI",
+        "deploy": "Deploy"
+      },
+      "difficulty": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "card": {
+        "favorite": "Add to favorites",
+        "unfavorite": "Remove from favorites",
+        "updated": "Updated {date}"
+      },
+      "empty": {
+        "noResults": "No guides match '{query}'",
+        "noFavorites": "Tap the star to save guides you use often",
+        "noRecent": "Guides you've read appear here"
+      },
+      "spoke": {
+        "readingTime": "{minutes} min read",
+        "updated": "Updated {date}",
+        "related": "Related guides",
+        "backToHub": "All guides"
+      },
+      "howto": {
+        "title": "How to use How-To Guides",
+        "items": [
+          {
+            "title": "Search to find",
+            "body": "Search by title, topic, or tag to quickly find the guide you need."
+          },
+          {
+            "title": "Browse by topic",
+            "body": "Click a topic tab (Setup, API, Git, etc.) at the top to see related guides grouped together."
+          },
+          {
+            "title": "Save favorites",
+            "body": "Click the star icon on any guide to save it to your Favorites tab for quick access later."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "q": "Where are guides stored?",
+            "a": "All guides are generated as static HTML and load instantly in your browser. They're not stored on your device — just open this site and read."
+          },
+          {
+            "q": "Where are my favorites saved?",
+            "a": "Favorites are saved only in your browser's local storage and never sent anywhere. If you clear your browser data, they're deleted."
+          },
+          {
+            "q": "Can I copy code?",
+            "a": "Yes, click the 'Copy' button in the top-right corner of any code block to copy it to your clipboard."
+          }
+        ]
+      },
+      "code": {
+        "copy": "Copy code",
+        "copied": "Copied"
+      },
+      "mermaid": {
+        "sourceLabel": "Diagram source"
+      }
     }
   },
   "about": {

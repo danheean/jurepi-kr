@@ -253,6 +253,17 @@ export const tools: ToolMeta[] = [
       'crochet', 'pattern', 'rescale', 'finished size', 'yarn'
     ],
   },
+  {
+    id: 'howto',
+    slug: 'howto',
+    category: 'dev',
+    icon: 'BookOpen',
+    accent: 'sky',
+    status: 'live',
+    isNew: true,
+    order: 31,
+    keywords: ['하우투', '가이드', '설치', '설정', 'how to', 'howto', 'guide', 'tutorial', '클로드 코드', 'claude code', '토큰 발급', 'api token', 'mermaid', '다이어그램', '코드블록', 'markdown', '문서', '매뉴얼', 'setup'],
+  },
 ];
 
 /** Get all live tools for static generation */

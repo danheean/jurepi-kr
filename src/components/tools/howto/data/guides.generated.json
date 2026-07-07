@@ -1,0 +1,150 @@
+[
+  {
+    "slug": "install-claude-code",
+    "topic": "setup",
+    "tags": [
+      "claude-code",
+      "cli",
+      "설치"
+    ],
+    "order": 1,
+    "updated": "2026-07-06T00:00:00.000Z",
+    "difficulty": "beginner",
+    "related": [
+      "issue-api-token"
+    ],
+    "ko": {
+      "title": "클로드 코드 설치하는 법",
+      "summary": "macOS·Windows·Linux에서 Claude Code CLI를 설치하고 첫 실행까지 마치는 단계별 안내.\n",
+      "body": "## 준비물\n\n- Node.js 20 이상\n- 터미널 (zsh / bash / PowerShell)\n\n## 설치 흐름\n\n```mermaid\nflowchart TD\n  A[Node 버전 확인] --> B{Node 20+?}\n  B -->|예| C[npm 전역 설치]\n  B -->|아니오| D[Node.js 업그레이드]\n  D --> C\n  C --> E[claude 로그인]\n  E --> F[첫 실행]\n  F --> G[버전 확인]\n```\n\n## 설치 명령\n\n### macOS / Linux\n\n```bash\nnpm install -g @anthropic-ai/claude-code\nclaude --version\n```\n\n### Windows (PowerShell)\n\n```powershell\nnpm install -g @anthropic-ai/claude-code\nclaude --version\n```\n\n## 설치 확인\n\n설치가 끝나면 다음 명령으로 버전을 확인할 수 있습니다:\n\n```bash\nclaude --version\n```\n\n출력이 다음과 같으면 설치 완료입니다:\n\n```\nclaude-code/1.0.0\n```\n\n## 첫 실행\n\n```bash\nclaude\n```\n\n로그인 프롬프트가 표시됩니다. API 키를 입력하고 진행하세요."
+    },
+    "en": {
+      "title": "How to Install Claude Code",
+      "summary": "A step-by-step guide to installing the Claude Code CLI on macOS, Windows, and Linux, through first run.\n",
+      "body": "## Prerequisites\n\n- Node.js 20 or later\n- Terminal (zsh / bash / PowerShell)\n\n## Install flow\n\n```mermaid\nflowchart TD\n  A[Check Node version] --> B{Node 20+?}\n  B -->|Yes| C[Global npm install]\n  B -->|No| D[Upgrade Node.js]\n  D --> C\n  C --> E[claude login]\n  E --> F[First run]\n  F --> G[Check version]\n```\n\n## Install command\n\n### macOS / Linux\n\n```bash\nnpm install -g @anthropic-ai/claude-code\nclaude --version\n```\n\n### Windows (PowerShell)\n\n```powershell\nnpm install -g @anthropic-ai/claude-code\nclaude --version\n```\n\n## Verify installation\n\nAfter installation, verify with:\n\n```bash\nclaude --version\n```\n\nOutput should be:\n\n```\nclaude-code/1.0.0\n```\n\n## First run\n\n```bash\nclaude\n```\n\nA login prompt appears. Enter your API key to proceed."
+    }
+  },
+  {
+    "slug": "mcp-server-setup",
+    "topic": "setup",
+    "tags": [
+      "mcp",
+      "설정",
+      "통합"
+    ],
+    "order": 2,
+    "updated": "2026-07-06T00:00:00.000Z",
+    "difficulty": "intermediate",
+    "related": [
+      "install-claude-code"
+    ],
+    "ko": {
+      "title": "MCP 서버 설정하는 법",
+      "summary": "Model Context Protocol (MCP) 서버를 로컬 환경에 설정하고 Claude와 연결하는 방법.\n",
+      "body": "## MCP란?\n\nModel Context Protocol (MCP)은 Claude가 외부 도구와 데이터를 안전하게 접근할 수 있게 해주는 표준입니다.\n\n## MCP 서버 설치\n\n### Node.js 기반 MCP 서버\n\n```bash\nnpm install -g @modelcontextprotocol/server-sqlite\nnpm install -g @modelcontextprotocol/server-filesystem\n```\n\n### Python 기반 MCP 서버\n\n```bash\npip install mcp[cli]\npip install mcp-server-sqlite\n```\n\n## Claude 설정 파일 수정\n\nClaude 설정 파일을 편집하여 MCP 서버를 등록합니다:\n\n```bash\n# macOS/Linux\nnano ~/.claude/mcp-servers.json\n\n# Windows\nnotepad %APPDATA%\\.claude\\mcp-servers.json\n```\n\n다음 JSON을 추가합니다:\n\n```json\n{\n  \"mcpServers\": {\n    \"sqlite\": {\n      \"command\": \"mcp-server-sqlite\",\n      \"args\": [\"--db\", \"/path/to/database.db\"]\n    },\n    \"filesystem\": {\n      \"command\": \"mcp-server-filesystem\",\n      \"args\": [\"/path/to/allowed/directory\"]\n    }\n  }\n}\n```\n\n## MCP 서버 상태 확인\n\n```bash\nclaude --mcp-status\n```\n\n## 트러블슈팅\n\n연결이 안 되면 로그를 확인하세요:\n\n```bash\nclaude --debug\n```"
+    },
+    "en": {
+      "title": "How to Set Up an MCP Server",
+      "summary": "A step-by-step guide to configuring a Model Context Protocol server and connecting it to Claude.\n",
+      "body": "## What is MCP?\n\nModel Context Protocol (MCP) is a standard that enables Claude to securely access external tools and data.\n\n## Installing an MCP Server\n\n### Node.js-based MCP Server\n\n```bash\nnpm install -g @modelcontextprotocol/server-sqlite\nnpm install -g @modelcontextprotocol/server-filesystem\n```\n\n### Python-based MCP Server\n\n```bash\npip install mcp[cli]\npip install mcp-server-sqlite\n```\n\n## Modifying Claude's Configuration File\n\nEdit the Claude configuration file to register an MCP server:\n\n```bash\n# macOS/Linux\nnano ~/.claude/mcp-servers.json\n\n# Windows\nnotepad %APPDATA%\\.claude\\mcp-servers.json\n```\n\nAdd the following JSON:\n\n```json\n{\n  \"mcpServers\": {\n    \"sqlite\": {\n      \"command\": \"mcp-server-sqlite\",\n      \"args\": [\"--db\", \"/path/to/database.db\"]\n    },\n    \"filesystem\": {\n      \"command\": \"mcp-server-filesystem\",\n      \"args\": [\"/path/to/allowed/directory\"]\n    }\n  }\n}\n```\n\n## Checking MCP Server Status\n\n```bash\nclaude --mcp-status\n```\n\n## Troubleshooting\n\nIf the connection fails, check the logs:\n\n```bash\nclaude --debug\n```"
+    }
+  },
+  {
+    "slug": "git-worktree",
+    "topic": "git",
+    "tags": [
+      "git",
+      "worktree",
+      "브랜치"
+    ],
+    "order": 2,
+    "updated": "2026-07-06T00:00:00.000Z",
+    "difficulty": "intermediate",
+    "related": [],
+    "ko": {
+      "title": "Git Worktree로 멀티 브랜치 작업하는 법",
+      "summary": "git worktree를 사용하여 동시에 여러 브랜치를 작업하는 방법.\n",
+      "body": "## Worktree란\n\nGit worktree는 동일한 저장소의 여러 브랜치를 동시에 작업할 수 있게 하는 기능입니다.\n\n## 새로운 Worktree 생성\n\n```bash\ngit worktree add ../project-feature feature-branch\ncd ../project-feature\n```\n\n## Worktree 작업\n\n```bash\n# 현재 worktree에서 코드 수정\ngit add .\ngit commit -m \"feat: 새로운 기능\"\ngit push origin feature-branch\n```\n\n## Worktree 삭제\n\n```bash\ncd ..\ngit worktree remove ../project-feature\n```\n\n## Worktree 목록\n\n```bash\ngit worktree list\n```"
+    },
+    "en": {
+      "title": "How to Work with Multiple Branches Using Git Worktree",
+      "summary": "Use git worktree to work on multiple branches simultaneously.\n",
+      "body": "## What is worktree\n\nGit worktree allows you to work on multiple branches of the same repository at the same time.\n\n## Create a new worktree\n\n```bash\ngit worktree add ../project-feature feature-branch\ncd ../project-feature\n```\n\n## Work in the worktree\n\n```bash\n# Modify code in the current worktree\ngit add .\ngit commit -m \"feat: new feature\"\ngit push origin feature-branch\n```\n\n## Remove a worktree\n\n```bash\ncd ..\ngit worktree remove ../project-feature\n```\n\n## List worktrees\n\n```bash\ngit worktree list\n```"
+    }
+  },
+  {
+    "slug": "issue-api-token",
+    "topic": "api",
+    "tags": [
+      "api",
+      "토큰",
+      "인증"
+    ],
+    "order": 1,
+    "updated": "2026-07-06T00:00:00.000Z",
+    "difficulty": "beginner",
+    "related": [
+      "install-claude-code"
+    ],
+    "ko": {
+      "title": "API 토큰 발급하는 법",
+      "summary": "Anthropic 콘솔에서 Claude API 토큰을 발급받고, 환경변수로 설정하는 방법.\n",
+      "body": "## 토큰 발급 단계\n\n1. [api.anthropic.com](https://api.anthropic.com) 방문\n2. 상단 우측 \"프로필\" 클릭\n3. \"API 키\" 메뉴 선택\n4. \"+ API 키 생성\" 버튼 클릭\n5. 토큰명 입력 (예: \"cli-dev\")\n6. 생성된 토큰 복사\n\n## 환경변수 설정\n\n### macOS / Linux (bash/zsh)\n\n```bash\nexport ANTHROPIC_API_KEY=\"your-api-key-here\"\n```\n\n`.zshrc` 또는 `.bashrc`에 추가하여 영구 설정:\n\n```bash\necho 'export ANTHROPIC_API_KEY=\"your-api-key-here\"' >> ~/.zshrc\nsource ~/.zshrc\n```\n\n### Windows (PowerShell)\n\n```powershell\n$env:ANTHROPIC_API_KEY=\"your-api-key-here\"\n```\n\n영구 설정:\n\n```powershell\n[Environment]::SetEnvironmentVariable(\"ANTHROPIC_API_KEY\", \"your-api-key-here\", \"User\")\n```\n\n## 검증\n\n토큰이 제대로 설정되었는지 확인:\n\n```bash\necho $ANTHROPIC_API_KEY\n```\n\n또는:\n\n```bash\nclaude --version\n```\n\n오류가 없으면 토큰이 활성화된 것입니다."
+    },
+    "en": {
+      "title": "How to Issue an API Token",
+      "summary": "Generate a Claude API token from the Anthropic Console and set it as an environment variable.\n",
+      "body": "## Issue token\n\n1. Visit [api.anthropic.com](https://api.anthropic.com)\n2. Click \"Profile\" at top-right\n3. Select \"API Keys\"\n4. Click \"+ Create API Key\"\n5. Enter a token name (e.g., \"cli-dev\")\n6. Copy the generated token\n\n## Set as environment variable\n\n### macOS / Linux (bash/zsh)\n\n```bash\nexport ANTHROPIC_API_KEY=\"your-api-key-here\"\n```\n\nFor permanent setup, add to `.zshrc` or `.bashrc`:\n\n```bash\necho 'export ANTHROPIC_API_KEY=\"your-api-key-here\"' >> ~/.zshrc\nsource ~/.zshrc\n```\n\n### Windows (PowerShell)\n\n```powershell\n$env:ANTHROPIC_API_KEY=\"your-api-key-here\"\n```\n\nFor permanent setup:\n\n```powershell\n[Environment]::SetEnvironmentVariable(\"ANTHROPIC_API_KEY\", \"your-api-key-here\", \"User\")\n```\n\n## Verify\n\nCheck that the token is set correctly:\n\n```bash\necho $ANTHROPIC_API_KEY\n```\n\nOr:\n\n```bash\nclaude --version\n```\n\nNo error means the token is active."
+    }
+  },
+  {
+    "slug": "claude-code-slash-commands",
+    "topic": "cli",
+    "tags": [
+      "claude-code",
+      "명령어",
+      "팁"
+    ],
+    "order": 1,
+    "updated": "2026-07-06T00:00:00.000Z",
+    "difficulty": "beginner",
+    "related": [
+      "install-claude-code"
+    ],
+    "ko": {
+      "title": "Claude Code 슬래시 명령어 사용하는 법",
+      "summary": "Claude Code에서 사용할 수 있는 슬래시 명령어(/plan, /sketch, /build 등)와 각각의 용도를 학습합니다.\n",
+      "body": "## 슬래시 명령어 개요\n\nClaude Code에서는 특정 작업을 빠르게 수행할 수 있는 슬래시 명령어를 제공합니다.\n\n## 주요 명령어\n\n### /plan - 계획 수립\n\n프로젝트나 기능의 구현 계획을 작성합니다:\n\n```\n/plan Build a todo app with React\n```\n\n응답:\n- 아키텍처 개요\n- 단계별 구현 계획\n- 예상 소요 시간\n\n### /sketch - 빠른 스케치\n\n빠르게 초안을 만들 때 사용합니다:\n\n```\n/sketch Create a counter component\n```\n\n이 명령은 `/plan`보다 간단한 출력을 제공합니다.\n\n### /build - 전체 빌드\n\n완전한 구현을 생성합니다:\n\n```\n/build Implement user authentication\n```\n\n이 명령은 다음을 포함합니다:\n- 전체 코드 구현\n- 테스트 케이스\n- 문서\n\n### /review - 코드 리뷰\n\n작성한 코드를 검토받습니다:\n\n```\n/review\n```\n\n현재 파일을 분석하고 개선 사항을 제안합니다.\n\n## 명령어 조합 사용\n\n여러 명령어를 조합하여 사용할 수 있습니다:\n\n```bash\n/plan Build authentication\n/build Implement login form\n/review\n```\n\n## 팁\n\n- 명령어는 언제든 취소할 수 있습니다 (Ctrl+C)\n- 상세한 맥락을 제공할수록 더 좋은 결과를 얻습니다\n- `/plan`부터 시작하면 체계적인 개발이 가능합니다"
+    },
+    "en": {
+      "title": "How to Use Claude Code Slash Commands",
+      "summary": "Learn about the slash commands available in Claude Code (/plan, /sketch, /build, etc.) and their uses.\n",
+      "body": "## Slash Commands Overview\n\nClaude Code provides slash commands that let you quickly perform specific tasks.\n\n## Main Commands\n\n### /plan - Create a Plan\n\nWrite an implementation plan for a project or feature:\n\n```\n/plan Build a todo app with React\n```\n\nResponse includes:\n- Architecture overview\n- Step-by-step implementation plan\n- Estimated time\n\n### /sketch - Quick Sketch\n\nUse this for rapid prototyping:\n\n```\n/sketch Create a counter component\n```\n\nThis command provides a simpler output than `/plan`.\n\n### /build - Full Build\n\nGenerate a complete implementation:\n\n```\n/build Implement user authentication\n```\n\nThis command includes:\n- Full code implementation\n- Test cases\n- Documentation\n\n### /review - Code Review\n\nGet feedback on your code:\n\n```\n/review\n```\n\nThe current file is analyzed and improvements are suggested.\n\n## Combining Commands\n\nUse multiple commands together:\n\n```bash\n/plan Build authentication\n/build Implement login form\n/review\n```\n\n## Tips\n\n- You can cancel any command anytime (Ctrl+C)\n- Provide detailed context for better results\n- Start with `/plan` for systematic development"
+    }
+  },
+  {
+    "slug": "deploy-cloudflare-pages",
+    "topic": "deploy",
+    "tags": [
+      "cloudflare",
+      "배포",
+      "호스팅"
+    ],
+    "order": 1,
+    "updated": "2026-07-06T00:00:00.000Z",
+    "difficulty": "intermediate",
+    "related": [
+      "install-claude-code"
+    ],
+    "ko": {
+      "title": "Cloudflare Pages로 배포하는 법",
+      "summary": "Next.js 애플리케이션을 Cloudflare Pages에 배포하고, 자동 빌드 파이프라인을 설정하는 단계별 가이드.\n",
+      "body": "## 준비물\n\n- Cloudflare 계정 (무료)\n- GitHub 저장소\n- Next.js 프로젝트\n\n## 1단계: Cloudflare에 로그인\n\n[Cloudflare 대시보드](https://dash.cloudflare.com)에 로그인합니다.\n\n## 2단계: Pages 프로젝트 생성\n\n왼쪽 사이드바에서 \"Pages\"를 선택합니다.\n\n![Pages 대시보드](/images/howto/deploy-cloudflare-pages/step-1.png)\n\n\"GitHub에 연결\" 버튼을 클릭합니다.\n\n## 3단계: 저장소 권한 설정\n\nGitHub 계정으로 인증하고 배포할 저장소를 선택합니다.\n\n```bash\n# 저장소에 다음 파일이 필요합니다\nwrangler.toml\npackage.json\n```\n\n## 4단계: 빌드 설정\n\nPages 설정 페이지에서:\n\n- **프로젝트 명**: howto-guides\n- **프레임워크**: Next.js\n- **빌드 명령**: npm run build\n- **빌드 출력 디렉토리**: out\n\n## 5단계: 환경변수 설정 (선택)\n\n민감한 정보는 환경변수로 설정합니다:\n\n```\nNEXT_PUBLIC_SITE_URL=https://your-domain.pages.dev\n```\n\n## 배포 확인\n\n첫 푸시 후 Cloudflare는 자동으로 빌드를 시작합니다:\n\n```bash\ngit add .\ngit commit -m \"Deploy to Cloudflare Pages\"\ngit push origin main\n```\n\nPages 대시보드에서 배포 진행 상황을 확인할 수 있습니다.\n\n## 커스텀 도메인 설정\n\n1. Pages 프로젝트 설정으로 이동\n2. \"커스텀 도메인\" 섹션에서 도메인 추가\n3. DNS 레코드 확인 후 대기\n\n배포 완료!"
+    },
+    "en": {
+      "title": "How to Deploy to Cloudflare Pages",
+      "summary": "A step-by-step guide to deploying a Next.js application to Cloudflare Pages and setting up an automatic build pipeline.\n",
+      "body": "## Prerequisites\n\n- Cloudflare account (free)\n- GitHub repository\n- Next.js project\n\n## Step 1: Log in to Cloudflare\n\nLog in to the [Cloudflare dashboard](https://dash.cloudflare.com).\n\n## Step 2: Create a Pages Project\n\nSelect \"Pages\" from the left sidebar.\n\n![Pages Dashboard](/images/howto/deploy-cloudflare-pages/step-1.png)\n\nClick the \"Connect to GitHub\" button.\n\n## Step 3: Set Repository Permissions\n\nAuthenticate with your GitHub account and select the repository to deploy.\n\n```bash\n# Your repository needs these files\nwrangler.toml\npackage.json\n```\n\n## Step 4: Configure Build Settings\n\nOn the Pages settings page:\n\n- **Project name**: howto-guides\n- **Framework**: Next.js\n- **Build command**: npm run build\n- **Build output directory**: out\n\n## Step 5: Set Environment Variables (Optional)\n\nStore sensitive information as environment variables:\n\n```\nNEXT_PUBLIC_SITE_URL=https://your-domain.pages.dev\n```\n\n## Verify Deployment\n\nAfter your first push, Cloudflare automatically starts the build:\n\n```bash\ngit add .\ngit commit -m \"Deploy to Cloudflare Pages\"\ngit push origin main\n```\n\nYou can monitor the deployment progress in the Pages dashboard.\n\n## Set a Custom Domain\n\n1. Go to your Pages project settings\n2. In the \"Custom domain\" section, add your domain\n3. Verify DNS records and wait\n\nDeployment complete!"
+    }
+  }
+]

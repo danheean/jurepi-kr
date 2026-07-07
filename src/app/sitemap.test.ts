@@ -6,6 +6,7 @@ import termsData from '@/components/tools/new-word/data/terms.generated.json';
 import rankingsData from '@/components/tools/rankings/data/rankings.generated.json';
 import bookmarksData from '@/components/tools/bookmarks/data/bookmarks.generated.json';
 import devPeopleData from '@/components/tools/dev-people/data/dev-people.generated.json';
+import guidesData from '@/components/tools/howto/data/guides.generated.json';
 
 const STATIC_PAGE_COUNT = 5; // home, about, privacy, terms, contact
 
@@ -19,7 +20,8 @@ describe('sitemap (bot-optimized for Google Search Console)', () => {
       termsData.length +
       rankingsData.length +
       bookmarksData.length +
-      (devPeopleData as { peoples: Array<{ slug: string }> }).peoples.length;
+      (devPeopleData as { peoples: Array<{ slug: string }> }).peoples.length +
+      guidesData.length;
     expect(entries).toHaveLength(routing.locales.length * perLocale);
   });
 
@@ -36,7 +38,7 @@ describe('sitemap (bot-optimized for Google Search Console)', () => {
     }
   });
 
-  it('never stamps build-time lastModified; only rankings spokes carry content asOfDate', () => {
+  it('never stamps build-time lastModified; only rankings and howto spokes carry content dates', () => {
     for (const entry of entries) {
       if (entry.url.includes('/tools/rankings/')) {
         const ranking = (rankingsData as Array<{ slug: string; asOfDate: string }>).find((r) =>
@@ -44,6 +46,15 @@ describe('sitemap (bot-optimized for Google Search Console)', () => {
         );
         expect(ranking, `unknown rankings spoke: ${entry.url}`).toBeDefined();
         expect(entry.lastModified).toBe(ranking!.asOfDate);
+      } else if (entry.url.includes('/tools/howto/')) {
+        const guide = (guidesData as Array<{ slug: string; updated?: string }>).find((g) =>
+          entry.url.endsWith(`/tools/howto/${g.slug}`),
+        );
+        if (guide?.updated) {
+          expect(entry.lastModified).toBe(guide.updated);
+        } else {
+          expect(entry.lastModified, `build-time lastmod leaked: ${entry.url}`).toBeUndefined();
+        }
       } else {
         expect(entry.lastModified, `build-time lastmod leaked: ${entry.url}`).toBeUndefined();
       }

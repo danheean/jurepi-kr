@@ -413,3 +413,37 @@ export function personJsonLd(person: MergedPerson, locale: string): Record<strin
 
   return ld;
 }
+
+/**
+ * Build TechArticle JSON-LD for how-to guide spoke pages.
+ * Used on individual guide pages to mark up technical article content.
+ */
+export function techArticleJsonLd({
+  headline,
+  description,
+  url,
+  datePublished,
+  inLanguage,
+}: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished?: string;
+  inLanguage: string;
+}): Record<string, unknown> {
+  const ld: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline,
+    description,
+    url,
+    inLanguage,
+  };
+
+  if (datePublished) {
+    ld.datePublished = datePublished;
+    ld.dateModified = datePublished;
+  }
+
+  return ld;
+}

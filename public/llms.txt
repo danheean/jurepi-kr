@@ -21,6 +21,7 @@
 - [내 아이피 찾기 (My IP Address)](https://apps.jurepi.kr/ko/tools/my-ip): Find your public IP address (IPv4 and IPv6) instantly, with optional approximate geolocation and ISP information from a disclosed third-party IP lookup service. Jurepi never logs or stores your IP.
 - [JSON 정렬 및 검증 (JSON Formatter & Validator)](https://apps.jurepi.kr/ko/tools/json-formatter): Format minified JSON, validate syntax, and find errors with precise line/column numbers. Minify, sort keys, download results. 100% browser-side processing—your data stays private.
 - [뜨개 게이지 계산기 (Knitting Gauge Calculator)](https://apps.jurepi.kr/ko/tools/knitting-gauge): 게이지에서 필요한 코 수, 단 수, 패턴 환산을 계산합니다. 크기→코·단 수, 코·단 수→크기, 패턴 환산 모드 지원. cm/인치(2.54 정확 변환) 단위 변환. 로컬 스토리지에 최대 50개 게이지 저장.
+- [하우투 가이드 (How-To Guides)](https://apps.jurepi.kr/ko/tools/howto): Step-by-step practical guides with code examples, images, diagrams, and syntax-highlighted code blocks. Install Claude Code, issue API tokens, learn Git workflows, deployment strategies, and development best practices.
 
 ## About
 
