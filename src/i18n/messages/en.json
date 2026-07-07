@@ -1763,6 +1763,195 @@
         "selectHint": "Select a place from the map markers or the list to see its details here."
       }
     },
+    "find-replace": {
+      "title": "Text Replacer",
+      "description": "Replace multiple words at once across your text. Stack any number of rules and optionally use regex with capture groups.",
+      "meta": {
+        "title": "Text Replacer — Multi-rule Find & Replace Tool",
+        "description": "Transform text in one go with multiple find-replace rules. Use literal text or JavaScript regex with capture groups, save rule-sets to localStorage."
+      },
+      "intro": {
+        "eyebrow": "Text Tool",
+        "lead": "Replace multiple words throughout your text at once. Build any number of rules—combine literal text search with optional regex and capture groups. This is a word-substitution tool, not an AI rewriter.",
+        "heading": "Text Replacer"
+      },
+      "sourceText": {
+        "label": "Text to transform",
+        "placeholder": "Paste the text to transform…",
+        "charCount": "{count} characters"
+      },
+      "ruleList": {
+        "title": "Rules",
+        "description": "Rules apply top-to-bottom; each rule sees the output of the previous one.",
+        "empty": "Add a rule to get started",
+        "addRule": "Add rule"
+      },
+      "rule": {
+        "find": {
+          "label": "Find",
+          "placeholder": "Find…"
+        },
+        "replace": {
+          "label": "Replace with",
+          "placeholder": "Replace with…"
+        },
+        "count": "{count} replacements",
+        "enable": "Enable",
+        "duplicate": "Duplicate",
+        "delete": "Delete",
+        "moveUp": "Move up",
+        "moveDown": "Move down"
+      },
+      "option": {
+        "caseSensitive": {
+          "label": "Case-sensitive",
+          "description": "Match uppercase/lowercase exactly"
+        },
+        "wholeWord": {
+          "label": "Whole word",
+          "description": "Match only at word boundaries"
+        },
+        "regex": {
+          "label": "Regex",
+          "description": "Use JavaScript regular expression with capture groups"
+        },
+        "firstOnly": {
+          "label": "First only",
+          "description": "Replace only the first match"
+        },
+        "flags": {
+          "label": "Flags"
+        }
+      },
+      "result": {
+        "title": "Result",
+        "totalCount": "{count} replacements across {ruleCount} rules",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "download": "Download",
+        "empty": "(empty result)"
+      },
+      "preset": {
+        "title": "Presets",
+        "toJsString": "Multi-line → JS String",
+        "toJsStringSample": "line\\none\\ntwo",
+        "fromJsString": "JS String → Plain text",
+        "stripBlankLines": "Remove blank lines",
+        "collapseSpaces": "Collapse consecutive spaces",
+        "normalizeQuotes": "Normalize quotes (smart → straight)",
+        "fullwidthToHalfwidth": "Fullwidth → Halfwidth",
+        "stripLineNumbers": "Strip line numbers",
+        "linesToArrayItems": "Lines → Array items",
+        "trimSpaces": "Trim spaces per line",
+        "urlToMarkdownLink": "URL → Markdown link"
+      },
+      "savedSets": {
+        "title": "Saved rule-sets",
+        "save": "Save",
+        "saveNamePlaceholder": "Rule-set name (e.g., Clean special chars)",
+        "apply": "Apply",
+        "delete": "Delete",
+        "empty": "No saved rule-sets"
+      },
+      "cheatsheet": {
+        "title": "Regex Cheatsheet",
+        "hint": "Turn on regex mode for a rule to use the syntax below.",
+        "sections": {
+          "anchors": "Anchors",
+          "quantifiers": "Quantifiers",
+          "character-classes": "Character classes",
+          "groups": "Groups",
+          "lookaround": "Lookaround",
+          "flags": "Flags",
+          "replacements": "Replacement refs"
+        },
+        "caret": "Start of line",
+        "dollar": "End of line",
+        "wordBoundary": "Word boundary",
+        "nonWordBoundary": "Non-word boundary",
+        "star": "Preceding item, 0 or more times",
+        "plus": "Preceding item, 1 or more times",
+        "question": "Preceding item, 0 or 1 time",
+        "exactCount": "Preceding item, exactly n times",
+        "rangeCount": "Preceding item, n to m times",
+        "dot": "Any single character except newline",
+        "digit": "A digit (0-9)",
+        "nonDigit": "A non-digit character",
+        "word": "A word character (letter, digit, underscore)",
+        "nonWord": "A non-word character",
+        "whitespace": "A whitespace character (space, tab, newline)",
+        "nonWhitespace": "A non-whitespace character",
+        "charSet": "Any one character in the set",
+        "negatedCharSet": "Any one character not in the set",
+        "group": "Capturing group",
+        "nonCapturingGroup": "Non-capturing group",
+        "namedGroup": "Named capturing group",
+        "alternation": "Alternation (either option)",
+        "lookahead": "Followed by … (positive lookahead)",
+        "negativeLookahead": "Not followed by … (negative lookahead)",
+        "lookbehind": "Preceded by … (positive lookbehind)",
+        "negativeLookbehind": "Not preceded by … (negative lookbehind)",
+        "caseInsensitive": "Case-insensitive (flag i)",
+        "multiline": "^ $ match each line (flag m)",
+        "dotAll": "Dot matches newlines too (flag s)",
+        "unicode": "Unicode mode (flag u)",
+        "sticky": "Match only at lastIndex (flag y)",
+        "captureGroup": "Nth capture group in replacement",
+        "namedCaptureGroup": "Named group in replacement",
+        "fullMatch": "The whole matched string in replacement",
+        "literalDollar": "A literal dollar sign"
+      },
+      "error": {
+        "invalidRegex": "Invalid regex",
+        "invalidRegexDetail": "{detail}",
+        "timeout": "This regex is too slow (possible catastrophic backtracking)"
+      },
+      "keyboard": {
+        "addRule": "Ctrl+Enter",
+        "copy": "Cmd+Shift+C",
+        "escape": "Esc"
+      },
+      "howTo": {
+        "title": "How to Use Find & Replace",
+        "steps": [
+          "1. Paste the text you want to transform above.",
+          "2. Add one or more find → replace rules.",
+          "3. Watch the result update live.",
+          "4. Copy the result or download it as a .txt file."
+        ],
+        "tips": [
+          {
+            "title": "Stack multiple rules",
+            "body": "Rules apply top to bottom, and each rule sees the output of the one above it, so ordering is a feature. For example, replace \"cat\" with \"tiger\", then \"tiger\" with \"lion\", and every original \"cat\" ends up as \"lion\"."
+          },
+          {
+            "title": "Regex is optional",
+            "body": "By default, \"find\" matches literal text and needs no regex knowledge. Toggle \"Regex\" per rule to treat the pattern as a JavaScript regular expression with capture groups (2026)-(07) and references like $1-$2."
+          },
+          {
+            "title": "Precision options",
+            "body": "Turn on \"Case-sensitive\" to distinguish Hello from hello. Turn on \"Whole word\" so \"test\" is skipped inside \"testing\"."
+          }
+        ]
+      },
+      "faq": {
+        "title": "FAQ",
+        "items": [
+          {
+            "q": "Does a bad regex freeze my tab?",
+            "a": "The MVP uses a best-effort deadline guard (500ms timeout). Even a catastrophic-backtracking regex won't freeze your tab permanently, but you may see a brief delay. Phase 2 will upgrade to a Web Worker for a hard guarantee."
+          },
+          {
+            "q": "Where are my saved rule-sets stored?",
+            "a": "Your rule-sets are stored in your browser's localStorage. Nothing is sent to a server. Clearing your browser cache will delete them."
+          },
+          {
+            "q": "Can I replace one at a time using \"First only\"?",
+            "a": "Yes, toggle \"First only\" to replace only the first match. For step-by-step replacement, you'd need to reload and repeat—this tool is optimized for replace-all."
+          }
+        ]
+      }
+    },
     "character-counter": {
       "title": "Character & Word Counter",
       "description": "Count characters, words, sentences in real-time.",

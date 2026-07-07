@@ -205,6 +205,22 @@ export const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'find-replace',
+    slug: 'find-replace',
+    category: 'text',
+    icon: 'Replace',
+    accent: 'grape',
+    status: 'live',
+    addedAt: '2026-07-07',
+    order: 15,
+    keywords: [
+      '찾아바꾸기', '문장바꾸기', '단어바꾸기', '일괄치환', '치환', '바꾸기',
+      '정규식', '대소문자', '전체단어', '규칙', '규칙스택',
+      'find and replace', 'replace all', 'bulk replace', 'text replace',
+      'regex', 'substitute', 'multi-rule', 'literal', 'capture group'
+    ],
+  },
+  {
     id: 'base64-encoder',
     slug: 'base64-encoder',
     category: 'dev',

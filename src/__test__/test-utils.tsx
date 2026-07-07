@@ -2,6 +2,9 @@ import { ReactNode } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NextIntlClientProvider } from 'next-intl';
+// Use the REAL en catalog for find-replace so component tests validate against
+// the shipping strings (not a hand-authored mock that can silently drift).
+import enMessages from '@/i18n/messages/en.json';
 
 const defaultMessages = {
   navigation: {
@@ -967,6 +970,7 @@ const defaultMessages = {
         millisecond: 'Millisecond', second: 'Second', minute: 'Minute', hour: 'Hour', day: 'Day',
       },
     },
+    'find-replace': (enMessages as any).tools['find-replace'],
   },
 };
 

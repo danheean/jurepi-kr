@@ -8,6 +8,7 @@ import {
   Timer,
   CalendarDays,
   NotebookPen,
+  Replace,
   Wrench,
 } from 'lucide-react';
 
@@ -49,6 +50,7 @@ export function ToolIcon({
     Timer,
     CalendarDays,
     NotebookPen,
+    Replace,
   };
   const Icon = iconMap[name] || Wrench;
   return (

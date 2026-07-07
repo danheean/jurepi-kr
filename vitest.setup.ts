@@ -26,6 +26,14 @@ if (typeof global.ImageData === 'undefined') {
   };
 }
 
+// Polyfill URL.createObjectURL / revokeObjectURL for jsdom (blob downloads)
+if (typeof URL.createObjectURL === 'undefined') {
+  // @ts-ignore - polyfill for jsdom
+  URL.createObjectURL = vi.fn(() => 'blob:jsdom-mock');
+  // @ts-ignore - polyfill for jsdom
+  URL.revokeObjectURL = vi.fn();
+}
+
 afterEach(() => {
   cleanup();
 });

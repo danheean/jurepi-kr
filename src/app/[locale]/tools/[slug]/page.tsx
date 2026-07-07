@@ -52,6 +52,10 @@ import { CounterIntro } from '@/components/tools/character-counter/CounterIntro'
 import { CounterHowTo } from '@/components/tools/character-counter/CounterHowTo';
 import { CounterFaq } from '@/components/tools/character-counter/CounterFaq';
 import { CounterStructuredData } from '@/components/tools/character-counter/CounterStructuredData';
+import { FindReplaceIntro } from '@/components/tools/find-replace/FindReplaceIntro';
+import { FindReplaceHowTo } from '@/components/tools/find-replace/FindReplaceHowTo';
+import { FindReplaceFaq } from '@/components/tools/find-replace/FindReplaceFaq';
+import { FindReplaceStructuredData } from '@/components/tools/find-replace/FindReplaceStructuredData';
 import { Base64EncoderIntro } from '@/components/tools/base64-encoder/Base64EncoderIntro';
 import { Base64EncoderHowTo } from '@/components/tools/base64-encoder/Base64EncoderHowTo';
 import { Base64EncoderFaq } from '@/components/tools/base64-encoder/Base64EncoderFaq';
@@ -171,6 +175,12 @@ const CharacterCounter = dynamic(() =>
   }))
 );
 
+const FindReplace = dynamic(() =>
+  import('@/components/tools/find-replace/FindReplace').then((m) => ({
+    default: m.FindReplace,
+  }))
+);
+
 const Base64Encoder = dynamic(() =>
   import('@/components/tools/base64-encoder/Base64Encoder').then((m) => ({
     default: m.Base64Encoder,
@@ -244,6 +254,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'character-counter') {
+    title = t('meta.title');
+    description = t('meta.description');
+  } else if (slug === 'find-replace') {
     title = t('meta.title');
     description = t('meta.description');
   } else if (slug === 'restaurant-map') {
@@ -434,6 +447,18 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
         <CharacterCounter />
         <CounterHowTo />
         <CounterFaq />
+      </>
+    );
+  }
+
+  if (slug === 'find-replace') {
+    return (
+      <>
+        <FindReplaceStructuredData />
+        <FindReplaceIntro />
+        <FindReplace />
+        <FindReplaceHowTo />
+        <FindReplaceFaq />
       </>
     );
   }
