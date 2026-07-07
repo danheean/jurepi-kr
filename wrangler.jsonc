@@ -2,6 +2,11 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "jurep-kr",
   "compatibility_date": "2025-06-01",
+  // Disable the public *.workers.dev route so the app is only served from the
+  // canonical custom domain (apps.jurepi.kr). Prevents the duplicate,
+  // indexable jurep-kr.danhee-an.workers.dev copy that Google Tag Coverage
+  // flagged as an untagged host.
+  "workers_dev": false,
   // Assets-only Worker (no `main`): serves the Next.js static export from ./out.
   // _headers (security headers) and _redirects (/ → /ko) live inside ./out
   // (copied from public/ at build time) and are applied to every response.
