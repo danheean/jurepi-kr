@@ -30,13 +30,15 @@
   },
   "home": {
     "eyebrow": "Free online tools",
-    "headline": "Handy tools, all free.",
-    "subhead": "Discover useful tools in one place.",
+    "headline": "Everyday tools, all in one place.",
+    "subhead": "No install, no signup — all free, ready to use.",
     "searchPlaceholder": "Search tools…",
     "searchAria": "Search tools",
     "toolsHeading": "All tools",
     "resultCount": "{count, plural, one {# tool} other {# tools}}",
     "mascotGreeting": "Hi! Find the tool you need.",
+    "requestButton": "Request a tool",
+    "requestSubject": "[Jurepi] Tool request",
     "meta": {
       "title": "Jurepi · Free Online Tools",
       "description": "A free online tool hub with no sign-up required. Use handy tools like the ladder game and daily questions right in your browser."
@@ -67,6 +69,11 @@
     "copyLink": "Copy link",
     "copied": "Link copied!",
     "native": "Share via another app (Instagram, KakaoTalk, …)"
+  },
+  "markdownCopy": {
+    "copy": "Copy as Markdown",
+    "copied": "Markdown copied!",
+    "sourceLabel": "Source"
   },
   "categories": {
     "all": "All",
@@ -2790,7 +2797,7 @@
       "description": "Learn about Jurepi, a free online tool hub. No sign-up required, all tools work locally in your browser."
     },
     "heading": "About Jurepi",
-    "intro": "Handy tools, all free.",
+    "intro": "Everyday tools, all in one place.",
     "sections": [
       {
         "title": "Why we built it",

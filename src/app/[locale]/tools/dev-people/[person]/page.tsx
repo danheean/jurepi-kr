@@ -12,6 +12,7 @@ import devPeopleData from '@/components/tools/dev-people/data/dev-people.generat
 import { byId } from '@/lib/dev-people/catalog';
 import type { MergedPerson } from '@/lib/dev-people/schema';
 import { ShareButtons } from '@/components/share';
+import { CopyMarkdownButton } from '@/components/markdown';
 import { PersonSpoke } from '@/components/tools/dev-people/PersonSpoke';
 
 type Props = {
@@ -59,6 +60,8 @@ export default async function PersonPage({ params }: Props) {
   }
 
   const personName = locale === 'ko' ? personRecord.ko.name : personRecord.en.name;
+  const localeData = locale === 'ko' ? personRecord.ko : personRecord.en;
+  const entityUrl = absoluteEntityUrl(locale, 'dev-people', person);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jurepi.kr';
 
   const personLd = personJsonLd(personRecord, locale as 'ko' | 'en');
@@ -89,10 +92,16 @@ export default async function PersonPage({ params }: Props) {
           >
             ← {t('title')}
           </a>
-          <ShareButtons
-            url={absoluteEntityUrl(locale, 'dev-people', person)}
-            title={personName}
-          />
+          <div className="flex flex-wrap items-center gap-4">
+            {localeData.biography_body && (
+              <CopyMarkdownButton
+                markdown={localeData.biography_body}
+                title={personName}
+                sourceUrl={entityUrl}
+              />
+            )}
+            <ShareButtons url={entityUrl} title={personName} />
+          </div>
         </div>
 
         <PersonSpoke person={personRecord} locale={locale as 'ko' | 'en'} />

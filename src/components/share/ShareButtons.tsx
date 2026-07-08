@@ -109,6 +109,7 @@ export function ShareButtons({ className = '', url, title }: ShareButtonsProps):
               key={target.id}
               type="button"
               aria-label={t(target.labelKey)}
+              title={t(target.labelKey)}
               onClick={() => handleShareClick(target.id)}
               className="
                 inline-flex items-center justify-center
@@ -134,6 +135,7 @@ export function ShareButtons({ className = '', url, title }: ShareButtonsProps):
           aria-label={
             copiedId === 'copy' ? t('copied') : t('copyLink')
           }
+          title={copiedId === 'copy' ? t('copied') : t('copyLink')}
           onClick={handleCopyLink}
           className="
             inline-flex items-center justify-center
@@ -161,6 +163,7 @@ export function ShareButtons({ className = '', url, title }: ShareButtonsProps):
           <button
             type="button"
             aria-label={t('native')}
+            title={t('native')}
             onClick={handleNativeShare}
             className="
               inline-flex items-center justify-center

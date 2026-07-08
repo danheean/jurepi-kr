@@ -84,7 +84,7 @@ test.describe('Main dashboard - E2E', () => {
     const main = page.locator('main');
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-    await expect(page.locator('h1')).toContainText('Handy tools');
+    await expect(page.locator('h1')).toContainText('Everyday tools');
     await expect(main.getByText('Ladder Game')).toBeVisible();
     await expect(main.locator('a[href="/en/tools/ladder"]')).toHaveCount(1);
   });

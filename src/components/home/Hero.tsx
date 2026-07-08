@@ -1,14 +1,18 @@
 import { getTranslations } from 'next-intl/server';
+import { Mail } from 'lucide-react';
 import { HeroMascot } from './HeroMascot';
 
 /**
- * Hero: static server component — eyebrow, headline, subhead, and the mascot
- * companion. No interactive search (that lives in ToolExplorer below it).
- * Decorative low-opacity accent blobs sit behind, pointer-events none, static
- * (no motion) so they never distract or shift layout.
+ * Hero: static server component — eyebrow, headline, subhead, a "request a tool"
+ * CTA, and the mascot companion. No interactive search (that lives in
+ * ToolExplorer below it). Decorative low-opacity accent blobs sit behind,
+ * pointer-events none, static (no motion) so they never distract or shift layout.
  */
 export async function Hero(): Promise<React.ReactNode> {
   const t = await getTranslations('home');
+  // Reuse the single public email source (contact.email) — never hardcode.
+  const tc = await getTranslations('contact');
+  const requestHref = `mailto:${tc('email')}?subject=${encodeURIComponent(t('requestSubject'))}`;
 
   return (
     <section
@@ -44,6 +48,21 @@ export async function Hero(): Promise<React.ReactNode> {
             <p className="mx-auto max-w-[540px] text-lg leading-relaxed text-text-secondary md:mx-0">
               {t('subhead')}
             </p>
+            <a
+              href={requestHref}
+              className="
+                mt-8 inline-flex items-center gap-2 rounded-lg
+                border border-brand px-5 py-3
+                text-sm font-semibold text-brand
+                transition-colors duration-150
+                hover:bg-brand hover:text-on-brand
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2
+                motion-safe:active:scale-95
+              "
+            >
+              <Mail className="h-4 w-4" aria-hidden="true" />
+              {t('requestButton')}
+            </a>
           </div>
 
           <div className="flex-shrink-0">

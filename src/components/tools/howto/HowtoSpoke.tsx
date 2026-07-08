@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import type { MergedGuide } from '@/lib/howto/schema';
 import { readingTime, byId } from '@/lib/howto/catalog';
-import { Markdown } from '@/components/markdown';
+import { Markdown, CopyMarkdownButton } from '@/components/markdown';
 import { ShareButtons } from '@/components/share/ShareButtons';
 import { absoluteToolUrl } from '@/lib/seo';
 
@@ -16,6 +16,7 @@ export async function HowtoSpoke({ guide, locale, catalog = [] }: HowtoSpokeProp
   const t = await getTranslations({ locale, namespace: 'tools.howto' });
   const content = guide[locale];
   const time = readingTime(content.body);
+  const spokeUrl = `${absoluteToolUrl(locale, 'howto')}/${guide.slug}`;
 
   const formattedDate = guide.updated
     ? new Date(guide.updated).toLocaleDateString(locale === 'ko' ? 'ko' : 'en', {
@@ -43,11 +44,15 @@ export async function HowtoSpoke({ guide, locale, catalog = [] }: HowtoSpokeProp
           <span>{t('spoke.readingTime', { minutes: time })}</span>
         </div>
 
-        {/* Share buttons */}
-        <ShareButtons
-          url={`${absoluteToolUrl(locale, 'howto')}/${guide.slug}`}
-          title={content.title}
-        />
+        {/* Share buttons + copy-as-markdown */}
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <ShareButtons url={spokeUrl} title={content.title} />
+          <CopyMarkdownButton
+            markdown={content.body}
+            title={content.title}
+            sourceUrl={spokeUrl}
+          />
+        </div>
       </header>
 
       {/* Cover image */}

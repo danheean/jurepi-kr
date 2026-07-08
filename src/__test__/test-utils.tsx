@@ -35,13 +35,15 @@ const defaultMessages = {
   },
   home: {
     eyebrow: 'Free online tools',
-    headline: 'Handy tools, all free.',
-    subhead: 'Discover useful tools in one place.',
+    headline: 'Everyday tools, all in one place.',
+    subhead: 'No install, no signup — all free, ready to use.',
     searchPlaceholder: 'Search tools…',
     searchAria: 'Search tools',
     toolsHeading: 'All tools',
     mascotGreeting: 'Find the tool you need!',
     resultCount: '{count, plural, one {# tool} other {# tools}}',
+    requestButton: 'Request a tool',
+    requestSubject: '[Jurepi] Tool request',
   },
   categories: {
     all: 'All',
@@ -69,6 +71,11 @@ const defaultMessages = {
     copyLink: 'Copy link',
     copied: 'Link copied!',
     native: 'Share via another app (Instagram, KakaoTalk, …)',
+  },
+  markdownCopy: {
+    copy: 'Copy as Markdown',
+    copied: 'Markdown copied!',
+    sourceLabel: 'Source',
   },
   emptyState: {
     heading: 'No results found',

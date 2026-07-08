@@ -30,13 +30,15 @@
   },
   "home": {
     "eyebrow": "무료 온라인 도구",
-    "headline": "필요한 도구, 전부 무료로.",
-    "subhead": "매일 필요한 도구를 한곳에서 찾아보세요.",
+    "headline": "일상에 필요한 도구를 한곳에",
+    "subhead": "설치도 가입도 없이, 전부 무료로 바로 쓰세요.",
     "searchPlaceholder": "도구 검색…",
     "searchAria": "도구 검색",
     "toolsHeading": "도구 목록",
     "resultCount": "{count, plural, one {# 개의 도구} other {# 개의 도구}}",
     "mascotGreeting": "안녕하세요! 원하는 도구를 찾아보세요.",
+    "requestButton": "도구 요청하기",
+    "requestSubject": "[Jurepi] 도구 요청",
     "meta": {
       "title": "Jurepi · 무료 온라인 도구 모음",
       "description": "회원가입 없이 바로 쓰는 무료 온라인 도구 모음. 사다리타기, 1일 1질문 등 매일 필요한 도구를 브라우저에서 안전하게 사용하세요."
@@ -67,6 +69,11 @@
     "copyLink": "링크 복사",
     "copied": "링크를 복사했습니다!",
     "native": "다른 앱으로 공유 (인스타그램·카카오톡 등)"
+  },
+  "markdownCopy": {
+    "copy": "마크다운 복사",
+    "copied": "마크다운을 복사했습니다!",
+    "sourceLabel": "출처"
   },
   "categories": {
     "all": "전체",
@@ -2790,7 +2797,7 @@
       "description": "Jurepi는 회원가입 없이 바로 사용할 수 있는 무료 온라인 도구 모음입니다. 모든 도구는 브라우저에서 안전하게 작동합니다."
     },
     "heading": "Jurepi 소개",
-    "intro": "필요한 도구, 전부 무료로.",
+    "intro": "일상에 필요한 도구를 한곳에",
     "sections": [
       {
         "title": "왜 만들었나요?",

@@ -13,6 +13,7 @@ import {
 } from '@/lib/seo';
 import { NewWordSpoke } from '@/components/tools/new-word/NewWordSpoke';
 import { ShareButtons } from '@/components/share';
+import { CopyMarkdownButton } from '@/components/markdown';
 
 type Props = {
   params: Promise<{ locale: 'ko' | 'en'; term: string }>;
@@ -95,8 +96,13 @@ export default async function SpokeToolPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
         />
 
-        {/* SNS share (shared template affordance across tool + spoke pages) */}
-        <div className="mb-6 flex justify-end">
+        {/* SNS share + copy-as-markdown (shared spoke affordances) */}
+        <div className="mb-6 flex flex-wrap items-center justify-end gap-4">
+          <CopyMarkdownButton
+            markdown={item[locale].body}
+            title={item[locale].term}
+            sourceUrl={absoluteEntityUrl(locale, 'new-word', term)}
+          />
           <ShareButtons />
         </div>
 

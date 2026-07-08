@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import questionsData from '../../src/components/tools/qna-a-day/data/questions.json';
 
 /**
  * E2E Tests for Q&A a Day Tool
@@ -7,6 +8,21 @@ import { test, expect } from '@playwright/test';
  * Each scenario focuses on a critical user flow: persistence, calendar navigation,
  * backup/restore, i18n/leap-year handling, and SEO/storage resilience.
  */
+
+/**
+ * Today's Korean question, resolved from the bank exactly as the app does
+ * (local MM-DD, leap day 02-29 → 02-28). Deterministic across all dates —
+ * avoids a brittle magic-number length check that broke on short questions.
+ */
+function todaysKoreanQuestion(): string {
+  const now = new Date();
+  const pad = (n: number) => String(n).padStart(2, '0');
+  let mmdd = `${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  if (mmdd === '02-29') mmdd = '02-28';
+  const entry = questionsData.questions.find((q) => q.date === mmdd);
+  if (!entry) throw new Error(`No question bank entry for ${mmdd}`);
+  return entry.question;
+}
 
 test.describe('Q&A a Day - E2E Integration', () => {
   /**
@@ -33,8 +49,7 @@ test.describe('Q&A a Day - E2E Integration', () => {
     const questionDiv = page.locator('#today-panel').locator('p.text-body-lg');
     await expect(questionDiv).toBeVisible({ timeout: 5000 });
     const questionContent = await questionDiv.textContent();
-    expect(questionContent).toBeTruthy();
-    expect(questionContent?.length).toBeGreaterThan(10);
+    expect(questionContent?.trim()).toBe(todaysKoreanQuestion());
 
     // Type an answer
     const testAnswer = '오늘은 날씨가 좋은 날씨네요.';
