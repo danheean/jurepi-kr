@@ -11,7 +11,7 @@ describe('HeroMascot', () => {
     vi.stubEnv('NEXT_PUBLIC_BLOG_URL', '');
     render(<HeroMascot greeting="안녕하세요" />);
 
-    expect(screen.getByRole('img', { name: 'Jurepi 마스코트' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Jurepi mascot' })).toBeInTheDocument();
     expect(screen.getByText('안녕하세요')).toBeInTheDocument();
   });
 
@@ -33,11 +33,11 @@ describe('HeroMascot', () => {
     vi.stubEnv('NEXT_PUBLIC_BLOG_URL', 'https://blog.naver.com/dhan0213');
     render(<HeroMascot greeting="안녕하세요" />);
 
-    const link = screen.getByRole('link');
+    const link = screen.getByRole('link', { name: 'Jurepi blog' });
     expect(link).toHaveAttribute('href', 'https://blog.naver.com/dhan0213');
     // The mascot image lives inside the link.
     expect(link).toContainElement(
-      screen.getByRole('img', { name: 'Jurepi 마스코트' })
+      screen.getByRole('img', { name: 'Jurepi mascot' })
     );
   });
 });

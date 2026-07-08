@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 interface HeroMascotProps {
   greeting?: string;
@@ -18,6 +19,10 @@ export function HeroMascot({
   priority = false,
   className,
 }: HeroMascotProps): React.ReactNode {
+  // Isomorphic — resolves against the active locale in both server and client
+  // renders (Hero/not-found are server, EmptyState is client), so the alt/aria
+  // text follows the page language instead of leaking Korean on /en.
+  const t = useTranslations('home');
   // Optional external destination for the mascot (e.g. owner's blog).
   // When unset/empty, the mascot stays a plain, non-interactive image.
   const blogUrl = process.env.NEXT_PUBLIC_BLOG_URL?.trim();
@@ -29,7 +34,7 @@ export function HeroMascot({
     >
       <Image
         src="/mascot/jurepi-mascot-512.webp"
-        alt="Jurepi 마스코트"
+        alt={t('mascotAlt')}
         width={size}
         height={size}
         priority={priority}
@@ -43,7 +48,7 @@ export function HeroMascot({
       {blogUrl ? (
         <a
           href={blogUrl}
-          aria-label="Jurepi 블로그"
+          aria-label={t('mascotBlogLabel')}
           className="rounded-full transition-transform duration-200 ease-out hover:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:scale-100"
         >
           {portrait}

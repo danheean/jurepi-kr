@@ -41,6 +41,8 @@ const defaultMessages = {
     searchAria: 'Search tools',
     toolsHeading: 'All tools',
     mascotGreeting: 'Find the tool you need!',
+    mascotAlt: 'Jurepi mascot',
+    mascotBlogLabel: 'Jurepi blog',
     resultCount: '{count, plural, one {# tool} other {# tools}}',
     requestButton: 'Request a tool',
     requestSubject: '[Jurepi] Tool request',

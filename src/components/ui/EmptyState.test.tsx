@@ -48,7 +48,7 @@ describe('EmptyState', () => {
       />
     );
 
-    const mascot = screen.getByAltText('Jurepi 마스코트');
+    const mascot = screen.getByAltText('Jurepi mascot');
     expect(mascot).toBeInTheDocument();
   });
 
@@ -63,7 +63,7 @@ describe('EmptyState', () => {
       />
     );
 
-    const mascot = screen.queryByAltText('Jurepi 마스코트');
+    const mascot = screen.queryByAltText('Jurepi mascot');
     expect(mascot).not.toBeInTheDocument();
   });
 

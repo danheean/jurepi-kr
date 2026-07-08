@@ -4,7 +4,7 @@
  */
 
 import type { SearchableTool } from '@/lib/tool-search';
-import { isNewTool } from '@/lib/tool-search';
+import { isNewTool, NEW_BADGE_MAX_COUNT } from '@/lib/tool-search';
 import type { ToolMeta } from '@/tools/types';
 
 /**
@@ -22,7 +22,8 @@ const BUILD_DATE = process.env.NEXT_PUBLIC_BUILD_DATE;
 
 /**
  * Convert registry tools to searchable tools with localized name and description.
- * `isNew` is derived from `addedAt` (released within the last 7 days as of the build).
+ * `isNew` marks the {@link NEW_BADGE_MAX_COUNT} most-recently-added tools that are
+ * still inside the NEW window (a launch burst can't flood the grid with badges).
  * Returns a new immutable array.
  *
  * @param tools Registry items from @/tools/registry
@@ -35,9 +36,20 @@ export function toSearchableTools(
   t: Translator,
   referenceDate: string | undefined = BUILD_DATE
 ): SearchableTool[] {
+  // Among window-eligible tools, keep only the newest few. Deterministic order
+  // (addedAt desc, id asc tiebreak) so server (SSG) and client agree — no
+  // hydration mismatch on the badge.
+  const newIds = new Set(
+    tools
+      .filter((tool) => isNewTool(tool.addedAt, referenceDate))
+      .sort((a, b) => b.addedAt.localeCompare(a.addedAt) || a.id.localeCompare(b.id))
+      .slice(0, NEW_BADGE_MAX_COUNT)
+      .map((tool) => tool.id)
+  );
+
   return tools.map((tool) => ({
     ...tool,
-    isNew: isNewTool(tool.addedAt, referenceDate),
+    isNew: newIds.has(tool.id),
     name: t(`tools.${tool.id}.title`),
     description: t(`tools.${tool.id}.description`),
   }));

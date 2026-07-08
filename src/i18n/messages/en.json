@@ -37,6 +37,8 @@
     "toolsHeading": "All tools",
     "resultCount": "{count, plural, one {# tool} other {# tools}}",
     "mascotGreeting": "Hi! Find the tool you need.",
+    "mascotAlt": "Jurepi mascot",
+    "mascotBlogLabel": "Jurepi blog",
     "requestButton": "Request a tool",
     "requestSubject": "[Jurepi] Tool request",
     "meta": {

@@ -122,6 +122,31 @@ describe('toSearchableTools', () => {
     expect(result[0].isNew).toBe(false); // added 2026-07-01, exactly 7 days old
   });
 
+  it('caps the NEW badge to the newest few even when more are within the window', () => {
+    // Five tools all within the 7-day window of the reference date; only the
+    // three most-recently-added should keep the badge.
+    const many: ToolMeta[] = (
+      ['2026-07-01', '2026-07-02', '2026-07-03', '2026-07-04', '2026-07-05'] as const
+    ).map((addedAt, i) => ({
+      id: `t${i}`,
+      slug: `t${i}`,
+      category: 'random',
+      icon: 'Dices',
+      accent: 'rose',
+      status: 'live',
+      addedAt,
+      order: i,
+      keywords: [],
+    }));
+
+    const result = toSearchableTools(many, fakeTranslator, '2026-07-06');
+    const newSlugs = result.filter((tool) => tool.isNew).map((tool) => tool.id);
+    // Newest three by addedAt desc: t4 (07-05), t3 (07-04), t2 (07-03).
+    expect(newSlugs.sort()).toEqual(['t2', 't3', 't4']);
+    expect(result.find((tool) => tool.id === 't0')?.isNew).toBe(false);
+    expect(result.find((tool) => tool.id === 't1')?.isNew).toBe(false);
+  });
+
   it('preserves isPopular passthrough', () => {
     const result = toSearchableTools(fixtureTools, fakeTranslator, '2026-07-06');
     expect(result[0].isPopular).toBe(true);

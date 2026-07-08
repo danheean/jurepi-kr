@@ -122,6 +122,13 @@ export function deriveCategories(tools: SearchableTool[]): CategoryOption[] {
 /** Days a tool counts as "new" after release (NEW badge window). */
 export const NEW_BADGE_WINDOW_DAYS = 7;
 
+/**
+ * Max tools that may show the NEW badge at once. The window alone floods the
+ * grid when several tools ship in one burst (every card reads "NEW", so the
+ * signal dies); capping to the few most-recent keeps NEW meaningful.
+ */
+export const NEW_BADGE_MAX_COUNT = 3;
+
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 

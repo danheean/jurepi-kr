@@ -61,7 +61,7 @@ describe('ToolGrid', () => {
 
   it('shows mascot in empty state', () => {
     render(<ToolGrid tools={[]} isFiltered={true} onReset={() => {}} />);
-    const mascot = screen.getByAltText('Jurepi 마스코트');
+    const mascot = screen.getByAltText('Jurepi mascot');
     expect(mascot).toBeInTheDocument();
   });
 

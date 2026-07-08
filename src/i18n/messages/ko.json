@@ -37,6 +37,8 @@
     "toolsHeading": "도구 목록",
     "resultCount": "{count, plural, one {# 개의 도구} other {# 개의 도구}}",
     "mascotGreeting": "안녕하세요! 원하는 도구를 찾아보세요.",
+    "mascotAlt": "Jurepi 마스코트",
+    "mascotBlogLabel": "Jurepi 블로그",
     "requestButton": "도구 요청하기",
     "requestSubject": "[Jurepi] 도구 요청",
     "meta": {

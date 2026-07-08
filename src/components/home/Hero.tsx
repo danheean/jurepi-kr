@@ -52,10 +52,10 @@ export async function Hero(): Promise<React.ReactNode> {
               href={requestHref}
               className="
                 mt-8 inline-flex items-center gap-2 rounded-lg
-                border border-brand px-5 py-3
-                text-sm font-semibold text-brand
+                border border-brand-ink px-5 py-3
+                text-sm font-semibold text-brand-ink
                 transition-colors duration-150
-                hover:bg-brand hover:text-on-brand
+                hover:bg-brand hover:border-brand hover:text-on-brand
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2
                 motion-safe:active:scale-95
               "
