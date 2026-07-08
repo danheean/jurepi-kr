@@ -65,6 +65,7 @@ export function OutputPane({
       {/* Tab Selection */}
       <div
         role="tablist"
+        aria-label={t('output.viewLabel')}
         className="flex border-b border-hairline"
         onKeyDown={handleTabKeyDown}
       >

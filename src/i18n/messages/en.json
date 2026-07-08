@@ -2619,6 +2619,7 @@
       },
       "output": {
         "label": "Output",
+        "viewLabel": "Output view",
         "formatTab": "Formatted",
         "treeTab": "Tree",
         "copy": "Copy",

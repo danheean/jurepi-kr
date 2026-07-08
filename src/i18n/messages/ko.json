@@ -2619,6 +2619,7 @@
       },
       "output": {
         "label": "출력",
+        "viewLabel": "출력 보기",
         "formatTab": "정렬",
         "treeTab": "트리",
         "copy": "복사",
