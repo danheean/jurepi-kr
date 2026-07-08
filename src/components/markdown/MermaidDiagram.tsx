@@ -31,9 +31,41 @@ export function MermaidDiagram({
     const renderDiagram = async () => {
       try {
         const mermaid = (await import('mermaid')).default;
-        const theme =
-          document.documentElement.dataset.theme === 'dark' ? 'dark' : 'default';
-        mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme });
+
+        // Map mermaid's palette onto the design system's resolved tokens instead
+        // of its lavender default. mermaid renders to an SVG string off-DOM, so
+        // CSS var() won't resolve — read the computed token values now. The
+        // MutationObserver below re-runs this on theme toggle, re-reading the
+        // (flipped) dark-theme values, so light/dark both stay on-brand.
+        const cs = getComputedStyle(document.documentElement);
+        const tok = (name: string) => cs.getPropertyValue(name).trim();
+        const themeVariables = {
+          fontFamily: 'Pretendard, system-ui, sans-serif',
+          primaryColor: tok('--brand-soft'),
+          primaryBorderColor: tok('--brand'),
+          primaryTextColor: tok('--text'),
+          secondaryColor: tok('--surface-sunken'),
+          secondaryBorderColor: tok('--hairline-strong'),
+          secondaryTextColor: tok('--text'),
+          tertiaryColor: tok('--surface-muted'),
+          tertiaryBorderColor: tok('--hairline-strong'),
+          tertiaryTextColor: tok('--text'),
+          mainBkg: tok('--brand-soft'),
+          nodeBorder: tok('--brand'),
+          nodeTextColor: tok('--text'),
+          clusterBkg: tok('--surface-sunken'),
+          clusterBorder: tok('--hairline-strong'),
+          lineColor: tok('--text-secondary'),
+          textColor: tok('--text'),
+          edgeLabelBackground: tok('--surface-muted'),
+          background: tok('--surface-muted'),
+        };
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'strict',
+          theme: 'base',
+          themeVariables,
+        });
 
         // Unique id per render call (NOT the container's id — mermaid uses it
         // for a temporary measurement node and a duplicate id breaks rendering).
