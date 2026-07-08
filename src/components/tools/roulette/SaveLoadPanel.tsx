@@ -79,31 +79,29 @@ export function SaveLoadPanel({
         ) : (
           <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto">
             {savedSets.map((set) => (
-              <button
-                key={set.name}
-                onClick={() => onLoad(set.name)}
-                data-testid={`roulette-load-set-${set.name.replace(/\s+/g, '-').toLowerCase()}`}
-                className="relative p-3 text-left border border-hairline rounded-lg hover:shadow-sm transition-shadow group"
-              >
-                <div className="text-sm font-semibold text-text truncate">
-                  {set.name}
-                </div>
-                <div className="text-xs text-text-secondary">
-                  {t('load.itemCount', { count: set.options.length })}
-                </div>
-
-                {/* Delete button (hover) */}
+              <div key={set.name} className="relative group">
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onDelete(set.name);
-                  }}
-                  className="absolute top-2 right-2 text-danger opacity-0 group-hover:opacity-100 transition-opacity"
-                  aria-label={`Delete ${set.name}`}
+                  onClick={() => onLoad(set.name)}
+                  data-testid={`roulette-load-set-${set.name.replace(/\s+/g, '-').toLowerCase()}`}
+                  className="w-full p-3 pr-11 text-left border border-hairline rounded-lg hover:shadow-sm transition-shadow"
+                >
+                  <div className="text-sm font-semibold text-text truncate">
+                    {set.name}
+                  </div>
+                  <div className="text-xs text-text-secondary">
+                    {t('load.itemCount', { count: set.options.length })}
+                  </div>
+                </button>
+
+                {/* Delete button — sibling (never nest interactive), touch-reachable */}
+                <button
+                  onClick={() => onDelete(set.name)}
+                  className="absolute top-1 right-1 inline-flex items-center justify-center min-w-[44px] min-h-[44px] text-danger rounded-lg opacity-70 hover:bg-danger/10 hover:opacity-100 focus-visible:opacity-100 transition-opacity"
+                  aria-label={`${t('options.delete')} ${set.name}`}
                 >
                   ✕
                 </button>
-              </button>
+              </div>
             ))}
           </div>
         )}

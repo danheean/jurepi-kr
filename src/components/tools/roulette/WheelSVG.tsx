@@ -14,6 +14,8 @@ export interface WheelSVGProps {
   /** 이번 스핀의 애니메이션 시간(ms) — 스핀마다 랜덤 */
   spinDurationMs: number;
   prefersReducedMotion: boolean;
+  /** SVG 접근성 이름 (스크린리더) */
+  ariaLabel?: string;
 }
 
 const RADIUS = 140;
@@ -73,6 +75,7 @@ export function WheelSVG({
   rotation,
   spinDurationMs,
   prefersReducedMotion,
+  ariaLabel,
 }: WheelSVGProps) {
   const showLegend = options.length > LEGEND_THRESHOLD;
 
@@ -88,6 +91,8 @@ export function WheelSVG({
       <svg
         viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
         data-testid="roulette-wheel"
+        role="img"
+        aria-label={ariaLabel}
         className="w-full max-w-[20rem]"
         style={{
           aspectRatio: '1',

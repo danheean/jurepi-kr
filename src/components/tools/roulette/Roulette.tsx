@@ -195,6 +195,7 @@ export function Roulette() {
             rotation={roulette.rotation}
             spinDurationMs={roulette.spinDurationMs}
             prefersReducedMotion={roulette.prefersReducedMotion}
+            ariaLabel={t('title')}
           />
 
           {/* 스핀 중 결과 노출 금지 — 승자 이름이 미리 보이면 긴장감이 죽는다 */}

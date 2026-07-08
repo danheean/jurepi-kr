@@ -42,7 +42,7 @@ export function SettingsPanel({
           onKeyDown={(e) => handleKeyDown(e, onToggleSound)}
           role="switch"
           aria-checked={soundOn}
-          className="relative w-12 h-6 rounded-full bg-border-hairline transition-colors"
+          className="relative w-12 h-6 rounded-full bg-hairline transition-colors before:absolute before:left-0 before:top-1/2 before:h-11 before:w-full before:-translate-y-1/2 before:content-['']"
           style={{
             backgroundColor: soundOn ? 'var(--accent-rose)' : 'var(--hairline)',
           }}
@@ -71,7 +71,7 @@ export function SettingsPanel({
           onKeyDown={(e) => handleKeyDown(e, onToggleRemoveWinner)}
           role="switch"
           aria-checked={removingWinner}
-          className="relative w-12 h-6 rounded-full bg-border-hairline transition-colors"
+          className="relative w-12 h-6 rounded-full bg-hairline transition-colors before:absolute before:left-0 before:top-1/2 before:h-11 before:w-full before:-translate-y-1/2 before:content-['']"
           style={{
             backgroundColor: removingWinner ? 'var(--accent-rose)' : 'var(--hairline)',
           }}

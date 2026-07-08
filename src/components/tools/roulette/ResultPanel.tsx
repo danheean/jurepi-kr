@@ -27,15 +27,20 @@ export function ResultPanel({
   const t = useTranslations('tools.roulette');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Trigger confetti when winner is revealed
+  // Trigger confetti when winner is revealed (skip under reduced-motion — WCAG 2.3.3)
   useEffect(() => {
-    if (selectedIndex !== null && !spinning && containerRef.current) {
+    if (
+      selectedIndex !== null &&
+      !spinning &&
+      !prefersReducedMotion &&
+      containerRef.current
+    ) {
       spawnConfetti(containerRef.current, {
         count: 50,
         duration: 1500,
       });
     }
-  }, [selectedIndex, spinning]);
+  }, [selectedIndex, spinning, prefersReducedMotion]);
 
   const winner = selectedIndex !== null ? options[selectedIndex] : null;
 
@@ -58,7 +63,7 @@ export function ResultPanel({
       </div>
 
       {/* Eyebrow */}
-      <div className="text-sm font-semibold text-brand uppercase tracking-wide">
+      <div className="text-sm font-semibold text-brand-ink uppercase tracking-wide">
         {t('result.eyebrow')}
       </div>
 
