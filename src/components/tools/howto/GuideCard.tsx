@@ -72,30 +72,24 @@ export function GuideCard({
           {content.summary}
         </p>
 
-        {/* Meta row */}
+        {/* Category signals: topic + difficulty (both pills, one visual tier) */}
         <div className="flex flex-wrap gap-2 items-center mb-2">
           <span
             className={`text-xs font-medium px-2 py-1 rounded-full ${colors.bg} ${colors.badge}`}
           >
             {t(`topics.${guide.topic}`)}
           </span>
-          
+
           {guide.difficulty && (
             <span className="text-xs px-2 py-1 rounded-full bg-surface-muted text-text-muted">
               {t(`difficulty.${guide.difficulty}`)}
-            </span>
-          )}
-
-          {formattedDate && (
-            <span className="text-xs text-text-muted">
-              {t('card.updated', { date: formattedDate })}
             </span>
           )}
         </div>
 
         {/* Tags */}
         {guide.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1 mb-2">
             {guide.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
@@ -105,6 +99,13 @@ export function GuideCard({
               </span>
             ))}
           </div>
+        )}
+
+        {/* Footer: quiet metadata (lowest tier) */}
+        {formattedDate && (
+          <p className="text-xs text-text-muted">
+            {t('card.updated', { date: formattedDate })}
+          </p>
         )}
       </Link>
 

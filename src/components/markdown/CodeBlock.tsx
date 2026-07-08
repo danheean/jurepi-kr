@@ -138,7 +138,7 @@ export function CodeBlock({
     <figure className="bg-surface-sunken rounded-md border border-hairline overflow-hidden mb-3">
       {/* Header: language label + copy button */}
       <div className="flex items-center justify-between pl-3 pr-1.5 py-0.5 bg-surface-muted border-b border-hairline">
-        <span className="text-xs font-mono font-semibold text-text-secondary uppercase">
+        <span className="text-xs font-mono font-semibold text-text-muted uppercase tracking-wide">
           {displayLanguage}
         </span>
         <button
