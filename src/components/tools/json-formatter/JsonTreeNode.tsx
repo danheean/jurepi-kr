@@ -10,12 +10,14 @@ interface JsonTreeNodeProps {
   isRoot?: boolean;
 }
 
+// WCAG-safe text tokens (`-ink`); raw `--accent-*` fills fail contrast on white.
+// Keys use near-black bold so all roles stay mutually distinguishable.
 const typeColors: Record<string, string> = {
-  string: 'text-accent-sky',
-  number: 'text-accent-sun',
-  boolean: 'text-accent-rose',
-  null: 'text-accent-mint',
-  key: 'text-accent-mint-ink font-medium',
+  string: 'text-accent-sky-ink',
+  number: 'text-accent-sun-ink',
+  boolean: 'text-accent-rose-ink',
+  null: 'text-accent-mint-ink',
+  key: 'text-text font-semibold',
 };
 
 function formatValue(value: any, type: string): string {
@@ -43,11 +45,6 @@ export function JsonTreeNode({
   const isCollapsible = node.children && node.children.length > 0;
   const paddingLeft = `${depth * 1.5}rem`;
 
-  // Reduce motion preference
-  const prefersReducedMotion =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   return (
     <div className="space-y-0.5">
       {/* Node Header */}
@@ -61,9 +58,9 @@ export function JsonTreeNode({
             <button
               onClick={() => setExpanded(!expanded)}
               className={`
-                flex-shrink-0 w-5 h-5 flex items-center justify-center
+                flex-shrink-0 w-6 h-6 flex items-center justify-center
                 hover:bg-surface-muted rounded
-                transition-transform ${!prefersReducedMotion && 'transition-transform'}
+                motion-safe:transition-transform
                 ${expanded ? 'rotate-90' : 'rotate-0'}
               `}
               aria-expanded={expanded}

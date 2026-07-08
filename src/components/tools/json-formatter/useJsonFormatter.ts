@@ -35,6 +35,7 @@ export interface UseJsonFormatterActions {
   format: () => void;
   minify: () => void;
   clear: () => void;
+  clearError: () => void;
   loadFromUrl: (url: string) => Promise<void>;
   copyFormatted: () => Promise<boolean>;
   downloadJson: (filename?: string) => void;
@@ -218,6 +219,10 @@ export function useJsonFormatter(): [
     }));
   }, []);
 
+  const clearError = useCallback(() => {
+    setState((prev) => (prev.error ? { ...prev, error: null } : prev));
+  }, []);
+
   const loadFromUrl = useCallback(async (url: string) => {
     setState((prev) => ({
       ...prev,
@@ -324,6 +329,7 @@ export function useJsonFormatter(): [
     format,
     minify,
     clear,
+    clearError,
     loadFromUrl,
     copyFormatted,
     downloadJson,

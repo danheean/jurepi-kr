@@ -11,61 +11,63 @@ describe('SyntaxHighlight', () => {
     expect(container.querySelector('code')).toBeInTheDocument();
   });
 
-  it('highlights string tokens with sky color', () => {
+  // Values use the text-legible `-ink` accent tokens (≥4.5:1 on white), not the
+  // raw `--accent-*` fills which fail WCAG AA as text.
+  it('highlights string tokens with the legible sky-ink color', () => {
     const { container } = render(
       <SyntaxHighlight json='{"name": "John"}' />
     );
 
     const stringSpan = Array.from(container.querySelectorAll('span')).find(
-      (el) => el.textContent === '"John"' && el.className.includes('text-accent-sky')
+      (el) => el.textContent === '"John"' && el.className.includes('text-accent-sky-ink')
     );
 
     expect(stringSpan).toBeInTheDocument();
   });
 
-  it('highlights number tokens with sun color', () => {
+  it('highlights number tokens with the legible sun-ink color', () => {
     const { container } = render(
       <SyntaxHighlight json='{"age": 30}' />
     );
 
     const numberSpan = Array.from(container.querySelectorAll('span')).find(
-      (el) => el.textContent === '30' && el.className.includes('text-accent-sun')
+      (el) => el.textContent === '30' && el.className.includes('text-accent-sun-ink')
     );
 
     expect(numberSpan).toBeInTheDocument();
   });
 
-  it('highlights boolean tokens with rose color', () => {
+  it('highlights boolean tokens with the legible rose-ink color', () => {
     const { container } = render(
       <SyntaxHighlight json='{"active": true}' />
     );
 
     const boolSpan = Array.from(container.querySelectorAll('span')).find(
-      (el) => el.textContent === 'true' && el.className.includes('text-accent-rose')
+      (el) => el.textContent === 'true' && el.className.includes('text-accent-rose-ink')
     );
 
     expect(boolSpan).toBeInTheDocument();
   });
 
-  it('highlights null tokens with mint color', () => {
+  it('highlights null tokens with the legible mint-ink color', () => {
     const { container } = render(
       <SyntaxHighlight json='{"value": null}' />
     );
 
     const nullSpan = Array.from(container.querySelectorAll('span')).find(
-      (el) => el.textContent === 'null' && el.className.includes('text-accent-mint')
+      (el) => el.textContent === 'null' && el.className.includes('text-accent-mint-ink')
     );
 
     expect(nullSpan).toBeInTheDocument();
   });
 
-  it('highlights keys with mint-ink color', () => {
+  it('renders keys in bold near-black so they stay distinct from value colors', () => {
     const { container } = render(
       <SyntaxHighlight json='{"key": "value"}' />
     );
 
     const keySpan = Array.from(container.querySelectorAll('span')).find(
-      (el) => el.textContent === '"key"' && el.className.includes('text-accent-mint-ink')
+      (el) => el.textContent === '"key"' && el.className.includes('font-semibold')
     );
 
     expect(keySpan).toBeInTheDocument();

@@ -28,7 +28,7 @@ export const JsonInput = forwardRef<HTMLTextAreaElement, JsonInputProps>(
           className={`
             w-full h-64 p-4 font-mono text-sm
             bg-surface border border-surface-muted rounded-lg
-            focus:outline-none focus:ring-2 focus:ring-brand focus:ring-opacity-50
+            focus:outline-none focus:ring-2 focus:ring-brand/50
             resize-none
             ${className}
           `}

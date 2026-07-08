@@ -121,12 +121,16 @@ function tokenizeJson(json: string): Token[] {
   return tokens;
 }
 
+// Text-legible token colors: the raw `--accent-*` fills are only ~1.4–2.9:1 on
+// white (fill role, not text). Their `-ink` variants are the WCAG-safe text
+// tokens (≥4.5:1 on white, and flip to light values in dark theme). Keys use
+// near-black bold so all five roles stay mutually distinguishable.
 const tokenColorMap: Record<TokenType, string> = {
-  string: 'text-accent-sky',
-  number: 'text-accent-sun',
-  boolean: 'text-accent-rose',
-  null: 'text-accent-mint',
-  key: 'text-accent-mint-ink font-medium',
+  string: 'text-accent-sky-ink',
+  number: 'text-accent-sun-ink',
+  boolean: 'text-accent-rose-ink',
+  null: 'text-accent-mint-ink',
+  key: 'text-text font-semibold',
   bracket: 'text-text',
   punctuation: 'text-text-secondary',
   whitespace: '', // Preserve whitespace as-is

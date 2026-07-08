@@ -19,6 +19,11 @@ interface OutputPaneProps {
 
 type TabType = 'formatted' | 'tree';
 
+const TABS: { id: TabType; labelKey: string }[] = [
+  { id: 'formatted', labelKey: 'output.formatTab' },
+  { id: 'tree', labelKey: 'output.treeTab' },
+];
+
 export function OutputPane({
   parseResult,
   stats,
@@ -44,40 +49,62 @@ export function OutputPane({
 
   const hasOutput = parseResult.success && parseResult.output;
 
+  // Roving-tabindex arrow navigation between the two tabs (WAI-ARIA tabs pattern).
+  const handleTabKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const next: TabType = activeTab === 'formatted' ? 'tree' : 'formatted';
+    setActiveTab(next);
+    e.currentTarget
+      .querySelector<HTMLButtonElement>(`#json-tab-${next}`)
+      ?.focus();
+  };
+
   return (
     <div className={`flex flex-col ${className}`}>
       {/* Tab Selection */}
-      <div className="flex border-b border-surface-muted">
-        <button
-          onClick={() => setActiveTab('formatted')}
-          className={`
-            px-4 py-2 text-sm font-medium border-b-2 transition-colors
-            ${
-              activeTab === 'formatted'
-                ? 'border-brand text-brand'
-                : 'border-transparent text-text-secondary hover:text-text'
-            }
-          `}
-        >
-          {t('output.formatTab')}
-        </button>
-        <button
-          onClick={() => setActiveTab('tree')}
-          className={`
-            px-4 py-2 text-sm font-medium border-b-2 transition-colors
-            ${
-              activeTab === 'tree'
-                ? 'border-brand text-brand'
-                : 'border-transparent text-text-secondary hover:text-text'
-            }
-          `}
-        >
-          {t('output.treeTab')}
-        </button>
+      <div
+        role="tablist"
+        className="flex border-b border-hairline"
+        onKeyDown={handleTabKeyDown}
+      >
+        {TABS.map(({ id, labelKey }) => {
+          const selected = activeTab === id;
+          return (
+            <button
+              key={id}
+              id={`json-tab-${id}`}
+              type="button"
+              role="tab"
+              aria-selected={selected}
+              aria-controls="json-output-panel"
+              tabIndex={selected ? 0 : -1}
+              onClick={() => setActiveTab(id)}
+              className={`
+                min-h-[44px] px-4 py-2.5 -mb-px text-sm font-medium border-b-2
+                transition-colors
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-inset
+                ${
+                  selected
+                    ? 'border-brand text-brand'
+                    : 'border-transparent text-text-secondary hover:text-text'
+                }
+              `}
+            >
+              {t(labelKey)}
+            </button>
+          );
+        })}
       </div>
 
       {/* Output Area */}
-      <div className="flex-1 overflow-auto min-h-64">
+      <div
+        id="json-output-panel"
+        role="tabpanel"
+        aria-labelledby={`json-tab-${activeTab}`}
+        tabIndex={0}
+        className="flex-1 overflow-auto min-h-64"
+      >
         {!parseResult.success ? (
           <div className="p-4">
             {parseResult.error ? (

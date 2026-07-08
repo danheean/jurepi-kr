@@ -32,17 +32,11 @@ export function JsonFormatter({ children }: JsonFormatterProps) {
         e.preventDefault();
         actions.minify();
       }
-
-      // Ctrl+C: copy (when output is valid)
-      if (isMeta && e.key === 'c' && state.parseResult.success) {
-        // Let default copy happen, but ensure our copy works
-        // Note: this is secondary to the button
-      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [actions, state.parseResult.success]);
+  }, [actions]);
 
   return (
     <>
@@ -56,9 +50,7 @@ export function JsonFormatter({ children }: JsonFormatterProps) {
           isLoading={state.isLoading}
           error={state.error}
           onLoad={actions.loadFromUrl}
-          onClearError={() => {
-            // Clear error by re-rendering (state management)
-          }}
+          onClearError={actions.clearError}
         />
 
         {/* Two-Column Layout: Desktop | Stacked: Mobile */}

@@ -42,7 +42,8 @@ export function FormatOptions({
                 key={value}
                 onClick={() => onIndentChange(value)}
                 className={`
-                  px-3 py-2 rounded-md text-sm font-medium transition-colors
+                  min-h-[44px] px-4 py-2 rounded-md text-sm font-medium transition-colors
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-1
                   ${
                     indent === value
                       ? 'bg-brand text-on-brand'
@@ -50,6 +51,7 @@ export function FormatOptions({
                   }
                 `}
                 type="button"
+                aria-pressed={indent === value}
               >
                 {value === '2'
                   ? t('options.spaces2')
@@ -83,14 +85,14 @@ export function FormatOptions({
 
       {/* Sort Keys Toggle */}
       <div className="flex items-center gap-3">
-        <label className="flex items-center cursor-pointer">
+        <label className="flex items-center gap-2 min-h-[44px] py-2 cursor-pointer">
           <input
             type="checkbox"
             checked={sortKeys}
             onChange={onSortKeysToggle}
-            className="w-4 h-4 rounded border-surface-muted focus:ring-2 focus:ring-brand"
+            className="w-5 h-5 rounded border-hairline-strong accent-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
           />
-          <span className="ml-2 text-sm font-medium text-text">
+          <span className="text-sm font-medium text-text">
             {t('options.sortKeys')}
           </span>
         </label>
