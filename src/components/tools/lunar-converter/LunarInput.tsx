@@ -35,8 +35,8 @@ export function LunarInput({ year, month, day, isLeap, onChange }: LunarInputPro
   }, []);
 
   return (
-    <div className="space-y-4">
-      <label className="block text-sm font-semibold text-text">{t('lunar.label')}</label>
+    <fieldset className="space-y-4 min-w-0 border-0 p-0 m-0">
+      <legend className="text-sm font-semibold text-text p-0">{t('lunar.label')}</legend>
 
       <div className="grid grid-cols-3 gap-3">
         {/* Year */}
@@ -48,7 +48,7 @@ export function LunarInput({ year, month, day, isLeap, onChange }: LunarInputPro
             id="lunar-year"
             value={year || ''}
             onChange={(e) => onChange(parseInt(e.target.value) || 0, month, day, isLeap)}
-            className="px-3 py-2 rounded-lg border border-hairline bg-surface text-text text-sm focus:outline-none focus:ring-2 focus:ring-accent-grape"
+            className="px-3 py-2 min-h-[44px] rounded-lg border border-hairline bg-surface text-text text-sm focus:outline-none focus:ring-2 focus:ring-accent-grape"
             aria-label={t('lunar.year')}
           >
             <option value="">{t('lunar.year')}</option>
@@ -69,7 +69,7 @@ export function LunarInput({ year, month, day, isLeap, onChange }: LunarInputPro
             id="lunar-month"
             value={month || ''}
             onChange={(e) => onChange(year, parseInt(e.target.value) || 0, day, isLeap)}
-            className="px-3 py-2 rounded-lg border border-hairline bg-surface text-text text-sm focus:outline-none focus:ring-2 focus:ring-accent-grape"
+            className="px-3 py-2 min-h-[44px] rounded-lg border border-hairline bg-surface text-text text-sm focus:outline-none focus:ring-2 focus:ring-accent-grape"
             aria-label={t('lunar.month')}
           >
             <option value="">{t('lunar.month')}</option>
@@ -90,7 +90,7 @@ export function LunarInput({ year, month, day, isLeap, onChange }: LunarInputPro
             id="lunar-day"
             value={day || ''}
             onChange={(e) => onChange(year, month, parseInt(e.target.value) || 0, isLeap)}
-            className="px-3 py-2 rounded-lg border border-hairline bg-surface text-text text-sm focus:outline-none focus:ring-2 focus:ring-accent-grape"
+            className="px-3 py-2 min-h-[44px] rounded-lg border border-hairline bg-surface text-text text-sm focus:outline-none focus:ring-2 focus:ring-accent-grape"
             aria-label={t('lunar.day')}
           >
             <option value="">{t('lunar.day')}</option>
@@ -103,13 +103,16 @@ export function LunarInput({ year, month, day, isLeap, onChange }: LunarInputPro
         </div>
       </div>
 
-      {/* Leap month toggle */}
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => onChange(year, month, day, !isLeap)}
-          role="switch"
-          aria-checked={isLeap}
-          aria-label={t('lunar.leapMonthLabel')}
+      {/* Leap month toggle — the whole row is the switch so the tap target is ≥44px */}
+      <button
+        type="button"
+        onClick={() => onChange(year, month, day, !isLeap)}
+        role="switch"
+        aria-checked={isLeap}
+        aria-label={t('lunar.leapMonthLabel')}
+        className="flex items-center gap-3 min-h-[44px] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-grape"
+      >
+        <span
           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
             isLeap ? 'bg-accent-grape' : 'bg-surface-muted border border-hairline'
           }`}
@@ -119,9 +122,9 @@ export function LunarInput({ year, month, day, isLeap, onChange }: LunarInputPro
               isLeap ? 'translate-x-5' : 'translate-x-0.5'
             }`}
           />
-        </button>
-        <label className="text-sm font-medium text-text">{t('lunar.leapMonthLabel')}</label>
-      </div>
-    </div>
+        </span>
+        <span className="text-sm font-medium text-text">{t('lunar.leapMonthLabel')}</span>
+      </button>
+    </fieldset>
   );
 }

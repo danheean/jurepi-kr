@@ -22,7 +22,7 @@ export function RecentsList({ recents, onSelectRecent }: RecentsListProps) {
 
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-semibold text-text uppercase">{t('recents.title')}</h3>
+      <h2 className="text-sm font-semibold text-text uppercase">{t('recents.title')}</h2>
       <div className="space-y-2">
         {recents.map((recent, idx) => (
           <button

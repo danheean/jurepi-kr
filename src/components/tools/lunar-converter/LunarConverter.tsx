@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useConverter } from './useConverter';
 import { SolarInput } from './SolarInput';
 import { LunarInput } from './LunarInput';
@@ -34,11 +34,22 @@ export function LunarConverter({ locale }: LunarConverterProps) {
   } = useConverter();
 
   const [mounted, setMounted] = useState(false);
+  const seededRef = useRef(false);
 
   // Mounted gate for localStorage interactions
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Seed today's conversion once the hook is ready, so the result panel is
+  // populated on first load instead of leaving the column blank (zero-friction:
+  // today's date is the most common query).
+  useEffect(() => {
+    if (!isMounted || seededRef.current) return;
+    seededRef.current = true;
+    const today = new Date();
+    setToday(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  }, [isMounted, setToday]);
 
   if (!mounted || !isMounted) {
     return null;

@@ -41,13 +41,13 @@ export function ConversionResult({ result, onCopy, copyKey }: ConversionResultPr
     <div className="space-y-6">
       {/* Solar Date */}
       <div className="p-4 rounded-lg bg-surface-muted border border-hairline">
-        <h3 className="text-xs uppercase font-semibold text-text-secondary mb-2">{t('result.solarLabel')}</h3>
+        <p className="text-xs uppercase font-semibold text-text-secondary mb-2">{t('result.solarLabel')}</p>
         <p className="text-lg font-semibold text-text mb-3">{solarDate}</p>
         <button
           onClick={() => onCopy('solar')}
           className={`w-full flex items-center justify-center gap-2 px-3 py-2 rounded text-sm font-medium transition-all ${
             copyKey === 'solar'
-              ? 'bg-success text-white'
+              ? 'bg-success text-on-success'
               : 'bg-white border border-hairline text-text hover:bg-surface'
           }`}
           aria-label={t('result.copyButtons.solar')}
@@ -68,13 +68,13 @@ export function ConversionResult({ result, onCopy, copyKey }: ConversionResultPr
 
       {/* Lunar Date */}
       <div className="p-4 rounded-lg bg-surface-muted border border-hairline">
-        <h3 className="text-xs uppercase font-semibold text-text-secondary mb-2">{t('result.lunarLabel')}</h3>
+        <p className="text-xs uppercase font-semibold text-text-secondary mb-2">{t('result.lunarLabel')}</p>
         <p className="text-lg font-semibold text-text mb-3">{lunarDateStr}</p>
         <button
           onClick={() => onCopy('lunar')}
           className={`w-full flex items-center justify-center gap-2 px-3 py-2 rounded text-sm font-medium transition-all ${
             copyKey === 'lunar'
-              ? 'bg-success text-white'
+              ? 'bg-success text-on-success'
               : 'bg-white border border-hairline text-text hover:bg-surface'
           }`}
           aria-label={t('result.copyButtons.lunar')}
@@ -97,7 +97,7 @@ export function ConversionResult({ result, onCopy, copyKey }: ConversionResultPr
       <div className="grid grid-cols-2 gap-4">
         {/* Sexagenary */}
         <div className="p-4 rounded-lg bg-accent-grape-soft border border-accent-grape">
-          <h3 className="text-xs uppercase font-semibold text-accent-grape-ink mb-2">{t('result.sexagenary')}</h3>
+          <p className="text-xs uppercase font-semibold text-accent-grape-ink mb-2">{t('result.sexagenary')}</p>
           <div className="space-y-1">
             <p className="text-2xl font-bold text-text">{result.sexagenary.name}</p>
             <p className="text-sm text-text-secondary">{result.sexagenary.hanja}</p>
@@ -107,7 +107,7 @@ export function ConversionResult({ result, onCopy, copyKey }: ConversionResultPr
 
         {/* Zodiac */}
         <div className="p-4 rounded-lg bg-accent-coral-soft border border-accent-coral">
-          <h3 className="text-xs uppercase font-semibold text-text mb-2">{t('result.zodiac')}</h3>
+          <p className="text-xs uppercase font-semibold text-text mb-2">{t('result.zodiac')}</p>
           <div className="space-y-1">
             <p className="text-3xl">{result.zodiac.emoji}</p>
             <p className="text-sm font-semibold text-text">{t(`zodiac.${result.zodiac.key}`)}</p>

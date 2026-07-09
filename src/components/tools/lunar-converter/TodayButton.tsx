@@ -23,7 +23,7 @@ export function TodayButton({ onSetToday }: TodayButtonProps) {
   return (
     <button
       onClick={handleClick}
-      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium text-sm bg-accent-grape text-white hover:bg-accent-grape-ink transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-grape"
+      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium text-sm bg-surface-muted text-text border border-hairline hover:border-brand-soft hover:bg-surface-sunken transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-grape"
       aria-label={t('today')}
     >
       <Calendar className="w-4 h-4" />
