@@ -656,6 +656,126 @@
         "lead": "Encode and decode URL text and edit query parameters. Switch instantly between component/full URI modes and UTF-8 and EUC-KR charsets (for legacy Korean URLs)."
       }
     },
+    "cron-parser": {
+      "title": "Cron Expression Parser",
+      "description": "Convert Unix cron expressions to human-readable descriptions and compute upcoming run times.",
+      "meta": {
+        "title": "Cron Expression Parser — Decode Schedules & Next Run Times",
+        "description": "Online tool to decode cron expressions and calculate next run times."
+      },
+      "expressionLabel": "Cron Expression",
+      "timezoneLabel": "Timezone",
+      "parseLabel": "Parse",
+      "presetLabel": "Load Preset",
+      "copyLabel": "Copy",
+      "copiedToast": "Copied!",
+      "recentLabel": "Recent",
+      "cheatsheetLabel": "Cheatsheet",
+      "fieldsHeading": "Fields",
+      "clearRecentsLabel": "Clear Recents",
+      "fields": {
+        "minute": "Minute (0–59)",
+        "hour": "Hour (0–23)",
+        "dom": "Day of Month (1–31)",
+        "month": "Month (1–12)",
+        "dow": "Day of Week (0–6)"
+      },
+      "errors": {
+        "invalidField": "Field error: {field} — {message}",
+        "unsupportedSyntax": "Quartz syntax not supported. Use standard POSIX cron.",
+        "malformedRange": "Invalid range syntax. Use 'start-end' or 'start-end/step'.",
+        "wrongFieldCount": "Cron expression must have 5 fields.",
+        "noUpcomingRuns": "No upcoming run times found within 4 years.",
+        "unknownMacro": "Unknown macro. Valid macros: @yearly, @monthly, @weekly, @daily, @hourly"
+      },
+      "descriptions": {
+        "everyMinute": "Every minute",
+        "everyNMinutes": "Every {n} minutes",
+        "everyHour": "Every hour",
+        "everyDay": "Every day",
+        "everyWeekday": "Every weekday (Monday–Friday)",
+        "everyWeekend": "Every weekend (Saturday–Sunday)",
+        "monthly": "Monthly on the {day}{suffix}",
+        "yearly": "Yearly on {month} {day}{suffix}",
+        "atTime": "at {time}",
+        "onDays": "on {days}",
+        "onMonths": "in {months}",
+        "custom": "Custom schedule"
+      },
+      "presets": {
+        "every5Minutes": "Every 5 minutes",
+        "everyHour": "Every hour",
+        "weekdays9am": "Weekdays at 9:00 AM",
+        "monthly1st": "First of month at midnight",
+        "daily": "Daily at midnight",
+        "everyMinute": "Every minute",
+        "every15Minutes": "Every 15 minutes",
+        "every30Minutes": "Every 30 minutes",
+        "weekdays5pm": "Weekdays at 5:00 PM",
+        "dailyNoon": "Daily at noon",
+        "weeklySunday": "Weekly on Sunday",
+        "yearly": "Yearly on Jan 1"
+      },
+      "intro": {
+        "eyebrow": "Decode Cron Schedules",
+        "title": "Cron Expression Parser",
+        "lead": "Convert cryptic Unix cron expressions to clear, human-readable descriptions and compute upcoming run times in your timezone."
+      },
+      "howTo": {
+        "title": "Understanding Cron Expressions",
+        "items": [
+          {
+            "title": "Understanding Fields",
+            "body": "A cron expression has 5 fields: minute (0–59), hour (0–23), day-of-month (1–31), month (1–12), day-of-week (0–6). Each field defines when the job runs."
+          },
+          {
+            "title": "Wildcards & Ranges",
+            "body": "The * (wildcard) means \"any value\". Ranges (1-5) mean 1,2,3,4,5, and steps (*/15) mean every 15th value (e.g., 0,15,30,45 for minutes)."
+          },
+          {
+            "title": "Common Patterns",
+            "body": "Weekdays at 9 AM is 0 9 * * MON-FRI, first of month is 0 0 1 * *, and hourly is 0 * * * *."
+          },
+          {
+            "title": "Timezone Awareness",
+            "body": "This tool calculates upcoming run times in your selected timezone, and daylight saving time (DST) transitions are handled automatically."
+          }
+        ]
+      },
+      "faq": {
+        "items": [
+          {
+            "q": "What happens when both day-of-month and day-of-week are specified?",
+            "a": "According to standard cron semantics, if both are specified, OR logic applies: the job runs on the specified day-of-month OR the specified day-of-week. E.g., 0 9 15 * MON runs on the 15th of any month OR any Monday at 9 AM."
+          },
+          {
+            "q": "Why is day-of-week 0–6, with 0 = Sunday?",
+            "a": "This is the standard POSIX cron convention: 0 = Sunday, 1 = Monday, …, 6 = Saturday. Some systems allow 7 for Sunday; this tool converts 7 to 0."
+          },
+          {
+            "q": "What happens with impossible dates like February 29 or April 31?",
+            "a": "February 29 exists only in leap years, so a job on Feb 29 runs only in leap years. April 31 doesn't exist, so a job on that date is skipped."
+          },
+          {
+            "q": "What happens during daylight saving time (DST) transitions?",
+            "a": "During spring DST transition, skipped times are skipped. During fall transition, times that occur twice may run twice. This tool uses your browser's timezone database to handle DST automatically."
+          }
+        ]
+      },
+      "allValues": "All",
+      "datetime": "Date & Time",
+      "days": "Days",
+      "deleteRecent": "Delete",
+      "expressionPlaceholder": "0 9 * * *",
+      "hint": "5 fields: minute hour day-of-month month day-of-week",
+      "localTimezone": "Local",
+      "months": "Months",
+      "names": "Names",
+      "nextRunsLabel": "Next Runs",
+      "parseError": "Parse Error",
+      "syntax": "Syntax",
+      "utc": "UTC"
+    },
     "bookmarks": {
       "title": "Curated Bookmarks",
       "description": "Find trusted curated links across architecture, frontend, design, development, and more.",

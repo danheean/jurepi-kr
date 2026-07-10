@@ -1,0 +1,46 @@
+export const TIMEZONE_NAMES: Readonly<string[]> = [
+  'Local',
+  // Americas
+  'America/New_York',
+  'America/Chicago',
+  'America/Denver',
+  'America/Los_Angeles',
+  'America/Anchorage',
+  'America/Toronto',
+  'America/Mexico_City',
+  'America/Sao_Paulo',
+  'America/Buenos_Aires',
+  // Europe
+  'Europe/London',
+  'Europe/Paris',
+  'Europe/Berlin',
+  'Europe/Amsterdam',
+  'Europe/Vienna',
+  'Europe/Prague',
+  'Europe/Budapest',
+  'Europe/Bucharest',
+  'Europe/Athens',
+  'Europe/Istanbul',
+  'Europe/Moscow',
+  // Africa & Middle East
+  'Africa/Cairo',
+  'Africa/Lagos',
+  'Africa/Johannesburg',
+  'Asia/Dubai',
+  'Asia/Jerusalem',
+  // Asia
+  'Asia/Kolkata',
+  'Asia/Bangkok',
+  'Asia/Singapore',
+  'Asia/Hong_Kong',
+  'Asia/Shanghai',
+  'Asia/Tokyo',
+  'Asia/Seoul',
+  // Oceania
+  'Australia/Perth',
+  'Australia/Sydney',
+  'Australia/Melbourne',
+  'Pacific/Auckland',
+  // UTC
+  'UTC',
+];

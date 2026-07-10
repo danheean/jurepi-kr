@@ -656,6 +656,126 @@
         "lead": "URL 텍스트를 인코딩·디코딩하고, 쿼리 매개변수를 편집하세요. 컴포넌트/전체 URI 모드와 UTF-8·EUC-KR 문자셋(레거시 한국어 URL)을 즉시 전환하세요."
       }
     },
+    "cron-parser": {
+      "title": "크론 표현식 해석기",
+      "description": "Unix 크론 표현식을 인간이 이해할 수 있는 설명으로 변환하고 다음 실행 시간을 계산합니다.",
+      "meta": {
+        "title": "크론 표현식 해석기 — 크론 스케줄 해독·다음 실행 시간 계산",
+        "description": "크론 표현식을 해석하고 다음 실행 시간을 계산하는 온라인 도구"
+      },
+      "expressionLabel": "크론 표현식",
+      "timezoneLabel": "시간대",
+      "parseLabel": "해석",
+      "presetLabel": "템플릿 선택",
+      "copyLabel": "복사",
+      "copiedToast": "복사됨!",
+      "recentLabel": "최근 사용",
+      "cheatsheetLabel": "문법 참고",
+      "fieldsHeading": "필드",
+      "clearRecentsLabel": "최근 항목 지우기",
+      "fields": {
+        "minute": "분 (0–59)",
+        "hour": "시간 (0–23)",
+        "dom": "일자 (1–31)",
+        "month": "월 (1–12)",
+        "dow": "요일 (0–6)"
+      },
+      "errors": {
+        "invalidField": "필드 오류: {field} — {message}",
+        "unsupportedSyntax": "Quartz 문법은 지원되지 않습니다. 표준 POSIX 크론을 사용하세요.",
+        "malformedRange": "범위 형식이 잘못되었습니다. 'start-end' 또는 'start-end/step' 형식을 사용하세요.",
+        "wrongFieldCount": "크론 표현식은 5개 필드를 포함해야 합니다.",
+        "noUpcomingRuns": "4년 이내에 예정된 실행 시간이 없습니다.",
+        "unknownMacro": "알 수 없는 매크로입니다. 유효한 매크로: @yearly, @monthly, @weekly, @daily, @hourly"
+      },
+      "descriptions": {
+        "everyMinute": "매분",
+        "everyNMinutes": "{n}분마다",
+        "everyHour": "매시간",
+        "everyDay": "매일",
+        "everyWeekday": "평일(월-금)",
+        "everyWeekend": "주말(토-일)",
+        "monthly": "매월 {day}일",
+        "yearly": "매년 {month} {day}일",
+        "atTime": "{time}",
+        "onDays": "{days}",
+        "onMonths": "{months}",
+        "custom": "사용자 지정 일정"
+      },
+      "presets": {
+        "every5Minutes": "5분마다",
+        "everyHour": "매시간",
+        "weekdays9am": "평일 오전 9시",
+        "monthly1st": "매월 1일 자정",
+        "daily": "매일 자정",
+        "everyMinute": "1분마다",
+        "every15Minutes": "15분마다",
+        "every30Minutes": "30분마다",
+        "weekdays5pm": "평일 오후 5시",
+        "dailyNoon": "매일 정오",
+        "weeklySunday": "매주 일요일 자정",
+        "yearly": "매년 1월 1일 자정"
+      },
+      "intro": {
+        "eyebrow": "크론 표현식 해석",
+        "title": "크론 표현식 해석기",
+        "lead": "Unix/Linux 크론 표현식을 인간이 이해할 수 있는 설명으로 변환하고 다음 실행 시간을 계산하는 온라인 도구입니다."
+      },
+      "howTo": {
+        "title": "크론 표현식 이해하기",
+        "items": [
+          {
+            "title": "필드 이해하기",
+            "body": "크론 표현식은 5개 필드로 구성됩니다: 분(0–59), 시간(0–23), 일자(1–31), 월(1–12), 요일(0–6). 각 필드는 일정을 언제 실행할지 정의합니다."
+          },
+          {
+            "title": "와일드카드와 범위",
+            "body": "* (와일드카드)는 \"모든 값\"을 의미합니다. 범위(1-5)는 1,2,3,4,5를 의미하고, 단계(*/15)는 0,15,30,45(분의 경우)를 의미합니다."
+          },
+          {
+            "title": "일반적인 패턴",
+            "body": "평일 오전 9시는 0 9 * * MON-FRI, 매월 1일 자정은 0 0 1 * *, 매시간은 0 * * * *로 표현합니다."
+          },
+          {
+            "title": "타임존 고려",
+            "body": "이 도구는 선택한 타임존에서 다음 실행 시간을 계산하며, 일광절약시간(DST) 전환도 자동으로 처리합니다."
+          }
+        ]
+      },
+      "faq": {
+        "items": [
+          {
+            "q": "도메인(일자)과 요일 필드가 모두 지정되면 어떻게 되나요?",
+            "a": "표준 크론 의미에 따르면 둘 다 지정되면 OR 로직을 따릅니다. 즉, 지정된 일자 OR 지정된 요일에 작업이 실행됩니다. 예: 0 9 15 * MON은 매월 15일 오전 9시 또는 모든 월요일 오전 9시에 실행됩니다."
+          },
+          {
+            "q": "왜 요일 필드가 0–6(0=일요일)인가요?",
+            "a": "이는 표준 POSIX 크론 관례입니다. 0 = 일요일, 1 = 월요일, ..., 6 = 토요일입니다. 일부 시스템은 7을 일요일로 허용하는데, 이 도구는 7을 0으로 변환합니다."
+          },
+          {
+            "q": "2월 29일 또는 4월 31일 같은 불가능한 날짜는 어떻게 되나요?",
+            "a": "2월 29일은 윤년에만 존재하므로 윤년에만 해당 일자에 작업이 실행됩니다. 4월 31일은 존재하지 않으므로 그 일자의 작업은 건너뜁니다."
+          },
+          {
+            "q": "일광절약시간(DST) 전환 중에 어떤 일이 발생하나요?",
+            "a": "봄으로 넘어갈 때(시간이 앞당겨질 때) 건너뛴 시간대가 있으면 그 시간에 예약된 작업은 건너뜁니다. 가을로 넘어갈 때(시간이 반복될 때) 반복되는 시간대의 작업은 두 번 실행될 수 있습니다. 이 도구는 브라우저의 타임존 데이터베이스를 사용해 DST를 자동으로 처리합니다."
+          }
+        ]
+      },
+      "allValues": "전체",
+      "datetime": "날짜 및 시간",
+      "days": "요일",
+      "deleteRecent": "삭제",
+      "expressionPlaceholder": "0 9 * * *",
+      "hint": "5개 필드: 분 시 일 월 요일",
+      "localTimezone": "로컬",
+      "months": "월",
+      "names": "이름",
+      "nextRunsLabel": "다음 실행 시각",
+      "parseError": "해석 오류",
+      "syntax": "문법",
+      "utc": "UTC"
+    },
     "bookmarks": {
       "title": "즐겨찾기",
       "description": "하네스·프런트엔드·디자인·개발 등 각 분야의 신뢰할 수 있는 큐레이션 링크 모음을 찾아보세요.",

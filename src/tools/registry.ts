@@ -55,6 +55,21 @@ export const tools: ToolMeta[] = [
     ],
   },
   {
+    id: 'cron-parser',
+    slug: 'cron-parser',
+    category: 'dev',
+    icon: 'Clock',
+    accent: 'rose',
+    status: 'live',
+    addedAt: '2026-07-10',
+    order: 125,
+    keywords: [
+      'cron', 'schedule', 'job', 'timezone', 'next-run', 'crontab',
+      '크론', '크론표현식', '스케줄', '일정', '예약', '시간대', '작업',
+      'unix', 'linux', '자동화', 'automation', 'developer', 'devops'
+    ],
+  },
+  {
     id: 'rankings',
     slug: 'rankings',
     category: 'news',

@@ -74,6 +74,7 @@ const TILE_TO_SLUG = [
   'howto',          // 21
   'rankings',       // 22
   'home',           // 23  arms-spread welcome pose
+  'cron-parser',    // 24  individual image only (beyond the 6×4 sprite grid; tile math unused)
 ];
 
 function main() {
