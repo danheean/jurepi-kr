@@ -1,5 +1,186 @@
 [
   {
+    "slug": "seoul-gotgot",
+    "region": "seoul",
+    "curator": "dragon",
+    "asOfDate": "2026-07-10",
+    "ko": {
+      "title": "서울 곳곳 맛집",
+      "sourceNote": "큐레이터가 고른 곳, 2026년 7월 기준",
+      "places": [
+        {
+          "name": "콩블랑제리",
+          "lat": 37.6514283,
+          "lng": 127.0143118,
+          "category": "cafe",
+          "address": "서울 도봉구 삼양로142길 33 지하",
+          "description": "도봉구 쌍문동의 베이커리 카페.",
+          "personalNote": "빵 향에 이끌려 들어가면 지갑이 열린다. 디저트까지 완벽하다.",
+          "link": "https://naver.me/FN755VuO",
+          "id": "seoul-gotgot#0",
+          "curator": "dragon"
+        },
+        {
+          "name": "동해도 광화문점",
+          "lat": 37.5684296,
+          "lng": 126.979482,
+          "category": "japanese",
+          "address": "서울 중구 무교로 28 시그너스빌딩 지하1층",
+          "description": "중구 무교동의 일식 덮밥 전문점.",
+          "personalNote": "직장인들이 점심마다 줄 서는 덴 이유가 있다. 덮밥 하나로 든든하다.",
+          "link": "https://naver.me/xk1nQWxM",
+          "id": "seoul-gotgot#1",
+          "curator": "dragon"
+        },
+        {
+          "name": "동대문엽기떡볶이 인수점",
+          "lat": 37.6444313,
+          "lng": 127.0110867,
+          "category": "other",
+          "address": "서울 강북구 인수봉로 288 1층",
+          "description": "강북구 수유동의 매운 엽기떡볶이 전문점.",
+          "personalNote": "매운맛 당길 땐 배달 말고 직접 가서 갓 볶은 걸로. 오리지널이 답이다.",
+          "link": "https://naver.me/xv3neCh8",
+          "id": "seoul-gotgot#2",
+          "curator": "dragon"
+        }
+      ]
+    },
+    "en": {
+      "title": "Seoul Here & There",
+      "sourceNote": "Curator picks, as of July 2026",
+      "places": [
+        {
+          "name": "Kong Boulangerie",
+          "lat": 37.6514283,
+          "lng": 127.0143118,
+          "category": "cafe",
+          "address": "B1, 33 Samyang-ro 142-gil, Dobong-gu, Seoul",
+          "description": "A bakery café in Ssangmun-dong, Dobong-gu.",
+          "personalNote": "The smell of fresh bread will open your wallet. The desserts nail it too.",
+          "link": "https://naver.me/FN755VuO",
+          "id": "seoul-gotgot#0",
+          "curator": "dragon"
+        },
+        {
+          "name": "Donghaedo (Gwanghwamun)",
+          "lat": 37.5684296,
+          "lng": 126.979482,
+          "category": "japanese",
+          "address": "B1, 28 Mugyo-ro, Jung-gu, Seoul",
+          "description": "A Japanese rice-bowl (donburi) restaurant in Mugyo-dong, Jung-gu.",
+          "personalNote": "Office workers queue here every lunch for a reason—one bowl and you're set.",
+          "link": "https://naver.me/xk1nQWxM",
+          "id": "seoul-gotgot#1",
+          "curator": "dragon"
+        },
+        {
+          "name": "Dongdaemun Yupgi Tteokbokki (Insu)",
+          "lat": 37.6444313,
+          "lng": 127.0110867,
+          "category": "other",
+          "address": "1F, 288 Insubong-ro, Gangbuk-gu, Seoul",
+          "description": "A spicy Yupgi tteokbokki spot in Suyu-dong, Gangbuk-gu.",
+          "personalNote": "When the spicy craving hits, skip delivery and get it fresh on-site. The original heat wins.",
+          "link": "https://naver.me/xv3neCh8",
+          "id": "seoul-gotgot#2",
+          "curator": "dragon"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "suyu-matjib",
+    "region": "seoul",
+    "curator": "nuclear",
+    "city": "서울 강북구",
+    "asOfDate": "2026-07-10",
+    "ko": {
+      "title": "수유동 맛집",
+      "sourceNote": "큐레이터가 고른 곳, 2026년 7월 기준",
+      "places": [
+        {
+          "name": "키다리참치초밥",
+          "lat": 37.641363,
+          "lng": 127.028792,
+          "category": "japanese",
+          "address": "서울 강북구 도봉로 385 1층",
+          "description": "강북구 수유동의 참치·초밥 전문점.",
+          "personalNote": "가성비 참치초밥은 여기가 끝판왕. 점심 특선 노려라.",
+          "link": "https://naver.me/xf5uXkhK",
+          "id": "suyu-matjib#0",
+          "curator": "nuclear"
+        },
+        {
+          "name": "참숯주먹고기",
+          "lat": 37.6480192,
+          "lng": 127.012614,
+          "category": "korean",
+          "address": "서울 강북구 4.19로 14",
+          "description": "강북구 수유동의 참숯 고기구이 전문점.",
+          "personalNote": "이름값 하는 주먹만 한 고기 한 점. 숯불 향에 소주가 절로 당긴다.",
+          "link": "https://naver.me/5neKHifD",
+          "id": "suyu-matjib#1",
+          "curator": "nuclear"
+        },
+        {
+          "name": "아옛날이여고래사냥",
+          "lat": 37.648227,
+          "lng": 127.013576,
+          "category": "korean",
+          "address": "서울 강북구 4.19로 6",
+          "description": "강북구 수유동의 옛날 감성 한식 주점.",
+          "personalNote": "레트로 감성에 안주가 실하다. 4.19로에서 술 한잔 생각나면 여기.",
+          "link": "https://naver.me/FaOw8xhg",
+          "id": "suyu-matjib#2",
+          "curator": "nuclear"
+        }
+      ]
+    },
+    "en": {
+      "title": "Suyu-dong Eats",
+      "sourceNote": "Curator picks, as of July 2026",
+      "places": [
+        {
+          "name": "Kidari Tuna Sushi",
+          "lat": 37.641363,
+          "lng": 127.028792,
+          "category": "japanese",
+          "address": "1F, 385 Dobong-ro, Gangbuk-gu, Seoul",
+          "description": "A tuna and sushi specialist in Suyu-dong, Gangbuk-gu.",
+          "personalNote": "Best-value tuna sushi around—go straight for the lunch special.",
+          "link": "https://naver.me/xf5uXkhK",
+          "id": "suyu-matjib#0",
+          "curator": "nuclear"
+        },
+        {
+          "name": "Chamsut Jumeok Gogi",
+          "lat": 37.6480192,
+          "lng": 127.012614,
+          "category": "korean",
+          "address": "14 4.19-ro, Gangbuk-gu, Seoul",
+          "description": "A charcoal-grilled meat house in Suyu-dong, Gangbuk-gu.",
+          "personalNote": "A fist-sized cut that lives up to the name. Charcoal smoke and soju, done.",
+          "link": "https://naver.me/5neKHifD",
+          "id": "suyu-matjib#1",
+          "curator": "nuclear"
+        },
+        {
+          "name": "Goraesanyang",
+          "lat": 37.648227,
+          "lng": 127.013576,
+          "category": "korean",
+          "address": "6 4.19-ro, Gangbuk-gu, Seoul",
+          "description": "A retro-style Korean pub in Suyu-dong, Gangbuk-gu.",
+          "personalNote": "Retro vibes and generous plates. Perfect for a drink along 4.19-ro.",
+          "link": "https://naver.me/FaOw8xhg",
+          "id": "suyu-matjib#2",
+          "curator": "nuclear"
+        }
+      ]
+    }
+  },
+  {
     "slug": "seoul-matjib",
     "region": "seoul",
     "curator": "honey",
