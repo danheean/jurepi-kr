@@ -22,6 +22,7 @@ const config: Config = {
         'surface-sunken': 'var(--surface-sunken)',
         hairline: 'var(--hairline)',
         'hairline-strong': 'var(--hairline-strong)',
+        'switch-thumb': 'var(--switch-thumb)',
         text: 'var(--text)',
         'text-secondary': 'var(--text-secondary)',
         'text-muted': 'var(--text-muted)',

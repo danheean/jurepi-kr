@@ -23,6 +23,11 @@
   --hairline: #f0e9da;
   --hairline-strong: #e2d6bd;
 
+  /* Switch/toggle thumb — a bright disc that stays light in both themes (like a
+     physical switch knob), visible on both the accent "on" track and the muted
+     "off" track. Not theme-overridden: white cascades into dark intentionally. */
+  --switch-thumb: #ffffff;
+
   /* Text — warm neutrals */
   --text: #2a2411;
   --text-secondary: #6b6042;

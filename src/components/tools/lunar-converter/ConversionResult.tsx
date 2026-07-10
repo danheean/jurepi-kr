@@ -45,10 +45,10 @@ export function ConversionResult({ result, onCopy, copyKey }: ConversionResultPr
         <p className="text-lg font-semibold text-text mb-3">{solarDate}</p>
         <button
           onClick={() => onCopy('solar')}
-          className={`w-full flex items-center justify-center gap-2 px-3 py-2 rounded text-sm font-medium transition-all ${
+          className={`w-full flex items-center justify-center gap-2 px-3 py-2.5 min-h-[44px] rounded text-sm font-medium transition-colors ${
             copyKey === 'solar'
               ? 'bg-success text-on-success'
-              : 'bg-white border border-hairline text-text hover:bg-surface'
+              : 'bg-surface border border-hairline text-text hover:bg-surface-muted'
           }`}
           aria-label={t('result.copyButtons.solar')}
         >
@@ -72,10 +72,10 @@ export function ConversionResult({ result, onCopy, copyKey }: ConversionResultPr
         <p className="text-lg font-semibold text-text mb-3">{lunarDateStr}</p>
         <button
           onClick={() => onCopy('lunar')}
-          className={`w-full flex items-center justify-center gap-2 px-3 py-2 rounded text-sm font-medium transition-all ${
+          className={`w-full flex items-center justify-center gap-2 px-3 py-2.5 min-h-[44px] rounded text-sm font-medium transition-colors ${
             copyKey === 'lunar'
               ? 'bg-success text-on-success'
-              : 'bg-white border border-hairline text-text hover:bg-surface'
+              : 'bg-surface border border-hairline text-text hover:bg-surface-muted'
           }`}
           aria-label={t('result.copyButtons.lunar')}
         >
@@ -101,7 +101,7 @@ export function ConversionResult({ result, onCopy, copyKey }: ConversionResultPr
           <div className="space-y-1">
             <p className="text-2xl font-bold text-text">{result.sexagenary.name}</p>
             <p className="text-sm text-text-secondary">{result.sexagenary.hanja}</p>
-            <p className="text-xs text-text-muted">{result.sexagenary.english}</p>
+            <p className="text-xs text-text-secondary">{result.sexagenary.english}</p>
           </div>
         </div>
 
@@ -118,7 +118,7 @@ export function ConversionResult({ result, onCopy, copyKey }: ConversionResultPr
       {/* Copy Both */}
       <button
         onClick={() => onCopy('both')}
-        className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-all ${
+        className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium text-sm transition-colors ${
           copyKey === 'both'
             ? 'bg-brand text-on-brand'
             : 'bg-brand text-on-brand hover:bg-brand-strong'
