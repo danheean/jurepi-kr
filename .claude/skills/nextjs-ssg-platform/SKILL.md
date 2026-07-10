@@ -53,6 +53,8 @@ NextIntlClientProvider → ThemeProvider → ConsentProvider → ToastProvider
 
 허브 UI·sitemap·static params·검색이 모두 `src/tools/registry.ts`에서 파생된다. **새 도구 추가 = ToolMeta 엔트리 + `messages.tools.<id>.*` + (live면) 모듈 + slug→컴포넌트 분기 + 자체 SPEC.** 메인 화면을 재설계하지 않는다. coming_soon은 ToolMeta만 있으면 된다.
 
+**아이콘은 registry `icon` 문자열 + `src/components/home/toolStyle.tsx`의 `TOOL_ICONS` 맵 두 곳에 등록해야 한다 — 한쪽만 하면 조용히 Wrench로 폴백한다.** jwt-decoder 실측: registry에 `icon:'KeyRound'`를 넣었으나 `TOOL_ICONS`(lucide import + 맵 객체)에 `KeyRound`를 안 넣어 홈 카드가 Wrench fallback으로 렌더됨. 도구별 유닛·tsc·빌드·프리렌더 전부 그린이고, **`toolStyle.test.tsx`("maps every icon referenced by the tool registry (no Wrench fallback)")=전체 유닛에서만 적발**. 예방=새 아이콘은 `toolStyle.tsx`의 import 블록과 `TOOL_ICONS` 객체 양쪽에 알파벳순 추가 + 리더는 **전체 유닛(도구 스코프가 아니라 `vitest run` 전체)**을 병합/통합 게이트에서 재실행(레지스트리 파생 회귀는 도구 스코프 밖에서 터진다).
+
 ## SEO·i18n·동의·광고·CWV 상세
 
 라우팅 표, `generateStaticParams` 정확한 형태, 메시지 네임스페이스 규약, JSON-LD 종류(WebSite/SoftwareApplication/FAQPage), hreflang/canonical, AdSlot 높이·동의 게이팅, CSP 블록, CWV 체크리스트는 분량이 크다 → **`references/i18n-seo-cwv.md`를 읽어라.**
