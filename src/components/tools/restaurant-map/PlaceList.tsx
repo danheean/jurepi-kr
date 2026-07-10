@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import type { Place } from '@/lib/restaurant-map/schema';
 import { PlaceCard } from './PlaceCard';
@@ -26,63 +26,24 @@ export function PlaceList({
   onResetFilters,
 }: PlaceListProps) {
   const t = useTranslations('tools.restaurant-map');
-  const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Map<string, HTMLElement>>(new Map());
 
-  // Roving tabindex keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!containerRef.current?.contains(e.target as Node)) return;
-
-      const items = Array.from(itemRefs.current.values());
-      const currentIndex = items.findIndex((el) => el === document.activeElement);
-
-      switch (e.key) {
-        case 'ArrowUp':
-          e.preventDefault();
-          if (currentIndex > 0) {
-            items[currentIndex - 1]?.focus();
-          }
-          break;
-        case 'ArrowDown':
-          e.preventDefault();
-          if (currentIndex < items.length - 1) {
-            items[currentIndex + 1]?.focus();
-          }
-          break;
-        case 'Enter':
-        case ' ':
-          e.preventDefault();
-          if (currentIndex >= 0) {
-            const placeId = places[currentIndex]?.id;
-            if (placeId) onSelect(placeId);
-          }
-          break;
-        case 'f':
-          if (currentIndex >= 0) {
-            const placeId = places[currentIndex]?.id;
-            if (placeId) onToggleFavorite(placeId);
-          }
-          break;
-        case 'Escape':
-          onSelect(null);
-          break;
-        default:
-          break;
-      }
-    };
-
-    containerRef.current?.addEventListener('keydown', handleKeyDown);
-    return () => containerRef.current?.removeEventListener('keydown', handleKeyDown);
-  }, [places, onSelect, onToggleFavorite]);
+  // Each card exposes its own focusable controls (an overlay "view details"
+  // button + favorite + external link), so keyboard users get natural Tab
+  // order. No custom roving-tabindex: a hand-rolled arrow-key handler was
+  // doubling focus stops (wrapper div + card) and never matched a real listbox
+  // widget contract.
 
   const handleSelectPlace = useCallback(
     (placeId: string) => {
       onSelect(placeId);
-      // Scroll selected card into view
+      // Scroll selected card into view (respect reduced-motion)
       const card = itemRefs.current.get(placeId);
       if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const prefersReduced =
+          typeof window !== 'undefined' &&
+          window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        card.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'nearest' });
       }
     },
     [onSelect]
@@ -102,13 +63,12 @@ export function PlaceList({
 
   return (
     <div
-      ref={containerRef}
       id="place-list"
       className="grid grid-cols-1 gap-3"
       role="region"
       aria-label={t('title')}
     >
-      {places.map((place, index) => {
+      {places.map((place) => {
         const placeId = place.id || '';
         return (
           <div
@@ -117,7 +77,6 @@ export function PlaceList({
               if (el && placeId) itemRefs.current.set(placeId, el);
               else if (placeId) itemRefs.current.delete(placeId);
             }}
-            tabIndex={index === 0 ? 0 : -1}
           >
             <PlaceCard
               place={place}

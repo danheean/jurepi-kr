@@ -58,7 +58,7 @@ export function GeolocationButton({
         disabled={disabled || loading}
         aria-pressed={active}
         aria-label={label}
-        className={`flex items-center justify-center gap-2 whitespace-nowrap shrink-0 px-4 py-2 rounded-lg font-medium hover:opacity-90 disabled:opacity-50 transition ${
+        className={`flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap shrink-0 px-4 py-2 rounded-lg font-medium hover:opacity-90 disabled:opacity-50 transition ${
           active
             ? 'bg-surface-muted text-text-secondary border border-hairline hover:bg-surface-sunken'
             : 'bg-brand text-on-brand'
@@ -74,7 +74,7 @@ export function GeolocationButton({
         <span>{label}</span>
       </button>
       {failureKey && (
-        <p className="flex items-start gap-2 text-sm text-warning" role="alert">
+        <p className="flex items-start gap-2 text-sm text-warning-ink" role="alert">
           <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden />
           <span>{t(failureKey)}</span>
         </p>

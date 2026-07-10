@@ -61,7 +61,7 @@ export function RegionTabs({
   if (hasRecents) regionList.push('recent');
 
   return (
-    <div role="tablist" className="flex flex-wrap gap-2">
+    <div role="group" aria-label={t('regionLabel')} className="flex flex-wrap gap-2">
       {regionList.map((region) => {
         const isActive = activeRegion === region;
         const label =
@@ -76,10 +76,9 @@ export function RegionTabs({
         return (
           <button
             key={region}
-            role="tab"
-            aria-selected={isActive}
+            aria-pressed={isActive}
             onClick={() => onRegionChange(region)}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+            className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               isActive
                 ? 'bg-brand text-on-brand'
                 : 'bg-surface-muted text-text-secondary hover:bg-surface-sunken'

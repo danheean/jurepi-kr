@@ -1694,19 +1694,33 @@
         "honey": "Honey"
       },
       "curatorLabel": "Filter by curator",
+      "regionLabel": "Filter by region",
+      "categoryLabel": "Filter by category",
       "curatorLegend": {
         "title": "The curators behind these lists"
       },
       "search": {
         "label": "Search",
         "placeholder": "Search by restaurant, café, or region…",
-        "resultCount": "{count} result{count, plural, one {} other {s}}"
+        "resultCount": "{count} result{count, plural, one {} other {s}}",
+        "clear": "Clear search"
       },
       "buttons": {
         "myLocation": "My Location",
         "clearSearch": "Clear",
         "resetFilters": "Reset filters",
-        "clearLocation": "Clear location"
+        "clearLocation": "Clear location",
+        "addFavorite": "Add to favorites",
+        "removeFavorite": "Remove from favorites",
+        "openExternalMap": "Open in external map",
+        "close": "Close",
+        "copyAddress": "Copy address"
+      },
+      "map": {
+        "label": "Map"
+      },
+      "placeCard": {
+        "select": "View {name} details"
       },
       "geolocation": {
         "granted": "Location access granted",
@@ -1743,7 +1757,7 @@
       },
       "intro": {
         "eyebrow": "RESTAURANT TOOL",
-        "lead": "Discover local restaurants and cafes across Seoul, Busan, and beyond on an interactive map."
+        "lead": "Discover neighborhood restaurants and cafés, hand-picked by our curators, on an interactive map."
       },
       "howTo": {
         "title": "How to Use Restaurant List",

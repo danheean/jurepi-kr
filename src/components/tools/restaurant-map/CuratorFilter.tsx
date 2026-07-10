@@ -42,7 +42,7 @@ export function CuratorFilter({
               key={curator}
               onClick={() => onCuratorChange(curator)}
               aria-pressed={isActive}
-              className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              className={`flex min-h-[44px] items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 isActive
                   ? 'bg-brand text-on-brand'
                   : 'bg-surface-muted text-text-secondary hover:bg-surface-sunken'

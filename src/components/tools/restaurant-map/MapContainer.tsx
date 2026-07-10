@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useMapsSDKLoader } from './useMapsSDKLoader';
 import { useMapClusteringUtil } from './useMapClusteringUtil';
 import { MapFailover } from './MapFailover';
@@ -32,6 +33,7 @@ export function MapContainer({
   onMarkerClick,
   onBackgroundClick,
 }: MapContainerProps) {
+  const t = useTranslations('tools.restaurant-map');
   const { mapSDKReady, mapError } = useMapsSDKLoader();
 
   const mapRef = useRef<HTMLDivElement>(null);
@@ -232,7 +234,7 @@ export function MapContainer({
     <div
       ref={mapRef}
       className="w-full h-[420px] lg:h-[600px] rounded-lg border border-hairline overflow-hidden"
-      aria-label="Map"
+      aria-label={t('map.label')}
     />
   );
 }

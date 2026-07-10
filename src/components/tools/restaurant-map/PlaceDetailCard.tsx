@@ -60,8 +60,8 @@ export function PlaceDetailCard({ place, onClose }: PlaceDetailCardProps) {
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-surface-muted rounded-lg transition"
-            aria-label="Close"
+            className="flex h-11 w-11 items-center justify-center hover:bg-surface-muted rounded-lg transition"
+            aria-label={t('buttons.close')}
           >
             <X className="w-5 h-5" />
           </button>
@@ -72,9 +72,9 @@ export function PlaceDetailCard({ place, onClose }: PlaceDetailCardProps) {
           <div className="flex-1 text-sm text-text-secondary">{place.address}</div>
           <button
             onClick={handleCopyAddress}
-            className="p-1 hover:bg-surface rounded transition flex-shrink-0"
-            aria-label="Copy address"
-            title="Copy address"
+            className="flex h-11 w-11 items-center justify-center hover:bg-surface rounded transition flex-shrink-0"
+            aria-label={t('buttons.copyAddress')}
+            title={t('buttons.copyAddress')}
           >
             <Copy className="w-4 h-4 text-text-secondary" />
           </button>
@@ -86,7 +86,7 @@ export function PlaceDetailCard({ place, onClose }: PlaceDetailCardProps) {
         </div>
 
         {/* Personal Note Callout (curator's voice) */}
-        <div className="border-l-4 border-brand pl-4 py-3 bg-brand/5 rounded-r">
+        <div className="rounded-lg border border-brand/20 bg-brand/5 p-4">
           <div className="flex items-center gap-2 mb-1">
             {place.curator && (
               <img

@@ -25,7 +25,7 @@ export function PlaceSearch({ query, onQueryChange, resultCount }: PlaceSearchPr
 
   return (
     <div className="w-full space-y-2">
-      <div className="relative flex items-center gap-2 rounded-lg border border-hairline bg-surface px-3 py-2">
+      <div className="relative flex min-h-[44px] items-center gap-2 rounded-lg border border-hairline bg-surface px-3 py-2">
         <Search className="h-5 w-5 text-text-secondary" aria-hidden />
         <input
           ref={inputRef}
@@ -41,8 +41,8 @@ export function PlaceSearch({ query, onQueryChange, resultCount }: PlaceSearchPr
         {query && (
           <button
             onClick={() => onQueryChange('')}
-            className="flex items-center justify-center text-text-secondary hover:text-text"
-            aria-label="Clear search"
+            className="-mr-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-text-secondary hover:bg-surface-muted hover:text-text"
+            aria-label={t('search.clear')}
           >
             <X className="h-4 w-4" />
           </button>

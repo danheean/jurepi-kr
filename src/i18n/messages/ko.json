@@ -1694,19 +1694,33 @@
         "honey": "복현동 꿀주먹"
       },
       "curatorLabel": "큐레이터로 필터",
+      "regionLabel": "지역으로 필터",
+      "categoryLabel": "카테고리로 필터",
       "curatorLegend": {
         "title": "이 맛집 리스트를 만든 사람들"
       },
       "search": {
         "label": "검색",
         "placeholder": "맛집·카페·지역으로 검색…",
-        "resultCount": "결과 {count}개"
+        "resultCount": "결과 {count}개",
+        "clear": "검색어 지우기"
       },
       "buttons": {
         "myLocation": "내 위치",
         "clearSearch": "검색 초기화",
         "resetFilters": "필터 초기화",
-        "clearLocation": "위치 해제"
+        "clearLocation": "위치 해제",
+        "addFavorite": "즐겨찾기에 추가",
+        "removeFavorite": "즐겨찾기에서 제거",
+        "openExternalMap": "외부 지도에서 열기",
+        "close": "닫기",
+        "copyAddress": "주소 복사"
+      },
+      "map": {
+        "label": "지도"
+      },
+      "placeCard": {
+        "select": "{name} 상세 보기"
       },
       "geolocation": {
         "granted": "위치 권한 허용됨",
@@ -1743,7 +1757,7 @@
       },
       "intro": {
         "eyebrow": "맛집 도구",
-        "lead": "서울·부산·지역별 맛집과 카페를 지도에서 발견하세요."
+        "lead": "큐레이터가 직접 다녀온 동네 맛집과 카페를 지도에서 발견하세요."
       },
       "howTo": {
         "title": "맛집 리스트 사용하는 방법",

@@ -95,8 +95,9 @@ describe('PlaceList', () => {
       />
     );
 
-    const card = screen.getByText('Cafe A').closest('article');
-    await user.click(card!);
+    // Each card's primary action is a full-card overlay button.
+    const selectButton = screen.getByRole('button', { name: /Cafe A/i });
+    await user.click(selectButton);
 
     expect(onSelect).toHaveBeenCalledWith('test-list-1#0');
   });
@@ -143,11 +144,11 @@ describe('PlaceList', () => {
     expect(placeList).toHaveAttribute('aria-label');
   });
 
-  it('uses roving tabindex for keyboard navigation', () => {
+  it('exposes one focusable select button per card (natural tab order)', () => {
     const onSelect = vi.fn();
     const onToggleFavorite = vi.fn();
     const onResetFilters = vi.fn();
-    const { container } = renderWithIntl(
+    renderWithIntl(
       <PlaceList
         places={testPlaces}
         selectedPlaceId={null}
@@ -159,11 +160,10 @@ describe('PlaceList', () => {
       />
     );
 
-    const items = container.querySelectorAll('[tabindex]');
-    expect(items.length).toBeGreaterThan(0);
-    // First item should be focusable (tabIndex 0)
-    const firstItem = items[0];
-    expect(firstItem).toHaveAttribute('tabIndex');
+    // Every card has a full-card overlay button; no wrapper carries a competing
+    // tabindex (the old roving-tabindex double-focus regression).
+    const selectButtons = screen.getAllByRole('button', { name: /details/i });
+    expect(selectButtons).toHaveLength(testPlaces.length);
   });
 
   it('passes favorite status to cards', () => {

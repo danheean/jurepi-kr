@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { RestaurantMap } from './RestaurantMap';
 import { renderWithIntl } from './test-utils';
@@ -114,10 +114,10 @@ describe('RestaurantMap', () => {
     expect(screen.getByText('RESTAURANT TOOL')).toBeInTheDocument();
   });
 
-  it('derives region tabs from the catalog (busan tab appears when a busan list exists)', () => {
-    // Regression: RestaurantMap did not pass `catalog` to RegionTabs, so tabs
-    // fell back to a hardcoded all/seoul/nationwide set and the busan tab
-    // silently disappeared even though busan places were rendered.
+  it('derives region filters from the catalog (busan appears when a busan list exists)', () => {
+    // Regression: RestaurantMap did not pass `catalog` to RegionTabs, so the
+    // region filter fell back to a hardcoded all/seoul/nationwide set and the
+    // busan filter silently disappeared even though busan places were rendered.
     const seoulList = createTestCatalog()[0];
     const busanList: MergedPlaceList = {
       ...seoulList,
@@ -128,8 +128,12 @@ describe('RestaurantMap', () => {
     };
     renderWithIntl(<RestaurantMap catalog={[seoulList, busanList]} />);
 
-    const tabNames = screen.getAllByRole('tab').map((el) => el.textContent);
-    expect(tabNames).toContain('Busan');
+    // Region filters are a toggle-button group (role=group + aria-pressed).
+    const regionGroup = screen.getByRole('group', { name: /region/i });
+    const regionNames = within(regionGroup)
+      .getAllByRole('button')
+      .map((el) => el.textContent);
+    expect(regionNames).toContain('Busan');
   });
 
   it('renders only category filters that exist in the catalog (no dead 기타 filter)', () => {

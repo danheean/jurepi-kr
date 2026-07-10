@@ -109,11 +109,11 @@ describe('PlaceCard', () => {
     expect(article).toHaveClass('border-accent-rose');
   });
 
-  it('calls onSelect when card is clicked', async () => {
+  it('calls onSelect when the card select button is activated', async () => {
     const onSelect = vi.fn();
     const onToggleFavorite = vi.fn();
     const user = userEvent.setup();
-    const { container } = renderWithIntl(
+    renderWithIntl(
       <PlaceCard
         place={testPlace}
         isSelected={false}
@@ -123,8 +123,9 @@ describe('PlaceCard', () => {
       />
     );
 
-    const article = container.querySelector('article');
-    await user.click(article!);
+    // The full-card overlay button is the accessible primary action.
+    const selectButton = screen.getByRole('button', { name: /details/i });
+    await user.click(selectButton);
 
     expect(onSelect).toHaveBeenCalled();
   });

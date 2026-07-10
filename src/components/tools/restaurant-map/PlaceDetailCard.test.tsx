@@ -61,9 +61,10 @@ describe('PlaceDetailCard', () => {
     const personalNoteText = screen.getByText('The staff is incredibly friendly');
     expect(personalNoteText).toBeInTheDocument();
 
-    // Should be in a block with brand accent styling
+    // Should be in a distinct brand-tinted callout (full border + tint, not a
+    // side-stripe — border-l-4 accent stripes are a banned anti-pattern).
     const parent = personalNoteText.closest('div');
-    expect(parent).toHaveClass('border-l-4', 'border-brand', 'bg-brand/5');
+    expect(parent).toHaveClass('rounded-lg', 'border', 'border-brand/20', 'bg-brand/5');
   });
 
   it('renders category and priceRange badges', () => {

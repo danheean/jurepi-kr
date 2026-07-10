@@ -5,17 +5,20 @@ import { RegionTabs } from './RegionTabs';
 import { IntlProvider } from './test-utils';
 
 describe('RegionTabs', () => {
-  it('renders all region tabs', () => {
+  // Region filters are a toggle-button group (role=group + aria-pressed), not
+  // an ARIA tab widget: there is no tabpanel or arrow-key roving, so role=tab
+  // would mislead screen readers. Kept consistent with CuratorFilter.
+  it('renders the region filter group', () => {
     const onRegionChange = vi.fn();
     render(
       <IntlProvider>
         <RegionTabs activeRegion="all" onRegionChange={onRegionChange} hasFavorites={false} hasRecents={false} />
       </IntlProvider>
     );
-    expect(screen.getByRole('tablist')).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: /지역|region/i })).toBeInTheDocument();
   });
 
-  it('calls onRegionChange when a tab is clicked', async () => {
+  it('calls onRegionChange when a region is clicked', async () => {
     const onRegionChange = vi.fn();
     const user = userEvent.setup();
     render(
@@ -23,49 +26,49 @@ describe('RegionTabs', () => {
         <RegionTabs activeRegion="all" onRegionChange={onRegionChange} hasFavorites={false} hasRecents={false} />
       </IntlProvider>
     );
-    const seoulTab = screen.getByRole('tab', { name: /서울|Seoul/i });
+    const seoulTab = screen.getByRole('button', { name: /서울|Seoul/i });
     await user.click(seoulTab);
     expect(onRegionChange).toHaveBeenCalledWith('seoul');
   });
 
-  it('shows aria-selected on active tab', () => {
+  it('shows aria-pressed on the active region', () => {
     const onRegionChange = vi.fn();
     const { rerender } = render(
       <IntlProvider>
         <RegionTabs activeRegion="all" onRegionChange={onRegionChange} hasFavorites={false} hasRecents={false} />
       </IntlProvider>
     );
-    const allTab = screen.getByRole('tab', { name: /전체|All/ });
-    expect(allTab).toHaveAttribute('aria-selected', 'true');
+    const allTab = screen.getByRole('button', { name: /전체|All/ });
+    expect(allTab).toHaveAttribute('aria-pressed', 'true');
 
     rerender(
       <IntlProvider>
         <RegionTabs activeRegion="seoul" onRegionChange={onRegionChange} hasFavorites={false} hasRecents={false} />
       </IntlProvider>
     );
-    expect(allTab).toHaveAttribute('aria-selected', 'false');
+    expect(allTab).toHaveAttribute('aria-pressed', 'false');
   });
 
-  it('hides favorites tab when no favorites', () => {
+  it('hides favorites region when no favorites', () => {
     const onRegionChange = vi.fn();
     render(
       <IntlProvider>
         <RegionTabs activeRegion="all" onRegionChange={onRegionChange} hasFavorites={false} hasRecents={false} />
       </IntlProvider>
     );
-    // Favorites tab should not be visible
-    const favTab = screen.queryByRole('tab', { name: /즐겨찾기|Favorites/i });
+    // Favorites region button should not be visible
+    const favTab = screen.queryByRole('button', { name: /즐겨찾기|Favorites/i });
     expect(favTab).not.toBeInTheDocument();
   });
 
-  it('shows favorites tab when hasFavorites=true', () => {
+  it('shows favorites region when hasFavorites=true', () => {
     const onRegionChange = vi.fn();
     render(
       <IntlProvider>
         <RegionTabs activeRegion="all" onRegionChange={onRegionChange} hasFavorites={true} hasRecents={false} />
       </IntlProvider>
     );
-    const favTab = screen.getByRole('tab', { name: /즐겨찾기|Favorites/i });
+    const favTab = screen.getByRole('button', { name: /즐겨찾기|Favorites/i });
     expect(favTab).toBeInTheDocument();
   });
 });

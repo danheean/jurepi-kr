@@ -34,23 +34,33 @@ export function PlaceCard({
   return (
     <article
       data-testid={`place-card-${place.id}`}
-      onClick={onSelect}
-      className={`cursor-pointer rounded-lg border bg-surface p-4 transition-all ${
+      className={`relative rounded-lg border bg-surface p-4 transition-all ${
         isSelected
           ? 'border-accent-rose ring-2 ring-accent-rose'
           : 'border-hairline hover:-translate-y-0.5 hover:shadow-card'
       }`}
-      role="button"
-      tabIndex={0}
     >
-      <div className="space-y-2">
+      {/* Primary action: a full-card overlay button. It is a SIBLING of the
+          favorite/external controls (not an ancestor), so the card avoids the
+          nested-interactive violation of a role="button" wrapping other
+          controls. Content below is pointer-events-none so clicks fall through
+          to this button; the two controls re-enable pointer events. */}
+      <button
+        type="button"
+        onClick={onSelect}
+        aria-pressed={isSelected}
+        aria-label={t('placeCard.select', { name: place.name })}
+        className="absolute inset-0 z-0 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+      />
+
+      <div className="pointer-events-none relative z-10 space-y-2">
         {/* Header: name + favorite star */}
         <div className="flex items-start justify-between gap-2">
           <h3 className="flex-1 truncate text-base font-semibold text-text">{place.name}</h3>
           <button
             onClick={onToggleFavorite}
-            className="shrink-0 rounded p-1 hover:bg-surface-muted"
-            aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
+            className="pointer-events-auto -mr-1.5 -mt-1.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full hover:bg-surface-muted"
+            aria-label={isFavorited ? t('buttons.removeFavorite') : t('buttons.addFavorite')}
             aria-pressed={isFavorited}
           >
             <Star
@@ -103,8 +113,8 @@ export function PlaceCard({
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="shrink-0 rounded p-1 text-text-secondary hover:bg-surface-muted hover:text-text"
-            aria-label="Open in external map"
+            className="pointer-events-auto -mr-1.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-text-secondary hover:bg-surface-muted hover:text-text"
+            aria-label={t('buttons.openExternalMap')}
           >
             <ExternalLink className="h-4 w-4" />
           </a>

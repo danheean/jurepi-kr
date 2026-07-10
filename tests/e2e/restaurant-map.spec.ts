@@ -83,13 +83,13 @@ test.describe('Restaurant Map - E2E', () => {
 
     // Regression: region tabs must be catalog-derived, not a hardcoded region
     // set. With only a seoul list, 서울 appears and 부산 does not.
-    const seoulTab = page.getByRole('tab', { name: '서울' });
+    const seoulTab = page.getByRole('button', { name: '서울', exact: true });
     await expect(seoulTab).toBeVisible();
-    await expect(page.getByRole('tab', { name: '부산' })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: '부산', exact: true })).toHaveCount(0);
 
     await seoulTab.click();
     const main = page.locator('main');
-    await expect(seoulTab).toHaveAttribute('aria-selected', 'true');
+    await expect(seoulTab).toHaveAttribute('aria-pressed', 'true');
     await expect(main.getByText('대광어회집', { exact: false }).first()).toBeVisible();
 
     expect(errors).toEqual([]);
@@ -104,7 +104,7 @@ test.describe('Restaurant Map - E2E', () => {
 
     await search.fill('대광어');
     const card = page
-      .locator('main [role="button"]')
+      .locator('main [data-testid^="place-card-"]')
       .filter({ hasText: '대광어회집' })
       .first();
     await expect(card).toBeVisible();
@@ -114,7 +114,7 @@ test.describe('Restaurant Map - E2E', () => {
     await expect(
       page.locator('main h2').filter({ hasText: '대광어회집' })
     ).toBeVisible();
-    const closeBtn = page.getByRole('button', { name: 'Close' });
+    const closeBtn = page.getByRole('button', { name: '닫기' });
     await expect(closeBtn).toBeVisible();
     await closeBtn.click();
     await expect(
@@ -138,7 +138,7 @@ test.describe('Restaurant Map - E2E', () => {
 
     // Select a place → detail renders with the authored NAVER link (not a
     // name+address search fallback): every place carries a real naver.me link.
-    await main.locator('#place-list [role="button"]').first().click();
+    await main.locator('#place-list [data-testid^="place-card-"]').first().click();
     const openInMaps = main.getByRole('link', { name: '지도에서 보기' });
     await expect(openInMaps).toBeVisible();
     await expect(openInMaps).toHaveAttribute('href', /naver\.me\//);
@@ -168,14 +168,14 @@ test.describe('Restaurant Map - E2E', () => {
 
     const main = page.locator('main');
     // Category pills live in the row right below the region tablist
-    const categoryRow = main.locator('[role="tablist"] + div');
+    const categoryRow = main.locator('[aria-label="카테고리로 필터"]');
     const labels = await categoryRow.locator('button').allTextContents();
     expect(labels.length).toBeGreaterThan(1);
 
     for (const label of labels) {
       await categoryRow.getByRole('button', { name: label, exact: true }).click();
       await expect(
-        main.locator('#place-list [role="button"]').first(),
+        main.locator('#place-list [data-testid^="place-card-"]').first(),
         `category "${label}" must match at least one place`
       ).toBeVisible();
     }
@@ -199,7 +199,7 @@ test.describe('Restaurant Map - E2E', () => {
     await expect(main.getByText('별을 눌러 즐겨찾기를 저장하세요')).toHaveCount(0);
 
     await main.getByRole('button', { name: '필터 초기화' }).click();
-    await expect(main.locator('#place-list [role="button"]').first()).toBeVisible();
+    await expect(main.locator('#place-list [data-testid^="place-card-"]').first()).toBeVisible();
 
     expect(errors).toEqual([]);
   });
@@ -218,18 +218,17 @@ test.describe('Restaurant Map - E2E', () => {
     await expect(main.locator('img[src*="curators/dragon.png"]').first()).toBeVisible();
     await expect(main.locator('img[src*="curators/honey.png"]').first()).toBeVisible();
 
-    // Curator filter renders the live curator (honey) as a pill button, and
-    // hides curators with no places (dead-filter avoidance) — nuclear/dragon
-    // appear in the legend text but NOT as filter buttons. Scope to the filter
-    // group so place-card avatars (alt = curator name) don't match.
+    // All three curators now have live lists, so each renders as a filter pill.
+    // (Dead-filter avoidance still hides any curator with zero places.) Scope to
+    // the filter group so place-card avatars (alt = curator name) don't match.
     const curatorFilter = page.locator('[aria-label="큐레이터로 필터"]');
     await expect(curatorFilter.getByRole('button', { name: '복현동 꿀주먹' })).toBeVisible();
-    await expect(curatorFilter.getByRole('button', { name: '갈곶동 핵주먹' })).toHaveCount(0);
-    await expect(curatorFilter.getByRole('button', { name: '철산동 용주먹' })).toHaveCount(0);
+    await expect(curatorFilter.getByRole('button', { name: '갈곶동 핵주먹' })).toBeVisible();
+    await expect(curatorFilter.getByRole('button', { name: '철산동 용주먹' })).toBeVisible();
 
-    // Clicking the live curator keeps the (all-honey) places visible
+    // Clicking a curator filters to that curator's places (honey list)
     await curatorFilter.getByRole('button', { name: '복현동 꿀주먹' }).click();
-    const firstCard = main.locator('#place-list [role="button"]').first();
+    const firstCard = main.locator('#place-list [data-testid^="place-card-"]').first();
     await expect(firstCard).toBeVisible();
     // Cards carry the curator avatar next to the personal-take quote
     await expect(
@@ -254,15 +253,15 @@ test.describe('Restaurant Map - E2E', () => {
     const main = page.locator('main');
     await expect(page.getByRole('searchbox')).toBeVisible({ timeout: 10_000 });
 
-    // Catalog order before using location: 대광어회집 first
-    await expect(main.locator('#place-list [role="button"]').first()).toContainText(
-      '대광어회집'
+    // Catalog order before using location: 콩블랑제리 (first list, first place)
+    await expect(main.locator('#place-list [data-testid^="place-card-"]').first()).toContainText(
+      '콩블랑제리'
     );
 
     await page.getByRole('button', { name: '내 위치' }).click();
 
     // Nearest-first re-sort + distance badges on cards
-    await expect(main.locator('#place-list [role="button"]').first()).toContainText(
+    await expect(main.locator('#place-list [data-testid^="place-card-"]').first()).toContainText(
       '성수족발'
     );
     await expect(
@@ -273,8 +272,8 @@ test.describe('Restaurant Map - E2E', () => {
     const clearBtn = page.getByRole('button', { name: '위치 해제' });
     await expect(clearBtn).toHaveAttribute('aria-pressed', 'true');
     await clearBtn.click();
-    await expect(main.locator('#place-list [role="button"]').first()).toContainText(
-      '대광어회집'
+    await expect(main.locator('#place-list [data-testid^="place-card-"]').first()).toContainText(
+      '콩블랑제리'
     );
     await expect(main.locator('#place-list').getByText(/^\d+(\.\d+)?km$/)).toHaveCount(0);
 
@@ -298,7 +297,7 @@ test.describe('Restaurant Map - E2E', () => {
     // Tool keeps working (no ErrorBoundary, list intact)
     await expect(page.getByText('문제가 발생했어요')).toHaveCount(0);
     await expect(
-      page.locator('main #place-list [role="button"]').first()
+      page.locator('main #place-list [data-testid^="place-card-"]').first()
     ).toBeVisible();
 
     expect(errors).toEqual([]);
