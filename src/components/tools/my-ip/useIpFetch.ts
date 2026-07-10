@@ -16,7 +16,10 @@ export interface UseIpFetchState {
 export function useIpFetch(): UseIpFetchState {
   const [data, setData] = useState<IpResult | null>(null);
   const [error, setError] = useState<FetchErrorCode | null>(null);
-  const [loading, setLoading] = useState(false);
+  // Start in the loading state so the first paint shows the skeleton, not a
+  // blank frame before the mount effect kicks off the fetch. SSR-consistent:
+  // the skeleton renders identically on server and initial client render.
+  const [loading, setLoading] = useState(true);
   // SSR renders with `true`; reading navigator.onLine here would branch
   // server vs client and break hydration. The real value syncs in the effect.
   const [isOnline, setIsOnline] = useState(true);

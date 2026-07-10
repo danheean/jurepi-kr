@@ -28,7 +28,7 @@ export function IpError({ error, onRetry, isLoading = false }: IpErrorProps) {
       <button
         onClick={onRetry}
         disabled={isLoading}
-        className="px-4 py-2 bg-danger text-white font-medium rounded-lg hover:bg-danger-ink disabled:opacity-50 disabled:cursor-not-allowed transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+        className="px-4 py-2 bg-danger-ink text-white font-medium rounded-lg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity min-h-[44px] min-w-[44px] flex items-center justify-center"
         aria-label={t('errors.retry')}
       >
         {t('errors.retry')}

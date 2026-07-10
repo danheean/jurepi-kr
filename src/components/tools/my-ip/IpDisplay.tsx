@@ -1,10 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Copy, RotateCw } from 'lucide-react';
+import { Check, Copy, RotateCw } from 'lucide-react';
 import type { IpResult } from '@/lib/my-ip/schema';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { copyText } from './copy-button';
+
+const COPIED_FEEDBACK_MS = 1500;
 
 interface IpDisplayProps {
   data: IpResult;
@@ -15,13 +18,24 @@ interface IpDisplayProps {
 export function IpDisplay({ data, onRefresh, isLoading = false }: IpDisplayProps) {
   const t = useTranslations('tools.my-ip');
   const locale = useLocale();
+  const prefersReducedMotion = useReducedMotion();
   const [copied, setCopied] = useState(false);
+  // Clear a pending "copied" reset if the component unmounts mid-timeout.
+  const copiedTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (copiedTimeoutRef.current) clearTimeout(copiedTimeoutRef.current);
+    },
+    []
+  );
 
   const handleCopy = async () => {
     const success = await copyText(data.ipv4);
     if (success) {
       setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
+      if (copiedTimeoutRef.current) clearTimeout(copiedTimeoutRef.current);
+      copiedTimeoutRef.current = setTimeout(() => setCopied(false), COPIED_FEEDBACK_MS);
     }
   };
 
@@ -73,11 +87,9 @@ export function IpDisplay({ data, onRefresh, isLoading = false }: IpDisplayProps
                 <span className="font-semibold">{t('display.cityLabel')}:</span> {data.city}
               </p>
             )}
-            {(data.isp || data.city) && (
-              <p className="text-xs text-text-muted mt-1">
-                {t('display.approximateNote', { provider: data.provider })}
-              </p>
-            )}
+            <p className="text-xs text-text-muted mt-1">
+              {t('display.approximateNote', { provider: data.provider })}
+            </p>
           </div>
         )}
 
@@ -88,8 +100,14 @@ export function IpDisplay({ data, onRefresh, isLoading = false }: IpDisplayProps
           aria-label={t('display.copyAria')}
           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-brand text-on-brand font-semibold rounded-lg hover:bg-brand-strong disabled:opacity-50 disabled:cursor-not-allowed transition-colors min-h-[44px] mb-4"
         >
-          <Copy className="w-4 h-4" />
-          <span>{copied ? t('display.copied') : t('display.copy')}</span>
+          {/* Icon swaps to a check on success (canonical CopyButton pattern);
+              the aria-live label announces the 복사→복사됨 change to SR users. */}
+          {copied ? (
+            <Check className="w-4 h-4" aria-hidden />
+          ) : (
+            <Copy className="w-4 h-4" aria-hidden />
+          )}
+          <span aria-live="polite">{copied ? t('display.copied') : t('display.copy')}</span>
         </button>
 
         {/* Metadata */}
@@ -106,9 +124,11 @@ export function IpDisplay({ data, onRefresh, isLoading = false }: IpDisplayProps
         onClick={onRefresh}
         disabled={isLoading}
         aria-label={t('display.refresh')}
-        className="flex items-center justify-center gap-2 px-4 py-2 text-brand-ink font-semibold border border-brand-ink rounded-lg hover:bg-brand-soft disabled:opacity-50 disabled:cursor-not-allowed transition-colors min-h-[44px] min-w-[120px]"
+        className="flex items-center justify-center gap-2 px-4 py-2 text-brand-ink font-semibold border border-brand-ink rounded-lg hover:bg-brand-soft hover:text-brand-ink-strong disabled:opacity-50 disabled:cursor-not-allowed transition-colors min-h-[44px] min-w-[120px]"
       >
-        <RotateCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+        <RotateCw
+          className={`w-4 h-4 ${isLoading && !prefersReducedMotion ? 'animate-spin' : ''}`}
+        />
         <span>{t('display.refresh')}</span>
       </button>
     </div>
