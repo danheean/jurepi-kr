@@ -46,7 +46,7 @@ export function RuleRow({
           onChange={(e) => onUpdate({ find: e.target.value })}
           placeholder={t('rule.find.placeholder')}
           aria-label={t('rule.find.label')}
-          className="w-full min-h-11 px-3 py-2 rounded border border-hairline bg-surface-muted text-text placeholder-text-secondary text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2"
+          className="w-full min-h-11 px-3 py-2 rounded border border-hairline bg-surface-muted text-text placeholder-text-secondary text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           data-testid={`rule-find-${rule.id}`}
         />
         <input
@@ -55,7 +55,7 @@ export function RuleRow({
           onChange={(e) => onUpdate({ replace: e.target.value })}
           placeholder={t('rule.replace.placeholder')}
           aria-label={t('rule.replace.label')}
-          className="w-full min-h-11 px-3 py-2 rounded border border-hairline bg-surface-muted text-text placeholder-text-secondary text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2"
+          className="w-full min-h-11 px-3 py-2 rounded border border-hairline bg-surface-muted text-text placeholder-text-secondary text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           data-testid={`rule-replace-${rule.id}`}
         />
       </div>
@@ -80,7 +80,7 @@ export function RuleRow({
                 active
                   ? 'bg-brand text-on-brand'
                   : 'bg-surface-muted text-text-secondary hover:bg-surface-sunken'
-              } focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2`}
+              } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2`}
               title={t(`option.${opt.i18n}.description`)}
               data-testid={`rule-toggle-${opt.field}-${rule.id}`}
             >
@@ -98,7 +98,7 @@ export function RuleRow({
           onChange={(e) => onUpdate({ flags: e.target.value || undefined })}
           placeholder={t('option.flags.label')}
           aria-label={t('option.flags.label')}
-          className="w-full min-h-11 px-3 py-2 rounded border border-hairline bg-surface-muted text-text text-xs focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2"
+          className="w-full min-h-11 px-3 py-2 rounded border border-hairline bg-surface-muted text-text text-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           maxLength={6}
           data-testid={`rule-flags-${rule.id}`}
         />
@@ -128,7 +128,7 @@ export function RuleRow({
             rule.enabled
               ? 'bg-accent-grape text-on-brand'
               : 'bg-surface-muted text-text-secondary'
-          } focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2`}
+          } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2`}
           title={t('rule.enable')}
           data-testid={`rule-enable-${rule.id}`}
         >
@@ -136,7 +136,7 @@ export function RuleRow({
         </button>
         <button
           onClick={onDuplicate}
-          className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-text rounded focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-colors"
+          className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-text rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 transition-colors"
           title={t('rule.duplicate')}
           aria-label={t('rule.duplicate')}
           data-testid={`rule-duplicate-${rule.id}`}
@@ -145,7 +145,7 @@ export function RuleRow({
         </button>
         <button
           onClick={onDelete}
-          className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-danger rounded focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-colors"
+          className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-danger rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 transition-colors"
           title={t('rule.delete')}
           aria-label={t('rule.delete')}
           data-testid={`rule-delete-${rule.id}`}
@@ -155,7 +155,7 @@ export function RuleRow({
         {index > 0 && (
           <button
             onClick={onMoveUp}
-            className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-text rounded focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-colors"
+            className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-text rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 transition-colors"
             title={t('rule.moveUp')}
             aria-label={t('rule.moveUp')}
             data-testid={`rule-moveup-${rule.id}`}
@@ -166,7 +166,7 @@ export function RuleRow({
         {index < totalRules - 1 && (
           <button
             onClick={onMoveDown}
-            className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-text rounded focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-colors"
+            className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-text rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 transition-colors"
             title={t('rule.moveDown')}
             aria-label={t('rule.moveDown')}
             data-testid={`rule-movedown-${rule.id}`}

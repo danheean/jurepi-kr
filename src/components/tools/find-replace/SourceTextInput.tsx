@@ -26,7 +26,7 @@ export function SourceTextInput({ text, onChange }: SourceTextInputProps) {
         value={text}
         onChange={(e) => onChange(e.target.value)}
         placeholder={t('sourceText.placeholder')}
-        className="flex-1 min-h-80 p-4 rounded-lg border border-hairline bg-surface text-text placeholder-text-secondary resize-y focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand font-mono text-sm"
+        className="flex-1 min-h-80 p-4 rounded-lg border border-hairline bg-surface text-text placeholder-text-secondary resize-y focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand font-mono text-sm"
       />
       <div className="text-xs text-text-secondary">
         {t('sourceText.charCount', { count: charCount })}

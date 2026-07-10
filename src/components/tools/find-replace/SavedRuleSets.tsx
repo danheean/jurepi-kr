@@ -51,13 +51,13 @@ export function SavedRuleSets({
             }
           }}
           placeholder={t('savedSets.saveNamePlaceholder')}
-          className="flex-1 min-h-11 px-3 py-2 rounded border border-hairline bg-surface-muted text-text placeholder-text-secondary text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2"
+          className="flex-1 min-h-11 px-3 py-2 rounded border border-hairline bg-surface-muted text-text placeholder-text-secondary text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           data-testid="save-ruleset-input"
         />
         <button
           onClick={handleSave}
           disabled={!saveNameInput.trim()}
-          className="inline-flex items-center justify-center min-h-11 px-3 bg-brand text-on-brand rounded font-medium text-sm hover:bg-brand-strong disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2"
+          className="inline-flex items-center justify-center min-h-11 px-3 bg-brand text-on-brand rounded font-medium text-sm hover:bg-brand-strong disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           data-testid="save-ruleset-button"
         >
           {t('savedSets.save')}
@@ -86,14 +86,14 @@ export function SavedRuleSets({
               </div>
               <button
                 onClick={() => onApplyRuleSet(set.name)}
-                className="inline-flex items-center justify-center min-h-11 min-w-11 px-3 text-xs font-medium bg-accent-grape text-on-brand rounded hover:bg-accent-grape/90 transition-colors focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2"
+                className="inline-flex items-center justify-center min-h-11 min-w-11 px-3 text-xs font-medium bg-accent-grape text-on-brand rounded hover:bg-accent-grape/90 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                 data-testid={`apply-ruleset-${set.name}`}
               >
                 {t('savedSets.apply')}
               </button>
               <button
                 onClick={() => onRemoveRuleSet(set.name)}
-                className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-danger rounded focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 transition-colors"
+                className="inline-flex items-center justify-center min-h-11 min-w-11 text-text-secondary hover:text-danger rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 transition-colors"
                 aria-label={t('savedSets.delete')}
                 data-testid={`delete-ruleset-${set.name}`}
               >

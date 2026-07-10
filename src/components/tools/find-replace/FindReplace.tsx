@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useFindReplace } from './useFindReplace';
 import { FindReplaceSkeleton } from './FindReplaceSkeleton';
@@ -10,7 +10,6 @@ import { ResultOutput } from './ResultOutput';
 import { PresetLibrary } from './PresetLibrary';
 import { SavedRuleSets } from './SavedRuleSets';
 import { RegexCheatsheet } from './RegexCheatsheet';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { PRESETS } from '@/lib/find-replace';
 
 /**
@@ -21,7 +20,6 @@ import { PRESETS } from '@/lib/find-replace';
  */
 export function FindReplace() {
   const t = useTranslations('tools.find-replace');
-  const prefersReducedMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
 
   const {

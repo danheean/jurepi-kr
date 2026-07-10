@@ -22,7 +22,7 @@ export function PresetLibrary({ presets, onSelectPreset }: PresetLibraryProps) {
           <button
             key={preset.id}
             onClick={() => onSelectPreset(preset)}
-            className="inline-flex items-center min-h-11 px-3 text-xs font-medium bg-surface-muted text-text rounded-lg hover:bg-surface-sunken transition-colors focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2"
+            className="inline-flex items-center min-h-11 px-3 text-xs font-medium bg-surface-muted text-text rounded-lg hover:bg-surface-sunken transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             data-testid={`preset-${preset.id}`}
           >
             {t(preset.labelKey)}

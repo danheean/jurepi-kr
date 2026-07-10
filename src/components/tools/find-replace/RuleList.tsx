@@ -70,7 +70,7 @@ export function RuleList({
 
       <button
         onClick={onAddRule}
-        className="w-full inline-flex items-center justify-center min-h-11 px-4 py-2 bg-brand text-on-brand rounded-lg font-medium text-sm hover:bg-brand-strong transition-colors focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2"
+        className="w-full inline-flex items-center justify-center min-h-11 px-4 py-2 bg-brand text-on-brand rounded-lg font-medium text-sm hover:bg-brand-strong transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         data-testid="add-rule-button"
       >
         {t('ruleList.addRule')}
