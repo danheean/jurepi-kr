@@ -124,7 +124,7 @@ export function TermCard({
       <button
         onClick={handleStarClick}
         aria-pressed={isFavorite}
-        className="absolute top-4 right-4 text-text-muted hover:text-brand transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand rounded"
+        className="absolute top-4 right-4 text-text-muted hover:text-brand transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand rounded"
         aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         data-testid={`term-star-${term.slug}`}
       >

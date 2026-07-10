@@ -48,7 +48,7 @@ export function TermSearch({ query, setQuery, resultCount }: TermSearchProps) {
               setQuery('');
             }
           }}
-          className="w-full pl-10 pr-10 py-3 border border-hairline rounded-lg bg-surface text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent-mint"
+          className="w-full pl-10 pr-10 py-3 border border-hairline rounded-lg bg-surface text-text placeholder:text-text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           aria-controls="term-list"
           data-testid="term-search-input"
         />

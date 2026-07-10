@@ -33,7 +33,7 @@ export function RelatedChips({
             <button
               key={slug}
               onClick={() => onSelect(slug)}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-muted hover:bg-surface-sunken text-sm text-brand-ink transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-muted hover:bg-surface-sunken text-sm text-brand-ink transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand"
               data-testid={`related-chip-${slug}`}
             >
               {term[currentLocale].term}

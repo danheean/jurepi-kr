@@ -129,7 +129,7 @@ export function TermDetail({
           <button
             onClick={onClose}
             aria-label="Close detail"
-            className="shrink-0 ml-2 text-text-muted hover:text-text transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand rounded"
+            className="shrink-0 ml-2 text-text-muted hover:text-text transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand rounded"
             data-testid="term-detail-close"
           >
             <X className="w-6 h-6" />
@@ -211,7 +211,7 @@ export function TermDetail({
                   // Toast handled by parent
                 }
               }}
-              className="flex-1 text-xs px-3 py-2 rounded bg-surface-muted text-text-secondary hover:bg-surface-sunken transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
+              className="flex-1 text-xs px-3 py-2 rounded bg-surface-muted text-text-secondary hover:bg-surface-sunken transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand"
               data-testid="copy-term"
             >
               {t('detail.copyTerm')}
@@ -225,7 +225,7 @@ export function TermDetail({
                   // Toast handled by parent
                 }
               }}
-              className="flex-1 text-xs px-3 py-2 rounded bg-surface-muted text-text-secondary hover:bg-surface-sunken transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
+              className="flex-1 text-xs px-3 py-2 rounded bg-surface-muted text-text-secondary hover:bg-surface-sunken transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand"
               data-testid="copy-definition"
             >
               {t('detail.copyDefinition')}
