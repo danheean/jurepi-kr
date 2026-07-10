@@ -36,11 +36,14 @@ export function Base64Encoder({ locale }: Props) {
     <div className="space-y-8">
       {/* Main interactive area */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left column: settings */}
-        <div className="lg:col-span-1 space-y-6">
-          <ModeToggle value={state.mode} onChange={actions.setMode} />
-          <VariantToggle value={state.variant} onChange={actions.setVariant} />
-          <DirectionToggle value={state.direction} onChange={actions.setDirection} />
+        {/* Left column: settings — grouped in a muted panel, sticky so the
+            column reads as an intentional settings rail rather than dead space */}
+        <div className="lg:col-span-1">
+          <div className="space-y-6 rounded-xl bg-surface-muted p-5 lg:sticky lg:top-8">
+            <ModeToggle value={state.mode} onChange={actions.setMode} />
+            <VariantToggle value={state.variant} onChange={actions.setVariant} />
+            <DirectionToggle value={state.direction} onChange={actions.setDirection} />
+          </div>
         </div>
 
         {/* Right column: input/output */}
@@ -65,16 +68,7 @@ export function Base64Encoder({ locale }: Props) {
             )}
           </div>
 
-          {/* Process button */}
-          <button
-            onClick={() => actions.process()}
-            disabled={!state.isValidInput || state.isLoading}
-            className="w-full px-4 py-3 bg-brand text-on-brand rounded-lg font-medium hover:bg-brand-strong disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            {state.isLoading ? t('process.loading') : t('process.button')}
-          </button>
-
-          {/* Error display */}
+          {/* Error display — conversion is live (SPEC), no manual trigger */}
           {state.error && (
             <div
               aria-live="polite"

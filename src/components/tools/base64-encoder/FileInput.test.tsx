@@ -1,4 +1,4 @@
-import { render, screen } from '@/__test__/test-utils';
+import { render, screen, fireEvent } from '@/__test__/test-utils';
 import { describe, it, expect, vi } from 'vitest';
 import { FileInput } from './FileInput';
 
@@ -68,6 +68,36 @@ describe('FileInput', () => {
     fileInput.dispatchEvent(new Event('change', { bubbles: true }));
 
     expect(mockOnSelect).toHaveBeenCalledWith(file);
+  });
+
+  it('opens the file picker on Enter and Space (keyboard operable)', () => {
+    const clickSpy = vi
+      .spyOn(HTMLInputElement.prototype, 'click')
+      .mockImplementation(() => {});
+
+    render(<FileInput onFileSelect={vi.fn()} selectedFile={null} />);
+
+    const dropzone = screen.getByRole('button');
+
+    fireEvent.keyDown(dropzone, { key: 'Enter' });
+    fireEvent.keyDown(dropzone, { key: ' ' });
+
+    expect(clickSpy).toHaveBeenCalledTimes(2);
+    clickSpy.mockRestore();
+  });
+
+  it('does not open the picker via keyboard when disabled', () => {
+    const clickSpy = vi
+      .spyOn(HTMLInputElement.prototype, 'click')
+      .mockImplementation(() => {});
+
+    render(<FileInput onFileSelect={vi.fn()} selectedFile={null} disabled />);
+
+    const dropzone = screen.getByRole('button');
+    fireEvent.keyDown(dropzone, { key: 'Enter' });
+
+    expect(clickSpy).not.toHaveBeenCalled();
+    clickSpy.mockRestore();
   });
 
   it('handles file size limit of 5MB', () => {

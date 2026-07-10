@@ -15,7 +15,7 @@ export function VariantToggle({ value, onChange }: Props) {
       <legend className="block text-sm font-semibold text-text">{t('variant.label')}</legend>
       <div className="flex gap-2">
         {(['standard', 'urlSafe'] as const).map((variant) => (
-          <label key={variant} className="flex items-center gap-2 cursor-pointer">
+          <label key={variant} className="flex min-h-[44px] items-center gap-2 pr-2 cursor-pointer">
             <input
               type="radio"
               name="variant"

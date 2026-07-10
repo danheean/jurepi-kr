@@ -15,7 +15,7 @@ export function DirectionToggle({ value, onChange }: Props) {
       <legend className="block text-sm font-semibold text-text">{t('direction.label')}</legend>
       <div className="flex gap-2">
         {(['encode', 'decode'] as const).map((direction) => (
-          <label key={direction} className="flex items-center gap-2 cursor-pointer">
+          <label key={direction} className="flex min-h-[44px] items-center gap-2 pr-2 cursor-pointer">
             <input
               type="radio"
               name="direction"

@@ -71,7 +71,7 @@ export function OutputDisplay({
         value={outputText}
         placeholder={t('output.placeholder')}
         aria-label={t('output.label')}
-        className="w-full min-h-32 p-4 border border-hairline rounded-lg bg-surface-muted text-text placeholder-text-secondary focus:outline-none resize-vertical font-mono text-sm"
+        className="w-full min-h-32 p-4 border border-hairline rounded-lg bg-surface-muted text-text placeholder-text-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring resize-vertical font-mono text-sm"
       />
 
       <div aria-live="polite" className="sr-only">

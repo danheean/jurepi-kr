@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 interface Props {
   onFileSelect: (file: File) => void;
@@ -12,22 +12,24 @@ interface Props {
 export function FileInput({ onFileSelect, selectedFile, disabled = false }: Props) {
   const t = useTranslations('tools.base64-encoder');
   const inputRef = useRef<HTMLInputElement>(null);
-  const isDragOver = useRef(false);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const handleDragOver = (e: React.DragEvent) => {
+    if (disabled) return;
     e.preventDefault();
-    isDragOver.current = true;
+    setIsDragOver(true);
   };
 
   const handleDragLeave = (e: React.DragEvent) => {
     if (e.currentTarget === e.target) {
-      isDragOver.current = false;
+      setIsDragOver(false);
     }
   };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
-    isDragOver.current = false;
+    setIsDragOver(false);
+    if (disabled) return;
     const files = e.dataTransfer.files;
     if (files[0]) {
       onFileSelect(files[0]);
@@ -40,8 +42,16 @@ export function FileInput({ onFileSelect, selectedFile, disabled = false }: Prop
     }
   };
 
-  const handleClick = () => {
+  const openPicker = () => {
+    if (disabled) return;
     inputRef.current?.click();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openPicker();
+    }
   };
 
   return (
@@ -50,10 +60,14 @@ export function FileInput({ onFileSelect, selectedFile, disabled = false }: Prop
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={handleClick}
-        className="relative border-2 border-dashed border-hairline rounded-lg p-8 cursor-pointer hover:border-hairline-strong transition-colors text-center"
+        onClick={openPicker}
+        onKeyDown={handleKeyDown}
+        className={`relative border-2 border-dashed rounded-lg p-8 cursor-pointer transition-colors text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring ${
+          isDragOver ? 'border-brand bg-brand/5' : 'border-hairline hover:border-hairline-strong'
+        } ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
         role="button"
         tabIndex={disabled ? -1 : 0}
+        aria-disabled={disabled}
         aria-label={t('input.fileLabel')}
       >
         <input

@@ -10,18 +10,12 @@ describe('Base64Encoder orchestrator', () => {
     expect(container.querySelector('div')).toBeInTheDocument();
   });
 
-  it('encodes text input to Base64 on process button click', async () => {
+  it('encodes text input to Base64 live as the user types', async () => {
     render(<Base64Encoder locale="en" />);
 
-    const textareas = screen.getAllByRole('textbox');
-    const inputTextarea = textareas[0] as HTMLTextAreaElement;
+    const inputTextarea = screen.getAllByRole('textbox')[0] as HTMLTextAreaElement;
 
     fireEvent.change(inputTextarea, { target: { value: 'hello' } });
-
-    const processButton = screen.getByRole('button', { name: 'Convert' });
-    expect(processButton).not.toBeDisabled();
-
-    fireEvent.click(processButton);
 
     await waitFor(() => {
       const outputTextarea = screen.getAllByRole('textbox')[1] as HTMLTextAreaElement;
@@ -29,7 +23,7 @@ describe('Base64Encoder orchestrator', () => {
     });
   });
 
-  it('decodes valid Base64 to plaintext when direction is decode', async () => {
+  it('decodes valid Base64 to plaintext live when direction is decode', async () => {
     render(<Base64Encoder locale="en" />);
 
     const radios = screen.getAllByRole('radio');
@@ -37,12 +31,9 @@ describe('Base64Encoder orchestrator', () => {
     expect(decodeRadio).toBeDefined();
     fireEvent.click(decodeRadio!);
 
-    const textareas = screen.getAllByRole('textbox');
-    const inputTextarea = textareas[0] as HTMLTextAreaElement;
+    const inputTextarea = screen.getAllByRole('textbox')[0] as HTMLTextAreaElement;
 
     fireEvent.change(inputTextarea, { target: { value: 'aGVsbG8gd29ybGQ=' } });
-
-    fireEvent.click(screen.getByRole('button', { name: 'Convert' }));
 
     await waitFor(() => {
       const outputTextarea = screen.getAllByRole('textbox')[1] as HTMLTextAreaElement;
@@ -50,25 +41,27 @@ describe('Base64Encoder orchestrator', () => {
     });
   });
 
-  it('blocks processing of invalid Base64 in decode direction (validation contract)', () => {
+  it('emits no output for invalid Base64 in decode, converts once valid (validation contract)', async () => {
     render(<Base64Encoder locale="en" />);
 
     const radios = screen.getAllByRole('radio');
-    const decodeRadio = radios.find((r) => (r as HTMLInputElement).value === 'decode');
-    fireEvent.click(decodeRadio!);
+    fireEvent.click(radios.find((r) => (r as HTMLInputElement).value === 'decode')!);
 
-    const textareas = screen.getAllByRole('textbox');
-    const inputTextarea = textareas[0] as HTMLTextAreaElement;
+    const inputTextarea = screen.getAllByRole('textbox')[0] as HTMLTextAreaElement;
 
-    // Invalid charset for Base64 — isValidInput must be false, disabling the button
+    // Invalid Base64 in decode → live output stays empty (no garbage, no crash)
     fireEvent.change(inputTextarea, { target: { value: 'ABC!@#' } });
+    await waitFor(() => {
+      expect((screen.getAllByRole('textbox')[1] as HTMLTextAreaElement).value).toBe('');
+    });
 
-    expect(screen.getByRole('button', { name: 'Convert' })).toBeDisabled();
-
-    // Same input in encode direction is processable (plain text)
-    const encodeRadio = radios.find((r) => (r as HTMLInputElement).value === 'encode');
-    fireEvent.click(encodeRadio!);
-    expect(screen.getByRole('button', { name: 'Convert' })).not.toBeDisabled();
+    // Same input in encode direction is valid plaintext → converts live
+    fireEvent.click(radios.find((r) => (r as HTMLInputElement).value === 'encode')!);
+    await waitFor(() => {
+      expect(
+        (screen.getAllByRole('textbox')[1] as HTMLTextAreaElement).value.length
+      ).toBeGreaterThan(0);
+    });
   });
 
   it('does not leak Korean text to English locale rendering', () => {
@@ -102,10 +95,13 @@ describe('Base64Encoder orchestrator', () => {
     expect(textareas.length).toBeGreaterThanOrEqual(2);
   });
 
-  it('process button is disabled with empty input', () => {
+  it('renders no manual Convert button and shows no output for empty input', () => {
     render(<Base64Encoder locale="en" />);
 
-    const processButton = screen.getByRole('button', { name: 'Convert' });
-    expect(processButton).toBeDisabled();
+    // Conversion is live — the manual Convert button must be gone
+    expect(screen.queryByRole('button', { name: 'Convert' })).toBeNull();
+
+    const outputTextarea = screen.getAllByRole('textbox')[1] as HTMLTextAreaElement;
+    expect(outputTextarea.value).toBe('');
   });
 });

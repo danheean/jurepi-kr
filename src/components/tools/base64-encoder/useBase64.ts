@@ -188,27 +188,45 @@ export function useBase64(): [Base64State, Base64Actions] {
     }
   }, [mode, inputFile, inputText, direction, variant]);
 
-  // Debounced input text setter
-  const setInputText = useCallback(
-    (text: string) => {
-      setInputTextState(text);
-      setError(null);
+  // Input text setter — conversion is driven by the live effect below.
+  const setInputText = useCallback((text: string) => {
+    setInputTextState(text);
+    setError(null);
+  }, []);
 
-      // Clear existing debounce timer
+  // Keep a live ref to the latest process closure so the live-conversion
+  // effect always fires the current one (avoids the debounce stale-closure trap).
+  const processRef = useRef(process);
+  useEffect(() => {
+    processRef.current = process;
+  });
+
+  // Live conversion (SPEC): output tracks input/settings in real time.
+  // Large text (>10KB) is debounced; empty or invalid input clears the output.
+  useEffect(() => {
+    const hasInput =
+      mode === 'file' ? inputFile !== null : inputText.trim().length > 0;
+
+    if (!hasInput || !isValidInput) {
+      setOutputText('');
+      setError(null);
       if (debounceTimerRef.current) {
         clearTimeout(debounceTimerRef.current);
+        debounceTimerRef.current = null;
       }
+      return;
+    }
 
-      // Schedule process for large inputs (>10KB)
-      if (text.length > 10 * 1024) {
-        debounceTimerRef.current = setTimeout(
-          () => process(),
-          DEBOUNCE_MS
-        );
-      }
-    },
-    [process]
-  );
+    if (mode === 'text' && inputText.length > 10 * 1024) {
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+      debounceTimerRef.current = setTimeout(() => processRef.current(), DEBOUNCE_MS);
+      return () => {
+        if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+      };
+    }
+
+    processRef.current();
+  }, [mode, inputText, inputFile, direction, variant, isValidInput]);
 
   // Copy to clipboard
   const copy = useCallback(
