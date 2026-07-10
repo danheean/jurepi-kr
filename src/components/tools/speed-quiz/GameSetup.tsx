@@ -125,7 +125,7 @@ export function GameSetup({
                     onChange={(e) =>
                       onSetting('difficulty', e.target.value as any)
                     }
-                    className="w-4 h-4"
+                    className="w-4 h-4 accent-brand"
                     data-testid={`setup-difficulty-${diff}`}
                   />
                   <span className="text-text">{t(`difficulty.${diff}`)}</span>
@@ -161,7 +161,7 @@ export function GameSetup({
               type="checkbox"
               checked={settings.shuffle}
               onChange={(e) => onSetting('shuffle', e.target.checked)}
-              className="w-5 h-5"
+              className="w-5 h-5 accent-brand"
               data-testid="setup-shuffle"
             />
             <span className="text-text font-medium">{t('setup.shuffle')}</span>
@@ -173,7 +173,7 @@ export function GameSetup({
               type="checkbox"
               checked={settings.showHints}
               onChange={(e) => onSetting('showHints', e.target.checked)}
-              className="w-5 h-5"
+              className="w-5 h-5 accent-brand"
               data-testid="setup-hints"
             />
             <span className="text-text font-medium">{t('setup.hints')}</span>
