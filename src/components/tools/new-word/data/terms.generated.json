@@ -1,5 +1,47 @@
 [
   {
+    "slug": "yareu",
+    "topic": "mz",
+    "tags": [
+      "감탄사",
+      "유행어",
+      "Z세대"
+    ],
+    "coinedYear": 2025,
+    "related": [],
+    "tone": "positive",
+    "ko": {
+      "term": "야르",
+      "definition": "기분이 좋거나 신날 때 내뱉는 감탄사.\n\"신난다\", \"야호\", \"앗싸\", \"나이스\"와 비슷한 뜻으로,\nZ세대(10~20대) 사이에서 유행한 표현이다.\n",
+      "examples": [
+        "시험 다 끝났다, 야르~!",
+        "오늘 저녁 치킨이래, 야르!"
+      ],
+      "body": "기쁨·흥분을 짧고 경쾌하게 드러내는 감탄사입니다.\n주로 좋은 일이 생겼을 때 혼잣말이나 리액션으로 쓰입니다.",
+      "reading": "야르",
+      "aliases": [
+        "야르~",
+        "야르르"
+      ],
+      "origin": "유래에는 여러 설이 있으며 아직 확정되지 않았다(일본어 'やるな'가\n변형됐다는 설, 유튜버·코미디언의 방송에서 퍼졌다는 설 등).\n2025년 전후 숏폼·유튜브를 통해 Z세대에서 빠르게 확산됐다.\n"
+    },
+    "en": {
+      "term": "Yareu",
+      "definition": "A Korean interjection shouted when you're excited or thrilled,\nroughly equivalent to \"yay!\", \"woo-hoo!\", or \"yes!\".\nIt caught on among Korean Gen Z (teens and twenties).\n",
+      "examples": [
+        "Exams are finally over — yareu!",
+        "Chicken for dinner tonight? Yareu!"
+      ],
+      "body": "A short, upbeat exclamation of joy or excitement.\nTypically used as a reaction or under-the-breath cheer when something good happens.",
+      "reading": "/ja.ɾɯ/",
+      "aliases": [
+        "yareu~",
+        "yar"
+      ],
+      "origin": "Its exact origin is debated and unconfirmed (theories include a shortening\nof the Japanese \"yaruna,\" and spread through YouTubers and comedians on air).\nIt spread rapidly among Korean Gen Z via short-form video around 2025.\n"
+    }
+  },
+  {
     "slug": "aljaldakkkalsen",
     "topic": "mz",
     "tags": [
