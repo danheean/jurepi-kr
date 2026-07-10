@@ -36,7 +36,7 @@ export function PeopleSearch({ query, setQuery, resultCount }: PeopleSearchProps
           onChange={(e) => setQuery(e.target.value)}
           aria-label={t('aria')}
           aria-controls="people-list"
-          className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-hairline bg-surface text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-transparent"
+          className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-hairline bg-surface text-text placeholder:text-text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:border-transparent"
           data-testid="people-search-input"
         />
         {query && (
