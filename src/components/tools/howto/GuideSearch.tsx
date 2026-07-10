@@ -38,7 +38,7 @@ export function GuideSearch({ query, setQuery, resultCount }: GuideSearchProps) 
           placeholder={t('search.placeholder')}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full pl-12 pr-10 py-2 border border-hairline rounded-lg bg-surface text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-brand"
+          className="w-full pl-12 pr-10 py-2 border border-hairline rounded-lg bg-surface text-text placeholder:text-text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           aria-label={t('search.label')}
           role="searchbox"
         />
