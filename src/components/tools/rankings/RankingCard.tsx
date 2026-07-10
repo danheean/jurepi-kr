@@ -98,7 +98,7 @@ export function RankingCard({
         onClick={handleStarClick}
         aria-pressed={isFavorited}
         aria-label={t('list.toggleFavorite')}
-        className="absolute top-4 right-4 text-text-secondary hover:text-accent-sun transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-sun rounded"
+        className="absolute top-4 right-4 text-text-secondary hover:text-accent-sun transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-sun rounded"
         data-testid={`ranking-star-${ranking.slug}`}
       >
         <Star
