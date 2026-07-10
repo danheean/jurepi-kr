@@ -33,7 +33,7 @@ CRITICAL (honest error messages): invalid cron expressions must not crash. Inval
 </overview>
 
 <platform_integration>
-  - Route: /[locale]/tools/cron-parser (SSG; registry slug "cron-parser", id "cron-parser", status "coming_soon", accent "rose", category "dev").
+  - Route: /[locale]/tools/cron-parser (SSG; registry slug "cron-parser", id "cron-parser", status "live", accent "rose", category "dev").
   - Provided by the platform (do NOT reimplement): app shell (Header/Footer/LocaleSwitcher/ThemeToggle), ConsentBanner, AdSlot, Toast system, design tokens (tokens.css ↔ DESIGN.md), i18n runtime, Error Boundary around the tool module, lib/seo.ts metadata builder, breadcrumb + in_content ad wrapper, ShareButtons.
   - Consumes: i18n namespace `tools.cron-parser.*` (UI chrome strings: field labels, error messages, timezone list, description parts, how-to, FAQ — NOT cron expressions, which are user input; descriptions are composed from i18n parts in the UI layer, not generated in the domain).
   - NOTE (updated 2026-07-10): the `'dev'` category is ALREADY live in the platform. No platform prerequisite remains; this tool only adds its own registry entry.
@@ -320,8 +320,8 @@ Registry entry (tools/registry.ts):
   category: 'dev',
   icon: 'Clock', // or similar lucide icon
   accent: 'rose',
-  status: 'coming_soon',
-  order: 22,
+  status: 'live',
+  order: 125,
   addedAt: '2026-07-10',
   keywords: ['cron', 'schedule', 'job', 'timezone', 'next-run', 'crontab']
 }
@@ -349,7 +349,7 @@ Build time: ~8–12 seconds (vitest + tsc + next build).
 </build_output>
 
 <key_implementation_notes>
-1. **Registry Entry**: id/slug `cron-parser`, category `dev`, accent `rose`, status `coming_soon`, `addedAt: '2026-07-10'` (REQUIRED). Order = 22 (adjust if needed).
+1. **Registry Entry**: id/slug `cron-parser`, category `dev`, accent `rose`, status `live`, `addedAt: '2026-07-10'` (REQUIRED). Order = 125 (free slot between url-encoder 120 and rankings 130).
 
 2. **i18n Namespace**: All user-facing strings in `tools.cron-parser.*`. Top-level `title` and `description` required. Descriptions are composed from i18n **parts** (e.g., `descriptionTemplates.everyWeekday`, `atTime`), not English prose templates in the domain.
 

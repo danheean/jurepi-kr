@@ -211,6 +211,37 @@ describe('useBase64 hook', () => {
       expect(state.isValidInput).toBe(false);
     });
 
+    it('returns true for a data: URL in decode mode (regression)', () => {
+      // The gate previously rejected the data: prefix, so a pasted data URI
+      // (what "Copy Data-URI" produces) never reached the decoder.
+      const { result } = renderHook(() => useBase64());
+      const [, actions] = result.current;
+
+      act(() => {
+        actions.setDirection('decode');
+        actions.setInputText('data:text/plain;base64,aGVsbG8=');
+      });
+
+      let state = result.current[0];
+      expect(state.isValidInput).toBe(true);
+    });
+
+    it('returns true for mismatched-variant Base64 in decode mode', () => {
+      // URL-safe payload while the UI is set to standard — decodeSmart accepts
+      // both, so the gate must too.
+      const { result } = renderHook(() => useBase64());
+      const [, actions] = result.current;
+
+      act(() => {
+        actions.setDirection('decode');
+        actions.setVariant('standard');
+        actions.setInputText('SGVsbG8gV29ybGQ');
+      });
+
+      let state = result.current[0];
+      expect(state.isValidInput).toBe(true);
+    });
+
     it('returns false for file exceeding size limit', () => {
       const { result } = renderHook(() => useBase64());
       const [, actions] = result.current;
@@ -451,6 +482,42 @@ describe('useBase64 hook', () => {
       }
     });
 
+    it('copies a data URI with the real MIME type for an encoded image (regression)', async () => {
+      // Bug: "Copy Data-URI" hardcoded `data:text/plain;base64,…` for every
+      // mode, so an encoded image produced an invalid text/plain data URI.
+      // Async file reading (encodeFile → file.arrayBuffer) needs real timers.
+      vi.useRealTimers();
+      const mockClipboard = vi.fn().mockResolvedValue(undefined);
+      vi.stubGlobal('navigator', { clipboard: { writeText: mockClipboard } } as any);
+
+      try {
+        const { result } = renderHook(() => useBase64());
+        const pngFile = new File([new Uint8Array([0x89, 0x50, 0x4e, 0x47])], 'photo.png', {
+          type: 'image/png',
+        });
+
+        act(() => {
+          result.current[1].setMode('file');
+          result.current[1].setInputFile(pngFile);
+        });
+        await act(async () => {
+          await result.current[1].process();
+        });
+
+        let success = false;
+        await act(async () => {
+          success = await result.current[1].copy('dataUri');
+        });
+
+        expect(success).toBe(true);
+        const copied = mockClipboard.mock.calls[0][0] as string;
+        expect(copied.startsWith('data:image/png;base64,')).toBe(true);
+        expect(copied.startsWith('data:text/plain')).toBe(false);
+      } finally {
+        vi.unstubAllGlobals();
+      }
+    });
+
     it('does not copy in decode mode for base64 target', async () => {
       const mockClipboard = vi.fn().mockResolvedValue(undefined);
       vi.stubGlobal('navigator', {
@@ -532,6 +599,19 @@ describe('useBase64 hook', () => {
       expect(state.error).toBeNull();
     });
 
+    it('sets decodedImage when decoding an image data: URL (regression)', async () => {
+      // encode → "Copy Data-URI" → decode round-trip: the pasted value carries
+      // a data:image/png prefix. Previously the gate dropped it and no image
+      // ever rendered.
+      const result = await decodeInput(`data:image/png;base64,${PNG_1x1}`);
+      const state = result.current[0];
+
+      expect(state.decodedImage).not.toBeNull();
+      expect(state.decodedImage?.mimeType).toBe('image/png');
+      expect(state.outputText).toBe('');
+      expect(state.error).toBeNull();
+    });
+
     it('clears decodedImage when the next decode is plain text', async () => {
       const result = await decodeInput(PNG_1x1);
       expect(result.current[0].decodedImage).not.toBeNull();
@@ -590,6 +670,65 @@ describe('useBase64 hook', () => {
       } finally {
         vi.unstubAllGlobals();
       }
+    });
+  });
+
+  describe('decoded file handling', () => {
+    // "JVBERi0xLjQK" = "%PDF-1.4\n"; declared MIME application/pdf → file.
+    const PDF_DATA_URL = 'data:application/pdf;base64,JVBERi0xLjQK';
+
+    async function decodeInput(input: string) {
+      const { result } = renderHook(() => useBase64());
+      act(() => {
+        result.current[1].setDirection('decode');
+        result.current[1].setInputText(input);
+      });
+      await act(async () => {
+        await result.current[1].process();
+      });
+      return result;
+    }
+
+    it('sets decodedFile for a declared binary data URL', async () => {
+      const result = await decodeInput(PDF_DATA_URL);
+      const state = result.current[0];
+
+      expect(state.decodedFile).not.toBeNull();
+      expect(state.decodedFile?.mimeType).toBe('application/pdf');
+      expect(state.decodedFile?.sizeBytes).toBeGreaterThan(0);
+      expect(state.outputText).toBe('');
+      expect(state.decodedImage).toBeNull();
+      expect(state.error).toBeNull();
+    });
+
+    it('downloadDecodedFile triggers a download anchor', async () => {
+      const clickSpy = vi
+        .spyOn(HTMLAnchorElement.prototype, 'click')
+        .mockImplementation(() => {});
+      try {
+        const result = await decodeInput(PDF_DATA_URL);
+        act(() => {
+          result.current[1].downloadDecodedFile();
+        });
+        expect(clickSpy).toHaveBeenCalled();
+      } finally {
+        clickSpy.mockRestore();
+      }
+    });
+
+    it('clears decodedFile when the next decode is plain text', async () => {
+      const result = await decodeInput(PDF_DATA_URL);
+      expect(result.current[0].decodedFile).not.toBeNull();
+
+      act(() => {
+        result.current[1].setInputText('aGVsbG8=');
+      });
+      await act(async () => {
+        await result.current[1].process();
+      });
+
+      expect(result.current[0].decodedFile).toBeNull();
+      expect(result.current[0].outputText).toBe('hello');
     });
   });
 

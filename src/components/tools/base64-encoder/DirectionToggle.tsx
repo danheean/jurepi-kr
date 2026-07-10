@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { OptionGroup } from './OptionGroup';
 
 interface Props {
   value: 'encode' | 'decode';
@@ -11,24 +12,15 @@ export function DirectionToggle({ value, onChange }: Props) {
   const t = useTranslations('tools.base64-encoder');
 
   return (
-    <fieldset className="space-y-3">
-      <legend className="block text-sm font-semibold text-text">{t('direction.label')}</legend>
-      <div className="flex gap-2">
-        {(['encode', 'decode'] as const).map((direction) => (
-          <label key={direction} className="flex min-h-[44px] items-center gap-2 pr-2 cursor-pointer">
-            <input
-              type="radio"
-              name="direction"
-              value={direction}
-              checked={value === direction}
-              onChange={() => onChange(direction)}
-              className="w-4 h-4 accent-accent-coral"
-              aria-label={t(`direction.${direction}`)}
-            />
-            <span className="text-sm font-medium text-text">{t(`direction.${direction}`)}</span>
-          </label>
-        ))}
-      </div>
-    </fieldset>
+    <OptionGroup
+      legend={t('direction.label')}
+      name="direction"
+      value={value}
+      onChange={onChange}
+      options={[
+        { value: 'encode', label: t('direction.encode') },
+        { value: 'decode', label: t('direction.decode') },
+      ]}
+    />
   );
 }

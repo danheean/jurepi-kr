@@ -99,3 +99,38 @@ export function guessMimeType(filename?: string, base64Prefix?: string): string 
   // Fallback: text/plain
   return 'text/plain';
 }
+
+/**
+ * True when a MIME type represents human-readable text (so a decoded payload
+ * should be shown as text rather than offered as a binary file download).
+ */
+export function isTextualMime(mimeType: string): boolean {
+  const m = mimeType.toLowerCase().trim();
+  return (
+    m.startsWith('text/') ||
+    m === 'application/json' ||
+    m === 'application/xml' ||
+    m === 'application/javascript' ||
+    m === 'application/typescript' ||
+    m === 'application/x-www-form-urlencoded' ||
+    m.endsWith('+json') ||
+    m.endsWith('+xml')
+  );
+}
+
+// Reverse of MIME_TYPE_MAP: first extension wins per MIME (e.g. image/jpeg → jpg).
+const MIME_TO_EXTENSION: Record<string, string> = (() => {
+  const out: Record<string, string> = {};
+  for (const [ext, mime] of Object.entries(MIME_TYPE_MAP)) {
+    if (!(mime in out)) out[mime] = ext.slice(1); // strip leading dot
+  }
+  return out;
+})();
+
+/**
+ * Best-effort filename extension for a MIME type (without dot), for naming a
+ * downloaded file. Falls back to "bin" for unknown types.
+ */
+export function extensionForMime(mimeType: string): string {
+  return MIME_TO_EXTENSION[mimeType.toLowerCase().trim()] ?? 'bin';
+}

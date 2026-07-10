@@ -510,8 +510,10 @@ const defaultMessages = {
       },
       variant: {
         label: 'Variant',
-        standard: 'Standard (A-Za-z0-9+/)',
-        urlSafe: 'URL-Safe (A-Za-z0-9-_)',
+        standard: 'Standard',
+        standardHint: 'A-Za-z0-9+/',
+        urlSafe: 'URL-Safe',
+        urlSafeHint: 'A-Za-z0-9-_',
       },
       direction: {
         label: 'Direction',
@@ -522,7 +524,7 @@ const defaultMessages = {
         label: 'Input',
         fileSelect: 'Select file',
         textPlaceholder: 'Paste text or Base64…',
-        fileLabel: 'Drag files or click to browse',
+        fileLabel: 'Drag an image, PDF, font, or other file — or click to browse',
         fileSuccess: 'File selected: {filename} ({size})',
       },
       process: {
@@ -540,6 +542,8 @@ const defaultMessages = {
         imageAlt: 'Decoded image',
         downloadImage: 'Download image',
         copyImage: 'Copy image',
+        fileReady: 'Decoded file',
+        downloadFile: 'Download file',
       },
       meta: {
         title: 'Base64 Encoder/Decoder — Text & File Conversion',
@@ -559,6 +563,10 @@ const defaultMessages = {
           { q: 'What is URL-safe Base64?', a: 'URL-safe Base64 uses - and _ instead of + and /.' },
           { q: 'Is my data uploaded?', a: 'No, all processing is local.' },
           { q: 'What is the file size limit?', a: 'Maximum 5MB.' },
+          {
+            q: 'When is Base64 typically used?',
+            a: 'Common uses include data URIs, email attachments, certificates, and carrying binaries in JSON.',
+          },
         ],
       },
     },
@@ -1001,6 +1009,7 @@ const defaultMessages = {
     },
     'find-replace': (enMessages as any).tools['find-replace'],
     'jwt-decoder': (enMessages as any).tools['jwt-decoder'],
+    'cron-parser': (enMessages as any).tools['cron-parser'],
   },
 };
 

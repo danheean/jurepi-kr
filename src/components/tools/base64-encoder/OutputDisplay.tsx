@@ -12,6 +12,11 @@ interface DecodedImagePreview {
   sizeBytes: number;
 }
 
+interface DecodedFilePreview {
+  mimeType: string;
+  sizeBytes: number;
+}
+
 interface Props {
   outputText: string;
   direction: 'encode' | 'decode';
@@ -23,6 +28,8 @@ interface Props {
   decodedImage?: DecodedImagePreview | null;
   onDownloadImage?: () => void;
   onCopyImage?: () => Promise<boolean>;
+  decodedFile?: DecodedFilePreview | null;
+  onDownloadFile?: () => void;
 }
 
 const COPIED_FEEDBACK_MS = 1600;
@@ -34,8 +41,9 @@ function formatBytes(bytes: number): string {
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
 
-/** Short, human label for an image MIME type (e.g. "image/png" → "PNG"). */
+/** Short, human label for a MIME type (e.g. "image/png" → "PNG"). */
 function mimeLabel(mimeType: string): string {
+  if (mimeType === 'application/octet-stream') return 'BIN';
   const sub = mimeType.split('/')[1] ?? mimeType;
   return sub.replace('svg+xml', 'svg').replace('x-icon', 'ico').toUpperCase();
 }
@@ -60,6 +68,8 @@ export function OutputDisplay({
   decodedImage = null,
   onDownloadImage,
   onCopyImage,
+  decodedFile = null,
+  onDownloadFile,
 }: Props) {
   const t = useTranslations('tools.base64-encoder');
   const [copiedTarget, setCopiedTarget] = useState<FeedbackTarget | null>(null);
@@ -140,6 +150,32 @@ export function OutputDisplay({
               {copiedTarget === 'image' ? t('output.copied') : t('output.copyImage')}
             </button>
           )}
+        </div>
+      </div>
+    );
+  }
+
+  // Non-image binary result (e.g. a decoded PDF): offer a file download rather
+  // than rendering unreadable bytes as text.
+  const showFile = direction === 'decode' && decodedFile !== null;
+  if (showFile && decodedFile) {
+    return (
+      <div className="space-y-3">
+        <div className="flex items-center gap-3 rounded-lg border border-hairline bg-surface-muted p-4">
+          <span aria-hidden className="text-2xl leading-none">
+            📄
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-text">{t('output.fileReady')}</p>
+            <p className="text-sm text-text-secondary">
+              {mimeLabel(decodedFile.mimeType)} · {formatBytes(decodedFile.sizeBytes)}
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button onClick={() => onDownloadFile?.()} className={primaryButtonClass(false)}>
+            {t('output.downloadFile')}
+          </button>
         </div>
       </div>
     );

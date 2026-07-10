@@ -37,13 +37,13 @@ export function ToolIntro({
           slug={slug}
           className="h-auto w-16 shrink-0 rounded-2xl shadow-card sm:w-[72px]"
         />
-        <div className="space-y-2">
+        <div className="min-w-0 space-y-2">
           <p
             className={`text-xs font-bold uppercase tracking-widest ${accentEyebrowClass(accent)}`}
           >
             {eyebrow}
           </p>
-          <h1 className="font-display text-display-lg font-bold text-text">
+          <h1 className="font-display text-display-lg font-bold text-text break-words">
             {title}
           </h1>
         </div>

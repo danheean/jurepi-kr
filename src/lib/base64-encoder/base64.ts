@@ -46,6 +46,25 @@ export function parseDataUrl(input: string): { mime: string | null; data: string
 }
 
 /**
+ * True when `input` can be decoded by `decodeSmart` — mirrors its acceptance
+ * rules so the UI's validity gate never rejects something the decoder handles:
+ *  1. Strip an optional `data:…;base64,` prefix (a `data:` URL is decodable).
+ *  2. Ignore whitespace/newlines.
+ *  3. Accept EITHER variant (a data URL may be standard even when the UI is
+ *     set to URL-safe, and vice versa).
+ * Empty (after stripping/normalizing) is not decodable.
+ */
+export function isDecodableInput(input: string, variant: Variant): boolean {
+  const { data } = parseDataUrl(input);
+  const normalized = normalizeInput(data);
+  if (normalized.length === 0) {
+    return false;
+  }
+  const otherVariant: Variant = variant === 'standard' ? 'urlSafe' : 'standard';
+  return isValidBase64(normalized, variant) || isValidBase64(normalized, otherVariant);
+}
+
+/**
  * Convert standard Base64 to URL-safe variant.
  * + → -, / → _
  * Does not remove padding (caller decides).

@@ -58,14 +58,54 @@ describe('decodeSmart', () => {
     expect(result).toMatchObject({ ok: false, error: { code: 'invalidBase64' } });
   });
 
-  it('returns a notUtf8 error for non-image binary that is not valid UTF-8', () => {
+  it('offers a generic file for non-image binary that is not valid UTF-8', () => {
     // "//79" decodes to bytes 0xFF 0xFE 0xFD — not an image, not valid UTF-8.
+    // Anything that is neither image nor text is offered as a download.
     const result = decodeSmart('//79', 'standard');
-    expect(result).toMatchObject({ ok: false, error: { code: 'notUtf8' } });
+    expect(result).toMatchObject({
+      ok: true,
+      kind: 'file',
+      mimeType: 'application/octet-stream',
+    });
   });
 
   it('returns an invalidBase64 error for empty input', () => {
     const result = decodeSmart('   ', 'standard');
     expect(result).toMatchObject({ ok: false, error: { code: 'invalidBase64' } });
+  });
+
+  it('offers a downloadable file for a declared application/pdf data URL', () => {
+    // "JVBERi0xLjQK" = "%PDF-1.4\n" — the declared MIME says PDF (a binary file).
+    const result = decodeSmart('data:application/pdf;base64,JVBERi0xLjQK', 'standard');
+    expect(result.ok).toBe(true);
+    if (result.ok && result.kind === 'file') {
+      expect(result.mimeType).toBe('application/pdf');
+      expect(result.base64.length).toBeGreaterThan(0);
+      expect(result.sizeBytes).toBeGreaterThan(0);
+    } else {
+      throw new Error('expected a file result');
+    }
+  });
+
+  it('offers a file for a declared application/zip data URL', () => {
+    // "UEsDBA==" = PK\x03\x04 (zip local file header).
+    const result = decodeSmart('data:application/zip;base64,UEsDBA==', 'standard');
+    expect(result).toMatchObject({ ok: true, kind: 'file', mimeType: 'application/zip' });
+  });
+
+  it('still decodes a declared text/* data URL as text', () => {
+    const result = decodeSmart('data:text/plain;base64,SGVsbG8=', 'standard');
+    expect(result).toMatchObject({ ok: true, kind: 'text', plaintext: 'Hello' });
+  });
+
+  it('uses a generic (octet-stream) file for a text-declared but binary payload', () => {
+    // Declared text/plain but the bytes are not valid UTF-8: we do not keep the
+    // wrong text/plain MIME — it falls through to a generic file download.
+    const result = decodeSmart('data:text/plain;base64,//79', 'standard');
+    expect(result).toMatchObject({
+      ok: true,
+      kind: 'file',
+      mimeType: 'application/octet-stream',
+    });
   });
 });

@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   isValidBase64,
   normalizeInput,
+  isDecodableInput,
   urlSafeEncode,
   urlSafeDecode,
   bytesToBase64,
@@ -71,6 +72,48 @@ describe('normalizeInput', () => {
     // Spaces within (not leading/trailing) might be part of actual content
     // but Base64 itself shouldn't have internal spaces
     expect(normalizeInput('SGVs bG8g').trim()).not.toContain(' ');
+  });
+});
+
+describe('isDecodableInput', () => {
+  // 1x1 PNG, both as raw standard Base64 and as a data URL.
+  const PNG_RAW =
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+  const PNG_DATA_URL = `data:image/png;base64,${PNG_RAW}`;
+
+  it('accepts raw Base64 in the selected variant', () => {
+    expect(isDecodableInput('aGVsbG8gd29ybGQ=', 'standard')).toBe(true);
+  });
+
+  it('accepts a data: URL prefix (what "Copy Data-URI" produces)', () => {
+    // Regression: the gate previously rejected data URLs, so image round-trips
+    // (encode → Copy Data-URI → decode) silently produced no output.
+    expect(isDecodableInput(PNG_DATA_URL, 'standard')).toBe(true);
+    expect(isDecodableInput(PNG_DATA_URL, 'urlSafe')).toBe(true);
+  });
+
+  it('accepts the other variant when the selected one does not match', () => {
+    // URL-safe payload (has - / _) while the UI is set to standard.
+    expect(isDecodableInput('SGVsbG8gV29ybGQ', 'urlSafe')).toBe(true);
+    expect(isDecodableInput('a-b_c', 'standard')).toBe(true);
+    // Standard payload (has + /) while the UI is set to url-safe.
+    expect(isDecodableInput('a+b/c', 'urlSafe')).toBe(true);
+  });
+
+  it('ignores surrounding whitespace and newlines', () => {
+    expect(isDecodableInput('  aGVs\nbG8=  ', 'standard')).toBe(true);
+  });
+
+  it('rejects empty or whitespace-only input', () => {
+    expect(isDecodableInput('', 'standard')).toBe(false);
+    expect(isDecodableInput('   \n\t ', 'standard')).toBe(false);
+    // A data URL with no payload is not decodable.
+    expect(isDecodableInput('data:image/png;base64,', 'standard')).toBe(false);
+  });
+
+  it('rejects invalid Base64 characters', () => {
+    expect(isDecodableInput('ABC!@#', 'standard')).toBe(false);
+    expect(isDecodableInput('한글텍스트', 'standard')).toBe(false);
   });
 });
 

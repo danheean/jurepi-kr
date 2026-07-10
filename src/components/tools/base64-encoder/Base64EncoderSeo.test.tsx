@@ -32,7 +32,7 @@ describe('Base64EncoderSeo', () => {
       expect(Array.isArray(parsed.mainEntity)).toBe(true);
     });
 
-    it('FAQPage contains 4 question-answer pairs', () => {
+    it('FAQPage contains 5 question-answer pairs', () => {
       const { container } = render(<Base64EncoderFaq />);
 
       const scripts = container.querySelectorAll('script[type="application/ld+json"]');
@@ -46,7 +46,7 @@ describe('Base64EncoderSeo', () => {
       });
 
       const parsed = JSON.parse(faqScript?.textContent || '{}');
-      expect(parsed.mainEntity).toHaveLength(4);
+      expect(parsed.mainEntity).toHaveLength(5);
 
       // Each mainEntity should have Question structure with name and acceptedAnswer
       parsed.mainEntity.forEach((item: any) => {

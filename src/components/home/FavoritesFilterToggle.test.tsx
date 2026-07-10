@@ -79,29 +79,37 @@ describe('FavoritesFilterToggle', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('applies bg-brand and text-on-brand when active', () => {
+  it('uses the rose favorite semantic (filled chip) when active', () => {
     const handleToggle = vi.fn();
     render(
       <FavoritesFilterToggle active={true} onToggle={handleToggle} />
     );
 
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-brand');
-    expect(button).toHaveClass('text-on-brand');
+    // Filled rose chip — deliberately NOT the brand-gold category-active pill.
+    expect(button).toHaveClass('bg-accent-rose-soft');
+    expect(button).toHaveClass('text-accent-rose-ink');
     expect(button).toHaveClass('shadow-card');
     expect(button).toHaveClass('font-semibold');
+    // It must not borrow the category pill's brand-fill vocabulary.
+    expect(button).not.toHaveClass('bg-brand');
+    expect(button).not.toHaveClass('text-on-brand');
   });
 
-  it('applies bg-surface-muted and text-text-secondary when inactive', () => {
+  it('renders as an outlined rose chip when inactive', () => {
     const handleToggle = vi.fn();
     render(
       <FavoritesFilterToggle active={false} onToggle={handleToggle} />
     );
 
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('bg-surface-muted');
-    expect(button).toHaveClass('text-text-secondary');
+    expect(button).toHaveClass('border');
+    expect(button).toHaveClass('border-accent-rose/40');
+    expect(button).toHaveClass('bg-surface');
+    expect(button).toHaveClass('text-accent-rose-ink');
     expect(button).toHaveClass('font-medium');
+    // Distinct from an inactive category pill (cream muted fill).
+    expect(button).not.toHaveClass('bg-surface-muted');
   });
 
   it('has hover styling when inactive', () => {
@@ -111,8 +119,7 @@ describe('FavoritesFilterToggle', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('hover:bg-hairline-strong');
-    expect(button).toHaveClass('hover:text-text');
+    expect(button).toHaveClass('hover:bg-accent-rose-soft');
   });
 
   it('has min-h-11 and focus-visible ring styling', () => {
@@ -143,5 +150,47 @@ describe('FavoritesFilterToggle', () => {
 
     heartIcon = screen.getByRole('button').querySelector('svg');
     expect(heartIcon).toHaveAttribute('fill', 'currentColor');
+  });
+
+  it('shows the saved-count badge only when count > 0', () => {
+    const handleToggle = vi.fn();
+    const { rerender } = render(
+      <FavoritesFilterToggle active={false} onToggle={handleToggle} count={0} />
+    );
+
+    // No lonely "0" badge when nothing is saved.
+    expect(screen.queryByText('0')).not.toBeInTheDocument();
+
+    rerender(
+      <FavoritesFilterToggle active={false} onToggle={handleToggle} count={3} />
+    );
+    expect(screen.getByText('3')).toBeInTheDocument();
+  });
+
+  it('beats the heart once when switching from inactive to active', () => {
+    const handleToggle = vi.fn();
+    const { rerender } = render(
+      <FavoritesFilterToggle active={false} onToggle={handleToggle} />
+    );
+
+    let heart = screen.getByRole('button').querySelector('svg');
+    expect(heart).not.toHaveClass('motion-safe:animate-heart-beat');
+
+    rerender(
+      <FavoritesFilterToggle active={true} onToggle={handleToggle} />
+    );
+
+    heart = screen.getByRole('button').querySelector('svg');
+    expect(heart).toHaveClass('motion-safe:animate-heart-beat');
+  });
+
+  it('does not beat the heart on the initial active render', () => {
+    const handleToggle = vi.fn();
+    render(
+      <FavoritesFilterToggle active={true} onToggle={handleToggle} />
+    );
+
+    const heart = screen.getByRole('button').querySelector('svg');
+    expect(heart).not.toHaveClass('motion-safe:animate-heart-beat');
   });
 });

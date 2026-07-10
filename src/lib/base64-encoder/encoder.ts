@@ -12,7 +12,7 @@ import {
   base64ToBytes,
   parseDataUrl,
 } from './base64';
-import { guessMimeType } from './mime';
+import { guessMimeType, isTextualMime } from './mime';
 import { sniffImageMime } from './sniff';
 
 /**
@@ -242,19 +242,35 @@ export function decodeSmart(input: string, variant: Variant): DecodeSmartResult 
       };
     }
 
-    const plaintext = decodeUtf8Strict(bytes);
-    if (plaintext === null) {
+    // A declared non-textual MIME (e.g. `data:application/pdf;base64,…`) tells
+    // us the payload is a binary file — offer it for download instead of trying
+    // to render binary bytes as text.
+    if (declaredMime && !isTextualMime(declaredMime)) {
       return {
-        ok: false,
-        error: {
-          code: 'notUtf8',
-          message: 'Invalid UTF-8 sequence in decoded data',
-          details: 'The decoded bytes do not form valid UTF-8 text',
-        },
+        ok: true,
+        kind: 'file',
+        mimeType: declaredMime,
+        base64: bytesToBase64(bytes, 'standard'),
+        sizeBytes: bytes.length,
       };
     }
 
-    return { ok: true, kind: 'text', plaintext, sizeBytes: bytes.length };
+    const plaintext = decodeUtf8Strict(bytes);
+    if (plaintext !== null) {
+      return { ok: true, kind: 'text', plaintext, sizeBytes: bytes.length };
+    }
+
+    // Not an image and not valid UTF-8 text: it is some binary payload. Offer it
+    // as a generic downloadable file rather than erroring — anything that isn't
+    // an image or text becomes a file. (A declared binary MIME was already
+    // handled above; here we only have an unknown/text-declared payload.)
+    return {
+      ok: true,
+      kind: 'file',
+      mimeType: 'application/octet-stream',
+      base64: bytesToBase64(bytes, 'standard'),
+      sizeBytes: bytes.length,
+    };
   } catch (error) {
     return {
       ok: false,

@@ -217,4 +217,43 @@ describe('OutputDisplay', () => {
       expect(textarea.value).toBe('Hello, world!');
     });
   });
+
+  describe('decoded file download', () => {
+    const decodedFile = { mimeType: 'application/pdf', sizeBytes: 4096 };
+
+    it('renders a file card with a download button (not a textarea)', () => {
+      render(
+        <OutputDisplay
+          outputText=""
+          direction="decode"
+          onCopy={vi.fn()}
+          onDownload={vi.fn()}
+          decodedFile={decodedFile}
+          onDownloadFile={vi.fn()}
+        />
+      );
+
+      expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
+      expect(screen.getByText('Decoded file')).toBeInTheDocument();
+      expect(screen.getByText(/PDF/)).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Download file' })).toBeInTheDocument();
+    });
+
+    it('calls onDownloadFile from the download button', () => {
+      const onDownloadFile = vi.fn();
+      render(
+        <OutputDisplay
+          outputText=""
+          direction="decode"
+          onCopy={vi.fn()}
+          onDownload={vi.fn()}
+          decodedFile={decodedFile}
+          onDownloadFile={onDownloadFile}
+        />
+      );
+
+      screen.getByRole('button', { name: 'Download file' }).click();
+      expect(onDownloadFile).toHaveBeenCalled();
+    });
+  });
 });

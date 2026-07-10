@@ -92,6 +92,8 @@ export function Base64Encoder({ locale }: Props) {
               decodedImage={state.decodedImage}
               onDownloadImage={actions.downloadImage}
               onCopyImage={actions.copyImage}
+              decodedFile={state.decodedFile}
+              onDownloadFile={actions.downloadDecodedFile}
             />
           </div>
         </div>

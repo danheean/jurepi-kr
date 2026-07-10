@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { guessMimeType } from './mime';
+import { guessMimeType, isTextualMime, extensionForMime } from './mime';
 
 describe('guessMimeType', () => {
   describe('by data-URI prefix', () => {
@@ -135,5 +135,38 @@ describe('guessMimeType', () => {
     it('should handle data-URI with partial prefix', () => {
       expect(guessMimeType(undefined, 'data:text/html')).toBe('text/html');
     });
+  });
+});
+
+describe('isTextualMime', () => {
+  it('treats text/* and text-ish application types as textual', () => {
+    expect(isTextualMime('text/plain')).toBe(true);
+    expect(isTextualMime('text/html')).toBe(true);
+    expect(isTextualMime('application/json')).toBe(true);
+    expect(isTextualMime('application/xml')).toBe(true);
+    expect(isTextualMime('application/ld+json')).toBe(true);
+    expect(isTextualMime('image/svg+xml')).toBe(true);
+  });
+
+  it('treats binary types as non-textual', () => {
+    expect(isTextualMime('application/pdf')).toBe(false);
+    expect(isTextualMime('application/zip')).toBe(false);
+    expect(isTextualMime('image/png')).toBe(false);
+    expect(isTextualMime('audio/mpeg')).toBe(false);
+    expect(isTextualMime('application/octet-stream')).toBe(false);
+  });
+});
+
+describe('extensionForMime', () => {
+  it('maps known MIME types to a filename extension', () => {
+    expect(extensionForMime('application/pdf')).toBe('pdf');
+    expect(extensionForMime('application/zip')).toBe('zip');
+    expect(extensionForMime('image/jpeg')).toBe('jpg');
+    expect(extensionForMime('audio/mpeg')).toBe('mp3');
+  });
+
+  it('falls back to "bin" for unknown MIME types', () => {
+    expect(extensionForMime('application/octet-stream')).toBe('bin');
+    expect(extensionForMime('application/x-unknown')).toBe('bin');
   });
 });

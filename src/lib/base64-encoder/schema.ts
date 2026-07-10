@@ -79,6 +79,15 @@ export const decodeSmartResultSchema = z.discriminatedUnion('ok', [
     sizeBytes: z.number().positive(),
   }),
   z.object({
+    ok: z.literal(true),
+    kind: z.literal('file'),
+    /** Declared (non-text, non-image) MIME — e.g. application/pdf. */
+    mimeType: z.string(),
+    /** Standard (non URL-safe) Base64 body, for blob reconstruction. */
+    base64: z.string(),
+    sizeBytes: z.number().positive(),
+  }),
+  z.object({
     ok: z.literal(false),
     error: base64EncoderErrorSchema,
   }),
@@ -90,6 +99,12 @@ export type DecodedImage = {
   mimeType: string;
   base64: string;
   dataUri: string;
+  sizeBytes: number;
+};
+
+export type DecodedFile = {
+  mimeType: string;
+  base64: string;
   sizeBytes: number;
 };
 

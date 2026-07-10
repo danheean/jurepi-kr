@@ -656,6 +656,173 @@
         "lead": "URL 텍스트를 인코딩·디코딩하고, 쿼리 매개변수를 편집하세요. 컴포넌트/전체 URI 모드와 UTF-8·EUC-KR 문자셋(레거시 한국어 URL)을 즉시 전환하세요."
       }
     },
+    "cron-parser": {
+      "title": "크론 표현식 해석기",
+      "description": "Unix 크론 표현식을 인간이 이해할 수 있는 설명으로 변환하고 다음 실행 시간을 계산합니다.",
+      "meta": {
+        "title": "크론 표현식 해석기 — 크론 스케줄 해독·다음 실행 시간 계산",
+        "description": "크론 표현식을 해석하고 다음 실행 시간을 계산하는 온라인 도구"
+      },
+      "expressionLabel": "크론 표현식",
+      "timezoneLabel": "시간대",
+      "parseLabel": "해석",
+      "presetLabel": "템플릿 선택",
+      "copyLabel": "복사",
+      "copiedToast": "복사됨!",
+      "recentLabel": "최근 사용",
+      "cheatsheetLabel": "문법 참고",
+      "fieldsHeading": "필드",
+      "clearRecentsLabel": "최근 항목 지우기",
+      "fields": {
+        "second": "초 (0–59)",
+        "minute": "분 (0–59)",
+        "hour": "시간 (0–23)",
+        "dom": "일자 (1–31)",
+        "month": "월 (1–12)",
+        "dow": "요일 (0–6)",
+        "year": "년 (1970–2099)"
+      },
+      "mode": {
+        "label": "형식",
+        "unix": "Unix crontab",
+        "quartz": "Quartz",
+        "unixHint": "5필드: 분 시 일 월 요일",
+        "quartzHint": "6~7필드: 초 분 시 일 월 요일 [년]"
+      },
+      "quartzDescriptions": {
+        "everySecond": "매초",
+        "everyNSeconds": "{n}초마다",
+        "everyMinute": "매분",
+        "everyHour": "매시간",
+        "everyDay": "매일",
+        "custom": "사용자 지정 일정",
+        "atTime": "{time}",
+        "onDates": "{dates}일",
+        "onDays": "{days}",
+        "onMonths": "{months}월",
+        "years": "{years}년",
+        "noSpecific": "지정 안 함",
+        "lastDay": "그 달 마지막 날",
+        "lastOffset": "그 달 마지막에서 {n}일 전",
+        "lastWeekday": "그 달 마지막 평일",
+        "nearestWeekday": "{n}일에 가장 가까운 평일",
+        "lastDow": "그 달 마지막 {day}",
+        "nthDow": "그 달 {n}번째 {day}"
+      },
+      "quartzErrors": {
+        "needsQuestion": "일·요일 중 하나는 ?여야 합니다",
+        "bothSpecified": "일과 요일을 동시에 지정할 수 없습니다(하나는 ?)",
+        "fieldCount": "Quartz는 6~7개 필드가 필요합니다",
+        "outOfRange": "값이 허용 범위를 벗어났습니다",
+        "invalidStep": "잘못된 단계 값입니다",
+        "invalidPattern": "잘못된 패턴입니다",
+        "invalidValue": "잘못된 값입니다"
+      },
+      "errors": {
+        "invalidField": "필드 오류: {field} — {message}",
+        "unsupportedSyntax": "Quartz 문법은 지원되지 않습니다. 표준 POSIX 크론을 사용하세요.",
+        "malformedRange": "범위 형식이 잘못되었습니다. 'start-end' 또는 'start-end/step' 형식을 사용하세요.",
+        "wrongFieldCount": "크론 표현식은 5개 필드를 포함해야 합니다.",
+        "noUpcomingRuns": "4년 이내에 예정된 실행 시간이 없습니다.",
+        "unknownMacro": "알 수 없는 매크로입니다. 유효한 매크로: @yearly, @monthly, @weekly, @daily, @hourly"
+      },
+      "descriptions": {
+        "everyMinute": "매분",
+        "everyNMinutes": "{n}분마다",
+        "everyHour": "매시간",
+        "everyDay": "매일",
+        "everyWeekday": "평일(월-금)",
+        "everyWeekend": "주말(토-일)",
+        "monthly": "매월 {day}일",
+        "yearly": "매년 {month} {day}일",
+        "atTime": "{time}",
+        "onDays": "{days}",
+        "onMonths": "{months}",
+        "custom": "사용자 지정 일정"
+      },
+      "presets": {
+        "every5Minutes": "5분마다",
+        "everyHour": "매시간",
+        "weekdays9am": "평일 오전 9시",
+        "monthly1st": "매월 1일 자정",
+        "daily": "매일 자정",
+        "everyMinute": "1분마다",
+        "every15Minutes": "15분마다",
+        "every30Minutes": "30분마다",
+        "weekdays5pm": "평일 오후 5시",
+        "dailyNoon": "매일 정오",
+        "weeklySunday": "매주 일요일 자정",
+        "yearly": "매년 1월 1일 자정",
+        "quartz": {
+          "everySecond": "매초",
+          "every30Seconds": "30초마다",
+          "everyMinute": "매분",
+          "weekdays9am": "평일 오전 9시",
+          "monthlyLastDay": "매월 마지막날 자정",
+          "thirdFriday9am": "매월 셋째 금요일 오전 9시",
+          "fifteenthNearestWeekday9am": "매월 15일 가까운 평일 오전 9시"
+        }
+      },
+      "intro": {
+        "eyebrow": "크론 표현식 해석",
+        "title": "크론 표현식 해석기",
+        "lead": "Unix/Linux 크론 표현식을 인간이 이해할 수 있는 설명으로 변환하고 다음 실행 시간을 계산하는 온라인 도구입니다."
+      },
+      "howTo": {
+        "title": "크론 표현식 이해하기",
+        "items": [
+          {
+            "title": "필드 이해하기",
+            "body": "크론 표현식은 5개 필드로 구성됩니다: 분(0–59), 시간(0–23), 일자(1–31), 월(1–12), 요일(0–6). 각 필드는 일정을 언제 실행할지 정의합니다."
+          },
+          {
+            "title": "와일드카드와 범위",
+            "body": "* (와일드카드)는 \"모든 값\"을 의미합니다. 범위(1-5)는 1,2,3,4,5를 의미하고, 단계(*/15)는 0,15,30,45(분의 경우)를 의미합니다."
+          },
+          {
+            "title": "일반적인 패턴",
+            "body": "평일 오전 9시는 0 9 * * MON-FRI, 매월 1일 자정은 0 0 1 * *, 매시간은 0 * * * *로 표현합니다."
+          },
+          {
+            "title": "타임존 고려",
+            "body": "이 도구는 선택한 타임존에서 다음 실행 시간을 계산하며, 일광절약시간(DST) 전환도 자동으로 처리합니다."
+          }
+        ]
+      },
+      "faq": {
+        "items": [
+          {
+            "q": "도메인(일자)과 요일 필드가 모두 지정되면 어떻게 되나요?",
+            "a": "표준 크론 의미에 따르면 둘 다 지정되면 OR 로직을 따릅니다. 즉, 지정된 일자 OR 지정된 요일에 작업이 실행됩니다. 예: 0 9 15 * MON은 매월 15일 오전 9시 또는 모든 월요일 오전 9시에 실행됩니다."
+          },
+          {
+            "q": "왜 요일 필드가 0–6(0=일요일)인가요?",
+            "a": "이는 표준 POSIX 크론 관례입니다. 0 = 일요일, 1 = 월요일, ..., 6 = 토요일입니다. 일부 시스템은 7을 일요일로 허용하는데, 이 도구는 7을 0으로 변환합니다."
+          },
+          {
+            "q": "2월 29일 또는 4월 31일 같은 불가능한 날짜는 어떻게 되나요?",
+            "a": "2월 29일은 윤년에만 존재하므로 윤년에만 해당 일자에 작업이 실행됩니다. 4월 31일은 존재하지 않으므로 그 일자의 작업은 건너뜁니다."
+          },
+          {
+            "q": "일광절약시간(DST) 전환 중에 어떤 일이 발생하나요?",
+            "a": "봄으로 넘어갈 때(시간이 앞당겨질 때) 건너뛴 시간대가 있으면 그 시간에 예약된 작업은 건너뜁니다. 가을로 넘어갈 때(시간이 반복될 때) 반복되는 시간대의 작업은 두 번 실행될 수 있습니다. 이 도구는 브라우저의 타임존 데이터베이스를 사용해 DST를 자동으로 처리합니다."
+          }
+        ]
+      },
+      "allValues": "전체",
+      "datetime": "날짜 및 시간",
+      "days": "요일",
+      "deleteRecent": "삭제",
+      "expressionPlaceholder": "0 9 * * *",
+      "hint": "5개 필드: 분 시 일 월 요일",
+      "localTimezone": "로컬",
+      "months": "월",
+      "names": "이름",
+      "nextRunsLabel": "다음 실행 시각",
+      "parseError": "해석 오류",
+      "syntax": "문법",
+      "utc": "UTC"
+    },
     "bookmarks": {
       "title": "즐겨찾기",
       "description": "하네스·프런트엔드·디자인·개발 등 각 분야의 신뢰할 수 있는 큐레이션 링크 모음을 찾아보세요.",
@@ -2235,8 +2402,10 @@
       },
       "variant": {
         "label": "방식",
-        "standard": "표준 (A-Za-z0-9+/)",
-        "urlSafe": "URL-safe (A-Za-z0-9-_)"
+        "standard": "표준",
+        "standardHint": "A-Za-z0-9+/",
+        "urlSafe": "URL-safe",
+        "urlSafeHint": "A-Za-z0-9-_"
       },
       "direction": {
         "label": "방향",
@@ -2247,7 +2416,7 @@
         "label": "입력",
         "fileSelect": "파일 선택",
         "textPlaceholder": "텍스트 또는 Base64를 붙여넣으세요…",
-        "fileLabel": "파일을 드래그하거나 클릭해 선택",
+        "fileLabel": "이미지·PDF·폰트 등 파일을 드래그하거나 클릭해 선택",
         "fileSuccess": "파일 선택됨: {filename} ({size})"
       },
       "process": {
@@ -2264,7 +2433,9 @@
         "copied": "복사되었습니다!",
         "imageAlt": "디코딩된 이미지",
         "downloadImage": "이미지 다운로드",
-        "copyImage": "이미지 복사"
+        "copyImage": "이미지 복사",
+        "fileReady": "디코딩된 파일",
+        "downloadFile": "파일 다운로드"
       },
       "errors": {
         "invalidBase64": "잘못된 Base64 형식입니다. A-Za-z0-9+/= 문자만 포함되어야 합니다(표준) 또는 A-Za-z0-9-_= (URL-safe).",
@@ -2289,7 +2460,8 @@
           "표준 Base64는 +와 / 문자를 사용하고, URL-safe 방식은 -와 _를 사용합니다. URL에서 안전하게 사용할 수 있도록 설계되었습니다.",
           "이 도구는 UTF-8 안전성을 보장하므로 이모지, 한글, 개행 등 모든 문자를 손상 없이 인코딩할 수 있습니다.",
           "Base64는 암호화가 아닙니다. 데이터를 보호하려면 암호화를 사용해야 합니다.",
-          "디코딩 방향에서 이미지(PNG·JPEG·GIF·WebP·BMP·ICO·SVG)를 인코딩한 Base64를 붙여넣으면, 이 도구가 이미지를 자동으로 인식해 화면에 바로 보여줍니다. 미리보기에서 다운로드하거나 복사할 수 있습니다."
+          "디코딩 방향에서 이미지(PNG·JPEG·GIF·WebP·BMP·ICO·SVG)를 인코딩한 Base64를 붙여넣으면, 이 도구가 이미지를 자동으로 인식해 화면에 바로 보여줍니다. 미리보기에서 다운로드하거나 복사할 수 있습니다.",
+          "실제로는 웹 개발에서 가장 많이 쓰입니다: 작은 이미지·아이콘·폰트(woff2)·SVG를 data: URI로 CSS나 HTML에 인라인해 요청 수를 줄이고, 이메일 첨부(MIME) 처리, 인증서·키(PEM)나 쿠버네티스 Secret 저장, PDF 같은 바이너리를 JSON·XML·URL에 담아 전송, 그리고 'Authorization: Basic' 인증 헤더 생성 등에 활용됩니다."
         ]
       },
       "faq": {
@@ -2314,6 +2486,10 @@
           {
             "q": "이미지 Base64를 디코딩하면 화면에 보이나요?",
             "a": "네. 디코딩 방향에서 PNG·JPEG·GIF·WebP·BMP·ICO·SVG 같은 이미지의 Base64(또는 data:image URL)를 붙여넣으면, 도구가 이미지를 인식해 미리보기로 렌더하고 다운로드·복사 버튼을 제공합니다. 이미지가 아닌 데이터는 기존처럼 텍스트로 디코딩됩니다."
+          },
+          {
+            "q": "Base64는 주로 어떤 경우에 사용하나요?",
+            "a": "웹에 작은 이미지·폰트·SVG를 data: URI로 인라인하기, 이메일 첨부(MIME), 인증서·키(PEM)나 쿠버네티스 Secret 저장, PDF 등 바이너리를 JSON·XML·URL로 전송하기, 'Authorization: Basic' 인증 헤더 만들기, 그리고 JWT 조각이나 정체불명의 Base64 값을 디코딩해 내용을 확인하기 등에 널리 쓰입니다."
           }
         ]
       }

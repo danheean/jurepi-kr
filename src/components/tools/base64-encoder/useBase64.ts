@@ -5,13 +5,15 @@ import {
   decodeToBlob,
   decodeSmart,
 } from '@/lib/base64-encoder/encoder';
-import { isValidBase64, normalizeInput } from '@/lib/base64-encoder/base64';
+import { isDecodableInput } from '@/lib/base64-encoder/base64';
+import { extensionForMime } from '@/lib/base64-encoder/mime';
 import {
   DEBOUNCE_MS,
   FILE_SIZE_LIMIT_MB,
   STORAGE_KEY,
   type Base64EncoderError,
   type DecodedImage,
+  type DecodedFile,
 } from '@/lib/base64-encoder/schema';
 
 /** Filename extension per detectable image MIME type. */
@@ -34,6 +36,8 @@ export interface Base64State {
   outputText: string;
   /** Set when a text-mode decode yields an image; null otherwise. */
   decodedImage: DecodedImage | null;
+  /** Set when a decode yields a non-image binary file (by declared MIME). */
+  decodedFile: DecodedFile | null;
   isLoading: boolean;
   error: Base64EncoderError | null;
   isValidInput: boolean;
@@ -50,6 +54,7 @@ export interface Base64Actions {
   download(filename?: string): void;
   downloadImage(filename?: string): void;
   copyImage(): Promise<boolean>;
+  downloadDecodedFile(filename?: string): void;
 }
 
 interface PersistedPrefs {
@@ -71,7 +76,12 @@ export function useBase64(): [Base64State, Base64Actions] {
   const [inputText, setInputTextState] = useState('');
   const [inputFile, setInputFileState] = useState<File | null>(null);
   const [outputText, setOutputText] = useState('');
+  // Full `data:<mime>;base64,…` for the current encode output — carries the
+  // real MIME (text/plain, image/png, application/pdf…) so "Copy Data-URI"
+  // yields a valid, renderable URI instead of a hardcoded text/plain one.
+  const [outputDataUri, setOutputDataUri] = useState('');
   const [decodedImage, setDecodedImage] = useState<DecodedImage | null>(null);
+  const [decodedFile, setDecodedFile] = useState<DecodedFile | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Base64EncoderError | null>(null);
 
@@ -143,8 +153,10 @@ export function useBase64(): [Base64State, Base64Actions] {
     if (mode === 'text') {
       if (inputText.trim().length === 0) return false;
       if (direction === 'decode') {
-        const normalized = normalizeInput(inputText);
-        return isValidBase64(normalized, variant);
+        // Mirror decodeSmart's acceptance: strip data: URLs and accept either
+        // variant, so a pasted data URI (or mismatched-variant Base64) reaches
+        // the decoder instead of being silently dropped by this gate.
+        return isDecodableInput(inputText, variant);
       }
       return true;
     }
@@ -155,6 +167,8 @@ export function useBase64(): [Base64State, Base64Actions] {
   const process = useCallback(async () => {
     setError(null);
     setDecodedImage(null);
+    setDecodedFile(null);
+    setOutputDataUri('');
 
     if (mode === 'file' && inputFile) {
       setIsLoading(true);
@@ -165,6 +179,8 @@ export function useBase64(): [Base64State, Base64Actions] {
           setOutputText('');
         } else {
           setOutputText(result.base64);
+          // Real MIME (image/png, application/pdf, …) from the file.
+          setOutputDataUri(result.dataUri);
         }
       } catch (err) {
         setError({
@@ -189,6 +205,7 @@ export function useBase64(): [Base64State, Base64Actions] {
             setOutputText('');
           } else {
             setOutputText(result.base64);
+            setOutputDataUri(result.dataUri); // data:text/plain;base64,…
           }
         } else {
           const result = decodeSmart(inputText, variant);
@@ -202,6 +219,14 @@ export function useBase64(): [Base64State, Base64Actions] {
               mimeType: result.mimeType,
               base64: result.base64,
               dataUri: result.dataUri,
+              sizeBytes: result.sizeBytes,
+            });
+          } else if (result.kind === 'file') {
+            // Declared binary (PDF, zip, …): offer a file download.
+            setOutputText('');
+            setDecodedFile({
+              mimeType: result.mimeType,
+              base64: result.base64,
               sizeBytes: result.sizeBytes,
             });
           } else {
@@ -235,7 +260,9 @@ export function useBase64(): [Base64State, Base64Actions] {
 
     if (!hasInput || !isValidInput) {
       setOutputText('');
+      setOutputDataUri('');
       setDecodedImage(null);
+      setDecodedFile(null);
       setError(null);
       if (debounceTimerRef.current) {
         clearTimeout(debounceTimerRef.current);
@@ -262,8 +289,10 @@ export function useBase64(): [Base64State, Base64Actions] {
 
       if (target === 'base64' && outputText && direction === 'encode') {
         textToCopy = outputText;
-      } else if (target === 'dataUri' && outputText && direction === 'encode') {
-        textToCopy = `data:text/plain;base64,${outputText}`;
+      } else if (target === 'dataUri' && outputDataUri && direction === 'encode') {
+        // Use the encoder-produced data URI so the MIME matches the content
+        // (image/png, application/pdf, text/plain, …) — not a hardcoded type.
+        textToCopy = outputDataUri;
       } else if (target === 'text' && outputText && direction === 'decode') {
         textToCopy = outputText;
       } else {
@@ -278,7 +307,7 @@ export function useBase64(): [Base64State, Base64Actions] {
         return false;
       }
     },
-    [outputText, direction]
+    [outputText, outputDataUri, direction]
   );
 
   // Download file
@@ -322,6 +351,25 @@ export function useBase64(): [Base64State, Base64Actions] {
     [decodedImage]
   );
 
+  // Download the decoded (non-image) binary file, named by its MIME extension.
+  const downloadDecodedFile = useCallback(
+    (filename?: string) => {
+      if (!decodedFile) return;
+      const result = decodeToBlob(decodedFile.base64, decodedFile.mimeType);
+      if (!result.ok) return;
+      const ext = extensionForMime(decodedFile.mimeType);
+      const url = URL.createObjectURL(result.blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename || `decoded.${ext}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    },
+    [decodedFile]
+  );
+
   // Copy the decoded image to the clipboard (best-effort; browser support varies).
   const copyImage = useCallback(async (): Promise<boolean> => {
     if (!decodedImage) return false;
@@ -358,11 +406,12 @@ export function useBase64(): [Base64State, Base64Actions] {
       inputFile,
       outputText,
       decodedImage,
+      decodedFile,
       isLoading,
       error,
       isValidInput,
     }),
-    [mode, variant, direction, inputText, inputFile, outputText, decodedImage, isLoading, error, isValidInput]
+    [mode, variant, direction, inputText, inputFile, outputText, decodedImage, decodedFile, isLoading, error, isValidInput]
   );
 
   // Build actions object with stable reference
@@ -378,8 +427,9 @@ export function useBase64(): [Base64State, Base64Actions] {
       download,
       downloadImage,
       copyImage,
+      downloadDecodedFile,
     }),
-    [setMode, setVariant, setDirection, setInputText, setInputFile, process, copy, download, downloadImage, copyImage]
+    [setMode, setVariant, setDirection, setInputText, setInputFile, process, copy, download, downloadImage, copyImage, downloadDecodedFile]
   );
 
   return [state, actions];

@@ -656,6 +656,173 @@
         "lead": "Encode and decode URL text and edit query parameters. Switch instantly between component/full URI modes and UTF-8 and EUC-KR charsets (for legacy Korean URLs)."
       }
     },
+    "cron-parser": {
+      "title": "Cron Expression Parser",
+      "description": "Convert Unix cron expressions to human-readable descriptions and compute upcoming run times.",
+      "meta": {
+        "title": "Cron Expression Parser — Decode Schedules & Next Run Times",
+        "description": "Online tool to decode cron expressions and calculate next run times."
+      },
+      "expressionLabel": "Cron Expression",
+      "timezoneLabel": "Timezone",
+      "parseLabel": "Parse",
+      "presetLabel": "Load Preset",
+      "copyLabel": "Copy",
+      "copiedToast": "Copied!",
+      "recentLabel": "Recent",
+      "cheatsheetLabel": "Cheatsheet",
+      "fieldsHeading": "Fields",
+      "clearRecentsLabel": "Clear Recents",
+      "fields": {
+        "second": "Second (0–59)",
+        "minute": "Minute (0–59)",
+        "hour": "Hour (0–23)",
+        "dom": "Day of Month (1–31)",
+        "month": "Month (1–12)",
+        "dow": "Day of Week (0–6)",
+        "year": "Year (1970–2099)"
+      },
+      "mode": {
+        "label": "Format",
+        "unix": "Unix crontab",
+        "quartz": "Quartz",
+        "unixHint": "5 fields: min hour dom mon dow",
+        "quartzHint": "6–7 fields: sec min hour dom mon dow [year]"
+      },
+      "quartzDescriptions": {
+        "everySecond": "Every second",
+        "everyNSeconds": "Every {n} seconds",
+        "everyMinute": "Every minute",
+        "everyHour": "Every hour",
+        "everyDay": "Every day",
+        "custom": "Custom schedule",
+        "atTime": "at {time}",
+        "onDates": "on day {dates}",
+        "onDays": "on {days}",
+        "onMonths": "in {months}",
+        "years": "in {years}",
+        "noSpecific": "unspecified",
+        "lastDay": "on the last day of the month",
+        "lastOffset": "{n} day(s) before the end of the month",
+        "lastWeekday": "on the last weekday of the month",
+        "nearestWeekday": "on the weekday nearest the {n}th",
+        "lastDow": "on the last {day} of the month",
+        "nthDow": "on the {n}-th {day} of the month"
+      },
+      "quartzErrors": {
+        "needsQuestion": "Day-of-month or day-of-week must be '?'",
+        "bothSpecified": "Cannot specify both day-of-month and day-of-week (use '?')",
+        "fieldCount": "Quartz needs 6–7 fields",
+        "outOfRange": "Value is out of range",
+        "invalidStep": "Invalid step value",
+        "invalidPattern": "Invalid pattern",
+        "invalidValue": "Invalid value"
+      },
+      "errors": {
+        "invalidField": "Field error: {field} — {message}",
+        "unsupportedSyntax": "Quartz syntax not supported. Use standard POSIX cron.",
+        "malformedRange": "Invalid range syntax. Use 'start-end' or 'start-end/step'.",
+        "wrongFieldCount": "Cron expression must have 5 fields.",
+        "noUpcomingRuns": "No upcoming run times found within 4 years.",
+        "unknownMacro": "Unknown macro. Valid macros: @yearly, @monthly, @weekly, @daily, @hourly"
+      },
+      "descriptions": {
+        "everyMinute": "Every minute",
+        "everyNMinutes": "Every {n} minutes",
+        "everyHour": "Every hour",
+        "everyDay": "Every day",
+        "everyWeekday": "Every weekday (Monday–Friday)",
+        "everyWeekend": "Every weekend (Saturday–Sunday)",
+        "monthly": "Monthly on the {day}{suffix}",
+        "yearly": "Yearly on {month} {day}{suffix}",
+        "atTime": "at {time}",
+        "onDays": "on {days}",
+        "onMonths": "in {months}",
+        "custom": "Custom schedule"
+      },
+      "presets": {
+        "every5Minutes": "Every 5 minutes",
+        "everyHour": "Every hour",
+        "weekdays9am": "Weekdays at 9:00 AM",
+        "monthly1st": "First of month at midnight",
+        "daily": "Daily at midnight",
+        "everyMinute": "Every minute",
+        "every15Minutes": "Every 15 minutes",
+        "every30Minutes": "Every 30 minutes",
+        "weekdays5pm": "Weekdays at 5:00 PM",
+        "dailyNoon": "Daily at noon",
+        "weeklySunday": "Weekly on Sunday",
+        "yearly": "Yearly on Jan 1",
+        "quartz": {
+          "everySecond": "Every second",
+          "every30Seconds": "Every 30 seconds",
+          "everyMinute": "Every minute",
+          "weekdays9am": "Weekdays at 9:00 AM",
+          "monthlyLastDay": "Last day of month, midnight",
+          "thirdFriday9am": "3rd Friday at 9:00 AM",
+          "fifteenthNearestWeekday9am": "Nearest weekday to the 15th, 9:00 AM"
+        }
+      },
+      "intro": {
+        "eyebrow": "Decode Cron Schedules",
+        "title": "Cron Expression Parser",
+        "lead": "Convert cryptic Unix cron expressions to clear, human-readable descriptions and compute upcoming run times in your timezone."
+      },
+      "howTo": {
+        "title": "Understanding Cron Expressions",
+        "items": [
+          {
+            "title": "Understanding Fields",
+            "body": "A cron expression has 5 fields: minute (0–59), hour (0–23), day-of-month (1–31), month (1–12), day-of-week (0–6). Each field defines when the job runs."
+          },
+          {
+            "title": "Wildcards & Ranges",
+            "body": "The * (wildcard) means \"any value\". Ranges (1-5) mean 1,2,3,4,5, and steps (*/15) mean every 15th value (e.g., 0,15,30,45 for minutes)."
+          },
+          {
+            "title": "Common Patterns",
+            "body": "Weekdays at 9 AM is 0 9 * * MON-FRI, first of month is 0 0 1 * *, and hourly is 0 * * * *."
+          },
+          {
+            "title": "Timezone Awareness",
+            "body": "This tool calculates upcoming run times in your selected timezone, and daylight saving time (DST) transitions are handled automatically."
+          }
+        ]
+      },
+      "faq": {
+        "items": [
+          {
+            "q": "What happens when both day-of-month and day-of-week are specified?",
+            "a": "According to standard cron semantics, if both are specified, OR logic applies: the job runs on the specified day-of-month OR the specified day-of-week. E.g., 0 9 15 * MON runs on the 15th of any month OR any Monday at 9 AM."
+          },
+          {
+            "q": "Why is day-of-week 0–6, with 0 = Sunday?",
+            "a": "This is the standard POSIX cron convention: 0 = Sunday, 1 = Monday, …, 6 = Saturday. Some systems allow 7 for Sunday; this tool converts 7 to 0."
+          },
+          {
+            "q": "What happens with impossible dates like February 29 or April 31?",
+            "a": "February 29 exists only in leap years, so a job on Feb 29 runs only in leap years. April 31 doesn't exist, so a job on that date is skipped."
+          },
+          {
+            "q": "What happens during daylight saving time (DST) transitions?",
+            "a": "During spring DST transition, skipped times are skipped. During fall transition, times that occur twice may run twice. This tool uses your browser's timezone database to handle DST automatically."
+          }
+        ]
+      },
+      "allValues": "All",
+      "datetime": "Date & Time",
+      "days": "Days",
+      "deleteRecent": "Delete",
+      "expressionPlaceholder": "0 9 * * *",
+      "hint": "5 fields: minute hour day-of-month month day-of-week",
+      "localTimezone": "Local",
+      "months": "Months",
+      "names": "Names",
+      "nextRunsLabel": "Next Runs",
+      "parseError": "Parse Error",
+      "syntax": "Syntax",
+      "utc": "UTC"
+    },
     "bookmarks": {
       "title": "Curated Bookmarks",
       "description": "Find trusted curated links across architecture, frontend, design, development, and more.",
@@ -2235,8 +2402,10 @@
       },
       "variant": {
         "label": "Variant",
-        "standard": "Standard (A-Za-z0-9+/)",
-        "urlSafe": "URL-Safe (A-Za-z0-9-_)"
+        "standard": "Standard",
+        "standardHint": "A-Za-z0-9+/",
+        "urlSafe": "URL-Safe",
+        "urlSafeHint": "A-Za-z0-9-_"
       },
       "direction": {
         "label": "Direction",
@@ -2247,7 +2416,7 @@
         "label": "Input",
         "fileSelect": "Select file",
         "textPlaceholder": "Paste text or Base64…",
-        "fileLabel": "Drag files or click to browse",
+        "fileLabel": "Drag an image, PDF, font, or other file — or click to browse",
         "fileSuccess": "File selected: {filename} ({size})"
       },
       "process": {
@@ -2264,7 +2433,9 @@
         "copied": "Copied!",
         "imageAlt": "Decoded image",
         "downloadImage": "Download image",
-        "copyImage": "Copy image"
+        "copyImage": "Copy image",
+        "fileReady": "Decoded file",
+        "downloadFile": "Download file"
       },
       "errors": {
         "invalidBase64": "Invalid Base64 format. Only A-Za-z0-9+/= characters allowed (standard) or A-Za-z0-9-_= (URL-safe).",
@@ -2289,7 +2460,8 @@
           "The standard variant uses + and / characters, while the URL-safe variant uses - and _ instead to avoid conflicts with URL syntax and special characters.",
           "This tool guarantees UTF-8 safety, so you can safely encode emoji, Korean text, newlines, and all other characters without data loss.",
           "Base64 is encoding, not encryption. It provides no security. Use proper encryption for sensitive data.",
-          "When decoding, paste Base64 that encodes an image (PNG, JPEG, GIF, WebP, BMP, ICO, or SVG) and this tool detects it automatically and renders the image right on screen — you can download or copy it from the preview."
+          "When decoding, paste Base64 that encodes an image (PNG, JPEG, GIF, WebP, BMP, ICO, or SVG) and this tool detects it automatically and renders the image right on screen — you can download or copy it from the preview.",
+          "In practice it is used most in web development: inline small images, icons, fonts (woff2), and SVG as data: URIs in CSS or HTML to cut requests; handle email attachments (MIME); store certificates and keys (PEM) or Kubernetes Secrets; carry binaries such as PDFs inside JSON, XML, or URLs; and build 'Authorization: Basic' headers."
         ]
       },
       "faq": {
@@ -2314,6 +2486,10 @@
           {
             "q": "Can I preview a decoded image on screen?",
             "a": "Yes. In the decode direction, paste the Base64 (or a data:image URL) of an image such as PNG, JPEG, GIF, WebP, BMP, ICO, or SVG and the tool recognizes it, renders a preview, and offers download and copy buttons. Non-image data is still decoded as text."
+          },
+          {
+            "q": "When is Base64 typically used?",
+            "a": "Common uses include inlining small images, fonts, and SVG as data: URIs on the web; email attachments (MIME); storing certificates and keys (PEM) or Kubernetes Secrets; carrying binaries such as PDFs inside JSON, XML, or URLs; building 'Authorization: Basic' headers; and decoding JWT segments or unknown Base64 blobs to inspect their contents."
           }
         ]
       }
