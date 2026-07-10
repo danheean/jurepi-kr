@@ -1791,6 +1791,7 @@
     "find-replace": {
       "title": "Text Replacer",
       "description": "Replace multiple words at once across your text. Stack any number of rules and optionally use regex with capture groups.",
+      "workspaceHeading": "Find and replace workspace",
       "meta": {
         "title": "Text Replacer — Multi-rule Find & Replace Tool",
         "description": "Transform text in one go with multiple find-replace rules. Use literal text or JavaScript regex with capture groups, save rule-sets to localStorage."

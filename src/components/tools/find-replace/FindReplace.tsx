@@ -81,6 +81,10 @@ export function FindReplace() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* sr-only region heading so the interactive tool has an h2 between the page h1
+          and the panel h3s (avoids a heading-level skip for screen-reader navigation) */}
+      <h2 className="sr-only">{t('workspaceHeading')}</h2>
+
       {/* Left: Source text input (top) → result (bottom) — the text flow (2/3 on desktop) */}
       <div className="lg:col-span-2 space-y-6">
         <SourceTextInput text={text} onChange={setText} />
