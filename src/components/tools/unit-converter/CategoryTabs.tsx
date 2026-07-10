@@ -89,7 +89,7 @@ export function CategoryTabs({ active, onChange }: Props) {
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring
               ${
                 isActive
-                  ? 'bg-accent-sky text-text shadow-sm'
+                  ? 'bg-brand text-on-brand shadow-sm'
                   : 'bg-surface-muted text-text-secondary hover:bg-hairline'
               }
             `}

@@ -11,8 +11,8 @@ export interface ResolvedBirthdate {
   lunarDate: { date: DateKey; isLeapMonth: boolean };
   /** Accurate Korean zodiac key, derived from the LUNAR year (rat..pig). */
   zodiacKey: string;
-  /** Sexagenary (60갑자): { name: "을유", hanja: "乙酉" }. */
-  sexagenary: { name: string; hanja: string };
+  /** Sexagenary (60갑자): { name: "을유", hanja: "乙酉", english: "Wood Rooster" }. */
+  sexagenary: { name: string; hanja: string; english: string };
 }
 
 export type ResolveError = { error: 'range' | 'no-leap' | 'invalid' };
@@ -63,6 +63,6 @@ export async function resolveBirthdate(
       isLeapMonth: l.isLeap,
     },
     zodiacKey: result.zodiac.key,
-    sexagenary: { name: result.sexagenary.name, hanja: result.sexagenary.hanja },
+    sexagenary: { name: result.sexagenary.name, hanja: result.sexagenary.hanja, english: result.sexagenary.english },
   };
 }

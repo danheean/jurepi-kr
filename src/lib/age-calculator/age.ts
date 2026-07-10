@@ -12,7 +12,7 @@ export interface AgeResult {
   starSignKey: string;
   /** Sexagenary (60갑자), set when the birthdate has been resolved via the lunar
    *  engine (name = "을유", hanja = "乙酉"). Null until resolved / on solar-only fallback. */
-  sexagenary?: { name: string; hanja: string } | null;
+  sexagenary?: { name: string; hanja: string; english: string } | null;
   /** The SAME birthdate expressed in the other calendar (entered solar → lunar
    *  counterpart, entered lunar → solar counterpart). Set by the resolve step. */
   counterpartBirthday?: {

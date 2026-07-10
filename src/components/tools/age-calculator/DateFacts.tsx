@@ -97,7 +97,13 @@ export function DateFacts({ age, locale }: Props) {
           {
             key: 'sexagenary',
             label: t('dateFacts.sexagenary'),
-            value: `${age.sexagenary.name} (${age.sexagenary.hanja})`,
+            // Korean reads the native gapja name; English uses the romanized
+            // element+animal (e.g. "Metal Horse") so the EN page carries no
+            // untranslated Hangul — mirrors the lunar-converter tool.
+            value:
+              locale === 'ko'
+                ? `${age.sexagenary.name} (${age.sexagenary.hanja})`
+                : `${age.sexagenary.english} (${age.sexagenary.hanja})`,
           },
         ]
       : []),

@@ -115,7 +115,7 @@ export function GuideCard({
         aria-pressed={isFavorite}
         // p-3 around the 20px icon gives a 44px tap target (WCAG 2.5.5); top/right-1
         // offsets keep the icon visually at the top-4/right-4 corner.
-        className="absolute top-1 right-1 p-3 text-text-muted hover:text-brand transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand rounded-full"
+        className="absolute top-1 right-1 p-3 text-text-muted hover:text-brand transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand rounded-full"
         aria-label={isFavorite ? t('card.unfavorite') : t('card.favorite')}
         data-testid={`guide-star-${guide.slug}`}
       >
