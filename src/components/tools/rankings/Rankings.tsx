@@ -10,7 +10,6 @@ import { RankingSearch } from './RankingSearch';
 import { FieldTabs } from './FieldTabs';
 import { RankingsList } from './RankingsList';
 import { RankingDetail } from './RankingDetail';
-import { RankingsIntro } from './RankingsIntro';
 import { RankingsHowTo } from './RankingsHowTo';
 import { RankingsFaq } from './RankingsFaq';
 import { RankingsStructuredData } from './RankingsStructuredData';
@@ -38,7 +37,6 @@ export function Rankings() {
     <div className="space-y-16">
       {/* SEO/GEO: rendered unconditionally (outside mounted gate) so it lands
           in the prerendered HTML for search engines and answer engines. */}
-      <RankingsIntro />
 
       {/* Interactive rankings island. A ranking is a wide, long table, so the
           detail is rendered FULL-WIDTH below the selector (not a narrow sticky

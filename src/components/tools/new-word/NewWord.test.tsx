@@ -50,12 +50,8 @@ describe('NewWord component', () => {
     expect(container).toBeInTheDocument();
   });
 
-  it('renders intro section for SEO', async () => {
-    render(<NewWord />);
-    await waitFor(() => {
-      expect(screen.getByText('New Word Glossary')).toBeInTheDocument();
-    });
-  });
+  // The intro/title area is now rendered by the shared <ToolIntro> at the route
+  // level; see src/components/tools/shared/ToolIntro.test.tsx.
 
   it('renders search input', async () => {
     render(<NewWord />);

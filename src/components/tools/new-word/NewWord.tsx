@@ -10,7 +10,6 @@ import { TermSearch } from './TermSearch';
 import { TopicTabs } from './TopicTabs';
 import { TermList } from './TermList';
 import { TermDetail } from './TermDetail';
-import { NewWordIntro } from './NewWordIntro';
 import { NewWordHowTo } from './NewWordHowTo';
 import { NewWordFaq } from './NewWordFaq';
 import { NewWordStructuredData } from './NewWordStructuredData';
@@ -49,7 +48,6 @@ export function NewWord() {
     <div className="space-y-16">
       {/* SEO/GEO: rendered unconditionally (outside any mounted gate) so it lands
           in the prerendered HTML for search engines and answer engines. */}
-      <NewWordIntro />
 
       {/* Interactive glossary island — desktop 2-split, mobile stacked */}
       <div className="lg:grid lg:grid-cols-[1fr_360px] lg:gap-8 lg:items-start">

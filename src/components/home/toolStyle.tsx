@@ -44,6 +44,23 @@ export function accentTileClass(accent: AccentColor): {
 }
 
 /**
+ * Map accent color to the Tailwind text class for a tool-page eyebrow label.
+ * Uses the darker `-ink` variant for AA contrast on light surfaces. Shared by
+ * `ToolIntro` so every tool's eyebrow is colored by its category accent.
+ */
+export function accentEyebrowClass(accent: AccentColor): string {
+  const map: Record<AccentColor, string> = {
+    coral: 'text-accent-coral-ink',
+    mint: 'text-accent-mint-ink',
+    sky: 'text-accent-sky-ink',
+    sun: 'text-accent-sun-ink',
+    grape: 'text-accent-grape-ink',
+    rose: 'text-accent-rose-ink',
+  };
+  return map[accent];
+}
+
+/**
  * Lucide icon name → component. Explicit map (tree-shake friendly) covering
  * every `icon` referenced in the tool registry, so no tool silently regresses
  * to the generic Wrench. `toolStyle.test.tsx` asserts registry ↔ map parity, so

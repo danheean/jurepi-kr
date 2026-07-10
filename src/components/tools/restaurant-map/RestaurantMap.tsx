@@ -14,7 +14,6 @@ import { PlaceList } from './PlaceList';
 import { PlaceDetailCard } from './PlaceDetailCard';
 import { MapContainer } from './MapContainer';
 import { GeolocationButton } from './GeolocationButton';
-import { RestaurantMapIntro } from './RestaurantMapIntro';
 import { RestaurantMapHowTo } from './RestaurantMapHowTo';
 import { RestaurantMapFaq } from './RestaurantMapFaq';
 import { RestaurantMapStructuredData } from './RestaurantMapStructuredData';
@@ -52,7 +51,6 @@ export function RestaurantMap({ catalog = DEFAULT_CATALOG }: RestaurantMapProps)
   return (
     <div className="w-full">
       {/* Intro (H1 + lead): SSR'd unconditionally */}
-      <RestaurantMapIntro />
 
       {/* Curator legend (non-interactive identity strip) */}
       <div className="px-4 py-8 border-b border-hairline">

@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useDailyJournal } from './useDailyJournal';
-import { QnaIntro } from './QnaIntro';
 import { QnaBenefits } from './QnaBenefits';
 import { QnaExamples } from './QnaExamples';
 import { ProgressChip } from './ProgressChip';
@@ -78,7 +77,6 @@ export function DailyQuestion() {
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-8">
       {/* Intro — i18n only, server-rendered for SEO */}
-      <QnaIntro />
 
       {/* Interactive region depends on localStorage + local date, so it must
           hydrate after mount. Render a stable skeleton during SSR / first paint

@@ -236,6 +236,11 @@
             "a": "Yes. Tap 'Download result' to save an image file showing every player and their outcome at a glance. Post it straight to a group chat or social media to share."
           }
         ]
+      },
+      "intro": {
+        "eyebrow": "Draw Tool",
+        "title": "Ladder Game",
+        "lead": "Decide fair orders for your group. Who buys coffee? Who picks first?"
       }
     },
     "qna-a-day": {
@@ -635,6 +640,11 @@
       "meta": {
         "title": "URL Encoder / Decoder — Free Online Tool",
         "description": "Encode and decode URLs. Supports UTF-8 and EUC-KR (CP949) charsets. Query string editing, batch mode, recent history."
+      },
+      "intro": {
+        "eyebrow": "Developer Tool",
+        "title": "URL Encoder",
+        "lead": "Encode and decode URL text and edit query parameters. Switch instantly between component/full URI modes and UTF-8 and EUC-KR charsets (for legacy Korean URLs)."
       }
     },
     "bookmarks": {
@@ -1220,7 +1230,8 @@
         "copyFail": "Failed to copy to clipboard."
       },
       "intro": {
-        "headline": "QR Code Generator",
+        "eyebrow": "Converter Tool",
+        "title": "QR Code Generator",
         "lead": "Convert text, URLs, Wi-Fi credentials, and contact info into QR codes. Customize colors and download as PNG or SVG."
       },
       "howTo": {
@@ -1757,6 +1768,7 @@
       },
       "intro": {
         "eyebrow": "RESTAURANT TOOL",
+        "title": "Restaurant List",
         "lead": "Discover neighborhood restaurants and cafés, hand-picked by our curators, on an interactive map."
       },
       "howTo": {
@@ -1798,8 +1810,8 @@
       },
       "intro": {
         "eyebrow": "Text Tool",
-        "lead": "Replace multiple words throughout your text at once. Build any number of rules—combine literal text search with optional regex and capture groups. This is a word-substitution tool, not an AI rewriter.",
-        "heading": "Text Replacer"
+        "title": "Text Replacer",
+        "lead": "Replace multiple words throughout your text at once. Build any number of rules—combine literal text search with optional regex and capture groups. This is a word-substitution tool, not an AI rewriter."
       },
       "sourceText": {
         "label": "Text to transform",
@@ -1988,7 +2000,7 @@
       },
       "intro": {
         "eyebrow": "TEXT TOOL",
-        "heading": "Character & Word Counter",
+        "title": "Character & Word Counter",
         "lead": "Count characters, words, sentences in real-time."
       },
       "textarea": {
@@ -2099,7 +2111,7 @@
       },
       "intro": {
         "eyebrow": "Random Tool",
-        "headline": "Decision Roulette",
+        "title": "Decision Roulette",
         "lead": "Spin to decide fairly from your options."
       },
       "options": {
@@ -2254,8 +2266,8 @@
         "description": "Safely convert text and files to/from Base64 with UTF-8 integrity, supporting standard and URL-safe variants."
       },
       "intro": {
-        "category": "DEVELOPER TOOL",
-        "heading": "Base64 Encoder/Decoder",
+        "eyebrow": "DEVELOPER TOOL",
+        "title": "Base64 Encoder/Decoder",
         "lead": "Convert text and files to Base64 and back. UTF-8 safe, standard and URL-safe variants, drag-drop file upload."
       },
       "howTo": {
@@ -2344,6 +2356,9 @@
         "outOfRange": "Number out of range"
       },
       "intro": {
+        "eyebrow": "CONVERTER TOOL",
+        "title": "Unit Converter",
+        "lead": "Convert lengths, weights, temperatures, times, and more in real time.",
         "copy": "Everyday conversions, instant results"
       },
       "howTo": {
@@ -2509,6 +2524,11 @@
             "a": "Yes. All lookups happen in your browser only, and your IP is never sent to Jurepi servers. Since IP lookups are public data, there's no security risk."
           }
         ]
+      },
+      "intro": {
+        "eyebrow": "DEVELOPER TOOL",
+        "title": "My IP Address",
+        "lead": "Find your public IP address at a glance. See your IPv4, IPv6, and ISP information."
       }
     },
     "knitting-gauge": {
@@ -2609,6 +2629,11 @@
             "a": "Select the 'Pattern Rescale' tab. Enter the pattern's gauge (as written in the pattern) and stitch count. The calculator will show you the stitch count needed for your gauge."
           }
         ]
+      },
+      "intro": {
+        "eyebrow": "Calculator Tool",
+        "title": "Knitting Gauge Calculator",
+        "lead": "Know your gauge (stitches and rows per 10cm)? Calculate cast-on stitches, rows, and rescale any pattern."
       }
     },
     "json-formatter": {

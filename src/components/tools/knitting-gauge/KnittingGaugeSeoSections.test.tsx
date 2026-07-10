@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { NextIntlClientProvider } from 'next-intl';
-import { KnittingGaugeIntro } from './KnittingGaugeIntro';
 import { KnittingGaugeHowTo } from './KnittingGaugeHowTo';
 import koMessagesRaw from '@/i18n/messages/ko.json';
 import enMessagesRaw from '@/i18n/messages/en.json';
@@ -14,30 +13,8 @@ const koMessages = koMessagesRaw as any;
 const koTool = koMessagesRaw.tools['knitting-gauge'];
 const enTool = enMessagesRaw.tools['knitting-gauge'];
 
-describe('KnittingGaugeIntro', () => {
-  it('renders H1 title, eyebrow, and lead from the real ko catalog', () => {
-    render(
-      <NextIntlClientProvider locale="ko" messages={koMessages}>
-        <KnittingGaugeIntro />
-      </NextIntlClientProvider>
-    );
-
-    expect(
-      screen.getByRole('heading', { level: 1, name: koTool.title })
-    ).toBeInTheDocument();
-    expect(screen.getByText(koTool.eyebrow)).toBeInTheDocument();
-    expect(screen.getByText(koTool.lead)).toBeInTheDocument();
-  });
-
-  it('has no Korean leakage in the en render', () => {
-    const { container } = render(
-      <NextIntlClientProvider locale="en" messages={enMessages}>
-        <KnittingGaugeIntro />
-      </NextIntlClientProvider>
-    );
-    expect(container.textContent).not.toMatch(/[가-힣]/);
-  });
-});
+// The tool title area (H1/eyebrow/lead) is now rendered uniformly by the shared
+// <ToolIntro> at the route level; see ToolIntro.test.tsx.
 
 describe('KnittingGaugeHowTo', () => {
   it('renders title and all howTo paragraphs from the real ko catalog', () => {

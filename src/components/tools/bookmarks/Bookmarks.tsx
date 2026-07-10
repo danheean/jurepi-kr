@@ -11,7 +11,6 @@ import { BookmarksSearch } from './BookmarksSearch';
 import { TopicTabs } from './TopicTabs';
 import { TopicsList } from './TopicsList';
 import { TopicDetail } from './TopicDetail';
-import { BookmarksIntro } from './BookmarksIntro';
 import { BookmarksHowTo } from './BookmarksHowTo';
 import { BookmarksFaq } from './BookmarksFaq';
 import { BookmarksStructuredData } from './BookmarksStructuredData';
@@ -79,7 +78,6 @@ export function Bookmarks() {
     <div className="space-y-16">
       {/* SEO/GEO: rendered unconditionally so it lands
           in the prerendered HTML for search engines and answer engines. */}
-      <BookmarksIntro />
 
       {/* Interactive bookmarks island. Stacked on mobile; on desktop it splits
           into a two-pane layout (selector left, sticky detail right) once a

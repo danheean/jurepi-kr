@@ -19,10 +19,8 @@ describe('LadderGame Component', () => {
     expect(main).toBeInTheDocument();
   });
 
-  it('renders LadderIntro section', () => {
-    render(<LadderGame />);
-    expect(screen.getByText('Ladder Game')).toBeInTheDocument();
-  });
+  // The title area (H1/eyebrow/lead) is now rendered by the shared <ToolIntro>
+  // at the route level; see src/components/tools/shared/ToolIntro.test.tsx.
 
   it('renders LadderSetup in setup phase by default', () => {
     render(<LadderGame />);
@@ -130,8 +128,9 @@ describe('LadderGame Component', () => {
   it('renders all main sections in correct order', () => {
     const { container } = render(<LadderGame />);
     const sections = container.querySelectorAll('section');
-    // Should have at least: LadderIntro, LadderHowTo, LadderFaq
-    expect(sections.length).toBeGreaterThanOrEqual(3);
+    // Title area is now route-level (<ToolIntro>); LadderGame renders its
+    // board + HowTo + Faq sections.
+    expect(sections.length).toBeGreaterThanOrEqual(2);
   });
 
   it('applies vertical padding to main', () => {

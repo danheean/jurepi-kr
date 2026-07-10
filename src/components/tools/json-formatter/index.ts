@@ -14,7 +14,6 @@ export { JsonTreeNode } from './JsonTreeNode';
 export { JsonFormatterStats } from './JsonFormatterStats';
 
 // SEO & Structured Data
-export { JsonFormatterIntro } from './JsonFormatterIntro';
 export { JsonFormatterHowTo } from './JsonFormatterHowTo';
 export { JsonFormatterFaq } from './JsonFormatterFaq';
 export { JsonFormatterStructuredData } from './JsonFormatterStructuredData';

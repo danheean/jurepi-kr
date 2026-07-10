@@ -7,69 +7,53 @@ import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
 import { buildToolMetadata } from '@/lib/seo';
 import guidesData from '@/components/tools/howto/data/guides.generated.json';
-import { UrlEncoderIntro } from '@/components/tools/url-encoder/UrlEncoderIntro';
 import { UrlEncoderHowTo } from '@/components/tools/url-encoder/UrlEncoderHowTo';
 import { UrlEncoderFaq } from '@/components/tools/url-encoder/UrlEncoderFaq';
 import { UrlEncoderStructuredData } from '@/components/tools/url-encoder/UrlEncoderStructuredData';
-import { SpeedQuizIntro } from '@/components/tools/speed-quiz/SpeedQuizIntro';
 import { SpeedQuizHowTo } from '@/components/tools/speed-quiz/SpeedQuizHowTo';
 import { SpeedQuizFaq } from '@/components/tools/speed-quiz/SpeedQuizFaq';
 import { SpeedQuizStructuredData } from '@/components/tools/speed-quiz/SpeedQuizStructuredData';
-import { AgeCalculatorIntro } from '@/components/tools/age-calculator/AgeCalculatorIntro';
 import { AgeCalculatorHowTo } from '@/components/tools/age-calculator/AgeCalculatorHowTo';
 import { AgeCalculatorFaq } from '@/components/tools/age-calculator/AgeCalculatorFaq';
 import { AgeCalculatorStructuredData } from '@/components/tools/age-calculator/AgeCalculatorStructuredData';
-import { LunarConverterIntro } from '@/components/tools/lunar-converter/LunarConverterIntro';
 import { LunarConverterHowTo } from '@/components/tools/lunar-converter/LunarConverterHowTo';
 import { LunarConverterFaq } from '@/components/tools/lunar-converter/LunarConverterFaq';
 import { LunarConverterStructuredData } from '@/components/tools/lunar-converter/LunarConverterStructuredData';
 import { ShareButtons } from '@/components/share';
-import { ToolCharacter } from '@/components/tools/ToolCharacter';
-import { QRCodeIntro } from '@/components/tools/qr-code/QRCodeIntro';
+import { ToolIntro } from '@/components/tools/shared/ToolIntro';
 import { QRCodeHowTo } from '@/components/tools/qr-code/QRCodeHowTo';
 import { QRCodeFaq } from '@/components/tools/qr-code/QRCodeFaq';
 import { QRCodeStructuredData } from '@/components/tools/qr-code/QRCodeStructuredData';
-import { DevPeopleIntro } from '@/components/tools/dev-people/DevPeopleIntro';
 import { DevPeopleHowTo } from '@/components/tools/dev-people/DevPeopleHowTo';
 import { DevPeopleFaq } from '@/components/tools/dev-people/DevPeopleFaq';
 import { DevPeopleStructuredData } from '@/components/tools/dev-people/DevPeopleStructuredData';
-import { TransparentBgIntro } from '@/components/tools/transparent-background/TransparentBgIntro';
 import { TransparentBgHowTo } from '@/components/tools/transparent-background/TransparentBgHowTo';
 import { TransparentBgFaq } from '@/components/tools/transparent-background/TransparentBgFaq';
 import { TransparentBgStructuredData } from '@/components/tools/transparent-background/TransparentBgStructuredData';
-import { JsonFormatterIntro } from '@/components/tools/json-formatter/JsonFormatterIntro';
 import { JsonFormatterHowTo } from '@/components/tools/json-formatter/JsonFormatterHowTo';
 import { JsonFormatterFaq } from '@/components/tools/json-formatter/JsonFormatterFaq';
 import { JsonFormatterStructuredData } from '@/components/tools/json-formatter/JsonFormatterStructuredData';
-import { MyIpIntro } from '@/components/tools/my-ip/MyIpIntro';
 import { MyIpHowTo } from '@/components/tools/my-ip/MyIpHowTo';
 import { MyIpFaq } from '@/components/tools/my-ip/MyIpFaq';
 import { MyIpStructuredData } from '@/components/tools/my-ip/MyIpStructuredData';
-import { RouletteIntro } from '@/components/tools/roulette/RouletteIntro';
 import { RouletteHowTo } from '@/components/tools/roulette/RouletteHowTo';
 import { RouletteFaq } from '@/components/tools/roulette/RouletteFaq';
 import { RouletteStructuredData } from '@/components/tools/roulette/RouletteStructuredData';
-import { CounterIntro } from '@/components/tools/character-counter/CounterIntro';
 import { CounterHowTo } from '@/components/tools/character-counter/CounterHowTo';
 import { CounterFaq } from '@/components/tools/character-counter/CounterFaq';
 import { CounterStructuredData } from '@/components/tools/character-counter/CounterStructuredData';
-import { FindReplaceIntro } from '@/components/tools/find-replace/FindReplaceIntro';
 import { FindReplaceHowTo } from '@/components/tools/find-replace/FindReplaceHowTo';
 import { FindReplaceFaq } from '@/components/tools/find-replace/FindReplaceFaq';
 import { FindReplaceStructuredData } from '@/components/tools/find-replace/FindReplaceStructuredData';
-import { Base64EncoderIntro } from '@/components/tools/base64-encoder/Base64EncoderIntro';
 import { Base64EncoderHowTo } from '@/components/tools/base64-encoder/Base64EncoderHowTo';
 import { Base64EncoderFaq } from '@/components/tools/base64-encoder/Base64EncoderFaq';
 import { Base64EncoderStructuredData } from '@/components/tools/base64-encoder/Base64EncoderStructuredData';
-import { UnitConverterIntro } from '@/components/tools/unit-converter/UnitConverterIntro';
 import { UnitConverterHowTo } from '@/components/tools/unit-converter/UnitConverterHowTo';
 import { UnitConverterFaq } from '@/components/tools/unit-converter/UnitConverterFaq';
 import { UnitConverterStructuredData } from '@/components/tools/unit-converter/UnitConverterStructuredData';
-import { KnittingGaugeIntro } from '@/components/tools/knitting-gauge/KnittingGaugeIntro';
 import { KnittingGaugeHowTo } from '@/components/tools/knitting-gauge/KnittingGaugeHowTo';
 import { KnittingGaugeFaq } from '@/components/tools/knitting-gauge/KnittingGaugeFaq';
 import { KnittingGaugeStructuredData } from '@/components/tools/knitting-gauge/KnittingGaugeStructuredData';
-import { HowtoIntro } from "@/components/tools/howto/HowtoIntro";
 import { HowtoHowTo } from "@/components/tools/howto/HowtoHowTo";
 import { HowtoFaq } from "@/components/tools/howto/HowtoFaq";
 import { HowtoStructuredData } from "@/components/tools/howto/HowtoStructuredData";
@@ -316,6 +300,31 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     notFound();
   }
 
+  // Shared tool-page header — one uniform title area for every tool, rendered
+  // at the route level (server) so it lands in the prerendered SEO/GEO HTML.
+  const t = await getTranslations({ locale, namespace: `tools.${slug}` });
+
+  return (
+    <>
+      <ToolIntro
+        slug={slug}
+        accent={tool.accent}
+        eyebrow={t('intro.eyebrow')}
+        title={t('intro.title')}
+        description={t('intro.lead')}
+      />
+      <ToolBody slug={slug} locale={locale} />
+    </>
+  );
+}
+
+async function ToolBody({ slug, locale }: { slug: string; locale: string }) {
+  const tool = getToolBySlug(slug);
+
+  if (!tool || tool.status !== 'live') {
+    notFound();
+  }
+
   // Mount tool based on slug
   if (slug === 'ladder') {
     return <LadderGame />;
@@ -333,7 +342,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <UrlEncoderStructuredData />
-        <UrlEncoderIntro />
         <UrlEncoder locale={locale} />
         <UrlEncoderHowTo />
         <UrlEncoderFaq />
@@ -361,7 +369,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <SpeedQuizStructuredData />
-        <SpeedQuizIntro />
         <SpeedQuiz />
         <SpeedQuizHowTo />
         <SpeedQuizFaq />
@@ -373,7 +380,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <AgeCalculatorStructuredData />
-        <AgeCalculatorIntro />
         <AgeCalculator />
         <AgeCalculatorHowTo />
         <AgeCalculatorFaq />
@@ -385,7 +391,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <LunarConverterStructuredData />
-        <LunarConverterIntro />
         <LunarConverter locale={locale} />
         <LunarConverterHowTo />
         <LunarConverterFaq />
@@ -397,7 +402,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <QRCodeStructuredData />
-        <QRCodeIntro />
         <QRCodeGenerator locale={locale} />
         <QRCodeHowTo />
         <QRCodeFaq />
@@ -409,7 +413,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <DevPeopleStructuredData />
-        <DevPeopleIntro />
         <DevPeople />
         <DevPeopleHowTo />
         <DevPeopleFaq />
@@ -421,7 +424,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <TransparentBgStructuredData />
-        <TransparentBgIntro />
         <TransparentBackgroundMaker />
         <TransparentBgHowTo />
         <TransparentBgFaq />
@@ -433,7 +435,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <RouletteStructuredData />
-        <RouletteIntro />
         <Roulette />
         <RouletteHowTo />
         <RouletteFaq />
@@ -445,7 +446,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <CounterStructuredData />
-        <CounterIntro />
         <CharacterCounter />
         <CounterHowTo />
         <CounterFaq />
@@ -457,7 +457,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <FindReplaceStructuredData />
-        <FindReplaceIntro />
         <FindReplace />
         <FindReplaceHowTo />
         <FindReplaceFaq />
@@ -473,7 +472,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <Base64EncoderStructuredData />
-        <Base64EncoderIntro />
         <Suspense fallback={<div className="text-text-secondary">Loading...</div>}>
           <Base64Encoder locale={locale} />
         </Suspense>
@@ -488,7 +486,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <UnitConverterStructuredData />
-        <UnitConverterIntro />
         <Suspense fallback={<div className="text-text-secondary">Loading...</div>}>
           <UnitConverter locale={locale} />
         </Suspense>
@@ -502,7 +499,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <MyIpStructuredData />
-        <MyIpIntro />
         <MyIp />
         <MyIpHowTo />
         <MyIpFaq />
@@ -514,7 +510,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <JsonFormatterStructuredData />
-        <JsonFormatterIntro />
         <JsonFormatter />
         <JsonFormatterHowTo />
         <JsonFormatterFaq />
@@ -526,7 +521,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <KnittingGaugeStructuredData />
-        <KnittingGaugeIntro />
         <Suspense fallback={<div className="text-text-secondary">Loading...</div>}>
           <KnittingGauge />
         </Suspense>
@@ -541,7 +535,6 @@ async function ToolContent({ slug, locale }: { slug: string; locale: string }) {
     return (
       <>
         <HowtoStructuredData catalog={guidesData as any} />
-        <HowtoIntro />
         <Suspense fallback={<div className="text-text-secondary">Loading...</div>}>
           <Howto />
         </Suspense>
@@ -573,17 +566,9 @@ export default async function ToolPage({ params }: Props) {
           <ShareButtons />
         </div>
 
-        {/* Small themed avatar floats to the left so the tool's own title/intro
-            flows beside it (avatar-next-to-title), and the body clears below.
-            Shared template affordance — every current & future tool gets it. */}
-        <div className="float-left mr-4 mb-2 w-[64px] sm:w-[72px]">
-          <ToolCharacter
-            slug={slug}
-            className="h-auto w-full rounded-2xl shadow-card"
-          />
-        </div>
-
-        {/* Tool Content with Error Boundary */}
+        {/* Tool Content with Error Boundary. The tool's title area (avatar +
+            eyebrow + H1 + lead) is rendered uniformly by <ToolIntro> at the top
+            of <ToolContent> — see ToolIntro. */}
         <ErrorBoundary
           title={t('errorTitle')}
           body={t('errorBody')}
@@ -593,8 +578,6 @@ export default async function ToolPage({ params }: Props) {
             <ToolContent slug={slug} locale={locale} />
           </Suspense>
         </ErrorBoundary>
-        {/* Contain the float so ads / anything after it never wrap around it. */}
-        <div className="clear-both" />
 
         {/* Ads are inserted automatically by Google AdSense Auto Ads
             (loader in <head>); no manual ad slot is placed here. */}

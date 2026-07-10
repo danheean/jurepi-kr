@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import { useLadder } from './useLadder';
-import { LadderIntro } from './LadderIntro';
 import { LadderSetup } from './LadderSetup';
 import { PlayerHeader } from './PlayerHeader';
 import { LadderBoard } from './LadderBoard';
@@ -96,7 +95,6 @@ export function LadderGame() {
 
   return (
     <div className="w-full max-w-2xl mx-auto px-4 py-8">
-      <LadderIntro />
 
       {/* Game board */}
       <div className="space-y-6 mb-12">
