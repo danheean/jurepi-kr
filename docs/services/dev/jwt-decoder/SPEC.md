@@ -112,8 +112,8 @@ src/
 │   ├── ErrorMessage.tsx                   # Precise error: "Part: <header|payload|signature>, Error: <specific reason>"
 │   ├── JwtDecoderIntro.tsx                # H1 + lead (SEO long-form)
 │   ├── JwtDecoderHowTo.tsx               # "What is JWT and why decode it?" (SEO)
-│   ├── JwtDecoderFaq.tsx                 # FAQ + FAQPage JSON-LD
-│   └── JwtDecoderStructuredData.tsx      # SoftwareApplication JSON-LD (route renders; Faq does not emit FAQPage)
+│   ├── JwtDecoderFaq.tsx                 # FAQ + FAQPage JSON-LD (SINGLE owner of FAQPage, built from visible faq.items)
+│   └── JwtDecoderStructuredData.tsx      # SoftwareApplication JSON-LD ONLY (route-level); does NOT emit FAQPage
 └── i18n/messages/{ko,en}.json             # tools.jwt-decoder.* UI chrome
 </file_structure>
 
@@ -206,11 +206,11 @@ src/
   </colorized_token>
 
   <unsecured_warning>
-    - If decoded header.alg === "none": red banner (danger color, var(--semantic-danger)) with 🔓 icon: "This JWT uses the unsecured 'none' algorithm. Do not use in production."
+    - If decoded header.alg === "none": red banner (danger color — real tokens: `bg-danger/10 border-danger/30 text-danger-ink`, NOT phantom `--semantic-*`) with 🔓 icon: "This JWT uses the unsecured 'none' algorithm. Do not use in production."
   </unsecured_warning>
 
   <validity_indicator>
-    - Status badge: ✓ (green, var(--semantic-success)) if valid; ⚠ (orange, var(--semantic-warning)) if not-yet-valid; ⛔ (red, var(--semantic-danger)) if expired.
+    - Status badge (use REAL semantic tokens, NOT phantom `--semantic-*`): ✓ valid → `text-success` / `bg-success text-on-success`; ⚠ not-yet-valid → `text-warning-ink` / `bg-warning/10`; ⛔ expired → `text-danger-ink` / `bg-danger/10`.
     - Countdown text: "Expires in 2 hours, 34 minutes" / "Expired 1 hour ago" / "Becomes valid in 5 minutes" — updates every 1 second.
     - Tap to see full exp/iat/nbf timestamps.
   </validity_indicator>
@@ -310,8 +310,8 @@ src/
     - Category accent is SUN (var(--accent-sun) / var(--accent-sun-soft)) — "dev" category identity per DESIGN. Intro icon tile, colorized token header/footer distinction, validity indicator (success state).
     - CTAs (buttons) stay brand honey-gold var(--brand) (Verify/Copy/Download). Accent = identity for structure.
     - Colorized token: header var(--accent-sun), payload var(--accent-mint), signature var(--accent-sky), separators var(--text-muted).
-    - Validity statuses: ✓ var(--semantic-success), ⚠ var(--semantic-warning), ⛔ var(--semantic-danger).
-    - Unsecured warning: var(--semantic-danger) background, danger-soft.
+    - Validity statuses (REAL tokens): ✓ `success`/`on-success`, ⚠ `warning`/`warning-ink`, ⛔ `danger`/`danger-ink`. NEVER phantom `--semantic-*` (those render transparent — repeated harness drift).
+    - Unsecured warning: `bg-danger/10 border-danger/30 text-danger-ink`.
   </accent_usage>
   <layout>Textarea (input), output (colorized + claims/raw tabs) stacked or 2-split. Desktop ≥1024px: 2-split (50/50). Mobile <768px: stacked.</layout>
   <typography>H1 Gmarket Sans; textarea/output monospace (Menlo/Monaco/Courier New); UI labels/buttons Pretendard.</typography>
@@ -427,9 +427,9 @@ src/
       category: 'dev',
       icon: 'KeyRound',           // or 'Lock' / 'Shield' — lucide-react
       accent: 'sun',
-      status: 'coming_soon',
-      addedAt: '2026-07-10',
-      order: 30,                  // demand-based, after json-formatter (25)
+      status: 'coming_soon',       // flip to 'live' at implementation step 10 (route SSG + E2E require live)
+      addedAt: '2026-07-11',
+      order: 105,                  // demand-based free dev slot (json-formatter 100, base64 110); 30/31 already taken by age-calculator/howto
       keywords: ['JWT','디코더','토큰','분석','검증','서명','개발','decoder','verify','token','payload','claims','security'],
     },
     // No platform prerequisite: 'dev' category is already fully wired.

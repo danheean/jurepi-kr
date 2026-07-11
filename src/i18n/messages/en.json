@@ -3046,6 +3046,140 @@
       "mermaid": {
         "sourceLabel": "Diagram source"
       }
+    },
+    "jwt-decoder": {
+      "title": "JWT Decoder",
+      "description": "Decode JWT tokens, extract claims, verify signatures",
+      "meta": {
+        "title": "JWT Decoder — Token Analyzer",
+        "description": "Decode JWT tokens, extract standard claims, verify HMAC/RSA signatures. Tokens stay in your browser."
+      },
+      "input": {
+        "label": "Token",
+        "placeholder": "Paste your JWT here…"
+      },
+      "tabs": {
+        "claims": "Claims",
+        "raw": "Raw JSON",
+        "header": "Header",
+        "payload": "Payload",
+        "signature": "Signature"
+      },
+      "claims": {
+        "title": "Claims",
+        "standard": "Standard Claims",
+        "custom": "Custom Claims",
+        "key": "Key",
+        "value": "Value",
+        "iss": "Issuer",
+        "sub": "Subject",
+        "aud": "Audience",
+        "exp": "Expiration Time",
+        "iat": "Issued At",
+        "nbf": "Not Before",
+        "jti": "JWT ID",
+        "typ": "Type",
+        "kid": "Key ID"
+      },
+      "validity": {
+        "valid": "✓ Valid",
+        "expired": "⛔ Expired",
+        "notYetValid": "⌛ Not Yet Valid",
+        "expiresIn": "Expires in {countdown}",
+        "expiredAgo": "Expired {countdown} ago",
+        "validatesIn": "Becomes valid in {countdown}",
+        "unknown": "Unknown"
+      },
+      "unsecured": {
+        "banner": "This JWT uses the unsecured 'none' algorithm. Do not use in production."
+      },
+      "verification": {
+        "title": "Signature Verification (Advanced)",
+        "mode": {
+          "legend": "Verification Mode",
+          "off": "Off",
+          "hmac": "HMAC (HS256/384/512)",
+          "rsa": "RSA/ECDSA (RS256/ES256)"
+        },
+        "secret": {
+          "label": "Signing Secret (hex or base64):",
+          "placeholder": "e.g., my-secret-key or base64-encoded"
+        },
+        "key": {
+          "label": "Public Key (PEM format):",
+          "placeholder": "-----BEGIN PUBLIC KEY-----\n…\n-----END PUBLIC KEY-----"
+        },
+        "button": "Verify",
+        "verifying": "Verifying…",
+        "verified": "✓ Verified",
+        "failed": "✗ Verification Failed",
+        "unsupported": "⊘ Unsupported Algorithm"
+      },
+      "errors": {
+        "malformed": "Invalid JWT format. Expected three base64url-encoded parts separated by '.'.",
+        "base64": "Invalid JWT. Part: {part}, Error: Invalid base64url encoding",
+        "json": "Invalid JWT. Part: {part}, Error: Invalid JSON",
+        "unsupportedAlg": "Verification not available. Algorithm '{alg}' is not supported by this tool.",
+        "verificationFailed": "Signature verification failed. This token was either tampered with or signed with a different key.",
+        "pemParsing": "Invalid public key. Could not parse PEM format. Ensure the key starts with '-----BEGIN PUBLIC KEY-----'.",
+        "secretError": "Could not process secret. Verify the format and try again.",
+        "title": "Error"
+      },
+      "copy": {
+        "success": "Copied!",
+        "error": "Copy failed",
+        "payload": "Copy Payload"
+      },
+      "download": {
+        "button": "Download"
+      },
+      "howTo": {
+        "title": "What is JWT and Why Decode It?",
+        "items": [
+          {
+            "q": "What is JWT (JSON Web Token)?",
+            "a": "JWT is an encoded JSON string designed to securely transmit information. It has three parts separated by dots: a header (token type and algorithm), a payload (user information called claims), and a signature (to verify the token hasn't been tampered with). You typically receive JWTs from authentication systems after login, or use them as access tokens in API requests."
+          },
+          {
+            "q": "Why decode a JWT?",
+            "a": "Although tokens aren't encrypted, they are base64-encoded and unreadable as-is. Decoding a JWT lets you see the information it contains (issuer, expiration time, user ID, etc.) at a glance. During development, it's essential to verify that your token carries the right information and hasn't expired."
+          },
+          {
+            "q": "Is my token information safe here?",
+            "a": "Yes, completely safe. This tool runs 100% in your browser. The JWT token or signing key you paste is never sent to a server and never leaves your device. All parsing and verification happen locally on your computer. Even in development, never paste production secret keys into untrusted tools."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "Is it safe to paste my token here?",
+            "a": "Yes, it's completely safe. This tool does all processing in your browser only. Your token and secret key are never sent anywhere or stored. Feel free to use it for testing during development."
+          },
+          {
+            "q": "What do I need to verify a signature?",
+            "a": "For HMAC (HS256/384/512), you need the secret key used to create the signature. For RSA/ECDSA (RS256/ES256), you need the public key in PEM format. The public key is usually available from the issuer's authentication server via a JWKS (JSON Web Key Set) URL."
+          },
+          {
+            "q": "What algorithms does this tool support?",
+            "a": "Currently, it supports HS256, HS384, HS512 (HMAC), RS256 (RSA), and ES256 (ECDSA). EdDSA (Ed25519) and other advanced algorithms are not yet supported."
+          },
+          {
+            "q": "What happens if my token is expired?",
+            "a": "An expired token shows a red banner with '⛔ Expired' status. If the expiration time (exp claim) is earlier than the current time, it's expired. You can still verify the signature, but a real server would reject it."
+          },
+          {
+            "q": "What are claims?",
+            "a": "Claims are pieces of information in the JWT payload. Standard claims like iss (issuer), sub (subject), exp (expiration), and iat (issued at) are defined by the JWT specification. Custom claims are application-specific information added as needed."
+          }
+        ]
+      },
+      "intro": {
+        "eyebrow": "Developer Tool",
+        "title": "JWT Decoder",
+        "lead": "Understand JWT token structure at a glance, extract claims, and verify signatures. All processing happens in your browser."
+      }
     }
   },
   "about": {

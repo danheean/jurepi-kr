@@ -295,6 +295,17 @@ export const tools: ToolMeta[] = [
     addedAt: '2026-07-06',
     keywords: ['하우투', '가이드', '설치', '설정', 'how to', 'howto', 'guide', 'tutorial', '클로드 코드', 'claude code', '토큰 발급', 'api token', 'mermaid', '다이어그램', '코드블록', 'markdown', '문서', '매뉴얼', 'setup'],
   },
+  {
+    id: 'jwt-decoder',
+    slug: 'jwt-decoder',
+    category: 'dev',
+    icon: 'KeyRound',
+    accent: 'sun',
+    status: 'live',
+    addedAt: '2026-07-11',
+    order: 105,
+    keywords: ['JWT', '디코더', '토큰', '분석', '검증', '서명', '개발', 'decoder', 'verify', 'token', 'payload', 'claims', 'security', 'JSON Web Token', 'cryptography'],
+  },
 ];
 
 /** Get all live tools for static generation */

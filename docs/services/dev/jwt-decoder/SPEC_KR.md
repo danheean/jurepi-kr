@@ -112,8 +112,8 @@ src/
 │   ├── ErrorMessage.tsx                   # 정확한 에러: "Part: <header|payload|signature>, Error: <specific reason>"
 │   ├── JwtDecoderIntro.tsx                # H1 + lead(SEO 장문형)
 │   ├── JwtDecoderHowTo.tsx                # "JWT란 무엇이고 왜 디코딩하는가?"(SEO)
-│   ├── JwtDecoderFaq.tsx                  # FAQ + FAQPage JSON-LD
-│   └── JwtDecoderStructuredData.tsx       # SoftwareApplication JSON-LD(라우트가 렌더; Faq는 FAQPage 방출 안 함)
+│   ├── JwtDecoderFaq.tsx                  # FAQ + FAQPage JSON-LD (FAQPage 단일 소유, 가시 faq.items 기반)
+│   └── JwtDecoderStructuredData.tsx       # SoftwareApplication JSON-LD 전용(라우트 레벨); FAQPage 방출 안 함
 └── i18n/messages/{ko,en}.json             # tools.jwt-decoder.* UI 크롬
 </file_structure>
 
@@ -206,11 +206,11 @@ src/
   </colorized_token>
 
   <unsecured_warning>
-    - 디코딩된 헤더.alg === "none"인 경우: red banner(danger color, var(--semantic-danger)) with 🔓 icon: "This JWT uses the unsecured 'none' algorithm. Do not use in production."
+    - 디코딩된 헤더.alg === "none"인 경우: red banner(danger color — 실제 토큰: `bg-danger/10 border-danger/30 text-danger-ink`, 팬텀 `--semantic-*` 금지) with 🔓 icon: "This JWT uses the unsecured 'none' algorithm. Do not use in production."
   </unsecured_warning>
 
   <validity_indicator>
-    - 상태 배지: ✓(초록, var(--semantic-success)) 유효하면; ⚠(주황, var(--semantic-warning)) 아직 유효하지 않으면; ⛔(빨강, var(--semantic-danger)) 만료되면.
+    - 상태 배지(팬텀 `--semantic-*` 금지, 실제 토큰 사용): ✓ 유효 → `text-success`/`bg-success text-on-success`; ⚠ 아직 유효하지 않음 → `text-warning-ink`/`bg-warning/10`; ⛔ 만료 → `text-danger-ink`/`bg-danger/10`.
     - 카운트다운 텍스트: "Expires in 2 hours, 34 minutes" / "Expired 1 hour ago" / "Becomes valid in 5 minutes" — 매초 업데이트.
     - 탭 해서 전체 exp/iat/nbf 타임스탐프 보기.
   </validity_indicator>
@@ -310,8 +310,8 @@ src/
     - 카테고리 악센트는 SUN(var(--accent-sun) / var(--accent-sun-soft)) — DESIGN per "dev" 카테고리 정체성. Intro 아이콘 타일, colorized token header/footer 구별, validity indicator(success 상태).
     - CTA(버튼)는 brand honey-gold var(--brand) 유지(Verify/Copy/Download). Accent = 구조 정체성.
     - Colorized token: header var(--accent-sun), payload var(--accent-mint), signature var(--accent-sky), separators var(--text-muted).
-    - Validity 상태: ✓ var(--semantic-success), ⚠ var(--semantic-warning), ⛔ var(--semantic-danger).
-    - Unsecured warning: var(--semantic-danger) 배경, danger-soft.
+    - Validity 상태(실제 토큰): ✓ `success`/`on-success`, ⚠ `warning`/`warning-ink`, ⛔ `danger`/`danger-ink`. 팬텀 `--semantic-*` 금지(투명 렌더 — 반복된 하네스 드리프트).
+    - Unsecured warning: `bg-danger/10 border-danger/30 text-danger-ink`.
   </accent_usage>
   <layout>Textarea(입력), output(colorized + claims/raw tabs) stacked 또는 2-split. Desktop ≥1024px: 2-split(50/50). Mobile <768px: stacked.
   <typography>H1 Gmarket Sans; textarea/output 모노스페이스(Menlo/Monaco/Courier New); UI 라벨/버튼 Pretendard.
@@ -428,8 +428,8 @@ src/
       icon: 'KeyRound',           // 또는 'Lock' / 'Shield' — lucide-react
       accent: 'sun',
       status: 'coming_soon',
-      addedAt: '2026-07-10',
-      order: 30,                  // demand-based, json-formatter(25) 후
+      addedAt: '2026-07-11',
+      order: 105,                 // demand-based 빈 dev 슬롯 (json-formatter 100, base64 110); 30/31은 age-calculator/howto 사용중
       keywords: ['JWT','디코더','토큰','분석','검증','서명','개발','decoder','verify','token','payload','claims','security'],
     },
     // 플랫폼 의존성 없음: 'dev' 카테고리는 이미 완전히 배선됨.

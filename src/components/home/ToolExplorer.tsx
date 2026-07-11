@@ -119,17 +119,25 @@ export function ToolExplorer({
           />
         </div>
 
-        <CategoryFilter
-          categories={categories}
-          active={category}
-          onChange={setCategory}
-          trailing={
+        {/* Category pills + favorites filter as a grouped control block.
+            Favorites sits on its OWN row (below, left-aligned) — not inline
+            with the category pills — so it reads as a distinct filter action
+            and never eats horizontal space from the category scroll row on
+            narrow viewports. */}
+        <div className="space-y-4">
+          <CategoryFilter
+            categories={categories}
+            active={category}
+            onChange={setCategory}
+          />
+          <div className="mx-auto max-w-container px-6 md:px-8 lg:px-12">
             <FavoritesFilterToggle
               active={favoritesOnly}
               onToggle={() => setFavoritesOnly((v) => !v)}
+              count={favoriteIds.length}
             />
-          }
-        />
+          </div>
+        </div>
 
         {anyFilter && visible.length > 0 && (
           <div className="mx-auto max-w-container px-6 md:px-8 lg:px-12">

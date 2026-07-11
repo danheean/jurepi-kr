@@ -60,6 +60,9 @@ import { KnittingGaugeStructuredData } from '@/components/tools/knitting-gauge/K
 import { HowtoHowTo } from "@/components/tools/howto/HowtoHowTo";
 import { HowtoFaq } from "@/components/tools/howto/HowtoFaq";
 import { HowtoStructuredData } from "@/components/tools/howto/HowtoStructuredData";
+import { JwtDecoderHowTo } from "@/components/tools/jwt-decoder/JwtDecoderHowTo";
+import { JwtDecoderFaq } from "@/components/tools/jwt-decoder/JwtDecoderFaq";
+import { JwtDecoderStructuredData } from "@/components/tools/jwt-decoder/JwtDecoderStructuredData";
 
 const LadderGame = dynamic(() =>
   import('@/components/tools/ladder/LadderGame').then((m) => ({
@@ -199,6 +202,12 @@ const Howto = dynamic(() =>
   }))
 );
 
+const JwtDecoder = dynamic(() =>
+  import('@/components/tools/jwt-decoder/JwtDecoder').then((m) => ({
+    default: m.JwtDecoder,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -281,6 +290,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // howto's catalog uses top-level title/description (no meta.* block).
     title = t('title');
     description = t('description');
+  } else if (slug === 'jwt-decoder') {
+    title = t('meta.title');
+    description = t('meta.description');
   } else {
     return {};
   }
@@ -566,6 +578,18 @@ async function ToolBody({ slug, locale }: { slug: string; locale: string }) {
       </>
     );
   }
+
+  if (slug === 'jwt-decoder') {
+    return (
+      <>
+        <JwtDecoderStructuredData />
+        <JwtDecoder />
+        <JwtDecoderHowTo />
+        <JwtDecoderFaq />
+      </>
+    );
+  }
+
   notFound();
 }
 

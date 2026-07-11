@@ -191,6 +191,9 @@ curl -s -o /dev/null -w "%{http_code}\n" "$BASE/ko/nonexistent-xyz"  # 404
 - **배포 완료 감지·검증은 `curl`로** — 새 도구는 배포 전 라이브에서 404였다가 200이 되는 것을 폴링(`until curl … | grep -q "<새 기능 마커>"`)해 전파를 확인한다. 이때 마커는 **렌더 body**에 있는 것으로 고른다(RSC 데이터 스트림 `__next_f`의 이스케이프 사본 `\"@type\":\"SoftwareApplication\"`은 실제 `<script type=application/ld+json>` 블록과 별개 — `"@type":"SoftwareApplication"` 실값 개수로 세라. curl의 단순 substring grep은 이 사본 때문에 2배로 부풀 수 있다).
 - **브라우저에서 재확인할 땐 캐시버스터 쿼리**(`?cb=<고유값>`)로 navigate — 정적 HTML도 브라우저/중간 캐시를 우회한다. cron-parser: `?cb=quartz1`로 재접속하니 ModeToggle과 Quartz 파싱이 정상 표시.
 - **"브라우저에 안 보임"과 "배포 미완/코드 결함"을 혼동하지 말 것** — fresh `curl`의 렌더 body가 정상이면 배포는 정상이고 브라우저 쪽 캐시 문제다. 반대로 curl body에도 없으면 그때가 진짜 배포/빌드 문제다.
+- **공유 청크 지문(`_next/static/chunks/[hash]-[hash].js`)을 배포 완료 신호로 쓰지 말 것 — 라우트·i18n에 국한된 국소 변경은 공유 청크를 안 바꾼다.** base64-encoder 실측: 파일 다운로드 기능(base64 라우트+i18n에만)을 push하고 공유 청크 지문을 10분 폴링했으나 지문이 그대로여서 "미배포"로 오판, 실제론 이미 라이브였다(16분 헛대기 — 변경분은 그 **라우트 청크 + 페이지 RSC 페이로드**에만 반영). 폴링 마커는 항상 위처럼 **렌더 body의 그 변경 고유 문자열**로 고른다.
+- **JS 청크에서 한글을 grep하지 말 것 — 유니코드 이스케이프(`\uXXXX`)라 raw 한글은 0으로 나온다.** 같은 실측에서 로컬 `out/_next/static/chunks/`를 raw 한글로 grep하면 실제 존재해도 미검출인데, next-intl이 카탈로그를 **페이지 HTML(RSC 페이로드)에 원문 그대로** 임베드하므로 `out/<locale>/tools/<slug>.html`(또는 `curl`)을 grep하면 검출된다(154 파일). i18n 문자열 확인은 **HTML을 grep**한다(청크 아님).
+- **새 문자열이 없는 순수 클라 동작(버튼·상태 전이) 변경은 grep으로 배포 판정 불가 → 브라우저로 실제 기능을 실행**(예: 디코드→다운로드 이벤트 발화)해 확인한다.
 
 ## 트러블슈팅
 
