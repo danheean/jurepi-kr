@@ -20,8 +20,20 @@ export function describeQuartz(fields: QuartzFields): QuartzDescriptionModel {
   // Extract years
   const years = fields.year && fields.year.length > 0 ? fields.year : undefined;
 
+  // Step between consecutive runs (e.g. 0/30 → second [0,30] → 30).
+  const intervalSeconds =
+    frequencyKind === 'everyNSeconds' && fields.second.length > 1
+      ? fields.second[1] - fields.second[0]
+      : undefined;
+  const intervalMinutes =
+    frequencyKind === 'everyNMinutes' && fields.minute.length > 1
+      ? fields.minute[1] - fields.minute[0]
+      : undefined;
+
   return {
     frequencyKind,
+    intervalSeconds,
+    intervalMinutes,
     atTimes: atTimes.length > 0 ? atTimes : undefined,
     domKind,
     domDetail,
@@ -194,6 +206,12 @@ function analyzeDom(fields: QuartzFields): DomAnalysis {
       domKind: 'nearestWeekday',
       domDetail: { nearest: fields.dom.nearestWeekday },
     };
+  }
+
+  // A full-range day-of-month (all 31 values, i.e. '*') is no constraint at all —
+  // treat it as no-specific so we never emit "on day 1, 2, …, 31".
+  if (fields.dom.values.length === 31) {
+    return { domKind: 'noSpecific' };
   }
 
   if (fields.dom.values.length > 0) {

@@ -193,4 +193,24 @@ describe('describeQuartz', () => {
       expect(desc.dowDetail?.nth?.n).toBe(3);
     });
   });
+
+  describe('interval + wildcard day-of-month (regression)', () => {
+    it('carries the seconds interval for everyNSeconds', () => {
+      const desc = describeQuartz(parseQuartz('0/30 * * * * ?'));
+      expect(desc.frequencyKind).toBe('everyNSeconds');
+      expect(desc.intervalSeconds).toBe(30);
+    });
+
+    it('carries the minutes interval for everyNMinutes', () => {
+      const desc = describeQuartz(parseQuartz('0 0/5 * * * ?'));
+      expect(desc.frequencyKind).toBe('everyNMinutes');
+      expect(desc.intervalMinutes).toBe(5);
+    });
+
+    it('treats a wildcard "*" day-of-month as no-specific (no 1..31 list)', () => {
+      const desc = describeQuartz(parseQuartz('0/30 * * * * ?'));
+      expect(desc.domKind).toBe('noSpecific');
+      expect(desc.domDetail?.dates).toBeUndefined();
+    });
+  });
 });

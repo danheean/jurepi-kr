@@ -35,7 +35,7 @@ export function TimezoneSelector({ value, onChange }: TimezoneSelectorProps) {
       value={value}
       onChange={(e) => onChange(e.target.value)}
       aria-label={t('timezoneLabel')}
-      className="w-full px-4 py-2 rounded-lg border border-hairline bg-surface text-text font-sans text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand"
+      className="w-full min-h-[44px] px-4 py-2 rounded-lg border border-hairline bg-surface text-text font-sans text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring"
     >
       <option value="Local">{localLabel}</option>
       {TIMEZONE_NAMES.filter((tz) => tz !== 'Local').map((tz) => (

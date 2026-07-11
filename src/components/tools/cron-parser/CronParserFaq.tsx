@@ -43,7 +43,9 @@ export function CronParserFaq() {
             key={idx}
             className="border border-hairline rounded-lg p-4 hover:bg-surface-muted transition"
           >
-            <summary className="font-semibold text-text cursor-pointer">{item.q}</summary>
+            <summary className="font-semibold text-text cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring">
+              {item.q}
+            </summary>
             <p className="mt-3 text-text-secondary leading-relaxed">{item.a}</p>
           </details>
         ))}

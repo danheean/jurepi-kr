@@ -18,7 +18,7 @@ export function PresetExpressions({ mode = 'unix', onSelect }: PresetExpressions
         <button
           key={preset.id}
           onClick={() => onSelect(preset.expression)}
-          className="px-3 py-2 rounded-lg border border-hairline bg-surface hover:bg-surface-muted text-text text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand"
+          className="min-h-[44px] px-3 py-2 rounded-lg border border-hairline bg-surface hover:bg-surface-muted text-text text-sm font-medium transition-all duration-200 motion-safe:active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring"
           aria-label={t(preset.descriptionKey)}
         >
           {t(preset.descriptionKey)}

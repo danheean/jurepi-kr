@@ -34,6 +34,8 @@ type StorageState = z.infer<typeof StorageSchema>;
 interface ParseErrorInfo {
   field: string;
   message: string;
+  code?: string;
+  params?: Record<string, string | number>;
 }
 
 export function useCronParser() {

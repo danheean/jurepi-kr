@@ -17,10 +17,10 @@ export function ErrorMessage({ error }: ErrorMessageProps) {
   return (
     <div
       role="alert"
-      className="rounded-lg border border-danger bg-danger/10 p-4 text-danger"
+      className="rounded-lg border border-danger bg-danger/10 p-4 text-danger-ink"
     >
       <h3 className="font-semibold mb-1">
-        {t('parseError', { defaultValue: 'Parse Error' })}
+        {t('parseError')}
       </h3>
       <p className="text-sm">
         {t('errors.invalidField', {

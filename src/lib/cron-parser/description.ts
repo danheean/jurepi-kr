@@ -26,6 +26,8 @@ export function toDescriptionModel(fields: ParsedFields): DescriptionModel {
   ) {
     const model: DescriptionModel = {
       frequencyKind: 'everyNMinutes',
+      // Step between consecutive runs (e.g. */15 → minute [0,15,30,45] → 15).
+      intervalMinutes: fields.minute[1] - fields.minute[0],
     };
     return model;
   }

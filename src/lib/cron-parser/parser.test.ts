@@ -224,4 +224,28 @@ describe('parseCron', () => {
     expect(result.isValid).toBe(false);
     expect(result.error?.field).toBe('hour');
   });
+
+  describe('localizable error codes', () => {
+    it('attaches valueOutOfRange code + params for an out-of-range value', () => {
+      const result = parseCron('99 9 * * *');
+      expect(result.isValid).toBe(false);
+      expect(result.error?.field).toBe('minute');
+      expect(result.error?.code).toBe('valueOutOfRange');
+      expect(result.error?.params).toEqual({ value: 99, min: 0, max: 59 });
+    });
+
+    it('attaches valueOutOfRange code for an out-of-range value inside a list', () => {
+      const result = parseCron('1,99 9 * * *');
+      expect(result.isValid).toBe(false);
+      expect(result.error?.code).toBe('valueOutOfRange');
+      expect(result.error?.params).toMatchObject({ value: 99 });
+    });
+
+    it('attaches unknownValue code for an unrecognized token', () => {
+      const result = parseCron('0 9 * NOPE *');
+      expect(result.isValid).toBe(false);
+      expect(result.error?.code).toBe('unknownValue');
+      expect(result.error?.params).toMatchObject({ value: 'NOPE' });
+    });
+  });
 });

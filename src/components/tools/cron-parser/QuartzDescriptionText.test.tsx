@@ -117,4 +117,57 @@ describe('QuartzDescriptionText', () => {
     const p = container.querySelector('p');
     expect(p).toHaveClass('font-medium', 'text-text');
   });
+
+  // Behavioral guards: the base templates for everyNSeconds / everyNMinutes carry
+  // an ICU {n} that MUST be filled, and a wildcard day-of-month must NOT render
+  // as "on day 1, 2, …, 31". The styling-only tests above missed all of this.
+  describe('rendered text (no broken placeholders or noise clauses)', () => {
+    it('fills {n} for everyNSeconds instead of showing the literal "{n}"', () => {
+      const { container } = render(
+        <QuartzDescriptionText
+          model={{
+            frequencyKind: 'everyNSeconds',
+            intervalSeconds: 30,
+            domKind: 'noSpecific',
+            dowKind: 'noSpecific',
+          }}
+        />
+      );
+      const text = container.querySelector('p')?.textContent ?? '';
+      expect(text).not.toContain('{');
+      expect(text).toContain('30');
+    });
+
+    it('has a catalog key for everyNMinutes and fills {n} (no MISSING_MESSAGE)', () => {
+      const { container } = render(
+        <QuartzDescriptionText
+          model={{
+            frequencyKind: 'everyNMinutes',
+            intervalMinutes: 5,
+            domKind: 'noSpecific',
+            dowKind: 'noSpecific',
+          }}
+        />
+      );
+      const text = container.querySelector('p')?.textContent ?? '';
+      expect(text).not.toContain('{');
+      expect(text).not.toContain('quartzDescriptions'); // raw key path = MISSING_MESSAGE
+      expect(text).toContain('5');
+    });
+
+    it('does not append a "1, 2, 3, …" clause when the model has no specific day', () => {
+      const { container } = render(
+        <QuartzDescriptionText
+          model={{
+            frequencyKind: 'everyNSeconds',
+            intervalSeconds: 30,
+            domKind: 'noSpecific',
+            dowKind: 'noSpecific',
+          }}
+        />
+      );
+      const text = container.querySelector('p')?.textContent ?? '';
+      expect(text).not.toMatch(/1,\s*2,\s*3/);
+    });
+  });
 });

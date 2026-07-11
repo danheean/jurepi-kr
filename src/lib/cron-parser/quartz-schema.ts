@@ -45,6 +45,8 @@ export interface QuartzDescriptionModel {
     | 'everyHour'
     | 'everyDay'
     | 'custom';
+  intervalSeconds?: number; // for 'everyNSeconds', the step between runs
+  intervalMinutes?: number; // for 'everyNMinutes', the step between runs
   atTimes?: Array<{ hour: number; minute: number; second: number }>;
   domKind?: 'specific' | 'lastDay' | 'lastOffset' | 'lastWeekday' | 'nearestWeekday' | 'noSpecific';
   domDetail?: { dates?: number[]; offset?: number; nearest?: number };

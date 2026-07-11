@@ -12,6 +12,8 @@ import { NextRunsList } from './NextRunsList';
 interface ParseErrorInfo {
   field: string;
   message: string;
+  code?: string;
+  params?: Record<string, string | number>;
 }
 
 interface ParseResultDisplayProps {
@@ -49,11 +51,23 @@ export function ParseResultDisplay({
       'invalidPattern',
       'invalidValue',
     ];
-    const displayError =
-      mode === 'quartz' && QUARTZ_ERROR_KEYS.includes(error.message)
-        ? { field: error.field, message: t(`quartzErrors.${error.message}`) }
-        : error;
-    return <ErrorMessage error={displayError} />;
+
+    // Localize the field name (분 / minute …); fall back to the raw key.
+    const field = t.has(`fieldLabels.${error.field}`)
+      ? t(`fieldLabels.${error.field}`)
+      : error.field;
+
+    // Localize the detail: Quartz errors carry a code as the message; Unix
+    // errors carry an explicit `code` + `params`. Anything not yet coded falls
+    // back to the English message.
+    let message = error.message;
+    if (mode === 'quartz' && QUARTZ_ERROR_KEYS.includes(error.message)) {
+      message = t(`quartzErrors.${error.message}`);
+    } else if (error.code && t.has(`errors.${error.code}`)) {
+      message = t(`errors.${error.code}`, error.params);
+    }
+
+    return <ErrorMessage error={{ field, message }} />;
   }
 
   if (mode === 'quartz') {

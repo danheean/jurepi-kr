@@ -1,24 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { NextIntlClientProvider } from 'next-intl';
+import { render } from '@/__test__/test-utils';
 import { ModeToggle } from './ModeToggle';
 
-const messages = {
-  'tools.cron-parser': {
-    'mode.label': 'Format',
-    'mode.unix': 'Unix crontab',
-    'mode.quartz': 'Quartz',
-  },
-};
-
-const renderWithI18n = (component: React.ReactElement) => {
-  return render(
-    <NextIntlClientProvider locale="en" messages={messages}>
-      {component}
-    </NextIntlClientProvider>
-  );
-};
+// Render with the real message catalog (like the other cron-parser component
+// tests) instead of an inline mock — inline mocks drift and, when the namespace
+// shape is wrong, log MISSING_MESSAGE noise while the assertions still pass.
+const renderWithI18n = (component: React.ReactElement) => render(component);
 
 describe('ModeToggle', () => {
   it('renders both mode options', () => {

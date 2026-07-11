@@ -115,6 +115,8 @@ function parseField(
           error: {
             field: fieldName,
             message: parsed.error || `Invalid value: ${token.value}`,
+            code: parsed.code,
+            params: parsed.params,
           },
         };
       }
@@ -180,6 +182,8 @@ function parseField(
               error: {
                 field: fieldName,
                 message: parsed.error || `Invalid value in list: ${part}`,
+                code: parsed.code,
+                params: parsed.params,
               },
             };
           }
@@ -207,7 +211,13 @@ function parseLiteral(
   max: number,
   fieldName: string,
   nameMap: Record<string, number>
-): { isValid: boolean; values?: number[]; error?: string } {
+): {
+  isValid: boolean;
+  values?: number[];
+  error?: string;
+  code?: string;
+  params?: Record<string, string | number>;
+} {
   // Try as number
   if (/^\d+$/.test(value)) {
     const num = parseInt(value, 10);
@@ -219,6 +229,8 @@ function parseLiteral(
       return {
         isValid: false,
         error: `Invalid value ${num} (must be ${min}–${max})`,
+        code: 'valueOutOfRange',
+        params: { value: num, min, max },
       };
     }
     return { isValid: true, values: [num] };
@@ -233,6 +245,8 @@ function parseLiteral(
   return {
     isValid: false,
     error: `Unknown value: ${value}`,
+    code: 'unknownValue',
+    params: { value },
   };
 }
 

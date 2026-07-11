@@ -20,7 +20,16 @@ export function QuartzDescriptionText({ model }: QuartzDescriptionTextProps) {
     }).format(new Date(2000, 0, 1, hour, minute, second));
   };
 
-  let description = t(`quartzDescriptions.${model.frequencyKind}`);
+  // everyNSeconds / everyNMinutes carry an ICU {n} that MUST be filled, or the
+  // raw "{n}" reaches the user (the other kinds have no placeholder).
+  let description: string;
+  if (model.frequencyKind === 'everyNSeconds') {
+    description = t('quartzDescriptions.everyNSeconds', { n: model.intervalSeconds ?? 0 });
+  } else if (model.frequencyKind === 'everyNMinutes') {
+    description = t('quartzDescriptions.everyNMinutes', { n: model.intervalMinutes ?? 0 });
+  } else {
+    description = t(`quartzDescriptions.${model.frequencyKind}`);
+  }
 
   // Add atTimes clause
   if (model.atTimes && model.atTimes.length > 0) {

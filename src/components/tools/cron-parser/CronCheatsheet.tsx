@@ -14,7 +14,7 @@ export function CronCheatsheet() {
       onToggle={(e) => setIsOpen(e.currentTarget.open)}
       className="bg-surface border border-hairline rounded-lg p-6 space-y-4"
     >
-      <summary className="cursor-pointer font-medium text-text text-lg hover:text-brand">
+      <summary className="cursor-pointer font-medium text-text text-lg hover:text-brand-ink rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring">
         {t('cheatsheetLabel')}
       </summary>
 
@@ -40,20 +40,20 @@ export function CronCheatsheet() {
         {/* Special syntax */}
         <div>
           <h3 className="font-semibold text-text mb-3">
-            {t('syntax', { defaultValue: 'Syntax' })}
+            {t('syntax')}
           </h3>
           <div className="space-y-2 font-mono text-xs">
             <div>
-              <span className="font-semibold text-text">*</span> = All values
+              <span className="font-semibold text-text">*</span> = {t('cheatsheet.allValues')}
             </div>
             <div>
-              <span className="font-semibold text-text">1-5</span> = Range
+              <span className="font-semibold text-text">1-5</span> = {t('cheatsheet.range')}
             </div>
             <div>
-              <span className="font-semibold text-text">*/15</span> = Every 15th
+              <span className="font-semibold text-text">*/15</span> = {t('cheatsheet.step')}
             </div>
             <div>
-              <span className="font-semibold text-text">1,3,5</span> = List
+              <span className="font-semibold text-text">1,3,5</span> = {t('cheatsheet.list')}
             </div>
           </div>
         </div>
@@ -61,18 +61,18 @@ export function CronCheatsheet() {
         {/* Common names */}
         <div>
           <h3 className="font-semibold text-text mb-3">
-            {t('names', { defaultValue: 'Names' })}
+            {t('names')}
           </h3>
           <div className="grid grid-cols-2 gap-2 font-mono text-xs">
             <div>
               <span className="font-semibold text-text block mb-1">
-                {t('months', { defaultValue: 'Months' })}
+                {t('months')}
               </span>
               <span>{MONTH_NAMES.join(', ')}</span>
             </div>
             <div>
               <span className="font-semibold text-text block mb-1">
-                {t('days', { defaultValue: 'Days' })}
+                {t('days')}
               </span>
               <span>{DAY_NAMES.join(', ')}</span>
             </div>

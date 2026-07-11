@@ -25,7 +25,7 @@ export function FieldBreakdownTable({ fields }: FieldBreakdownTableProps) {
     if (fieldName === 'isValid' || fieldName === 'error') return '';
     const field = fields[fieldName] as number[];
     if (isAllValues(fieldName)) {
-      return t('allValues', { defaultValue: 'All' });
+      return t('allValues');
     }
     return field.slice(0, 10).join(', ') + (field.length > 10 ? '…' : '');
   };

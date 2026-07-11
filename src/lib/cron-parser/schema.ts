@@ -11,7 +11,11 @@ export const ParsedFieldsSchema = z.object({
   error: z
     .object({
       field: z.string(),
-      message: z.string(),
+      message: z.string(), // English fallback / dev detail
+      // Optional localization hook: when present, the UI renders errors.<code>
+      // with these params instead of the raw English message.
+      code: z.string().optional(),
+      params: z.record(z.string(), z.union([z.string(), z.number()])).optional(),
     })
     .optional(),
 });
@@ -30,6 +34,7 @@ export type DescriptionModel = {
     | 'monthly'
     | 'yearly'
     | 'custom';
+  intervalMinutes?: number; // for 'everyNMinutes', the step between runs
   atTimes?: Array<{ hour: number; minute: number }>;
   onDays?: string[]; // e.g., ['MON', 'TUE']
   onMonths?: string[]; // e.g., ['JAN', 'FEB']

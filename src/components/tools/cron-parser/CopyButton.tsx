@@ -32,10 +32,10 @@ export function CopyButton({ expression }: CopyButtonProps) {
   return (
     <button
       onClick={handleCopy}
-      className="shrink-0 px-4 py-2 rounded-lg bg-brand text-on-brand hover:bg-brand-strong font-medium text-sm whitespace-nowrap transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand"
+      className="shrink-0 min-h-[44px] px-4 py-2 rounded-lg bg-brand text-on-brand hover:bg-brand-strong font-medium text-sm whitespace-nowrap transition-all duration-200 motion-safe:active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring"
       aria-label={t('copyLabel')}
     >
-      {isCopied ? t('copiedToast', { defaultValue: 'Copied!' }) : t('copyLabel')}
+      {isCopied ? t('copiedToast') : t('copyLabel')}
     </button>
   );
 }

@@ -15,9 +15,9 @@ export function ExpressionInput({ value, onChange }: ExpressionInputProps) {
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      placeholder={t('expressionPlaceholder', { defaultValue: '0 9 * * *' })}
+      placeholder={t('expressionPlaceholder')}
       aria-label={t('expressionLabel')}
-      className="w-full px-4 py-2 rounded-lg border border-hairline bg-surface text-text placeholder-text-secondary font-mono text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand"
+      className="w-full min-h-[44px] px-4 py-2 rounded-lg border border-hairline bg-surface text-text placeholder-text-secondary font-mono text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring"
     />
   );
 }

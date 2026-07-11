@@ -671,6 +671,12 @@
       "copiedToast": "Copied!",
       "recentLabel": "Recent",
       "cheatsheetLabel": "Cheatsheet",
+      "cheatsheet": {
+        "allValues": "All values",
+        "range": "Range",
+        "step": "Step",
+        "list": "List"
+      },
       "fieldsHeading": "Fields",
       "clearRecentsLabel": "Clear Recents",
       "fields": {
@@ -692,6 +698,7 @@
       "quartzDescriptions": {
         "everySecond": "Every second",
         "everyNSeconds": "Every {n} seconds",
+        "everyNMinutes": "Every {n} minutes",
         "everyMinute": "Every minute",
         "everyHour": "Every hour",
         "everyDay": "Every day",
@@ -724,7 +731,19 @@
         "malformedRange": "Invalid range syntax. Use 'start-end' or 'start-end/step'.",
         "wrongFieldCount": "Cron expression must have 5 fields.",
         "noUpcomingRuns": "No upcoming run times found within 4 years.",
-        "unknownMacro": "Unknown macro. Valid macros: @yearly, @monthly, @weekly, @daily, @hourly"
+        "unknownMacro": "Unknown macro. Valid macros: @yearly, @monthly, @weekly, @daily, @hourly",
+        "valueOutOfRange": "Invalid value {value} (must be {min}–{max})",
+        "unknownValue": "Unknown value: {value}"
+      },
+      "fieldLabels": {
+        "second": "second",
+        "minute": "minute",
+        "hour": "hour",
+        "dom": "day-of-month",
+        "month": "month",
+        "dow": "day-of-week",
+        "year": "year",
+        "macro": "macro"
       },
       "descriptions": {
         "everyMinute": "Every minute",

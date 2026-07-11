@@ -17,7 +17,7 @@ export function ModeToggle({ mode, onChange }: ModeToggleProps) {
   };
 
   const segmentClass = (active: boolean): string =>
-    `px-4 py-2 min-h-[44px] rounded-md font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand ${
+    `px-4 py-2 min-h-[44px] rounded-md font-medium text-sm transition-all duration-200 motion-safe:active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring ${
       active
         ? 'bg-brand text-on-brand'
         : 'bg-surface-muted border border-hairline text-text hover:bg-surface-sunken'
