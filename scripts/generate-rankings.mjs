@@ -15,7 +15,7 @@ import { z } from 'zod';
 // Re-declare schemas (keep in sync with src/lib/rankings/schema.ts)
 const RankingFileFrontSchema = z.object({
   title: z.string().min(1, 'title required'),
-  field: z.enum(['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education']),
+  field: z.enum(['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education', 'business']),
   asOfDate: z.string().min(1, 'asOfDate required (ISO date: YYYY-MM or YYYY-MM-DD)'),
   sourceNote: z.string().min(1).max(200, 'sourceNote max 200 chars'),
   sourceUrl: z.string().url().optional(),
@@ -35,7 +35,7 @@ const RankingFileFrontSchema = z.object({
 
 const MergedRankingSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
-  field: z.enum(['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education']),
+  field: z.enum(['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education', 'business']),
   asOfDate: z.string(),
   sourceUrl: z.string().url().optional(),
   ko: z.object({
@@ -287,7 +287,7 @@ async function generateRankings() {
   }
 
   // 8. Sort: field order → asOfDate desc → title ko locale
-  const fieldOrder = ['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education'];
+  const fieldOrder = ['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education', 'business'];
   rankings.sort((a, b) => {
     const fieldIdxA = fieldOrder.indexOf(a.field);
     const fieldIdxB = fieldOrder.indexOf(b.field);

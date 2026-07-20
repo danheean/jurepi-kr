@@ -788,5 +788,441 @@
         }
       ]
     }
+  },
+  {
+    "slug": "world-richest-people",
+    "field": "business",
+    "asOfDate": "2026-07-20",
+    "sourceUrl": "https://www.forbes.com/real-time-billionaires/",
+    "ko": {
+      "title": "세계 부자 순위",
+      "sourceNote": "포브스 실시간 억만장자 순위 기준(상장주식 5분마다 갱신·비상장기업 자산은 일 1회 산정) · 2026년 7월 20일 06:50 EDT 기준",
+      "items": [
+        {
+          "rank": 1,
+          "name": "일론 머스크",
+          "description": "재산 7976억 달러 · 테슬라, 스페이스X"
+        },
+        {
+          "rank": 2,
+          "name": "래리 페이지",
+          "description": "재산 2843억 달러 · 구글"
+        },
+        {
+          "rank": 3,
+          "name": "세르게이 브린",
+          "description": "재산 2623억 달러 · 구글"
+        },
+        {
+          "rank": 4,
+          "name": "제프 베이조스",
+          "description": "재산 2566억 달러 · 아마존"
+        },
+        {
+          "rank": 5,
+          "name": "마이클 델",
+          "description": "재산 2232억 달러 · 델 테크놀로지스"
+        },
+        {
+          "rank": 6,
+          "name": "마크 저커버그",
+          "description": "재산 2216억 달러 · 페이스북(메타)"
+        },
+        {
+          "rank": 7,
+          "name": "젠슨 황",
+          "description": "재산 1754억 달러 · 반도체(엔비디아)"
+        },
+        {
+          "rank": 8,
+          "name": "래리 엘리슨",
+          "description": "재산 1670억 달러 · 오라클"
+        },
+        {
+          "rank": 9,
+          "name": "베르나르 아르노 가문",
+          "description": "재산 1498억 달러 · LVMH"
+        },
+        {
+          "rank": 10,
+          "name": "워런 버핏",
+          "description": "재산 1393억 달러 · 버크셔 해서웨이"
+        },
+        {
+          "rank": 11,
+          "name": "아만시오 오르테가",
+          "description": "재산 1366억 달러 · 자라(Zara)"
+        },
+        {
+          "rank": 12,
+          "name": "롭 월튼 가문",
+          "description": "재산 1335억 달러 · 월마트"
+        },
+        {
+          "rank": 13,
+          "name": "짐 월튼 가문",
+          "description": "재산 1308억 달러 · 월마트"
+        },
+        {
+          "rank": 14,
+          "name": "스티브 발머",
+          "description": "재산 1266억 달러 · 마이크로소프트"
+        },
+        {
+          "rank": 15,
+          "name": "카를로스 슬림 엘루 가문",
+          "description": "재산 1252억 달러 · 통신"
+        },
+        {
+          "rank": 16,
+          "name": "앨리스 월튼",
+          "description": "재산 1219억 달러 · 월마트"
+        },
+        {
+          "rank": 17,
+          "name": "마이클 블룸버그",
+          "description": "재산 1094억 달러 · 블룸버그 LP"
+        },
+        {
+          "rank": 18,
+          "name": "자오창펑",
+          "description": "재산 1078억 달러 · 암호화폐 거래소"
+        },
+        {
+          "rank": 19,
+          "name": "빌 게이츠",
+          "description": "재산 1065억 달러 · 마이크로소프트"
+        },
+        {
+          "rank": 20,
+          "name": "토머스 피터피",
+          "description": "재산 1040억 달러 · 디스카운트 증권중개"
+        }
+      ]
+    },
+    "en": {
+      "title": "World's Richest People",
+      "sourceNote": "Based on Forbes Real-Time Billionaires (public holdings refreshed every 5 min, private stakes valued daily) - as of Jul 20, 2026, 06:50 EDT",
+      "items": [
+        {
+          "rank": 1,
+          "name": "Elon Musk",
+          "description": "Net worth $797.6B - Tesla, SpaceX"
+        },
+        {
+          "rank": 2,
+          "name": "Larry Page",
+          "description": "Net worth $284.3B - Google"
+        },
+        {
+          "rank": 3,
+          "name": "Sergey Brin",
+          "description": "Net worth $262.3B - Google"
+        },
+        {
+          "rank": 4,
+          "name": "Jeff Bezos",
+          "description": "Net worth $256.6B - Amazon"
+        },
+        {
+          "rank": 5,
+          "name": "Michael Dell",
+          "description": "Net worth $223.2B - Dell Technologies"
+        },
+        {
+          "rank": 6,
+          "name": "Mark Zuckerberg",
+          "description": "Net worth $221.6B - Facebook (Meta)"
+        },
+        {
+          "rank": 7,
+          "name": "Jensen Huang",
+          "description": "Net worth $175.4B - Semiconductors (Nvidia)"
+        },
+        {
+          "rank": 8,
+          "name": "Larry Ellison",
+          "description": "Net worth $167.0B - Oracle"
+        },
+        {
+          "rank": 9,
+          "name": "Bernard Arnault & family",
+          "description": "Net worth $149.8B - LVMH"
+        },
+        {
+          "rank": 10,
+          "name": "Warren Buffett",
+          "description": "Net worth $139.3B - Berkshire Hathaway"
+        },
+        {
+          "rank": 11,
+          "name": "Amancio Ortega",
+          "description": "Net worth $136.6B - Zara"
+        },
+        {
+          "rank": 12,
+          "name": "Rob Walton & family",
+          "description": "Net worth $133.5B - Walmart"
+        },
+        {
+          "rank": 13,
+          "name": "Jim Walton & family",
+          "description": "Net worth $130.8B - Walmart"
+        },
+        {
+          "rank": 14,
+          "name": "Steve Ballmer",
+          "description": "Net worth $126.6B - Microsoft"
+        },
+        {
+          "rank": 15,
+          "name": "Carlos Slim Helu & family",
+          "description": "Net worth $125.2B - Telecom"
+        },
+        {
+          "rank": 16,
+          "name": "Alice Walton",
+          "description": "Net worth $121.9B - Walmart"
+        },
+        {
+          "rank": 17,
+          "name": "Michael Bloomberg",
+          "description": "Net worth $109.4B - Bloomberg LP"
+        },
+        {
+          "rank": 18,
+          "name": "Changpeng Zhao",
+          "description": "Net worth $107.8B - Cryptocurrency exchange"
+        },
+        {
+          "rank": 19,
+          "name": "Bill Gates",
+          "description": "Net worth $106.5B - Microsoft"
+        },
+        {
+          "rank": 20,
+          "name": "Thomas Peterffy",
+          "description": "Net worth $104.0B - Discount brokerage"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "korea-richest-people",
+    "field": "business",
+    "asOfDate": "2026-04-28",
+    "sourceUrl": "https://www.forbeskorea.co.kr/news/articleView.html?idxno=401816",
+    "ko": {
+      "title": "한국 부자 순위",
+      "sourceNote": "포브스 코리아 2026 대한민국 50대 부자 기준(2026년 3월 27일 종가 기준 주가·비상장 유사기업 비교평가) · 2026년 4월 28일 발표",
+      "items": [
+        {
+          "rank": 1,
+          "name": "이재용",
+          "description": "재산 216억 달러 · 삼성전자 회장"
+        },
+        {
+          "rank": 2,
+          "name": "김병주",
+          "description": "재산 99억 달러 · MBK파트너스 회장"
+        },
+        {
+          "rank": 3,
+          "name": "서정진",
+          "description": "재산 81억 달러 · 셀트리온그룹 회장"
+        },
+        {
+          "rank": 4,
+          "name": "조정호",
+          "description": "재산 80억 달러 · 메리츠금융지주 회장"
+        },
+        {
+          "rank": 5,
+          "name": "이부진",
+          "description": "재산 79억 달러 · 호텔신라 사장"
+        },
+        {
+          "rank": 6,
+          "name": "이서현",
+          "description": "재산 75억 달러 · 삼성물산 사장"
+        },
+        {
+          "rank": 7,
+          "name": "정몽구",
+          "description": "재산 73억 달러 · 현대자동차그룹 명예회장"
+        },
+        {
+          "rank": 8,
+          "name": "홍라희",
+          "description": "재산 71억 달러 · 삼성전자(리움미술관 명예관장)"
+        },
+        {
+          "rank": 9,
+          "name": "정의선",
+          "description": "재산 63억 달러 · 현대자동차그룹 회장"
+        },
+        {
+          "rank": 10,
+          "name": "윤대인",
+          "description": "재산 59억 달러 · 삼천당제약 회장"
+        },
+        {
+          "rank": 11,
+          "name": "곽동신",
+          "description": "재산 57억 달러 · 한미반도체 부회장"
+        },
+        {
+          "rank": 12,
+          "name": "박현주",
+          "description": "재산 49억 달러 · 미래에셋그룹 회장"
+        },
+        {
+          "rank": 13,
+          "name": "김범수",
+          "description": "재산 38억 달러 · 카카오 창업자"
+        },
+        {
+          "rank": 14,
+          "name": "김범석",
+          "description": "재산 32억 달러 · 쿠팡 창업자"
+        },
+        {
+          "rank": 15,
+          "name": "김정민·김정연",
+          "description": "재산 31.5억 달러 · NXC"
+        },
+        {
+          "rank": 16,
+          "name": "권혁빈",
+          "description": "재산 31억 달러 · 스마일게이트 창업자"
+        },
+        {
+          "rank": 17,
+          "name": "조현준",
+          "description": "재산 29.5억 달러 · 효성그룹 회장"
+        },
+        {
+          "rank": 18,
+          "name": "최태원",
+          "description": "재산 29억 달러 · SK그룹 회장"
+        },
+        {
+          "rank": 19,
+          "name": "김준기",
+          "description": "재산 28.5억 달러 · DB그룹 창업자"
+        },
+        {
+          "rank": 20,
+          "name": "정몽준",
+          "description": "재산 28억 달러 · HD현대 최대주주"
+        }
+      ]
+    },
+    "en": {
+      "title": "Korea's Richest People",
+      "sourceNote": "Based on Forbes Korea's 2026 list of Korea's 50 richest (valued at Mar 27, 2026 closing prices; private firms benchmarked against public comparables) - published Apr 28, 2026",
+      "items": [
+        {
+          "rank": 1,
+          "name": "Lee Jae-yong",
+          "description": "Net worth $21.6B - Samsung Electronics Chairman"
+        },
+        {
+          "rank": 2,
+          "name": "Kim Byung-ju",
+          "description": "Net worth $9.9B - MBK Partners Chairman"
+        },
+        {
+          "rank": 3,
+          "name": "Suh Jung-jin",
+          "description": "Net worth $8.1B - Celltrion Group Chairman"
+        },
+        {
+          "rank": 4,
+          "name": "Cho Jung-ho",
+          "description": "Net worth $8.0B - Meritz Financial Chairman"
+        },
+        {
+          "rank": 5,
+          "name": "Lee Bu-jin",
+          "description": "Net worth $7.9B - Hotel Shilla President"
+        },
+        {
+          "rank": 6,
+          "name": "Lee Seo-hyun",
+          "description": "Net worth $7.5B - Samsung C&T President"
+        },
+        {
+          "rank": 7,
+          "name": "Chung Mong-koo",
+          "description": "Net worth $7.3B - Hyundai Motor Group Honorary Chairman"
+        },
+        {
+          "rank": 8,
+          "name": "Hong Ra-hee",
+          "description": "Net worth $7.1B - Samsung Electronics (Leeum Museum Honorary Director)"
+        },
+        {
+          "rank": 9,
+          "name": "Chung Eui-sun",
+          "description": "Net worth $6.3B - Hyundai Motor Group Chairman"
+        },
+        {
+          "rank": 10,
+          "name": "Yoon Dae-in",
+          "description": "Net worth $5.9B - Samchundang Pharm Chairman"
+        },
+        {
+          "rank": 11,
+          "name": "Kwak Dong-shin",
+          "description": "Net worth $5.7B - Hanmi Semiconductor Vice Chairman"
+        },
+        {
+          "rank": 12,
+          "name": "Park Hyun-joo",
+          "description": "Net worth $4.9B - Mirae Asset Group Chairman"
+        },
+        {
+          "rank": 13,
+          "name": "Kim Beom-su",
+          "description": "Net worth $3.8B - Kakao Founder"
+        },
+        {
+          "rank": 14,
+          "name": "Kim Beom-suk",
+          "description": "Net worth $3.2B - Coupang Founder"
+        },
+        {
+          "rank": 15,
+          "name": "Kim Jung-min & Kim Jung-yeon",
+          "description": "Net worth $3.15B - NXC"
+        },
+        {
+          "rank": 16,
+          "name": "Kwon Hyuk-bin",
+          "description": "Net worth $3.1B - Smilegate Founder"
+        },
+        {
+          "rank": 17,
+          "name": "Cho Hyun-joon",
+          "description": "Net worth $2.95B - Hyosung Group Chairman"
+        },
+        {
+          "rank": 18,
+          "name": "Choi Tae-won",
+          "description": "Net worth $2.9B - SK Group Chairman"
+        },
+        {
+          "rank": 19,
+          "name": "Kim Jun-ki",
+          "description": "Net worth $2.85B - DB Group Founder"
+        },
+        {
+          "rank": 20,
+          "name": "Chung Mong-joon",
+          "description": "Net worth $2.8B - HD Hyundai largest shareholder"
+        }
+      ]
+    }
   }
 ]

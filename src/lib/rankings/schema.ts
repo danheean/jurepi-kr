@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const STORE_VERSION = 1;
 
 /** Ranking domain field ids (Korean file canonical). Tabs derive from fields present in catalog. */
-export const FIELD_ORDER = ['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education'] as const;
+export const FIELD_ORDER = ['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education', 'business'] as const;
 export type RankingField = (typeof FIELD_ORDER)[number];
 
 /** Medal emoji for the top-3 ranks (index 0 = rank 1). */
@@ -23,7 +23,7 @@ export const RankingFileFrontSchema = z.object({
 
   // OPTIONAL (canonical from KO): field, asOfDate, sourceNote, sourceUrl
   // EN can omit these; validatePair will ensure they match if present
-  field: z.enum(['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education']).optional(),
+  field: z.enum(['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education', 'business']).optional(),
   asOfDate: z.string().min(1, 'asOfDate required (ISO date: YYYY-MM or YYYY-MM-DD)').optional(),
   sourceNote: z.string().min(1).max(200, 'sourceNote max 200 chars').optional(),
   sourceUrl: z.string().url().optional(), // NEW: optional clickable source link
@@ -55,7 +55,7 @@ export type RankingFileFront = z.infer<typeof RankingFileFrontSchema>;
  */
 export const MergedRankingSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/, 'slug must be alphanumeric+hyphen'),
-  field: z.enum(['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education']),
+  field: z.enum(['ai', 'programming', 'tech', 'games', 'movies', 'music', 'sports', 'education', 'business']),
   asOfDate: z.string(), // ISO date
   sourceUrl: z.string().url().optional(),
 
