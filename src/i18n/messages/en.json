@@ -2584,6 +2584,104 @@
         ]
       }
     },
+    "lotto-generator": {
+      "title": "Lotto Number Generator",
+      "description": "Generate fair lottery numbers with cryptographic randomness. No odds guarantee — for entertainment only.",
+      "intro": {
+        "eyebrow": "RANDOM",
+        "title": "Lotto Number Generator",
+        "lead": "Generate fair lottery numbers with cryptographic randomness. No guarantee of winning — for entertainment only."
+      },
+      "settings": {
+        "gameCount": {
+          "label": "Number of Games",
+          "help": "Choose between 1 and 10 games."
+        },
+        "fixedNumbers": {
+          "label": "Always Include (up to 5)",
+          "help": "These numbers will appear in every game.",
+          "add": "Add Number",
+          "remove": "Remove"
+        },
+        "excludedNumbers": {
+          "label": "Never Include (up to 39)",
+          "help": "These numbers will never be picked.",
+          "add": "Add Number",
+          "remove": "Remove"
+        },
+        "infeasible": "Not enough numbers available. Reduce fixed or excluded numbers.",
+        "sound": "Sound"
+      },
+      "buttons": {
+        "generate": "GENERATE",
+        "copyAll": "COPY",
+        "copied": "Copied!",
+        "clearHistory": "Clear History"
+      },
+      "results": {
+        "title": "Generated Numbers",
+        "gameLabel": "Game {count}",
+        "empty": "Generate numbers to get started."
+      },
+      "history": {
+        "title": "Generation History",
+        "empty": "No history yet.",
+        "timestamp": {
+          "justNow": "Just now",
+          "minutesAgo": "{n} minutes ago",
+          "hoursAgo": "{n} hours ago",
+          "daysAgo": "{n} days ago"
+        },
+        "gameCountLabel": "{n} games",
+        "expandLabel": "Show",
+        "collapseLabel": "Hide"
+      },
+      "disclaimer": {
+        "heading": "⚠️ Important Notice",
+        "text": "These numbers are randomly generated and DO NOT improve your odds. Lottery play carries financial risk. Play responsibly and only with money you can afford to lose."
+      },
+      "howTo": {
+        "title": "How to Use",
+        "items": [
+          {
+            "title": "Generate in 3 Steps",
+            "description": "**Step 1:** Choose how many games to generate (1–10). **Step 2:** Optionally specify numbers to always include (up to 5) and numbers to exclude (up to 39). **Step 3:** Click \"Generate\" to create fair random draws using cryptographic randomness."
+          },
+          {
+            "title": "Cryptographically Secure Randomness",
+            "description": "This tool uses `crypto.getRandomValues` with Fisher–Yates shuffle to ensure every eligible number has equal probability. No visual bias, no predictable patterns. Statistical validation (chi-square test) confirms fairness."
+          }
+        ]
+      },
+      "faq": {
+        "items": [
+          {
+            "q": "Can I win with these numbers?",
+            "a": "Yes, but this tool doesn't improve your odds. All lottery combinations have equal probability. The generator produces truly random numbers only."
+          },
+          {
+            "q": "What's the difference between fixed and excluded?",
+            "a": "**Fixed:** Numbers that will always appear in every game. For example, if you fix [7, 13], all generated games will include both numbers. **Excluded:** Numbers that will never be picked. For example, if you exclude [1, 2, 3], these numbers will never appear in any game."
+          },
+          {
+            "q": "Is this legal?",
+            "a": "Yes, it's legal. This tool only generates random numbers and does not encourage gambling. Lottery play is your personal choice and responsibility."
+          },
+          {
+            "q": "Can this tool predict winning numbers?",
+            "a": "No, absolutely not. This tool only generates truly random numbers. It does not analyze past winning numbers or predict future draws. Lottery drawings are completely independent each week; previous results have no influence on future ones."
+          },
+          {
+            "q": "Do my odds improve if I generate more numbers?",
+            "a": "No. Whether you generate 1 game or 10 games, each game has the same odds of winning: approximately 1 in 8,145,060. Generating more numbers does not increase your chances. Lottery is entirely a game of chance."
+          },
+          {
+            "q": "Where are my generation records stored?",
+            "a": "All generation records are stored only in your browser's localStorage. They are never sent to a server or stored remotely. Records will not appear on other devices or browsers. Clearing your browser cache will delete the history."
+          }
+        ]
+      }
+    },
     "base64-encoder": {
       "title": "Base64 Encoder/Decoder",
       "description": "Convert text and files to/from Base64 with UTF-8 integrity. Supports both standard and URL-safe variants.",

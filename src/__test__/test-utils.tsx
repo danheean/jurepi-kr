@@ -1010,6 +1010,7 @@ const defaultMessages = {
     'find-replace': (enMessages as any).tools['find-replace'],
     'jwt-decoder': (enMessages as any).tools['jwt-decoder'],
     'cron-parser': (enMessages as any).tools['cron-parser'],
+    'lotto-generator': (enMessages as any).tools['lotto-generator'],
     cheer: (enMessages as any).tools.cheer,
   },
 };

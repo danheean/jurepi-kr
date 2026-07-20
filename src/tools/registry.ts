@@ -183,6 +183,17 @@ export const tools: ToolMeta[] = [
     keywords: ['룰렛', '랜덤', '추첨', '선택', '결정', '돌림판', '뽑기', 'roulette', 'random', 'spin', 'decision', 'picker', 'wheel', 'lucky draw'],
   },
   {
+    id: 'lotto-generator',
+    slug: 'lotto-generator',
+    category: 'random',
+    icon: 'Dices',
+    accent: 'sun',
+    status: 'live',
+    addedAt: '2026-07-20',
+    order: 75,
+    keywords: ['로또', '로또번호', '로또생성기', '번호생성', '추첨', '공정', '난수', 'lotto', 'lottery', 'number generator', 'random', 'fair draw'],
+  },
+  {
     id: 'restaurant-map',
     slug: 'restaurant-map',
     category: 'fun',
