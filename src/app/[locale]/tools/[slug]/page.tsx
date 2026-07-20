@@ -208,6 +208,30 @@ const JwtDecoder = dynamic(() =>
   }))
 );
 
+const LottoGenerator = dynamic(() =>
+  import('@/components/tools/lotto-generator/LottoGenerator').then((m) => ({
+    default: m.LottoGenerator,
+  }))
+);
+
+const LottoGeneratorHowTo = dynamic(() =>
+  import('@/components/tools/lotto-generator/LottoGeneratorHowTo').then((m) => ({
+    default: m.LottoGeneratorHowTo,
+  }))
+);
+
+const LottoGeneratorFaq = dynamic(() =>
+  import('@/components/tools/lotto-generator/LottoGeneratorFaq').then((m) => ({
+    default: m.LottoGeneratorFaq,
+  }))
+);
+
+const LottoGeneratorStructuredData = dynamic(() =>
+  import('@/components/tools/lotto-generator/LottoGeneratorStructuredData').then((m) => ({
+    default: m.LottoGeneratorStructuredData,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -293,6 +317,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } else if (slug === 'jwt-decoder') {
     title = t('meta.title');
     description = t('meta.description');
+  } else if (slug === 'lotto-generator') {
+    title = t('title');
+    description = t('description');
   } else {
     return {};
   }
@@ -462,6 +489,17 @@ async function ToolBody({ slug, locale }: { slug: string; locale: string }) {
         <Roulette />
         <RouletteHowTo />
         <RouletteFaq />
+      </>
+    );
+  }
+
+  if (slug === 'lotto-generator') {
+    return (
+      <>
+        <LottoGeneratorStructuredData />
+        <LottoGenerator />
+        <LottoGeneratorHowTo />
+        <LottoGeneratorFaq />
       </>
     );
   }
