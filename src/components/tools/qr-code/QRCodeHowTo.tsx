@@ -24,6 +24,12 @@ export function QRCodeHowTo() {
         {t('howTo.title')}
       </h2>
 
+      {/* What is this tool? — always-visible overview */}
+      <article className="space-y-3">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.whatIsTitle')}</h3>
+        <p className="text-text-secondary leading-relaxed">{t('howTo.whatIsBody')}</p>
+      </article>
+
       <div className="space-y-4">
         {paragraphs.map((para, idx) => (
           <p
@@ -34,6 +40,18 @@ export function QRCodeHowTo() {
           </p>
         ))}
       </div>
+
+      {/* When to use it */}
+      <article className="space-y-3">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.useCasesTitle')}</h3>
+        <p className="text-text-secondary leading-relaxed">{t('howTo.useCasesBody')}</p>
+      </article>
+
+      {/* Tips */}
+      <article className="space-y-3">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.tipsTitle')}</h3>
+        <p className="text-text-secondary leading-relaxed">{t('howTo.tipsBody')}</p>
+      </article>
     </section>
   );
 }

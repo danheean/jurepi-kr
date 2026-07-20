@@ -828,6 +828,10 @@
         "title": "Understanding Cron Expressions",
         "items": [
           {
+            "title": "What is this tool?",
+            "body": "A cron expression parser turns an expression like '0 9 * * 1-5' into a human-readable description and calculates the next run times. It supports both Unix/Linux crontab (5 fields) and Java Quartz (6–7 fields), and breaks down what each field means. All parsing runs inside your own browser."
+          },
+          {
             "title": "Understanding Fields",
             "body": "A cron expression has 5 fields: minute (0–59), hour (0–23), day-of-month (1–31), month (1–12), day-of-week (0–6). Each field defines when the job runs."
           },
@@ -842,11 +846,27 @@
           {
             "title": "Timezone Awareness",
             "body": "This tool calculates upcoming run times in your selected timezone, and daylight saving time (DST) transitions are handled automatically."
+          },
+          {
+            "title": "When to use it",
+            "body": "Checking that an expression does what you intend before adding a job to a server's crontab, making sense of someone else's cron config, validating a Quartz scheduler expression for something like Spring, or previewing exactly when the next run will be."
+          },
+          {
+            "title": "Tips",
+            "body": "Both 0 and 7 mean Sunday for day-of-week, and you can use names (MON–FRI). If you set both a day-of-month and a day-of-week, the job runs when either one matches (OR), so take care. Quartz format puts a seconds field first and supports extensions like L (last day), W (nearest weekday), and # (nth weekday)."
           }
         ]
       },
       "faq": {
         "items": [
+          {
+            "q": "What's the difference between Unix cron and Quartz format?",
+            "a": "Unix/Linux crontab uses 5 fields (minute hour day month weekday). Java Quartz adds a seconds field at the front for 6–7 fields and supports extensions like L (last day), W (nearest weekday), # (nth weekday), and ?. Use the mode toggle at the top to switch between the two."
+          },
+          {
+            "q": "My expression isn't running as expected.",
+            "a": "First check that the description and \"next run times\" match what you intended. Common causes are specifying both a day-of-month and a day-of-week (which run with OR logic), confusing the weekday number (0 = Sunday), and timezone differences. The field breakdown table shows how each field was interpreted."
+          },
           {
             "q": "What happens when both day-of-month and day-of-week are specified?",
             "a": "According to standard cron semantics, if both are specified, OR logic applies: the job runs on the specified day-of-month OR the specified day-of-week. E.g., 0 9 15 * MON runs on the 15th of any month OR any Monday at 9 AM."
@@ -1476,6 +1496,12 @@
       },
       "howTo": {
         "title": "How to generate a QR code",
+        "whatIsTitle": "What is this tool?",
+        "whatIsBody": "A QR code generator turns text, a URL, Wi-Fi, contact details (vCard), an email, or an SMS into a scannable QR code. You can adjust the foreground and background colors, size, quiet zone (margin), and error-correction level, add a logo in the center, and download as PNG or SVG or copy to the clipboard. Every code is generated inside your own browser.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "Putting a Wi-Fi-join QR code on a cafe or restaurant table, adding contact details or a website link to a business card or poster, linking an event notice or menu with a single code, or generally bridging printed material to something online.",
+        "tipsTitle": "Tips",
+        "tipsBody": "For reliable scanning, keep enough contrast between the foreground and background (a light background with a dark code works well). When adding a logo or printing, a higher error-correction level (Q or H) keeps it readable even if part is covered. SVG is better for print and enlargement since it doesn't pixelate. Shrinking the quiet zone (margin) too much can hurt scan reliability.",
         "content": "1. Select a mode — Choose from the tabs at the top: Text, URL, Wi-Fi, vCard, Email, or SMS.\n\n2. Enter your data — Depending on the mode, enter the relevant information. For text and URLs, just type. For Wi-Fi, enter the network name and password. For vCard, add your name and contact details.\n\n3. Adjust the style — (Optional) Customize the foreground color (dark) and background color (light). You can also adjust the size and quiet zone (white margin). Make sure there's enough contrast between colors for easy scanning.\n\n4. Choose an error correction level — Pick from L (7%), M (15%), Q (25%), or H (30%). Higher levels can recover from more damage but make the code larger.\n\n5. Add a logo — (Optional) Upload an image to place in the center of the QR code. Use a simple logo to avoid interfering with scanners.\n\n6. Download or copy — Save the QR code as PNG or SVG, or copy it to your clipboard to paste directly elsewhere."
       },
       "faq": {
@@ -2434,6 +2460,12 @@
       },
       "howTo": {
         "title": "How to Use the Roulette",
+        "whatIsTitle": "What is this tool?",
+        "whatIsBody": "The decision roulette picks one option at random from a list you write. You can give each option a different weight to adjust its odds, remove the winner and spin again, enjoy sound and confetti effects, and save and load sets. Draws use a cryptographically secure random number so they're fair, and everything runs inside your own browser.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "Deciding lunch or which cafe to go to, fixing a fair order for presentations or chores, drawing who gets a penalty or a prize at a gathering, or quickly settling on one of several options. It also works for picking a random winner among many, like an event giveaway.",
+        "tipsTitle": "Tips",
+        "tipsBody": "To make a particular option come up more often, raise its weight (they all start at 1). To keep drawing without repeats, turn on \"remove winner.\" Save a list you use often as a set so you can load it again next time.",
         "content": "**Step 1: Add Options**\nEnter your options in the input field at the top. You can add between 2 and 30 options, such as \"Lunch\", \"Cafe\", \"Movie\", etc. Separate names with commas to add several at once (\"Pizza, Pasta, Salad\"), or paste a newline-separated list to add every line in one go.\n\n**Step 2: Adjust Weights (Optional)**\nYou can adjust the weight of each option to change the probability of being selected. Options with higher weights are more likely to win. The default weight is 1 for all options.\n\n**Step 3: Spin**\nClick the \"Spin Now!\" button to make the wheel spin and reveal the winner.\n\n**Step 4: View Result**\nThe selected option is displayed prominently, with optional sound and animation effects.\n\n**Additional Features:**\n- **Save Sets**: Save frequently used option combinations with custom names for quick reuse.\n- **Remove Winner Mode**: Enable \"Remove Winner Mode\" to exclude previously selected options and continue spinning.\n- **Volume Control**: Adjust the volume slider or mute the sound effects in the settings."
       },
       "faq": {
