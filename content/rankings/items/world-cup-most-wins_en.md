@@ -2,7 +2,7 @@
 title: Countries With the Most World Cup Wins
 field: sports
 asOfDate: "2026-07"
-sourceNote: "Based on official FIFA records · July 2026 (reflects the 2026 tournament result)"
+sourceNote: "Based on official FIFA records (sorted by title count descending, ties broken alphabetically) · July 2026 (reflects the 2026 tournament result)"
 sourceUrl: "https://www.fifa.com/ko/tournaments/mens/worldcup/articles/teams-most-wins-titles-trophies-ko"
 items:
   - rank: 1

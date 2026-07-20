@@ -3,7 +3,7 @@ title: 월드컵 최다 우승국
 slug: world-cup-most-wins
 field: sports
 asOfDate: "2026-07"
-sourceNote: "FIFA 공식 자료 기준 · 2026년 7월(2026 대회 결과 반영)"
+sourceNote: "FIFA 공식 자료 기준(우승 횟수 내림차순 정렬, 동률은 국가명 가나다순) · 2026년 7월(2026 대회 결과 반영)"
 sourceUrl: "https://www.fifa.com/ko/tournaments/mens/worldcup/articles/teams-most-wins-titles-trophies-ko"
 items:
   - rank: 1
