@@ -990,7 +990,8 @@
         "movies": "영화",
         "music": "음악",
         "sports": "스포츠",
-        "education": "교육"
+        "education": "교육",
+        "business": "비즈니스"
       },
       "tabs": {
         "all": "전체",
