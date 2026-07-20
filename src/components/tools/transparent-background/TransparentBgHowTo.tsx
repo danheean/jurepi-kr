@@ -3,7 +3,8 @@ import { useTranslations } from 'next-intl';
 /**
  * SSR-safe long-form guide (answer-first). Uses `useTranslations` so it
  * server-renders into the static HTML for search + AI-engine discoverability.
- * Answer-first structure: first sentence directly answers "how to remove backgrounds".
+ * "What is this tool?" leads as always-visible prose, then the step-by-step
+ * how-to, when to use it, and tips.
  */
 export function TransparentBgHowTo() {
   const t = useTranslations('tools.transparent-background');
@@ -22,22 +23,36 @@ export function TransparentBgHowTo() {
         {t('howTo.title')}
       </h2>
 
+      {/* What is this tool? — always-visible overview */}
+      <article className="space-y-3">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.whatIsTitle')}</h3>
+        <p className="text-text-secondary leading-relaxed">{t('howTo.whatIsBody')}</p>
+      </article>
+
       {/* Step-by-step guide */}
       <div className="space-y-6">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.stepsTitle')}</h3>
         {steps.map((key, idx) => (
           <div key={key} className="space-y-2">
-            <h3 className="text-xl font-semibold text-text">
+            <h4 className="font-semibold text-text">
               {idx + 1}. {t(`howTo.${key}`)}
-            </h3>
+            </h4>
             <p className="text-text-secondary leading-relaxed">{t(`howTo.${key}Body`)}</p>
           </div>
         ))}
       </div>
 
-      {/* When to use section */}
-      <div className="space-y-3 mt-8 p-4 rounded-lg bg-surface-muted border border-hairline">
+      {/* When to use it */}
+      <div className="space-y-3 p-4 rounded-lg bg-surface-muted border border-hairline">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.useCasesTitle')}</h3>
         <p className="text-text-secondary leading-relaxed italic">{t('howTo.whenToUse')}</p>
       </div>
+
+      {/* Tips */}
+      <article className="space-y-3">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.tipsTitle')}</h3>
+        <p className="text-text-secondary leading-relaxed">{t('howTo.tipsBody')}</p>
+      </article>
     </section>
   );
 }

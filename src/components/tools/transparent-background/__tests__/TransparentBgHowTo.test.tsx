@@ -23,26 +23,40 @@ describe('TransparentBgHowTo', () => {
     expect(section).toHaveAttribute('aria-labelledby', 'transparent-bg-howto-heading');
   });
 
-  it('renders step-by-step guides', () => {
+  it('renders the reference sub-sections (what-is / steps / when-to-use / tips)', () => {
     render(
       <NextIntlClientProvider locale="ko" messages={messages.ko}>
         <TransparentBgHowTo />
       </NextIntlClientProvider>
     );
 
-    // Verify H3 headings for steps (numbered 1–6)
-    const h3s = screen.getAllByRole('heading', { level: 3 });
-    expect(h3s.length).toBeGreaterThanOrEqual(6);
+    const howTo = messagesKo.tools['transparent-background'].howTo;
+    for (const title of [howTo.whatIsTitle, howTo.stepsTitle, howTo.useCasesTitle, howTo.tipsTitle]) {
+      expect(screen.getByRole('heading', { level: 3, name: title })).toBeInTheDocument();
+    }
+    // A distinctive phrase from the always-visible overview prose is rendered.
+    expect(screen.getByText(/브라우저 안에서만 처리됩니다/)).toBeInTheDocument();
   });
 
-  it('renders when-to-use section', () => {
+  it('renders the six numbered steps', () => {
     render(
       <NextIntlClientProvider locale="ko" messages={messages.ko}>
         <TransparentBgHowTo />
       </NextIntlClientProvider>
     );
 
-    // Verify "when to use" content is present (italicized)
+    // Steps are h4 headings under the "steps" h3 group.
+    const stepHeadings = screen.getAllByRole('heading', { level: 4 });
+    expect(stepHeadings.length).toBeGreaterThanOrEqual(6);
+  });
+
+  it('renders when-to-use content', () => {
+    render(
+      <NextIntlClientProvider locale="ko" messages={messages.ko}>
+        <TransparentBgHowTo />
+      </NextIntlClientProvider>
+    );
+
     const container = screen.getByRole('heading', { level: 2 }).closest('section');
     const italicText = container?.querySelector('p.italic');
     expect(italicText).toBeInTheDocument();

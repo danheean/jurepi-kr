@@ -1579,7 +1579,10 @@
         "processingFailed": "Processing failed. Please try again"
       },
       "howTo": {
-        "title": "How to Remove Backgrounds",
+        "title": "Transparent background guide",
+        "whatIsTitle": "What is this tool?",
+        "whatIsBody": "This tool erases a solid (single-color) background and turns it into a transparent PNG. It detects the background color automatically, or you can pick it yourself with the eyedropper, and then makes pixels close to that color transparent. You can adjust the tolerance and the edge softness (feathering), and choose between erasing only the area connected to the background or erasing every pixel of the same color. Images are never uploaded to a server — everything is processed inside your own browser.",
+        "stepsTitle": "How to use it",
         "s1": "Upload Image",
         "s1Body": "Upload an image with a solid background in PNG, JPEG, or WebP format.",
         "s2": "Select Background Color",
@@ -1592,7 +1595,10 @@
         "s5Body": "Choose between Flood-Fill (connected areas only) or All Matching (every matching pixel).",
         "s6": "Download Result",
         "s6Body": "Download as transparent PNG or copy directly to clipboard.",
-        "whenToUse": "Best for solid backgrounds: product photos, logos, scans, screenshots. For complex photos and person cutouts, AI tools are recommended."
+        "useCasesTitle": "When to use it",
+        "whenToUse": "Great for tidying a white-background product photo to drop onto a store page or document, making a logo or a scanned stamp or signature on a solid background transparent, or clearing a solid area out of a screenshot. For photos with busy backgrounds or person cutouts, color alone can't separate the subject, so an AI-based background remover works better.",
+        "tipsTitle": "Tips and gotchas",
+        "tipsBody": "If auto-detect doesn't catch the background exactly, sample the background color yourself with the eyedropper. If a colored fringe is left behind, raise the tolerance a little; if the subject starts disappearing, lower it. When edges look hard, a feathering of about 2–5 pixels makes them look natural. Any areas that were already transparent in the original are preserved."
       },
       "faq": {
         "title": "Frequently Asked Questions",
@@ -2599,28 +2605,42 @@
         "copy": "Everyday conversions, instant results"
       },
       "howTo": {
-        "title": "How do unit conversions work?",
-        "items": [
-          "Unit conversion expresses the same physical quantity in a different unit. This tool covers eight everyday categories: length, weight, temperature, area, volume, speed, digital storage, and time.",
-          "Length is based on the meter (m) and weight on the kilogram (kg); every other unit is derived by ratio. For example, 1 km equals 1,000 m and one inch is about 0.0254 m.",
-          "Temperature is the only category that uses an affine transform instead of a simple ratio — for example °F = °C × 9/5 + 32 and K = °C + 273.15 — which keeps round-trip conversions exact.",
-          "How to use it: pick a category from the tabs, type a value, and choose the from and to units — the result updates live. Adjust the decimal precision with the slider, and your recent conversions are saved automatically."
-        ]
+        "title": "Unit converter guide",
+        "whatIsTitle": "What is this tool?",
+        "whatIsBody": "A unit converter turns the same measurement into a different unit. It covers eight everyday categories — length, weight, temperature, area, volume, speed, digital storage, and time — and moves both ways between the metric system and imperial units (feet, pounds, Fahrenheit, and so on). Results are calculated the moment you type, and everything runs inside your own browser, so it works even without an internet connection.",
+        "howToTitle": "How to use it",
+        "howToBody": "1. Pick a category (length, weight, temperature, and so on) from the tabs. 2. Type a value and choose the from and to units. 3. The result updates live. Use the swap button to flip the two units, and the slider to set the decimal precision. Your most recent conversions are saved automatically so you can reuse them.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "Checking dimensions listed in inches or pounds against centimeters and kilograms when shopping overseas, converting a recipe's Fahrenheit temperature or cups and ounces to your own units, gauging miles and gallons as kilometers and liters while traveling, or turning feet into meters to lay out furniture — it gives a quick answer whenever units get mixed up. It's also handy for comparing file sizes in MB and GB, or checking how units relate for study.",
+        "tipsTitle": "Tips and accuracy",
+        "tipsBody": "Unlike other units, temperature is converted with an affine function (°C × 9/5 + 32 = °F) rather than a simple ratio, and this tool keeps round-trip conversions exact. If a result looks too long, lower the decimal slider; raise it when you need more precision. Every factor follows the International System of Units (SI), and most units other than temperature do not support negative values."
       },
       "faq": {
         "title": "Frequently Asked Questions",
         "items": [
           {
             "q": "How is temperature converted?",
-            "a": "Temperature uses affine transformation. Example: °C = (°F - 32) × 5/9"
+            "a": "Temperature uses an affine function rather than a simple ratio. Example: °C = (°F − 32) × 5/9 and °F = °C × 9/5 + 32, which keeps round-trip conversions exact."
           },
           {
             "q": "Are the conversion factors accurate?",
-            "a": "All factors follow international SI standards"
+            "a": "Every factor follows the International System of Units (SI). Only temperature uses an affine function; the rest convert by ratio against a base unit."
           },
           {
             "q": "Can I convert negative values?",
-            "a": "Most units don't support negative values. However, temperature conversions can handle negative values."
+            "a": "Most units don't support negative values. Temperature is the exception and can go below zero."
+          },
+          {
+            "q": "Does it work offline?",
+            "a": "Yes. Every calculation runs inside your browser, so it works offline, and the values you enter are never sent anywhere."
+          },
+          {
+            "q": "Which units are supported?",
+            "a": "Major metric and imperial units across eight categories: length, weight, temperature, area, volume, speed, digital storage, and time."
+          },
+          {
+            "q": "Why is the result rounded?",
+            "a": "The screen shows values to the number of decimals you set with the slider. The internal calculation uses higher precision, so raise the slider to see a more exact value."
           }
         ]
       },
@@ -2944,21 +2964,15 @@
         "lead": "Quickly format, validate, and analyze JSON. Get precise error locations for invalid JSON."
       },
       "howTo": {
-        "title": "How to Use",
-        "items": [
-          {
-            "title": "Step 1: Paste",
-            "description": "Paste JSON into the input area."
-          },
-          {
-            "title": "Step 2: Configure",
-            "description": "Choose indentation style and whether to sort keys."
-          },
-          {
-            "title": "Step 3: Download",
-            "description": "Copy the formatted JSON or download it as a file."
-          }
-        ]
+        "title": "JSON formatter & validator guide",
+        "whatIsTitle": "What is this tool?",
+        "whatIsBody": "A JSON formatter and validator takes JSON that's crammed onto one line and indents it so it's readable, and when there's a syntax error it points to the exact line and column that's wrong. Beyond pretty-printing, it can minify (strip whitespace to shrink the size), sort keys, show the structure as a collapsible tree, highlight syntax, and even load JSON from a web address (URL). All processing happens inside your own browser.",
+        "howToTitle": "How to use it",
+        "howToBody": "1. Paste JSON into the input on the left, or load it from the URL of a public API or .json file. 2. Choose the indentation style and whether to sort keys. 3. The formatted result appears on the right, and any error is reported with its location. Copy the result or download it as a file, or minify it into a single line.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "Debugging an API response by expanding crammed JSON to see its structure, hunting down a typo or an unbalanced bracket in a config file (package.json, tsconfig, and the like), tidying JSON printed in a log, or sorting keys before sharing it with someone. It's also used to minify JSON down to reduce transfer size.",
+        "tipsTitle": "Tips and gotchas",
+        "tipsBody": "The error message gives a line and column — start there. The usual culprits are a missing comma, an unclosed quote or bracket, or a stray trailing comma after the last item. Loading from a URL needs the server to allow CORS; if it's blocked, just copy the content and paste it in. Sorting keys makes changes easier to compare (diff) in version control."
       },
       "faq": {
         "items": [
@@ -2977,6 +2991,14 @@
           {
             "q": "Can I load from a URL?",
             "a": "Yes, paste the URL of a public JSON API or .json file. The server must allow CORS."
+          },
+          {
+            "q": "Does it accept comments or trailing commas?",
+            "a": "It validates against standard JSON. Comments (//) and a comma after the last item aren't allowed in standard JSON and are flagged as errors, so stick to standard syntax."
+          },
+          {
+            "q": "How large a JSON can it handle?",
+            "a": "It runs in your browser, so it depends on your device, but typical API responses and config files are handled with no trouble."
           }
         ]
       }
