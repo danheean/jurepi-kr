@@ -5,10 +5,12 @@ description: >-
   deploy it. Use this whenever the user wants to update rankings content — "별별 랭킹 업데이트",
   "랭킹 추가/수정", "순위 추가", "새 순위 넣어줘", "TIOBE/리더보드 갱신", "rankings 업데이트",
   "이 순위 최신화", "랭킹 배포" — or asks to put a new Top-N list (movies, games, AI models,
-  programming languages, etc.) into the site. Covers the full path: author the markdown pair,
-  register a new field if needed, run the build-time generator, verify (tsc + test + build +
-  live visual), and DEPLOY (commit → merge main → push → Cloudflare auto build+deploy → verify
-  the live domain). Trigger even if the user only says "add a ranking" without naming the tool.
+  programming languages, etc.) into the site. Covers the full path: author the markdown pair
+  (sourceNote states methodology, item descriptions carry rank/score deltas vs the prior
+  snapshot by default), register a new field if needed, run the build-time generator, verify
+  (tsc + test + build + live visual), and DEPLOY (commit → merge main → push → Cloudflare auto
+  build+deploy → verify the live domain). Trigger even if the user only says "add a ranking"
+  without naming the tool.
 ---
 
 # Jurepi 별별 랭킹 업데이트 + 배포
@@ -63,7 +65,22 @@ items:                  # 필수, ≥3개, rank는 1..N 연속
 - `_TEMPLATE.md`/`_TEMPLATE_en.md` 형식을 그대로 따른다. KO/EN 두 파일 모두 만든다(쌍 필수).
 - 제목·항목명·설명은 각 로케일 언어로. `sourceNote`도 각 언어로.
 
-### 4. 생성 + 확인
+### 4. `sourceNote`에 방법론, 항목 설명에 변경 분석 (기본값으로 항상 포함)
+사용자가 별도로 요청하지 않아도 모든 랭킹 콘텐츠는 "어떻게 이 순위를 산정했는지"와 "지난 버전 대비 뭐가 달라졌는지"를 담는다. `sourceNote`는 출처명+날짜만 적는 라벨이 아니라 **방법론 요약**이다.
+
+- **방법론(`sourceNote`)**: 순위를 산정하는 소스·근거를 한 줄로 담는다. 리더보드/지수라면 `sourceUrl`의 방법론 페이지(예: `/blog/*-methodology`, About 섹션)를 `WebFetch`로 찾아 "무엇을 측정하는지 + 어떻게 계산하는지"를 요약. 정적 사실 기반 랭킹(수상 내역 등)이라면 정렬 규칙(동률 처리 등)을 명시. ≤200자 제한 안에서 괄호로 압축.
+  - 예(LLM 리더보드): `"Agent Arena 에이전트 리더보드 기준(누적 105만+ 세션·35개 모델, 성공률·툴환각 등 5개 신호 종합 산정) · 2026년 7월 17일"`
+  - 예(TIOBE): `"TIOBE 인덱스 기준(구글·빙·위키피디아 등 20여 검색엔진의 검색량으로 언어 '인기도' 측정, 기술적 우수성과 무관) · 2026년 7월"`
+  - 예(정적 사실 랭킹): `"FIFA 공식 자료 기준(우승 횟수 내림차순 정렬, 동률은 국가명 가나다순) · 2026년 7월"`
+- **변경 분석(항목 `description`)**: **기존 순위를 갱신**(신규 추가가 아니라 수치·순위가 바뀌는 리더보드/지수 재수집)할 때는, 편집 전 파일을 먼저 읽어 이전 스냅샷(순위·수치)을 확보한 다음, 새 값과 대조해 각 항목 설명 끝에 변동을 괄호로 덧붙인다:
+  - 순위 유지: `"…(전월 대비 +0.09%p, 2위 유지)"`
+  - 순위 이동: `"…(전월 대비 -0.79%p, 8위→12위)"`
+  - 신규 진입(리더보드에 새로 추가된 항목이라고 소스가 명시): `"…(신규 모델, 7월 13일 추가)"`
+  - 이전 스냅샷에 없던 항목(예: Top 10→Top 20 확장으로 처음 노출되는 하위권): `"…(20위 확장으로 신규 표시)"` — "신규 모델"이라고 과장하지 않는다(모델 자체가 새것인지 우리가 이제야 보여주는 것인지 확인 안 된 정보를 구분).
+  - 정적 사실 랭킹(월드컵 우승국 등 이벤트 발생 시에만 바뀜)은 매번 인위적 델타를 지어내지 말고, 실제로 새 이벤트가 반영됐을 때만 해당 항목에 자연스러운 서술로 반영(예: `"2026년 결승에서 아르헨티나를 꺾고 두 번째 우승 달성"`).
+- 이 작업은 **항목별 설명(200자 제한 내)**과 `sourceNote`만으로 처리한다 — 스키마에 프리즈/마크다운 본문(`body`) 필드는 없고(`generate-rankings.mjs`가 frontmatter만 파싱, 마크다운 본문은 미사용) 새로 추가하는 것은 이 스킬의 범위를 넘는 스키마 변경(`jurepi-build` 참고).
+
+### 5. 생성 + 확인
 ```bash
 cd /Users/jurepi/Work/Jurepi-Company/Jurepi.kr
 node scripts/generate-rankings.mjs
@@ -71,7 +88,7 @@ node -e "const d=require('./src/components/tools/rankings/data/rankings.generate
 ```
 레코드 수·field·**ko/en sourceNote가 각 언어로 구분**되는지·항목 수를 눈으로 확인한다. 생성기가 exit 1이면 사유대로 콘텐츠를 고치고 재실행.
 
-### 5. 검증 게이트 (전부 리더가 직접 재실행 — "주장 ≠ 증명")
+### 6. 검증 게이트 (전부 리더가 직접 재실행 — "주장 ≠ 증명")
 순서대로, 각 단계 그린을 확인한 뒤 다음으로:
 ```bash
 pnpm exec tsc --noEmit        # vitest 그린 ≠ tsc 그린! 스키마/타입을 건드렸으면 mock 픽스처가 tsc만 깨질 수 있다
@@ -86,15 +103,16 @@ pnpm build                    # 정적 export(out/) 그린
   ```
   그 다음 Playwright MCP로 `/ko/tools/rankings`·`/en/tools/rankings`에서 카드를 클릭해 확인한다:
   - **콘솔 에러 0** (상세를 열면 ErrorBoundary가 삼키는 크래시가 자주 여기서만 드러난다 — 반드시 열어서 콘솔을 본다).
-  - **ProvenanceBanner**(출처+기준일, rose 콜아웃, sourceUrl 있으면 클릭 링크)가 표 위에 강조돼 보임.
+  - **ProvenanceBanner**(출처+기준일, rose 콜아웃, sourceUrl 있으면 클릭 링크)가 표 위에 강조돼 보임 — 방법론 문구가 잘리지 않고 온전히 렌더되는지 확인.
   - **시맨틱 `<table>`** + top-3 메달 🥇🥈🥉 렌더.
+  - **변경 분석을 넣었다면 각 행 설명에 순위/수치 변동 문구가 실제로 보이는지** 육안 확인(생성기·zod는 텍스트 내용을 검증하지 않는다 — 오타·계산 실수는 시각 게이트로만 잡힘).
   - KO는 한글 출처/설명, EN은 영문 출처/설명(로케일 지역화 확인).
 - **SEO 프리렌더 확인**: 새/수정 순위가 구조화 데이터에 반영됐는지.
   ```bash
   curl -s localhost:3000/ko/tools/rankings | grep -oE '"@type":"ItemList"' | wc -l   # 순위 수와 일치(프리렌더 HTML에 JSON-LD)
   ```
 
-### 6. 배포 (커밋 → main → push → CF 자동 배포 → 라이브 검증)
+### 7. 배포 (커밋 → main → push → CF 자동 배포 → 라이브 검증)
 배포 = **`main`에 push**. Cloudflare Workers Builds(Git 연동)가 push를 감지해 `pnpm build`+`wrangler deploy`를 자동 실행한다. 로컬 `wrangler deploy`가 아니다.
 ```bash
 cd /Users/jurepi/Work/Jurepi-Company/Jurepi.kr

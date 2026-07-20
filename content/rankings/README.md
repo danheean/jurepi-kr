@@ -22,6 +22,7 @@
 - **설명은 평문(마크다운 없음), ≤200자**
 - **출처 URL은 유효한 http(s) URL** (선택사항이지만, 있으면 ProvenanceBanner에 링크로 표시됨)
 - **각 이미지는 imageWidth + imageHeight 필수** (width/height 없으면 로드 실패)
+- **`sourceNote`는 방법론 요약**(무엇을 어떻게 측정하는지), **항목 `description`은 갱신 시 이전 스냅샷 대비 변동**(순위 이동·수치 델타·신규 진입)을 담는다 — 상세 패턴·예시는 `.claude/skills/jurepi-rankings-update/SKILL.md` §4 참고
 
 ## 프론트매터 필드 상세
 
@@ -51,21 +52,21 @@ items:                        # Required array, ≥3 items
 ---
 title: LLM 에이전트 순위
 field: ai
-asOfDate: "2026-06"
-sourceNote: "Agent Arena 리더보드 기준 · 2026년 6월 29일"
+asOfDate: "2026-07-17"
+sourceNote: "Agent Arena 에이전트 리더보드 기준(누적 105만+ 세션·35개 모델, 성공률·툴환각 등 5개 신호 종합 산정) · 2026년 7월 17일"
 sourceUrl: "https://arena.ai/leaderboard/agent"
 items:
   - rank: 1
     name: Claude Fable 5 (High)
-    description: "제공: Anthropic · 순개선도 13.34%"
+    description: "제공: Anthropic · 순개선도 13.94% (전월 대비 +0.60%p, 1위 유지)"
   - rank: 2
-    name: Claude Opus 4.8 (Thinking)
-    description: "제공: Anthropic · 순개선도 9.37%"
+    name: GPT 5.6 Sol (xHigh)
+    description: "제공: OpenAI · 순개선도 10.94% (신규 모델, 7월 13일 추가 · 2위 진입)"
   # ...
 ---
 ```
 
-영어 버전은 동일한 field, asOfDate, sourceNote, sourceUrl을 유지하고 title과 items만 영어로 번역합니다.
+`sourceNote`는 단순 "출처명 · 날짜"가 아니라 **방법론 요약**(무엇을 어떻게 측정·집계하는지)이고, 각 항목 `description`은 이전 스냅샷 대비 **순위 이동·수치 델타·신규 진입 여부**를 괄호로 덧붙인다. 영어 버전은 동일한 field, asOfDate, sourceUrl을 유지하고(sourceNote는 영문으로 지역화 번역, 동일 내용) title과 items만 영어로 번역합니다.
 
 ## 검증 및 빌드
 
