@@ -39,6 +39,18 @@ export function SpeedQuizHowTo() {
           </li>
         ))}
       </ol>
+
+      {/* When to use it */}
+      <article className="space-y-3">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.useCasesTitle')}</h3>
+        <p className="text-text-secondary leading-relaxed">{t('howTo.useCasesBody')}</p>
+      </article>
+
+      {/* Tips */}
+      <article className="space-y-3">
+        <h3 className="text-xl font-semibold text-text">{t('howTo.tipsTitle')}</h3>
+        <p className="text-text-secondary leading-relaxed">{t('howTo.tipsBody')}</p>
+      </article>
     </section>
   );
 }

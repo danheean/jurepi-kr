@@ -10,34 +10,35 @@ const enMessages = enMessagesRaw as any;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const koMessages = koMessagesRaw as any;
 
-const koTool = koMessagesRaw.tools['knitting-gauge'];
-const enTool = enMessagesRaw.tools['knitting-gauge'];
+const koHowTo = koMessagesRaw.tools['knitting-gauge'].howTo;
+const enHowTo = enMessagesRaw.tools['knitting-gauge'].howTo;
 
 // The tool title area (H1/eyebrow/lead) is now rendered uniformly by the shared
 // <ToolIntro> at the route level; see ToolIntro.test.tsx.
 
 describe('KnittingGaugeHowTo', () => {
-  it('renders title and all howTo paragraphs from the real ko catalog', () => {
+  it('renders the title and all four reference sub-sections from the real ko catalog', () => {
     render(
       <NextIntlClientProvider locale="ko" messages={koMessages}>
         <KnittingGaugeHowTo />
       </NextIntlClientProvider>
     );
 
-    expect(screen.getByText(koTool.howTo.title)).toBeInTheDocument();
-    for (const item of koTool.howTo.items) {
-      expect(screen.getByText(item)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: koHowTo.title })).toBeInTheDocument();
+    for (const title of [koHowTo.whatIsTitle, koHowTo.howToTitle, koHowTo.useCasesTitle, koHowTo.tipsTitle]) {
+      expect(screen.getByRole('heading', { level: 3, name: title })).toBeInTheDocument();
     }
+    expect(screen.getByText(/자동으로 해 줍니다/)).toBeInTheDocument();
   });
 
-  it('renders clean paragraphs without raw markdown markers', () => {
+  it('renders clean English paragraphs without raw markdown markers or Korean leakage', () => {
     const { container } = render(
       <NextIntlClientProvider locale="en" messages={enMessages}>
         <KnittingGaugeHowTo />
       </NextIntlClientProvider>
     );
 
-    expect(enTool.howTo.items.length).toBeGreaterThan(0);
+    expect(screen.getByRole('heading', { level: 3, name: enHowTo.useCasesTitle })).toBeInTheDocument();
     expect(container.textContent).not.toMatch(/##|\*\*/);
     expect(container.textContent).not.toMatch(/[가-힣]/);
   });

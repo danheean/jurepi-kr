@@ -97,7 +97,7 @@ describe('RestaurantMap', () => {
     // SEO sections should be in DOM unconditionally
     // This is critical for AI crawlers that don't execute JS.
     // (The title/eyebrow is now route-level <ToolIntro>; HowTo/Faq stay here.)
-    expect(screen.getByText('How to Use Restaurant List')).toBeInTheDocument();
+    expect(screen.getByText('Restaurant list guide')).toBeInTheDocument();
   });
 
   it('renders searchbox for interactive content', () => {
@@ -112,7 +112,7 @@ describe('RestaurantMap', () => {
     renderWithIntl(<RestaurantMap catalog={[]} />);
 
     // Should not crash, SEO sections render anyway
-    expect(screen.getByText('How to Use Restaurant List')).toBeInTheDocument();
+    expect(screen.getByText('Restaurant list guide')).toBeInTheDocument();
   });
 
   it('derives region filters from the catalog (busan appears when a busan list exists)', () => {

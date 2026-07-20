@@ -399,7 +399,11 @@
         "howTitle": "How to use it",
         "howBody": "The 'Today' tab shows today's question front and center with a text area to write your answer. It auto-saves as you type. Switch to the 'Calendar' tab to browse any date and edit past answers—or even write ahead for future dates. The 'Journal' tab lets you search your entire history and filter by year. Use the 'Settings' tab to back up your entries (download a JSON file), restore from a backup, or reset everything. That's it—simple and private.",
         "whyTitle": "Why answer the same question daily?",
-        "whyBody": "Repeating the same question year after year teaches you about yourself at a deeper level. Your answer evolves: your priorities shift, your worldview grows, your understanding deepens. When you look back at what you wrote a year ago, you see your own progress made tangible. The habit builds slowly—one answer a day—but after a year, you've created a precious record of who you are and how you're becoming."
+        "whyBody": "Repeating the same question year after year teaches you about yourself at a deeper level. Your answer evolves: your priorities shift, your worldview grows, your understanding deepens. When you look back at what you wrote a year ago, you see your own progress made tangible. The habit builds slowly—one answer a day—but after a year, you've created a precious record of who you are and how you're becoming.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "When you want to briefly look back on your day as it winds down, when you want to compare who you are on the same day each year (a New Year, a birthday), when you want a steady record of your thoughts for a reflection or a personal statement, or when you want to build a mind-settling habit like a gratitude journal.",
+        "tipsTitle": "Tips",
+        "tipsBody": "There's no right answer, so what matters is leaving something every day, even a short line. Answers are stored only in this browser, so they disappear if you switch devices or clear your browser data—export a backup regularly from the Settings tab. Writing while looking at last year's answer for the same day makes the change easier to see."
       },
       "faq": {
         "heading": "Frequently Asked Questions",
@@ -500,7 +504,11 @@
       },
       "howTo": {
         "title": "What is New Word?",
-        "body": "New Word Glossary brings together trendy language in one place—terms that appear and disappear quickly in everyday speech. From MZ slang to cutting-edge tech terminology, explore language that's constantly evolving, with definitions in both Korean and English. Use the search box to find a specific term or browse by category. Star your favorite terms to save them for quick access, and your recently viewed terms are automatically saved so you can easily find them again."
+        "body": "New Word Glossary brings together trendy language in one place—terms that appear and disappear quickly in everyday speech. From MZ slang to cutting-edge tech terminology, explore language that's constantly evolving, with definitions in both Korean and English. Use the search box to find a specific term or browse by category. Star your favorite terms to save them for quick access, and your recently viewed terms are automatically saved so you can easily find them again.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "When you're curious about a word you're seeing for the first time online or on social media, when you want to understand a slang term or meme that keeps popping up in the news or a community, when checking an unfamiliar expression in a cross-generation conversation, or when you want to pick up new tech and trend terms in both Korean and English.",
+        "tipsTitle": "Tips",
+        "tipsBody": "Each term page includes not just the definition but example sentences and the origin, so you can grasp the context too. The category tabs let you gather just the area you care about (MZ slang, tech terms, and so on), and starring a term makes it easy to find again next time. You can switch between Korean and English to check either."
       },
       "faq": {
         "title": "Frequently Asked Questions",
@@ -1789,7 +1797,11 @@
             "title": "Review Results",
             "body": "After all words are revealed or time runs out, the summary screen shows your score breakdown (correct, pass, timeout) and the complete word list for reference."
           }
-        ]
+        ],
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "As a party game where teams compete at a dinner, gathering, or trip, as a classroom recreation or a workshop ice-breaker, or as something the whole family can enjoy across generations. Since only the host looks at the screen, it works great projected onto a big screen for a group.",
+        "tipsTitle": "Tips",
+        "tipsBody": "Have the host watch the screen alone and ask the guessers to look away. Using Space (correct) and the arrows (pass) keeps the rhythm fast. Raising the difficulty and round time adds tension, and turning on 'shuffle words' changes the order every time even for the same deck."
       },
       "faq": {
         "title": "Frequently Asked Questions",
@@ -2044,11 +2056,18 @@
         "lead": "Discover neighborhood restaurants and cafés, hand-picked by our curators, on an interactive map."
       },
       "howTo": {
-        "title": "How to Use Restaurant List",
+        "title": "Restaurant list guide",
+        "whatIsTitle": "What is this tool?",
+        "whatIsBody": "The restaurant list shows places our curators visited in person, on a map and as cards together. You can filter by region, category, and curator, search by name, dish, or neighborhood, and turn on My Location to sort by nearest. Save spots you like with a star to Favorites, and your location stays on your device and is never sent to a server.",
+        "stepsTitle": "How to use it",
         "step1": "Pick a region tab (Seoul, Busan, Nationwide) or a category to narrow the map and card list.",
         "step2": "Type a restaurant name, dish, or neighborhood in the search box to filter further alongside categories.",
         "step3": "Enable My Location to see your position on the map and sort nearby places by distance.",
-        "step4": "Tap the star on a card to save it to Favorites and revisit it from the Favorites tab."
+        "step4": "Tap the star on a card to save it to Favorites and revisit it from the Favorites tab.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "Finding a trusted spot nearby while settling on a place to meet, scouting local restaurants while traveling or on a work trip, browsing by category when you're craving a specific dish (jokbal, ramen, and so on), or discovering new places by following a curator's taste.",
+        "tipsTitle": "Tips",
+        "tipsBody": "Turning on My Location sorts by nearest so it's easy to plan your route. 'Open in Maps' on a card jumps straight to directions in Naver Maps. The curator filter lets you gather only the picks of a particular curator, and starred spots are easy to find again in the Favorites tab."
       },
       "faq": {
         "items": [
@@ -2063,6 +2082,14 @@
           {
             "q": "Where are my favorites saved?",
             "a": "Favorites are saved in your browser's local storage."
+          },
+          {
+            "q": "My Location isn't working.",
+            "a": "Allow location access when the browser asks. If you denied it or your device doesn't support location, distance sorting won't work. You can re-allow location from the site permissions in the address bar."
+          },
+          {
+            "q": "Is the restaurant information accurate?",
+            "a": "It's written as of the curator's visit, and the menu or hours may have changed since. We recommend checking the latest hours via 'Open in Maps' before you go."
           }
         ],
         "heading": "Frequently Asked Questions"
@@ -2941,13 +2968,15 @@
         "storage": "Storage error"
       },
       "howTo": {
-        "title": "What is Gauge",
-        "items": [
-          "Knitting gauge is the number of stitches and rows in a given measurement (usually 10cm or 4 inches) of knitted fabric.",
-          "Once you know your finished size, you can use your gauge to calculate the number of stitches and rows you need to cast on.",
-          "If you have a pattern written for a different gauge, you can rescale the stitch and row counts for your own gauge.",
-          "This calculator does all that automatically for you."
-        ]
+        "title": "Knitting gauge guide",
+        "whatIsTitle": "What is gauge?",
+        "whatIsBody": "Knitting gauge is the number of stitches and rows in a given measurement (usually 10cm / 4 inches) of knitted fabric. Once you know your finished size, gauge lets you calculate the stitches and rows to cast on, and if you have a pattern written for a different gauge, you can rescale it to your own. This calculator does all of that automatically.",
+        "howToTitle": "How to use it",
+        "howToBody": "1. Measure the stitches and rows within 10cm and enter them as your gauge. 2. Enter the width and length (cm) you want to make, and it calculates the stitches and rows you need. 3. To rescale a pattern, enter both the pattern's gauge and yours, and it gives you the adjusted counts.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "Calculating the stitch count to knit a sweater, hat, or scarf to the size you want, rescaling a pattern to your own gauge when a different yarn or needle changed it, or checking that the gauge you measured from a swatch matches the pattern.",
+        "tipsTitle": "Tips",
+        "tipsBody": "For an accurate gauge, knit a generous swatch (say 15×15cm) with the exact yarn and needles you'll use, and measure the center 10cm excluding the edges. If your gauge is tighter than the pattern, go up a needle size; if looser, go down. Some yarns change size after washing and blocking, so washing the swatch once gives a more accurate result."
       },
       "faq": {
         "title": "FAQ",
@@ -3143,6 +3172,10 @@
         "title": "How to use How-To Guides",
         "items": [
           {
+            "title": "What are How-To Guides?",
+            "body": "How-To Guides is a collection of step-by-step, hands-on guides for things like installing Claude Code, issuing tokens, and setting up an MCP server. Each guide is easy to follow with code blocks, diagrams, and images, and is available in both Korean and English. Search or use the topic tabs to find the guide you need."
+          },
+          {
             "title": "Search to find",
             "body": "Search by title, topic, or tag to quickly find the guide you need."
           },
@@ -3153,6 +3186,14 @@
           {
             "title": "Save favorites",
             "body": "Click the star icon on any guide to save it to your Favorites tab for quick access later."
+          },
+          {
+            "title": "When to use it",
+            "body": "When you're installing or configuring a new dev tool for the first time and need the exact steps, when you're checking how to issue an API key or token, when you want to quickly learn an unfamiliar tool, or when you're sharing a setup with a teammate."
+          },
+          {
+            "title": "Tips",
+            "body": "Each guide includes code blocks with a copy button and diagrams that show the flow, so it's easy to follow along. Use the topic tabs to group related guides, and star the ones you use often to find them again quickly. You can switch between Korean and English to read either."
           }
         ]
       },
