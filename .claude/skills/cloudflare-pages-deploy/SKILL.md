@@ -21,6 +21,8 @@ description: >-
 
 > ### 🚀 배포 트리거 = `git push` (프로덕션 분기 `main`)
 > **배포는 `main`에 push하면 끝난다.** CF Workers Builds가 Git push를 감지해 **CF 파이프라인 안에서** `pnpm run build` + `wrangler deploy`를 자동 실행한다. **로컬에서 `wrangler deploy`를 직접 돌리는 워크플로가 아니다** — 아래 "핵심 함정"들의 `wrangler deploy`는 전부 **CF 빌드가 대신 실행**하는 것이고, 함정 예방은 *커밋되는 설정*(`wrangler.jsonc`·force-static·`.env.production`)으로 한다. 개발자/에이전트가 할 일: ① 변경을 `main`에 머지 → ② push → ③ CF 빌드 완료(수십 초~수 분) 대기 → ④ 실제 도메인 `curl -I` 검증. 로컬 사전검증은 `serve out` 또는 `wrangler dev`. (로컬 `wrangler deploy` 수동 실행은 CF 대시보드가 막혔을 때의 **예외 폴백**일 뿐, 정상 경로 아님.)
+>
+> ⚠️ **로컬 `main` 커밋이 명시적 push 없이 origin/main으로 전파(=배포)되는 경우가 관측됐다 — 메커니즘 미확인.** cheer 세션 실측: `fun/cheer`를 로컬 `main`에 병합(`fce3cf3`)만 하고 `git push`를 실행하지 않았는데 `git ls-remote origin refs/heads/main`이 그 커밋을 반환하고 라이브가 이미 반영됐다(reflog에 `update by push`). `.git/hooks`·`.claude/settings*.json`에서 auto-push 훅은 **찾지 못함**(백그라운드 자동화 추정). 함의: **로컬 `main`에 커밋/병합하는 순간 프로덕션에 나갈 수 있다** → ① 배포 의도가 확실할 때만 `main`에 병합한다(미완/실험은 feature 브랜치에 두고, `main` 병합=배포로 취급) ② `main` 브랜치 조작(병합·정리) 후 항상 `git ls-remote origin refs/heads/main` vs 로컬 `main`을 대조해 실제 리모트 상태를 확인한다("아직 push 안 함"을 가정하지 말 것) ③ 원치 않는 배포가 나갔으면 사용자에게 즉시 보고한다. 이 자동 push의 트리거를 확인하면 이 항목을 갱신할 것.
 
 **핵심 함정 ①: `npx wrangler deploy`의 OpenNext 자동 전환.** repo에 wrangler 설정이 **없으면** wrangler가 Next.js를 감지해 `@opennextjs/cloudflare migrate`를 자동 실행 → 앱을 **풀 SSR Worker**(951 패키지)로 배포하고, 첫 배포에서 `Service binding 'WORKER_SELF_REFERENCE' references Worker '<package.json name>' which was not found [10143]`로 실패한다(self-ref 이름 = package.json `name` ≠ CF 워커명). **예방 = repo에 `wrangler.jsonc`를 커밋**해 정적 에셋 경로로 못박는다(설정이 있으면 wrangler가 그걸 읽고 OpenNext를 건너뜀). 순수 SSG에 OpenNext SSR은 불필요.
 
