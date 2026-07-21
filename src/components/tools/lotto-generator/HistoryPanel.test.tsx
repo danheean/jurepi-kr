@@ -64,6 +64,25 @@ describe('HistoryPanel', () => {
     expect(screen.queryByText('1 minutes ago')).toBeNull();
   });
 
+  it('uses correct singular grammar for a 1-game entry (regression: always said "1 games")', () => {
+    const history: HistoryEntry[] = [
+      {
+        timestamp: new Date().toISOString(),
+        gameCount: 1,
+        fixedNumbers: [],
+        excludedNumbers: [],
+        games: [{ numbers: [1, 7, 13, 21, 35, 42], bonus: 25 }],
+      },
+    ];
+
+    renderWithIntl(
+      <HistoryPanel history={history} onRestore={mockHandlers.onRestore} onClear={mockHandlers.onClear} />
+    );
+
+    expect(screen.getByText('1 game')).toBeInTheDocument();
+    expect(screen.queryByText('1 games')).toBeNull();
+  });
+
   it('formats the timestamp in Korean on the ko locale', () => {
     const history: HistoryEntry[] = [
       {

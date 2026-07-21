@@ -2645,7 +2645,7 @@
           "hoursAgo": "{n} hours ago",
           "daysAgo": "{n} days ago"
         },
-        "gameCountLabel": "{n} games",
+        "gameCountLabel": "{n, plural, one {# game} other {# games}}",
         "expandLabel": "Show",
         "collapseLabel": "Hide",
         "fixedLabel": "Fixed: {numbers}",
