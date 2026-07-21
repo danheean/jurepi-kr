@@ -3605,7 +3605,18 @@
         "fullscreenUnsupported": "This browser does not support fullscreen",
         "keepAwakeLabel": "Keep screen on",
         "keepAwakeUnsupported": "Not supported",
-        "lowContrastWarning": "Low contrast between text and background"
+        "lowContrastWarning": "Low contrast between text and background",
+        "sizeModeLabel": "Size mode",
+        "sizeMode": {
+          "manual": "Manual",
+          "auto": "Auto"
+        },
+        "deviceTypeLabel": "Device",
+        "deviceType": {
+          "mobile": "Mobile",
+          "tablet": "Tablet"
+        },
+        "autoSizeHint": "Current size: {size}"
       },
       "stage": {
         "close": "Exit fullscreen"

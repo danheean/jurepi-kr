@@ -27,6 +27,9 @@
 - [하우투 가이드 (How-To Guides)](https://apps.jurepi.kr/ko/tools/howto): Step-by-step practical guides with code examples, images, diagrams, and syntax-highlighted code blocks. Install Claude Code, issue API tokens, learn Git workflows, deployment strategies, and development best practices.
 - [JWT 디코더 (JWT Decoder)](https://apps.jurepi.kr/ko/tools/jwt-decoder): Decode JSON Web Tokens to inspect header, payload, and signature with a colorized view and a labeled standard-claims table (iss, sub, aud, exp, iat, nbf). Live validity countdown, unsecured "none" algorithm warning, and optional WebCrypto signature verification (HMAC HS256/384/512, RSA RS256, ECDSA ES256). Tokens and secrets never leave your browser—100% client-side, nothing stored or sent.
 - [모두의 응원 (Everyone's Cheer)](https://apps.jurepi.kr/ko/tools/cheer): Show a cheer message big — turn any phrase into a full-screen banner with scrolling, flashing, or neon glow effects, adjustable colors and size, landscape rotation, and fullscreen so you can wave your phone like an LED sign at concerts, games, and events. Curated preset phrases for concerts, sports, birthdays, and events. 100% client-side — nothing is stored or sent.
+- [즐겨찾기 (Curated Bookmarks)](https://apps.jurepi.kr/ko/tools/bookmarks): Browse trusted curated links across architecture, frontend engineering, design, prompt/context engineering, and AI agent tools, organized by topic with search and favorites.
+- [맛집 리스트 (Restaurant List)](https://apps.jurepi.kr/ko/tools/restaurant-map): Explore curator-picked restaurants on an interactive map, filterable by curator, region, and category, with personal notes and directions for each place.
+- [단위 변환기 (Unit Converter)](https://apps.jurepi.kr/ko/tools/unit-converter): Convert everyday measurements instantly across length, mass, temperature, area, volume, speed, digital storage, and time, with adjustable precision and recent-conversion history.
 
 ## About
 

@@ -11,6 +11,9 @@ export {
   type CheerSettingsInput,
   type CheerStoreInput,
   type ColorSwatchId,
+  type CheerSize,
+  type SizeMode,
+  type DeviceType,
   cheerSettingsSchema,
   cheerStoreSchema,
   DEFAULT_SETTINGS,
@@ -23,6 +26,9 @@ export {
   FLASH_MS,
   SIZE_SCALE,
 } from './schema';
+
+// Auto font-size (text length + device type → S/M/L/XL)
+export { suggestAutoSize, resolveEffectiveSize } from './size';
 
 // Presets
 export {

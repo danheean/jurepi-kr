@@ -3605,7 +3605,18 @@
         "fullscreenUnsupported": "이 브라우저는 전체화면을 지원하지 않아요",
         "keepAwakeLabel": "화면 켜짐 유지",
         "keepAwakeUnsupported": "지원 안 함",
-        "lowContrastWarning": "글자와 배경 대비가 낮아요"
+        "lowContrastWarning": "글자와 배경 대비가 낮아요",
+        "sizeModeLabel": "크기 설정 방식",
+        "sizeMode": {
+          "manual": "수동",
+          "auto": "자동"
+        },
+        "deviceTypeLabel": "디바이스",
+        "deviceType": {
+          "mobile": "모바일",
+          "tablet": "태블릿"
+        },
+        "autoSizeHint": "현재 크기: {size}"
       },
       "stage": {
         "close": "전체화면 닫기"

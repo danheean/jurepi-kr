@@ -27,8 +27,8 @@ describe('schema.ts', () => {
       expect(MAX_RECENTS).toBe(10);
     });
 
-    it('defines STORE_VERSION = 1', () => {
-      expect(STORE_VERSION).toBe(1);
+    it('defines STORE_VERSION = 2 (bumped for sizeMode/deviceType fields)', () => {
+      expect(STORE_VERSION).toBe(2);
     });
 
     it('defines MIN_CONTRAST = 3.0', () => {
@@ -192,6 +192,70 @@ describe('schema.ts', () => {
       }
     });
 
+    it('defaults sizeMode to "manual"', () => {
+      const settings = {
+        text: 'Hello',
+        textColor: 'white' as const,
+        bgColor: 'black' as const,
+      };
+      const result = cheerSettingsSchema.safeParse(settings);
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data.sizeMode).toBe('manual');
+      }
+    });
+
+    it('defaults deviceType to "mobile"', () => {
+      const settings = {
+        text: 'Hello',
+        textColor: 'white' as const,
+        bgColor: 'black' as const,
+      };
+      const result = cheerSettingsSchema.safeParse(settings);
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data.deviceType).toBe('mobile');
+      }
+    });
+
+    it('accepts sizeMode "auto" and deviceType "tablet"', () => {
+      const settings = {
+        text: 'Hello',
+        textColor: 'white' as const,
+        bgColor: 'black' as const,
+        sizeMode: 'auto' as const,
+        deviceType: 'tablet' as const,
+      };
+      const result = cheerSettingsSchema.safeParse(settings);
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data.sizeMode).toBe('auto');
+        expect(result.data.deviceType).toBe('tablet');
+      }
+    });
+
+    it('rejects invalid sizeMode', () => {
+      const settings = {
+        text: 'Hello',
+        textColor: 'white' as const,
+        bgColor: 'black' as const,
+        sizeMode: 'invalid' as any,
+      };
+      const result = cheerSettingsSchema.safeParse(settings);
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects invalid deviceType', () => {
+      const settings = {
+        text: 'Hello',
+        textColor: 'white' as const,
+        bgColor: 'black' as const,
+        deviceType: 'desktop' as any,
+      };
+      const result = cheerSettingsSchema.safeParse(settings);
+      expect(result.success).toBe(false);
+    });
+
     it('strips a legacy landscape field from stored settings (migration)', () => {
       // Old blobs persisted a `landscape` boolean; the schema should ignore it.
       const legacy = {
@@ -308,6 +372,14 @@ describe('schema.ts', () => {
 
     it('has size = "L"', () => {
       expect(DEFAULT_SETTINGS.size).toBe('L');
+    });
+
+    it('has sizeMode = "manual"', () => {
+      expect(DEFAULT_SETTINGS.sizeMode).toBe('manual');
+    });
+
+    it('has deviceType = "mobile"', () => {
+      expect(DEFAULT_SETTINGS.deviceType).toBe('mobile');
     });
 
     it('does not include a landscape field', () => {

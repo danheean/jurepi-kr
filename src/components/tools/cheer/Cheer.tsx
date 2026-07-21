@@ -33,7 +33,7 @@ export function Cheer() {
       <div className="grid md:grid-cols-2 gap-8">
         {/* Preview — DOM first so it's on top on mobile; moved right on desktop */}
         <div className="md:order-2 self-start sticky top-16 md:top-24 z-10 bg-surface pb-2 flex flex-col gap-4 min-w-0">
-          <CheerDisplay settings={cheer.settings} />
+          <CheerDisplay settings={cheer.effectiveSettings} />
         </div>
 
         {/* Controls — left on desktop */}
@@ -61,7 +61,7 @@ export function Cheer() {
 
       {cheer.presenting && (
         <CheerStage
-          settings={cheer.settings}
+          settings={cheer.effectiveSettings}
           onClose={cheer.stopPresenting}
           enterFullscreen={cheer.enterFullscreen}
           isFullscreenSupported={cheer.isFullscreenSupported}

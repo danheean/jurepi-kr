@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { CheerSettings, isLowContrast } from '@/lib/cheer';
+import { CheerSettings, isLowContrast, resolveEffectiveSize } from '@/lib/cheer';
 import { Maximize2, Zap } from 'lucide-react';
 
 interface CheerControlsProps {
@@ -16,11 +16,15 @@ interface CheerControlsProps {
 type Effect = 'static' | 'scroll' | 'flash' | 'neon';
 type Speed = 'slow' | 'medium' | 'fast';
 type Size = 'S' | 'M' | 'L' | 'XL';
+type SizeMode = 'manual' | 'auto';
+type DeviceType = 'mobile' | 'tablet';
 type ColorId = 'white' | 'black' | 'coral' | 'sun' | 'sky' | 'grape' | 'rose';
 
 const EFFECTS: Effect[] = ['static', 'scroll', 'flash', 'neon'];
 const SPEEDS: Speed[] = ['slow', 'medium', 'fast'];
 const SIZES: Size[] = ['S', 'M', 'L', 'XL'];
+const SIZE_MODES: SizeMode[] = ['manual', 'auto'];
+const DEVICE_TYPES: DeviceType[] = ['mobile', 'tablet'];
 const COLORS: ColorId[] = ['white', 'black', 'coral', 'sun', 'sky', 'grape', 'rose'];
 
 const COLOR_SWATCHES: Record<ColorId, string> = {
@@ -173,26 +177,92 @@ export function CheerControls({
         <label className="block text-sm font-medium mb-2">
           {t('controls.sizeLabel')}
         </label>
-        <div className="flex gap-2 flex-wrap">
-          {SIZES.map((size) => (
+
+        {/* Manual / Auto mode toggle */}
+        <div
+          role="group"
+          aria-label={t('controls.sizeModeLabel')}
+          className="flex gap-2 flex-wrap mb-3"
+        >
+          {SIZE_MODES.map((mode) => (
             <button
-              key={size}
-              onClick={() => onSettingsChange({ size })}
+              key={mode}
+              type="button"
+              aria-pressed={settings.sizeMode === mode}
+              onClick={() => onSettingsChange({ sizeMode: mode })}
               className={`
                 px-3 py-1.5 text-sm font-medium rounded
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring
                 transition-colors
                 ${
-                  settings.size === size
+                  settings.sizeMode === mode
                     ? 'bg-brand text-on-brand'
                     : 'bg-surface-muted text-text hover:bg-surface-sunken'
                 }
               `}
             >
-              {size}
+              {t(`controls.sizeMode.${mode}`)}
             </button>
           ))}
         </div>
+
+        {settings.sizeMode === 'manual' ? (
+          <div className="flex gap-2 flex-wrap">
+            {SIZES.map((size) => (
+              <button
+                key={size}
+                onClick={() => onSettingsChange({ size })}
+                className={`
+                  px-3 py-1.5 text-sm font-medium rounded
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring
+                  transition-colors
+                  ${
+                    settings.size === size
+                      ? 'bg-brand text-on-brand'
+                      : 'bg-surface-muted text-text hover:bg-surface-sunken'
+                  }
+                `}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2">
+            <label className="block text-xs font-medium text-text-muted">
+              {t('controls.deviceTypeLabel')}
+            </label>
+            <div
+              role="group"
+              aria-label={t('controls.deviceTypeLabel')}
+              className="flex gap-2 flex-wrap"
+            >
+              {DEVICE_TYPES.map((deviceType) => (
+                <button
+                  key={deviceType}
+                  type="button"
+                  aria-pressed={settings.deviceType === deviceType}
+                  onClick={() => onSettingsChange({ deviceType })}
+                  className={`
+                    px-3 py-1.5 text-sm font-medium rounded
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring
+                    transition-colors
+                    ${
+                      settings.deviceType === deviceType
+                        ? 'bg-brand text-on-brand'
+                        : 'bg-surface-muted text-text hover:bg-surface-sunken'
+                    }
+                  `}
+                >
+                  {t(`controls.deviceType.${deviceType}`)}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-text-muted" aria-live="polite">
+              {t('controls.autoSizeHint', { size: resolveEffectiveSize(settings) })}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Fullscreen Button — immersive overlay works everywhere (incl. iOS) */}

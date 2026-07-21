@@ -74,6 +74,86 @@ describe('useCheer', () => {
     expect(result.current.recents).toContain('최근 응원');
   });
 
+  it('fills in sizeMode/deviceType defaults when loading a legacy v1 blob that predates those fields', () => {
+    // Pre-populate localStorage with a pre-auto-size blob — no sizeMode/deviceType.
+    localStorage.setItem(
+      'jurepi-cheer',
+      JSON.stringify({
+        version: 1,
+        recents: [],
+        lastSettings: {
+          text: '저장된 응원',
+          textColor: 'coral',
+          bgColor: 'black',
+          effect: 'flash',
+          speed: 'fast',
+          size: 'XL',
+        },
+      })
+    );
+
+    const { result } = renderHook(() => useCheer());
+
+    // Existing preferences survive; new fields fall back to safe defaults (no data loss).
+    expect(result.current.settings.size).toBe('XL');
+    expect(result.current.settings.sizeMode).toBe('manual');
+    expect(result.current.settings.deviceType).toBe('mobile');
+  });
+
+  it('writes STORE_VERSION (2) to localStorage on updateSettings', () => {
+    const { result } = renderHook(() => useCheer());
+
+    act(() => {
+      result.current.updateSettings({ text: '응원' });
+    });
+
+    const stored = JSON.parse(localStorage.getItem('jurepi-cheer')!);
+    expect(stored.version).toBe(2);
+  });
+
+  describe('effectiveSettings (auto font-size)', () => {
+    it('mirrors settings.size unchanged when sizeMode is "manual"', () => {
+      const { result } = renderHook(() => useCheer());
+
+      act(() => {
+        result.current.updateSettings({ size: 'S', sizeMode: 'manual' });
+      });
+
+      expect(result.current.effectiveSettings.size).toBe('S');
+    });
+
+    it('overrides size with the auto-computed bucket when sizeMode is "auto"', () => {
+      const { result } = renderHook(() => useCheer());
+
+      act(() => {
+        result.current.updateSettings({
+          size: 'S', // stale manual value — auto mode should ignore it
+          sizeMode: 'auto',
+          deviceType: 'mobile',
+          text: 'go go go!!', // 10 chars → XL on mobile
+        });
+      });
+
+      expect(result.current.effectiveSettings.size).toBe('XL');
+      // The raw settings still remember the last manual pick.
+      expect(result.current.settings.size).toBe('S');
+    });
+
+    it('recomputes effectiveSettings.size as text changes in auto mode', () => {
+      const { result } = renderHook(() => useCheer());
+
+      act(() => {
+        result.current.updateSettings({ sizeMode: 'auto', deviceType: 'tablet', text: 'a'.repeat(6) });
+      });
+      expect(result.current.effectiveSettings.size).toBe('XL');
+
+      act(() => {
+        result.current.updateSettings({ text: 'a'.repeat(7) });
+      });
+      expect(result.current.effectiveSettings.size).toBe('L');
+    });
+  });
+
   it('commits message to recents', () => {
     const { result } = renderHook(() => useCheer());
 

@@ -6,6 +6,14 @@ import { z } from 'zod';
  */
 export type ColorSwatchId = 'white' | 'black' | 'coral' | 'sun' | 'sky' | 'grape' | 'rose';
 
+export type CheerSize = 'S' | 'M' | 'L' | 'XL';
+
+/** Manual = user picks S/M/L/XL directly. Auto = size is derived from text length + deviceType. */
+export type SizeMode = 'manual' | 'auto';
+
+/** Assumed display device — auto sizing holds larger buckets longer on the wider tablet class. */
+export type DeviceType = 'mobile' | 'tablet';
+
 /**
  * Cheer message display settings — immutable.
  */
@@ -15,7 +23,9 @@ export interface CheerSettings {
   bgColor: ColorSwatchId;
   effect: 'static' | 'scroll' | 'flash' | 'neon';
   speed: 'slow' | 'medium' | 'fast';
-  size: 'S' | 'M' | 'L' | 'XL';
+  size: CheerSize; // effective value when sizeMode='manual'; last manual pick otherwise
+  sizeMode: SizeMode;
+  deviceType: DeviceType;
 }
 
 /**
@@ -33,7 +43,7 @@ export interface CheerStore {
 export const MIN_LEN = 1;
 export const MAX_LEN = 80;
 export const MAX_RECENTS = 10;
-export const STORE_VERSION = 1;
+export const STORE_VERSION = 2; // v2 adds sizeMode + deviceType (auto font-size feature)
 export const MIN_CONTRAST = 3.0;
 
 /**
@@ -72,6 +82,8 @@ export const cheerSettingsSchema: z.ZodType<CheerSettings> = z.object({
   effect: z.enum(['static', 'scroll', 'flash', 'neon']).default('scroll'),
   speed: z.enum(['slow', 'medium', 'fast']).default('medium'),
   size: z.enum(['S', 'M', 'L', 'XL']).default('L'),
+  sizeMode: z.enum(['manual', 'auto']).default('manual'),
+  deviceType: z.enum(['mobile', 'tablet']).default('mobile'),
 });
 
 /**
@@ -93,6 +105,8 @@ export const DEFAULT_SETTINGS: CheerSettings = {
   effect: 'scroll',
   speed: 'medium',
   size: 'L',
+  sizeMode: 'manual',
+  deviceType: 'mobile',
 };
 
 /**

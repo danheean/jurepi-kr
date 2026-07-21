@@ -112,6 +112,70 @@ describe('CheerControls', () => {
     expect(screen.getByRole('button', { name: 'L' })).toBeInTheDocument();
   });
 
+  describe('size mode (manual vs auto) + device type', () => {
+    it('defaults to manual mode: shows S/M/L/XL buttons, hides device type', () => {
+      renderWithIntl(<CheerControls {...props()} />);
+
+      expect(screen.getByRole('button', { name: '수동' })).toHaveAttribute('aria-pressed', 'true');
+      expect(screen.getByRole('button', { name: '자동' })).toHaveAttribute('aria-pressed', 'false');
+      expect(screen.getByRole('button', { name: 'S' })).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: '모바일' })).toBeNull();
+      expect(screen.queryByRole('button', { name: '태블릿' })).toBeNull();
+    });
+
+    it('calls onSettingsChange when switching to auto mode', async () => {
+      const user = userEvent.setup();
+      renderWithIntl(<CheerControls {...props()} />);
+
+      await user.click(screen.getByRole('button', { name: '자동' }));
+
+      expect(mockOnSettingsChange).toHaveBeenCalledWith({ sizeMode: 'auto' });
+    });
+
+    it('in auto mode: hides manual S/M/L/XL buttons and shows device type buttons', () => {
+      renderWithIntl(
+        <CheerControls {...props({ settings: { ...DEFAULT_SETTINGS, sizeMode: 'auto' } })} />
+      );
+
+      expect(screen.queryByRole('button', { name: 'S' })).toBeNull();
+      expect(screen.queryByRole('button', { name: 'XL' })).toBeNull();
+      expect(screen.getByRole('button', { name: '모바일' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: '태블릿' })).toBeInTheDocument();
+    });
+
+    it('marks the current deviceType as pressed and calls onSettingsChange on selection', async () => {
+      const user = userEvent.setup();
+      renderWithIntl(
+        <CheerControls
+          {...props({ settings: { ...DEFAULT_SETTINGS, sizeMode: 'auto', deviceType: 'mobile' } })}
+        />
+      );
+
+      expect(screen.getByRole('button', { name: '모바일' })).toHaveAttribute('aria-pressed', 'true');
+      expect(screen.getByRole('button', { name: '태블릿' })).toHaveAttribute('aria-pressed', 'false');
+
+      await user.click(screen.getByRole('button', { name: '태블릿' }));
+      expect(mockOnSettingsChange).toHaveBeenCalledWith({ deviceType: 'tablet' });
+    });
+
+    it('shows a hint with the auto-computed size that reflects text length', () => {
+      renderWithIntl(
+        <CheerControls
+          {...props({
+            settings: {
+              ...DEFAULT_SETTINGS,
+              sizeMode: 'auto',
+              deviceType: 'mobile',
+              text: 'go go go!!', // 10 chars → XL on mobile
+            },
+          })}
+        />
+      );
+
+      expect(screen.getByText(/XL/)).toBeInTheDocument();
+    });
+  });
+
   it('does NOT render a manual landscape/orientation toggle', () => {
     renderWithIntl(<CheerControls {...props()} />);
 

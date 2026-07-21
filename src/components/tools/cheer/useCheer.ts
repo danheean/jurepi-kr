@@ -1,14 +1,16 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   CheerSettings,
   CheerStore,
   DEFAULT_SETTINGS,
+  STORE_VERSION,
   cheerStoreSchema,
   PRESET_PHRASES,
   addRecent,
   pruneRecents,
+  resolveEffectiveSize,
 } from '@/lib/cheer';
 import { useFullscreen } from './useFullscreen';
 
@@ -18,6 +20,10 @@ export interface UseCheerReturn {
   // Settings state
   settings: CheerSettings;
   updateSettings: (updates: Partial<CheerSettings>) => void;
+  // settings with `size` resolved to the auto-computed bucket when sizeMode='auto'
+  // (falls through to settings.size unchanged when sizeMode='manual'). Feed this,
+  // not `settings`, to the display components.
+  effectiveSettings: CheerSettings;
 
   // Recents state
   recents: string[];
@@ -60,6 +66,13 @@ export function useCheer(): UseCheerReturn {
   settingsRef.current = settings;
   recentsRef.current = recents;
 
+  // Derived purely from render-time state — no effect needed (and no risk of the
+  // "hook return object in an effect dependency" infinite-render pitfall).
+  const effectiveSettings = useMemo<CheerSettings>(
+    () => ({ ...settings, size: resolveEffectiveSize(settings) }),
+    [settings]
+  );
+
   // Fullscreen + wake-lock wiring
   const fullscreen = useFullscreen();
   const [isWakeLockActive, setIsWakeLockActive] = useState(false);
@@ -91,7 +104,7 @@ export function useCheer(): UseCheerReturn {
       // Immediately persist using current refs
       try {
         const store: CheerStore = {
-          version: 1,
+          version: STORE_VERSION,
           recents: recentsRef.current,
           lastSettings: next,
         };
@@ -111,7 +124,7 @@ export function useCheer(): UseCheerReturn {
     // Persist immediately
     try {
       const store: CheerStore = {
-        version: 1,
+        version: STORE_VERSION,
         recents: next,
         lastSettings: { ...settingsRef.current, text },
       };
@@ -174,6 +187,7 @@ export function useCheer(): UseCheerReturn {
 
   return {
     settings,
+    effectiveSettings,
     updateSettings,
     recents,
     clearMessage,
