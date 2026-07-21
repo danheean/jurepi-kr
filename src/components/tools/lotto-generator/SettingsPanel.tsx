@@ -61,16 +61,33 @@ export function SettingsPanel({
     <div className="space-y-6 p-4 rounded-lg bg-surface-sunken border border-hairline">
       {/* Game Count */}
       <div>
-        <label className="block text-sm font-medium mb-2">{t('settings.gameCount.label')}</label>
+        <label id="game-count-label" className="block text-sm font-medium mb-2">
+          {t('settings.gameCount.label')}
+        </label>
         <p className="text-xs text-text-muted mb-3">{t('settings.gameCount.help')}</p>
-        <input
-          type="number"
-          min={GAME_COUNT_MIN}
-          max={GAME_COUNT_MAX}
-          value={gameCount}
-          onChange={(e) => onGameCountChange(Math.max(GAME_COUNT_MIN, Math.min(GAME_COUNT_MAX, parseInt(e.target.value, 10) || 1)))}
-          className="w-full px-3 py-2 rounded border border-hairline focus-visible:ring-2 focus-visible:ring-focus-ring"
-        />
+        <div role="group" aria-labelledby="game-count-label" className="flex flex-wrap gap-2">
+          {Array.from({ length: GAME_COUNT_MAX - GAME_COUNT_MIN + 1 }, (_, i) => GAME_COUNT_MIN + i).map(
+            (n) => {
+              const isSelected = n === gameCount;
+              return (
+                <button
+                  key={n}
+                  type="button"
+                  onClick={() => onGameCountChange(n)}
+                  aria-pressed={isSelected}
+                  aria-label={t('settings.gameCount.option', { n })}
+                  className={`min-h-[44px] min-w-[44px] px-3 rounded-lg text-sm font-medium focus-visible:ring-2 focus-visible:ring-focus-ring ${
+                    isSelected
+                      ? 'bg-brand text-on-brand'
+                      : 'bg-surface-muted border border-hairline hover:bg-surface-sunken'
+                  }`}
+                >
+                  {n}
+                </button>
+              );
+            },
+          )}
+        </div>
       </div>
 
       {/* Fixed Numbers */}

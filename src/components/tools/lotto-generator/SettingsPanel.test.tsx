@@ -22,7 +22,7 @@ describe('SettingsPanel', () => {
     vi.clearAllMocks();
   });
 
-  it('renders game count input', () => {
+  it('renders 1–10 game count chips with the current one pressed', () => {
     renderWithIntl(
       <SettingsPanel
         gameCount={3}
@@ -36,14 +36,19 @@ describe('SettingsPanel', () => {
       />
     );
 
-    const input = screen.getByDisplayValue('3');
-    expect(input).toBeInTheDocument();
+    // Boundary chips exist (1 and 10) — full 1..10 range rendered.
+    expect(screen.getByRole('button', { name: '1 games' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '10 games' })).toBeInTheDocument();
+
+    // The current selection (3) is pressed; a non-selected chip is not.
+    expect(screen.getByRole('button', { name: '3 games' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: '5 games' })).toHaveAttribute('aria-pressed', 'false');
   });
 
-  it('calls onGameCountChange when game count changes', () => {
+  it('calls onGameCountChange with the tapped chip value (2–9 reachable in one tap)', () => {
     renderWithIntl(
       <SettingsPanel
-        gameCount={3}
+        gameCount={1}
         onGameCountChange={mockHandlers.onGameCountChange}
         fixedNumbers={[]}
         onAddFixed={mockHandlers.onAddFixed}
@@ -54,10 +59,12 @@ describe('SettingsPanel', () => {
       />
     );
 
-    const input = screen.getByDisplayValue('3') as HTMLInputElement;
-    fireEvent.change(input, { target: { value: '5' } });
-
+    // The original bug: could only land on 1 or 10. Now any value is one tap.
+    fireEvent.click(screen.getByRole('button', { name: '5 games' }));
     expect(mockHandlers.onGameCountChange).toHaveBeenCalledWith(5);
+
+    fireEvent.click(screen.getByRole('button', { name: '2 games' }));
+    expect(mockHandlers.onGameCountChange).toHaveBeenCalledWith(2);
   });
 
   it('renders fixed numbers chips', () => {
@@ -65,7 +72,7 @@ describe('SettingsPanel', () => {
       <SettingsPanel
         gameCount={1}
         onGameCountChange={mockHandlers.onGameCountChange}
-        fixedNumbers={[7, 13]}
+        fixedNumbers={[17, 13]}
         onAddFixed={mockHandlers.onAddFixed}
         onRemoveFixed={mockHandlers.onRemoveFixed}
         excludedNumbers={[]}
@@ -74,7 +81,8 @@ describe('SettingsPanel', () => {
       />
     );
 
-    expect(screen.getByText('7')).toBeInTheDocument();
+    // Use values > 10 so they don't collide with the 1–10 game-count chips.
+    expect(screen.getByText('17')).toBeInTheDocument();
     expect(screen.getByText('13')).toBeInTheDocument();
   });
 
@@ -107,7 +115,7 @@ describe('SettingsPanel', () => {
       <SettingsPanel
         gameCount={1}
         onGameCountChange={mockHandlers.onGameCountChange}
-        fixedNumbers={[7, 13]}
+        fixedNumbers={[17, 13]}
         onAddFixed={mockHandlers.onAddFixed}
         onRemoveFixed={mockHandlers.onRemoveFixed}
         excludedNumbers={[]}
@@ -116,9 +124,9 @@ describe('SettingsPanel', () => {
       />
     );
 
-    // Find the chip containing "7" and click its remove button
-    const chipWithSeven = screen.getAllByText('7')[0].closest('div');
-    const removeButton = chipWithSeven?.querySelector('button');
+    // Find the chip containing "17" (>10, no collision with game-count chips) and click its remove button
+    const chipWithSeventeen = screen.getByText('17').closest('div');
+    const removeButton = chipWithSeventeen?.querySelector('button');
 
     if (removeButton) {
       fireEvent.click(removeButton);

@@ -2595,7 +2595,8 @@
       "settings": {
         "gameCount": {
           "label": "Number of Games",
-          "help": "Choose between 1 and 10 games."
+          "help": "Choose between 1 and 10 games.",
+          "option": "{n} games"
         },
         "fixedNumbers": {
           "label": "Always Include (up to 5)",
