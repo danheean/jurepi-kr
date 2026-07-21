@@ -12,22 +12,22 @@ describe('BallDisplay', () => {
     expect(ball).toHaveTextContent('7');
   });
 
-  it('applies color classes for different number ranges', () => {
+  it('applies official 동행복권 band colors for each number range', () => {
     const testCases = [
-      { number: 5, expectedBg: 'bg-accent-sun' }, // 1–10
-      { number: 15, expectedBg: 'bg-accent-sky' }, // 11–20
-      { number: 25, expectedBg: 'bg-accent-coral' }, // 21–30
-      { number: 35, expectedBg: 'bg-surface-sunken' }, // 31–40
-      { number: 42, expectedBg: 'bg-accent-mint' }, // 41–45
+      { number: 5, bg: 'rgb(233, 161, 0)' }, // 1–10 gold #e9a100
+      { number: 15, bg: 'rgb(59, 111, 196)' }, // 11–20 blue #3b6fc4
+      { number: 25, bg: 'rgb(210, 63, 85)' }, // 21–30 red #d23f55
+      { number: 35, bg: 'rgb(124, 129, 142)' }, // 31–40 gray #7c818e
+      { number: 42, bg: 'rgb(42, 161, 90)' }, // 41–45 green #2aa15a
     ];
 
-    testCases.forEach(({ number, expectedBg }) => {
+    testCases.forEach(({ number, bg }) => {
       const { container } = render(
         <BallDisplay number={number} index={0} isAnimating={false} animationPhase="idle" />
       );
 
-      const ball = container.firstChild;
-      expect(ball).toHaveClass(expectedBg);
+      const ball = container.firstChild as HTMLElement;
+      expect(ball.style.backgroundColor).toBe(bg);
     });
   });
 

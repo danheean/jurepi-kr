@@ -1,42 +1,43 @@
 export interface BallColor {
-  bgClass: string;
-  textClass: string;
+  /** Ball background color (hex). */
+  background: string;
+  /** Number text color (hex), chosen for contrast on the band. */
+  color: string;
 }
 
 /**
- * Map lotto number 1–45 to official Korean ball band color.
+ * Map a lotto number (1–45) to its official Korean lottery (동행복권) ball color.
  *
- * Bands follow the official Korean lotto grouping, but text uses the dark
- * `--text` token on every band: the accent tokens are all bright/light
- * (accent-sun #fbbf24, accent-sky #38bdf8, accent-coral #ff7a85,
- * accent-mint #2dd4bf), so white text fails WCAG AA — dark text clears 4.5:1
- * on all of them.
+ * These are the real dhlottery ball-band colors, so a generated ball looks like
+ * the numbers on the official result page. Applied as inline `background-color`
+ * (not design-system tokens) because they are an external brand palette, not
+ * part of the site's accent system.
  *
- * 1–10: yellow (bg-accent-sun, text-text)
- * 11–20: blue (bg-accent-sky, text-text)
- * 21–30: red (bg-accent-coral, text-text)
- * 31–40: gray (bg-surface-sunken, text-text)
- * 41–45: green (bg-accent-mint, text-text)
+ *   1–10  gold   (dark numeral — gold is too light for white to stay legible)
+ *  11–20  blue   (white numeral)
+ *  21–30  red    (white numeral)
+ *  31–40  gray   (white numeral)
+ *  41–45  green  (white numeral)
  *
  * @param number - 1–45
- * @returns BallColor with Tailwind classes
+ * @returns BallColor with background + text hex
  */
 export function ballColor(number: number): BallColor {
   if (number >= 1 && number <= 10) {
-    return { bgClass: 'bg-accent-sun', textClass: 'text-text' };
+    return { background: '#e9a100', color: '#1a1a1a' };
   }
   if (number >= 11 && number <= 20) {
-    return { bgClass: 'bg-accent-sky', textClass: 'text-text' };
+    return { background: '#3b6fc4', color: '#ffffff' };
   }
   if (number >= 21 && number <= 30) {
-    return { bgClass: 'bg-accent-coral', textClass: 'text-text' };
+    return { background: '#d23f55', color: '#ffffff' };
   }
   if (number >= 31 && number <= 40) {
-    return { bgClass: 'bg-surface-sunken', textClass: 'text-text' };
+    return { background: '#7c818e', color: '#ffffff' };
   }
   if (number >= 41 && number <= 45) {
-    return { bgClass: 'bg-accent-mint', textClass: 'text-text' };
+    return { background: '#2aa15a', color: '#ffffff' };
   }
-  // Fallback (should not happen)
-  return { bgClass: 'bg-brand', textClass: 'text-on-brand' };
+  // Fallback (out of range — should not happen): brand violet.
+  return { background: '#6c5ce7', color: '#ffffff' };
 }

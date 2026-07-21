@@ -2600,13 +2600,15 @@
         },
         "fixedNumbers": {
           "label": "Always Include (up to 5)",
-          "help": "These numbers will appear in every game.",
+          "help": "These numbers will appear in every game. Add several at once, separated by commas.",
+          "placeholder": "e.g. 7, 13, 21",
           "add": "Add Number",
           "remove": "Remove"
         },
         "excludedNumbers": {
           "label": "Never Include (up to 39)",
-          "help": "These numbers will never be picked.",
+          "help": "These numbers will never be picked. Add several at once, separated by commas.",
+          "placeholder": "e.g. 7, 13, 21",
           "add": "Add Number",
           "remove": "Remove"
         },
@@ -2619,6 +2621,7 @@
         "copied": "Copied!",
         "clearHistory": "Clear History"
       },
+      "officialResult": "Check official results (dhlottery)",
       "results": {
         "title": "Generated Numbers",
         "gameLabel": "Game {count}",

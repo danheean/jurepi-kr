@@ -73,14 +73,8 @@ export function BallDisplay({
     <div
       role="img"
       aria-label={ariaLabel}
-      className={`
-        flex items-center justify-center
-        w-11 h-11 rounded-full
-        font-bold text-sm
-        ${color.bgClass} ${color.textClass}
-        transition-none
-      `}
-      style={animStyle}
+      className="flex items-center justify-center w-11 h-11 rounded-full font-bold text-sm transition-none"
+      style={{ backgroundColor: color.background, color: color.color, ...animStyle }}
     >
       {displayNumber}
     </div>

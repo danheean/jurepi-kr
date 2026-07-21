@@ -71,7 +71,7 @@ describe('LottoGenerator', () => {
     expect(generateButton).toBeEnabled();
 
     // Add the maximum 5 fixed numbers via the fixed input
-    const fixedInput = screen.getAllByPlaceholderText('1–45')[0];
+    const fixedInput = screen.getAllByPlaceholderText('e.g. 7, 13, 21')[0];
     for (let i = 1; i <= 5; i++) {
       fireEvent.change(fixedInput, { target: { value: i.toString() } });
       const addButtons = screen.getAllByRole('button', { name: /Add Number/i });

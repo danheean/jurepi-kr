@@ -101,7 +101,7 @@ describe('SettingsPanel', () => {
       />
     );
 
-    const inputs = screen.getAllByPlaceholderText('1–45');
+    const inputs = screen.getAllByPlaceholderText('e.g. 7, 13, 21');
     const fixedInput = inputs[0];
     fireEvent.change(fixedInput, { target: { value: '7' } });
 
@@ -109,6 +109,54 @@ describe('SettingsPanel', () => {
     fireEvent.click(addButtons[0]);
 
     expect(mockHandlers.onAddFixed).toHaveBeenCalledWith(7);
+  });
+
+  it('adds multiple comma-separated fixed numbers in one action', () => {
+    renderWithIntl(
+      <SettingsPanel
+        gameCount={1}
+        onGameCountChange={mockHandlers.onGameCountChange}
+        fixedNumbers={[]}
+        onAddFixed={mockHandlers.onAddFixed}
+        onRemoveFixed={mockHandlers.onRemoveFixed}
+        excludedNumbers={[]}
+        onAddExcluded={mockHandlers.onAddExcluded}
+        onRemoveExcluded={mockHandlers.onRemoveExcluded}
+      />
+    );
+
+    const fixedInput = screen.getAllByPlaceholderText('e.g. 7, 13, 21')[0];
+    fireEvent.change(fixedInput, { target: { value: '7, 13, 21' } });
+    fireEvent.click(screen.getAllByRole('button', { name: /Add Number/i })[0]);
+
+    expect(mockHandlers.onAddFixed).toHaveBeenCalledTimes(3);
+    expect(mockHandlers.onAddFixed).toHaveBeenNthCalledWith(1, 7);
+    expect(mockHandlers.onAddFixed).toHaveBeenNthCalledWith(2, 13);
+    expect(mockHandlers.onAddFixed).toHaveBeenNthCalledWith(3, 21);
+  });
+
+  it('adds comma-separated excluded numbers on Enter', () => {
+    renderWithIntl(
+      <SettingsPanel
+        gameCount={1}
+        onGameCountChange={mockHandlers.onGameCountChange}
+        fixedNumbers={[]}
+        onAddFixed={mockHandlers.onAddFixed}
+        onRemoveFixed={mockHandlers.onRemoveFixed}
+        excludedNumbers={[]}
+        onAddExcluded={mockHandlers.onAddExcluded}
+        onRemoveExcluded={mockHandlers.onRemoveExcluded}
+      />
+    );
+
+    const excludedInput = screen.getAllByPlaceholderText('e.g. 7, 13, 21')[1];
+    fireEvent.change(excludedInput, { target: { value: '4 8 15' } });
+    fireEvent.keyDown(excludedInput, { key: 'Enter' });
+
+    expect(mockHandlers.onAddExcluded).toHaveBeenCalledTimes(3);
+    expect(mockHandlers.onAddExcluded).toHaveBeenNthCalledWith(1, 4);
+    expect(mockHandlers.onAddExcluded).toHaveBeenNthCalledWith(2, 8);
+    expect(mockHandlers.onAddExcluded).toHaveBeenNthCalledWith(3, 15);
   });
 
   it('removes fixed number when X clicked', () => {

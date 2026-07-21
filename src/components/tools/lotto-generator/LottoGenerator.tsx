@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { Trophy, ExternalLink } from 'lucide-react';
 import { useLottoGenerator } from './useLottoGenerator';
 import { SettingsPanel } from './SettingsPanel';
 import { GameList } from './GameList';
@@ -147,6 +148,18 @@ export function LottoGenerator() {
         onRestore={restoreFromHistory}
         onClear={clearHistoryLocal}
       />
+
+      {/* Official winning-results link (동행복권) */}
+      <a
+        href="https://www.dhlottery.co.kr/lt645/result"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg border border-hairline text-sm font-medium hover:bg-surface-muted focus-visible:ring-2 focus-visible:ring-focus-ring transition-colors"
+      >
+        <Trophy className="w-4 h-4 shrink-0" aria-hidden="true" />
+        <span>{t('officialResult')}</span>
+        <ExternalLink className="w-3.5 h-3.5 shrink-0 text-text-muted" aria-hidden="true" />
+      </a>
     </div>
   );
 }

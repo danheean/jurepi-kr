@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { X, Plus } from 'lucide-react';
 import { GAME_COUNT_MIN, GAME_COUNT_MAX, LOTTO_MIN, LOTTO_MAX } from '@/lib/lotto-generator/schema';
 import { isDrawFeasible, feasibilityError } from '@/lib/lotto-generator/validate';
+import { parseNumberList } from '@/lib/lotto-generator/parse';
 
 interface SettingsPanelProps {
   gameCount: number;
@@ -41,20 +42,19 @@ export function SettingsPanel({
     onGenerateDisabledChange?.(isInfeasible);
   }, [isInfeasible, onGenerateDisabledChange]);
 
+  // Accept one or many comma-separated numbers (e.g. "7, 13, 21").
   const handleAddFixed = () => {
-    const num = parseInt(fixedInput, 10);
-    if (num >= LOTTO_MIN && num <= LOTTO_MAX) {
-      onAddFixed(num);
-      setFixedInput('');
-    }
+    const nums = parseNumberList(fixedInput, LOTTO_MIN, LOTTO_MAX);
+    if (nums.length === 0) return;
+    nums.forEach((n) => onAddFixed(n));
+    setFixedInput('');
   };
 
   const handleAddExcluded = () => {
-    const num = parseInt(excludedInput, 10);
-    if (num >= LOTTO_MIN && num <= LOTTO_MAX) {
-      onAddExcluded(num);
-      setExcludedInput('');
-    }
+    const nums = parseNumberList(excludedInput, LOTTO_MIN, LOTTO_MAX);
+    if (nums.length === 0) return;
+    nums.forEach((n) => onAddExcluded(n));
+    setExcludedInput('');
   };
 
   return (
@@ -96,12 +96,17 @@ export function SettingsPanel({
         <p className="text-xs text-text-muted mb-3">{t('settings.fixedNumbers.help')}</p>
         <div className="flex gap-2 mb-3">
           <input
-            type="number"
-            min={LOTTO_MIN}
-            max={LOTTO_MAX}
-            placeholder="1–45"
+            type="text"
+            placeholder={t('settings.fixedNumbers.placeholder')}
             value={fixedInput}
             onChange={(e) => setFixedInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+                e.preventDefault();
+                e.stopPropagation(); // don't also trigger the global "Enter to generate"
+                handleAddFixed();
+              }
+            }}
             className="flex-1 px-3 py-2 rounded border border-hairline focus-visible:ring-2 focus-visible:ring-focus-ring"
           />
           <button
@@ -137,12 +142,17 @@ export function SettingsPanel({
         <p className="text-xs text-text-muted mb-3">{t('settings.excludedNumbers.help')}</p>
         <div className="flex gap-2 mb-3">
           <input
-            type="number"
-            min={LOTTO_MIN}
-            max={LOTTO_MAX}
-            placeholder="1–45"
+            type="text"
+            placeholder={t('settings.excludedNumbers.placeholder')}
             value={excludedInput}
             onChange={(e) => setExcludedInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+                e.preventDefault();
+                e.stopPropagation(); // don't also trigger the global "Enter to generate"
+                handleAddExcluded();
+              }
+            }}
             className="flex-1 px-3 py-2 rounded border border-hairline focus-visible:ring-2 focus-visible:ring-focus-ring"
           />
           <button

@@ -2,62 +2,43 @@ import { describe, it, expect } from 'vitest';
 import { ballColor } from './colors';
 
 describe('src/lib/lotto-generator/colors', () => {
-  describe('ballColor', () => {
-    it('maps 1–10 to yellow (bg-accent-sun)', () => {
+  describe('ballColor — official 동행복권 band colors', () => {
+    it('maps 1–10 to gold with a dark numeral', () => {
       for (let i = 1; i <= 10; i++) {
-        const { bgClass } = ballColor(i);
-        expect(bgClass).toBe('bg-accent-sun');
+        expect(ballColor(i)).toEqual({ background: '#e9a100', color: '#1a1a1a' });
       }
     });
 
-    it('maps 11–20 to blue (bg-accent-sky)', () => {
+    it('maps 11–20 to blue with white text', () => {
       for (let i = 11; i <= 20; i++) {
-        const { bgClass } = ballColor(i);
-        expect(bgClass).toBe('bg-accent-sky');
+        expect(ballColor(i)).toEqual({ background: '#3b6fc4', color: '#ffffff' });
       }
     });
 
-    it('maps 21–30 to red (bg-accent-coral)', () => {
+    it('maps 21–30 to red with white text', () => {
       for (let i = 21; i <= 30; i++) {
-        const { bgClass } = ballColor(i);
-        expect(bgClass).toBe('bg-accent-coral');
+        expect(ballColor(i)).toEqual({ background: '#d23f55', color: '#ffffff' });
       }
     });
 
-    it('maps 31–40 to gray (bg-surface-sunken)', () => {
+    it('maps 31–40 to gray with white text', () => {
       for (let i = 31; i <= 40; i++) {
-        const { bgClass } = ballColor(i);
-        expect(bgClass).toBe('bg-surface-sunken');
+        expect(ballColor(i)).toEqual({ background: '#7c818e', color: '#ffffff' });
       }
     });
 
-    it('maps 41–45 to green (bg-accent-mint)', () => {
+    it('maps 41–45 to green with white text', () => {
       for (let i = 41; i <= 45; i++) {
-        const { bgClass } = ballColor(i);
-        expect(bgClass).toBe('bg-accent-mint');
+        expect(ballColor(i)).toEqual({ background: '#2aa15a', color: '#ffffff' });
       }
     });
 
-    it('returns dark text-text on every band (WCAG AA on bright accents)', () => {
-      // All accent tokens are bright/light, so dark text is the contrast-safe choice.
-      [5, 15, 25, 35, 45].forEach((n) => {
-        expect(ballColor(n).textClass).toBe('text-text');
-      });
-    });
-
-    it('returns text-text (dark) for gray (31–40)', () => {
-      for (let i = 31; i <= 40; i++) {
-        const { textClass } = ballColor(i);
-        expect(textClass).toBe('text-text');
-      }
-    });
-
-    it('returns object with both bgClass and textClass', () => {
+    it('returns background + color hex strings', () => {
       const result = ballColor(7);
-      expect(result).toHaveProperty('bgClass');
-      expect(result).toHaveProperty('textClass');
-      expect(typeof result.bgClass).toBe('string');
-      expect(typeof result.textClass).toBe('string');
+      expect(result).toHaveProperty('background');
+      expect(result).toHaveProperty('color');
+      expect(result.background).toMatch(/^#[0-9a-f]{6}$/);
+      expect(result.color).toMatch(/^#[0-9a-f]{6}$/);
     });
   });
 });
