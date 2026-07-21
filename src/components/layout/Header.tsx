@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Sparkles } from 'lucide-react';
+import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { SearchableTool } from '@/lib/tool-search';
 import { HeaderSearch } from './HeaderSearch';
@@ -68,10 +68,13 @@ export function Header({ tools }: HeaderProps): React.ReactNode {
             href={aiToolsUrl}
             className={AI_LINK_CLASS}
             aria-label={t('aiToolsAria')}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Sparkles className="hidden h-3.5 w-3.5 sm:inline-block" aria-hidden="true" />
             <span className="sm:hidden">{AI_LINK_SHORT}</span>
             <span className="hidden sm:inline">{t('aiTools')}</span>
+            <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
           </a>
         </div>
 
