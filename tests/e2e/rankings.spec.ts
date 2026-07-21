@@ -1,8 +1,12 @@
 import { test, expect } from '@playwright/test';
 import catalog from '../../src/components/tools/rankings/data/rankings.generated.json';
 
-// Derive the expected ranking count from the generated catalog
+// Derive expected values from the generated catalog so the spec stays correct as
+// rankings are added/updated (count, as-of date, and item count all drift over time).
 const TOTAL_RANKINGS = catalog.length;
+const SEEDED_LLM = catalog.find((r) => r.slug === 'llm-agent-leaderboard')!;
+const LLM_AS_OF_YM = SEEDED_LLM.asOfDate.slice(0, 7); // e.g. "2026-07"
+const LLM_ITEM_COUNT = SEEDED_LLM.ko.items.length; // rows in the detail table
 
 /**
  * E2E Tests for Rankings Tool
@@ -35,7 +39,7 @@ test.describe('Rankings Tool - E2E Integration', () => {
     expect(mainText).toContain('LLM 에이전트 순위');
     expect(mainText).toContain('프로그래밍 언어 인기 순위');
 
-    // Should show item counts (10개 항목, 12개 항목)
+    // Should show per-card item counts (e.g. "20개 항목")
     expect(mainText).toContain('개 항목');
 
     // Should show field badges (AI·LLM, 프로그래밍)
@@ -45,7 +49,7 @@ test.describe('Rankings Tool - E2E Integration', () => {
     // Should show compact source+date line (기준일, 출처)
     expect(mainText).toContain('기준일');
     expect(mainText).toContain('출처');
-    expect(mainText).toContain('2026-06');
+    expect(mainText).toContain(LLM_AS_OF_YM);
   });
 
   test('Scenario 2: Search, field filter, empty state', async ({ page }) => {
@@ -54,9 +58,9 @@ test.describe('Rankings Tool - E2E Integration', () => {
 
     const mainElement = page.locator('main');
 
-    // Initial state: 결과 2개 (both rankings)
+    // Initial state: all rankings shown
     let mainText = await mainElement.textContent();
-    expect(mainText).toContain('결과 2개');
+    expect(mainText).toContain(`결과 ${TOTAL_RANKINGS}개`);
 
     // Search for "프로그래밍" — should narrow list
     // Search input is type="search" with aria-label="순위 검색"
@@ -78,7 +82,7 @@ test.describe('Rankings Tool - E2E Integration', () => {
 
     // Should restore full list (결과 2개)
     mainText = await mainElement.textContent();
-    expect(mainText).toContain('결과 2개');
+    expect(mainText).toContain(`결과 ${TOTAL_RANKINGS}개`);
 
     // Click field tab (look for fieldtabs — "전체", "AI·LLM", "프로그래밍")
     // Click "AI·LLM" tab to filter
@@ -134,9 +138,9 @@ test.describe('Rankings Tool - E2E Integration', () => {
     const headerCells = table.locator('thead th');
     expect(await headerCells.count()).toBeGreaterThanOrEqual(3);
 
-    // <tbody> rows — the LLM ranking has exactly 10 items
+    // <tbody> rows — one per LLM ranking item (derived from the catalog)
     const rows = table.locator('tbody tr');
-    expect(await rows.count()).toBe(10);
+    expect(await rows.count()).toBe(LLM_ITEM_COUNT);
 
     // Top-3 medals
     await expect(rows.nth(0)).toContainText('🥇');
@@ -154,7 +158,7 @@ test.describe('Rankings Tool - E2E Integration', () => {
     await expect(sourceLink).toContainText('Agent Arena');
 
     // As-of date shown in the detail
-    await expect(mainElement.getByText('2026-06', { exact: false }).first()).toBeVisible();
+    await expect(mainElement.getByText(LLM_AS_OF_YM, { exact: false }).first()).toBeVisible();
   });
 
   test('Scenario 4: Favorites, recents, localStorage persistence, keyboard navigation', async ({ page }) => {
@@ -188,7 +192,7 @@ test.describe('Rankings Tool - E2E Integration', () => {
     // Page should load without error
     mainText = await page.locator('main').textContent();
     expect(mainText).toContain('별별 랭킹');
-    expect(mainText).toContain('결과 2개');
+    expect(mainText).toContain(`결과 ${TOTAL_RANKINGS}개`);
   });
 
   test('Scenario 5: Locale swap (en), prerendered JSON-LD in static HTML', async ({ page }) => {
