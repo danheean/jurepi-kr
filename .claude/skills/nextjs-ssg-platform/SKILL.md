@@ -57,6 +57,8 @@ NextIntlClientProvider → ThemeProvider → ConsentProvider → ToastProvider
 
 **모든 도구는 마스코트 아바타 `public/characters/<slug>.webp`가 있어야 한다 — `ToolCharacter`는 폴백이 없어 없으면 라이브에서 404 + 깨진 이미지다.** cheer 실측: 도구 배선(registry·i18n·route)은 다 됐는데 마스코트 파일이 없어 라이브 콘솔에 `GET /characters/cheer.webp 404`(빌드·유닛·프리렌더 전부 그린 — 정적 에셋은 빌드가 검사 안 함, **리더 라이브 콘솔 게이트로만 적발**). 새 도구 배선 체크리스트에 마스코트 자산 추가: 정식 아트(캐릭터 시트→`scripts/slice-characters.mjs`, 300×300 webp ~12–18KB)가 있으면 그것을, 없으면 사용자에게 요청하거나 임시 플레이스홀더(형제 카테고리 도구 복사)를 넣고 **배포 전 교체 필요를 명시**한다. 소스 PNG는 `docs/resources/jurepi_characters/<slug>.png`에 함께 커밋(추적됨).
 
+**마스코트 소스(정사각형, 제목+캐릭터+목업이 한 구도) → 300×300 webp 변환 기본값은 "크롭 없이 리사이즈"다. 캐릭터 얼굴 확대 등 임의 크롭을 시도하지 마라 — 제목 텍스트와 UI 목업이 잘려 나간다.** cheer 실측: 소스(1254²)에서 캐릭터 중심으로 720×720(+520,+120) 크롭 후 300²로 확대했더니 제목 "모두의 응원"이 "두의 응원"(앞 글자 잘림)으로, 하단 LED 배너 목업·"LED 전광판 응원도구" 배지·"웹 애플리케이션" 라벨이 전부 프레임 밖으로 사라짐 — 화면만 보면 오타난 것처럼 보이는 라이브 버그였는데 빌드·유닛·프리렌더는 전부 그린(정적 에셋 내용은 아무 게이트도 안 봄), 사용자가 캡처를 보내서야 발견. 형제 도구 lotto-generator.webp를 대조하니 **크롭 없이 정사각 소스를 그대로 300×300으로 축소**해 제목·캐릭터·목업이 온전히 보였다. **예방:** 신규 마스코트는 `sips -z 300 300 source.png --out tmp.png && cwebp -q 85 tmp.png -o public/characters/<slug>.webp`(크롭 좌표 없이) 를 기본값으로 하고, 리더는 생성 직후 Read로 결과 webp를 직접 열어 제목 전체·캐릭터·목업이 모두 프레임 안에 있는지 확인한다. 캐릭터만 클로즈업하고 싶다는 명시적 요청이 있을 때만 크롭을 고려하고, 그 경우도 크롭 결과를 Read로 반드시 확인한다("그럴듯한 크롭 좌표"는 증명이 아니다).
+
 ## SEO·i18n·동의·광고·CWV 상세
 
 라우팅 표, `generateStaticParams` 정확한 형태, 메시지 네임스페이스 규약, JSON-LD 종류(WebSite/SoftwareApplication/FAQPage), hreflang/canonical, AdSlot 높이·동의 게이팅, CSP 블록, CWV 체크리스트는 분량이 크다 → **`references/i18n-seo-cwv.md`를 읽어라.**
