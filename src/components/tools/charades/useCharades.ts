@@ -19,6 +19,7 @@ import {
   type GameState,
   type WordResult,
 } from '@/lib/charades/game-reducer';
+import { playTone, toneSpec } from '@/lib/charades/sound';
 
 const STORAGE_KEY = 'jurepi-charades';
 const SEARCH_DEBOUNCE = 120;
@@ -443,8 +444,14 @@ export function useCharades(): UseCharadesReturn {
     roundTimeMs: state.setupSettings.roundTimeSeconds ? state.setupSettings.roundTimeSeconds * 1000 : null,
     score: state.game?.score || { correct: 0, pass: 0, timeout: 0 },
     canUndo: (state.game?.currentIndex ?? 0) > 0,
-    markCorrect: () => dispatch({ type: 'MARK_CORRECT' }),
-    markPass: () => dispatch({ type: 'MARK_PASS' }),
+    markCorrect: () => {
+      playTone(toneSpec('chime'), state.store.settings.soundOn);
+      dispatch({ type: 'MARK_CORRECT' });
+    },
+    markPass: () => {
+      playTone(toneSpec('buzz'), state.store.settings.soundOn);
+      dispatch({ type: 'MARK_PASS' });
+    },
     undo: () => dispatch({ type: 'UNDO' }),
     endGame: () => dispatch({ type: 'END_GAME' }),
     summaryWords,

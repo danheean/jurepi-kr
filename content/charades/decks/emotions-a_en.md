@@ -1,5 +1,5 @@
 ---
-title: Emotions A
+title: Emotion Expressions
 words:
   - term: Anger
   - term: Sadness

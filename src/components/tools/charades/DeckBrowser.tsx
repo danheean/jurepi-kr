@@ -56,7 +56,7 @@ export function DeckBrowser({ quiz, inputRef }: DeckBrowserProps) {
             placeholder={t('search.placeholder')}
             value={quiz.query}
             onChange={(e) => quiz.setQuery(e.target.value)}
-            className="w-full px-4 py-3 border border-hairline rounded-lg bg-surface text-text placeholder-text-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            className="w-full px-4 py-3 border border-hairline rounded-lg bg-surface text-text placeholder-text-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
             data-testid="deck-search-input"
           />
           {quiz.query && (
@@ -81,7 +81,7 @@ export function DeckBrowser({ quiz, inputRef }: DeckBrowserProps) {
             type="button"
             onClick={() => quiz.setActiveCategory(value as any)}
             aria-pressed={quiz.activeCategory === value}
-            className={`px-4 py-2 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+            className={`inline-flex items-center min-h-11 px-4 rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring ${
               quiz.activeCategory === value
                 ? 'bg-brand text-on-brand'
                 : 'bg-surface-muted text-text-secondary hover:bg-hairline'

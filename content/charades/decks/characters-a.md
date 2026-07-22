@@ -1,5 +1,5 @@
 ---
-title: 캐릭터·역할 A
+title: 판타지 캐릭터
 category: characters
 difficulty: normal
 words:

@@ -1,5 +1,5 @@
 ---
-title: Animals A
+title: Zoo Animals
 words:
   - term: Kangaroo
   - term: Elephant

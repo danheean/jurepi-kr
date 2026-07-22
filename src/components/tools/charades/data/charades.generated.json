@@ -43,7 +43,7 @@
       }
     ],
     "ko": {
-      "title": "동작 A",
+      "title": "일상 동작",
       "words": [
         {
           "term": "자전거 타기"
@@ -85,7 +85,7 @@
       ]
     },
     "en": {
-      "title": "Actions A",
+      "title": "Everyday Actions",
       "words": [
         {
           "term": "Riding a bike"
@@ -171,7 +171,7 @@
       }
     ],
     "ko": {
-      "title": "동물 A",
+      "title": "동물원 동물",
       "words": [
         {
           "term": "캥거루"
@@ -213,7 +213,7 @@
       ]
     },
     "en": {
-      "title": "Animals A",
+      "title": "Zoo Animals",
       "words": [
         {
           "term": "Kangaroo"
@@ -293,7 +293,7 @@
       }
     ],
     "ko": {
-      "title": "직업 A",
+      "title": "일상 직업",
       "words": [
         {
           "term": "의사"
@@ -329,7 +329,7 @@
       ]
     },
     "en": {
-      "title": "Occupations A",
+      "title": "Everyday Jobs",
       "words": [
         {
           "term": "Doctor"
@@ -403,7 +403,7 @@
       }
     ],
     "ko": {
-      "title": "캐릭터·역할 A",
+      "title": "판타지 캐릭터",
       "words": [
         {
           "term": "좀비"
@@ -439,7 +439,7 @@
       ]
     },
     "en": {
-      "title": "Characters A",
+      "title": "Fantasy Characters",
       "words": [
         {
           "term": "Zombie"
@@ -516,7 +516,7 @@
       }
     ],
     "ko": {
-      "title": "스포츠 A",
+      "title": "인기 스포츠",
       "words": [
         {
           "term": "야구"
@@ -555,7 +555,7 @@
       ]
     },
     "en": {
-      "title": "Sports A",
+      "title": "Popular Sports",
       "words": [
         {
           "term": "Baseball"
@@ -639,7 +639,7 @@
       }
     ],
     "ko": {
-      "title": "감정 A",
+      "title": "감정 표현",
       "words": [
         {
           "term": "화남"
@@ -682,7 +682,7 @@
       ]
     },
     "en": {
-      "title": "Emotions A",
+      "title": "Emotion Expressions",
       "words": [
         {
           "term": "Anger"

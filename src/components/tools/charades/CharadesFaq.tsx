@@ -22,7 +22,7 @@ export function CharadesFaq() {
       <div className="space-y-4">
         {faqItems.map((item, idx) => (
           <details key={idx} className="border border-hairline rounded-lg p-4 hover:bg-surface-muted transition">
-            <summary className="font-semibold text-text cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded">
+            <summary className="font-semibold text-text cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded">
               {item.q}
             </summary>
             <p className="mt-3 text-text-secondary leading-relaxed whitespace-pre-wrap">{item.a}</p>

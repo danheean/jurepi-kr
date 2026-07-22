@@ -1,5 +1,5 @@
 ---
-title: Sports A
+title: Popular Sports
 words:
   - term: Baseball
   - term: Soccer

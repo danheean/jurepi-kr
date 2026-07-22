@@ -1,5 +1,5 @@
 ---
-title: Characters A
+title: Fantasy Characters
 words:
   - term: Zombie
   - term: Robot

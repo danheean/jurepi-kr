@@ -1,5 +1,5 @@
 ---
-title: 스포츠 A
+title: 인기 스포츠
 category: sports
 difficulty: normal
 words:

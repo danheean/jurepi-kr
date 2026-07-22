@@ -1,5 +1,5 @@
 ---
-title: Actions A
+title: Everyday Actions
 words:
   - term: Riding a bike
   - term: Fishing

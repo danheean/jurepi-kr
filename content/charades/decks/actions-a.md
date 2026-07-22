@@ -1,5 +1,5 @@
 ---
-title: 동작 A
+title: 일상 동작
 category: actions
 difficulty: easy
 words:

@@ -289,7 +289,7 @@ src/
     <steps>
       1. actions-a.md + actions-a_en.md exist with ≥10 words vetted against the curation checklist.
       2. pnpm dev → predev generator runs → charades.generated.json has merged record.
-      3. Visit /ko/tools/charades → deck browser renders "동작 A" card.
+      3. Visit /ko/tools/charades → deck browser renders "일상 동작" card.
       4. Missing pair or <10 words → generator reports file/reason, exits non-zero.
     </steps>
   </test_scenario_2>

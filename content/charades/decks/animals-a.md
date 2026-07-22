@@ -1,5 +1,5 @@
 ---
-title: 동물 A
+title: 동물원 동물
 category: animals
 difficulty: easy
 words:

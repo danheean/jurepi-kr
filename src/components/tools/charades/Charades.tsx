@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useCharades } from './useCharades';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { DeckBrowser } from './DeckBrowser';
 import { GameSetup } from './GameSetup';
 import { GameBoard } from './GameBoard';
@@ -15,6 +16,7 @@ import { GameSummary } from './GameSummary';
 export function Charades() {
   const t = useTranslations('tools.charades');
   const quiz = useCharades();
+  const reducedMotion = useReducedMotion();
   const [showHelp, setShowHelp] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -99,7 +101,7 @@ export function Charades() {
           roundTimeMs={quiz.roundTimeMs}
           score={quiz.score}
           canUndo={quiz.canUndo}
-          reducedMotion={false}
+          reducedMotion={reducedMotion}
           onCorrect={quiz.markCorrect}
           onPass={quiz.markPass}
           onUndo={quiz.undo}
@@ -169,7 +171,6 @@ export function Charades() {
           pass: t('summary.pass', { count: quiz.score.pass }),
           timeout: t('summary.timeout', { count: quiz.score.timeout }),
           results: t('summary.results'),
-          wordList: t('summary.wordList'),
           replay: t('summary.replay'),
           home: t('summary.home'),
         }}

@@ -1,5 +1,5 @@
 ---
-title: Occupations A
+title: Everyday Jobs
 words:
   - term: Doctor
   - term: Firefighter

@@ -10,7 +10,6 @@ const mockLabels = {
   pass: '패스 {count}개',
   timeout: '시간초과 {count}개',
   results: '결과',
-  wordList: '단어 목록',
   replay: '다시 하기',
   home: '홈으로',
 };
@@ -87,6 +86,12 @@ describe('GameSummary', () => {
 
   it('handles empty word list gracefully', () => {
     renderGameSummary({ words: [] });
-    expect(screen.getByText('단어 목록')).toBeInTheDocument();
+    expect(screen.getByText('결과')).toBeInTheDocument();
+  });
+
+  it('does not render the same words twice', () => {
+    const { container } = renderGameSummary({ words: mockWords });
+    const occurrences = container.textContent?.split('코끼리').length! - 1;
+    expect(occurrences).toBe(1);
   });
 });

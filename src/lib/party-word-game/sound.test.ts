@@ -1,10 +1,33 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import {
   toneSpec,
+  playTone,
   SOUND_TICK_HZ,
   SOUND_CHIME_HZ,
   SOUND_BUZZ_HZ,
 } from './sound';
+
+function mockAudioContext() {
+  const oscillator = {
+    connect: vi.fn(),
+    start: vi.fn(),
+    stop: vi.fn(),
+    frequency: { value: 0 },
+    type: '',
+  };
+  const gain = {
+    connect: vi.fn(),
+    gain: { value: 0, setValueAtTime: vi.fn(), exponentialRampToValueAtTime: vi.fn() },
+  };
+  const ctx = {
+    createOscillator: vi.fn(() => oscillator),
+    createGain: vi.fn(() => gain),
+    destination: {},
+    resume: vi.fn(() => Promise.resolve()),
+    currentTime: 0,
+  };
+  return { ctx, oscillator, gain };
+}
 
 describe('sound — pure tone spec builders', () => {
   describe('toneSpec', () => {
@@ -106,6 +129,69 @@ describe('sound — pure tone spec builders', () => {
         const spec = toneSpec(kind as any);
         expect(typeof spec.type).toBe('string');
       });
+    });
+  });
+
+  describe('playTone', () => {
+    it('does not call ctxFactory when enabled=false', () => {
+      const ctxFactory = vi.fn();
+      playTone(toneSpec('chime'), false, ctxFactory);
+      expect(ctxFactory).not.toHaveBeenCalled();
+    });
+
+    it('creates an oscillator tuned to the spec frequency and type when enabled=true', () => {
+      const { ctx, oscillator, gain } = mockAudioContext();
+      playTone(toneSpec('chime'), true, () => ctx as any);
+
+      expect(ctx.createOscillator).toHaveBeenCalled();
+      expect(ctx.createGain).toHaveBeenCalled();
+      expect(oscillator.frequency.value).toBe(SOUND_CHIME_HZ);
+      expect(oscillator.type).toBe('sine');
+      expect(oscillator.connect).toHaveBeenCalledWith(gain);
+      expect(gain.connect).toHaveBeenCalledWith(ctx.destination);
+    });
+
+    it('starts and stops the oscillator for the spec duration', () => {
+      const { ctx, oscillator } = mockAudioContext();
+      playTone(toneSpec('buzz'), true, () => ctx as any);
+
+      expect(oscillator.start).toHaveBeenCalled();
+      expect(oscillator.stop).toHaveBeenCalled();
+    });
+
+    it('produces a different frequency per tone kind', () => {
+      const tick = mockAudioContext();
+      playTone(toneSpec('tick'), true, () => tick.ctx as any);
+      const buzz = mockAudioContext();
+      playTone(toneSpec('buzz'), true, () => buzz.ctx as any);
+
+      expect(tick.oscillator.frequency.value).toBe(SOUND_TICK_HZ);
+      expect(buzz.oscillator.frequency.value).toBe(SOUND_BUZZ_HZ);
+      expect(tick.oscillator.frequency.value).not.toBe(buzz.oscillator.frequency.value);
+    });
+
+    it('does not throw when ctxFactory returns null', () => {
+      expect(() => playTone(toneSpec('chime'), true, () => null)).not.toThrow();
+    });
+
+    it('does not throw when audio setup fails', () => {
+      const ctx = {
+        createOscillator: vi.fn(() => {
+          throw new Error('Audio context error');
+        }),
+        resume: vi.fn(),
+      };
+      expect(() => playTone(toneSpec('chime'), true, () => ctx as any)).not.toThrow();
+    });
+
+    it('works when called without explicit ctxFactory (uses default)', () => {
+      // jsdom has no window.AudioContext, so the default factory resolves to null and this is a no-op.
+      expect(() => playTone(toneSpec('chime'), true)).not.toThrow();
+    });
+
+    it('returns void regardless of enabled state', () => {
+      expect(playTone(toneSpec('chime'), true)).toBeUndefined();
+      expect(playTone(toneSpec('chime'), false)).toBeUndefined();
     });
   });
 

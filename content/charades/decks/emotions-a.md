@@ -1,5 +1,5 @@
 ---
-title: 감정 A
+title: 감정 표현
 category: emotions
 difficulty: hard
 words:

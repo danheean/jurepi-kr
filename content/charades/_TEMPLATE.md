@@ -1,5 +1,5 @@
 ---
-title: 동작 A
+title: 일상 동작
 category: actions
 difficulty: easy
 words:
@@ -20,7 +20,7 @@ This is the Korean template for charades ("몸으로 말해요") decks.
 
 Replace title, category, difficulty, and words with your own content.
 
-- **title**: Deck name in Korean (e.g., "동작 A", "동물 A")
+- **title**: A short, descriptive deck name in Korean — describe what's actually in the deck (e.g., "일상 동작", "동물원 동물"). Don't just append a letter to the category name ("동작 A") — with one deck per category today, that suffix implies a nonexistent "B" variant and just repeats the category heading already shown above the card.
 - **category**: One of: actions, animals, occupations, characters, sports, emotions
 - **difficulty**: One of: easy, normal, hard
 - **words**: Array of objects with `term` (required) and optional `hint` (≤30 chars, performer-only private cue — never shown to guessers)

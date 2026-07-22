@@ -1,5 +1,5 @@
 ---
-title: 직업 A
+title: 일상 직업
 category: occupations
 difficulty: normal
 words:

@@ -24,7 +24,6 @@ export interface GameSummaryProps {
     pass: string;
     timeout: string;
     results: string;
-    wordList: string;
     replay: string;
     home: string;
   };
@@ -48,11 +47,11 @@ function getResultIcon(result: WordResult['result']): string {
 function getResultColorClass(result: WordResult['result']): string {
   switch (result) {
     case 'correct':
-      return 'text-success';
+      return 'text-success-ink';
     case 'pass':
-      return 'text-danger';
+      return 'text-danger-ink';
     case 'timeout':
-      return 'text-warning';
+      return 'text-warning-ink';
     case 'unrevealed':
       return 'text-text-muted';
     default:
@@ -78,7 +77,7 @@ export function GameSummary({ outcome, score, words, onReplay, onHome, labels }:
       {/* Score card */}
       <div className="bg-surface shadow-card rounded-lg border border-hairline p-6 md:p-8 mb-8 space-y-4">
         <div className="text-center">
-          <p className="text-5xl md:text-6xl font-bold text-brand mb-2">{score.correct}</p>
+          <p className="text-5xl md:text-6xl font-bold text-brand-ink mb-2">{score.correct}</p>
           <p className="text-lg text-text-secondary">{correctLabel}</p>
         </div>
         <div className="text-center border-t border-hairline pt-4">
@@ -87,16 +86,18 @@ export function GameSummary({ outcome, score, words, onReplay, onHome, labels }:
         </div>
         {score.timeout > 0 && (
           <div className="text-center border-t border-hairline pt-4">
-            <p className="text-4xl font-bold text-warning mb-2">{score.timeout}</p>
+            <p className="text-4xl font-bold text-warning-ink mb-2">{score.timeout}</p>
             <p className="text-base text-text-muted">{timeoutLabel}</p>
           </div>
         )}
       </div>
 
-      {/* Word-by-word results */}
-      <div className="mb-8">
+      {/* Word-by-word results — the single list of every word + its outcome.
+          (Previously followed by a second "word list" section repeating the
+          same terms with no result icon — pure duplication, removed.) */}
+      <div className="mb-12">
         <h3 className="font-semibold text-lg text-text mb-4">{labels.results}</h3>
-        <div className="space-y-2 max-h-48 overflow-y-auto">
+        <div className="space-y-2 max-h-64 overflow-y-auto">
           {words.map((word, idx) => (
             <div
               key={idx}
@@ -107,16 +108,6 @@ export function GameSummary({ outcome, score, words, onReplay, onHome, labels }:
               </span>
               <span className="text-text">{word.term}</span>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Full word list */}
-      <div className="mb-12">
-        <h3 className="font-semibold text-lg text-text mb-4">{labels.wordList}</h3>
-        <div className="space-y-1 text-text-secondary text-sm max-h-40 overflow-y-auto">
-          {words.map((word, idx) => (
-            <p key={idx}>{word.term}</p>
           ))}
         </div>
       </div>

@@ -3736,7 +3736,6 @@
         "pass": "{count} passed",
         "timeout": "{count} timed out",
         "results": "Results",
-        "wordList": "Word list",
         "replay": "Play again",
         "home": "Home"
       },

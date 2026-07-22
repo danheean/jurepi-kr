@@ -61,68 +61,79 @@ export function GameBoard({
   const isLowTime = timerMs !== null && timerMs <= 10000;
   const timerPulseClass = isLowTime && !reducedMotion ? 'animate-pulse' : '';
 
-  // Determine timer color: brand color (>10s), coral + pulse (≤10s)
-  const timerColorClass = isLowTime ? 'text-accent-coral' : 'text-brand';
+  // Determine timer color: brand color (>10s), coral + pulse (≤10s).
+  // Uses the -ink variants (not the raw fill tokens) — the raw --brand/--accent-coral
+  // fill colors are ~2:1 contrast on white and fail WCAG AA as text.
+  const timerColorClass = isLowTime ? 'text-accent-coral-ink' : 'text-brand-ink';
 
   // Progress indicator (current word / total)
   const wordProgress = labels.of.replace('{current}', `${index + 1}`).replace('{total}', `${total}`);
 
   // Keyboard shortcuts (Space/→/←/Esc) are owned by the Charades orchestrator,
   // which also guards against the search input and drives the help overlay.
+  //
+  // The HUD row (Undo | Timer | Score+End) is a 3-column grid, not four
+  // independently `absolute`-positioned corners. Grid tracks never overlap —
+  // pinning each element to a fixed left-8/right-8/top-32 offset meant the
+  // centered Timer collided with the Undo button below ~344px viewport width.
   return (
-    <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-surface p-6 md:p-8"
-      data-testid="game-board"
-    >
-      {/* Timer (top center) + "no talking" reminder */}
-      <div
-        ref={timerRef}
-        className={`absolute top-8 left-1/2 -translate-x-1/2 text-center ${timerColorClass} ${timerPulseClass}`}
-        role="timer"
-        aria-live="polite"
-        aria-label={`Timer: ${formatTimer(timerMs)}`}
-        data-testid="game-timer"
-      >
-        <div className="font-mono text-[72px] font-bold tabular-nums leading-none">{formatTimer(timerMs)}</div>
-        <p
-          className="mt-1 text-xs font-semibold uppercase tracking-wide text-accent-mint"
-          data-testid="game-no-talking-badge"
+    <div className="fixed inset-0 z-50 flex flex-col bg-surface p-6 md:p-8" data-testid="game-board">
+      <div className="grid grid-cols-[auto_1fr_auto] items-start gap-2 sm:gap-4">
+        {/* Undo button (top left) */}
+        <button
+          onClick={onUndo}
+          disabled={!canUndo}
+          className="justify-self-start px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:enabled:bg-surface-muted active:enabled:scale-95"
+          aria-label={labels.undo}
+          title={`${labels.undo} (←)`}
+          data-testid="game-undo"
         >
-          {labels.noTalking}
-        </p>
+          ← {labels.undo}
+        </button>
+
+        {/* Timer (top center) + "no talking" reminder */}
+        <div
+          ref={timerRef}
+          className={`justify-self-center text-center ${timerColorClass} ${timerPulseClass}`}
+          role="timer"
+          aria-live="polite"
+          aria-label={`Timer: ${formatTimer(timerMs)}`}
+          data-testid="game-timer"
+        >
+          <div
+            className="font-mono font-bold tabular-nums leading-none"
+            style={{ fontSize: 'clamp(40px, 12vw, 72px)' }}
+          >
+            {formatTimer(timerMs)}
+          </div>
+          <p
+            className="mt-1 text-xs font-semibold uppercase tracking-wide text-accent-mint-ink"
+            data-testid="game-no-talking-badge"
+          >
+            {labels.noTalking}
+          </p>
+        </div>
+
+        {/* Score tally + End button (top right) */}
+        <div className="justify-self-end flex flex-col items-end gap-1">
+          <div className="space-y-1 text-right text-sm font-semibold text-text" aria-live="polite">
+            <div>{labels.correctScore.replace('{count}', String(score.correct))}</div>
+            <div>{labels.passScore.replace('{count}', String(score.pass))}</div>
+          </div>
+          <button
+            onClick={onEnd}
+            className="px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm text-text-secondary transition-all hover:bg-surface-muted active:scale-95"
+            aria-label={labels.end}
+            title={`${labels.end} (Esc)`}
+            data-testid="game-end"
+          >
+            {labels.end}
+          </button>
+        </div>
       </div>
-
-      {/* Score tally (top right) */}
-      <div className="absolute top-8 right-8 space-y-1 text-right text-sm font-semibold text-text" aria-live="polite">
-        <div>{labels.correctScore.replace('{count}', String(score.correct))}</div>
-        <div>{labels.passScore.replace('{count}', String(score.pass))}</div>
-      </div>
-
-      {/* Undo button (top left) */}
-      <button
-        onClick={onUndo}
-        disabled={!canUndo}
-        className="absolute top-8 left-8 px-4 py-2 rounded-lg font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:enabled:bg-surface-muted active:enabled:scale-95"
-        aria-label={labels.undo}
-        title={`${labels.undo} (←)`}
-        data-testid="game-undo"
-      >
-        ← {labels.undo}
-      </button>
-
-      {/* End button (top right, below score) */}
-      <button
-        onClick={onEnd}
-        className="absolute top-32 right-8 px-4 py-2 rounded-lg font-semibold text-sm text-text-secondary transition-all hover:bg-surface-muted active:scale-95"
-        aria-label={labels.end}
-        title={`${labels.end} (Esc)`}
-        data-testid="game-end"
-      >
-        {labels.end}
-      </button>
 
       {/* Center: prompt word */}
-      <div className="flex-1 flex flex-col items-center justify-center space-y-4 max-w-2xl">
+      <div className="flex-1 flex flex-col items-center justify-center space-y-4 max-w-2xl mx-auto w-full">
         <p
           className="font-display text-center leading-tight font-bold break-words"
           style={{
@@ -144,7 +155,7 @@ export function GameBoard({
       </div>
 
       {/* Bottom: action buttons */}
-      <div className="absolute bottom-8 left-6 right-6 grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         <button
           onClick={onCorrect}
           className={`py-4 md:py-5 px-6 rounded-lg font-bold text-base md:text-lg transition-all ${

@@ -39,7 +39,7 @@ export function DeckCard({
       <button
         type="button"
         onClick={onSelect}
-        className="w-full text-left bg-surface border border-hairline rounded-lg p-5 hover:shadow-card-hover transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        className="w-full text-left bg-surface border border-hairline rounded-lg p-5 hover:shadow-card-hover transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
         data-testid={`deck-card-${deck.slug}`}
       >
         <h3 className="text-lg font-bold text-text line-clamp-2 pr-12 mb-4">
@@ -57,7 +57,7 @@ export function DeckCard({
       <button
         type="button"
         onClick={onFavorite}
-        className="absolute top-3 right-3 flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg hover:bg-surface-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        className="absolute top-3 right-3 flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg hover:bg-surface-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
         aria-pressed={isFavorite}
         aria-label={isFavorite ? removeFavoriteLabel : addFavoriteLabel}
         data-testid={`deck-favorite-${deck.slug}`}
