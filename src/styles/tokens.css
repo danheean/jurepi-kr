@@ -66,6 +66,7 @@
      fill (white text = 6.47:1). */
   --danger-ink: #b91c1c; /* 6.47:1 on white */
   --warning-ink: #b45309; /* 5.02:1 on white */
+  --success-ink: #15803d; /* 5.01:1 on white — text/icon-safe (raw --success is only 2.3:1) */
   --on-success: #06371a; /* dark green text on --success fill — 5.85:1 (white on --success = 2.29:1, fails AA) */
 
   /* Focus */
@@ -137,6 +138,7 @@
   --accent-grape-ink: #f0bc5e; /* honey-gold ink — 8.9:1 on dark surface */
   --danger-ink: #f87171; /* 6.07:1 on dark surface */
   --warning-ink: #fbbf24; /* 10.05:1 on dark surface */
+  --success-ink: #4ade80; /* 9.62:1 on dark surface */
   --accent-mint-ink: #5eead4; /* light teal — readable on dark surface + dark mint tile */
   --accent-sun-ink: #fcd34d; /* light amber — readable on dark surface + dark sun tile */
   --accent-rose-ink: #fda4af; /* light rose — readable on dark surface + dark rose tile */
@@ -176,6 +178,7 @@
     --accent-grape-ink: #f0bc5e;
     --danger-ink: #f87171;
     --warning-ink: #fbbf24;
+    --success-ink: #4ade80;
     --accent-mint-ink: #5eead4;
     --accent-sun-ink: #fcd34d;
     --accent-rose-ink: #fda4af;

@@ -13,6 +13,9 @@ import { UrlEncoderStructuredData } from '@/components/tools/url-encoder/UrlEnco
 import { SpeedQuizHowTo } from '@/components/tools/speed-quiz/SpeedQuizHowTo';
 import { SpeedQuizFaq } from '@/components/tools/speed-quiz/SpeedQuizFaq';
 import { SpeedQuizStructuredData } from '@/components/tools/speed-quiz/SpeedQuizStructuredData';
+import { CharadesHowTo } from '@/components/tools/charades/CharadesHowTo';
+import { CharadesFaq } from '@/components/tools/charades/CharadesFaq';
+import { CharadesStructuredData } from '@/components/tools/charades/CharadesStructuredData';
 import { AgeCalculatorHowTo } from '@/components/tools/age-calculator/AgeCalculatorHowTo';
 import { AgeCalculatorFaq } from '@/components/tools/age-calculator/AgeCalculatorFaq';
 import { AgeCalculatorStructuredData } from '@/components/tools/age-calculator/AgeCalculatorStructuredData';
@@ -106,6 +109,12 @@ const Bookmarks = dynamic(() =>
 const SpeedQuiz = dynamic(() =>
   import('@/components/tools/speed-quiz/SpeedQuiz').then((m) => ({
     default: m.SpeedQuiz,
+  }))
+);
+
+const Charades = dynamic(() =>
+  import('@/components/tools/charades/Charades').then((m) => ({
+    default: m.Charades,
   }))
 );
 
@@ -298,6 +307,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } else if (slug === 'speed-quiz') {
     title = t('meta.title');
     description = t('meta.description');
+  } else if (slug === 'charades') {
+    title = t('meta.title');
+    description = t('meta.description');
   } else if (slug === 'age-calculator') {
     title = t('meta.title');
     description = t('meta.description');
@@ -462,6 +474,17 @@ async function ToolBody({ slug, locale }: { slug: string; locale: string }) {
         <SpeedQuiz />
         <SpeedQuizHowTo />
         <SpeedQuizFaq />
+      </>
+    );
+  }
+
+  if (slug === 'charades') {
+    return (
+      <>
+        <CharadesStructuredData />
+        <Charades />
+        <CharadesHowTo />
+        <CharadesFaq />
       </>
     );
   }

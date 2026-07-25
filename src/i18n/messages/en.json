@@ -3668,6 +3668,147 @@
         ]
       }
     },
+    "charades": {
+      "title": "Charades",
+      "description": "A silent-acting party game — reveal prompt words one at a time on a big screen by category (actions, animals, jobs, and more), then act them out using body language only, no talking.",
+      "meta": {
+        "title": "Charades · Silent Acting Party Game Host Tool",
+        "description": "No talking allowed! Act out prompt words with gestures and facial expressions while your team guesses. Includes a big performer screen, countdown timer, and category/difficulty selection."
+      },
+      "intro": {
+        "eyebrow": "PARTY GAME TOOL",
+        "title": "Charades",
+        "lead": "Pick a category and difficulty, then reveal prompt words one at a time on a big screen and act them out with gestures and expressions only — no speaking. Track your team's guesses against the clock, then see your score and the full word list when the round ends."
+      },
+      "categories": {
+        "all": "All",
+        "actions": "Actions",
+        "animals": "Animals",
+        "occupations": "Occupations",
+        "characters": "Characters",
+        "sports": "Sports",
+        "emotions": "Emotions",
+        "favorites": "Favorites"
+      },
+      "difficulty": {
+        "easy": "Easy",
+        "normal": "Normal",
+        "hard": "Hard"
+      },
+      "search": {
+        "placeholder": "Search by category or deck name…",
+        "clear": "Clear search",
+        "noResults": "No games match “{query}”"
+      },
+      "deck": {
+        "wordCount": "{count} words",
+        "addFavorite": "Add to favorites",
+        "removeFavorite": "Remove from favorites"
+      },
+      "setup": {
+        "title": "Game Setup",
+        "selectedDeck": "Selected deck",
+        "difficulty": "Difficulty",
+        "roundTime": "Round time",
+        "time30": "30s",
+        "time60": "60s",
+        "time90": "90s",
+        "unlimited": "No limit",
+        "shuffle": "Shuffle words",
+        "hints": "Show hint (performer only)",
+        "start": "Start Game",
+        "cancel": "Cancel"
+      },
+      "board": {
+        "correct": "Correct",
+        "pass": "Pass",
+        "undo": "Undo",
+        "end": "End",
+        "correctScore": "Correct: {count}",
+        "passScore": "Pass: {count}",
+        "hintLabel": "Hint",
+        "timeUp": "Time's up",
+        "of": "{current} / {total}",
+        "noTalking": "No talking!"
+      },
+      "summary": {
+        "titleDone": "Round over!",
+        "titleTimeout": "Time's up!",
+        "correct": "{count} correct",
+        "pass": "{count} passed",
+        "timeout": "{count} timed out",
+        "results": "Results",
+        "replay": "Play again",
+        "home": "Home"
+      },
+      "sound": {
+        "mute": "Mute sound",
+        "unmute": "Unmute sound"
+      },
+      "keyboard": {
+        "title": "Keyboard Shortcuts",
+        "space": "Space — next word",
+        "pass": "→ — pass",
+        "undo": "← — undo",
+        "end": "Esc — end game",
+        "help": "? — help",
+        "close": "Enter — close help"
+      },
+      "empty": {
+        "noDecks": "No games available yet"
+      },
+      "howTo": {
+        "title": "How to Play Charades",
+        "lead": "Charades is a party game where one player acts out a word in silence while everyone else guesses.",
+        "steps": [
+          {
+            "title": "Pick a category and difficulty",
+            "body": "Choose a category to play (Actions, Animals, Occupations, and more) and a difficulty (Easy, Normal, Hard). Click a deck card to open the game setup screen."
+          },
+          {
+            "title": "Configure the round",
+            "body": "Set a round time (30s, 60s, 90s, or no limit). Turn on 'Shuffle words' if you like, decide whether to show performer-only hints, then tap 'Start Game'."
+          },
+          {
+            "title": "Act it out — no talking",
+            "body": "The prompt word appears center-screen and the timer starts. The performer must act it out using gestures and facial expressions only — no speaking, no spelling, no sound effects. Tap 'Correct' when the team guesses right, or 'Pass' to skip."
+          },
+          {
+            "title": "Check the results",
+            "body": "When all words are revealed or time runs out, the summary screen shows your score and the full word list to review."
+          }
+        ],
+        "useCasesTitle": "When should you use it?",
+        "useCasesBody": "Great for office team-building nights split into teams for friendly competition, classroom recreation or workshop icebreakers, and family gatherings where everyone, any age, can join in. Only the performer needs to see the screen, so it works well projected on a big screen for a crowd.",
+        "tipsTitle": "Tips",
+        "tipsBody": "Have the performer keep the screen to themselves and hide it from the guessing team. Use your whole body and face, not just your hands, for clearer clues. Raise the difficulty or shorten the round time for more tension, and turn on 'Shuffle words' so the same deck plays differently every time."
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What kind of game is Charades?",
+            "a": "Charades has one player (the performer) check a prompt word on a big screen, then act it out using gestures and facial expressions only — no talking. Each word runs against a timer, and the performer marks correct/pass to tally the final score."
+          },
+          {
+            "q": "How is this different from Speed Quiz Prompt Words?",
+            "a": "Speed Quiz is guessed through spoken description; Charades must be acted out in complete silence. The prompt words are curated for physical mimeability too — actions, animals, occupations, roles, sports, and emotions."
+          },
+          {
+            "q": "How many players do I need?",
+            "a": "There's no player limit. Three or more is enough to have fun, and splitting into teams makes it more competitive. One player performs while everyone else guesses."
+          },
+          {
+            "q": "How do hints work?",
+            "a": "Turn on 'Show hint' in setup before starting, and a small hint appears below each word — but only on the performer's own screen. The guessing team never sees it."
+          },
+          {
+            "q": "Where is my data stored?",
+            "a": "All game data stays in your browser's local storage only and is never sent to a server. Refreshing the page resets an in-progress round, but your favorites and recent games are saved in localStorage."
+          }
+        ]
+      }
+    },
     "barcode-generator": {
       "title": "Barcode Generator",
       "description": "Generate EAN-13, UPC-A, Code 39, and Code 128 barcodes for free. Download as PNG or SVG.",

@@ -45,6 +45,7 @@ const config: Config = {
         'accent-grape-ink': 'var(--accent-grape-ink)',
         'accent-rose-ink': 'var(--accent-rose-ink)',
         success: 'var(--success)',
+        'success-ink': 'var(--success-ink)',
         'on-success': 'var(--on-success)',
         warning: 'var(--warning)',
         danger: 'var(--danger)',

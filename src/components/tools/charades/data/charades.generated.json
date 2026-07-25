@@ -1,0 +1,1334 @@
+[
+  {
+    "slug": "actions-a",
+    "category": "actions",
+    "difficulty": "easy",
+    "words": [
+      {
+        "term": "자전거"
+      },
+      {
+        "term": "낚시"
+      },
+      {
+        "term": "양치질"
+      },
+      {
+        "term": "설거지"
+      },
+      {
+        "term": "줄넘기"
+      },
+      {
+        "term": "눈사람"
+      },
+      {
+        "term": "기타"
+      },
+      {
+        "term": "저글링",
+        "hint": "공 여러 개를 동시에 던져요"
+      },
+      {
+        "term": "사진"
+      },
+      {
+        "term": "우산"
+      }
+    ],
+    "ko": {
+      "title": "일상 동작 A팀",
+      "words": [
+        {
+          "term": "자전거"
+        },
+        {
+          "term": "낚시"
+        },
+        {
+          "term": "양치질"
+        },
+        {
+          "term": "설거지"
+        },
+        {
+          "term": "줄넘기"
+        },
+        {
+          "term": "눈사람"
+        },
+        {
+          "term": "기타"
+        },
+        {
+          "term": "저글링",
+          "hint": "공 여러 개를 동시에 던져요"
+        },
+        {
+          "term": "사진"
+        },
+        {
+          "term": "우산"
+        }
+      ]
+    },
+    "en": {
+      "title": "Everyday Actions Team A",
+      "words": [
+        {
+          "term": "Bicycle"
+        },
+        {
+          "term": "Fishing"
+        },
+        {
+          "term": "Brushing teeth"
+        },
+        {
+          "term": "Washing dishes"
+        },
+        {
+          "term": "Jump rope"
+        },
+        {
+          "term": "Snowman"
+        },
+        {
+          "term": "Guitar"
+        },
+        {
+          "term": "Juggling",
+          "hint": "Tossing several balls at once"
+        },
+        {
+          "term": "Photo"
+        },
+        {
+          "term": "Umbrella"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "actions-b",
+    "category": "actions",
+    "difficulty": "easy",
+    "words": [
+      {
+        "term": "계단"
+      },
+      {
+        "term": "신발끈"
+      },
+      {
+        "term": "그네"
+      },
+      {
+        "term": "훌라후프"
+      },
+      {
+        "term": "물구나무서기"
+      },
+      {
+        "term": "빗자루"
+      },
+      {
+        "term": "세수"
+      },
+      {
+        "term": "머리 감기"
+      },
+      {
+        "term": "다림질",
+        "hint": "손으로 천천히 밀었다 당겼다 해요"
+      },
+      {
+        "term": "요가"
+      }
+    ],
+    "ko": {
+      "title": "일상 동작 B팀",
+      "words": [
+        {
+          "term": "계단"
+        },
+        {
+          "term": "신발끈"
+        },
+        {
+          "term": "그네"
+        },
+        {
+          "term": "훌라후프"
+        },
+        {
+          "term": "물구나무서기"
+        },
+        {
+          "term": "빗자루"
+        },
+        {
+          "term": "세수"
+        },
+        {
+          "term": "머리 감기"
+        },
+        {
+          "term": "다림질",
+          "hint": "손으로 천천히 밀었다 당겼다 해요"
+        },
+        {
+          "term": "요가"
+        }
+      ]
+    },
+    "en": {
+      "title": "Everyday Actions Team B",
+      "words": [
+        {
+          "term": "Stairs"
+        },
+        {
+          "term": "Shoelace"
+        },
+        {
+          "term": "Swing"
+        },
+        {
+          "term": "Hula hoop"
+        },
+        {
+          "term": "Handstand"
+        },
+        {
+          "term": "Broom"
+        },
+        {
+          "term": "Washing your face"
+        },
+        {
+          "term": "Washing your hair"
+        },
+        {
+          "term": "Ironing",
+          "hint": "Slide your hand back and forth"
+        },
+        {
+          "term": "Yoga"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "animals-a",
+    "category": "animals",
+    "difficulty": "easy",
+    "words": [
+      {
+        "term": "캥거루"
+      },
+      {
+        "term": "코끼리"
+      },
+      {
+        "term": "원숭이"
+      },
+      {
+        "term": "뱀"
+      },
+      {
+        "term": "펭귄"
+      },
+      {
+        "term": "문어",
+        "hint": "다리가 여덟 개예요"
+      },
+      {
+        "term": "고릴라"
+      },
+      {
+        "term": "토끼"
+      },
+      {
+        "term": "곰"
+      },
+      {
+        "term": "거북이"
+      }
+    ],
+    "ko": {
+      "title": "동물 A팀",
+      "words": [
+        {
+          "term": "캥거루"
+        },
+        {
+          "term": "코끼리"
+        },
+        {
+          "term": "원숭이"
+        },
+        {
+          "term": "뱀"
+        },
+        {
+          "term": "펭귄"
+        },
+        {
+          "term": "문어",
+          "hint": "다리가 여덟 개예요"
+        },
+        {
+          "term": "고릴라"
+        },
+        {
+          "term": "토끼"
+        },
+        {
+          "term": "곰"
+        },
+        {
+          "term": "거북이"
+        }
+      ]
+    },
+    "en": {
+      "title": "Animals Team A",
+      "words": [
+        {
+          "term": "Kangaroo"
+        },
+        {
+          "term": "Elephant"
+        },
+        {
+          "term": "Monkey"
+        },
+        {
+          "term": "Snake"
+        },
+        {
+          "term": "Penguin"
+        },
+        {
+          "term": "Octopus",
+          "hint": "Has eight legs"
+        },
+        {
+          "term": "Gorilla"
+        },
+        {
+          "term": "Rabbit"
+        },
+        {
+          "term": "Bear"
+        },
+        {
+          "term": "Turtle"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "animals-b",
+    "category": "animals",
+    "difficulty": "easy",
+    "words": [
+      {
+        "term": "사자"
+      },
+      {
+        "term": "기린"
+      },
+      {
+        "term": "사슴"
+      },
+      {
+        "term": "다람쥐"
+      },
+      {
+        "term": "닭"
+      },
+      {
+        "term": "말"
+      },
+      {
+        "term": "돼지"
+      },
+      {
+        "term": "낙타"
+      },
+      {
+        "term": "코알라"
+      },
+      {
+        "term": "박쥐",
+        "hint": "거꾸로 매달려 날개를 펄럭여요"
+      }
+    ],
+    "ko": {
+      "title": "동물 B팀",
+      "words": [
+        {
+          "term": "사자"
+        },
+        {
+          "term": "기린"
+        },
+        {
+          "term": "사슴"
+        },
+        {
+          "term": "다람쥐"
+        },
+        {
+          "term": "닭"
+        },
+        {
+          "term": "말"
+        },
+        {
+          "term": "돼지"
+        },
+        {
+          "term": "낙타"
+        },
+        {
+          "term": "코알라"
+        },
+        {
+          "term": "박쥐",
+          "hint": "거꾸로 매달려 날개를 펄럭여요"
+        }
+      ]
+    },
+    "en": {
+      "title": "Animals Team B",
+      "words": [
+        {
+          "term": "Lion"
+        },
+        {
+          "term": "Giraffe"
+        },
+        {
+          "term": "Deer"
+        },
+        {
+          "term": "Squirrel"
+        },
+        {
+          "term": "Chicken"
+        },
+        {
+          "term": "Horse"
+        },
+        {
+          "term": "Pig"
+        },
+        {
+          "term": "Camel"
+        },
+        {
+          "term": "Koala"
+        },
+        {
+          "term": "Bat",
+          "hint": "Hangs upside down, flaps wings"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "occupations-a",
+    "category": "occupations",
+    "difficulty": "normal",
+    "words": [
+      {
+        "term": "의사"
+      },
+      {
+        "term": "소방관"
+      },
+      {
+        "term": "경찰관"
+      },
+      {
+        "term": "요리사"
+      },
+      {
+        "term": "미용사"
+      },
+      {
+        "term": "화가"
+      },
+      {
+        "term": "택배기사"
+      },
+      {
+        "term": "마술사"
+      },
+      {
+        "term": "지휘자",
+        "hint": "오케스트라 앞에서 지팡이를 흔들어요"
+      },
+      {
+        "term": "개그맨"
+      }
+    ],
+    "ko": {
+      "title": "일상 직업 A팀",
+      "words": [
+        {
+          "term": "의사"
+        },
+        {
+          "term": "소방관"
+        },
+        {
+          "term": "경찰관"
+        },
+        {
+          "term": "요리사"
+        },
+        {
+          "term": "미용사"
+        },
+        {
+          "term": "화가"
+        },
+        {
+          "term": "택배기사"
+        },
+        {
+          "term": "마술사"
+        },
+        {
+          "term": "지휘자",
+          "hint": "오케스트라 앞에서 지팡이를 흔들어요"
+        },
+        {
+          "term": "개그맨"
+        }
+      ]
+    },
+    "en": {
+      "title": "Everyday Jobs Team A",
+      "words": [
+        {
+          "term": "Doctor"
+        },
+        {
+          "term": "Firefighter"
+        },
+        {
+          "term": "Police officer"
+        },
+        {
+          "term": "Chef"
+        },
+        {
+          "term": "Hairdresser"
+        },
+        {
+          "term": "Painter"
+        },
+        {
+          "term": "Delivery driver"
+        },
+        {
+          "term": "Magician"
+        },
+        {
+          "term": "Conductor",
+          "hint": "Waves a baton at an orchestra"
+        },
+        {
+          "term": "Comedian"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "occupations-b",
+    "category": "occupations",
+    "difficulty": "normal",
+    "words": [
+      {
+        "term": "선생님"
+      },
+      {
+        "term": "농부"
+      },
+      {
+        "term": "제빵사"
+      },
+      {
+        "term": "종업원"
+      },
+      {
+        "term": "가수"
+      },
+      {
+        "term": "우주비행사"
+      },
+      {
+        "term": "목수"
+      },
+      {
+        "term": "판사"
+      },
+      {
+        "term": "비행기 조종사"
+      },
+      {
+        "term": "승무원",
+        "hint": "안전벨트 매는 법을 보여줘요"
+      }
+    ],
+    "ko": {
+      "title": "일상 직업 B팀",
+      "words": [
+        {
+          "term": "선생님"
+        },
+        {
+          "term": "농부"
+        },
+        {
+          "term": "제빵사"
+        },
+        {
+          "term": "종업원"
+        },
+        {
+          "term": "가수"
+        },
+        {
+          "term": "우주비행사"
+        },
+        {
+          "term": "목수"
+        },
+        {
+          "term": "판사"
+        },
+        {
+          "term": "비행기 조종사"
+        },
+        {
+          "term": "승무원",
+          "hint": "안전벨트 매는 법을 보여줘요"
+        }
+      ]
+    },
+    "en": {
+      "title": "Everyday Jobs Team B",
+      "words": [
+        {
+          "term": "Teacher"
+        },
+        {
+          "term": "Farmer"
+        },
+        {
+          "term": "Baker"
+        },
+        {
+          "term": "Waiter"
+        },
+        {
+          "term": "Singer"
+        },
+        {
+          "term": "Astronaut"
+        },
+        {
+          "term": "Carpenter"
+        },
+        {
+          "term": "Judge"
+        },
+        {
+          "term": "Pilot"
+        },
+        {
+          "term": "Flight attendant",
+          "hint": "Shows how to buckle a seatbelt"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "characters-a",
+    "category": "characters",
+    "difficulty": "normal",
+    "words": [
+      {
+        "term": "좀비"
+      },
+      {
+        "term": "로봇"
+      },
+      {
+        "term": "유령"
+      },
+      {
+        "term": "발레리나"
+      },
+      {
+        "term": "카우보이"
+      },
+      {
+        "term": "닌자"
+      },
+      {
+        "term": "해적",
+        "hint": "한쪽 눈에 안대를 하고 칼을 들어요"
+      },
+      {
+        "term": "인어"
+      },
+      {
+        "term": "마법사"
+      },
+      {
+        "term": "슈퍼히어로"
+      }
+    ],
+    "ko": {
+      "title": "판타지 캐릭터 A팀",
+      "words": [
+        {
+          "term": "좀비"
+        },
+        {
+          "term": "로봇"
+        },
+        {
+          "term": "유령"
+        },
+        {
+          "term": "발레리나"
+        },
+        {
+          "term": "카우보이"
+        },
+        {
+          "term": "닌자"
+        },
+        {
+          "term": "해적",
+          "hint": "한쪽 눈에 안대를 하고 칼을 들어요"
+        },
+        {
+          "term": "인어"
+        },
+        {
+          "term": "마법사"
+        },
+        {
+          "term": "슈퍼히어로"
+        }
+      ]
+    },
+    "en": {
+      "title": "Fantasy Characters Team A",
+      "words": [
+        {
+          "term": "Zombie"
+        },
+        {
+          "term": "Robot"
+        },
+        {
+          "term": "Ghost"
+        },
+        {
+          "term": "Ballerina"
+        },
+        {
+          "term": "Cowboy"
+        },
+        {
+          "term": "Ninja"
+        },
+        {
+          "term": "Pirate",
+          "hint": "Eye patch and a sword"
+        },
+        {
+          "term": "Mermaid"
+        },
+        {
+          "term": "Wizard"
+        },
+        {
+          "term": "Superhero"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "characters-b",
+    "category": "characters",
+    "difficulty": "normal",
+    "words": [
+      {
+        "term": "왕"
+      },
+      {
+        "term": "기사"
+      },
+      {
+        "term": "마녀",
+        "hint": "빗자루를 타고 날아요"
+      },
+      {
+        "term": "요정"
+      },
+      {
+        "term": "거인"
+      },
+      {
+        "term": "난쟁이"
+      },
+      {
+        "term": "엘프"
+      },
+      {
+        "term": "트롤"
+      },
+      {
+        "term": "늑대인간",
+        "hint": "보름달을 보고 울부짖어요"
+      },
+      {
+        "term": "뱀파이어"
+      }
+    ],
+    "ko": {
+      "title": "판타지 캐릭터 B팀",
+      "words": [
+        {
+          "term": "왕"
+        },
+        {
+          "term": "기사"
+        },
+        {
+          "term": "마녀",
+          "hint": "빗자루를 타고 날아요"
+        },
+        {
+          "term": "요정"
+        },
+        {
+          "term": "거인"
+        },
+        {
+          "term": "난쟁이"
+        },
+        {
+          "term": "엘프"
+        },
+        {
+          "term": "트롤"
+        },
+        {
+          "term": "늑대인간",
+          "hint": "보름달을 보고 울부짖어요"
+        },
+        {
+          "term": "뱀파이어"
+        }
+      ]
+    },
+    "en": {
+      "title": "Fantasy Characters Team B",
+      "words": [
+        {
+          "term": "King"
+        },
+        {
+          "term": "Knight"
+        },
+        {
+          "term": "Witch",
+          "hint": "Flies on a broomstick"
+        },
+        {
+          "term": "Fairy"
+        },
+        {
+          "term": "Giant"
+        },
+        {
+          "term": "Dwarf"
+        },
+        {
+          "term": "Elf"
+        },
+        {
+          "term": "Troll"
+        },
+        {
+          "term": "Werewolf",
+          "hint": "Howls at the full moon"
+        },
+        {
+          "term": "Vampire"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "sports-a",
+    "category": "sports",
+    "difficulty": "normal",
+    "words": [
+      {
+        "term": "야구"
+      },
+      {
+        "term": "축구"
+      },
+      {
+        "term": "농구"
+      },
+      {
+        "term": "볼링"
+      },
+      {
+        "term": "스키"
+      },
+      {
+        "term": "씨름"
+      },
+      {
+        "term": "태권도"
+      },
+      {
+        "term": "수영"
+      },
+      {
+        "term": "복싱"
+      },
+      {
+        "term": "양궁",
+        "hint": "활과 화살로 과녁을 맞혀요"
+      }
+    ],
+    "ko": {
+      "title": "인기 스포츠 A팀",
+      "words": [
+        {
+          "term": "야구"
+        },
+        {
+          "term": "축구"
+        },
+        {
+          "term": "농구"
+        },
+        {
+          "term": "볼링"
+        },
+        {
+          "term": "스키"
+        },
+        {
+          "term": "씨름"
+        },
+        {
+          "term": "태권도"
+        },
+        {
+          "term": "수영"
+        },
+        {
+          "term": "복싱"
+        },
+        {
+          "term": "양궁",
+          "hint": "활과 화살로 과녁을 맞혀요"
+        }
+      ]
+    },
+    "en": {
+      "title": "Popular Sports Team A",
+      "words": [
+        {
+          "term": "Baseball"
+        },
+        {
+          "term": "Soccer"
+        },
+        {
+          "term": "Basketball"
+        },
+        {
+          "term": "Bowling"
+        },
+        {
+          "term": "Skiing"
+        },
+        {
+          "term": "Ssireum (Korean wrestling)"
+        },
+        {
+          "term": "Taekwondo"
+        },
+        {
+          "term": "Swimming"
+        },
+        {
+          "term": "Boxing"
+        },
+        {
+          "term": "Archery",
+          "hint": "Bow and arrow at a target"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "sports-b",
+    "category": "sports",
+    "difficulty": "normal",
+    "words": [
+      {
+        "term": "배구"
+      },
+      {
+        "term": "탁구"
+      },
+      {
+        "term": "골프"
+      },
+      {
+        "term": "배드민턴"
+      },
+      {
+        "term": "승마"
+      },
+      {
+        "term": "펜싱"
+      },
+      {
+        "term": "다이빙"
+      },
+      {
+        "term": "스케이트보드"
+      },
+      {
+        "term": "하키"
+      },
+      {
+        "term": "체조",
+        "hint": "공중제비를 돌아요"
+      }
+    ],
+    "ko": {
+      "title": "인기 스포츠 B팀",
+      "words": [
+        {
+          "term": "배구"
+        },
+        {
+          "term": "탁구"
+        },
+        {
+          "term": "골프"
+        },
+        {
+          "term": "배드민턴"
+        },
+        {
+          "term": "승마"
+        },
+        {
+          "term": "펜싱"
+        },
+        {
+          "term": "다이빙"
+        },
+        {
+          "term": "스케이트보드"
+        },
+        {
+          "term": "하키"
+        },
+        {
+          "term": "체조",
+          "hint": "공중제비를 돌아요"
+        }
+      ]
+    },
+    "en": {
+      "title": "Popular Sports Team B",
+      "words": [
+        {
+          "term": "Volleyball"
+        },
+        {
+          "term": "Table tennis"
+        },
+        {
+          "term": "Golf"
+        },
+        {
+          "term": "Badminton"
+        },
+        {
+          "term": "Horseback riding"
+        },
+        {
+          "term": "Fencing"
+        },
+        {
+          "term": "Diving"
+        },
+        {
+          "term": "Skateboarding"
+        },
+        {
+          "term": "Ice hockey"
+        },
+        {
+          "term": "Gymnastics",
+          "hint": "Does a flip"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "emotions-a",
+    "category": "emotions",
+    "difficulty": "hard",
+    "words": [
+      {
+        "term": "화남"
+      },
+      {
+        "term": "슬픔"
+      },
+      {
+        "term": "놀람"
+      },
+      {
+        "term": "부끄러움",
+        "hint": "얼굴이 빨개지고 손으로 가려요"
+      },
+      {
+        "term": "신남"
+      },
+      {
+        "term": "졸림"
+      },
+      {
+        "term": "무서움"
+      },
+      {
+        "term": "사랑"
+      },
+      {
+        "term": "아픔"
+      },
+      {
+        "term": "헷갈림",
+        "hint": "물음표가 떠오르는 표정"
+      }
+    ],
+    "ko": {
+      "title": "감정 표현 A팀",
+      "words": [
+        {
+          "term": "화남"
+        },
+        {
+          "term": "슬픔"
+        },
+        {
+          "term": "놀람"
+        },
+        {
+          "term": "부끄러움",
+          "hint": "얼굴이 빨개지고 손으로 가려요"
+        },
+        {
+          "term": "신남"
+        },
+        {
+          "term": "졸림"
+        },
+        {
+          "term": "무서움"
+        },
+        {
+          "term": "사랑"
+        },
+        {
+          "term": "아픔"
+        },
+        {
+          "term": "헷갈림",
+          "hint": "물음표가 떠오르는 표정"
+        }
+      ]
+    },
+    "en": {
+      "title": "Emotion Expressions Team A",
+      "words": [
+        {
+          "term": "Anger"
+        },
+        {
+          "term": "Sadness"
+        },
+        {
+          "term": "Surprise"
+        },
+        {
+          "term": "Embarrassment",
+          "hint": "Blushing, covering your face"
+        },
+        {
+          "term": "Excitement"
+        },
+        {
+          "term": "Sleepiness"
+        },
+        {
+          "term": "Fear"
+        },
+        {
+          "term": "Love"
+        },
+        {
+          "term": "Pain"
+        },
+        {
+          "term": "Confusion",
+          "hint": "A question-mark face"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "emotions-b",
+    "category": "emotions",
+    "difficulty": "hard",
+    "words": [
+      {
+        "term": "행복"
+      },
+      {
+        "term": "걱정"
+      },
+      {
+        "term": "실망"
+      },
+      {
+        "term": "자신감"
+      },
+      {
+        "term": "질투",
+        "hint": "팔짱 끼고 곁눈질해요"
+      },
+      {
+        "term": "안도",
+        "hint": "이마의 땀을 닦으며 한숨 쉬어요"
+      },
+      {
+        "term": "후회"
+      },
+      {
+        "term": "피곤함"
+      },
+      {
+        "term": "자랑스러움"
+      },
+      {
+        "term": "감동",
+        "hint": "가슴에 손을 얹고 눈물을 글썽여요"
+      }
+    ],
+    "ko": {
+      "title": "감정 표현 B팀",
+      "words": [
+        {
+          "term": "행복"
+        },
+        {
+          "term": "걱정"
+        },
+        {
+          "term": "실망"
+        },
+        {
+          "term": "자신감"
+        },
+        {
+          "term": "질투",
+          "hint": "팔짱 끼고 곁눈질해요"
+        },
+        {
+          "term": "안도",
+          "hint": "이마의 땀을 닦으며 한숨 쉬어요"
+        },
+        {
+          "term": "후회"
+        },
+        {
+          "term": "피곤함"
+        },
+        {
+          "term": "자랑스러움"
+        },
+        {
+          "term": "감동",
+          "hint": "가슴에 손을 얹고 눈물을 글썽여요"
+        }
+      ]
+    },
+    "en": {
+      "title": "Emotion Expressions Team B",
+      "words": [
+        {
+          "term": "Happiness"
+        },
+        {
+          "term": "Worry"
+        },
+        {
+          "term": "Disappointment"
+        },
+        {
+          "term": "Confidence"
+        },
+        {
+          "term": "Jealousy",
+          "hint": "Crosses arms, gives a side-eye"
+        },
+        {
+          "term": "Relief",
+          "hint": "Wipes your brow and sighs"
+        },
+        {
+          "term": "Regret"
+        },
+        {
+          "term": "Exhaustion"
+        },
+        {
+          "term": "Pride"
+        },
+        {
+          "term": "Being moved",
+          "hint": "Hand on heart, eyes welling up"
+        }
+      ]
+    }
+  }
+]
