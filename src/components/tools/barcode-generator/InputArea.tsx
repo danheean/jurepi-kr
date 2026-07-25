@@ -78,7 +78,7 @@ export function InputArea({
           })}
         </div>
         {error && (
-          <div role="alert" className="text-danger">
+          <div role="alert" className="text-danger-ink">
             {getErrorMessage()}
           </div>
         )}

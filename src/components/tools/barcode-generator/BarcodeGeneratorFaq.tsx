@@ -41,7 +41,7 @@ export function BarcodeGeneratorFaq() {
               className="group border border-hairline rounded-md p-4 bg-surface"
               data-testid={`faq-item-${idx}`}
             >
-              <summary className="cursor-pointer font-semibold text-brand-ink hover:text-brand-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring rounded">
+              <summary className="cursor-pointer font-semibold text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring rounded">
                 {item.question}
               </summary>
               <p className="mt-3 text-text-secondary leading-relaxed">

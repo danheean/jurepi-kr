@@ -82,7 +82,7 @@ export function BarcodePreview({
     return (
       <div className="w-full h-48 flex items-center justify-center bg-surface-sunken rounded-md border border-danger">
         <div className="text-center">
-          <p className="text-sm text-danger">{t('preview.error')}</p>
+          <p className="text-sm text-danger-ink">{t('preview.error')}</p>
         </div>
       </div>
     );

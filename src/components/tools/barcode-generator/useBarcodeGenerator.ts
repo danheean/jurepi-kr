@@ -56,19 +56,28 @@ export function useBarcodeGenerator() {
     }
   }, []);
 
-  // Load encoder when format changes
+  // Load encoder when format changes. Guarded against out-of-order resolution:
+  // switching formats quickly (before a previous dynamic import settles) must
+  // not let a stale response overwrite encoderClassRef with the wrong class.
   useEffect(() => {
+    let cancelled = false;
     setIsLoading(true);
     setError(null);
     loadBarcodeEncoder(format)
       .then((EncoderClass) => {
+        if (cancelled) return;
         encoderClassRef.current = EncoderClass;
         setIsLoading(false);
       })
       .catch(() => {
+        if (cancelled) return;
         setError('encodingFailed');
         setIsLoading(false);
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, [format]);
 
   // Debounced encode

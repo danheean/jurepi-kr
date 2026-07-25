@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useBarcodeGenerator } from './useBarcodeGenerator';
 import { FormatSelector } from './FormatSelector';
 import { InputArea } from './InputArea';
@@ -8,6 +8,12 @@ import { SizeControl } from './SizeControl';
 import { TextToggle } from './TextToggle';
 import { DownloadButtons } from './DownloadButtons';
 import { BarcodePreview } from './BarcodePreview';
+import { Toast } from '@/components/ui/Toast';
+
+interface ToastState {
+  message: string;
+  type: 'success' | 'error' | 'info';
+}
 
 export function BarcodeGenerator() {
   const {
@@ -25,6 +31,11 @@ export function BarcodeGenerator() {
   } = useBarcodeGenerator();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [toast, setToast] = useState<ToastState | null>(null);
+
+  const showToast = useCallback((message: string, type: ToastState['type']) => {
+    setToast({ message, type });
+  }, []);
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -53,7 +64,7 @@ export function BarcodeGenerator() {
 
             <TextToggle checked={textVisible} onChange={setTextVisible} />
 
-            <DownloadButtons encoded={encoded} canvasRef={canvasRef} />
+            <DownloadButtons encoded={encoded} canvasRef={canvasRef} onToast={showToast} />
           </div>
 
           {/* Preview Panel */}
@@ -68,6 +79,10 @@ export function BarcodeGenerator() {
           </div>
         </div>
       </div>
+
+      {toast && (
+        <Toast message={toast.message} type={toast.type} onDismiss={() => setToast(null)} />
+      )}
     </div>
   );
 }

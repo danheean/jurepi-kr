@@ -67,4 +67,33 @@ describe('FormatSelector', () => {
 
     expect(handleChange).toHaveBeenCalledWith('CODE128');
   });
+
+  it('only tabIndexes the selected tab (roving tabindex, WAI-ARIA APG Tabs)', () => {
+    const handleChange = vi.fn();
+    render(
+      <FormatSelector selectedFormat="CODE39" onChange={handleChange} />
+    );
+
+    expect(screen.getByTestId('format-tab-ean13')).toHaveAttribute('tabIndex', '-1');
+    expect(screen.getByTestId('format-tab-upc')).toHaveAttribute('tabIndex', '-1');
+    expect(screen.getByTestId('format-tab-code39')).toHaveAttribute('tabIndex', '0');
+    expect(screen.getByTestId('format-tab-code128')).toHaveAttribute('tabIndex', '-1');
+  });
+
+  it('moves DOM focus to the newly-selected tab on arrow-key navigation', async () => {
+    const handleChange = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <FormatSelector selectedFormat="EAN13" onChange={handleChange} />
+    );
+
+    const selectedTab = screen.getByTestId('format-tab-ean13');
+    await user.click(selectedTab);
+    await user.keyboard('{ArrowRight}');
+
+    // Regression: previously the keydown handler updated selection state via
+    // onChange but never moved focus, leaving the focus ring stranded on the
+    // tab the user just navigated away from.
+    expect(screen.getByTestId('format-tab-upc')).toHaveFocus();
+  });
 });

@@ -4,19 +4,18 @@ import { useCallback, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { EncodedBarcode } from '@/lib/barcode-generator';
 
+type ToastType = 'success' | 'error' | 'info';
+
 interface DownloadButtonsProps {
   encoded: EncodedBarcode | null;
   canvasRef: React.RefObject<HTMLCanvasElement | null>;
+  /** Surfaces user-visible feedback via the shared platform Toast (SPEC: do not reimplement). */
+  onToast: (message: string, type: ToastType) => void;
 }
 
-export function DownloadButtons({ encoded, canvasRef }: DownloadButtonsProps) {
+export function DownloadButtons({ encoded, canvasRef, onToast }: DownloadButtonsProps) {
   const t = useTranslations('tools.barcode-generator');
   const linkRef = useRef<HTMLAnchorElement>(null);
-
-  const showToast = useCallback((message: string, type?: string) => {
-    // Simple toast feedback (can be extended with a proper toast system)
-    console.log(`[${type || 'info'}] ${message}`);
-  }, []);
 
   const downloadFile = useCallback(
     (blob: Blob, filename: string) => {
@@ -27,9 +26,9 @@ export function DownloadButtons({ encoded, canvasRef }: DownloadButtonsProps) {
         linkRef.current.click();
       }
       URL.revokeObjectURL(url);
-      showToast(t('toasts.downloadSuccess'), 'success');
+      onToast(t('toasts.downloadSuccess'), 'success');
     },
-    [showToast, t]
+    [onToast, t]
   );
 
   const handleDownloadPng = useCallback(async () => {
@@ -43,9 +42,9 @@ export function DownloadButtons({ encoded, canvasRef }: DownloadButtonsProps) {
         }
       }, 'image/png');
     } catch (err) {
-      showToast(t('toasts.downloadFail'), 'error');
+      onToast(t('toasts.downloadFail'), 'error');
     }
-  }, [canvasRef, downloadFile, showToast, t]);
+  }, [canvasRef, downloadFile, onToast, t]);
 
   const handleDownloadSvg = useCallback(() => {
     if (!encoded) return;
@@ -54,9 +53,9 @@ export function DownloadButtons({ encoded, canvasRef }: DownloadButtonsProps) {
       const blob = new Blob([encoded.svgString], { type: 'image/svg+xml' });
       downloadFile(blob, 'barcode.svg');
     } catch (err) {
-      showToast(t('toasts.downloadFail'), 'error');
+      onToast(t('toasts.downloadFail'), 'error');
     }
-  }, [encoded, downloadFile, showToast, t]);
+  }, [encoded, downloadFile, onToast, t]);
 
   const handleCopyToClipboard = useCallback(async () => {
     const canvas = canvasRef.current;
@@ -64,17 +63,24 @@ export function DownloadButtons({ encoded, canvasRef }: DownloadButtonsProps) {
 
     try {
       canvas.toBlob(async (blob) => {
-        if (blob) {
+        if (!blob) {
+          onToast(t('toasts.copyFail'), 'error');
+          return;
+        }
+
+        try {
           await navigator.clipboard.write([
             new ClipboardItem({ 'image/png': blob }),
           ]);
-          showToast(t('toasts.copySuccess'), 'success');
+          onToast(t('toasts.copySuccess'), 'success');
+        } catch {
+          onToast(t('toasts.copyFail'), 'error');
         }
       }, 'image/png');
     } catch (err) {
-      // Silent fail (no false success)
+      onToast(t('toasts.copyFail'), 'error');
     }
-  }, [canvasRef, showToast, t]);
+  }, [canvasRef, onToast, t]);
 
   return (
     <div className="flex gap-2 flex-wrap">
@@ -82,7 +88,7 @@ export function DownloadButtons({ encoded, canvasRef }: DownloadButtonsProps) {
         onClick={handleDownloadPng}
         disabled={!encoded}
         className={`
-          px-4 py-2 rounded-md font-medium text-sm transition-colors
+          min-h-[44px] px-4 py-2 rounded-md font-medium text-sm transition-colors
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring
           ${
             encoded
@@ -99,7 +105,7 @@ export function DownloadButtons({ encoded, canvasRef }: DownloadButtonsProps) {
         onClick={handleDownloadSvg}
         disabled={!encoded}
         className={`
-          px-4 py-2 rounded-md font-medium text-sm transition-colors border
+          min-h-[44px] px-4 py-2 rounded-md font-medium text-sm transition-colors border
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring
           ${
             encoded
@@ -116,7 +122,7 @@ export function DownloadButtons({ encoded, canvasRef }: DownloadButtonsProps) {
         onClick={handleCopyToClipboard}
         disabled={!encoded}
         className={`
-          px-4 py-2 rounded-md font-medium text-sm transition-colors
+          min-h-[44px] px-4 py-2 rounded-md font-medium text-sm transition-colors
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring
           ${
             encoded

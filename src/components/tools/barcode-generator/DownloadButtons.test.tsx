@@ -15,11 +15,13 @@ function renderWithCanvas(props: Partial<React.ComponentProps<typeof DownloadBut
   const canvasRef = createRef<HTMLCanvasElement>();
   const canvas = document.createElement('canvas');
   (canvasRef as { current: HTMLCanvasElement | null }).current = canvas;
+  const onToast = props.onToast ?? vi.fn();
 
   return {
     canvas,
+    onToast,
     ...render(
-      <DownloadButtons encoded={encoded} canvasRef={canvasRef} {...props} />
+      <DownloadButtons encoded={encoded} canvasRef={canvasRef} onToast={onToast} {...props} />
     ),
   };
 }
@@ -31,7 +33,7 @@ describe('DownloadButtons', () => {
 
   it('disables all three buttons when there is no encoded barcode', () => {
     const canvasRef = createRef<HTMLCanvasElement>();
-    render(<DownloadButtons encoded={null} canvasRef={canvasRef} />);
+    render(<DownloadButtons encoded={null} canvasRef={canvasRef} onToast={vi.fn()} />);
 
     expect(screen.getByTestId('download-png-button')).toBeDisabled();
     expect(screen.getByTestId('download-svg-button')).toBeDisabled();
@@ -46,8 +48,8 @@ describe('DownloadButtons', () => {
     expect(screen.getByTestId('copy-button')).toBeEnabled();
   });
 
-  it('downloads a PNG from the already-drawn canvas (not a fresh SVG rasterization)', async () => {
-    const { canvas } = renderWithCanvas();
+  it('downloads a PNG from the already-drawn canvas (not a fresh SVG rasterization) and reports success', async () => {
+    const { canvas, onToast } = renderWithCanvas();
     const toBlobSpy = vi
       .spyOn(canvas, 'toBlob')
       .mockImplementation((cb) => cb(new Blob(['png'], { type: 'image/png' })));
@@ -61,10 +63,11 @@ describe('DownloadButtons', () => {
 
     expect(toBlobSpy).toHaveBeenCalledWith(expect.any(Function), 'image/png');
     expect(createObjectURLSpy).toHaveBeenCalled();
+    expect(onToast).toHaveBeenCalledWith(expect.any(String), 'success');
   });
 
-  it('downloads the SVG string as its own independent blob', async () => {
-    renderWithCanvas();
+  it('downloads the SVG string as its own independent blob and reports success', async () => {
+    const { onToast } = renderWithCanvas();
     const createObjectURLSpy = vi
       .spyOn(URL, 'createObjectURL')
       .mockImplementation((obj: Blob | MediaSource) => {
@@ -77,10 +80,11 @@ describe('DownloadButtons', () => {
     await user.click(screen.getByTestId('download-svg-button'));
 
     expect(createObjectURLSpy).toHaveBeenCalled();
+    expect(onToast).toHaveBeenCalledWith(expect.any(String), 'success');
   });
 
-  it('copies the canvas PNG to the clipboard without a false-success on failure', async () => {
-    const { canvas } = renderWithCanvas();
+  it('copies the canvas PNG to the clipboard and reports failure via onToast (no false-success)', async () => {
+    const { canvas, onToast } = renderWithCanvas();
     vi.spyOn(canvas, 'toBlob').mockImplementation((cb) =>
       cb(new Blob(['png'], { type: 'image/png' }))
     );
@@ -103,7 +107,19 @@ describe('DownloadButtons', () => {
     // The toBlob callback is fire-and-forget (not awaited by the component),
     // so poll rather than assume it's settled the instant click() resolves.
     await waitFor(() => expect(writeSpy).toHaveBeenCalled());
-    // No toast/success text asserted here — a rejected clipboard write must not
-    // claim success (silent failure by design, per SPEC).
+    // A rejected clipboard write must not claim success, but it must not be
+    // silent either — the user needs to see that the copy failed.
+    await waitFor(() => expect(onToast).toHaveBeenCalledWith(expect.any(String), 'error'));
+    expect(onToast).not.toHaveBeenCalledWith(expect.any(String), 'success');
+  });
+
+  it('reports failure via onToast when the clipboard canvas produces no blob', async () => {
+    const { canvas, onToast } = renderWithCanvas();
+    vi.spyOn(canvas, 'toBlob').mockImplementation((cb) => cb(null));
+    const user = userEvent.setup();
+
+    await user.click(screen.getByTestId('copy-button'));
+
+    await waitFor(() => expect(onToast).toHaveBeenCalledWith(expect.any(String), 'error'));
   });
 });

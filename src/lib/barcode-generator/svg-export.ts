@@ -32,27 +32,33 @@ export function normalizeBarcodeSVG(
   const viewBoxWidth = barPattern.length;
   const viewBoxHeight = textContent ? height + 15 : height;
 
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}" width="${width}" height="${totalHeight}">`;
-
-  // 흰색 배경
-  svg += `<rect width="${viewBoxWidth}" height="${height}" fill="white"/>`;
+  // Build as an array + join rather than repeated string `+=` — at the
+  // input's max length (256 chars → up to ~2,800 bars for dense formats)
+  // this avoids the O(n) intermediate-string reallocations that `+=` would
+  // otherwise do on every bar.
+  const parts: string[] = [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}" width="${width}" height="${totalHeight}">`,
+    `<rect width="${viewBoxWidth}" height="${height}" fill="white"/>`,
+  ];
 
   // bar pattern → rect 엘리먼트
+  const barHeight = height / (barPattern.length / viewBoxWidth);
   for (let i = 0; i < barPattern.length; i++) {
-    const isBar = barPattern[i] === '1';
-    if (isBar) {
-      svg += `<rect x="${i}" y="0" width="1" height="${height / (barPattern.length / viewBoxWidth)}" fill="black"/>`;
+    if (barPattern[i] === '1') {
+      parts.push(`<rect x="${i}" y="0" width="1" height="${barHeight}" fill="black"/>`);
     }
   }
 
   // 텍스트 (선택사항)
   if (textContent) {
-    svg += `<text x="${viewBoxWidth / 2}" y="${height + 12}" text-anchor="middle" font-size="12" font-family="monospace" fill="black">${escapeXml(textContent)}</text>`;
+    parts.push(
+      `<text x="${viewBoxWidth / 2}" y="${height + 12}" text-anchor="middle" font-size="12" font-family="monospace" fill="black">${escapeXml(textContent)}</text>`
+    );
   }
 
-  svg += '</svg>';
+  parts.push('</svg>');
 
-  return svg;
+  return parts.join('');
 }
 
 /**

@@ -1,5 +1,6 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useBarcodeGenerator } from './useBarcodeGenerator';
+import { loadBarcodeEncoder, encodeBarcode } from '@/lib/barcode-generator';
 
 // Mock the domain functions
 vi.mock('@/lib/barcode-generator', async () => {
@@ -222,6 +223,86 @@ describe('useBarcodeGenerator', () => {
     });
 
     expect(result.current.input).toBe('');
+  });
+
+  it('does not let a stale (out-of-order) encoder-class response overwrite the latest format on rapid switching', async () => {
+    // Both mocks are shared module-level vi.fn()s (see the vi.mock factory
+    // above) — overriding their implementation here would otherwise leak
+    // into every later test in this file, so restore both in `finally`.
+    const originalLoadImpl = vi.mocked(loadBarcodeEncoder).getMockImplementation();
+    const originalEncodeImpl = vi.mocked(encodeBarcode).getMockImplementation();
+
+    let resolveUpc!: (cls: unknown) => void;
+    let resolveCode39!: (cls: unknown) => void;
+    const upcPromise = new Promise((resolve) => {
+      resolveUpc = resolve;
+    });
+    const code39Promise = new Promise((resolve) => {
+      resolveCode39 = resolve;
+    });
+
+    try {
+      vi.mocked(loadBarcodeEncoder).mockImplementation((format: string) => {
+        if (format === 'UPC') return upcPromise as Promise<unknown>;
+        if (format === 'CODE39') return code39Promise as Promise<unknown>;
+        return Promise.resolve(class MockEncoder {
+          constructor(public data: string) {}
+          encode() {
+            return { data: this.data, text: this.data };
+          }
+          valid() {
+            return true;
+          }
+        });
+      });
+      vi.mocked(encodeBarcode).mockImplementation((input: any, _options: any, EncoderClass: any) => ({
+        bars: '101010101010',
+        svgString: '<svg></svg>',
+        textContent: EncoderClass.tag,
+        encodedValue: EncoderClass.tag,
+        format: input.format,
+      }));
+
+      const { result } = renderHook(() => useBarcodeGenerator());
+      await act(async () => {});
+
+      // Switch format twice in quick succession, before the first switch's
+      // dynamic import has resolved.
+      act(() => {
+        result.current.setFormat('UPC');
+      });
+      act(() => {
+        result.current.setFormat('CODE39');
+      });
+
+      // Resolve out of order: the *later* request (CODE39) settles first, then
+      // the *earlier*, now-stale request (UPC) settles last.
+      await act(async () => {
+        resolveCode39(class {
+          static tag = 'CODE39';
+        });
+      });
+      await act(async () => {
+        resolveUpc(class {
+          static tag = 'UPC';
+        });
+      });
+
+      act(() => {
+        result.current.setInput('123456789');
+      });
+      act(() => {
+        vi.advanceTimersByTime(100);
+      });
+
+      // Without the cancellation guard, the late-resolving UPC response would
+      // overwrite encoderClassRef last and silently encode with the wrong class.
+      expect(result.current.encoded?.encodedValue).toBe('CODE39');
+      expect(result.current.format).toBe('CODE39');
+    } finally {
+      vi.mocked(loadBarcodeEncoder).mockImplementation(originalLoadImpl!);
+      vi.mocked(encodeBarcode).mockImplementation(originalEncodeImpl!);
+    }
   });
 
   it('should handle empty input', () => {

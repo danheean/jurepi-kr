@@ -15,21 +15,15 @@ export function TextToggle({ checked, onChange }: TextToggleProps) {
   };
 
   return (
-    <div className="flex items-center gap-3">
+    <label className="flex items-center gap-3 min-h-[44px] cursor-pointer select-none">
       <input
-        id="human-readable-toggle"
         type="checkbox"
         checked={checked}
         onChange={handleChange}
         className="w-4 h-4 rounded border-hairline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-ring accent-brand"
         data-testid="human-readable-toggle"
       />
-      <label
-        htmlFor="human-readable-toggle"
-        className="text-sm font-medium text-brand-ink cursor-pointer select-none"
-      >
-        {t('humanReadable.label')}
-      </label>
-    </div>
+      <span className="text-sm font-medium text-brand-ink">{t('humanReadable.label')}</span>
+    </label>
   );
 }
