@@ -87,6 +87,48 @@
     }
   },
   {
+    "slug": "ne-ka-ra-ku-bae-dang-to-jik-ya",
+    "topic": "mz",
+    "tags": [
+      "취업",
+      "IT기업",
+      "개발자"
+    ],
+    "coinedYear": 2022,
+    "related": [],
+    "tone": "positive",
+    "ko": {
+      "term": "네카라쿠배당토직야",
+      "definition": "네이버·카카오·라인·쿠팡·배달의민족·당근마켓·토스·직방·야놀자, 이렇게\n개발자와 취업 준비생이 선호하는 국내 IT 기업 9곳의 앞 글자만 딴 말.\n'가고 싶은 회사' 목록으로 통한다.\n",
+      "examples": [
+        "네카라쿠배당토직야 중 한 곳이라도 최종 합격하는 게 목표야.",
+        "네카라쿠배에서 당근·토스, 직방·야놀자까지 붙으면서 네카라쿠배당토직야가 됐다."
+      ],
+      "body": "## 설명\n\n**네카라쿠배당토직야**는 국내 IT 대기업·유니콘 기업 9곳의 앞 글자를\n딴 신조어로, 시간이 지나며 계속 확장돼 온 표현입니다.\n\n- **네카라쿠배**: 네이버·카카오·라인·쿠팡·배달의민족 — 가장 먼저\n  자리잡은 5개 IT 대기업.\n- **당토**: 당근마켓·토스 — 2021년 초봉을 6,000만 원 선으로\n  크게 올리며 네카라쿠배급 복지를 갖췄다는 평가를 받았다.\n- **직야**: 직방·야놀자 — 이후 추가되며 지금의 9곳 형태로 완성.\n\n이 기업들은 자유로운 근무 환경, 높은 초봉·복지 수준으로 MZ 세대\n개발자들 사이에서 '꿈의 직장'으로 통합니다. 다만 목록이 계속\n늘어나면서, 정작 최상위 대기업(삼성·네이버 등)과의 경계가\n흐려진다는 지적도 함께 나옵니다.",
+      "reading": "네카라쿠배당토직야",
+      "aliases": [
+        "네카라쿠배",
+        "네카라쿠배당토"
+      ],
+      "origin": "2020년경 '네카라쿠배(네이버·카카오·라인·쿠팡·배달의민족)'로 시작해, 2021년 당근마켓·토스가 초봉을 크게 올리며 '당토'가 붙고, 이후 직방·야놀자까지 더해져 완성된 확장형."
+    },
+    "en": {
+      "term": "Nekarakubaedangtojigya",
+      "definition": "A Korean acronym combining the first syllables of nine tech companies\ndevelopers and job seekers love to work for: Naver, Kakao, Line, Coupang,\nBaemin (Baedal Minjok), Danggeun Market, Toss, Zigbang, and Yanolja. It's\nshorthand for the \"dream job\" list.\n",
+      "examples": [
+        "My goal is to land a final offer from just one company on the Nekarakubaedangtojigya list.",
+        "Starting from Nekarakubae, Danggeun and Toss were added, then Zigbang and Yanolja, forming the full Nekarakubaedangtojigya."
+      ],
+      "body": "## Description\n\n**Nekarakubaedangtojigya** is a Korean slang acronym for nine domestic\ntech companies and unicorns, one that has kept expanding over time.\n\n- **Nekarakubae**: Naver, Kakao, Line, Coupang, Baemin — the original\n  five major IT companies.\n- **Dangto**: Danggeun Market, Toss — added in 2021 after both companies\n  raised starting salaries to roughly 60 million KRW, matching\n  Nekarakubae-level benefits.\n- **Jigya**: Zigbang, Yanolja — added later to complete today's\n  nine-company list.\n\nThese companies are seen as \"dream jobs\" among Korea's MZ-generation\ndevelopers, thanks to flexible work environments and strong pay and\nbenefits. As the list keeps growing, though, some also note that it\nblurs the line with the true top-tier conglomerates like Samsung.",
+      "reading": "/ne-ka-ɾa-ku-bɛ-daŋ-to-dʑik-ja/",
+      "aliases": [
+        "Nekarakubae",
+        "Korean big tech acronym"
+      ],
+      "origin": "Started around 2020 as \"Nekarakubae\" (Naver, Kakao, Line, Coupang, Baemin). In 2021, Danggeun Market and Toss raised starting salaries sharply and were added as \"Dangto.\" Zigbang and Yanolja joined later to form the current nine-company version."
+    }
+  },
+  {
     "slug": "al-bba-no",
     "topic": "mz",
     "tags": [
@@ -710,6 +752,90 @@
     }
   },
   {
+    "slug": "topology",
+    "topic": "tech",
+    "tags": [
+      "조직",
+      "개발",
+      "아키텍처"
+    ],
+    "coinedYear": 2019,
+    "related": [],
+    "tone": "neutral",
+    "ko": {
+      "term": "토폴로지",
+      "definition": "시스템이나 조직의 구성 요소가 어떻게 배치되고 연결되는지를 나타내는 구조.\n본래 네트워크·수학의 '위상' 개념이었지만, 최근에는 팀과 조직을 어떻게\n나누고 연결할지를 다루는 '팀 토폴로지(Team Topologies)' 의미로 널리 쓰인다.\n",
+      "examples": [
+        "이번 개편에서 마이크로서비스 토폴로지를 재설계했다.",
+        "팀 토폴로지를 도입해서 스트림 정렬팀과 플랫폼팀을 분리했다."
+      ],
+      "body": "## 설명\n\n**토폴로지**는 원래 그래프나 네트워크에서 노드들이 어떻게 연결돼 있는지를\n가리키는 수학·네트워크 용어입니다. 최근 개발·조직 문화에서는 이 개념이\n**팀 토폴로지(Team Topologies)**로 확장돼, \"어떤 팀이 무엇을 담당하고\n서로 어떻게 상호작용할지\"를 설계하는 프레임워크를 가리키는 말로 자주 쓰입니다.\n\n대표적으로 네 가지 팀 유형(스트림 정렬팀, 지원팀, 복잡한 서브시스템팀,\n플랫폼팀)과 세 가지 상호작용 모드(협업, 서비스 제공, 지원)를 통해\n조직의 인지 부하를 분산하고 소통 구조를 명확히 하는 것이 핵심입니다.\n\n`콘웨이의 법칙`(조직 구조가 결국 시스템 설계에 반영된다는 원칙)과도\n깊이 연결돼, \"원하는 아키텍처에 맞게 조직을 먼저 설계한다\"는\n역 콘웨이 전략의 근거로 쓰이기도 합니다.",
+      "reading": "토폴로지",
+      "aliases": [
+        "팀 토폴로지",
+        "team topology"
+      ],
+      "origin": "네트워크·수학의 위상(topology) 개념에서 출발해, 2019년 매튜 스켈톤·마누엘 페이스의 책 《팀 토폴로지》 이후 소프트웨어 조직 설계 용어로 IT 업계에 확산."
+    },
+    "en": {
+      "term": "Topology",
+      "definition": "The structure describing how components of a system or organization are\narranged and connected. Originally a network/mathematical concept, it is\nnow widely used as \"Team Topologies\" — a framework for how to divide and\nconnect engineering teams.\n",
+      "examples": [
+        "We redesigned our microservices topology in this overhaul.",
+        "We adopted Team Topologies to separate stream-aligned teams from platform teams."
+      ],
+      "body": "## Description\n\n**Topology** originally describes how nodes are connected in a graph or\nnetwork. In modern engineering and organizational culture, it has been\nextended into **Team Topologies** — a framework for designing which team\nowns what, and how teams interact with one another.\n\nIt centers on four fundamental team types (stream-aligned, enabling,\ncomplicated-subsystem, and platform) and three interaction modes\n(collaboration, X-as-a-Service, and facilitating) to reduce cognitive load\nand clarify communication paths.\n\nIt's closely tied to `Conway's Law` — the idea that organizational structure\nends up shaping system design — and is often cited as the basis for the\n\"inverse Conway maneuver,\" where you shape the org first to get the\narchitecture you want.",
+      "reading": "/təˈpɒlədʒi/",
+      "aliases": [
+        "team topology"
+      ],
+      "origin": "Rooted in the mathematical/network concept of topology; popularized in software organizations after Matthew Skelton and Manuel Pais's 2019 book \"Team Topologies.\""
+    }
+  },
+  {
+    "slug": "x-tech",
+    "topic": "tech",
+    "tags": [
+      "산업",
+      "스타트업",
+      "트렌드"
+    ],
+    "coinedYear": 2018,
+    "related": [],
+    "tone": "neutral",
+    "ko": {
+      "term": "엑스테크",
+      "definition": "기존 산업에 AI·IT 등 첨단 기술을 결합해 새로운 가치를 만드는 것.\n핀테크, 에듀테크, 애그테크처럼 '산업+테크' 조합을 통칭하는 상위 개념이다.\n",
+      "examples": [
+        "엑스테크 스타트업들이 금융, 농업, 법률 등 전 산업에서 등장하고 있다.",
+        "이 강연은 핀테크부터 리걸테크까지 엑스테크 트렌드 전반을 다룬다."
+      ],
+      "body": "## 설명\n\n**엑스테크**는 '산업(X)+기술(Tech)'을 뜻하는 조어로, 특정 산업 하나를\n가리키는 말이 아니라 **여러 산업×기술 융합을 아우르는 상위 개념**입니다.\n가장 먼저 자리잡은 것이 금융+IT인 **핀테크**였고, 이후 다음과 같은\n분야로 확장됐습니다.\n\n- **에듀테크**: 교육 + IT (온라인 학습, 원격 교육)\n- **애그테크**: 농업 + IT (스마트팜, 작물 데이터 분석)\n- **리걸테크**: 법률 + AI/클라우드\n- **애드테크**: 광고 + 데이터 최적화\n\n공통적으로 AI, 빅데이터, 센서, 클라우드 같은 기술이 기존 산업의\n경쟁 방식 자체를 재정의한다는 점에서, 투자·창업 업계는 엑스테크를\n새로운 시장 기회로 주목하고 있습니다.",
+      "reading": "엑스테크",
+      "aliases": [
+        "X-tech",
+        "크로스테크",
+        "X테크"
+      ],
+      "origin": "금융과 IT를 결합한 '핀테크(FinTech)'에서 출발해 다른 산업으로 확장된 조어로, 2018년 전후 스타트업·투자 업계에서 널리 쓰이기 시작."
+    },
+    "en": {
+      "term": "X-tech",
+      "definition": "The fusion of a traditional industry with advanced technology like AI or\nIT to create new value — an umbrella term for combinations such as\nfintech, edtech, and agtech.\n",
+      "examples": [
+        "X-tech startups are popping up across finance, agriculture, and legal services.",
+        "This talk covers X-tech trends from fintech to legaltech."
+      ],
+      "body": "## Description\n\n**X-tech** stands for \"industry (X) + technology (Tech)\" — it doesn't refer\nto one specific industry, but is an **umbrella term for the fusion of many\nindustries with technology**. The first to take hold was **FinTech**\n(finance + IT), followed by:\n\n- **EdTech**: education + IT (online learning, remote education)\n- **AgTech**: agriculture + IT (smart farms, crop data analytics)\n- **LegalTech**: law + AI/cloud\n- **AdTech**: advertising + data optimization\n\nAcross all of these, technologies like AI, big data, sensors, and cloud\ncomputing are redefining how existing industries compete — which is why\ninvestors and founders watch X-tech closely as a source of new market\nopportunities.",
+      "reading": "/ˈɛks tɛk/",
+      "aliases": [
+        "cross-tech",
+        "X tech"
+      ],
+      "origin": "Coined as an extension of \"FinTech\" (finance + IT) into other industries; the term spread through startup and investment circles around 2018."
+    }
+  },
+  {
     "slug": "context-window",
     "topic": "tech",
     "tags": [
@@ -754,6 +880,47 @@
         "attention window"
       ],
       "origin": "Fundamental constraint of the Transformer architecture since 2017."
+    }
+  },
+  {
+    "slug": "flywheel",
+    "topic": "tech",
+    "tags": [
+      "비즈니스",
+      "전략",
+      "스타트업"
+    ],
+    "coinedYear": 2001,
+    "related": [],
+    "tone": "positive",
+    "ko": {
+      "term": "플라이휠",
+      "definition": "하나의 성장 동력이 다음 동력을 만들어내며 스스로 가속하는 선순환 구조.\n제프 베조스가 아마존의 성장 전략을 바퀴 그림으로 설명하며 널리 알려졌다.\n",
+      "examples": [
+        "쿠팡의 플라이휠은 빠른 배송이 고객을 모으고, 늘어난 고객이 다시 물류 투자를 이끄는 구조다.",
+        "우리 서비스도 광고비 없이 크려면 플라이휠을 만들어야 한다."
+      ],
+      "body": "## 설명\n\n**플라이휠**은 본래 회전 관성을 이용해 에너지를 저장하는 기계 부품을\n가리킵니다. 비즈니스에서는 이 이미지를 빌려, 여러 성장 요소가 서로를\n밀어주며 한번 돌기 시작하면 점점 더 빠르게 돌아가는 **선순환 구조**를\n설명하는 말로 씁니다.\n\n가장 유명한 예는 아마존입니다: 낮은 가격 → 더 많은 고객 트래픽 →\n더 많은 판매자 유입 → 규모의 경제로 비용 절감 → 다시 낮은 가격,\n이렇게 순환하며 스스로 가속합니다.\n\n단발성 마케팅 캠페인과 달리, 플라이휠은 **시간이 지날수록 더 단단해지는\n성장 시스템**이라는 점에서 스타트업·투자 업계에서 중요한 전략 프레임으로\n자주 언급됩니다.",
+      "reading": "플라이휠",
+      "aliases": [
+        "플라이 휠",
+        "flywheel effect"
+      ],
+      "origin": "짐 콜린스가 2001년 저서 《좋은 기업을 넘어 위대한 기업으로》에서 소개한 개념으로, 제프 베조스가 아마존 성장 전략을 냅킨에 바퀴 모양으로 그리며 대중화됐다."
+    },
+    "en": {
+      "term": "Flywheel",
+      "definition": "A self-reinforcing growth loop where one driver feeds the next, spinning\nfaster and faster over time. Popularized by Jeff Bezos's napkin sketch of\nAmazon's growth strategy.\n",
+      "examples": [
+        "Coupang's flywheel: fast delivery attracts customers, and more customers justify more logistics investment.",
+        "We need to build a flywheel so we can grow without constant ad spend."
+      ],
+      "body": "## Description\n\nA **flywheel** is originally a mechanical part that stores rotational\nenergy. In business, the image is borrowed to describe a **virtuous cycle**\nwhere several growth drivers reinforce one another, spinning faster once\nit gets going.\n\nThe most famous example is Amazon: lower prices → more customer traffic →\nmore sellers join → economies of scale cut costs → prices drop further,\nand the loop keeps accelerating.\n\nUnlike a one-off marketing campaign, a flywheel is a **growth system that\ngets stronger over time**, which is why it's a frequently cited strategic\nframe in startup and investing circles.",
+      "reading": "/ˈflaɪwiːl/",
+      "aliases": [
+        "flywheel effect"
+      ],
+      "origin": "Introduced by Jim Collins in his 2001 book \"Good to Great,\" then popularized when Jeff Bezos sketched Amazon's growth loop as a wheel on a napkin."
     }
   }
 ]
