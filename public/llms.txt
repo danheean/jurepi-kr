@@ -30,6 +30,7 @@
 - [즐겨찾기 (Curated Bookmarks)](https://apps.jurepi.kr/ko/tools/bookmarks): Browse trusted curated links across architecture, frontend engineering, design, prompt/context engineering, and AI agent tools, organized by topic with search and favorites.
 - [맛집 리스트 (Restaurant List)](https://apps.jurepi.kr/ko/tools/restaurant-map): Explore curator-picked restaurants on an interactive map, filterable by curator, region, and category, with personal notes and directions for each place.
 - [단위 변환기 (Unit Converter)](https://apps.jurepi.kr/ko/tools/unit-converter): Convert everyday measurements instantly across length, mass, temperature, area, volume, speed, digital storage, and time, with adjustable precision and recent-conversion history.
+- [바코드 생성기 (Barcode Generator)](https://apps.jurepi.kr/ko/tools/barcode-generator): Generate EAN-13, UPC-A, Code 39, and Code 128 barcodes from text and numbers with automatic checksum calculation. Adjust size, toggle human-readable text, and download as PNG or SVG. 100% browser-side processing—your data stays private.
 
 ## About
 

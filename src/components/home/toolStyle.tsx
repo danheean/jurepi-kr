@@ -1,6 +1,7 @@
 import type { AccentColor } from '@/tools/types';
 import type { LucideIcon } from 'lucide-react';
 import {
+  Barcode,
   Binary,
   BookA,
   BookOpen,
@@ -72,6 +73,7 @@ export function accentEyebrowClass(accent: AccentColor): string {
  * `Wrench` stays as a defensive fallback only.
  */
 export const TOOL_ICONS: Record<string, LucideIcon> = {
+  Barcode,
   Binary,
   BookA,
   BookOpen,

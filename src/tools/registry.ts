@@ -328,6 +328,17 @@ export const tools: ToolMeta[] = [
     order: 185,
     keywords: ['응원', '응원문구', '응원도구', '전광판', 'LED', '콘서트', '경기장', '배너', '슬로건', 'cheer', 'banner', 'marquee', 'LED sign', 'concert', 'stadium', 'fan', 'chant', 'slogan', 'scrolling text', 'fun'],
   },
+  {
+    id: 'barcode-generator',
+    slug: 'barcode-generator',
+    category: 'converter',
+    icon: 'Barcode',
+    accent: 'mint',
+    status: 'live',
+    addedAt: '2026-07-22',
+    order: 210,
+    keywords: ['바코드', '바코드생성', '바코드생성기', 'EAN-13', 'UPC-A', 'Code39', 'Code128', 'barcode', 'barcode generator', 'ean', 'upc', 'encode', '인코딩', '생성'],
+  },
 ];
 
 /** Get all live tools for static generation */

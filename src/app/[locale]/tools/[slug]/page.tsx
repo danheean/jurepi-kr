@@ -241,6 +241,30 @@ const LottoGeneratorStructuredData = dynamic(() =>
   }))
 );
 
+const BarcodeGenerator = dynamic(() =>
+  import('@/components/tools/barcode-generator/BarcodeGenerator').then((m) => ({
+    default: m.BarcodeGenerator,
+  }))
+);
+
+const BarcodeGeneratorHowTo = dynamic(() =>
+  import('@/components/tools/barcode-generator/BarcodeGeneratorHowTo').then((m) => ({
+    default: m.BarcodeGeneratorHowTo,
+  }))
+);
+
+const BarcodeGeneratorFaq = dynamic(() =>
+  import('@/components/tools/barcode-generator/BarcodeGeneratorFaq').then((m) => ({
+    default: m.BarcodeGeneratorFaq,
+  }))
+);
+
+const BarcodeGeneratorStructuredData = dynamic(() =>
+  import('@/components/tools/barcode-generator/BarcodeGeneratorStructuredData').then((m) => ({
+    default: m.BarcodeGeneratorStructuredData,
+  }))
+);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const tool = getToolBySlug(slug);
@@ -332,6 +356,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } else if (slug === 'lotto-generator') {
     title = t('title');
     description = t('description');
+  } else if (slug === 'barcode-generator') {
+    title = t('meta.title');
+    description = t('meta.description');
   } else {
     return {};
   }
@@ -647,6 +674,17 @@ async function ToolBody({ slug, locale }: { slug: string; locale: string }) {
         <JwtDecoder />
         <JwtDecoderHowTo />
         <JwtDecoderFaq />
+      </>
+    );
+  }
+
+  if (slug === 'barcode-generator') {
+    return (
+      <>
+        <BarcodeGeneratorStructuredData />
+        <BarcodeGenerator />
+        <BarcodeGeneratorHowTo />
+        <BarcodeGeneratorFaq />
       </>
     );
   }

@@ -3667,6 +3667,107 @@
           }
         ]
       }
+    },
+    "barcode-generator": {
+      "title": "Barcode Generator",
+      "description": "Generate EAN-13, UPC-A, Code 39, and Code 128 barcodes for free. Download as PNG or SVG.",
+      "meta": {
+        "title": "Barcode Generator — EAN-13, UPC-A, Code 39, Code 128 | Jurepi",
+        "description": "Free online barcode generator supporting EAN-13, UPC-A, Code 39, and Code 128 with automatic checksum calculation and PNG/SVG download."
+      },
+      "format": {
+        "ean13": "EAN-13",
+        "upc": "UPC-A",
+        "code39": "Code 39",
+        "code128": "Code 128"
+      },
+      "input": {
+        "label": "Value to encode",
+        "placeholder": {
+          "ean13": "Enter 12 digits (checksum auto-calculated)",
+          "upc": "Enter 11 digits (checksum auto-calculated)",
+          "code39": "Alphanumeric + space, -, ., $, /, +, %",
+          "code128": "Enter any ASCII text"
+        },
+        "charCount": "{current}/{max} characters"
+      },
+      "error": {
+        "lengthError": {
+          "ean13": "EAN-13 requires 12 or 13 digits",
+          "upc": "UPC-A requires 11 or 12 digits"
+        },
+        "invalidCharacter": "Contains characters not allowed for this format",
+        "checksumError": "Invalid checksum",
+        "encodingFailed": "Barcode generation failed"
+      },
+      "size": {
+        "label": "Width: {width}px"
+      },
+      "humanReadable": {
+        "label": "Show human-readable text"
+      },
+      "buttons": {
+        "downloadPng": "Download PNG",
+        "downloadSvg": "Download SVG",
+        "copy": "Copy to Clipboard"
+      },
+      "toasts": {
+        "downloadSuccess": "Barcode downloaded",
+        "copySuccess": "Copied to clipboard",
+        "copyFail": "Failed to copy to clipboard",
+        "downloadFail": "Failed to download barcode"
+      },
+      "intro": {
+        "eyebrow": "Converter Tool",
+        "title": "Barcode Generator",
+        "lead": "Instantly generate EAN-13, UPC-A, Code 39, or Code 128 barcodes and download them as PNG or SVG. Everything happens in your browser."
+      },
+      "howTo": {
+        "title": "How to Generate a Barcode",
+        "whatIsTitle": "What is this tool?",
+        "whatIsBody": "A barcode generator converts numbers or text into a scannable barcode in one of four formats: EAN-13 (standard retail), UPC-A (North American retail), Code 39 (industrial alphanumeric), or Code 128 (full ASCII, logistics). Choose a format, enter your value, adjust the size, optionally show human-readable text, and download as PNG or SVG. All generation happens in your browser — nothing is sent to a server.",
+        "useCasesTitle": "When to use it",
+        "useCasesBody": "Since any barcode scanner or phone scanning app simply reads back the exact digits or text you encoded, you decide what each code means. That's what makes it handy for everyday life too — number your moving boxes and jot down \"Box 1 = kitchen items\" in a spreadsheet, then just scan the code later to check. It also works great for home pantry or storage labels, price tags for garage sales or secondhand marketplaces, and organizing personal collections like books, records, or figures. And it still covers the business use cases: labeling products, packages, or inventory (EAN/UPC), printing barcodes for internal tracking or shipping (Code 128), and creating product codes for retail or e-commerce.",
+        "tipsTitle": "Tips",
+        "tipsBody": "EAN-13 and UPC-A require a valid checksum digit; this tool calculates it automatically if you provide the base digits. Keep the barcode large enough (100px or more) for reliable scanning. SVG is best for printing or enlarging since it won't pixelate; PNG is convenient for the web or messaging. Color customization isn't supported, to keep barcodes reliably scannable."
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "q": "What is a barcode?",
+            "a": "A barcode is a visual encoding of data as vertical bars of varying widths. Scanners read the pattern to retrieve the encoded information. This tool creates barcodes in four standard formats."
+          },
+          {
+            "q": "What's the difference between EAN-13, UPC-A, Code 39, and Code 128?",
+            "a": "EAN-13 is the retail standard in Europe and Asia (13 digits). UPC-A is its North American counterpart (12 digits). Code 39 encodes alphanumeric characters and is common in warehousing and industrial settings. Code 128 encodes the full ASCII set and is widely used in logistics and shipping."
+          },
+          {
+            "q": "Do I need to calculate the checksum myself?",
+            "a": "No. For EAN-13 and UPC-A, this tool automatically calculates and appends the checksum digit if you enter just the base digits (12 for EAN-13, 11 for UPC-A)."
+          },
+          {
+            "q": "Where is my generated barcode stored?",
+            "a": "Your barcode is generated entirely in your browser and is never sent to a server. Recent inputs are stored only in this browser's localStorage for convenience."
+          },
+          {
+            "q": "Should I download PNG or SVG?",
+            "a": "PNG is smaller but may blur when enlarged. SVG is a vector format that stays sharp at any size. Use SVG for printing or large displays, and PNG for the web or messaging."
+          },
+          {
+            "q": "Can I customize the barcode color?",
+            "a": "Not currently. Barcodes are fixed to black on white to ensure reliable scanning."
+          },
+          {
+            "q": "Should I choose Code 39 or Code 128?",
+            "a": "Choose Code 39 if you only need uppercase letters, digits, and a few special characters and need compatibility with older scanners. Choose Code 128 for denser encoding of arbitrary text, including lowercase letters."
+          }
+        ]
+      },
+      "preview": {
+        "empty": "Your barcode will appear here",
+        "error": "Unable to generate barcode"
+      }
     }
   },
   "about": {

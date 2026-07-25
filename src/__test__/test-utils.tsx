@@ -1012,6 +1012,7 @@ const defaultMessages = {
     'cron-parser': (enMessages as any).tools['cron-parser'],
     'lotto-generator': (enMessages as any).tools['lotto-generator'],
     cheer: (enMessages as any).tools.cheer,
+    'barcode-generator': (enMessages as any).tools['barcode-generator'],
   },
 };
 
