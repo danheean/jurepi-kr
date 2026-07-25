@@ -432,6 +432,48 @@
     }
   },
   {
+    "slug": "yareureong",
+    "topic": "mz",
+    "tags": [
+      "밈",
+      "유행어",
+      "SNS",
+      "Z세대"
+    ],
+    "related": [
+      "yareu"
+    ],
+    "tone": "positive",
+    "ko": {
+      "term": "야르렁",
+      "definition": "감탄사 '야르'와 EXO의 노래 '으르렁'을 합쳐 만든 말장난 신조어.\n뜻보다는 소리 자체가 우스꽝스러워서, 그 어색함을 즐기며 쓰는\n인터넷 밈에 가깝다.\n",
+      "examples": [
+        "'야르렁' 이 단어 진짜 웃긴데 부끄러워서 못 쓰겠어.",
+        "SNS에서 '야르렁'이 유행하길래 나도 따라 써봤다."
+      ],
+      "body": "## 설명\n\n**야르렁**은 딱히 정해진 뜻이 있다기보다, 두 단어를 억지로 붙였을\n때 나는 **소리 자체가 웃긴 밈**입니다. 이미 유행어인 감탄사\n'야르'(신난다, 앗싸)에 EXO의 히트곡 '으르렁'을 이어 붙여 만든\n말장난으로, X(트위터)와 온라인 커뮤니티에서 \"진짜 저급한데\n웃기다\"는 반응과 함께 퍼졌습니다.\n\n'할렐루야'와 '야르'를 합친 **할렐야르**도 같은 방식으로 만들어진\n말장난으로, 함께 언급되는 경우가 많습니다. 두 표현 모두 뜻을\n전달하기보다는 **어색하고 우스꽝스러운 소리 자체를 즐기는** 유행어에\n가깝습니다.",
+      "reading": "야르렁",
+      "aliases": [
+        "야르렁~"
+      ],
+      "origin": "감탄사 '야르'와 EXO의 노래 제목 '으르렁'을 합친 말장난으로, X(트위터)를 중심으로 퍼진 인터넷 밈. 비슷한 계열로 '할렐루야'와 '야르'를 합친 '할렐야르'도 있다."
+    },
+    "en": {
+      "term": "Yareureong",
+      "definition": "A playful portmanteau blending the Korean interjection \"yareu\" (an\nexclamation of joy) with EXO's song title \"Growl\" (으르렁, eureureong).\nIt has no real meaning beyond the joke: the word just sounds silly, and\nthat awkwardness is the whole point.\n",
+      "examples": [
+        "'Yareureong' is genuinely hilarious — I'm too embarrassed to actually say it out loud.",
+        "Everyone on social media was saying 'yareureong,' so I tried it too."
+      ],
+      "body": "## Description\n\n**Yareureong** doesn't really mean anything on its own — it's a meme built\nentirely around how funny the mashed-up **sound** is. Take the already\ntrendy interjection \"yareu\" (roughly \"yay!\" or \"woo!\"), glue it to EXO's\nhit song title \"Growl\" (으르렁), and you get a word people share on X\n(Twitter) and online communities with reactions like \"this is genuinely\nlow-brow but I can't stop laughing.\"\n\nA similarly constructed pun, **halleluyareu** (blending \"hallelujah\" with\n\"yareu\"), is often mentioned alongside it. Both are less about meaning\nand more about **enjoying how awkward and silly they sound out loud**.",
+      "reading": "/ja.ɾɯ.ɾʌŋ/",
+      "aliases": [
+        "yareureong~"
+      ],
+      "origin": "A pun blending the interjection \"yareu\" with EXO's song title \"Growl\" (으르렁), spread mainly on X (Twitter). A similar-style blend, \"halleluyareu\" (combining \"hallelujah\" with \"yareu\"), also exists."
+    }
+  },
+  {
     "slug": "jeo-me-chu",
     "topic": "mz",
     "tags": [
