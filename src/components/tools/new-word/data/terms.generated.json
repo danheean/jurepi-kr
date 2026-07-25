@@ -926,6 +926,47 @@
     }
   },
   {
+    "slug": "pmf",
+    "topic": "tech",
+    "tags": [
+      "스타트업",
+      "제품",
+      "성장"
+    ],
+    "coinedYear": 2007,
+    "related": [],
+    "tone": "positive",
+    "ko": {
+      "term": "PMF",
+      "definition": "제품이 시장의 수요를 충분히 만족시켜, 고객이 자발적으로 찾고\n추천하고 돈을 지불하는 상태. 스타트업이 본격적으로 마케팅·영업에\n투자하기 전에 반드시 확인해야 할 단계로 여겨진다.\n",
+      "examples": [
+        "PMF를 찾기 전까지는 광고비를 쓰지 말라는 조언을 자주 듣는다.",
+        "우리 서비스는 아직 PMF 검증 단계라 기능 확장보다 사용자 인터뷰에 집중하고 있다."
+      ],
+      "body": "## 설명\n\n**PMF**는 \"제품이 시장에 딱 맞아떨어지는 상태\"를 뜻합니다. 마크\n안드레센은 PMF가 왔을 때를 \"고객이 만드는 속도보다 빠르게 사려 하고,\n회사 계좌에 돈이 쌓이고, 채용을 감당하기 벅찰 정도\"라고 표현했습니다.\n\n### 활용법\n\n- PMF를 찾기 **전**에는 기능 추가나 광고 확대보다, **소수의 고객을\n  깊이 인터뷰**해 진짜 문제를 겪고 있는지 확인하는 데 집중하세요.\n- 대표적인 체크 신호: 사용자가 **입소문으로 늘어나는지**, **떠나면\n  아쉬워하는지**(설문 \"이 제품이 사라지면 얼마나 아쉬울까요?\"에\n  \"매우 아쉽다\"가 40% 이상이면 긍정 신호로 봅니다), **재구매·재방문이\n  자연스럽게 일어나는지**를 확인하세요.\n- PMF를 찾기 **전에** 마케팅 예산부터 늘리면, 맞지 않는 제품에\n  사람만 몰렸다가 이탈하는 걸 돈으로 확인하게 됩니다.",
+      "reading": "피엠에프",
+      "aliases": [
+        "Product-Market Fit",
+        "프로덕트마켓핏"
+      ],
+      "origin": "벤처투자자 앤디 라클레프가 정립한 개념을, 마크 안드레센이 2007년 에세이 \"The Only Thing That Matters\"에서 'product/market fit'으로 명명하며 스타트업 업계에 널리 퍼졌다."
+    },
+    "en": {
+      "term": "PMF",
+      "definition": "A state where a product satisfies market demand well enough that\ncustomers seek it out, recommend it, and pay for it on their own.\nConsidered the milestone startups must hit before investing heavily\nin marketing and sales.\n",
+      "examples": [
+        "The common advice is: don't spend on ads until you've found PMF.",
+        "Our product is still validating PMF, so we're focused on user interviews rather than adding features."
+      ],
+      "body": "## Description\n\n**PMF** describes the moment a product fits the market it's built for.\nMarc Andreessen described it this way: customers buy faster than you can\nmake the product, cash piles up in the bank account, and you can barely\nhire fast enough to keep up.\n\n### How to use it\n\n- **Before** you have PMF, prioritize **deep interviews with a small\n  number of customers** over adding features or scaling ads — the goal\n  is confirming they have a real problem.\n- Watch for tell-tale signals: **organic word-of-mouth growth**,\n  **customers who'd be genuinely upset to lose the product** (in the\n  classic survey, \"very disappointed\" responses above 40% are a good\n  sign), and **repeat usage or purchases that happen naturally**.\n- Spending on marketing **before** PMF just proves — expensively — that\n  the wrong people are churning out.",
+      "reading": "/ˌpiː ɛm ˈɛf/",
+      "aliases": [
+        "Product-Market Fit"
+      ],
+      "origin": "The concept was developed by venture capitalist Andy Rachleff and named \"product/market fit\" by Marc Andreessen in his 2007 essay \"The Only Thing That Matters,\" which popularized it across the startup world."
+    }
+  },
+  {
     "slug": "solid",
     "topic": "tech",
     "tags": [
@@ -1006,6 +1047,86 @@
         "flywheel effect"
       ],
       "origin": "Introduced by Jim Collins in his 2001 book \"Good to Great,\" then popularized when Jeff Bezos sketched Amazon's growth loop as a wheel on a napkin."
+    }
+  },
+  {
+    "slug": "cta",
+    "topic": "tech",
+    "tags": [
+      "마케팅",
+      "전환율",
+      "UX"
+    ],
+    "related": [],
+    "tone": "neutral",
+    "ko": {
+      "term": "CTA",
+      "definition": "사용자에게 특정 행동을 하도록 유도하는 문구나 버튼. '지금 가입하기',\n'무료로 시작하기'처럼 웹사이트·광고·이메일에서 다음에 할 행동을\n명확하게 안내하는 요소를 가리킨다.\n",
+      "examples": [
+        "랜딩페이지 CTA를 '더 알아보기'에서 '무료로 시작하기'로 바꾸니 클릭률이 올랐다.",
+        "이메일 맨 아래에 명확한 CTA 버튼을 넣어야 전환율이 높아진다."
+      ],
+      "body": "## 설명\n\n**CTA**는 사용자가 다음에 무엇을 해야 할지 헷갈리지 않도록, 행동을\n구체적인 동사로 지시하는 문구나 버튼입니다. \"제출\"보다 \"무료로\n시작하기\"처럼 **결과를 상상하게 만드는 표현**이 더 효과적입니다.\n\n### 활용법\n\n- **한 화면에 하나의 CTA**만 강조하세요. CTA가 여러 개면 사용자가\n  무엇을 눌러야 할지 고민하다가 이탈합니다.\n- **동사로 시작**하고, 클릭했을 때 얻는 결과를 함께 보여주세요.\n  (\"구독하기\"보다 \"무료로 30일 체험하기\").\n- **스크롤 없이 보이는 위치**(above the fold)에 최소 하나는 배치하세요.\n- 문구·색상·위치를 바꿔가며 **A/B 테스트**로 클릭률을 검증하는 것이\n  실무에서 가장 흔한 개선 방법입니다.",
+      "reading": "씨티에이",
+      "aliases": [
+        "Call To Action",
+        "콜투액션"
+      ],
+      "origin": "마케팅·광고 업계에서 오래 쓰인 개념으로, 웹사이트·랜딩페이지 최적화가 중요해진 온라인 마케팅 시대에 필수 용어로 자리잡았다."
+    },
+    "en": {
+      "term": "CTA",
+      "definition": "A phrase or button that prompts the user to take a specific action —\nlike \"Sign up now\" or \"Start free\" — clearly telling them what to do\nnext on a website, ad, or email.\n",
+      "examples": [
+        "Changing the landing page CTA from 'Learn more' to 'Start free' boosted the click-through rate.",
+        "A clear CTA button at the bottom of an email raises the conversion rate."
+      ],
+      "body": "## Description\n\nA **CTA** is a phrase or button that spells out, in a concrete verb,\nexactly what a user should do next — so they never have to guess. \"Start\nfree for 30 days\" tends to outperform generic wording like \"Submit\"\nbecause it lets the user **picture the outcome**.\n\n### How to use it\n\n- **Highlight only one CTA per screen.** Multiple competing CTAs make\n  users hesitate and often leave without clicking either.\n- **Start with a verb** and pair it with the payoff — \"Start your free\n  30-day trial\" beats plain \"Subscribe.\"\n- Place at least one CTA **above the fold**, so it's visible without\n  scrolling.\n- **A/B test** the wording, color, and placement — it's the most common\n  way teams improve click-through rate in practice.",
+      "reading": "/ˌsiː tiː ˈeɪ/",
+      "aliases": [
+        "Call To Action"
+      ],
+      "origin": "A long-standing marketing and advertising concept that became essential vocabulary as website and landing-page optimization grew central to online marketing."
+    }
+  },
+  {
+    "slug": "kpi",
+    "topic": "tech",
+    "tags": [
+      "경영",
+      "성과관리",
+      "지표"
+    ],
+    "related": [],
+    "tone": "neutral",
+    "ko": {
+      "term": "KPI",
+      "definition": "목표 달성 정도를 측정하기 위해 추적하는 핵심 지표. 매출, 가입자 수,\n재방문율처럼 팀이나 조직의 성과를 숫자로 보여주는 기준이다.\n",
+      "examples": [
+        "이번 분기 KPI는 신규 가입자 1만 명 달성이다.",
+        "회의 때마다 KPI 대시보드를 먼저 확인하고 우선순위를 정한다."
+      ],
+      "body": "## 설명\n\n**KPI**는 \"이 목표를 달성하고 있는가?\"를 숫자로 답하기 위한 지표입니다.\n\"더 성장하자\" 같은 추상적인 목표는 진척을 판단할 수 없기 때문에,\n측정 가능한 숫자로 바꿔놓는 역할을 합니다.\n\n### 활용법\n\n- **목표(결과 지표)와 선행 지표를 구분**하세요. 매출은 결과라 뒤늦게\n  확인되지만, 신규 가입자 수·활성 사용자 수 같은 선행 지표는 더 빨리\n  움직여 방향을 조정할 시간을 벌어줍니다.\n- KPI는 **너무 많이 잡지 않는 게** 좋습니다. 팀이 동시에 신경 쓸 수\n  있는 핵심 지표는 보통 2~5개면 충분합니다.\n- **기간과 목표 수치를 명시**하세요. \"가입자 늘리기\"가 아니라\n  \"이번 분기까지 신규 가입자 1만 명\"처럼 구체적이어야 진척을\n  비교할 수 있습니다.\n- 정기적으로(주간·월간) **대시보드로 확인**하고, 목표에서 벗어나면\n  원인을 되짚는 루틴을 만드세요.",
+      "reading": "케이피아이",
+      "aliases": [
+        "Key Performance Indicator",
+        "핵심성과지표"
+      ],
+      "origin": "경영학의 성과관리(Performance Management) 분야에서 정립된 개념으로, 목표관리(MBO)·균형성과표(BSC) 같은 이론과 함께 발전해 기업 실무 전반에서 쓰이게 됐다."
+    },
+    "en": {
+      "term": "KPI",
+      "definition": "A key metric tracked to measure progress toward a goal — like revenue,\nsignups, or return-visit rate — that turns a team's or organization's\nperformance into a number.\n",
+      "examples": [
+        "Our KPI for this quarter is 10,000 new signups.",
+        "We check the KPI dashboard first in every meeting before setting priorities."
+      ],
+      "body": "## Description\n\nA **KPI** turns \"are we hitting this goal?\" into a number you can check.\nA vague goal like \"grow more\" gives you no way to judge progress — a KPI\nconverts it into something measurable.\n\n### How to use it\n\n- **Separate lagging indicators (results) from leading indicators.**\n  Revenue is a lagging indicator that shows up late; leading indicators\n  like new signups or active users move earlier, giving you time to\n  course-correct.\n- **Don't track too many.** A team can usually only stay focused on\n  2–5 key metrics at once.\n- **Attach a timeframe and a target number.** \"Grow signups\" isn't\n  measurable; \"10,000 new signups by end of quarter\" is.\n- **Review it on a regular dashboard** (weekly or monthly), and build a\n  habit of digging into the cause whenever you're off target.",
+      "reading": "/ˌkeɪ piː ˈaɪ/",
+      "aliases": [
+        "Key Performance Indicator"
+      ],
+      "origin": "A concept from the performance management field of business administration, developed alongside theories like Management by Objectives (MBO) and the Balanced Scorecard (BSC) into standard business practice."
     }
   }
 ]
