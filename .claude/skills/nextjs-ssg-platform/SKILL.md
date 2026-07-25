@@ -59,6 +59,8 @@ NextIntlClientProvider → ThemeProvider → ConsentProvider → ToastProvider
 
 **마스코트 소스(정사각형, 제목+캐릭터+목업이 한 구도) → 300×300 webp 변환 기본값은 "크롭 없이 리사이즈"다. 캐릭터 얼굴 확대 등 임의 크롭을 시도하지 마라 — 제목 텍스트와 UI 목업이 잘려 나간다.** cheer 실측: 소스(1254²)에서 캐릭터 중심으로 720×720(+520,+120) 크롭 후 300²로 확대했더니 제목 "모두의 응원"이 "두의 응원"(앞 글자 잘림)으로, 하단 LED 배너 목업·"LED 전광판 응원도구" 배지·"웹 애플리케이션" 라벨이 전부 프레임 밖으로 사라짐 — 화면만 보면 오타난 것처럼 보이는 라이브 버그였는데 빌드·유닛·프리렌더는 전부 그린(정적 에셋 내용은 아무 게이트도 안 봄), 사용자가 캡처를 보내서야 발견. 형제 도구 lotto-generator.webp를 대조하니 **크롭 없이 정사각 소스를 그대로 300×300으로 축소**해 제목·캐릭터·목업이 온전히 보였다. **예방:** 신규 마스코트는 `sips -z 300 300 source.png --out tmp.png && cwebp -q 85 tmp.png -o public/characters/<slug>.webp`(크롭 좌표 없이) 를 기본값으로 하고, 리더는 생성 직후 Read로 결과 webp를 직접 열어 제목 전체·캐릭터·목업이 모두 프레임 안에 있는지 확인한다. 캐릭터만 클로즈업하고 싶다는 명시적 요청이 있을 때만 크롭을 고려하고, 그 경우도 크롭 결과를 Read로 반드시 확인한다("그럴듯한 크롭 좌표"는 증명이 아니다).
 
+**재발 경고: 이 규칙이 이미 문서화된 뒤(cheer 세션 이후)에 만들어진 도구(barcode-generator)에서도 재발했다** — 규칙이 스킬 파일에 있어도 "도구 빌드 완료" 체크리스트 항목으로 강제되지 않으면 생성 시점에 다시 크롭한다. `/impeccable audit`가 뒤늦게 걸러(원본 1254² 전체 장면 대 최종 300² 클로즈업 비교로 적발) 리사이즈로 교체했다. **예방 강화:** 도구 빌드 완료 보고 전, 리더가 직접 `sips -g pixelWidth -g pixelHeight docs/resources/jurepi_characters/<slug>.png public/characters/<slug>.webp`로 두 파일의 종횡비를 대조하고(정사각 소스가 정사각 결과와 다른 크롭 오프셋을 거쳤는지는 결국 Read로 육안 확인해야 함) 형제 도구(예: `lotto-generator.webp`) 옆에 나란히 Read해 "전체 장면 보존"을 눈으로 재확인하는 것을 완료 게이트에 명시적으로 포함한다.
+
 ## SEO·i18n·동의·광고·CWV 상세
 
 라우팅 표, `generateStaticParams` 정확한 형태, 메시지 네임스페이스 규약, JSON-LD 종류(WebSite/SoftwareApplication/FAQPage), hreflang/canonical, AdSlot 높이·동의 게이팅, CSP 블록, CWV 체크리스트는 분량이 크다 → **`references/i18n-seo-cwv.md`를 읽어라.**
