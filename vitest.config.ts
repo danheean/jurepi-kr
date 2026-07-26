@@ -34,7 +34,33 @@ export default defineConfig({
         'src/i18n/routing.ts',
         'src/i18n/request.ts',
         'src/tools/types.ts',
+        // Type-only modules and barrels have no executable code — v8 reports them
+        // as 0%, which understates real coverage. (`.d.ts` already excluded above.)
+        'src/**/types.ts',
+        'src/**/index.ts',
+        // JSON-LD emitters: their output (schema.org url==canonical, exactly one
+        // FAQPage/SoftwareApplication) is verified in the prerendered HTML by the
+        // integration-qa prerender gate + E2E, not by unit tests.
+        'src/**/*StructuredData.tsx',
+        // Third-party script wrappers (adsbygoogle.js / GTM inline tags): no unit
+        // logic; verified live by E2E + browser network checks.
+        'src/components/analytics/**',
       ],
+      // Ratchet: a hard floor so coverage can't silently drift back to the old
+      // ~72% plateau. Set below the current measured level to tolerate small
+      // fluctuation while blocking regression. `pnpm test:coverage` fails if any
+      // metric drops under its floor. New domain logic should still land ≥90%
+      // locally (see integration-qa); this only guards the whole-repo baseline.
+      // Floors ~2 pts below the measured level (statements 80.97 / branches 86.56
+      // / functions 84.79 / lines 80.97) — locks in the current baseline and fails
+      // loudly long before any drift toward the old ~72% plateau, while tolerating
+      // normal per-PR churn so the gate stays trustworthy (never false-trips).
+      thresholds: {
+        statements: 79,
+        branches: 84,
+        functions: 82,
+        lines: 79,
+      },
     },
   },
   resolve: {

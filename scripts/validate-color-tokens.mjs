@@ -31,6 +31,17 @@ export function collectViolations() {
   const familyKeys = parseBlockKeys(cfg, 'fontFamily');
   const sizeKeys = parseBlockKeys(cfg, 'fontSize');
 
+  // Defined CSS custom properties, for inline `var(--token)` validation.
+  // A missing custom property renders transparent/no-op (e.g. the restaurant-map
+  // marker's phantom `var(--accent)`), and no Tailwind *class* scan catches it —
+  // this closes that blind spot.
+  const definedCssVars = new Set();
+  for (const cssRel of globSync('src/**/*.css', { cwd: ROOT })) {
+    const css = readFileSync(join(ROOT, cssRel), 'utf8');
+    for (const mm of css.matchAll(/(?:^|[^\w-])(--[a-z0-9-]+)\s*:/gim)) definedCssVars.add(mm[1]);
+  }
+  const cssVarRe = /var\(\s*(--[a-z0-9-]+)/g;
+
   // Tailwind defaults available because we `extend` (not replace) the theme.
   const KEYWORDS = ['white', 'black', 'transparent', 'current', 'inherit'];
   const PALETTE = [
@@ -126,6 +137,20 @@ export function collectViolations() {
         if (validSizes.has(token)) continue;
         push(`text-${m[1]}`, token, 'font-size');
       }
+
+      // 4) inline CSS variable references — `var(--token)` in style={{}} / SVG.
+      // A missing custom property renders transparent, invisible to unit/E2E.
+      cssVarRe.lastIndex = 0;
+      while ((m = cssVarRe.exec(line))) {
+        const token = m[1];
+        // Dynamic references can't be resolved statically:
+        //  `var(--accent-${c})` captures `--accent-` (trailing dash);
+        //  `var(--foo${c})` is immediately followed by `$` / backtick.
+        const after = line[m.index + m[0].length] || '';
+        if (token.endsWith('-') || after === '$' || after === '`') continue;
+        if (definedCssVars.has(token)) continue;
+        push(`var(${token})`, token, 'css-var');
+      }
     });
   }
   return { violations, scanned: files.length };
@@ -137,7 +162,8 @@ if (process.argv[1] && process.argv[1].endsWith('validate-color-tokens.mjs')) {
   if (violations.length) {
     console.error(`\n✖ ${violations.length} invalid utility class(es) — these render NO style:\n`);
     for (const v of violations) {
-      console.error(`  ${v.file}:${v.line}  ${v.cls}   (${v.kind} "${v.token}" not in tailwind.config.ts)`);
+      const where = v.kind === 'css-var' ? 'not defined in any src/**/*.css' : 'not in tailwind.config.ts';
+      console.error(`  ${v.file}:${v.line}  ${v.cls}   (${v.kind} "${v.token}" ${where})`);
     }
     console.error('\nFix: use a real token, or add it to tokens.css + tailwind.config.ts.\n');
     process.exit(1);

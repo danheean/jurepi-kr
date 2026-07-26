@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { ballColor } from '@/lib/lotto-generator/colors';
 import { LOTTO_MAX } from '@/lib/lotto-generator/schema';
 import type { AnimationPhase } from './useLottoGenerator';
@@ -32,8 +33,13 @@ export function BallDisplay({
 }: BallDisplayProps) {
   const color = ballColor(number);
 
-  const prefersReducedMotion = typeof window !== 'undefined'
-    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Mount-safe reduced-motion read. Reading `matchMedia` directly in render
+  // (previous approach) made the inline `style` attribute diverge between the
+  // SSR pass (window undefined → false) and the client (real OS preference),
+  // triggering a React #418 hydration mismatch for reduced-motion users. The
+  // shared hook returns `false` on the server and first client render, then
+  // syncs in an effect, so hydration always matches.
+  const prefersReducedMotion = useReducedMotion();
 
   const isRolling = animationPhase === 'rolling' && isAnimating && !prefersReducedMotion;
   const isLocking = animationPhase === 'locking' && !prefersReducedMotion;

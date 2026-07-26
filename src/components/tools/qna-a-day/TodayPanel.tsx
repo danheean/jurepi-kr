@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { addDays, type DateKey, type QuestionKey } from '@/lib/qna-a-day/date';
+import { addDays, today, type DateKey, type QuestionKey } from '@/lib/qna-a-day/date';
 import { type Entry } from '@/lib/qna-a-day/journal';
 import { AnswerComposer } from './AnswerComposer';
 import { PastYears } from './PastYears';
@@ -27,6 +27,14 @@ export function TodayPanel({
   const t = useTranslations('tools.qna-a-day');
   const locale = useLocale();
   const bcp47 = locale === 'en' ? 'en-US' : 'ko-KR';
+
+  // Compare against the engine's local-time "today", not UTC. The prior
+  // `new Date().toISOString().split('T')[0]` produced a UTC date string, which
+  // disagreed with `todayKey` (derived from the local-time date engine) for up
+  // to 9 hours a day in KST — the "today" badge and back-to-today control were
+  // wrong near midnight. This panel is client-only (behind the mounted gate),
+  // so there is no SSR of it; the fix is purely correctness.
+  const realTodayKey = today();
 
   // Format date for display
   const dateObj = new Date(
@@ -71,7 +79,7 @@ export function TodayPanel({
             {weekday}, {dateStr}
           </h2>
         </div>
-        {todayKey === new Date().toISOString().split('T')[0] && (
+        {todayKey === realTodayKey && (
           <span className="inline-block px-2 py-1 rounded-full text-xs font-semibold bg-accent-grape-soft text-accent-grape-ink">
             {t('today.badge')}
           </span>
@@ -105,9 +113,9 @@ export function TodayPanel({
             <span className="text-xs">{t('today.neighborPrev')}</span>
           </button>
 
-          {todayKey !== new Date().toISOString().split('T')[0] && (
+          {todayKey !== realTodayKey && (
             <button
-              onClick={() => onNavigateDate(new Date().toISOString().split('T')[0] as DateKey)}
+              onClick={() => onNavigateDate(realTodayKey)}
               className="text-xs font-medium text-accent-grape-ink hover:opacity-80 transition-opacity"
             >
               {t('today.backToToday')}
