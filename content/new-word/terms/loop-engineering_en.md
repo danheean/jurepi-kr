@@ -1,5 +1,6 @@
 ---
 term: Loop Engineering
+tags: [AI, agents, automation, engineering]
 definition: |
   Designing and operating AI agents so they iterate in autonomous loops to plan,
   execute, and verify tasks without direct human intervention.

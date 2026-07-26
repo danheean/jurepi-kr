@@ -2,18 +2,11 @@ import { TermFileFrontSchema, type TermFileFront, type MergedTerm } from './sche
 import { resolveSlug } from './slug';
 
 /**
- * Check if two string arrays are equal (order matters)
- */
-function arraysEqual(a: string[], b: string[]): boolean {
-  if (a.length !== b.length) return false;
-  return a.every((val, idx) => val === b[idx]);
-}
-
-/**
  * Merge ko + en pair following canonical rule:
- * - Structural metadata (topic, tags, slug, coinedYear, related) from KO
- * - EN inherits if absent; must match if present (error if conflict)
- * - Locale content (term, definition, examples, reading, aliases, origin) independent
+ * - Structural metadata (topic, slug, coinedYear, related) from KO
+ * - Locale content (term, definition, examples, reading, aliases, tags, origin)
+ *   is per-locale. `tags` is localized like aliases: EN uses its own if present,
+ *   otherwise inherits KO (so shared/acronym tags need no override).
  */
 export function mergePair(
   koFront: TermFileFront,
@@ -23,13 +16,14 @@ export function mergePair(
 ): MergedTerm {
   const slug = resolveSlug(koFront, 'unknown.md');
   const topic = koFront.topic || 'mz';
-  const tags = koFront.tags || [];
   const related = koFront.related || [];
+  const koTags = koFront.tags || [];
+  // EN inherits KO tags unless its own file provides a (non-empty) tags list.
+  const enTags = enFront.tags && enFront.tags.length > 0 ? enFront.tags : koTags;
 
   return {
     slug,
     topic,
-    tags,
     coinedYear: koFront.coinedYear,
     related,
     tone: koFront.tone,
@@ -40,6 +34,7 @@ export function mergePair(
       body: koBody,
       reading: koFront.reading,
       aliases: koFront.aliases,
+      tags: koTags,
       origin: koFront.origin,
     },
     en: {
@@ -49,6 +44,7 @@ export function mergePair(
       body: enBody,
       reading: enFront.reading,
       aliases: enFront.aliases,
+      tags: enTags,
       origin: enFront.origin,
     },
   };
@@ -94,13 +90,7 @@ export function validatePair(
       `${koFilename}: EN tone must match KO (KO="${ko.tone}", EN="${en.tone}")`
     );
   }
-  if (
-    en.tags &&
-    en.tags.length > 0 &&
-    !arraysEqual(en.tags, ko.tags || [])
-  ) {
-    errors.push(`${koFilename}: EN tags must match KO`);
-  }
+  // NOTE: `tags` is per-locale (localized like aliases) — EN may differ from KO.
 
   const term = mergePair(ko, en, '', '');
 

@@ -1,5 +1,6 @@
 ---
 term: Context Window
+tags: [AI, LLM, technology, performance]
 definition: |
   The maximum number of tokens (words) an LLM can process in a single interaction.
   Larger context windows enable deeper understanding of longer documents and more accurate responses.

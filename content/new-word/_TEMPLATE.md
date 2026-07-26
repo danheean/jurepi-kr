@@ -12,7 +12,7 @@ examples:
 # ── optional ──
 reading: "발음"           # Pronunciation/reading aid (optional)
 aliases: [별칭1, 별칭2]   # Search aliases (optional)
-tags: [태그1, 태그2]      # Filter/display tags (optional)
+tags: [태그1, 태그2]      # Filter/display tags (optional, per-locale — EN 파일엔 영문 태그; 생략 시 KO 상속)
 origin: "2024년 SNS에서 확산된 표현."  # Etymology (optional)
 coinedYear: 2024          # Appearance date (optional)
 related: [slug1, slug2]   # Related term slugs (optional, must exist in catalog)

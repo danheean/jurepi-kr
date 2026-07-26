@@ -7,7 +7,6 @@ const mockCatalog: MergedTerm[] = [
   {
     slug: 'god-life',
     topic: 'mz',
-    tags: [],
     related: [],
     ko: { term: '신의 삶', definition: '정의', examples: [], body: '' },
     en: { term: 'god life', definition: 'definition', examples: [], body: '' },
@@ -15,7 +14,6 @@ const mockCatalog: MergedTerm[] = [
   {
     slug: 'vibe-coding',
     topic: 'tech',
-    tags: [],
     related: [],
     ko: { term: '기분 코딩', definition: '정의', examples: [], body: '' },
     en: { term: 'vibe coding', definition: 'definition', examples: [], body: '' },
@@ -23,7 +21,6 @@ const mockCatalog: MergedTerm[] = [
   {
     slug: 'context-window',
     topic: 'tech',
-    tags: [],
     related: [],
     ko: { term: '컨텍스트 윈도우', definition: '정의', examples: [], body: '' },
     en: { term: 'context window', definition: 'definition', examples: [], body: '' },

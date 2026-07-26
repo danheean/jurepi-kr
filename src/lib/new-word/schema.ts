@@ -28,7 +28,6 @@ export type TermFileFront = z.infer<typeof TermFileFrontSchema>;
 export const MergedTermSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
   topic: z.enum(['mz', 'tech']),
-  tags: z.array(z.string()),
   coinedYear: z.number().int().optional(),
   related: z.array(z.string()),
   tone: z.enum(['positive', 'negative', 'neutral']).optional(),
@@ -39,6 +38,9 @@ export const MergedTermSchema = z.object({
     body: z.string(),
     reading: z.string().optional(),
     aliases: z.array(z.string()).optional(),
+    // Per-locale tags (localized like aliases). EN inherits KO when its file
+    // omits `tags`, so shared/acronym tags (AI, SOLID, KPI) need no override.
+    tags: z.array(z.string()).optional(),
     origin: z.string().optional(),
   }),
   en: z.object({
@@ -48,6 +50,7 @@ export const MergedTermSchema = z.object({
     body: z.string(),
     reading: z.string().optional(),
     aliases: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional(),
     origin: z.string().optional(),
   }),
 });

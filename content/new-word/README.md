@@ -63,7 +63,6 @@ Structural metadata (canonical in Korean file; English inherits if omitted):
 |-------|------|---------|
 | `slug` | string | `vibe-coding` (ASCII, unique, `/^[a-z0-9-]+$/`) |
 | `topic` | enum | `mz` or `tech` |
-| `tags` | string[] | `[AI, 개발, 트렌드]` |
 | `coinedYear` | number | `2025` |
 | `related` | string[] | `[loop-engineering, prompt-engineering]` (slugs; must exist) |
 
@@ -73,6 +72,7 @@ Per-locale optional fields (independent):
 |-------|------|---------|
 | `reading` | string | `바이브 코딩` or `/vaɪb ˈkoʊdɪŋ/` |
 | `aliases` | string[] | `[바이브코딩, 바코]` |
+| `tags` | string[] | KO `[AI, 개발, 트렌드]` · EN `[AI, development, trend]` (EN omitted → inherits KO, but then Korean tags show on the English page — prefer English tags in the EN file) |
 | `origin` | string | `2025년 개발자 커뮤니티에서 확산됨` |
 
 ## Topic List
@@ -102,7 +102,8 @@ topic: mz
 tags: [MZ, 라이프스타일]
 
 # god-saeng_en.md
-# (no topic/tags — inherits from Korean)
+tags: [MZ, lifestyle]   # per-locale (English); omit to inherit Korean tags
+# (no topic — inherits from Korean)
 ```
 
 Example (✗ ERROR):
@@ -116,8 +117,8 @@ topic: tech  # Conflict! Build fails.
 
 **Locale-specific content is independent:**
 
-- `term`, `definition`, `examples`, `reading`, `aliases`, `origin` are translated independently per locale.
-- No conflict if they differ.
+- `term`, `definition`, `examples`, `reading`, `aliases`, `tags`, `origin` are translated independently per locale.
+- No conflict if they differ. (`tags` in the EN file may differ from KO; if omitted, EN inherits KO.)
 
 ## Related References
 

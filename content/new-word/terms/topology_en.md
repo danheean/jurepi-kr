@@ -1,5 +1,6 @@
 ---
 term: Topology
+tags: [organization, development, architecture]
 definition: |
   The structure describing how components of a system or organization are
   arranged and connected. Originally a network/mathematical concept, it is

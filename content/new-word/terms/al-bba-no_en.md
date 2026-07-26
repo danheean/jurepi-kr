@@ -1,5 +1,6 @@
 ---
 term: Not My Problem
+tags: [MZ, internet, meme]
 definition: |
   A Korean slang from "그건 내가 알 바 아니다" (that's not mine to care about),
   ending with the Gyeongsang-dialect question particle "-no." Used to cynically

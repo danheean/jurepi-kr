@@ -7,7 +7,6 @@ const mockCatalog: MergedTerm[] = [
   {
     slug: 'god-life',
     topic: 'mz',
-    tags: ['lifestyle', 'aspirational'],
     related: ['vibe-coding'],
     coinedYear: 2020,
     ko: {
@@ -17,6 +16,7 @@ const mockCatalog: MergedTerm[] = [
       body: 'An **ideal** life where `everything` works out.',
       origin: '영어에서 유래',
       reading: 'sin-ui sal',
+      tags: ['lifestyle', 'aspirational'],
     },
     en: {
       term: 'god life',
@@ -25,24 +25,26 @@ const mockCatalog: MergedTerm[] = [
       body: 'Perfect harmony. This is **bold** and `inline code`.',
       origin: 'English origin',
       reading: 'gahd life',
+      tags: ['lifestyle', 'aspirational'],
     },
   },
   {
     slug: 'vibe-coding',
     topic: 'tech',
-    tags: ['programming'],
     related: [],
     ko: {
       term: '기분 코딩',
       definition: '직관적 코딩',
       examples: ['예시'],
       body: '',
+      tags: ['programming'],
     },
     en: {
       term: 'vibe coding',
       definition: 'Programming by intuition',
       examples: ['Example'],
       body: '',
+      tags: ['programming'],
     },
   },
 ];
@@ -509,19 +511,20 @@ describe('TermDetail — share button integration', () => {
   const shareTerm: MergedTerm = {
     slug: 'god-saeng',
     topic: 'mz',
-    tags: ['lifestyle'],
     related: [],
     ko: {
       term: '갓생',
       definition: '제대로 된 삶, 멋진 인생',
       examples: ['그는 정말 갓생을 산다.'],
       body: '',
+      tags: ['lifestyle'],
     },
     en: {
       term: 'God Saeng',
       definition: 'A proper, exemplary life; living your best life',
       examples: ['She is living her best god saeng.'],
       body: '',
+      tags: ['lifestyle'],
     },
   };
 

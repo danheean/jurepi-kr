@@ -1,5 +1,6 @@
 ---
 term: CTA
+tags: [marketing, conversion, UX]
 definition: |
   A phrase or button that prompts the user to take a specific action —
   like "Sign up now" or "Start free" — clearly telling them what to do

@@ -1,5 +1,6 @@
 ---
 term: Yareureong
+tags: [meme, buzzword, social media, Gen Z]
 definition: |
   A playful portmanteau blending the Korean interjection "yareu" (an
   exclamation of joy) with EXO's song title "Growl" (으르렁, eureureong).

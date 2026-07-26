@@ -1,5 +1,6 @@
 ---
 term: Clean Architecture
+tags: [architecture, development, design]
 definition: |
   An architectural principle that organizes software into concentric
   layers (entities → use cases → interface adapters → frameworks/drivers)

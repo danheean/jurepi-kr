@@ -193,7 +193,7 @@ export function TermDetail({
                 {term.coinedYear}
               </span>
             )}
-            {term.tags.map((tag) => (
+            {(term[currentLocale].tags ?? []).map((tag) => (
               <span key={tag} className="text-xs px-2 py-1 rounded bg-surface-muted text-text-muted">
                 {tag}
               </span>

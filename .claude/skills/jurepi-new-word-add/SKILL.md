@@ -35,19 +35,19 @@ examples:               # ≥1개, 실제 용례
 # ── 구조 메타 (KO canonical; EN 생략 시 상속, 명시하면 KO와 일치해야 함) ──
 slug: "<kebab-case>"    # KO 파일에만(선택; 없으면 파일명에서 파생). /^[a-z0-9-]+$/, 카탈로그 내 유일. EN은 생략
 topic: mz               # enum: mz | tech. EN 생략(KO 상속)
-tags: [AI, 개발, 트렌드]  # 선택, 검색·표시용
 coinedYear: 2024        # 선택, 등장 연도(정렬 키)
 related: [slug1, slug2] # 선택, 관련 용어 slug — 카탈로그에 실재해야 함
 tone: positive          # 선택 enum: positive | negative | neutral
 # ── 로케일별 독립 (KO/EN 각각 자유) ──
 reading: "바이브 코딩"    # 선택, 발음/읽기 보조 (EN은 IPA 등)
 aliases: [바이브코딩, 바코] # 선택, 검색 별칭
+tags: [AI, 개발, 트렌드]  # 선택, 검색·표시용 — 로케일별. EN 파일엔 영문 태그(예: [AI, development, trend]); 생략 시 KO 상속하나 그러면 영문 페이지에 한글 태그 노출 → EN 태그 명시 권장
 origin: "2024년 개발자 커뮤니티에서 확산"  # 선택, 어원/유래
 ```
 
 **꼭 기억할 규칙 (다른 도구와의 일관성 + 생성기 불변식):**
-- `term`/`definition`/`examples`/`reading`/`aliases`/`origin`은 **로케일별로 각 언어로** 작성한다 — 다른 도구가 모든 콘텐츠를 ko/en 지역화하는 것과 일관. 영문 페이지에 한글이 새지 않게 EN 파일엔 영문으로 쓴다.
-- `slug`/`topic`/`tags`/`coinedYear`/`related`/`tone`은 KO canonical(EN 생략 시 상속, 명시하면 KO와 일치해야 함).
+- `term`/`definition`/`examples`/`reading`/`aliases`/`tags`/`origin`은 **로케일별로 각 언어로** 작성한다 — 다른 도구가 모든 콘텐츠를 ko/en 지역화하는 것과 일관. 영문 페이지에 한글이 새지 않게 EN 파일엔 영문으로 쓴다. **`tags`도 EN 파일엔 영문 태그**를 쓴다(생략 시 KO 상속하지만, 그러면 영문 스포크에 한글 태그가 노출됨).
+- `slug`/`topic`/`coinedYear`/`related`/`tone`은 KO canonical(EN 생략 시 상속, 명시하면 KO와 일치해야 함).
 - **slug는 불변 식별자** — `related`/즐겨찾기/최근본이 이걸로 참조한다. 기존 용어의 slug를 바꾸면 링크가 깨진다. 파일명=slug로 두는 게 안전(예: `god-saeng.md` → slug `god-saeng`).
 - 생성기는 다음 위반 시 **빌드를 실패**(exit 1)시킨다: 쌍 누락(ko-only/en-only), 빈 `term`/`definition`/`examples`, slug 정규식 위반, slug 중복, `related`가 없는 slug 참조, 구조 메타 불일치(예: EN topic≠KO topic). 실패 메시지의 파일·필드·사유를 그대로 고친다.
 - 정렬은 topic → coinedYear 내림차순 → term. `coinedYear`를 주면 최신 용어가 위로 온다.

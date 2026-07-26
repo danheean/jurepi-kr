@@ -1,5 +1,6 @@
 ---
 term: Prompt Engineering
+tags: [AI, LLM, technology, optimization]
 definition: |
   Systematically designing and refining input queries (prompts)
   to maximize the performance and accuracy of Large Language Models.

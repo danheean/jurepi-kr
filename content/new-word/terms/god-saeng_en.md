@@ -1,5 +1,6 @@
 ---
 term: God Life
+tags: [lifestyle, MZ, self-improvement]
 definition: |
   A Korean slang combining "god" (신) with "life/living" (생).
   Describes a perfectly organized, productive, and admirable lifestyle.

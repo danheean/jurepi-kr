@@ -1,5 +1,6 @@
 ---
 term: AI Agent
+tags: [AI, automation, systems, LLM]
 definition: |
   An autonomous AI system that, given a goal, plans actions, executes them,
   evaluates results, and iterates to solve problems without direct human intervention.

@@ -1,5 +1,6 @@
 ---
 term: Vibe Coding
+tags: [AI, development, trend, LLM]
 definition: |
   Building software by describing your intent to an AI in natural language
   and accepting the output by "feel" rather than scrutinizing every line of code.

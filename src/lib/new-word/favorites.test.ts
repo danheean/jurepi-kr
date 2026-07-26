@@ -7,7 +7,6 @@ describe('favorites — immutable operations', () => {
     {
       slug: 'god-saeng',
       topic: 'mz',
-      tags: [],
       related: [],
       ko: { term: '갓생', definition: 'd', examples: ['e'], body: '' },
       en: { term: 'god life', definition: 'd', examples: ['e'], body: '' },
@@ -15,7 +14,6 @@ describe('favorites — immutable operations', () => {
     {
       slug: 'vibe-coding',
       topic: 'tech',
-      tags: [],
       related: [],
       ko: { term: '바이브 코딩', definition: 'd', examples: ['e'], body: '' },
       en: { term: 'Vibe Coding', definition: 'd', examples: ['e'], body: '' },
@@ -23,7 +21,6 @@ describe('favorites — immutable operations', () => {
     {
       slug: 'king-batda',
       topic: 'mz',
-      tags: [],
       related: [],
       ko: { term: '킹받다', definition: 'd', examples: ['e'], body: '' },
       en: { term: 'annoyed', definition: 'd', examples: ['e'], body: '' },

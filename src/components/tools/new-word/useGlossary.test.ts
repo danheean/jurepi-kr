@@ -16,7 +16,6 @@ vi.mock('./data/terms.generated.json', () => ({
     {
       slug: 'god-life',
       topic: 'mz' as const,
-      tags: ['lifestyle', 'aspirational'],
       related: ['vibe-coding'],
       ko: {
         term: '신의 삶',
@@ -34,7 +33,6 @@ vi.mock('./data/terms.generated.json', () => ({
     {
       slug: 'vibe-coding',
       topic: 'tech' as const,
-      tags: ['programming', 'style'],
       related: ['god-life'],
       ko: {
         term: '기분 코딩',
@@ -52,7 +50,6 @@ vi.mock('./data/terms.generated.json', () => ({
     {
       slug: 'context-window',
       topic: 'tech' as const,
-      tags: ['ai', 'llm'],
       related: [],
       ko: {
         term: '컨텍스트 윈도우',
@@ -74,7 +71,6 @@ const mockCatalog = [
   {
     slug: 'god-life',
     topic: 'mz' as const,
-    tags: ['lifestyle', 'aspirational'],
     related: ['vibe-coding'],
     ko: {
       term: '신의 삶',
@@ -92,7 +88,6 @@ const mockCatalog = [
   {
     slug: 'vibe-coding',
     topic: 'tech' as const,
-    tags: ['programming', 'style'],
     related: ['god-life'],
     ko: {
       term: '기분 코딩',

@@ -1,5 +1,6 @@
 ---
 term: X-tech
+tags: [industry, startup, trend]
 definition: |
   The fusion of a traditional industry with advanced technology like AI or
   IT to create new value — an umbrella term for combinations such as

@@ -1,5 +1,6 @@
 ---
 term: SOLID
+tags: [design principles, development, object-oriented]
 definition: |
   An acronym for five object-oriented design principles — Single
   Responsibility, Open/Closed, Liskov Substitution, Interface Segregation,

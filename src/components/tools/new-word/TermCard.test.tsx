@@ -6,19 +6,20 @@ import { MergedTerm } from '@/lib/new-word/schema';
 const mockTerm: MergedTerm = {
   slug: 'test-slug',
   topic: 'mz',
-  tags: ['tag1', 'tag2', 'tag3', 'tag4'],
   related: [],
   ko: {
     term: '테스트 용어',
     definition: '테스트 정의입니다.',
     examples: ['예시1', '예시2'],
     body: '',
+    tags: ['tag1', 'tag2', 'tag3', 'tag4'],
   },
   en: {
     term: 'Test Term',
     definition: 'Test definition.',
     examples: ['Example 1', 'Example 2'],
     body: '',
+    tags: ['tag1', 'tag2', 'tag3', 'tag4'],
   },
 };
 

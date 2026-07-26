@@ -31,7 +31,7 @@ export function filterTerms(
         term.ko.term,
         ...(term.ko.aliases || []),
         term.ko.definition,
-        ...term.tags,
+        ...(term.ko.tags || []),
       ].join(' ')
     );
     const enSearchText = normalizeSearchText(
@@ -39,7 +39,7 @@ export function filterTerms(
         term.en.term,
         ...(term.en.aliases || []),
         term.en.definition,
-        ...term.tags,
+        ...(term.en.tags || []),
       ].join(' ')
     );
 

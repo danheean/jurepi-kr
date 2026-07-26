@@ -133,7 +133,7 @@ export function NewWordSpoke({ term, locale, catalog }: NewWordSpokeProps) {
               {term.coinedYear}
             </span>
           )}
-          {term.tags.map((tag) => (
+          {(content.tags ?? []).map((tag) => (
             <span
               key={tag}
               className="text-xs px-2 py-1 rounded bg-surface-muted text-text-muted"

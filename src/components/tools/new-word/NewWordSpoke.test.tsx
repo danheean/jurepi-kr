@@ -18,7 +18,6 @@ describe('NewWordSpoke', () => {
     slug: 'test-term',
     topic: 'mz',
     tone: 'positive',
-    tags: ['tag1', 'tag2'],
     coinedYear: 2023,
     related: ['related-term-1'],
     ko: {
@@ -28,6 +27,7 @@ describe('NewWordSpoke', () => {
       body: '## 상세 설명\n본문입니다.',
       reading: '테스트용어',
       origin: '테스트에서 유래',
+      tags: ['tag1', 'tag2'],
     },
     en: {
       term: 'test term',
@@ -36,13 +36,13 @@ describe('NewWordSpoke', () => {
       body: '## Detailed explanation\nBody text.',
       reading: 'test term',
       origin: 'Derived from test',
+      tags: ['tag1', 'tag2'],
     },
   };
 
   const relatedTerm: MergedTerm = {
     slug: 'related-term-1',
     topic: 'tech',
-    tags: [],
     related: [],
     ko: {
       term: '관련 용어',

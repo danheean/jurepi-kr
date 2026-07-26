@@ -104,7 +104,7 @@ export function TermCard({
           >
             {term.topic.toUpperCase()}
           </span>
-          {term.tags.slice(0, 3).map((tag) => (
+          {(term[currentLocale].tags ?? []).slice(0, 3).map((tag) => (
             <span
               key={tag}
               className="text-xs px-2 py-1 rounded-full bg-surface-muted text-text-muted"

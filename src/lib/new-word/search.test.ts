@@ -7,7 +7,6 @@ describe('search — diacritic-insensitive filtering', () => {
     {
       slug: 'god-saeng',
       topic: 'mz',
-      tags: ['생활', '긍정'],
       related: [],
       ko: {
         term: '갓생',
@@ -15,6 +14,7 @@ describe('search — diacritic-insensitive filtering', () => {
         examples: ['갓생을 산다'],
         body: '',
         aliases: ['갓생활'],
+        tags: ['생활', '긍정'],
       },
       en: {
         term: 'god life',
@@ -26,7 +26,6 @@ describe('search — diacritic-insensitive filtering', () => {
     {
       slug: 'vibe-coding',
       topic: 'tech',
-      tags: ['AI', '개발'],
       coinedYear: 2025,
       related: [],
       ko: {
@@ -35,6 +34,7 @@ describe('search — diacritic-insensitive filtering', () => {
         examples: ['바이브 코딩으로 빠르게'],
         body: '',
         aliases: ['바코'],
+        tags: ['AI', '개발'],
       },
       en: {
         term: 'Vibe Coding',
@@ -46,13 +46,13 @@ describe('search — diacritic-insensitive filtering', () => {
     {
       slug: 'king-batda',
       topic: 'mz',
-      tags: ['감정'],
       related: [],
       ko: {
         term: '킹받다',
         definition: '열받다',
         examples: ['킹받네'],
         body: '',
+        tags: ['감정'],
       },
       en: {
         term: 'annoyed',

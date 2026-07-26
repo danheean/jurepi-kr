@@ -1,5 +1,6 @@
 ---
 term: Eok-kka
+tags: [internet culture, fandom, social media]
 definition: |
   Online fandom that criticizes and ridicules celebrity behavior on SNS.
   Etymology possibly blends "억울한" (aggrieved) with "audience" (청중).

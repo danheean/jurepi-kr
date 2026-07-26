@@ -24,7 +24,8 @@ describe('merge — canonical rule application', () => {
       const merged = mergePair(validKo, validEn);
       expect(merged.slug).toBe('god-saeng');
       expect(merged.topic).toBe('mz');
-      expect(merged.tags).toEqual(['생활', '긍정']);
+      expect(merged.ko.tags).toEqual(['생활', '긍정']);
+      expect(merged.en.tags).toEqual(['생활', '긍정']);
       expect(merged.ko.term).toBe('갓생');
       expect(merged.en.term).toBe('god life');
     });
@@ -38,7 +39,14 @@ describe('merge — canonical rule application', () => {
     it('en inherits tags from ko if absent', () => {
       const en = { ...validEn, tags: undefined };
       const merged = mergePair(validKo, en);
-      expect(merged.tags).toEqual(['생활', '긍정']);
+      expect(merged.en.tags).toEqual(['생활', '긍정']);
+    });
+
+    it('en keeps its own tags when provided (per-locale)', () => {
+      const en = { ...validEn, tags: ['lifestyle', 'positive'] };
+      const merged = mergePair(validKo, en);
+      expect(merged.ko.tags).toEqual(['생활', '긍정']);
+      expect(merged.en.tags).toEqual(['lifestyle', 'positive']);
     });
 
     it('en inherits related from ko if absent', () => {
@@ -90,7 +98,8 @@ describe('merge — canonical rule application', () => {
     it('defaults tags and related to empty arrays', () => {
       const koMinimal = { ...validKo, tags: undefined, related: undefined };
       const merged = mergePair(koMinimal, validEn);
-      expect(merged.tags).toEqual([]);
+      expect(merged.ko.tags).toEqual([]);
+      expect(merged.en.tags).toEqual([]);
       expect(merged.related).toEqual([]);
     });
   });
@@ -129,17 +138,19 @@ describe('merge — canonical rule application', () => {
       expect(term?.topic).toBe('mz');
     });
 
-    it('detects en tags mismatch with ko', () => {
-      const enWithMismatchTags = { ...validEn, tags: ['different'] };
-      const { errors } = validatePair('test.md', validKo, enWithMismatchTags);
-      expect(errors.some((e) => e.includes('tags'))).toBe(true);
+    it('allows en tags to differ from ko (per-locale, no error)', () => {
+      const enWithOwnTags = { ...validEn, tags: ['lifestyle', 'positive'] };
+      const { errors, term } = validatePair('test.md', validKo, enWithOwnTags);
+      expect(errors).toHaveLength(0);
+      expect(term?.en.tags).toEqual(['lifestyle', 'positive']);
+      expect(term?.ko.tags).toEqual(['생활', '긍정']);
     });
 
-    it('allows en to inherit tags when en.tags is undefined', () => {
+    it('en inherits ko tags when en.tags is undefined', () => {
       const enNoTags = { ...validEn, tags: undefined };
       const { errors, term } = validatePair('test.md', validKo, enNoTags);
       expect(errors).toHaveLength(0);
-      expect(term?.tags).toEqual(validKo.tags);
+      expect(term?.en.tags).toEqual(validKo.tags);
     });
 
     it('includes filename in error messages', () => {

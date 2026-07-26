@@ -1,5 +1,6 @@
 ---
 term: Goneung (High-Ability)
+tags: [buzzword, internet, fandom]
 definition: |
   From "고지능" (high intelligence): being smart and impressively skilled at getting things done.
   "고능하다" (adjective) praises someone's sharp judgment and competence; "고능아" is the noun for such a person.

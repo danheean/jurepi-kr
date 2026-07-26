@@ -1,5 +1,6 @@
 ---
 term: Yareu
+tags: [interjection, buzzword, Gen Z]
 definition: |
   A Korean interjection shouted when you're excited or thrilled,
   roughly equivalent to "yay!", "woo-hoo!", or "yes!".

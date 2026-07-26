@@ -1,5 +1,6 @@
 ---
 term: Retrieval-Augmented Generation
+tags: [AI, LLM, information retrieval, generation]
 definition: |
   A technique where an LLM retrieves relevant information from an external database
   before generating responses, ensuring accuracy and currency of output.

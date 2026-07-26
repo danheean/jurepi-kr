@@ -1,5 +1,6 @@
 ---
 term: Plot-Twist Joy
+tags: [entertainment, taste, social media]
 definition: |
   Compressed from "spoiler burns joy."
   Describes enjoying stories like dramas, movies, web novels even after knowing the ending.

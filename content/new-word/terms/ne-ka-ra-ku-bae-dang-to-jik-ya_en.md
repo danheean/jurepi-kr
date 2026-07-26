@@ -1,5 +1,6 @@
 ---
 term: Nekarakubaedangtojigya
+tags: [job hunting, tech companies, developers]
 definition: |
   A Korean acronym combining the first syllables of nine tech companies
   developers and job seekers love to work for: Naver, Kakao, Line, Coupang,

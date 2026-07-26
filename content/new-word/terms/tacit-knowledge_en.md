@@ -1,5 +1,6 @@
 ---
 term: Tacit Knowledge
+tags: [knowledge management, know-how, organization]
 definition: |
   Knowledge gained through experience, intuition, and hands-on skill that
   is hard to fully put into words or formulas — in contrast to "explicit

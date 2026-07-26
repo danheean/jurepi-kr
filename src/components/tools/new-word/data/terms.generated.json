@@ -2,11 +2,6 @@
   {
     "slug": "go-neung",
     "topic": "mz",
-    "tags": [
-      "유행어",
-      "인터넷",
-      "팬덤"
-    ],
     "coinedYear": 2025,
     "related": [],
     "tone": "positive",
@@ -24,6 +19,11 @@
         "고능아",
         "고지능"
       ],
+      "tags": [
+        "유행어",
+        "인터넷",
+        "팬덤"
+      ],
       "origin": "정확한 유래는 불명확하나 '고지능(高知能)'에서 파생돼 게임 방송·인터넷 커뮤니티에서 확산됐다. 반대말은 '저능하다'."
     },
     "en": {
@@ -40,17 +40,17 @@
         "goneung-a",
         "high-intelligence"
       ],
+      "tags": [
+        "buzzword",
+        "internet",
+        "fandom"
+      ],
       "origin": "Derived from \"고지능\" (high intelligence); spread through game streams and online communities. Its antonym is \"저능하다\" (low ability)."
     }
   },
   {
     "slug": "yareu",
     "topic": "mz",
-    "tags": [
-      "감탄사",
-      "유행어",
-      "Z세대"
-    ],
     "coinedYear": 2025,
     "related": [],
     "tone": "positive",
@@ -67,6 +67,11 @@
         "야르~",
         "야르르"
       ],
+      "tags": [
+        "감탄사",
+        "유행어",
+        "Z세대"
+      ],
       "origin": "유래에는 여러 설이 있으며 아직 확정되지 않았다(일본어 'やるな'가\n변형됐다는 설, 유튜버·코미디언의 방송에서 퍼졌다는 설 등).\n2025년 전후 숏폼·유튜브를 통해 Z세대에서 빠르게 확산됐다.\n"
     },
     "en": {
@@ -82,17 +87,17 @@
         "yareu~",
         "yar"
       ],
+      "tags": [
+        "interjection",
+        "buzzword",
+        "Gen Z"
+      ],
       "origin": "Its exact origin is debated and unconfirmed (theories include a shortening\nof the Japanese \"yaruna,\" and spread through YouTubers and comedians on air).\nIt spread rapidly among Korean Gen Z via short-form video around 2025.\n"
     }
   },
   {
     "slug": "aljaldakkkalsen",
     "topic": "mz",
-    "tags": [
-      "소통",
-      "인간관계",
-      "예의"
-    ],
     "coinedYear": 2023,
     "related": [
       "wannaes"
@@ -112,6 +117,11 @@
         "센스",
         "예의"
       ],
+      "tags": [
+        "소통",
+        "인간관계",
+        "예의"
+      ],
       "origin": "2023년경 유튜브 숏폼과 SNS에서 급속도로 유행."
     },
     "en": {
@@ -127,17 +137,17 @@
         "impeccable tact",
         "situational awareness"
       ],
+      "tags": [
+        "communication",
+        "relationships",
+        "etiquette"
+      ],
       "origin": "Exploded in popularity on YouTube Shorts and SNS around 2023."
     }
   },
   {
     "slug": "ne-ka-ra-ku-bae-dang-to-jik-ya",
     "topic": "mz",
-    "tags": [
-      "취업",
-      "IT기업",
-      "개발자"
-    ],
     "coinedYear": 2022,
     "related": [],
     "tone": "positive",
@@ -154,6 +164,11 @@
         "네카라쿠배",
         "네카라쿠배당토"
       ],
+      "tags": [
+        "취업",
+        "IT기업",
+        "개발자"
+      ],
       "origin": "2020년경 '네카라쿠배(네이버·카카오·라인·쿠팡·배달의민족)'로 시작해, 2021년 당근마켓·토스가 초봉을 크게 올리며 '당토'가 붙고, 이후 직방·야놀자까지 더해져 완성된 확장형."
     },
     "en": {
@@ -169,17 +184,17 @@
         "Nekarakubae",
         "Korean big tech acronym"
       ],
+      "tags": [
+        "job hunting",
+        "tech companies",
+        "developers"
+      ],
       "origin": "Started around 2020 as \"Nekarakubae\" (Naver, Kakao, Line, Coupang, Baemin). In 2021, Danggeun Market and Toss raised starting salaries sharply and were added as \"Dangto.\" Zigbang and Yanolja joined later to form the current nine-company version."
     }
   },
   {
     "slug": "al-bba-no",
     "topic": "mz",
-    "tags": [
-      "MZ",
-      "인터넷",
-      "밈"
-    ],
     "coinedYear": 2022,
     "related": [],
     "tone": "negative",
@@ -196,6 +211,11 @@
         "알빠임",
         "내가알빠"
       ],
+      "tags": [
+        "MZ",
+        "인터넷",
+        "밈"
+      ],
       "origin": "2022년 리그 오브 레전드 스트리머 방송에서 쓰인 뒤 온라인 커뮤니티로 확산됨."
     },
     "en": {
@@ -211,17 +231,17 @@
         "why should I care",
         "not my business"
       ],
+      "tags": [
+        "MZ",
+        "internet",
+        "meme"
+      ],
       "origin": "Spread from a League of Legends streamer broadcast in 2022, then across online communities."
     }
   },
   {
     "slug": "wannaes",
     "topic": "mz",
-    "tags": [
-      "정신건강",
-      "삶의질",
-      "심리"
-    ],
     "coinedYear": 2022,
     "related": [
       "god-saeng"
@@ -240,6 +260,11 @@
         "완벽주의",
         "80점 삶"
       ],
+      "tags": [
+        "정신건강",
+        "삶의질",
+        "심리"
+      ],
       "origin": "2020년대 초 MZ세대의 심리 콘텐츠에서 대두됨."
     },
     "en": {
@@ -255,17 +280,17 @@
         "80-percent life",
         "perfect-free mindset"
       ],
+      "tags": [
+        "mental health",
+        "quality of life",
+        "psychology"
+      ],
       "origin": "Emerged in early 2020s MZ mental health content."
     }
   },
   {
     "slug": "sbuljae",
     "topic": "mz",
-    "tags": [
-      "엔터테인먼트",
-      "취향",
-      "SNS용어"
-    ],
     "coinedYear": 2021,
     "related": [],
     "tone": "negative",
@@ -282,6 +307,11 @@
         "스포일러",
         "결말까지즐김"
       ],
+      "tags": [
+        "엔터테인먼트",
+        "취향",
+        "SNS용어"
+      ],
       "origin": "2020년대 초 온라인 커뮤니티에서 유행."
     },
     "en": {
@@ -297,17 +327,17 @@
         "spoiler-proof",
         "ending-rich"
       ],
+      "tags": [
+        "entertainment",
+        "taste",
+        "social media"
+      ],
       "origin": "Popular in online communities since early 2020s."
     }
   },
   {
     "slug": "god-saeng",
     "topic": "mz",
-    "tags": [
-      "라이프스타일",
-      "MZ",
-      "자기계발"
-    ],
     "coinedYear": 2019,
     "related": [
       "king-batda"
@@ -326,6 +356,11 @@
         "갓생활",
         "신같은생활"
       ],
+      "tags": [
+        "라이프스타일",
+        "MZ",
+        "자기계발"
+      ],
       "origin": "2019년경 인스타그램, 유튜브 등 SNS에서 확산됨."
     },
     "en": {
@@ -341,17 +376,17 @@
         "divine life",
         "god-like living"
       ],
+      "tags": [
+        "lifestyle",
+        "MZ",
+        "self-improvement"
+      ],
       "origin": "Spread through Instagram, YouTube, and SNS around 2019."
     }
   },
   {
     "slug": "king-batda",
     "topic": "mz",
-    "tags": [
-      "감정",
-      "슬랭",
-      "인터넷용어"
-    ],
     "coinedYear": 2018,
     "related": [
       "eok-kka"
@@ -371,6 +406,11 @@
         "빡친다",
         "요즘 화났다"
       ],
+      "tags": [
+        "감정",
+        "슬랭",
+        "인터넷용어"
+      ],
       "origin": "2010년대 말 온라인 커뮤니티에서 유행."
     },
     "en": {
@@ -387,17 +427,17 @@
         "livid",
         "super annoyed"
       ],
+      "tags": [
+        "emotion",
+        "slang",
+        "internet slang"
+      ],
       "origin": "Popularized in online communities from late 2010s."
     }
   },
   {
     "slug": "eok-kka",
     "topic": "mz",
-    "tags": [
-      "인터넷문화",
-      "팬덤",
-      "SNS"
-    ],
     "coinedYear": 2017,
     "related": [
       "king-batda"
@@ -416,6 +456,11 @@
         "억울한팬",
         "안티팬"
       ],
+      "tags": [
+        "인터넷문화",
+        "팬덤",
+        "SNS"
+      ],
       "origin": "2010년대 후반, 온라인 팬덤 문화에서 발생."
     },
     "en": {
@@ -431,18 +476,17 @@
         "aggrieved audience",
         "anti-fan"
       ],
+      "tags": [
+        "internet culture",
+        "fandom",
+        "social media"
+      ],
       "origin": "Emerged from online fandom culture in the late 2010s."
     }
   },
   {
     "slug": "teul-ttak",
     "topic": "mz",
-    "tags": [
-      "MZ",
-      "비하",
-      "세대",
-      "인터넷"
-    ],
     "coinedYear": 2015,
     "related": [],
     "tone": "negative",
@@ -458,6 +502,12 @@
       "aliases": [
         "틀니딱딱"
       ],
+      "tags": [
+        "MZ",
+        "비하",
+        "세대",
+        "인터넷"
+      ],
       "origin": "2010년대 중반 온라인 커뮤니티에서 세대 갈등이 격화되며 '틀니 딱딱'을 줄여 노인을 조롱하는 표현으로 확산."
     },
     "en": {
@@ -472,18 +522,18 @@
       "aliases": [
         "teul-ttak",
         "denture-clacker"
+      ],
+      "tags": [
+        "MZ",
+        "pejorative",
+        "generations",
+        "internet"
       ]
     }
   },
   {
     "slug": "yareureong",
     "topic": "mz",
-    "tags": [
-      "밈",
-      "유행어",
-      "SNS",
-      "Z세대"
-    ],
     "related": [
       "yareu"
     ],
@@ -500,6 +550,12 @@
       "aliases": [
         "야르렁~"
       ],
+      "tags": [
+        "밈",
+        "유행어",
+        "SNS",
+        "Z세대"
+      ],
       "origin": "감탄사 '야르'와 EXO의 노래 제목 '으르렁'을 합친 말장난으로, X(트위터)를 중심으로 퍼진 인터넷 밈. 비슷한 계열로 '할렐루야'와 '야르'를 합친 '할렐야르'도 있다."
     },
     "en": {
@@ -514,17 +570,18 @@
       "aliases": [
         "yareureong~"
       ],
+      "tags": [
+        "meme",
+        "buzzword",
+        "social media",
+        "Gen Z"
+      ],
       "origin": "A pun blending the interjection \"yareu\" with EXO's song title \"Growl\" (으르렁), spread mainly on X (Twitter). A similar-style blend, \"halleluyareu\" (combining \"hallelujah\" with \"yareu\"), also exists."
     }
   },
   {
     "slug": "jeo-me-chu",
     "topic": "mz",
-    "tags": [
-      "MZ",
-      "줄임말",
-      "음식"
-    ],
     "related": [],
     "tone": "neutral",
     "ko": {
@@ -539,6 +596,11 @@
       "aliases": [
         "저녁메뉴추천",
         "점메추"
+      ],
+      "tags": [
+        "MZ",
+        "줄임말",
+        "음식"
       ],
       "origin": "'별걸 다 줄이는' 줄임말 유행 속에서 온라인 커뮤니티·SNS를 통해 확산됨."
     },
@@ -555,18 +617,17 @@
         "dinner rec",
         "what to eat for dinner"
       ],
+      "tags": [
+        "MZ",
+        "abbreviation",
+        "food"
+      ],
       "origin": "Spread through online communities and SNS amid the trend of abbreviating everything."
     }
   },
   {
     "slug": "harness-engineering",
     "topic": "tech",
-    "tags": [
-      "AI",
-      "에이전트",
-      "개발",
-      "트렌드"
-    ],
     "coinedYear": 2025,
     "related": [
       "loop-engineering",
@@ -588,6 +649,12 @@
         "하네스 설계",
         "harness"
       ],
+      "tags": [
+        "AI",
+        "에이전트",
+        "개발",
+        "트렌드"
+      ],
       "origin": "에이전트형 AI가 확산되며 '모델 자체'보다 '모델을 둘러싼 시스템'이 성능을 좌우한다는 인식에서 등장."
     },
     "en": {
@@ -603,18 +670,18 @@
         "harness engineering",
         "harness design"
       ],
+      "tags": [
+        "AI",
+        "agents",
+        "development",
+        "trend"
+      ],
       "origin": "Emerged as agentic AI spread and the system *around* a model — not the model alone — increasingly determined performance."
     }
   },
   {
     "slug": "loop-engineering",
     "topic": "tech",
-    "tags": [
-      "AI",
-      "에이전트",
-      "자동화",
-      "엔지니어링"
-    ],
     "coinedYear": 2024,
     "related": [
       "ai-agent",
@@ -634,6 +701,12 @@
         "루프엔지니어링",
         "루프 엔지"
       ],
+      "tags": [
+        "AI",
+        "에이전트",
+        "자동화",
+        "엔지니어링"
+      ],
       "origin": "AI 에이전트 설계 패턴에서 파생됨."
     },
     "en": {
@@ -649,18 +722,18 @@
         "loop engineer",
         "autonomous loop"
       ],
+      "tags": [
+        "AI",
+        "agents",
+        "automation",
+        "engineering"
+      ],
       "origin": "Derived from AI agent design patterns, popularized in 2024."
     }
   },
   {
     "slug": "vibe-coding",
     "topic": "tech",
-    "tags": [
-      "AI",
-      "개발",
-      "트렌드",
-      "LLM"
-    ],
     "coinedYear": 2024,
     "related": [
       "loop-engineering",
@@ -680,6 +753,12 @@
         "바이브코딩",
         "바코"
       ],
+      "tags": [
+        "AI",
+        "개발",
+        "트렌드",
+        "LLM"
+      ],
       "origin": "2024년 개발자 커뮤니티에서 확산된 표현."
     },
     "en": {
@@ -695,18 +774,18 @@
         "vibe-code",
         "vibe coding"
       ],
+      "tags": [
+        "AI",
+        "development",
+        "trend",
+        "LLM"
+      ],
       "origin": "Popularized in developer communities starting in 2024."
     }
   },
   {
     "slug": "ai-agent",
     "topic": "tech",
-    "tags": [
-      "AI",
-      "자동화",
-      "시스템",
-      "LLM"
-    ],
     "coinedYear": 2023,
     "related": [
       "loop-engineering",
@@ -726,6 +805,12 @@
         "에이전트",
         "자율 AI"
       ],
+      "tags": [
+        "AI",
+        "자동화",
+        "시스템",
+        "LLM"
+      ],
       "origin": "강화학습과 LLM의 결합으로 발전함."
     },
     "en": {
@@ -741,18 +826,18 @@
         "agent",
         "autonomous agent"
       ],
+      "tags": [
+        "AI",
+        "automation",
+        "systems",
+        "LLM"
+      ],
       "origin": "Emerged from combining reinforcement learning with LLMs, prominent since 2023."
     }
   },
   {
     "slug": "prompt-engineering",
     "topic": "tech",
-    "tags": [
-      "AI",
-      "LLM",
-      "기술",
-      "최적화"
-    ],
     "coinedYear": 2022,
     "related": [
       "ai-agent",
@@ -772,6 +857,12 @@
         "프롬프트엔지니어링",
         "프롬프팅"
       ],
+      "tags": [
+        "AI",
+        "LLM",
+        "기술",
+        "최적화"
+      ],
       "origin": "LLM 상용화 초기(2022~)부터 중요성이 부각됨."
     },
     "en": {
@@ -787,18 +878,18 @@
         "prompt design",
         "prompting"
       ],
+      "tags": [
+        "AI",
+        "LLM",
+        "technology",
+        "optimization"
+      ],
       "origin": "Became critical as LLMs commercialized starting in 2022."
     }
   },
   {
     "slug": "rag",
     "topic": "tech",
-    "tags": [
-      "AI",
-      "LLM",
-      "정보검색",
-      "생성"
-    ],
     "coinedYear": 2020,
     "related": [
       "ai-agent",
@@ -819,6 +910,12 @@
         "검색증강",
         "검색 보강"
       ],
+      "tags": [
+        "AI",
+        "LLM",
+        "정보검색",
+        "생성"
+      ],
       "origin": "Meta AI에서 2020년 논문으로 제시됨."
     },
     "en": {
@@ -834,17 +931,18 @@
         "retrieval augmented generation",
         "RAG"
       ],
+      "tags": [
+        "AI",
+        "LLM",
+        "information retrieval",
+        "generation"
+      ],
       "origin": "Introduced by Meta AI in a 2020 research paper."
     }
   },
   {
     "slug": "topology",
     "topic": "tech",
-    "tags": [
-      "조직",
-      "개발",
-      "아키텍처"
-    ],
     "coinedYear": 2019,
     "related": [],
     "tone": "neutral",
@@ -861,6 +959,11 @@
         "팀 토폴로지",
         "team topology"
       ],
+      "tags": [
+        "조직",
+        "개발",
+        "아키텍처"
+      ],
       "origin": "네트워크·수학의 위상(topology) 개념에서 출발해, 2019년 매튜 스켈톤·마누엘 페이스의 책 《팀 토폴로지》 이후 소프트웨어 조직 설계 용어로 IT 업계에 확산."
     },
     "en": {
@@ -875,17 +978,17 @@
       "aliases": [
         "team topology"
       ],
+      "tags": [
+        "organization",
+        "development",
+        "architecture"
+      ],
       "origin": "Rooted in the mathematical/network concept of topology; popularized in software organizations after Matthew Skelton and Manuel Pais's 2019 book \"Team Topologies.\""
     }
   },
   {
     "slug": "x-tech",
     "topic": "tech",
-    "tags": [
-      "산업",
-      "스타트업",
-      "트렌드"
-    ],
     "coinedYear": 2018,
     "related": [],
     "tone": "neutral",
@@ -903,6 +1006,11 @@
         "크로스테크",
         "X테크"
       ],
+      "tags": [
+        "산업",
+        "스타트업",
+        "트렌드"
+      ],
       "origin": "금융과 IT를 결합한 '핀테크(FinTech)'에서 출발해 다른 산업으로 확장된 조어로, 2018년 전후 스타트업·투자 업계에서 널리 쓰이기 시작."
     },
     "en": {
@@ -918,18 +1026,17 @@
         "cross-tech",
         "X tech"
       ],
+      "tags": [
+        "industry",
+        "startup",
+        "trend"
+      ],
       "origin": "Coined as an extension of \"FinTech\" (finance + IT) into other industries; the term spread through startup and investment circles around 2018."
     }
   },
   {
     "slug": "context-window",
     "topic": "tech",
-    "tags": [
-      "AI",
-      "LLM",
-      "기술",
-      "성능"
-    ],
     "coinedYear": 2017,
     "related": [
       "ai-agent",
@@ -949,6 +1056,12 @@
         "컨텍스트 크기",
         "토큰 제한"
       ],
+      "tags": [
+        "AI",
+        "LLM",
+        "기술",
+        "성능"
+      ],
       "origin": "트랜스포머 아키텍처의 기본 제약에서 비롯됨."
     },
     "en": {
@@ -965,17 +1078,18 @@
         "token limit",
         "attention window"
       ],
+      "tags": [
+        "AI",
+        "LLM",
+        "technology",
+        "performance"
+      ],
       "origin": "Fundamental constraint of the Transformer architecture since 2017."
     }
   },
   {
     "slug": "clean-architecture",
     "topic": "tech",
-    "tags": [
-      "아키텍처",
-      "개발",
-      "설계"
-    ],
     "coinedYear": 2012,
     "related": [
       "solid"
@@ -994,6 +1108,11 @@
         "Clean Architecture",
         "클린아키텍처"
       ],
+      "tags": [
+        "아키텍처",
+        "개발",
+        "설계"
+      ],
       "origin": "로버트 C. 마틴(Uncle Bob)이 2012년 블로그 글 \"The Clean Architecture\"에서 처음 소개했고, 2017년 동명의 책으로 정리해 확산시켰다."
     },
     "en": {
@@ -1008,17 +1127,17 @@
       "aliases": [
         "Clean Arch"
       ],
+      "tags": [
+        "architecture",
+        "development",
+        "design"
+      ],
       "origin": "Introduced by Robert C. Martin (\"Uncle Bob\") in a 2012 blog post titled \"The Clean Architecture,\" later expanded into his 2017 book of the same name."
     }
   },
   {
     "slug": "pmf",
     "topic": "tech",
-    "tags": [
-      "스타트업",
-      "제품",
-      "성장"
-    ],
     "coinedYear": 2007,
     "related": [],
     "tone": "positive",
@@ -1035,6 +1154,11 @@
         "Product-Market Fit",
         "프로덕트마켓핏"
       ],
+      "tags": [
+        "스타트업",
+        "제품",
+        "성장"
+      ],
       "origin": "벤처투자자 앤디 라클레프가 정립한 개념을, 마크 안드레센이 2007년 에세이 \"The Only Thing That Matters\"에서 'product/market fit'으로 명명하며 스타트업 업계에 널리 퍼졌다."
     },
     "en": {
@@ -1049,17 +1173,17 @@
       "aliases": [
         "Product-Market Fit"
       ],
+      "tags": [
+        "startup",
+        "product",
+        "growth"
+      ],
       "origin": "The concept was developed by venture capitalist Andy Rachleff and named \"product/market fit\" by Marc Andreessen in his 2007 essay \"The Only Thing That Matters,\" which popularized it across the startup world."
     }
   },
   {
     "slug": "solid",
     "topic": "tech",
-    "tags": [
-      "설계원칙",
-      "개발",
-      "객체지향"
-    ],
     "coinedYear": 2004,
     "related": [
       "clean-architecture"
@@ -1077,6 +1201,11 @@
       "aliases": [
         "SOLID 원칙"
       ],
+      "tags": [
+        "설계원칙",
+        "개발",
+        "객체지향"
+      ],
       "origin": "다섯 원칙은 로버트 C. 마틴이 1990년대 후반~2000년대 초반 논문·강연을 통해 정리했고, 'SOLID'라는 두문자어 자체는 2004년경 마이클 페더스가 이름 붙였다."
     },
     "en": {
@@ -1091,17 +1220,17 @@
       "aliases": [
         "SOLID principles"
       ],
+      "tags": [
+        "design principles",
+        "development",
+        "object-oriented"
+      ],
       "origin": "The five principles were articulated by Robert C. Martin in papers and talks through the late 1990s and early 2000s; the SOLID acronym itself was coined around 2004 by Michael Feathers."
     }
   },
   {
     "slug": "flywheel",
     "topic": "tech",
-    "tags": [
-      "비즈니스",
-      "전략",
-      "스타트업"
-    ],
     "coinedYear": 2001,
     "related": [],
     "tone": "positive",
@@ -1118,6 +1247,11 @@
         "플라이 휠",
         "flywheel effect"
       ],
+      "tags": [
+        "비즈니스",
+        "전략",
+        "스타트업"
+      ],
       "origin": "짐 콜린스가 2001년 저서 《좋은 기업을 넘어 위대한 기업으로》에서 소개한 개념으로, 제프 베조스가 아마존 성장 전략을 냅킨에 바퀴 모양으로 그리며 대중화됐다."
     },
     "en": {
@@ -1132,17 +1266,17 @@
       "aliases": [
         "flywheel effect"
       ],
+      "tags": [
+        "business",
+        "strategy",
+        "startup"
+      ],
       "origin": "Introduced by Jim Collins in his 2001 book \"Good to Great,\" then popularized when Jeff Bezos sketched Amazon's growth loop as a wheel on a napkin."
     }
   },
   {
     "slug": "tacit-knowledge",
     "topic": "tech",
-    "tags": [
-      "지식경영",
-      "노하우",
-      "조직"
-    ],
     "coinedYear": 1966,
     "related": [
       "harness-engineering"
@@ -1162,6 +1296,11 @@
         "암묵적 지식",
         "暗默知"
       ],
+      "tags": [
+        "지식경영",
+        "노하우",
+        "조직"
+      ],
       "origin": "철학자 마이클 폴라니(Michael Polanyi)가 1966년 저서 \"The Tacit Dimension\"에서 \"우리는 말할 수 있는 것보다 더 많이 안다\"고 말하며 제시한 개념. 이후 노나카 이쿠지로의 SECI 모델을 통해 지식경영 분야로 널리 확산됐다."
     },
     "en": {
@@ -1177,17 +1316,17 @@
         "tacit knowing",
         "implicit knowledge"
       ],
+      "tags": [
+        "knowledge management",
+        "know-how",
+        "organization"
+      ],
       "origin": "Coined by philosopher Michael Polanyi in his 1966 book \"The Tacit Dimension,\" where he wrote, \"we can know more than we can tell.\" It later spread through knowledge management via Ikujiro Nonaka's SECI model."
     }
   },
   {
     "slug": "cta",
     "topic": "tech",
-    "tags": [
-      "마케팅",
-      "전환율",
-      "UX"
-    ],
     "related": [],
     "tone": "neutral",
     "ko": {
@@ -1203,6 +1342,11 @@
         "Call To Action",
         "콜투액션"
       ],
+      "tags": [
+        "마케팅",
+        "전환율",
+        "UX"
+      ],
       "origin": "마케팅·광고 업계에서 오래 쓰인 개념으로, 웹사이트·랜딩페이지 최적화가 중요해진 온라인 마케팅 시대에 필수 용어로 자리잡았다."
     },
     "en": {
@@ -1217,17 +1361,17 @@
       "aliases": [
         "Call To Action"
       ],
+      "tags": [
+        "marketing",
+        "conversion",
+        "UX"
+      ],
       "origin": "A long-standing marketing and advertising concept that became essential vocabulary as website and landing-page optimization grew central to online marketing."
     }
   },
   {
     "slug": "kpi",
     "topic": "tech",
-    "tags": [
-      "경영",
-      "성과관리",
-      "지표"
-    ],
     "related": [],
     "tone": "neutral",
     "ko": {
@@ -1243,6 +1387,11 @@
         "Key Performance Indicator",
         "핵심성과지표"
       ],
+      "tags": [
+        "경영",
+        "성과관리",
+        "지표"
+      ],
       "origin": "경영학의 성과관리(Performance Management) 분야에서 정립된 개념으로, 목표관리(MBO)·균형성과표(BSC) 같은 이론과 함께 발전해 기업 실무 전반에서 쓰이게 됐다."
     },
     "en": {
@@ -1256,6 +1405,11 @@
       "reading": "/ˌkeɪ piː ˈaɪ/",
       "aliases": [
         "Key Performance Indicator"
+      ],
+      "tags": [
+        "management",
+        "performance management",
+        "metrics"
       ],
       "origin": "A concept from the performance management field of business administration, developed alongside theories like Management by Objectives (MBO) and the Balanced Scorecard (BSC) into standard business practice."
     }

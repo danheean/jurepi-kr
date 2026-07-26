@@ -1,5 +1,6 @@
 ---
 term: Dinner Menu Rec
+tags: [MZ, abbreviation, food]
 definition: |
   Short for "저녁 메뉴 추천" (dinner menu recommendation).
   Used to ask for or share suggestions when you can't decide what to eat for dinner.

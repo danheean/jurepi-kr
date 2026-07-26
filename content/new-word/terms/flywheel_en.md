@@ -1,5 +1,6 @@
 ---
 term: Flywheel
+tags: [business, strategy, startup]
 definition: |
   A self-reinforcing growth loop where one driver feeds the next, spinning
   faster and faster over time. Popularized by Jeff Bezos's napkin sketch of

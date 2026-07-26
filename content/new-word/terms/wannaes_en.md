@@ -1,5 +1,6 @@
 ---
 term: Perfectionism Fatigue
+tags: [mental health, quality of life, psychology]
 definition: |
   Compressed from "wanting perfection stresses me out."
   Describes the exhaustion and stress caused by pursuing perfection.

@@ -1,5 +1,6 @@
 ---
 term: Harness Engineering
+tags: [AI, agents, development, trend]
 definition: |
   Designing and optimizing the "harness" around an LLM or AI agent — its tools,
   prompts, action space, observation formatting, verification loops, and permissions —

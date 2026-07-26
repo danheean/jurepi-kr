@@ -1,5 +1,6 @@
 ---
 term: PMF
+tags: [startup, product, growth]
 definition: |
   A state where a product satisfies market demand well enough that
   customers seek it out, recommend it, and pay for it on their own.

@@ -1,5 +1,6 @@
 ---
 term: KPI
+tags: [management, performance management, metrics]
 definition: |
   A key metric tracked to measure progress toward a goal — like revenue,
   signups, or return-visit rate — that turns a team's or organization's

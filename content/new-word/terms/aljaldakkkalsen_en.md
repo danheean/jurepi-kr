@@ -1,5 +1,6 @@
 ---
 term: Perfect Sense
+tags: [communication, relationships, etiquette]
 definition: |
   Compressed pronunciation of "understand-well-exact-clean-sense-bearing."
   Describes judging situations well and handling oneself appropriately.

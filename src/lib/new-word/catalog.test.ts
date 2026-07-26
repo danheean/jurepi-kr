@@ -14,7 +14,6 @@ describe('catalog — typed immutable access', () => {
     {
       slug: 'god-saeng',
       topic: 'mz',
-      tags: ['생활'],
       related: ['king-batda'],
       ko: {
         term: '갓생',
@@ -32,7 +31,6 @@ describe('catalog — typed immutable access', () => {
     {
       slug: 'vibe-coding',
       topic: 'tech',
-      tags: ['AI', '개발'],
       coinedYear: 2025,
       related: ['king-batda'],
       ko: {
@@ -51,7 +49,6 @@ describe('catalog — typed immutable access', () => {
     {
       slug: 'king-batda',
       topic: 'mz',
-      tags: [],
       related: [],
       ko: {
         term: '킹받다',

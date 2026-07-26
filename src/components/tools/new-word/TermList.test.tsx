@@ -7,7 +7,6 @@ const mockTerms: MergedTerm[] = [
   {
     slug: 'god-life',
     topic: 'mz',
-    tags: ['lifestyle'],
     related: [],
     ko: { term: '신의 삶', definition: '이상적인 삶', examples: ['예시1'], body: '' },
     en: { term: 'god life', definition: 'An ideal life', examples: ['Example 1'], body: '' },
@@ -15,7 +14,6 @@ const mockTerms: MergedTerm[] = [
   {
     slug: 'vibe-coding',
     topic: 'tech',
-    tags: ['programming'],
     related: [],
     ko: { term: '기분 코딩', definition: '직관적 코딩', examples: ['예시2'], body: '' },
     en: { term: 'vibe coding', definition: 'Programming by feel', examples: ['Example 2'], body: '' },

@@ -34,7 +34,6 @@ const TermFileFrontSchema = z.object({
 const MergedTermSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
   topic: z.enum(['mz', 'tech']),
-  tags: z.array(z.string()),
   coinedYear: z.number().int().optional(),
   related: z.array(z.string()),
   tone: z.enum(['positive', 'negative', 'neutral']).optional(),
@@ -45,6 +44,7 @@ const MergedTermSchema = z.object({
     body: z.string(),
     reading: z.string().optional(),
     aliases: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional(),
     origin: z.string().optional(),
   }),
   en: z.object({
@@ -54,6 +54,7 @@ const MergedTermSchema = z.object({
     body: z.string(),
     reading: z.string().optional(),
     aliases: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional(),
     origin: z.string().optional(),
   }),
 });
@@ -84,26 +85,20 @@ function resolveSlug(front, filename) {
 }
 
 /**
- * Check if two arrays are equal (order matters).
- */
-function arraysEqual(a, b) {
-  if (a.length !== b.length) return false;
-  return a.every((val, idx) => val === b[idx]);
-}
-
-/**
  * Merge ko + en pair following canonical rule.
+ * `tags` is per-locale (localized like aliases): EN uses its own if present,
+ * otherwise inherits KO. Keep in sync with src/lib/new-word/merge.ts.
  */
 function mergePair(koFront, enFront, koBody = '', enBody = '', koFilename = 'unknown.md') {
   const slug = resolveSlug(koFront, koFilename);
   const topic = koFront.topic || 'mz';
-  const tags = koFront.tags || [];
   const related = koFront.related || [];
+  const koTags = koFront.tags || [];
+  const enTags = enFront.tags && enFront.tags.length > 0 ? enFront.tags : koTags;
 
   return {
     slug,
     topic,
-    tags,
     coinedYear: koFront.coinedYear,
     related,
     tone: koFront.tone,
@@ -114,6 +109,7 @@ function mergePair(koFront, enFront, koBody = '', enBody = '', koFilename = 'unk
       body: koBody,
       reading: koFront.reading,
       aliases: koFront.aliases,
+      tags: koTags,
       origin: koFront.origin,
     },
     en: {
@@ -123,6 +119,7 @@ function mergePair(koFront, enFront, koBody = '', enBody = '', koFilename = 'unk
       body: enBody,
       reading: enFront.reading,
       aliases: enFront.aliases,
+      tags: enTags,
       origin: enFront.origin,
     },
   };
@@ -165,13 +162,7 @@ function validatePair(koFilename, koFront, enFront) {
       `${koFilename}: EN tone must match KO (KO="${ko.tone}", EN="${en.tone}")`
     );
   }
-  if (
-    en.tags &&
-    en.tags.length > 0 &&
-    !arraysEqual(en.tags, ko.tags || [])
-  ) {
-    errors.push(`${koFilename}: EN tags must match KO`);
-  }
+  // NOTE: `tags` is per-locale (localized like aliases) — EN may differ from KO.
 
   const term = mergePair(ko, en, '', '');
 

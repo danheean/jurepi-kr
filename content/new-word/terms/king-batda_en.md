@@ -1,5 +1,6 @@
 ---
 term: King-Annoyed
+tags: [emotion, slang, internet slang]
 definition: |
   Slang meaning "angry like a king," or "seriously frustrated."
   Expresses extreme frustration or annoyance, amplified from casual anger.
