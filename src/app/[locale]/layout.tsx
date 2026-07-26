@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { tools } from '@/tools/registry';
 import { toSearchableTools } from '@/lib/searchable-tools';
+import { toSearchableSpokes } from '@/lib/searchable-spokes';
 import { ThemeBootstrap } from '@/components/providers/ThemeBootstrap';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
@@ -38,6 +39,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
   const t = await getTranslations();
   const searchableTools = toSearchableTools(tools, t);
+  const searchableSpokes = toSearchableSpokes(t, locale as 'ko' | 'en');
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -51,7 +53,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <GoogleTagManagerNoscript />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <Header tools={searchableTools} />
+            <Header tools={searchableTools} spokes={searchableSpokes} />
             <main id="main">{children}</main>
             <Footer />
           </ThemeProvider>

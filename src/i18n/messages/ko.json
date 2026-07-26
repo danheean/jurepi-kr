@@ -18,7 +18,11 @@
     "localeEn": "영어로 전환",
     "homeLink": "홈",
     "aiTools": "AI 무료도구",
-    "aiToolsAria": "AI 무료도구 (새 탭에서 열림)"
+    "aiToolsAria": "AI 무료도구 (새 탭에서 열림)",
+    "search": {
+      "toolsGroup": "도구",
+      "contentGroup": "콘텐츠"
+    }
   },
   "footer": {
     "copyright": "© 2026 Jurepi · 모든 도구는 무료입니다.",

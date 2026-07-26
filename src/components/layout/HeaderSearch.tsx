@@ -10,15 +10,22 @@ import {
 import { Search } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import type { SearchableTool } from '@/lib/tool-search';
-import { filterTools, sortTools, matchTool } from '@/lib/tool-search';
+import type { SearchableTool, SearchableSpoke } from '@/lib/tool-search';
+import { filterTools, sortTools, filterSpokes } from '@/lib/tool-search';
 import { IconButton } from '@/components/ui/IconButton';
 import { Badge } from '@/components/ui/Badge';
 import { accentTileClass, ToolIcon } from '@/components/home/toolStyle';
 
 interface HeaderSearchProps {
   tools: SearchableTool[];
+  /** Content entities (glossary terms, rankings, topics, people, guides). */
+  spokes?: SearchableSpoke[];
 }
+
+/** Combined, order-preserving result item for keyboard navigation. */
+type ResultItem =
+  | { kind: 'tool'; tool: SearchableTool }
+  | { kind: 'spoke'; spoke: SearchableSpoke };
 
 /**
  * Highlight the matching substring in text.
@@ -44,7 +51,10 @@ function highlightMatch(
   ];
 }
 
-export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
+export function HeaderSearch({
+  tools,
+  spokes = [],
+}: HeaderSearchProps): React.ReactNode {
   const t = useTranslations();
   const locale = useLocale();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -57,10 +67,35 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
 
   const listId = 'header-search-listbox';
 
-  // Filter and sort results
-  const results = useMemo(() => {
-    return sortTools(filterTools(tools, { query }));
-  }, [tools, query]);
+  // Tool results (all tools when query is empty) + spoke results (only when
+  // querying — dozens of spokes would flood an empty view).
+  const toolResults = useMemo(
+    () => sortTools(filterTools(tools, { query })),
+    [tools, query]
+  );
+  const spokeResults = useMemo(
+    () => filterSpokes(spokes, query),
+    [spokes, query]
+  );
+
+  // Flat, order-preserving list for keyboard navigation (tools then spokes).
+  const combined = useMemo<ResultItem[]>(
+    () => [
+      ...toolResults.map((tool) => ({ kind: 'tool' as const, tool })),
+      ...spokeResults.map((spoke) => ({ kind: 'spoke' as const, spoke })),
+    ],
+    [toolResults, spokeResults]
+  );
+
+  // Group labels only when both sections are present (keep the plain look when
+  // only tools show, e.g. the empty-query view).
+  const showGroupLabels = toolResults.length > 0 && spokeResults.length > 0;
+
+  const closeAndReset = useCallback(() => {
+    setIsOpen(false);
+    setQuery('');
+    setActiveIndex(-1);
+  }, []);
 
   // Handle click outside
   useEffect(() => {
@@ -76,14 +111,12 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
       ) {
         return;
       }
-      setIsOpen(false);
-      setQuery('');
-      setActiveIndex(-1);
+      closeAndReset();
     }
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen]);
+  }, [isOpen, closeAndReset]);
 
   // Focus management
   useEffect(() => {
@@ -92,70 +125,104 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
     }
   }, [isOpen]);
 
-  // Close on Escape
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Escape') {
         e.preventDefault();
-        setIsOpen(false);
-        setQuery('');
-        setActiveIndex(-1);
+        closeAndReset();
         // Restore focus to trigger button
-        const btn = document.querySelector('[data-testid="header-search"]') as HTMLButtonElement;
+        const btn = document.querySelector(
+          '[data-testid="header-search"]'
+        ) as HTMLButtonElement;
         btn?.focus();
         return;
       }
 
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setActiveIndex((idx) =>
-          idx < results.length - 1 ? idx + 1 : 0
-        );
+        setActiveIndex((idx) => (idx < combined.length - 1 ? idx + 1 : 0));
         return;
       }
 
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        setActiveIndex((idx) =>
-          idx > 0 ? idx - 1 : results.length - 1
-        );
+        setActiveIndex((idx) => (idx > 0 ? idx - 1 : combined.length - 1));
         return;
       }
 
       if (e.key === 'Enter') {
         e.preventDefault();
-        if (activeIndex >= 0 && activeIndex < results.length) {
-          const tool = results[activeIndex];
-          if (tool.status === 'live') {
-            // Let the link handle navigation
-            // Just close the combobox
-            setIsOpen(false);
-            setQuery('');
-            setActiveIndex(-1);
-          }
+        if (activeIndex >= 0 && activeIndex < combined.length) {
+          const item = combined[activeIndex];
+          const navigable =
+            item.kind === 'spoke' || item.tool.status === 'live';
+          // Spokes and live tools navigate via their <Link> on click; here we
+          // just close the combobox (mirrors tool behavior).
+          if (navigable) closeAndReset();
         }
         return;
       }
     },
-    [results, activeIndex]
+    [combined, activeIndex, closeAndReset]
   );
 
   // Toggle open/close from the always-visible magnifier button.
   const handleTriggerClick = () => {
     if (isOpen) {
-      setIsOpen(false);
-      setQuery('');
-      setActiveIndex(-1);
+      closeAndReset();
     } else {
       setIsOpen(true);
     }
   };
 
-  // Render active tool option ID for aria-activedescendant
-  const activeId =
-    activeIndex >= 0 && activeIndex < results.length
-      ? `${listId}-item-${results[activeIndex].id}`
-      : '';
+  const toolOptionId = (tool: SearchableTool) => `${listId}-item-${tool.id}`;
+  const spokeOptionId = (spoke: SearchableSpoke) =>
+    `${listId}-item-spoke-${spoke.tool}-${spoke.slug}`;
+
+  // aria-activedescendant for the currently highlighted item.
+  const activeDescendant = (() => {
+    if (activeIndex < 0 || activeIndex >= combined.length) return '';
+    const item = combined[activeIndex];
+    return item.kind === 'tool'
+      ? toolOptionId(item.tool)
+      : spokeOptionId(item.spoke);
+  })();
+
+  // Shared row body: accent icon tile + name (highlighted) + optional subtitle/badge.
+  function rowBody(
+    accent: SearchableTool['accent'],
+    icon: string,
+    name: string,
+    subtitle?: string,
+    badge?: React.ReactNode
+  ): React.ReactNode {
+    const { bg: bgClass, text: textClass } = accentTileClass(accent);
+    return (
+      <div className="flex items-center gap-3 px-3 py-2">
+        <div
+          className={`w-8 h-8 rounded flex items-center justify-center flex-shrink-0 ${bgClass}`}
+        >
+          <div className={textClass}>
+            <ToolIcon name={icon} className="w-4 h-4" />
+          </div>
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-sm font-semibold text-text truncate">
+            {highlightMatch(name, query)}
+          </div>
+          {subtitle && (
+            <div className="text-xs text-text-secondary truncate">
+              {subtitle}
+            </div>
+          )}
+        </div>
+        {badge}
+      </div>
+    );
+  }
+
+  const groupLabelClass =
+    'px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wide text-text-secondary';
 
   return (
     <div className="relative flex items-center">
@@ -182,7 +249,7 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
             role="combobox"
             aria-expanded="true"
             aria-controls={listId}
-            aria-activedescendant={activeId}
+            aria-activedescendant={activeDescendant}
             aria-label={t('home.searchAria')}
             placeholder={t('header.searchPlaceholder')}
             value={query}
@@ -214,95 +281,107 @@ export function HeaderSearch({ tools }: HeaderSearchProps): React.ReactNode {
               dropdown-in
             "
           >
-            {results.length === 0 ? (
+            {combined.length === 0 ? (
               <div className="px-4 py-6 text-center text-text-secondary">
                 {t('emptyState.heading')}
               </div>
             ) : (
-              results.map((tool, idx) => {
-                const isActive = idx === activeIndex;
-                const isLive = tool.status === 'live';
-                const { bg: bgClass, text: textClass } = accentTileClass(
-                  tool.accent
-                );
+              <>
+                {showGroupLabels && (
+                  <div className={groupLabelClass} aria-hidden="true">
+                    {t('header.search.toolsGroup')}
+                  </div>
+                )}
 
-                const rowContent = (
-                  <div
-                    className="
-                      flex items-center gap-3 px-3 py-2
-                    "
-                  >
-                    {/* Icon tile */}
-                    <div
-                      className={`
-                        w-8 h-8 rounded flex items-center justify-center
-                        flex-shrink-0
-                        ${bgClass}
-                      `}
-                    >
-                      <div className={textClass}>
-                        <ToolIcon name={tool.icon} className="w-4 h-4" />
-                      </div>
-                    </div>
-
-                    {/* Tool name and status */}
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-text truncate">
-                        {highlightMatch(tool.name, query)}
-                      </div>
-                    </div>
-
-                    {/* Coming soon badge */}
-                    {tool.status === 'coming_soon' && (
+                {/* Tool results */}
+                {toolResults.map((tool, idx) => {
+                  const isActive = idx === activeIndex;
+                  const isLive = tool.status === 'live';
+                  const body = rowBody(
+                    tool.accent,
+                    tool.icon,
+                    tool.name,
+                    undefined,
+                    tool.status === 'coming_soon' ? (
                       <Badge variant="soon" className="flex-shrink-0">
                         {t('card.comingSoon')}
                       </Badge>
-                    )}
-                  </div>
-                );
-
-                if (isLive) {
-                  return (
-                    <Link
-                      key={tool.id}
-                      href={`/tools/${tool.slug}`}
-                      locale={locale}
-                      role="option"
-                      id={`${listId}-item-${tool.id}`}
-                      aria-selected={isActive}
-                      className={`
-                        block px-3 py-2 cursor-pointer
-                        transition-colors duration-150
-                        ${
-                          isActive
-                            ? 'bg-brand-soft'
-                            : 'hover:bg-surface-muted/30'
-                        }
-                      `}
-                    >
-                      {rowContent}
-                    </Link>
+                    ) : undefined
                   );
-                }
 
-                // Coming soon: not a link
-                return (
-                  <div
-                    key={tool.id}
-                    role="option"
-                    id={`${listId}-item-${tool.id}`}
-                    aria-selected={isActive}
-                    aria-disabled="true"
-                    className={`
-                      block px-3 py-2 opacity-60
-                      transition-colors duration-150
-                      ${isActive ? 'bg-brand-soft' : ''}
-                    `}
-                  >
-                    {rowContent}
-                  </div>
-                );
-              })
+                  if (isLive) {
+                    return (
+                      <Link
+                        key={tool.id}
+                        href={`/tools/${tool.slug}`}
+                        locale={locale}
+                        role="option"
+                        id={toolOptionId(tool)}
+                        aria-selected={isActive}
+                        onClick={closeAndReset}
+                        className={`block px-3 py-2 cursor-pointer transition-colors duration-150 ${
+                          isActive ? 'bg-brand-soft' : 'hover:bg-surface-muted/30'
+                        }`}
+                      >
+                        {body}
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <div
+                      key={tool.id}
+                      role="option"
+                      id={toolOptionId(tool)}
+                      aria-selected={isActive}
+                      aria-disabled="true"
+                      className={`block px-3 py-2 opacity-60 transition-colors duration-150 ${
+                        isActive ? 'bg-brand-soft' : ''
+                      }`}
+                    >
+                      {body}
+                    </div>
+                  );
+                })}
+
+                {/* Content (spoke) results */}
+                {spokeResults.length > 0 && (
+                  <>
+                    {showGroupLabels && (
+                      <div className={groupLabelClass} aria-hidden="true">
+                        {t('header.search.contentGroup')}
+                      </div>
+                    )}
+                    {spokeResults.map((spoke, j) => {
+                      const idx = toolResults.length + j;
+                      const isActive = idx === activeIndex;
+                      return (
+                        <Link
+                          key={`${spoke.tool}-${spoke.slug}`}
+                          href={`/tools/${spoke.tool}/${spoke.slug}`}
+                          locale={locale}
+                          role="option"
+                          id={spokeOptionId(spoke)}
+                          aria-selected={isActive}
+                          onClick={closeAndReset}
+                          className={`block px-3 py-2 cursor-pointer transition-colors duration-150 ${
+                            isActive
+                              ? 'bg-brand-soft'
+                              : 'hover:bg-surface-muted/30'
+                          }`}
+                        >
+                          {rowBody(
+                            spoke.accent,
+                            spoke.icon,
+                            spoke.name,
+                            spoke.parentToolName
+                          )}
+                        </Link>
+                      );
+                    })}
+                  </>
+                )}
+              </>
             )}
           </div>
         </div>

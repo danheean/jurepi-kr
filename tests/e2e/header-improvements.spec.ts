@@ -52,6 +52,38 @@ test('header search opens and lists tools on a tool page', async ({ page }) => {
   await expect(listbox.locator('mark').first()).toBeVisible();
 });
 
+// #1b — Header search finds SPOKE content (glossary terms, people, guides) and
+// links to the entity page, not just tools.
+test('header search finds spoke content and navigates to the entity page', async ({ page }) => {
+  await page.goto('/ko/tools/ladder');
+  await page.waitForLoadState('networkidle');
+
+  await page.getByTestId('header-search').click();
+  const combobox = page.getByRole('combobox');
+  await expect(combobox).toBeVisible();
+
+  const listbox = page.getByRole('listbox');
+
+  // "고능" is a real new-word term (go-neung). Typing it surfaces the content
+  // section with a link to the spoke page.
+  await combobox.fill('고능');
+  const contentOption = listbox
+    .getByRole('option')
+    .filter({ hasText: '고능' })
+    .first();
+  await expect(contentOption).toBeVisible();
+
+  const href = await contentOption.getAttribute('href');
+  console.log('SPOKE_HREF', href);
+  expect(href).toMatch(/\/tools\/new-word\/go-neung$/);
+
+  // Group labels appear because a tool ("고능" matches none) — content only here,
+  // so assert the content link works end-to-end by navigating.
+  await contentOption.click();
+  await page.waitForURL(/\/tools\/new-word\/go-neung$/);
+  await expect(page.locator('h1').first()).toBeVisible();
+});
+
 // #2 — Locale active indicator.
 test('locale switcher marks the current locale', async ({ page }) => {
   await page.goto('/ko');

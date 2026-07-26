@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { Link } from '@/i18n/routing';
-import type { SearchableTool } from '@/lib/tool-search';
+import type { SearchableTool, SearchableSpoke } from '@/lib/tool-search';
 import { HeaderSearch } from './HeaderSearch';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   tools: SearchableTool[];
+  spokes?: SearchableSpoke[];
 }
 
 // Sibling Jurepi property — AI tools live on their own subdomain, mirroring the
@@ -30,7 +31,7 @@ const AI_LINK_CLASS =
 // theme controls, so a compact "AI" chip stands in below the `sm` breakpoint.
 const AI_LINK_SHORT = 'AI';
 
-export function Header({ tools }: HeaderProps): React.ReactNode {
+export function Header({ tools, spokes }: HeaderProps): React.ReactNode {
   const t = useTranslations('header');
   const locale = useLocale();
   const aiToolsUrl = `${AI_TOOLS_BASE}/${locale}`;
@@ -57,7 +58,7 @@ export function Header({ tools }: HeaderProps): React.ReactNode {
     >
       <nav
         aria-label="Main navigation"
-        className="w-full h-full flex items-center justify-between px-3 sm:px-6 max-w-container mx-auto"
+        className="w-full h-full flex items-center justify-between px-2 sm:px-6 max-w-container mx-auto"
       >
         {/* Left: Wordmark (home) + sibling "AI tools" property link */}
         <div className="flex items-center gap-1 sm:gap-3">
@@ -74,14 +75,17 @@ export function Header({ tools }: HeaderProps): React.ReactNode {
             <Sparkles className="hidden h-3.5 w-3.5 sm:inline-block" aria-hidden="true" />
             <span className="sm:hidden">{AI_LINK_SHORT}</span>
             <span className="hidden sm:inline">{t('aiTools')}</span>
-            <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+            <ArrowUpRight
+              className="hidden h-3.5 w-3.5 shrink-0 sm:inline-block"
+              aria-hidden="true"
+            />
           </a>
         </div>
 
         {/* Right: Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           {/* Global search combobox */}
-          <HeaderSearch tools={tools} />
+          <HeaderSearch tools={tools} spokes={spokes} />
 
           {/* Locale switcher */}
           <LocaleSwitcher />

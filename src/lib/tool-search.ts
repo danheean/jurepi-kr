@@ -24,6 +24,31 @@ export interface SearchableTool {
 }
 
 /**
+ * A single spoke/entity of a hub-and-spoke content collection (a glossary term,
+ * a ranking list, a bookmark topic, a dev-person, a how-to guide). Carries the
+ * parent tool's visual identity so the header search can render it like a tool.
+ * `name`/`description` are already localized; `keywords` (aliases) match only.
+ */
+export interface SearchableSpoke {
+  /** Parent tool slug, e.g. 'new-word' */
+  tool: string;
+  /** Entity slug within the parent tool */
+  slug: string;
+  /** Localized entity title */
+  name: string;
+  /** Localized short description (markdown-stripped, truncated) */
+  description: string;
+  /** Aliases and other match-only terms (not displayed) */
+  keywords: string[];
+  /** Localized parent tool title, for the result subtitle/grouping */
+  parentToolName: string;
+  /** Parent tool accent (from registry) */
+  accent: AccentColor;
+  /** Parent tool icon name (from registry) */
+  icon: string;
+}
+
+/**
  * Case-insensitive substring match over name, description, keywords.
  * Empty query returns true (matches all).
  * Trims query; handles ko/en seamlessly.
@@ -147,4 +172,35 @@ export function isNewTool(
   }
   const ageDays = (Date.parse(referenceDate) - Date.parse(addedAt)) / MS_PER_DAY;
   return ageDays >= 0 && ageDays < windowDays;
+}
+
+/** Max spoke (content) results shown in the header search "content" section. */
+export const SPOKE_RESULT_LIMIT = 8;
+
+/**
+ * Case-insensitive substring match over a spoke's name, description, keywords.
+ * Unlike {@link matchTool}, an empty query returns FALSE — spokes are noise
+ * with no query (there are dozens), so they surface only once the user types.
+ */
+export function matchSpoke(spoke: SearchableSpoke, query: string): boolean {
+  if (!query.trim()) return false;
+  const q = query.toLowerCase().trim();
+  return (
+    spoke.name.toLowerCase().includes(q) ||
+    spoke.description.toLowerCase().includes(q) ||
+    spoke.keywords.some((kw) => kw.toLowerCase().includes(q))
+  );
+}
+
+/**
+ * Filter spokes by query, capped at `limit`. Empty query → empty array
+ * (spokes only appear when searching). Returns a new array (immutable).
+ */
+export function filterSpokes(
+  spokes: SearchableSpoke[],
+  query: string,
+  limit: number = SPOKE_RESULT_LIMIT
+): SearchableSpoke[] {
+  if (!query.trim()) return [];
+  return spokes.filter((spoke) => matchSpoke(spoke, query)).slice(0, limit);
 }
