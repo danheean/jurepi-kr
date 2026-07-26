@@ -1325,6 +1325,55 @@
     }
   },
   {
+    "slug": "apprenticeship-training",
+    "topic": "tech",
+    "related": [
+      "tacit-knowledge"
+    ],
+    "tone": "neutral",
+    "ko": {
+      "term": "도제식 훈련법",
+      "definition": "숙련자(장인) 곁에서 직접 보고 따라 하며 기술과 노하우를 전수받는\n전통적 훈련 방식. 말로 다 설명하기 어려운 '암묵지'를 현장에서\n체득시키는 데 효과적이다.\n",
+      "examples": [
+        "신입은 도제식 훈련법으로 선배 옆에서 6개월간 실무를 배웠다.",
+        "복잡한 수술 기술은 도제식 훈련법 없이 매뉴얼만으로는 익히기 어렵다."
+      ],
+      "body": "## 설명\n\n**도제식 훈련법**(apprenticeship)은 초심자가 숙련자 곁에서 함께 일하며\n**관찰·모방·반복**을 통해 기술을 익히는 학습 방식입니다. 강의나 문서가\n아니라 **실제 현장의 맥락 속에서** 배우기 때문에, 말이나 글로 온전히\n전달하기 어려운 **암묵지**(tacit knowledge)를 전수하는 데 특히\n효과적입니다.\n\n- **중세 길드**: 장인(master)–직인(journeyman)–도제(apprentice) 체계로 기술을 대물림\n- **현대 조직**: OJT(현장 직무훈련), 사수–부사수 멘토링\n- **소프트웨어**: 소프트웨어 장인정신(Software Craftsmanship), 『Apprenticeship Patterns』\n\n핵심은 **같은 공간에서 함께 일하며 배운다**는 점입니다. 전문가와\n학습자가 문제를 함께 풀며 피드백과 시행착오를 통해 감각을 체득합니다.",
+      "reading": "도제식 훈련법",
+      "aliases": [
+        "도제식 교육",
+        "도제 제도",
+        "apprenticeship"
+      ],
+      "tags": [
+        "교육",
+        "기술전수",
+        "조직"
+      ],
+      "origin": "중세 길드의 장인–도제 기술 전수 전통에서 비롯됐다. 현대에는 OJT(현장 직무훈련)·상황학습(Situated Learning)으로 이어지고, 소프트웨어 분야에서는 데이브 후버 등의 \"Apprenticeship Patterns\"(2009)로 재조명됐다."
+    },
+    "en": {
+      "term": "Apprenticeship Training",
+      "definition": "A traditional way of learning by working alongside a master —\nobserving, imitating, and practicing to absorb skills and know-how.\nIt is especially effective for passing on \"tacit knowledge\" that is\nhard to put fully into words.\n",
+      "examples": [
+        "New hires learned on the job for six months through apprenticeship training, right beside a senior.",
+        "Complex surgical skills are hard to master from a manual alone, without apprenticeship training."
+      ],
+      "body": "## Description\n\n**Apprenticeship training** is learning by working next to a skilled\npractitioner and picking up the craft through **observation, imitation,\nand repetition**. Because you learn **in the real context of the work**\nrather than from lectures or documents, it is especially good at\ntransferring the **tacit knowledge** that is hard to fully articulate.\n\n- **Medieval guilds**: skills passed down through master–journeyman–apprentice ranks\n- **Modern organizations**: OJT (on-the-job training) and mentor–mentee pairing\n- **Software**: Software Craftsmanship and the book *Apprenticeship Patterns*\n\nThe key idea is **learning by working side by side**: expert and learner\nsolve problems together, building intuition through feedback and trial\nand error.",
+      "reading": "/əˈprɛntɪʃɪp ˈtreɪnɪŋ/",
+      "aliases": [
+        "apprenticeship",
+        "on-the-job training"
+      ],
+      "tags": [
+        "education",
+        "skill transfer",
+        "organization"
+      ],
+      "origin": "Rooted in the master–apprentice tradition of medieval guilds. Today it lives on as OJT (on-the-job training) and situated learning, and it was revisited for software in Dave Hoover & Adewale Oshineye's \"Apprenticeship Patterns\" (2009)."
+    }
+  },
+  {
     "slug": "cta",
     "topic": "tech",
     "related": [],
