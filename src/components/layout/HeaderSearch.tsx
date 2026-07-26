@@ -44,7 +44,10 @@ function highlightMatch(
 
   return [
     text.slice(0, idx),
-    <mark key="match" className="bg-accent-sun-soft/50 font-semibold">
+    <mark
+      key="match"
+      className="rounded bg-accent-sun-soft px-0.5 text-accent-sun-ink font-semibold"
+    >
       {text.slice(idx, idx + q.length)}
     </mark>,
     text.slice(idx + q.length),

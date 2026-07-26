@@ -16,7 +16,7 @@ const defaultMessages = {
   },
   header: {
     wordmark: 'Jurepi',
-    searchPlaceholder: 'Search tools…',
+    searchPlaceholder: 'Search…',
     themeLight: 'Light',
     themeDark: 'Dark',
     themeSystem: 'System',
