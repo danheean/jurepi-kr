@@ -1136,6 +1136,51 @@
     }
   },
   {
+    "slug": "tacit-knowledge",
+    "topic": "tech",
+    "tags": [
+      "지식경영",
+      "노하우",
+      "조직"
+    ],
+    "coinedYear": 1966,
+    "related": [
+      "harness-engineering"
+    ],
+    "tone": "neutral",
+    "ko": {
+      "term": "암묵지",
+      "definition": "경험·직관·감각·노하우처럼 몸으로 체득했지만 말이나 글로 온전히\n설명하기 어려운 지식. 문서·공식으로 표현할 수 있는 '형식지(explicit\nknowledge)'와 대비된다.\n",
+      "examples": [
+        "숙련공의 손끝 감각은 대표적인 암묵지라서 매뉴얼만으로는 전수되지 않는다.",
+        "팀의 암묵지를 문서와 체크리스트로 형식지화해야 신입도 빠르게 따라온다."
+      ],
+      "body": "## 설명\n\n**암묵지**(暗默知, tacit knowledge)는 자전거 타기, 얼굴 알아보기,\n숙련된 직관적 판단처럼 **몸과 경험으로는 알지만 말로는 다 설명하기\n어려운** 지식입니다. 반대 개념인 **형식지**(explicit knowledge)는\n언어·수식·문서로 명확히 표현하고 전달할 수 있는 지식입니다.\n\n경영학자 **노나카 이쿠지로**는 조직의 지식 창출을 설명하는\n**SECI 모델**에서 암묵지와 형식지가 서로 순환하며 전환된다고 보았습니다.\n\n- **공동화(Socialization)**: 암묵지 → 암묵지 (함께 경험하며 전수)\n- **표출화(Externalization)**: 암묵지 → 형식지 (개념·문서로 정리)\n- **연결화(Combination)**: 형식지 → 형식지 (기존 지식 결합)\n- **내면화(Internalization)**: 형식지 → 암묵지 (학습으로 체득)\n\n개인과 조직의 노하우를 문서·규칙·자동화로 **형식지화**하는 일은\n지식경영과 엔지니어링에서 핵심 과제로 꼽힙니다.",
+      "reading": "암묵지",
+      "aliases": [
+        "tacit knowledge",
+        "암묵적 지식",
+        "暗默知"
+      ],
+      "origin": "철학자 마이클 폴라니(Michael Polanyi)가 1966년 저서 \"The Tacit Dimension\"에서 \"우리는 말할 수 있는 것보다 더 많이 안다\"고 말하며 제시한 개념. 이후 노나카 이쿠지로의 SECI 모델을 통해 지식경영 분야로 널리 확산됐다."
+    },
+    "en": {
+      "term": "Tacit Knowledge",
+      "definition": "Knowledge gained through experience, intuition, and hands-on skill that\nis hard to fully put into words or formulas — in contrast to \"explicit\nknowledge,\" which can be written down and shared easily.\n",
+      "examples": [
+        "A master craftsman's feel for the work is classic tacit knowledge — a manual alone can't transfer it.",
+        "You have to turn the team's tacit knowledge into docs and checklists so newcomers can catch up fast."
+      ],
+      "body": "## Description\n\n**Tacit knowledge** is what you know through body and experience but\ncannot fully explain — like riding a bike, recognizing a face, or making a\nskilled, intuitive judgment. Its opposite, **explicit knowledge**, can be\nstated clearly in language, formulas, and documents.\n\nManagement scholar **Ikujiro Nonaka** described how the two continually\nconvert into each other in his **SECI model** of organizational knowledge\ncreation:\n\n- **Socialization**: tacit → tacit (shared through joint experience)\n- **Externalization**: tacit → explicit (captured as concepts and docs)\n- **Combination**: explicit → explicit (combining existing knowledge)\n- **Internalization**: explicit → tacit (absorbed through learning)\n\nTurning individual and organizational know-how into documents, rules, and\nautomation — that is, making tacit knowledge explicit — is a central\nchallenge in both knowledge management and engineering.",
+      "reading": "/ˈtæsɪt ˈnɒlɪdʒ/",
+      "aliases": [
+        "tacit knowing",
+        "implicit knowledge"
+      ],
+      "origin": "Coined by philosopher Michael Polanyi in his 1966 book \"The Tacit Dimension,\" where he wrote, \"we can know more than we can tell.\" It later spread through knowledge management via Ikujiro Nonaka's SECI model."
+    }
+  },
+  {
     "slug": "cta",
     "topic": "tech",
     "tags": [
