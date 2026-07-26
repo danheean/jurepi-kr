@@ -23,6 +23,10 @@ const defaultMessages = {
     themeToggleAria: 'Toggle theme',
     localeAria: 'Select language',
     homeLink: 'Home',
+    search: {
+      toolsGroup: 'Tools',
+      contentGroup: 'Content',
+    },
   },
   footer: {
     copyright: '© 2026 Jurepi · All tools are free.',

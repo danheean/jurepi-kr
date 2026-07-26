@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, userEvent } from '@/__test__/test-utils';
-import type { SearchableTool } from '@/lib/tool-search';
+import type { SearchableTool, SearchableSpoke } from '@/lib/tool-search';
 import { HeaderSearch } from './HeaderSearch';
 
 describe('HeaderSearch', () => {
@@ -328,5 +328,134 @@ describe('HeaderSearch', () => {
     const option = screen.getByRole('option', { name: /Ladder/ });
     const link = option.closest('a') as HTMLAnchorElement;
     expect(link).toBeInTheDocument();
+  });
+});
+
+describe('HeaderSearch — content (spoke) results', () => {
+  const mockLiveTool: SearchableTool = {
+    id: 'ladder',
+    slug: 'ladder',
+    name: 'Ladder Game',
+    description: 'Fair way to decide',
+    category: 'random',
+    accent: 'coral',
+    icon: 'ListTree',
+    status: 'live',
+    addedAt: '2026-07-01',
+    order: 1,
+    keywords: ['ladder', 'decision'],
+  };
+
+  const mockComingSoonTool: SearchableTool = {
+    id: 'picker',
+    slug: 'picker',
+    name: 'Random Picker',
+    description: 'Pick randomly from a list',
+    category: 'random',
+    accent: 'rose',
+    icon: 'Dices',
+    status: 'coming_soon',
+    addedAt: '2026-07-01',
+    order: 2,
+    keywords: ['picker', 'random'],
+  };
+
+  const tools = [mockLiveTool, mockComingSoonTool];
+
+  // Shares the token "ladder" with the tool above, so a single query matches
+  // both a tool and a spoke (needed to exercise the group labels).
+  const spokeLadder: SearchableSpoke = {
+    tool: 'new-word',
+    slug: 'go-neung',
+    name: 'Ladder Trick',
+    description: 'a glossary term',
+    keywords: [],
+    parentToolName: 'New Word Glossary',
+    accent: 'mint',
+    icon: 'BookA',
+  };
+
+  const spokeVibe: SearchableSpoke = {
+    tool: 'new-word',
+    slug: 'vibe-coding',
+    name: 'Vibe Coding',
+    description: 'coding by vibes',
+    keywords: ['바이브코딩'],
+    parentToolName: 'New Word Glossary',
+    accent: 'mint',
+    icon: 'BookA',
+  };
+
+  it('does not show spokes for an empty query (only tools)', async () => {
+    const user = userEvent.setup();
+    render(<HeaderSearch tools={tools} spokes={[spokeVibe]} />);
+
+    await user.click(screen.getByTestId('header-search'));
+
+    expect(screen.getAllByRole('option')).toHaveLength(2);
+    expect(screen.queryByText('Vibe Coding')).not.toBeInTheDocument();
+  });
+
+  it('shows a matching spoke as a link to its entity URL when querying', async () => {
+    const user = userEvent.setup();
+    render(<HeaderSearch tools={tools} spokes={[spokeVibe]} />);
+
+    await user.click(screen.getByTestId('header-search'));
+    await user.type(screen.getByRole('combobox'), 'vibe');
+
+    // No tool matches "vibe"; exactly one spoke does.
+    const options = screen.getAllByRole('option');
+    expect(options).toHaveLength(1);
+    expect(options[0]).toHaveTextContent('Vibe Coding');
+    const link = options[0].closest('a');
+    expect(link?.getAttribute('href')).toMatch(/\/tools\/new-word\/vibe-coding$/);
+  });
+
+  it('matches a spoke by its keyword (alias)', async () => {
+    const user = userEvent.setup();
+    render(<HeaderSearch tools={tools} spokes={[spokeVibe]} />);
+
+    await user.click(screen.getByTestId('header-search'));
+    await user.type(screen.getByRole('combobox'), '바이브코딩');
+
+    const options = screen.getAllByRole('option');
+    expect(options).toHaveLength(1);
+    expect(options[0]).toHaveTextContent('Vibe Coding');
+  });
+
+  it('renders group labels when both tools and spokes match', async () => {
+    const user = userEvent.setup();
+    render(<HeaderSearch tools={tools} spokes={[spokeLadder]} />);
+
+    await user.click(screen.getByTestId('header-search'));
+    await user.type(screen.getByRole('combobox'), 'ladder');
+
+    const options = screen.getAllByRole('option');
+    expect(options).toHaveLength(2); // Ladder Game (tool) + Ladder Trick (spoke)
+    expect(screen.getByText('Tools')).toBeInTheDocument();
+    expect(screen.getByText('Content')).toBeInTheDocument();
+  });
+
+  it('keyboard navigation spans tools then spokes', async () => {
+    const user = userEvent.setup();
+    render(<HeaderSearch tools={tools} spokes={[spokeLadder]} />);
+
+    await user.click(screen.getByTestId('header-search'));
+    await user.type(screen.getByRole('combobox'), 'ladder');
+
+    await user.keyboard('{ArrowDown}{ArrowDown}'); // to the spoke (second item)
+    const options = screen.getAllByRole('option');
+    expect(options[1]).toHaveAttribute('aria-selected', 'true');
+    expect(options[1]).toHaveTextContent('Ladder Trick');
+  });
+
+  it('shows the parent tool name as the spoke subtitle', async () => {
+    const user = userEvent.setup();
+    render(<HeaderSearch tools={tools} spokes={[spokeVibe]} />);
+
+    await user.click(screen.getByTestId('header-search'));
+    await user.type(screen.getByRole('combobox'), 'vibe');
+
+    expect(screen.getByText('New Word Glossary')).toBeInTheDocument();
   });
 });
