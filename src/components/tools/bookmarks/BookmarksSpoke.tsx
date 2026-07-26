@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 import type { MergedTopic } from '@/lib/bookmarks/schema';
 import { TopicSections } from './TopicSections';
+import { Markdown } from '@/components/markdown/Markdown';
 
 interface BookmarksSpokeProps {
   topic: MergedTopic;
@@ -52,6 +53,16 @@ export function BookmarksSpoke({ topic, locale }: BookmarksSpokeProps) {
 
       {/* Sections and links — SSR'd outside any mounted gate */}
       <TopicSections sections={localeData.sections} locale={locale} />
+
+      {/* Long-form markdown body — SEO prose, SSR'd (crawlable) outside any gate */}
+      {localeData.body && (
+        <section
+          data-testid="bookmarks-spoke-body"
+          className="pt-6 border-t border-hairline"
+        >
+          <Markdown>{localeData.body}</Markdown>
+        </section>
+      )}
 
       {/* Back to hub link */}
       <div className="pt-4 border-t border-hairline">

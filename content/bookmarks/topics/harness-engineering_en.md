@@ -36,5 +36,3 @@ sections:
         url: "https://joyeeling.medium.com/error-handling-best-practices-in-javascript-f5a5f4b87e84"
         description: "Robust error handling"
 ---
-
-Core resources for harness engineering.

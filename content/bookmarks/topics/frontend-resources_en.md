@@ -36,5 +36,3 @@ sections:
         url: "https://webpack.js.org/plugins/webpack-bundle-analyzer/"
         description: "Bundle optimization"
 ---
-
-Essential resources for modern web development.

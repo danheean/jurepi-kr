@@ -65,7 +65,3 @@ sections:
         url: "https://www.youtube.com/watch?v=nd8K5yZ51dg"
         description: "How to contribute using Claude Code"
 ---
-
-# eGovFrame (Korea e-Government Standard Framework)
-
-A curated set of official portal & docs, GitHub repositories, and video lectures, organized by topic.

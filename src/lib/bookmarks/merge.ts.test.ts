@@ -62,6 +62,47 @@ describe('bookmarks/merge', () => {
       expect(result.slug).toBe('custom-id');
     });
 
+    it('captures per-locale long-form body when provided', () => {
+      const result = mergePair(
+        validKo,
+        validEn,
+        'x.md',
+        '## 곡 이야기\n\n한국어 본문.',
+        '## About\n\nEnglish body.'
+      );
+      expect(result.ko.body).toContain('곡 이야기');
+      expect(result.en.body).toContain('English body');
+    });
+
+    it('omits body when absent or whitespace-only', () => {
+      const noBody = mergePair(validKo, validEn);
+      expect(noBody.ko.body).toBeUndefined();
+      expect(noBody.en.body).toBeUndefined();
+
+      const blank = mergePair(validKo, validEn, 'x.md', '   \n  ', '');
+      expect(blank.ko.body).toBeUndefined();
+      expect(blank.en.body).toBeUndefined();
+    });
+
+    it('trims surrounding whitespace from body', () => {
+      const result = mergePair(validKo, validEn, 'x.md', '\n\n본문\n\n', '\n본문 en\n');
+      expect(result.ko.body).toBe('본문');
+      expect(result.en.body).toBe('본문 en');
+    });
+
+    it('strips a leading H1 from body (page owns the H1) but keeps ##', () => {
+      const result = mergePair(
+        validKo,
+        validEn,
+        'x.md',
+        '# 제목\n\n## 곡 이야기\n\n본문 문단.',
+        '# Title\n\n## Songs\n\nBody paragraph.'
+      );
+      expect(result.ko.body).toBe('## 곡 이야기\n\n본문 문단.');
+      expect(result.en.body).toBe('## Songs\n\nBody paragraph.');
+      expect(result.ko.body).not.toContain('# 제목');
+    });
+
     it('merges with different link counts per locale', () => {
       const koWith2Links: BookmarkFileFront = {
         ...validKo,

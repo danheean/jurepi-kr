@@ -390,6 +390,40 @@ describe('bookmarks/schema', () => {
       const result = MergedTopicSchema.safeParse(invalid);
       expect(result.success).toBe(false);
     });
+
+    it('accepts optional per-locale long-form body', () => {
+      const withBody = {
+        slug: 'jurepi-playlist',
+        ko: {
+          title: '플레이리스트',
+          description: '노래 모음',
+          body: '## 곡 이야기\n\n각 곡에 대한 긴 소개 문단.',
+          sections: [
+            {
+              heading: 'H',
+              links: [{ label: 'L', url: 'https://example.com' }],
+            },
+          ],
+        },
+        en: {
+          title: 'Playlist',
+          description: 'A set of songs',
+          body: '## About These Songs\n\nA long paragraph about each song.',
+          sections: [
+            {
+              heading: 'H',
+              links: [{ label: 'L', url: 'https://example.com' }],
+            },
+          ],
+        },
+      };
+      const result = MergedTopicSchema.safeParse(withBody);
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data.ko.body).toContain('곡 이야기');
+        expect(result.data.en.body).toContain('About These Songs');
+      }
+    });
   });
 
   describe('BookmarksStoreSchema', () => {

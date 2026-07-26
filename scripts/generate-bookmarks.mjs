@@ -50,6 +50,7 @@ const MergedTopicSchema = z.object({
   ko: z.object({
     title: z.string(),
     description: z.string(),
+    body: z.string().optional(),
     sections: z.array(
       z.object({
         heading: z.string(),
@@ -68,6 +69,7 @@ const MergedTopicSchema = z.object({
   en: z.object({
     title: z.string(),
     description: z.string(),
+    body: z.string().optional(),
     sections: z.array(
       z.object({
         heading: z.string(),
@@ -298,19 +300,36 @@ function enrichLink(link, ogCache) {
  * Merge ko + en pair following canonical rule.
  * Slug is canonical from KO; title/description/sections are per-locale.
  */
-function mergePair(koFront, enFront, koFilename = 'unknown.md') {
+/**
+ * Normalize a raw markdown body into the optional long-form `body` field.
+ * Keep in sync with normalizeBody() in src/lib/bookmarks/merge.ts.
+ * Strips a single leading top-level "# heading" (page owns the H1); ## and
+ * deeper are kept. Returns undefined for empty/whitespace-only bodies.
+ */
+function normalizeBody(raw) {
+  if (!raw) return undefined;
+  const stripped = raw.replace(/^﻿?\s*#\s+[^\n]*\r?\n+/, '');
+  const trimmed = stripped.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function mergePair(koFront, enFront, koFilename = 'unknown.md', koBody, enBody) {
   const slug = resolveSlug(koFront, koFilename);
+  const koBodyNorm = normalizeBody(koBody);
+  const enBodyNorm = normalizeBody(enBody);
 
   return {
     slug,
     ko: {
       title: koFront.title,
       description: koFront.description,
+      ...(koBodyNorm ? { body: koBodyNorm } : {}),
       sections: koFront.sections,
     },
     en: {
       title: enFront.title,
       description: enFront.description,
+      ...(enBodyNorm ? { body: enBodyNorm } : {}),
       sections: enFront.sections,
     },
   };
@@ -319,7 +338,7 @@ function mergePair(koFront, enFront, koFilename = 'unknown.md') {
 /**
  * Validate pair + merged record; collect all errors (non-blocking).
  */
-function validatePair(koFilename, koFront, enFront) {
+function validatePair(koFilename, koFront, enFront, koBody, enBody) {
   const errors = [];
 
   const koResult = BookmarkFileFrontSchema.safeParse(koFront);
@@ -354,7 +373,7 @@ function validatePair(koFilename, koFront, enFront) {
     return { topic: null, errors };
   }
 
-  const topic = mergePair(ko, en, koFilename);
+  const topic = mergePair(ko, en, koFilename, koBody, enBody);
 
   return { topic, errors: [] };
 }
@@ -505,7 +524,13 @@ async function main() {
       const koParsed = matter(koContent);
       const enParsed = matter(enContent);
 
-      const { topic, errors } = validatePair(base, koParsed.data, enParsed.data);
+      const { topic, errors } = validatePair(
+        base,
+        koParsed.data,
+        enParsed.data,
+        koParsed.content,
+        enParsed.content
+      );
 
       if (errors.length > 0) {
         allErrors.push(...errors);

@@ -80,4 +80,26 @@ describe('BookmarksSpoke', () => {
       screen.getByTestId('bookmarks-spoke-back-to-hub')
     ).toHaveAttribute('href', '/en/tools/bookmarks');
   });
+
+  it('does not render a body section when the topic has no body', () => {
+    // egovframe has no long-form body → the SEO prose block is absent.
+    renderKo(egovframe);
+    expect(screen.queryByTestId('bookmarks-spoke-body')).toBeNull();
+  });
+
+  it('renders the long-form markdown body as SEO prose when present', () => {
+    const topicWithBody: MergedTopic = {
+      ...egovframe,
+      ko: {
+        ...egovframe.ko,
+        body: '## 곡 이야기\n\n테스트 곡 소개 문단입니다.',
+      },
+    };
+    renderKo(topicWithBody);
+    const body = screen.getByTestId('bookmarks-spoke-body');
+    expect(body).toBeInTheDocument();
+    // Markdown headings/paragraphs render (## → heading, text → paragraph).
+    expect(screen.getByText('곡 이야기')).toBeInTheDocument();
+    expect(screen.getByText('테스트 곡 소개 문단입니다.')).toBeInTheDocument();
+  });
 });

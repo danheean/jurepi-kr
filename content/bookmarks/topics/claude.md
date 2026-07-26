@@ -52,7 +52,3 @@ sections:
         url: "https://www.anthropic.com/research/project-vend-1"
         description: "클로드가 자판기 가게를 운영한 실험기"
 ---
-
-# 클로드 (Claude)
-
-Anthropic 클로드의 서비스·콘솔, 공식 교육 자료, 화제가 된 엔지니어링 글 큐레이션입니다.

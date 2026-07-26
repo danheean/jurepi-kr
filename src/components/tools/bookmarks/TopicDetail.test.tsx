@@ -103,3 +103,21 @@ describe('TopicDetail — share button integration', () => {
     });
   });
 });
+
+describe('TopicDetail — long-form body', () => {
+  it('does not render a body block when the topic has no body', () => {
+    render(<TopicDetail topic={mockTopic} onClose={vi.fn()} locale="ko" />);
+    expect(screen.queryByTestId('bookmarks-detail-body')).toBeNull();
+  });
+
+  it('renders the markdown body when present', () => {
+    const topicWithBody: MergedTopic = {
+      ...mockTopic,
+      ko: { ...mockTopic.ko, body: '## 곡 이야기\n\n상세 소개 문단.' },
+    };
+    render(<TopicDetail topic={topicWithBody} onClose={vi.fn()} locale="ko" />);
+    expect(screen.getByTestId('bookmarks-detail-body')).toBeInTheDocument();
+    expect(screen.getByText('곡 이야기')).toBeInTheDocument();
+    expect(screen.getByText('상세 소개 문단.')).toBeInTheDocument();
+  });
+});

@@ -29,7 +29,3 @@ sections:
         url: "https://cookbook.openai.com/"
         description: "Practical example collection"
 ---
-
-# Prompt Engineering
-
-A curated set of official guides and learning resources for prompt design.

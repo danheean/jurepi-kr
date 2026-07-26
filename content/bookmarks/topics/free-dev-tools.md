@@ -36,5 +36,3 @@ sections:
         url: "https://github.com/GoogleChrome/lighthouse-ci"
         description: "성능 모니터링"
 ---
-
-비용 없는 개발자 친화적 도구들입니다.

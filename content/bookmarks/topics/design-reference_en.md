@@ -36,5 +36,3 @@ sections:
         url: "https://penpot.app"
         description: "Open-source design platform"
 ---
-
-All resources needed for design work.

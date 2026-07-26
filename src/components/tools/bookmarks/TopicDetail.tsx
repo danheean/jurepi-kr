@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import type { MergedTopic } from '@/lib/bookmarks/schema';
 import { TopicSections } from './TopicSections';
 import { ShareButtons } from '@/components/share/ShareButtons';
+import { Markdown } from '@/components/markdown/Markdown';
 import { absoluteEntityUrl } from '@/lib/seo';
 
 interface TopicDetailProps {
@@ -58,6 +59,13 @@ export function TopicDetail({ topic, onClose, locale }: TopicDetailProps) {
 
       {/* Sections */}
       <TopicSections sections={localeData.sections} locale={locale} />
+
+      {/* Long-form markdown body (if present) */}
+      {localeData.body && (
+        <div data-testid="bookmarks-detail-body" className="pt-2 border-t border-hairline">
+          <Markdown>{localeData.body}</Markdown>
+        </div>
+      )}
     </div>
   );
 }

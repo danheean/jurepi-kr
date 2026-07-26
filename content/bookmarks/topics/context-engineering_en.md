@@ -26,7 +26,3 @@ sections:
         url: "https://hugobowne.substack.com/p/ai-agent-harness-3-principles-for"
         description: "Three principles for agent harnesses"
 ---
-
-# Context Engineering
-
-A curated set of concept articles and deep dives on context design.

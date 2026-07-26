@@ -40,7 +40,3 @@ sections:
         url: "https://www.youtube.com/@LangChain"
         description: "튜토리얼·웨비나 영상"
 ---
-
-# 랭체인 (LangChain)
-
-LLM 애플리케이션·에이전트 개발 프레임워크 랭체인 생태계의 공식 리소스 큐레이션입니다.

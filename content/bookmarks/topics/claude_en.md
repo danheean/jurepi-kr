@@ -52,7 +52,3 @@ sections:
         url: "https://www.anthropic.com/research/project-vend-1"
         description: "Claude running a small vending business"
 ---
-
-# Claude
-
-Curated links for Anthropic's Claude — service and console, official learning resources, and famous engineering posts.

@@ -36,5 +36,3 @@ sections:
         url: "https://penpot.app"
         description: "오픈소스 디자인 플랫폼"
 ---
-
-디자인 작업에 필요한 모든 자료입니다.

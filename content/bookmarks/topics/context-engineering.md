@@ -26,7 +26,3 @@ sections:
         url: "https://hugobowne.substack.com/p/ai-agent-harness-3-principles-for"
         description: "에이전트 하네스 3원칙"
 ---
-
-# 컨텍스트 엔지니어링
-
-컨텍스트 설계 개념과 심화 자료 큐레이션입니다.

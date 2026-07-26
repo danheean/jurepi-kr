@@ -36,5 +36,3 @@ sections:
         url: "https://webpack.js.org/plugins/webpack-bundle-analyzer/"
         description: "번들 최적화"
 ---
-
-현대 웹 개발의 필수 자료입니다.

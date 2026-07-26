@@ -7,6 +7,20 @@ import {
 import { resolveSlug } from './slug';
 
 /**
+ * Normalize a raw markdown body into the optional long-form `body` field.
+ * The spoke page already renders the topic title as the page H1, so a leading
+ * top-level `# heading` in the body is stripped to avoid a duplicate H1.
+ * Returns undefined for empty/whitespace-only bodies (so `body` stays absent).
+ */
+export function normalizeBody(raw?: string): string | undefined {
+  if (!raw) return undefined;
+  // Strip a single leading top-level "# heading" line (## and deeper are kept).
+  const stripped = raw.replace(/^﻿?\s*#\s+[^\n]*\r?\n+/, '');
+  const trimmed = stripped.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+/**
  * Merge ko + en pair following canonical rule:
  * - Slug from KO canonical (en inherits if absent)
  * - Title, description, sections are PER-LOCALE (can differ)
@@ -16,9 +30,13 @@ import { resolveSlug } from './slug';
 export function mergePair(
   koFront: BookmarkFileFront,
   enFront: BookmarkFileFront,
-  koFilename: string = 'unknown.md'
+  koFilename: string = 'unknown.md',
+  koBody?: string,
+  enBody?: string
 ): MergedTopic {
   const slug = resolveSlug(koFront, koFilename);
+  const koBodyNorm = normalizeBody(koBody);
+  const enBodyNorm = normalizeBody(enBody);
 
   return {
     slug,
@@ -26,11 +44,13 @@ export function mergePair(
       title: koFront.title,
       description: koFront.description,
       sections: koFront.sections,
+      ...(koBodyNorm ? { body: koBodyNorm } : {}),
     },
     en: {
       title: enFront.title,
       description: enFront.description,
       sections: enFront.sections,
+      ...(enBodyNorm ? { body: enBodyNorm } : {}),
     },
   };
 }
@@ -43,7 +63,9 @@ export function mergePair(
 export function validatePair(
   koFilename: string,
   koFront: unknown,
-  enFront: unknown
+  enFront: unknown,
+  koBody?: string,
+  enBody?: string
 ): { topic: MergedTopic | null; errors: string[] } {
   const errors: string[] = [];
 
@@ -84,7 +106,7 @@ export function validatePair(
     return { topic: null, errors };
   }
 
-  const topic = mergePair(ko, en, koFilename);
+  const topic = mergePair(ko, en, koFilename, koBody, enBody);
 
   return { topic, errors: [] };
 }

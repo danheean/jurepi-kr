@@ -36,5 +36,3 @@ sections:
         url: "https://github.com/GoogleChrome/lighthouse-ci"
         description: "Performance monitoring"
 ---
-
-Developer-friendly tools without cost.

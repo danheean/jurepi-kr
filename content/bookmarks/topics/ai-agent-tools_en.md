@@ -32,7 +32,3 @@ sections:
         url: "https://github.com/modu-ai/moai-adk"
         description: "SPEC-First Agentic Development Kit"
 ---
-
-# AI Agent Tools
-
-A curated set of trending open-source AI agent tools.

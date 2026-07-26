@@ -32,7 +32,3 @@ sections:
         url: "https://github.com/modu-ai/moai-adk"
         description: "SPEC-First 에이전틱 개발 키트"
 ---
-
-# AI 에이전트 도구
-
-주목받는 오픈소스 AI 에이전트 도구 큐레이션입니다.

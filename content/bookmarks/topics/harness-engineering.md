@@ -36,5 +36,3 @@ sections:
         url: "https://joyeeling.medium.com/error-handling-best-practices-in-javascript-f5a5f4b87e84"
         description: "견고한 에러 처리"
 ---
-
-하네스 엔지니어링의 핵심 자료입니다.

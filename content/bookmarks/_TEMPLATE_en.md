@@ -33,9 +33,17 @@ sections:
         description: "Description"
 ---
 
-# Topic Link Collections
+## Body (optional) — long-form SEO prose
 
-This markdown body is optional. Only the frontmatter links are rendered in the UI.
+The markdown body below the frontmatter is **optional**. If present, it renders as
+long-form prose beneath the link list on the detail (spoke) page, feeding search &
+AI discoverability (SEO/GEO). If absent, only the links are shown.
+
+- **No H1 (`#`)** — the page already renders the title as its H1. Start at `##`
+  (a single leading `#` line is stripped by the generator, but prefer `##`).
+- Standard markdown is supported (paragraphs, `##`/`###`, **bold**, lists, links);
+  raw HTML is disabled.
+- A unique paragraph per item (song, tool, person, …) helps discoverability.
 
 ## Required Rules
 

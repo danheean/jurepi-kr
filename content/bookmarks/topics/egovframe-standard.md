@@ -65,7 +65,3 @@ sections:
         url: "https://www.youtube.com/watch?v=nd8K5yZ51dg"
         description: "Claude Code로 컨트리뷰션하는 방법"
 ---
-
-# 전자정부 표준프레임워크 (eGovFrame)
-
-공식 포털·문서, GitHub 저장소, 영상 강의를 주제별로 모은 큐레이션입니다.

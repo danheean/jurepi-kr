@@ -56,6 +56,9 @@ export const MergedTopicSchema = z.object({
   ko: z.object({
     title: z.string(),
     description: z.string(),
+    // OPTIONAL: long-form markdown body (from the file's markdown content, below the
+    // frontmatter). Rendered as SEO prose on the spoke page. Baked by the generator.
+    body: z.string().optional(),
     sections: z.array(
       z.object({
         heading: z.string(),
@@ -76,6 +79,8 @@ export const MergedTopicSchema = z.object({
   en: z.object({
     title: z.string(),
     description: z.string(),
+    // OPTIONAL: long-form markdown body (see ko.body).
+    body: z.string().optional(),
     sections: z.array(
       z.object({
         heading: z.string(),

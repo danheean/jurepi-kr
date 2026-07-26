@@ -29,7 +29,3 @@ sections:
         url: "https://cookbook.openai.com/"
         description: "실전 예제 모음"
 ---
-
-# 프롬프트 엔지니어링
-
-프롬프트 설계 공식 가이드와 학습 리소스 큐레이션입니다.

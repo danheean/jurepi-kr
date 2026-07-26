@@ -40,7 +40,3 @@ sections:
         url: "https://www.youtube.com/@LangChain"
         description: "Tutorials and webinar videos"
 ---
-
-# LangChain
-
-Curated official resources for the LangChain ecosystem — the framework for building LLM applications and agents.
