@@ -1288,6 +1288,137 @@
     }
   },
   {
+    "slug": "jurepi-playlist",
+    "ko": {
+      "title": "주레피의 플레이리스트",
+      "description": "이문세·김민종·가호부터 아나스타샤·이태원 클라쓰 OST까지 — 감성 발라드와 올드팝·해외 팝송 명곡을 유튜브 영상으로 바로 듣는 큐레이션 플레이리스트.",
+      "sections": [
+        {
+          "heading": "한국 발라드 명곡",
+          "links": [
+            {
+              "label": "이문세 - 이 세상 살아가다 보면",
+              "url": "https://www.youtube.com/watch?v=_6CTgXWIP6c",
+              "description": "이문세의 대표 발라드 명곡. 담담한 위로가 필요한 밤, 지친 하루 끝에 듣기 좋은 노래.",
+              "youtubeId": "_6CTgXWIP6c"
+            },
+            {
+              "label": "김민종 - 세상 끝에서의 시작",
+              "url": "https://www.youtube.com/watch?v=LrvCFGR2Lkw",
+              "description": "드라마 '미스터Q' OST. 애틋함이 가득한 90년대 발라드.",
+              "youtubeId": "LrvCFGR2Lkw"
+            },
+            {
+              "label": "가호 - 시작 (이태원 클라쓰 OST)",
+              "url": "https://www.youtube.com/watch?v=O0StKlRHVeE",
+              "description": "드라마 '이태원 클라쓰' OST. 다시 시작할 용기를 주는 노래.",
+              "youtubeId": "O0StKlRHVeE"
+            }
+          ]
+        },
+        {
+          "heading": "해외 팝송",
+          "links": [
+            {
+              "label": "리차드 막스, 도나 루이스 - At the Beginning",
+              "url": "https://www.youtube.com/watch?v=JjGf5193UZg",
+              "description": "1997년 애니메이션 '아나스타샤' OST 주제가. 리차드 막스·도나 루이스의 듀엣 명곡.",
+              "youtubeId": "JjGf5193UZg"
+            },
+            {
+              "label": "드류 베리모어, 휴 그랜트 - Way Back into Love",
+              "url": "https://www.youtube.com/watch?v=qOSjJQLhBHA",
+              "description": "영화 '뮤직 앤 리릭스' 삽입곡. 사랑으로 돌아가는 길을 그린 듀엣.",
+              "youtubeId": "qOSjJQLhBHA"
+            },
+            {
+              "label": "크리스토퍼, 청하 - Bad Boy",
+              "url": "https://www.youtube.com/watch?v=AprV9JFmXYA",
+              "description": "2020년 청하·크리스토퍼의 듀엣. 중독성 강한 무드의 K팝·팝 히트곡.",
+              "youtubeId": "AprV9JFmXYA"
+            },
+            {
+              "label": "앤마리 - 2002",
+              "url": "https://www.youtube.com/watch?v=Il-an3K9pjg",
+              "description": "2018년 앤마리의 팝 히트곡. 2002년의 추억을 소환하는 청량한 노래.",
+              "youtubeId": "Il-an3K9pjg"
+            },
+            {
+              "label": "포코 - Sea of Heartbreak",
+              "url": "https://www.youtube.com/watch?v=iBO6APy_3sY",
+              "description": "포코(Poco)의 컨트리록 명곡. 이별의 바다를 노래하는 올드팝 클래식.",
+              "youtubeId": "iBO6APy_3sY"
+            }
+          ]
+        }
+      ]
+    },
+    "en": {
+      "title": "Jurepi's Playlist",
+      "description": "A curated playlist of timeless Korean ballads and international pop — from Itaewon Class and Anastasia OST to Anne-Marie's 2002 — all playable right here via YouTube.",
+      "sections": [
+        {
+          "heading": "Korean Ballad Classics",
+          "links": [
+            {
+              "label": "Lee Moon-sae – Living in This World (이 세상 살아가다 보면)",
+              "url": "https://www.youtube.com/watch?v=_6CTgXWIP6c",
+              "description": "Lee Moon-sae's signature Korean ballad — a gentle, comforting classic for a long, tiring day.",
+              "youtubeId": "_6CTgXWIP6c"
+            },
+            {
+              "label": "Kim Min-jong – A Start at the End of the World (세상 끝에서의 시작)",
+              "url": "https://www.youtube.com/watch?v=LrvCFGR2Lkw",
+              "description": "OST of the drama 'Mister Q' — a tender '90s Korean ballad.",
+              "youtubeId": "LrvCFGR2Lkw"
+            },
+            {
+              "label": "Gaho – Start (시작, Itaewon Class OST)",
+              "url": "https://www.youtube.com/watch?v=O0StKlRHVeE",
+              "description": "OST of the drama 'Itaewon Class' — a song about the courage to begin again.",
+              "youtubeId": "O0StKlRHVeE"
+            }
+          ]
+        },
+        {
+          "heading": "International Pop",
+          "links": [
+            {
+              "label": "Richard Marx & Donna Lewis – At the Beginning",
+              "url": "https://www.youtube.com/watch?v=JjGf5193UZg",
+              "description": "Theme from the 1997 animated film 'Anastasia' — a soaring duet by Richard Marx & Donna Lewis.",
+              "youtubeId": "JjGf5193UZg"
+            },
+            {
+              "label": "Hugh Grant & Drew Barrymore – Way Back into Love",
+              "url": "https://www.youtube.com/watch?v=qOSjJQLhBHA",
+              "description": "From the film 'Music and Lyrics' — a duet about finding the way back to love.",
+              "youtubeId": "qOSjJQLhBHA"
+            },
+            {
+              "label": "Christopher & CHUNG HA – Bad Boy",
+              "url": "https://www.youtube.com/watch?v=AprV9JFmXYA",
+              "description": "A 2020 duet by CHUNG HA and Christopher — an addictive, moody K-pop/pop hit.",
+              "youtubeId": "AprV9JFmXYA"
+            },
+            {
+              "label": "Anne-Marie – 2002",
+              "url": "https://www.youtube.com/watch?v=Il-an3K9pjg",
+              "description": "Anne-Marie's 2018 pop hit — a breezy, nostalgic throwback to the year 2002.",
+              "youtubeId": "Il-an3K9pjg"
+            },
+            {
+              "label": "Poco – Sea of Heartbreak",
+              "url": "https://www.youtube.com/watch?v=iBO6APy_3sY",
+              "description": "Poco's country-rock classic — an oldies favorite about a sea of heartbreak.",
+              "youtubeId": "iBO6APy_3sY"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
     "slug": "langchain",
     "ko": {
       "title": "랭체인 (LangChain)",
