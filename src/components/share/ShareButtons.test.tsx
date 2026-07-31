@@ -486,3 +486,81 @@ describe('ShareButtons — i18n catalog integrity', () => {
     }
   });
 });
+
+/**
+ * Tests for the copy-as-Markdown affordance folded into the share row.
+ */
+describe('ShareButtons — copy as Markdown', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('does not render the markdown button when no markdown prop is given', () => {
+    render(<ShareButtons />);
+    expect(
+      screen.queryByTestId('share-button-markdown')
+    ).not.toBeInTheDocument();
+  });
+
+  it('renders an icon-only markdown button (44px, rounded, focus ring) when markdown is provided', () => {
+    render(<ShareButtons markdown="Body." title="Vibe Coding" url="https://x/y" />);
+    const btn = screen.getByTestId('share-button-markdown');
+    expect(btn).toBeInTheDocument();
+    expect(btn).toHaveAttribute('aria-label', 'Copy as Markdown');
+    expect(btn).toHaveAttribute('title', 'Copy as Markdown');
+    expect(btn).toHaveClass(
+      'w-11',
+      'h-11',
+      'rounded-lg',
+      'focus-visible:ring-focus-ring'
+    );
+  });
+
+  it('copies the assembled markdown document (title + source + body) using url/title props', async () => {
+    if (!navigator.clipboard) {
+      Object.defineProperty(navigator, 'clipboard', {
+        value: { writeText: vi.fn().mockResolvedValue(undefined) },
+        configurable: true,
+      });
+    }
+    const writeTextSpy = vi
+      .spyOn(navigator.clipboard, 'writeText')
+      .mockResolvedValue(undefined);
+
+    render(
+      <ShareButtons
+        markdown={'## What\nA modern way to build.'}
+        title="Vibe Coding"
+        url="https://apps.jurepi.kr/en/tools/new-word/vibe-coding"
+      />
+    );
+
+    screen.getByTestId('share-button-markdown').click();
+
+    await waitFor(() => expect(writeTextSpy).toHaveBeenCalledTimes(1));
+    expect(writeTextSpy.mock.calls[0][0]).toBe(
+      '# Vibe Coding\n\n' +
+        '> Source: https://apps.jurepi.kr/en/tools/new-word/vibe-coding\n\n' +
+        '## What\nA modern way to build.'
+    );
+  });
+
+  it('shows the copied confirmation label after a successful markdown copy', async () => {
+    if (!navigator.clipboard) {
+      Object.defineProperty(navigator, 'clipboard', {
+        value: { writeText: vi.fn().mockResolvedValue(undefined) },
+        configurable: true,
+      });
+    }
+    vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue(undefined);
+
+    render(<ShareButtons markdown="b" title="T" url="https://x/y" />);
+    const btn = screen.getByTestId('share-button-markdown');
+    expect(btn).toHaveAttribute('aria-label', 'Copy as Markdown');
+    btn.click();
+
+    await waitFor(() =>
+      expect(btn).toHaveAttribute('aria-label', 'Markdown copied!')
+    );
+  });
+});

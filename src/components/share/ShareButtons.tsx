@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Check, Link2, Share2 } from 'lucide-react';
+import { Check, FileText, Link2, Share2 } from 'lucide-react';
 import { SHARE_TARGETS, buildShareUrl } from '@/lib/share/share-targets';
+import { buildMarkdownDocument } from '@/lib/markdown/buildMarkdownDocument';
 import {
   NaverIcon,
   XIcon,
@@ -36,6 +37,12 @@ interface ShareButtonsProps {
    *   (e.g. "share this hub" on the home page) instead of a floating icon cluster.
    */
   orientation?: 'vertical' | 'horizontal';
+  /**
+   * Optional raw markdown body of the entity. When provided, a "copy as Markdown"
+   * icon is added to the share row — copying (and sharing) the whole entity into
+   * an LLM or notes. Uses `title` for the H1 and `url` for the source attribution.
+   */
+  markdown?: string;
 }
 
 /**
@@ -49,8 +56,10 @@ export function ShareButtons({
   url,
   title,
   orientation = 'vertical',
+  markdown,
 }: ShareButtonsProps): React.ReactNode {
   const t = useTranslations('share');
+  const tMd = useTranslations('markdownCopy');
   const [mounted, setMounted] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [nativeShareSupported, setNativeShareSupported] = useState(false);
@@ -83,6 +92,41 @@ export function ShareButtons({
     } catch (error) {
       // Silent fail on clipboard error
       console.error('Copy failed:', error);
+    }
+  };
+
+  const handleCopyMarkdown = async () => {
+    if (!markdown) return;
+    const resolvedUrl = url ?? window.location.href;
+    const resolvedTitle = title ?? document.title;
+    const document_ = buildMarkdownDocument({
+      title: resolvedTitle,
+      markdown,
+      sourceUrl: resolvedUrl,
+      sourceLabel: tMd('sourceLabel'),
+    });
+
+    try {
+      await navigator.clipboard.writeText(document_);
+      setCopiedId('markdown');
+      setTimeout(() => setCopiedId(null), 1500);
+    } catch {
+      // Fallback: execCommand for clipboard-restricted contexts
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = document_;
+        document.body.appendChild(textarea);
+        textarea.select();
+        const success = document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        if (success) {
+          setCopiedId('markdown');
+          setTimeout(() => setCopiedId(null), 1500);
+        }
+      } catch {
+        // Silent fail: button simply does not show the success state
+      }
     }
   };
 
@@ -177,6 +221,35 @@ export function ShareButtons({
             <Link2 className="w-5 h-5" aria-hidden />
           )}
         </button>
+
+        {/* Copy-as-Markdown button (content spokes only, when markdown is provided) */}
+        {markdown ? (
+          <button
+            type="button"
+            aria-label={copiedId === 'markdown' ? tMd('copied') : tMd('copy')}
+            title={copiedId === 'markdown' ? tMd('copied') : tMd('copy')}
+            onClick={handleCopyMarkdown}
+            className="
+              inline-flex items-center justify-center
+              w-11 h-11
+              rounded-lg
+              bg-transparent hover:bg-surface-muted/50
+              text-text hover:text-text-secondary
+              transition-all duration-150
+              motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-card
+              motion-safe:active:scale-95
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2
+            "
+            data-testid="share-button-markdown"
+            aria-live="polite"
+          >
+            {copiedId === 'markdown' ? (
+              <Check className="w-5 h-5" aria-hidden />
+            ) : (
+              <FileText className="w-5 h-5" aria-hidden />
+            )}
+          </button>
+        ) : null}
 
         {/* Native share button (mobile only, mounted-gated) */}
         {mounted && nativeShareSupported && (

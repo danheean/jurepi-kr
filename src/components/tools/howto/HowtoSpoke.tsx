@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import type { MergedGuide } from '@/lib/howto/schema';
 import { readingTime, byId } from '@/lib/howto/catalog';
-import { Markdown, CopyMarkdownButton } from '@/components/markdown';
+import { Markdown } from '@/components/markdown';
 import { ShareButtons } from '@/components/share/ShareButtons';
 import { absoluteToolUrl } from '@/lib/seo';
 
@@ -46,12 +46,7 @@ export async function HowtoSpoke({ guide, locale, catalog = [] }: HowtoSpokeProp
 
         {/* Share buttons + copy-as-markdown */}
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <ShareButtons url={spokeUrl} title={content.title} />
-          <CopyMarkdownButton
-            markdown={content.body}
-            title={content.title}
-            sourceUrl={spokeUrl}
-          />
+          <ShareButtons url={spokeUrl} title={content.title} markdown={content.body} />
         </div>
       </header>
 

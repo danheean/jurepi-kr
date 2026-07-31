@@ -12,7 +12,6 @@ import devPeopleData from '@/components/tools/dev-people/data/dev-people.generat
 import { byId } from '@/lib/dev-people/catalog';
 import type { MergedPerson } from '@/lib/dev-people/schema';
 import { ShareButtons } from '@/components/share';
-import { CopyMarkdownButton } from '@/components/markdown';
 import { PersonSpoke } from '@/components/tools/dev-people/PersonSpoke';
 
 type Props = {
@@ -93,14 +92,11 @@ export default async function PersonPage({ params }: Props) {
             ← {t('title')}
           </a>
           <div className="flex flex-wrap items-center gap-4">
-            {localeData.biography_body && (
-              <CopyMarkdownButton
-                markdown={localeData.biography_body}
-                title={personName}
-                sourceUrl={entityUrl}
-              />
-            )}
-            <ShareButtons url={entityUrl} title={personName} />
+            <ShareButtons
+              url={entityUrl}
+              title={personName}
+              markdown={localeData.biography_body}
+            />
           </div>
         </div>
 
