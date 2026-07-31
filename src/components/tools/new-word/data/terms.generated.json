@@ -626,6 +626,62 @@
     }
   },
   {
+    "slug": "dok-pa-mo",
+    "topic": "tech",
+    "coinedYear": 2025,
+    "related": [
+      "ai-agent"
+    ],
+    "tone": "neutral",
+    "ko": {
+      "term": "독파모",
+      "definition": "'독자(적) AI 파운데이션 모델'의 줄임말. 특정 해외 사업자·라이선스에 종속되지 않고\n한 나라가 스스로 만들고 통제하는 대형 AI 기반 모델을 뜻한다.\n한국 정부가 추진하는 소버린 AI(주권 AI) 전략의 핵심 사업이다.\n",
+      "examples": [
+        "정부가 5,300억을 들여 '국가대표' 독파모 개발팀을 선발했다.",
+        "외산 모델 의존도를 낮추려면 독파모 같은 소버린 AI가 필요하다는 목소리가 커졌다."
+      ],
+      "body": "'파운데이션 모델'은 방대한 데이터로 미리 학습해 여러 작업에 두루 쓰이는 대형 AI의 토대(foundation)를\n말합니다. **독파모**는 여기에 '독자적(獨自)'을 붙인 말로, 모델을 외국 기업이 아니라 **우리가 직접 만들고\n소유·통제**한다는 데 방점이 있습니다.\n\n배경이 되는 개념이 **소버린 AI**(Sovereign AI, 주권 AI)입니다 — 데이터·인프라·모델·활용까지 AI 역량을\n특정 해외 사업자나 라이선스 구조에 기대지 않고 국가 차원에서 확보하려는 흐름입니다.\n\n한국에서는 과기정통부와 NIPA가 5,300억 원 규모로 '국가대표 AI' 정예팀을 선발해(2025년 8월 5개 팀)\n단계별 평가로 좁혀가며 경쟁적으로 개발을 지원하고, 결과를 **오픈웨이트**로 공개하는 방식으로 진행되고\n있습니다. 목표는 세계 상위권에 드는 한국형 AI 모델을 만드는 것입니다.",
+      "reading": "독파모",
+      "aliases": [
+        "독자 AI 파운데이션 모델",
+        "독자 파운데이션 모델",
+        "K-독파모",
+        "국가대표 AI",
+        "소버린 AI"
+      ],
+      "tags": [
+        "AI",
+        "소버린 AI",
+        "파운데이션 모델",
+        "정책"
+      ],
+      "origin": "2025년 과학기술정보통신부·NIPA의 '독자 AI 파운데이션 모델' 국가 지원사업이 시작되며 그 줄임말로 확산됨."
+    },
+    "en": {
+      "term": "Dokpamo (Sovereign AI Foundation Model)",
+      "definition": "Korean abbreviation of \"독자 AI 파운데이션 모델\" (independent AI foundation model):\na large-scale AI base model that a country builds and controls on its own, free of\ndependence on foreign vendors or licenses. It is the centerpiece of Korea's sovereign-AI strategy.\n",
+      "examples": [
+        "The government spent ₩530 billion to select 'national champion' teams to build a dokpamo.",
+        "To cut reliance on foreign models, calls grew for a sovereign AI like the dokpamo."
+      ],
+      "body": "A \"foundation model\" is a large AI trained on vast data that serves as the base for many\ntasks. **Dokpamo** prepends \"독자적\" (\"one's own / independent\"), stressing that the model is\n**built, owned, and controlled by the nation itself** rather than by a foreign company.\n\nThe underlying idea is **sovereign AI** — securing AI capability across data, infrastructure,\nmodels, and applications at the national level, without depending on a specific overseas\nvendor or license structure.\n\nIn Korea, the Ministry of Science and ICT and NIPA back competing \"national champion AI\"\nteams with a ₩530 billion program (selecting five teams in August 2025 and narrowing them\nthrough staged evaluations), releasing results as **open weights**. The goal is a Korean AI\nmodel that ranks among the world's best.",
+      "reading": "Dokpamo",
+      "aliases": [
+        "independent AI foundation model",
+        "sovereign AI foundation model",
+        "K-foundation model",
+        "national champion AI"
+      ],
+      "tags": [
+        "AI",
+        "sovereign AI",
+        "foundation model",
+        "policy"
+      ],
+      "origin": "Spread in 2025 as the short form of Korea's government-funded \"independent AI foundation model\" program (Ministry of Science and ICT / NIPA)."
+    }
+  },
+  {
     "slug": "harness-engineering",
     "topic": "tech",
     "coinedYear": 2025,
