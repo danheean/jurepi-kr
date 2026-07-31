@@ -350,6 +350,17 @@ export const tools: ToolMeta[] = [
     order: 220,
     keywords: ['바코드', '바코드생성', '바코드생성기', 'EAN-13', 'UPC-A', 'Code39', 'Code128', 'barcode', 'barcode generator', 'ean', 'upc', 'encode', '인코딩', '생성'],
   },
+  {
+    id: 'birthday-secret',
+    slug: 'birthday-secret',
+    category: 'fun',
+    icon: 'Cake',
+    accent: 'rose',
+    status: 'live',
+    addedAt: '2026-08-01',
+    order: 55,
+    keywords: ['탄생석', '탄생화', '탄생색', '생일', '생일 꽃', '생일 색', 'N월 탄생석', '내 탄생석', '나의 탄생 비밀', '생일 사전', '탄생 프로필', 'birthstone', 'birth flower', 'birth color', 'birthday', 'my birthday', 'birthday secrets'],
+  },
 ];
 
 /** Get all live tools for static generation */

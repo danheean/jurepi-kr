@@ -7,6 +7,7 @@ import rankingsData from '@/components/tools/rankings/data/rankings.generated.js
 import bookmarksData from '@/components/tools/bookmarks/data/bookmarks.generated.json';
 import devPeopleData from '@/components/tools/dev-people/data/dev-people.generated.json';
 import guidesData from '@/components/tools/howto/data/guides.generated.json';
+import birthdaySecretData from '@/components/tools/birthday-secret/data/birthday-secret.generated.json';
 
 // Required for output: 'export' — emit a static sitemap at build time.
 export const dynamic = 'force-static';
@@ -114,6 +115,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
         changeFrequency: 'monthly',
         ...(guide.updated && { lastModified: guide.updated }),
+      }),
+    );
+  });
+
+  // Birthday-secret monthly pages
+  (birthdaySecretData as { months: Array<{ slug: string }> }).months.forEach((m) => {
+    entries.push(
+      ...localizedEntries((locale) => absoluteEntityUrl(locale, 'birthday-secret', m.slug), {
+        priority: 0.7,
+        changeFrequency: 'monthly',
       }),
     );
   });

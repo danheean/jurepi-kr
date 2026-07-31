@@ -7,6 +7,7 @@ import rankingsData from '@/components/tools/rankings/data/rankings.generated.js
 import bookmarksData from '@/components/tools/bookmarks/data/bookmarks.generated.json';
 import devPeopleData from '@/components/tools/dev-people/data/dev-people.generated.json';
 import guidesData from '@/components/tools/howto/data/guides.generated.json';
+import birthdaySecretData from '@/components/tools/birthday-secret/data/birthday-secret.generated.json';
 
 const STATIC_PAGE_COUNT = 5; // home, about, privacy, terms, contact
 
@@ -21,7 +22,8 @@ describe('sitemap (bot-optimized for Google Search Console)', () => {
       rankingsData.length +
       bookmarksData.length +
       (devPeopleData as { peoples: Array<{ slug: string }> }).peoples.length +
-      guidesData.length;
+      guidesData.length +
+      (birthdaySecretData as { months: Array<{ slug: string }> }).months.length;
     expect(entries).toHaveLength(routing.locales.length * perLocale);
   });
 

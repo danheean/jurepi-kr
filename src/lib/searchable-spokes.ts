@@ -20,8 +20,21 @@ import rankingsData from '@/components/tools/rankings/data/rankings.generated.js
 import bookmarksData from '@/components/tools/bookmarks/data/bookmarks.generated.json';
 import devPeopleData from '@/components/tools/dev-people/data/dev-people.generated.json';
 import guidesData from '@/components/tools/howto/data/guides.generated.json';
+import birthdaySecretData from '@/components/tools/birthday-secret/data/birthday-secret.generated.json';
 
 export type SpokeLocale = 'ko' | 'en';
+
+interface BsMonthLite {
+  slug: string;
+  month: number;
+  ko: { title: string };
+  en: { title: string };
+}
+interface BsStoneLite {
+  month: number;
+  ko: { meaning: string };
+  en: { meaning: string };
+}
 
 /** Max characters for a spoke's display/search description. */
 const DESCRIPTION_MAX = 100;
@@ -158,6 +171,23 @@ export function toSearchableSpokes(
       buildSpoke(
         'howto',
         { slug: e.slug, name: loc.title, description: loc.summary },
+        t
+      )
+    );
+  });
+
+  const bsData = birthdaySecretData as { months: BsMonthLite[]; stones: BsStoneLite[] };
+  bsData.months.forEach((m) => {
+    const loc = m[locale];
+    const stone = bsData.stones.find((s) => s.month === m.month);
+    spokes.push(
+      buildSpoke(
+        'birthday-secret',
+        {
+          slug: m.slug,
+          name: loc.title,
+          description: stone ? stone[locale].meaning : loc.title,
+        },
         t
       )
     );
