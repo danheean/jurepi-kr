@@ -95,19 +95,25 @@ function hslToHex(h, s, l) {
   return '#' + [to255(r), to255(g), to255(b)].map((v) => pad2(v.toString(16))).join('');
 }
 
-// Hue families → localized name + personality keyword (12 buckets, edges wrap red).
+// Hue families → localized name + keyword. Boundaries follow perceptual color
+// names on the wheel (0–360°) so a color's NAME matches how it actually looks.
 const FAMILIES = [
-  { max: 15, ko: '루비레드', en: 'Ruby Red', kw: { ko: '열정', en: 'Passion' } },
-  { max: 45, ko: '코랄', en: 'Coral', kw: { ko: '활기', en: 'Vitality' } },
-  { max: 70, ko: '앰버', en: 'Amber', kw: { ko: '따뜻함', en: 'Warmth' } },
-  { max: 90, ko: '라임', en: 'Lime', kw: { ko: '생기', en: 'Freshness' } },
-  { max: 150, ko: '에메랄드', en: 'Emerald', kw: { ko: '안정', en: 'Balance' } },
-  { max: 180, ko: '민트', en: 'Mint', kw: { ko: '평온', en: 'Calm' } },
-  { max: 210, ko: '아쿠아', en: 'Aqua', kw: { ko: '맑음', en: 'Clarity' } },
-  { max: 240, ko: '스카이블루', en: 'Sky Blue', kw: { ko: '자유', en: 'Freedom' } },
-  { max: 270, ko: '블루', en: 'Blue', kw: { ko: '신뢰', en: 'Trust' } },
+  { max: 14, ko: '레드', en: 'Red', kw: { ko: '열정', en: 'Passion' } },
+  { max: 28, ko: '코랄', en: 'Coral', kw: { ko: '생기', en: 'Vitality' } },
+  { max: 42, ko: '오렌지', en: 'Orange', kw: { ko: '활력', en: 'Energy' } },
+  { max: 55, ko: '앰버', en: 'Amber', kw: { ko: '따뜻함', en: 'Warmth' } },
+  { max: 70, ko: '옐로', en: 'Yellow', kw: { ko: '명랑', en: 'Cheer' } },
+  { max: 90, ko: '라임', en: 'Lime', kw: { ko: '상쾌함', en: 'Freshness' } },
+  { max: 150, ko: '그린', en: 'Green', kw: { ko: '안정', en: 'Balance' } },
+  { max: 168, ko: '민트', en: 'Mint', kw: { ko: '평온', en: 'Calm' } },
+  { max: 188, ko: '틸', en: 'Teal', kw: { ko: '차분함', en: 'Serenity' } },
+  { max: 205, ko: '아쿠아', en: 'Aqua', kw: { ko: '맑음', en: 'Clarity' } },
+  { max: 232, ko: '스카이블루', en: 'Sky Blue', kw: { ko: '자유', en: 'Freedom' } },
+  { max: 255, ko: '블루', en: 'Blue', kw: { ko: '신뢰', en: 'Trust' } },
+  { max: 275, ko: '인디고', en: 'Indigo', kw: { ko: '깊이', en: 'Depth' } },
   { max: 300, ko: '바이올렛', en: 'Violet', kw: { ko: '신비', en: 'Mystery' } },
-  { max: 330, ko: '마젠타', en: 'Magenta', kw: { ko: '매력', en: 'Charm' } },
+  { max: 322, ko: '마젠타', en: 'Magenta', kw: { ko: '매력', en: 'Charm' } },
+  { max: 342, ko: '핑크', en: 'Pink', kw: { ko: '사랑스러움', en: 'Sweetness' } },
   { max: 361, ko: '로즈', en: 'Rose', kw: { ko: '사랑', en: 'Love' } },
 ];
 function familyFor(hue) {
