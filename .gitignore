@@ -40,3 +40,10 @@ test-results/
 
 # QA screenshot captures (audit only, not versioned)
 _workspace/screens*/
+
+# jurepi-imagegen (dev-only Python image tool — NOT part of Next.js build)
+.venv/
+.imagegen/
+__pycache__/
+.pytest_cache/
+*.pyc
