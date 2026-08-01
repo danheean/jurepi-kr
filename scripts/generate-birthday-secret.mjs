@@ -5,7 +5,7 @@
  *
  * Reads:
  *   content/birthday-secret/stones.json   (12 monthly stones, ko/en)
- *   content/birthday-secret/flowers.json  (366 daily flowers, ko/en; meaning may be "")
+ *   content/birthday-secret/flowers.json  (366 daily flowers, ko/en)
  *   content/birthday-secret/months/<slug>.md + <slug>_en.md  (12 spoke long-form bodies)
  * Computes:
  *   366 daily "birth colors" — deterministic Jurepi 생일색 spectrum (golden-angle hue).
@@ -73,8 +73,8 @@ const StoneSchema = z.object({
 });
 const FlowerSchema = z.object({
   key: z.string().regex(/^\d{2}-\d{2}$/),
-  ko: z.object({ name: z.string().min(1), meaning: z.string() }),
-  en: z.object({ name: z.string().min(1), meaning: z.string() }),
+  ko: z.object({ name: z.string().min(1), meaning: z.string().min(1) }),
+  en: z.object({ name: z.string().min(1), meaning: z.string().min(1) }),
   googleQuery: z.object({ ko: z.string().min(1), en: z.string().min(1) }),
 });
 

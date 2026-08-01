@@ -4041,6 +4041,10 @@
         "october": "10월",
         "november": "11월",
         "december": "12월"
+      },
+      "recents": {
+        "title": "최근 본 생일",
+        "clear": "기록 지우기"
       }
     }
   },

@@ -63,4 +63,31 @@ test.describe('Birthday Secrets - E2E', () => {
     );
     expect(overflow).toBe(false);
   });
+
+  test('Scenario 6: recent lookups appear, restore a date, and can be cleared', async ({ page }) => {
+    const errors = trackErrors(page);
+    await page.goto('/ko/tools/birthday-secret');
+
+    // Nothing looked up yet — no recents section.
+    await expect(page.getByRole('heading', { name: '최근 본 생일' })).not.toBeVisible();
+
+    await page.getByLabel('태어난 월').selectOption('4');
+    await page.getByLabel('태어난 일').selectOption('15');
+    await page.getByLabel('태어난 월').selectOption('12');
+    await page.getByLabel('태어난 일').selectOption('25');
+
+    const recents = page.getByRole('region', { name: '최근 본 생일' });
+    await expect(recents.getByRole('button', { name: '4월 15일' })).toBeVisible();
+    await expect(recents.getByRole('button', { name: '12월 25일' })).toBeVisible();
+
+    // Clicking a recent chip restores that date's profile.
+    await recents.getByRole('button', { name: '4월 15일' }).click();
+    await expect(page).toHaveURL(/date=04-15/);
+    await expect(page.getByText('다이아몬드').first()).toBeVisible();
+
+    // Clearing history removes the whole section.
+    await page.getByRole('button', { name: '기록 지우기' }).click();
+    await expect(page.getByRole('heading', { name: '최근 본 생일' })).not.toBeVisible();
+    expect(errors).toEqual([]);
+  });
 });

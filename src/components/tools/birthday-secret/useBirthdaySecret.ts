@@ -42,6 +42,7 @@ export interface UseBirthdaySecret {
   selectDate: (month: number, day: number) => void;
   selectKey: (key: string) => void;
   clearDate: () => void;
+  clearRecents: () => void;
   coupleMode: boolean;
   setCoupleMode: (v: boolean) => void;
   partnerKey: string | null;
@@ -114,6 +115,15 @@ export function useBirthdaySecret(): UseBirthdaySecret {
     [selectKey]
   );
 
+  const clearRecents = useCallback(() => {
+    setRecents([]);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+    } catch {
+      /* private mode → in-memory only */
+    }
+  }, []);
+
   const clearDate = useCallback(() => {
     setDateKey(null);
     try {
@@ -156,6 +166,7 @@ export function useBirthdaySecret(): UseBirthdaySecret {
     selectDate,
     selectKey,
     clearDate,
+    clearRecents,
     coupleMode,
     setCoupleMode,
     partnerKey,

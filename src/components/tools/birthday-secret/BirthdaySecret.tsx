@@ -6,6 +6,7 @@ import { BirthdayInput } from './BirthdayInput';
 import { ProfileCard } from './ProfileCard';
 import { TodayBirth } from './TodayBirth';
 import { CoupleMode } from './CoupleMode';
+import { RecentsList } from './RecentsList';
 
 export function BirthdaySecret() {
   const t = useTranslations('tools.birthday-secret');
@@ -31,6 +32,11 @@ export function BirthdaySecret() {
           </p>
         )}
       </section>
+
+      {/* Recent lookups */}
+      {bs.recents.length > 0 && (
+        <RecentsList recents={bs.recents} onSelectRecent={bs.selectKey} onClear={bs.clearRecents} />
+      )}
 
       {/* Couple toggle */}
       <div>
