@@ -53,6 +53,16 @@ describe('ProfileCard', () => {
     expect(links[0]).toHaveAttribute('target', '_blank');
   });
 
+  it('renders a decorative stone illustration for the profile month, alongside the Google Images link', () => {
+    withLocale(<ProfileCard profile={profile} />, 'ko');
+    const illustration = screen.getByTestId('stone-illustration').querySelector('img');
+    expect(illustration).toHaveAttribute('src', '/images/birthday-secret/stones/04.webp');
+    expect(illustration).toHaveAttribute('alt', '');
+    expect(illustration).toHaveAttribute('aria-hidden', 'true');
+    // decorative image supplements, never replaces, the existing Google Images link
+    expect(screen.getAllByRole('link', { name: /구글 이미지/i }).length).toBeGreaterThanOrEqual(1);
+  });
+
   it('renders English content with no Korean leakage in chrome (en)', () => {
     withLocale(<ProfileCard profile={profile} />, 'en');
     expect(screen.getByText('Tulip')).toBeInTheDocument();

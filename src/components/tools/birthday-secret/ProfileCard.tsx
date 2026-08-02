@@ -30,8 +30,8 @@ export function ProfileCard({ profile, compact = false }: ProfileCardProps) {
   const stone = profile.stone[locale];
   const colorLoc = profile.color[locale];
 
-  const handleDownload = () => {
-    const ok = downloadProfileImage(profile, locale, {
+  const handleDownload = async () => {
+    const ok = await downloadProfileImage(profile, locale, {
       brand: t('spoke.toolName'),
       dateText,
       flowerTitle: t('result.flowerTitle'),
@@ -74,14 +74,32 @@ export function ProfileCard({ profile, compact = false }: ProfileCardProps) {
           <p className="text-xs font-semibold uppercase tracking-wide text-accent-rose-ink">
             💎 {t('result.stoneTitle')}
           </p>
-          <p className="mt-1 text-lg font-bold text-text">{stone.name}</p>
-          <p className="mt-0.5 text-sm text-text-secondary">{t('result.stoneMeaning')} · {stone.meaning}</p>
-          {!compact && (
-            <p className="mt-1 text-xs text-text-muted">
-              {t('result.colorName')}: {stone.color} · {t('result.hardness')}: {stone.hardness} · {t('result.origin')}: {stone.origin}
-            </p>
-          )}
-          <a href={googleImageUrl(profile.stone.googleQuery[locale])} target="_blank" rel="noopener noreferrer" className={googleLinkClass}>
+          <div className="mt-1 flex items-start gap-3">
+            <div
+              className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-surface-sunken"
+              data-testid="stone-illustration"
+            >
+              <img
+                src={`/images/birthday-secret/stones/${String(parsed.month).padStart(2, '0')}.webp`}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                width={64}
+                height={64}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="min-w-0">
+              <p className="text-lg font-bold text-text">{stone.name}</p>
+              <p className="mt-0.5 text-sm text-text-secondary">{t('result.stoneMeaning')} · {stone.meaning}</p>
+              {!compact && (
+                <p className="mt-1 text-xs text-text-muted">
+                  {t('result.colorName')}: {stone.color} · {t('result.hardness')}: {stone.hardness} · {t('result.origin')}: {stone.origin}
+                </p>
+              )}
+            </div>
+          </div>
+          <a href={googleImageUrl(profile.stone.googleQuery[locale])} target="_blank" rel="noopener noreferrer" className={`${googleLinkClass} mt-2`}>
             {t('result.googleImage')}
           </a>
         </article>

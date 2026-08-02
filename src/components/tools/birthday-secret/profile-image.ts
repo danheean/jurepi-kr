@@ -11,14 +11,33 @@ export interface ProfileImageLabels {
 }
 
 /**
- * Render the birth profile to a 1080×1350 (Instagram story-friendly 4:5) PNG
- * and trigger a download. Pure canvas — no dependencies.
+ * Load an image and resolve to the element, or null on failure — never
+ * rejects, so a missing/broken asset degrades to the text-only card
+ * instead of aborting the whole download.
  */
-export function downloadProfileImage(
+function loadImage(src: string): Promise<HTMLImageElement | null> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = src;
+  });
+}
+
+function stoneIllustrationSrc(month: number): string {
+  return `/images/birthday-secret/stones/${String(month).padStart(2, '0')}.webp`;
+}
+
+/**
+ * Render the birth profile to a 1080×1350 (Instagram story-friendly 4:5) PNG
+ * and trigger a download. Pure canvas — no dependencies (image loading is
+ * the one async step; everything else stays synchronous).
+ */
+export async function downloadProfileImage(
   profile: BirthProfile,
   locale: Locale,
   labels: ProfileImageLabels
-): boolean {
+): Promise<boolean> {
   const W = 1080;
   const H = 1350;
   const canvas = document.createElement('canvas');
@@ -31,6 +50,7 @@ export function downloadProfileImage(
   const stone = profile.stone[locale];
   const color = profile.color;
   const colorLoc = color[locale];
+  const stoneImage = await loadImage(stoneIllustrationSrc(profile.stone.month));
 
   // Background: soft gradient tinted by the birth color.
   const grad = ctx.createLinearGradient(0, 0, 0, H);
@@ -50,9 +70,16 @@ export function downloadProfileImage(
   ctx.font = '800 76px sans-serif';
   ctx.fillText(labels.dateText, cx, 210);
 
-  const rows: Array<{ icon: string; title: string; name: string; meaning: string; swatch?: string }> = [
+  const rows: Array<{
+    icon: string;
+    title: string;
+    name: string;
+    meaning: string;
+    swatch?: string;
+    image?: HTMLImageElement | null;
+  }> = [
     { icon: '🌸', title: labels.flowerTitle, name: flower.name, meaning: flower.meaning },
-    { icon: '💎', title: labels.stoneTitle, name: stone.name, meaning: stone.meaning },
+    { icon: '💎', title: labels.stoneTitle, name: stone.name, meaning: stone.meaning, image: stoneImage },
     { icon: '🎨', title: labels.colorTitle, name: colorLoc.name, meaning: colorLoc.keyword, swatch: color.hex },
   ];
 
@@ -87,8 +114,19 @@ export function downloadProfileImage(
       ctx.font = '400 38px sans-serif';
       ctx.fillText(row.meaning, cardX + 130, y + 210);
     }
-    // color swatch
-    if (row.swatch) {
+    // stone illustration (circular) or color swatch — mutually exclusive per row
+    if (row.image) {
+      const size = 110;
+      const ix = cardX + cardW - 150;
+      const iy = y + 70;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(ix + size / 2, iy + size / 2, size / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      ctx.drawImage(row.image, ix, iy, size, size);
+      ctx.restore();
+    } else if (row.swatch) {
       ctx.fillStyle = row.swatch;
       roundRect(ctx, cardX + cardW - 150, y + 70, 110, 110, 24);
       ctx.fill();
