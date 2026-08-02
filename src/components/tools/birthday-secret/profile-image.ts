@@ -116,9 +116,9 @@ export async function downloadProfileImage(
     }
     // stone illustration (circular) or color swatch — mutually exclusive per row
     if (row.image) {
-      const size = 110;
-      const ix = cardX + cardW - 150;
-      const iy = y + 70;
+      const size = 150;
+      const ix = cardX + cardW - 190;
+      const iy = y + 55;
       ctx.save();
       ctx.beginPath();
       ctx.arc(ix + size / 2, iy + size / 2, size / 2, 0, Math.PI * 2);
