@@ -3913,6 +3913,139 @@
         "empty": "Your barcode will appear here",
         "error": "Unable to generate barcode"
       }
+    },
+    "birthday-secret": {
+      "title": "Birthday Secrets",
+      "description": "Enter your birthday to reveal your birth flower, birthstone, and birth color — with the meaning of each. A playful birthday almanac.",
+      "intro": {
+        "eyebrow": "Fun · Birthday",
+        "title": "Birthday Secrets",
+        "lead": "Enter the month and day you were born to reveal that day's birth flower, birthstone, and birth color as a shareable profile card."
+      },
+      "eyebrow": "Fun · Birthday",
+      "lead": "Enter the month and day you were born, and we'll build a profile card with that day's birth flower, birthstone, and birth color. Share it with friends and discover your birthday secrets.",
+      "input": {
+        "monthLabel": "Birth month",
+        "dayLabel": "Birth day",
+        "monthUnit": "Month",
+        "dayUnit": "Day",
+        "submit": "Reveal my birthday secrets",
+        "reset": "Start over",
+        "lunarPrompt": "Don't know your solar birthday?",
+        "lunarLink": "Open lunar↔solar converter"
+      },
+      "result": {
+        "flowerTitle": "Birth flower",
+        "stoneTitle": "Birthstone",
+        "colorTitle": "Birth color",
+        "flowerMeaning": "Flower meaning",
+        "stoneMeaning": "Stone meaning",
+        "colorName": "Color name",
+        "hardness": "Hardness",
+        "origin": "Main origin",
+        "keyword": "Vibe",
+        "googleImage": "🔍 View on Google Images",
+        "moreInfo": "See more birthday facts",
+        "download": "Save as image",
+        "downloaded": "Saved!",
+        "disclaimer": "Birth flowers and birth colors are just for fun. Birthstones follow long-standing tradition.",
+        "empty": "Enter a month and day to reveal your birthday secrets."
+      },
+      "today": {
+        "title": "Today's birthday",
+        "subtitle": "The birth flower, birthstone, and color for anyone born today."
+      },
+      "couple": {
+        "toggle": "Couple mode",
+        "single": "Single view",
+        "you": "You",
+        "partner": "Partner",
+        "combined": "Your colors together",
+        "sameMonth": "Born in the same month — what a match!",
+        "diffMonth": "You each carry the charm of a different season."
+      },
+      "grid": {
+        "title": "Birthday secrets by month",
+        "subtitle": "Explore each month's birthstone, birth flower, and birth color."
+      },
+      "howTo": {
+        "title": "How to use Birthday Secrets",
+        "lead": "All you need is a birthday. Pick the month and day, and that day's birth flower, birthstone, and birth color come together on one card.",
+        "steps": [
+          {
+            "title": "Enter your birthday",
+            "body": "Select the month and day you were born (solar calendar). If you only know your lunar birthday, use the lunar↔solar converter link."
+          },
+          {
+            "title": "See your birth profile",
+            "body": "That day's birth flower (with its meaning), birthstone (meaning, color, hardness, origin), and birth color (name and vibe) appear as a card."
+          },
+          {
+            "title": "Explore images and save",
+            "body": "Use the Google Images link next to each stone and flower to see the real thing, then save the card as an image to share."
+          },
+          {
+            "title": "Today's birthday & couple mode",
+            "body": "Check Today's birthday to see who shares today, and use couple mode to compare two people's birth colors side by side."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "q": "What are birthstones, birth flowers, and birth colors?",
+            "a": "A birthstone is the gem that symbolizes your birth month and has long-standing tradition (April is diamond, July is ruby). A birth flower is the flower and flower-meaning tied to your date, and a birth color is a color that captures the mood of the day. Birthday Secrets shows all three from a single birthday."
+          },
+          {
+            "q": "How is the birthstone chosen?",
+            "a": "Birthstones follow the traditional month-based list: January garnet, February amethyst, March aquamarine, April diamond, and so on. Each month page details the stone’s meaning, color, hardness, and origin."
+          },
+          {
+            "q": "Are the birth flower and birth color accurate facts?",
+            "a": "The birth flower uses the widely shared 366-day birth flower list, and the birth color uses a designed spectrum that gives each day its own hue. Enjoy them for fun. For more birthday attributes such as birth drink or fruit, the card links out to an external site."
+          },
+          {
+            "q": "I only know my lunar birthday — what do I do?",
+            "a": "This tool uses the solar calendar. If you don't know your solar date, tap the lunar↔solar converter link to convert it in a new tab, then enter that date."
+          },
+          {
+            "q": "Can I save or share the result?",
+            "a": "Yes. Save the profile card as a PNG image or share it with the social buttons. Send the link that carries a birthday and a friend can open that day’s profile instantly."
+          },
+          {
+            "q": "Is my birthday stored anywhere?",
+            "a": "No. Everything is computed in your browser, and your birthday is never sent to a server or stored there. Only your recently viewed dates are kept on your own device for convenience."
+          }
+        ]
+      },
+      "spoke": {
+        "toolName": "Birthday Secrets",
+        "stoneHeading": "Birthstone",
+        "flowerHeading": "Birth flowers",
+        "colorHeading": "Birth color",
+        "related": "Other months",
+        "viewTool": "Reveal your own birthday secrets",
+        "disclaimer": "Birth flowers and birth colors are just for fun. Birthstones follow long-standing tradition."
+      },
+      "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      },
+      "recents": {
+        "title": "Recently Viewed",
+        "clear": "Clear history"
+      }
     }
   },
   "about": {

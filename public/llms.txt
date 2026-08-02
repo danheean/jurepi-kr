@@ -32,6 +32,7 @@
 - [단위 변환기 (Unit Converter)](https://apps.jurepi.kr/ko/tools/unit-converter): Convert everyday measurements instantly across length, mass, temperature, area, volume, speed, digital storage, and time, with adjustable precision and recent-conversion history.
 - [몸으로 말해요 (Charades)](https://apps.jurepi.kr/ko/tools/charades): Run a silent-acting party game — reveal prompt words by category (actions, animals, occupations, characters, sports, emotions) on a big screen, act them out using gestures and facial expressions only (no talking), with countdown timer and score tracking. Perfect for classrooms, parties, and team events.
 - [바코드 생성기 (Barcode Generator)](https://apps.jurepi.kr/ko/tools/barcode-generator): Generate EAN-13, UPC-A, Code 39, and Code 128 barcodes from text and numbers with automatic checksum calculation. Adjust size, toggle human-readable text, and download as PNG or SVG. 100% browser-side processing—your data stays private.
+- [나의 탄생 비밀 (Birthday Secrets)](https://apps.jurepi.kr/ko/tools/birthday-secret): Enter your birthday to reveal your birth flower (with its flower meaning 꽃말), birthstone (meaning, color, hardness, origin), and birth color as a shareable profile card. Includes a "today's birthday" view, couple mode, and 12 monthly birthstone reference pages ("N월 탄생석"). Birthstones follow traditional month-based lore; birth flowers use the 366-day list and birth colors are a designed spectrum, both for fun. 100% client-side — your birthday is never stored or sent.
 
 ## About
 

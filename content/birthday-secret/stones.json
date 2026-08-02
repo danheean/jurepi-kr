@@ -1,0 +1,74 @@
+[
+  {
+    "month": 1,
+    "ko": { "name": "가넷", "meaning": "진실, 우정, 변치 않는 마음", "color": "짙은 붉은색", "hardness": "6.5–7.5", "origin": "인도, 스리랑카, 아프리카" },
+    "en": { "name": "Garnet", "meaning": "Truth, friendship, and an unchanging heart", "color": "Deep red", "hardness": "6.5–7.5", "origin": "India, Sri Lanka, Africa" },
+    "googleQuery": { "ko": "1월 탄생석 가넷 보석", "en": "January birthstone garnet gemstone" }
+  },
+  {
+    "month": 2,
+    "ko": { "name": "자수정", "meaning": "성실, 평화, 마음의 평정", "color": "보라색", "hardness": "7", "origin": "브라질, 우루과이, 잠비아" },
+    "en": { "name": "Amethyst", "meaning": "Sincerity, peace, and calm of mind", "color": "Purple", "hardness": "7", "origin": "Brazil, Uruguay, Zambia" },
+    "googleQuery": { "ko": "2월 탄생석 자수정 보석", "en": "February birthstone amethyst gemstone" }
+  },
+  {
+    "month": 3,
+    "ko": { "name": "아쿠아마린", "meaning": "침착, 총명, 젊음과 용기", "color": "옅은 청록색", "hardness": "7.5–8", "origin": "브라질, 나이지리아, 마다가스카르" },
+    "en": { "name": "Aquamarine", "meaning": "Composure, wisdom, youth, and courage", "color": "Pale blue-green", "hardness": "7.5–8", "origin": "Brazil, Nigeria, Madagascar" },
+    "googleQuery": { "ko": "3월 탄생석 아쿠아마린 보석", "en": "March birthstone aquamarine gemstone" }
+  },
+  {
+    "month": 4,
+    "ko": { "name": "다이아몬드", "meaning": "영원한 사랑, 순결, 변하지 않는 약속", "color": "무색투명", "hardness": "10", "origin": "남아프리카, 러시아, 보츠와나" },
+    "en": { "name": "Diamond", "meaning": "Eternal love, purity, and an unbreakable promise", "color": "Colorless", "hardness": "10", "origin": "South Africa, Russia, Botswana" },
+    "googleQuery": { "ko": "4월 탄생석 다이아몬드 보석", "en": "April birthstone diamond gemstone" }
+  },
+  {
+    "month": 5,
+    "ko": { "name": "에메랄드", "meaning": "행복, 행운, 사랑의 성취", "color": "초록색", "hardness": "7.5–8", "origin": "콜롬비아, 잠비아, 브라질" },
+    "en": { "name": "Emerald", "meaning": "Happiness, good fortune, and love fulfilled", "color": "Green", "hardness": "7.5–8", "origin": "Colombia, Zambia, Brazil" },
+    "googleQuery": { "ko": "5월 탄생석 에메랄드 보석", "en": "May birthstone emerald gemstone" }
+  },
+  {
+    "month": 6,
+    "ko": { "name": "진주", "meaning": "건강, 장수, 부귀와 순수", "color": "유백색", "hardness": "2.5–4.5", "origin": "일본, 중국, 남태평양 (양식)" },
+    "en": { "name": "Pearl", "meaning": "Health, longevity, prosperity, and purity", "color": "Milky white", "hardness": "2.5–4.5", "origin": "Japan, China, South Pacific (cultured)" },
+    "googleQuery": { "ko": "6월 탄생석 진주 보석", "en": "June birthstone pearl gemstone" }
+  },
+  {
+    "month": 7,
+    "ko": { "name": "루비", "meaning": "사랑, 열정, 위엄과 정열", "color": "붉은색", "hardness": "9", "origin": "미얀마, 태국, 스리랑카" },
+    "en": { "name": "Ruby", "meaning": "Love, passion, dignity, and ardor", "color": "Red", "hardness": "9", "origin": "Myanmar, Thailand, Sri Lanka" },
+    "googleQuery": { "ko": "7월 탄생석 루비 보석", "en": "July birthstone ruby gemstone" }
+  },
+  {
+    "month": 8,
+    "ko": { "name": "페리도트", "meaning": "부부의 행복, 화합, 마음의 위안", "color": "연둣빛 초록", "hardness": "6.5–7", "origin": "미국, 미얀마, 파키스탄" },
+    "en": { "name": "Peridot", "meaning": "Marital happiness, harmony, and comfort", "color": "Lime green", "hardness": "6.5–7", "origin": "USA, Myanmar, Pakistan" },
+    "googleQuery": { "ko": "8월 탄생석 페리도트 보석", "en": "August birthstone peridot gemstone" }
+  },
+  {
+    "month": 9,
+    "ko": { "name": "사파이어", "meaning": "성실, 진실, 덕망과 자애", "color": "파란색", "hardness": "9", "origin": "스리랑카, 미얀마, 마다가스카르" },
+    "en": { "name": "Sapphire", "meaning": "Sincerity, truth, virtue, and grace", "color": "Blue", "hardness": "9", "origin": "Sri Lanka, Myanmar, Madagascar" },
+    "googleQuery": { "ko": "9월 탄생석 사파이어 보석", "en": "September birthstone sapphire gemstone" }
+  },
+  {
+    "month": 10,
+    "ko": { "name": "오팔", "meaning": "희망, 순수, 창의와 안락", "color": "유백색 유색광", "hardness": "5.5–6.5", "origin": "호주, 에티오피아, 멕시코" },
+    "en": { "name": "Opal", "meaning": "Hope, innocence, creativity, and comfort", "color": "Iridescent milky", "hardness": "5.5–6.5", "origin": "Australia, Ethiopia, Mexico" },
+    "googleQuery": { "ko": "10월 탄생석 오팔 보석", "en": "October birthstone opal gemstone" }
+  },
+  {
+    "month": 11,
+    "ko": { "name": "토파즈", "meaning": "우정, 인내, 희망과 결백", "color": "황금빛 (다양)", "hardness": "8", "origin": "브라질, 나이지리아, 파키스탄" },
+    "en": { "name": "Topaz", "meaning": "Friendship, patience, hope, and integrity", "color": "Golden (varied)", "hardness": "8", "origin": "Brazil, Nigeria, Pakistan" },
+    "googleQuery": { "ko": "11월 탄생석 토파즈 보석", "en": "November birthstone topaz gemstone" }
+  },
+  {
+    "month": 12,
+    "ko": { "name": "터키석", "meaning": "성공, 번영, 행운과 승리", "color": "청록색", "hardness": "5–6", "origin": "이란, 미국, 중국" },
+    "en": { "name": "Turquoise", "meaning": "Success, prosperity, fortune, and victory", "color": "Turquoise", "hardness": "5–6", "origin": "Iran, USA, China" },
+    "googleQuery": { "ko": "12월 탄생석 터키석 보석", "en": "December birthstone turquoise gemstone" }
+  }
+]

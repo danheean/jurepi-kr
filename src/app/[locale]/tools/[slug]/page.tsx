@@ -24,6 +24,10 @@ import { LunarConverterFaq } from '@/components/tools/lunar-converter/LunarConve
 import { LunarConverterStructuredData } from '@/components/tools/lunar-converter/LunarConverterStructuredData';
 import { ShareButtons } from '@/components/share';
 import { ToolIntro } from '@/components/tools/shared/ToolIntro';
+import { BirthdaySecretHowTo } from '@/components/tools/birthday-secret/BirthdaySecretHowTo';
+import { BirthdaySecretFaq } from '@/components/tools/birthday-secret/BirthdaySecretFaq';
+import { BirthdaySecretStructuredData } from '@/components/tools/birthday-secret/BirthdaySecretStructuredData';
+import { MonthGrid as BirthdaySecretMonthGrid } from '@/components/tools/birthday-secret/MonthGrid';
 import { QRCodeHowTo } from '@/components/tools/qr-code/QRCodeHowTo';
 import { QRCodeFaq } from '@/components/tools/qr-code/QRCodeFaq';
 import { QRCodeStructuredData } from '@/components/tools/qr-code/QRCodeStructuredData';
@@ -139,6 +143,12 @@ const QRCodeGenerator = dynamic(() =>
 const DevPeople = dynamic(() =>
   import('@/components/tools/dev-people/DevPeople').then((m) => ({
     default: m.DevPeople,
+  }))
+);
+
+const BirthdaySecret = dynamic(() =>
+  import('@/components/tools/birthday-secret/BirthdaySecret').then((m) => ({
+    default: m.BirthdaySecret,
   }))
 );
 
@@ -371,6 +381,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } else if (slug === 'barcode-generator') {
     title = t('meta.title');
     description = t('meta.description');
+  } else if (slug === 'birthday-secret') {
+    title = t('title');
+    description = t('description');
   } else {
     return {};
   }
@@ -708,6 +721,18 @@ async function ToolBody({ slug, locale }: { slug: string; locale: string }) {
         <BarcodeGenerator />
         <BarcodeGeneratorHowTo />
         <BarcodeGeneratorFaq />
+      </>
+    );
+  }
+
+  if (slug === 'birthday-secret') {
+    return (
+      <>
+        <BirthdaySecretStructuredData />
+        <BirthdaySecret />
+        <BirthdaySecretMonthGrid locale={locale} />
+        <BirthdaySecretHowTo />
+        <BirthdaySecretFaq />
       </>
     );
   }

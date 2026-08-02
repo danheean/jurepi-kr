@@ -5,6 +5,7 @@ import rankingsData from '@/components/tools/rankings/data/rankings.generated.js
 import bookmarksData from '@/components/tools/bookmarks/data/bookmarks.generated.json';
 import devPeopleData from '@/components/tools/dev-people/data/dev-people.generated.json';
 import guidesData from '@/components/tools/howto/data/guides.generated.json';
+import birthdaySecretData from '@/components/tools/birthday-secret/data/birthday-secret.generated.json';
 
 // Identity translator: parentToolName resolves to the raw key, so tests can
 // assert the correct key path was used without depending on message catalogs.
@@ -15,7 +16,8 @@ const EXPECTED_COUNT =
   rankingsData.length +
   bookmarksData.length +
   (devPeopleData as { peoples: unknown[] }).peoples.length +
-  guidesData.length;
+  guidesData.length +
+  (birthdaySecretData as { months: unknown[] }).months.length;
 
 describe('toSearchableSpokes', () => {
   it('builds one spoke per entity across all 5 collections (ko)', () => {

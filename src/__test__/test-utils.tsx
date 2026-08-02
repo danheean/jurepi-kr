@@ -1017,6 +1017,7 @@ const defaultMessages = {
     'lotto-generator': (enMessages as any).tools['lotto-generator'],
     cheer: (enMessages as any).tools.cheer,
     'barcode-generator': (enMessages as any).tools['barcode-generator'],
+    'birthday-secret': (enMessages as any).tools['birthday-secret'],
   },
 };
 

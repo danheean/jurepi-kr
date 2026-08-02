@@ -1,0 +1,5492 @@
+[
+  {
+    "key": "01-01",
+    "ko": {
+      "name": "눈풀꽃",
+      "meaning": "희망"
+    },
+    "en": {
+      "name": "Snowdrop",
+      "meaning": "Hope"
+    },
+    "googleQuery": {
+      "ko": "눈풀꽃 꽃",
+      "en": "snowdrop flower"
+    }
+  },
+  {
+    "key": "01-02",
+    "ko": {
+      "name": "노란색 수선화",
+      "meaning": "자존심"
+    },
+    "en": {
+      "name": "Yellow Daffodil",
+      "meaning": "Self-esteem"
+    },
+    "googleQuery": {
+      "ko": "수선화 꽃",
+      "en": "daffodil flower"
+    }
+  },
+  {
+    "key": "01-03",
+    "ko": {
+      "name": "사프란",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Saffron Crocus",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "사프란 꽃",
+      "en": "saffron crocus flower"
+    }
+  },
+  {
+    "key": "01-04",
+    "ko": {
+      "name": "히아신스",
+      "meaning": "영원한 사랑"
+    },
+    "en": {
+      "name": "Hyacinth",
+      "meaning": "Eternal love"
+    },
+    "googleQuery": {
+      "ko": "히아신스 꽃",
+      "en": "hyacinth flower"
+    }
+  },
+  {
+    "key": "01-05",
+    "ko": {
+      "name": "노루귀",
+      "meaning": "신뢰"
+    },
+    "en": {
+      "name": "Hepatica",
+      "meaning": "Confidence"
+    },
+    "googleQuery": {
+      "ko": "노루귀 꽃",
+      "en": "hepatica flower"
+    }
+  },
+  {
+    "key": "01-06",
+    "ko": {
+      "name": "흰색 제비꽃",
+      "meaning": "순진한 사랑"
+    },
+    "en": {
+      "name": "White Violet",
+      "meaning": "Innocent love"
+    },
+    "googleQuery": {
+      "ko": "제비꽃 꽃",
+      "en": "violet flower"
+    }
+  },
+  {
+    "key": "01-07",
+    "ko": {
+      "name": "튤립",
+      "meaning": "사랑의 고백"
+    },
+    "en": {
+      "name": "Tulip",
+      "meaning": "Declaration of love"
+    },
+    "googleQuery": {
+      "ko": "튤립 꽃",
+      "en": "tulip flower"
+    }
+  },
+  {
+    "key": "01-08",
+    "ko": {
+      "name": "보라색 제비꽃",
+      "meaning": "성실한 사랑"
+    },
+    "en": {
+      "name": "Purple Violet",
+      "meaning": "Faithful love"
+    },
+    "googleQuery": {
+      "ko": "제비꽃 꽃",
+      "en": "violet flower"
+    }
+  },
+  {
+    "key": "01-09",
+    "ko": {
+      "name": "노란색 제비꽃",
+      "meaning": "행복"
+    },
+    "en": {
+      "name": "Yellow Violet",
+      "meaning": "Happiness"
+    },
+    "googleQuery": {
+      "ko": "제비꽃 꽃",
+      "en": "violet flower"
+    }
+  },
+  {
+    "key": "01-10",
+    "ko": {
+      "name": "회양목",
+      "meaning": "끈기"
+    },
+    "en": {
+      "name": "Boxwood",
+      "meaning": "Perseverance"
+    },
+    "googleQuery": {
+      "ko": "회양목 꽃",
+      "en": "boxwood flower"
+    }
+  },
+  {
+    "key": "01-11",
+    "ko": {
+      "name": "측백나무",
+      "meaning": "불변"
+    },
+    "en": {
+      "name": "Arborvitae",
+      "meaning": "Unchanging"
+    },
+    "googleQuery": {
+      "ko": "측백나무 꽃",
+      "en": "arborvitae flower"
+    }
+  },
+  {
+    "key": "01-12",
+    "ko": {
+      "name": "알리섬",
+      "meaning": "미소"
+    },
+    "en": {
+      "name": "Alyssum",
+      "meaning": "Smile"
+    },
+    "googleQuery": {
+      "ko": "알리섬 꽃",
+      "en": "alyssum flower"
+    }
+  },
+  {
+    "key": "01-13",
+    "ko": {
+      "name": "수선화",
+      "meaning": "자존심"
+    },
+    "en": {
+      "name": "Daffodil",
+      "meaning": "Self-esteem"
+    },
+    "googleQuery": {
+      "ko": "수선화 꽃",
+      "en": "daffodil flower"
+    }
+  },
+  {
+    "key": "01-14",
+    "ko": {
+      "name": "시클라멘",
+      "meaning": "부끄러움"
+    },
+    "en": {
+      "name": "Cyclamen",
+      "meaning": "Timidity"
+    },
+    "googleQuery": {
+      "ko": "시클라멘 꽃",
+      "en": "cyclamen flower"
+    }
+  },
+  {
+    "key": "01-15",
+    "ko": {
+      "name": "가시나무",
+      "meaning": "방어"
+    },
+    "en": {
+      "name": "Holly",
+      "meaning": "Defense"
+    },
+    "googleQuery": {
+      "ko": "가시나무 꽃",
+      "en": "holly flower"
+    }
+  },
+  {
+    "key": "01-16",
+    "ko": {
+      "name": "히아신스",
+      "meaning": "영원한 사랑"
+    },
+    "en": {
+      "name": "Hyacinth",
+      "meaning": "Eternal love"
+    },
+    "googleQuery": {
+      "ko": "히아신스 꽃",
+      "en": "hyacinth flower"
+    }
+  },
+  {
+    "key": "01-17",
+    "ko": {
+      "name": "수영",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Azalea",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "수영 꽃",
+      "en": "azalea flower"
+    }
+  },
+  {
+    "key": "01-18",
+    "ko": {
+      "name": "어저귀",
+      "meaning": "고귀한 선물"
+    },
+    "en": {
+      "name": "Winter Aconite",
+      "meaning": "Precious gift"
+    },
+    "googleQuery": {
+      "ko": "어저귀 꽃",
+      "en": "winter aconite flower"
+    }
+  },
+  {
+    "key": "01-19",
+    "ko": {
+      "name": "소나무",
+      "meaning": "불변"
+    },
+    "en": {
+      "name": "Pine",
+      "meaning": "Unchanging"
+    },
+    "googleQuery": {
+      "ko": "소나무 꽃",
+      "en": "pine flower"
+    }
+  },
+  {
+    "key": "01-20",
+    "ko": {
+      "name": "미나리아재비",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Buttercup",
+      "meaning": "Fortune"
+    },
+    "googleQuery": {
+      "ko": "미나리아재비 꽃",
+      "en": "buttercup flower"
+    }
+  },
+  {
+    "key": "01-21",
+    "ko": {
+      "name": "담쟁이덩굴",
+      "meaning": "부부 행복"
+    },
+    "en": {
+      "name": "Ivy",
+      "meaning": "Marital happiness"
+    },
+    "googleQuery": {
+      "ko": "담쟁이 꽃",
+      "en": "ivy flower"
+    }
+  },
+  {
+    "key": "01-22",
+    "ko": {
+      "name": "이끼",
+      "meaning": "어머니"
+    },
+    "en": {
+      "name": "Moss",
+      "meaning": "Mother"
+    },
+    "googleQuery": {
+      "ko": "이끼 꽃",
+      "en": "moss flower"
+    }
+  },
+  {
+    "key": "01-23",
+    "ko": {
+      "name": "부들",
+      "meaning": "평화"
+    },
+    "en": {
+      "name": "Cattail",
+      "meaning": "Peace"
+    },
+    "googleQuery": {
+      "ko": "부들 꽃",
+      "en": "cattail flower"
+    }
+  },
+  {
+    "key": "01-24",
+    "ko": {
+      "name": "사프란",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Saffron Crocus",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "사프란 꽃",
+      "en": "saffron crocus flower"
+    }
+  },
+  {
+    "key": "01-25",
+    "ko": {
+      "name": "점나도나물",
+      "meaning": "은밀한 사랑"
+    },
+    "en": {
+      "name": "Toothwort",
+      "meaning": "Secret love"
+    },
+    "googleQuery": {
+      "ko": "점나도나물 꽃",
+      "en": "toothwort flower"
+    }
+  },
+  {
+    "key": "01-26",
+    "ko": {
+      "name": "미모사",
+      "meaning": "우아함"
+    },
+    "en": {
+      "name": "Mimosa",
+      "meaning": "Elegance"
+    },
+    "googleQuery": {
+      "ko": "미모사 꽃",
+      "en": "mimosa flower"
+    }
+  },
+  {
+    "key": "01-27",
+    "ko": {
+      "name": "마가목",
+      "meaning": "보호"
+    },
+    "en": {
+      "name": "Rowan",
+      "meaning": "Protection"
+    },
+    "googleQuery": {
+      "ko": "마가목 꽃",
+      "en": "rowan flower"
+    }
+  },
+  {
+    "key": "01-28",
+    "ko": {
+      "name": "포플라",
+      "meaning": "용감함"
+    },
+    "en": {
+      "name": "Poplar",
+      "meaning": "Courage"
+    },
+    "googleQuery": {
+      "ko": "포플라 꽃",
+      "en": "poplar flower"
+    }
+  },
+  {
+    "key": "01-29",
+    "ko": {
+      "name": "이끼",
+      "meaning": "어머니"
+    },
+    "en": {
+      "name": "Moss",
+      "meaning": "Mother"
+    },
+    "googleQuery": {
+      "ko": "이끼 꽃",
+      "en": "moss flower"
+    }
+  },
+  {
+    "key": "01-30",
+    "ko": {
+      "name": "메리골드",
+      "meaning": "질투"
+    },
+    "en": {
+      "name": "Marigold",
+      "meaning": "Jealousy"
+    },
+    "googleQuery": {
+      "ko": "메리골드 꽃",
+      "en": "marigold flower"
+    }
+  },
+  {
+    "key": "01-31",
+    "ko": {
+      "name": "사프란",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Saffron Crocus",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "사프란 꽃",
+      "en": "saffron crocus flower"
+    }
+  },
+  {
+    "key": "02-01",
+    "ko": {
+      "name": "앵초",
+      "meaning": "청춘"
+    },
+    "en": {
+      "name": "Primrose",
+      "meaning": "Youth"
+    },
+    "googleQuery": {
+      "ko": "앵초 꽃",
+      "en": "primrose flower"
+    }
+  },
+  {
+    "key": "02-02",
+    "ko": {
+      "name": "모과",
+      "meaning": "유혹"
+    },
+    "en": {
+      "name": "Quince",
+      "meaning": "Temptation"
+    },
+    "googleQuery": {
+      "ko": "모과 꽃",
+      "en": "quince flower"
+    }
+  },
+  {
+    "key": "02-03",
+    "ko": {
+      "name": "황새냉이",
+      "meaning": "마음을 다 바침"
+    },
+    "en": {
+      "name": "Shepherd's Purse",
+      "meaning": "I offer you my all"
+    },
+    "googleQuery": {
+      "ko": "황새냉이 꽃",
+      "en": "shepherd's purse flower"
+    }
+  },
+  {
+    "key": "02-04",
+    "ko": {
+      "name": "앵초",
+      "meaning": "청춘"
+    },
+    "en": {
+      "name": "Primrose",
+      "meaning": "Youth"
+    },
+    "googleQuery": {
+      "ko": "앵초 꽃",
+      "en": "primrose flower"
+    }
+  },
+  {
+    "key": "02-05",
+    "ko": {
+      "name": "양치",
+      "meaning": "우아함"
+    },
+    "en": {
+      "name": "Fern",
+      "meaning": "Grace"
+    },
+    "googleQuery": {
+      "ko": "양치 꽃",
+      "en": "fern flower"
+    }
+  },
+  {
+    "key": "02-06",
+    "ko": {
+      "name": "바위솔",
+      "meaning": "평온"
+    },
+    "en": {
+      "name": "Sedum",
+      "meaning": "Tranquility"
+    },
+    "googleQuery": {
+      "ko": "바위솔 꽃",
+      "en": "sedum flower"
+    }
+  },
+  {
+    "key": "02-07",
+    "ko": {
+      "name": "물망초",
+      "meaning": "기억"
+    },
+    "en": {
+      "name": "Forget-me-not",
+      "meaning": "Remembrance"
+    },
+    "googleQuery": {
+      "ko": "물망초 꽃",
+      "en": "forget-me-not flower"
+    }
+  },
+  {
+    "key": "02-08",
+    "ko": {
+      "name": "범의귀",
+      "meaning": "끈기"
+    },
+    "en": {
+      "name": "Bergenia",
+      "meaning": "Perseverance"
+    },
+    "googleQuery": {
+      "ko": "범의귀 꽃",
+      "en": "bergenia flower"
+    }
+  },
+  {
+    "key": "02-09",
+    "ko": {
+      "name": "은매화",
+      "meaning": "매혹"
+    },
+    "en": {
+      "name": "Winter Daphne",
+      "meaning": "Enchantment"
+    },
+    "googleQuery": {
+      "ko": "은매화 꽃",
+      "en": "winter daphne flower"
+    }
+  },
+  {
+    "key": "02-10",
+    "ko": {
+      "name": "서향",
+      "meaning": "아름다움"
+    },
+    "en": {
+      "name": "Daphne",
+      "meaning": "Beauty"
+    },
+    "googleQuery": {
+      "ko": "서향 꽃",
+      "en": "daphne flower"
+    }
+  },
+  {
+    "key": "02-11",
+    "ko": {
+      "name": "멜리사",
+      "meaning": "다정함"
+    },
+    "en": {
+      "name": "Melissa",
+      "meaning": "Sympathy"
+    },
+    "googleQuery": {
+      "ko": "멜리사 꽃",
+      "en": "melissa flower"
+    }
+  },
+  {
+    "key": "02-12",
+    "ko": {
+      "name": "쥐꼬리망초",
+      "meaning": "진실한 사랑"
+    },
+    "en": {
+      "name": "Mouse-tail Forget-me-not",
+      "meaning": "True love"
+    },
+    "googleQuery": {
+      "ko": "쥐꼬리망초 꽃",
+      "en": "mouse-tail flower"
+    }
+  },
+  {
+    "key": "02-13",
+    "ko": {
+      "name": "갈풀",
+      "meaning": "겸손"
+    },
+    "en": {
+      "name": "Carex",
+      "meaning": "Humility"
+    },
+    "googleQuery": {
+      "ko": "갈풀 꽃",
+      "en": "carex flower"
+    }
+  },
+  {
+    "key": "02-14",
+    "ko": {
+      "name": "캐모마일",
+      "meaning": "인내"
+    },
+    "en": {
+      "name": "Chamomile",
+      "meaning": "Patience"
+    },
+    "googleQuery": {
+      "ko": "캐모마일 꽃",
+      "en": "chamomile flower"
+    }
+  },
+  {
+    "key": "02-15",
+    "ko": {
+      "name": "삼나무",
+      "meaning": "불변"
+    },
+    "en": {
+      "name": "Sugi",
+      "meaning": "Unchanging"
+    },
+    "googleQuery": {
+      "ko": "삼나무 꽃",
+      "en": "sugi flower"
+    }
+  },
+  {
+    "key": "02-16",
+    "ko": {
+      "name": "월계수",
+      "meaning": "영광"
+    },
+    "en": {
+      "name": "Bay Laurel",
+      "meaning": "Glory"
+    },
+    "googleQuery": {
+      "ko": "월계수 꽃",
+      "en": "bay laurel flower"
+    }
+  },
+  {
+    "key": "02-17",
+    "ko": {
+      "name": "야생화",
+      "meaning": "순수함"
+    },
+    "en": {
+      "name": "Wildflower",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "야생화 꽃",
+      "en": "wildflower"
+    }
+  },
+  {
+    "key": "02-18",
+    "ko": {
+      "name": "미나리아재비",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Buttercup",
+      "meaning": "Fortune"
+    },
+    "googleQuery": {
+      "ko": "미나리아재비 꽃",
+      "en": "buttercup flower"
+    }
+  },
+  {
+    "key": "02-19",
+    "ko": {
+      "name": "떡갈나무",
+      "meaning": "강인함"
+    },
+    "en": {
+      "name": "Japanese Oak",
+      "meaning": "Strength"
+    },
+    "googleQuery": {
+      "ko": "떡갈나무 꽃",
+      "en": "japanese oak flower"
+    }
+  },
+  {
+    "key": "02-20",
+    "ko": {
+      "name": "칼미아",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Kalmia",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "칼미아 꽃",
+      "en": "kalmia flower"
+    }
+  },
+  {
+    "key": "02-21",
+    "ko": {
+      "name": "네모필라",
+      "meaning": "사랑"
+    },
+    "en": {
+      "name": "Nemophila",
+      "meaning": "Love"
+    },
+    "googleQuery": {
+      "ko": "네모필라 꽃",
+      "en": "nemophila flower"
+    }
+  },
+  {
+    "key": "02-22",
+    "ko": {
+      "name": "무궁화",
+      "meaning": "영원한 사랑"
+    },
+    "en": {
+      "name": "Rose of Sharon",
+      "meaning": "Eternal love"
+    },
+    "googleQuery": {
+      "ko": "무궁화 꽃",
+      "en": "rose of sharon flower"
+    }
+  },
+  {
+    "key": "02-23",
+    "ko": {
+      "name": "살구꽃",
+      "meaning": "매력"
+    },
+    "en": {
+      "name": "Apricot Blossom",
+      "meaning": "Charm"
+    },
+    "googleQuery": {
+      "ko": "살구꽃",
+      "en": "apricot blossom"
+    }
+  },
+  {
+    "key": "02-24",
+    "ko": {
+      "name": "빙카",
+      "meaning": "추억"
+    },
+    "en": {
+      "name": "Periwinkle",
+      "meaning": "Memory"
+    },
+    "googleQuery": {
+      "ko": "빙카 꽃",
+      "en": "periwinkle flower"
+    }
+  },
+  {
+    "key": "02-25",
+    "ko": {
+      "name": "사향장미",
+      "meaning": "사랑"
+    },
+    "en": {
+      "name": "Musk Rose",
+      "meaning": "Love"
+    },
+    "googleQuery": {
+      "ko": "사향장미 꽃",
+      "en": "musk rose flower"
+    }
+  },
+  {
+    "key": "02-26",
+    "ko": {
+      "name": "아도니스",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Adonis",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "아도니스 꽃",
+      "en": "adonis flower"
+    }
+  },
+  {
+    "key": "02-27",
+    "ko": {
+      "name": "아라비아의 별",
+      "meaning": "신비로운 아름다움"
+    },
+    "en": {
+      "name": "Star of Arabia",
+      "meaning": "Mysterious beauty"
+    },
+    "googleQuery": {
+      "ko": "아라비아의 별 꽃",
+      "en": "star of arabia flower"
+    }
+  },
+  {
+    "key": "02-28",
+    "ko": {
+      "name": "보리",
+      "meaning": "풍요"
+    },
+    "en": {
+      "name": "Barley",
+      "meaning": "Abundance"
+    },
+    "googleQuery": {
+      "ko": "보리 꽃",
+      "en": "barley flower"
+    }
+  },
+  {
+    "key": "02-29",
+    "ko": {
+      "name": "아르메리아",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Armeria",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "아르메리아 꽃",
+      "en": "armeria flower"
+    }
+  },
+  {
+    "key": "03-01",
+    "ko": {
+      "name": "수선화",
+      "meaning": "자존심"
+    },
+    "en": {
+      "name": "Daffodil",
+      "meaning": "Self-esteem"
+    },
+    "googleQuery": {
+      "ko": "수선화 꽃",
+      "en": "daffodil flower"
+    }
+  },
+  {
+    "key": "03-02",
+    "ko": {
+      "name": "미나리아재비",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Buttercup",
+      "meaning": "Fortune"
+    },
+    "googleQuery": {
+      "ko": "미나리아재비 꽃",
+      "en": "buttercup flower"
+    }
+  },
+  {
+    "key": "03-03",
+    "ko": {
+      "name": "자운영",
+      "meaning": "수줍음"
+    },
+    "en": {
+      "name": "Vetches",
+      "meaning": "Shyness"
+    },
+    "googleQuery": {
+      "ko": "자운영 꽃",
+      "en": "vetches flower"
+    }
+  },
+  {
+    "key": "03-04",
+    "ko": {
+      "name": "라즈베리",
+      "meaning": "달콤함"
+    },
+    "en": {
+      "name": "Raspberry",
+      "meaning": "Sweetness"
+    },
+    "googleQuery": {
+      "ko": "라즈베리 꽃",
+      "en": "raspberry flower"
+    }
+  },
+  {
+    "key": "03-05",
+    "ko": {
+      "name": "수레국화",
+      "meaning": "행복"
+    },
+    "en": {
+      "name": "Cornflower",
+      "meaning": "Happiness"
+    },
+    "googleQuery": {
+      "ko": "수레국화 꽃",
+      "en": "cornflower flower"
+    }
+  },
+  {
+    "key": "03-06",
+    "ko": {
+      "name": "데이지",
+      "meaning": "순결"
+    },
+    "en": {
+      "name": "Daisy",
+      "meaning": "Innocence"
+    },
+    "googleQuery": {
+      "ko": "데이지 꽃",
+      "en": "daisy flower"
+    }
+  },
+  {
+    "key": "03-07",
+    "ko": {
+      "name": "황새냉이",
+      "meaning": "마음을 다 바침"
+    },
+    "en": {
+      "name": "Shepherd's Purse",
+      "meaning": "I offer you my all"
+    },
+    "googleQuery": {
+      "ko": "황새냉이 꽃",
+      "en": "shepherd's purse flower"
+    }
+  },
+  {
+    "key": "03-08",
+    "ko": {
+      "name": "밤꽃",
+      "meaning": "진심"
+    },
+    "en": {
+      "name": "Chestnut Blossom",
+      "meaning": "Sincerity"
+    },
+    "googleQuery": {
+      "ko": "밤꽃",
+      "en": "chestnut blossom"
+    }
+  },
+  {
+    "key": "03-09",
+    "ko": {
+      "name": "낙엽송",
+      "meaning": "용감함"
+    },
+    "en": {
+      "name": "Larch",
+      "meaning": "Courage"
+    },
+    "googleQuery": {
+      "ko": "낙엽송 꽃",
+      "en": "larch flower"
+    }
+  },
+  {
+    "key": "03-10",
+    "ko": {
+      "name": "느릅나무",
+      "meaning": "새로운 시작"
+    },
+    "en": {
+      "name": "Elm",
+      "meaning": "New beginning"
+    },
+    "googleQuery": {
+      "ko": "느릅나무 꽃",
+      "en": "elm flower"
+    }
+  },
+  {
+    "key": "03-11",
+    "ko": {
+      "name": "씀바귀",
+      "meaning": "강인한 생명력"
+    },
+    "en": {
+      "name": "Picris",
+      "meaning": "Resilience"
+    },
+    "googleQuery": {
+      "ko": "씀바귀 꽃",
+      "en": "picris flower"
+    }
+  },
+  {
+    "key": "03-12",
+    "ko": {
+      "name": "수양버들",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Weeping Willow",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "수양버들 꽃",
+      "en": "weeping willow flower"
+    }
+  },
+  {
+    "key": "03-13",
+    "ko": {
+      "name": "산옥잠화",
+      "meaning": "청초함"
+    },
+    "en": {
+      "name": "Alpestre",
+      "meaning": "Elegant purity"
+    },
+    "googleQuery": {
+      "ko": "산옥잠화 꽃",
+      "en": "alpestre flower"
+    }
+  },
+  {
+    "key": "03-14",
+    "ko": {
+      "name": "아몬드",
+      "meaning": "아름다움"
+    },
+    "en": {
+      "name": "Almond",
+      "meaning": "Beauty"
+    },
+    "googleQuery": {
+      "ko": "아몬드 꽃",
+      "en": "almond flower"
+    }
+  },
+  {
+    "key": "03-15",
+    "ko": {
+      "name": "독당근",
+      "meaning": "신비로움"
+    },
+    "en": {
+      "name": "Poison Hemlock",
+      "meaning": "Mystery"
+    },
+    "googleQuery": {
+      "ko": "독당근 꽃",
+      "en": "poison hemlock flower"
+    }
+  },
+  {
+    "key": "03-16",
+    "ko": {
+      "name": "박하",
+      "meaning": "미덕"
+    },
+    "en": {
+      "name": "Mint",
+      "meaning": "Virtue"
+    },
+    "googleQuery": {
+      "ko": "박하 꽃",
+      "en": "mint flower"
+    }
+  },
+  {
+    "key": "03-17",
+    "ko": {
+      "name": "콩꽃",
+      "meaning": "소박한 행복"
+    },
+    "en": {
+      "name": "Bean Flower",
+      "meaning": "Simple happiness"
+    },
+    "googleQuery": {
+      "ko": "콩꽃",
+      "en": "bean flower"
+    }
+  },
+  {
+    "key": "03-18",
+    "ko": {
+      "name": "아스파라거스",
+      "meaning": "우아함"
+    },
+    "en": {
+      "name": "Asparagus Fern",
+      "meaning": "Elegance"
+    },
+    "googleQuery": {
+      "ko": "아스파라거스 꽃",
+      "en": "asparagus flower"
+    }
+  },
+  {
+    "key": "03-19",
+    "ko": {
+      "name": "가드니아",
+      "meaning": "비밀의 사랑"
+    },
+    "en": {
+      "name": "Gardenia",
+      "meaning": "Secret love"
+    },
+    "googleQuery": {
+      "ko": "가드니아 꽃",
+      "en": "gardenia flower"
+    }
+  },
+  {
+    "key": "03-20",
+    "ko": {
+      "name": "튤립",
+      "meaning": "사랑의 고백"
+    },
+    "en": {
+      "name": "Tulip",
+      "meaning": "Declaration of love"
+    },
+    "googleQuery": {
+      "ko": "튤립 꽃",
+      "en": "tulip flower"
+    }
+  },
+  {
+    "key": "03-21",
+    "ko": {
+      "name": "벚꽃난",
+      "meaning": "우아한 미인"
+    },
+    "en": {
+      "name": "Cherry Orchid",
+      "meaning": "Elegant beauty"
+    },
+    "googleQuery": {
+      "ko": "벚꽃난 꽃",
+      "en": "cherry orchid flower"
+    }
+  },
+  {
+    "key": "03-22",
+    "ko": {
+      "name": "당아욱",
+      "meaning": "야망"
+    },
+    "en": {
+      "name": "Hollyhock",
+      "meaning": "Ambition"
+    },
+    "googleQuery": {
+      "ko": "당아욱 꽃",
+      "en": "hollyhock flower"
+    }
+  },
+  {
+    "key": "03-23",
+    "ko": {
+      "name": "글라디올러스",
+      "meaning": "승리"
+    },
+    "en": {
+      "name": "Gladiolus",
+      "meaning": "Victory"
+    },
+    "googleQuery": {
+      "ko": "글라디올러스 꽃",
+      "en": "gladiolus flower"
+    }
+  },
+  {
+    "key": "03-24",
+    "ko": {
+      "name": "금영화",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Calendula",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "금영화 꽃",
+      "en": "calendula flower"
+    }
+  },
+  {
+    "key": "03-25",
+    "ko": {
+      "name": "덩굴",
+      "meaning": "결합"
+    },
+    "en": {
+      "name": "Vine",
+      "meaning": "Bonding"
+    },
+    "googleQuery": {
+      "ko": "덩굴 꽃",
+      "en": "vine flower"
+    }
+  },
+  {
+    "key": "03-26",
+    "ko": {
+      "name": "흰앵초",
+      "meaning": "순수한 첫사랑"
+    },
+    "en": {
+      "name": "White Primrose",
+      "meaning": "Innocent first love"
+    },
+    "googleQuery": {
+      "ko": "흰앵초 꽃",
+      "en": "white primrose flower"
+    }
+  },
+  {
+    "key": "03-27",
+    "ko": {
+      "name": "칼세올라리아",
+      "meaning": "부성애"
+    },
+    "en": {
+      "name": "Calceolaria",
+      "meaning": "Paternal love"
+    },
+    "googleQuery": {
+      "ko": "칼세올라리아 꽃",
+      "en": "calceolaria flower"
+    }
+  },
+  {
+    "key": "03-28",
+    "ko": {
+      "name": "꽃아카시아나무",
+      "meaning": "섬세한 사랑"
+    },
+    "en": {
+      "name": "Mimosa Tree",
+      "meaning": "Sensitivity"
+    },
+    "googleQuery": {
+      "ko": "꽃아카시아나무 꽃",
+      "en": "mimosa tree flower"
+    }
+  },
+  {
+    "key": "03-29",
+    "ko": {
+      "name": "우엉",
+      "meaning": "강한 인내심"
+    },
+    "en": {
+      "name": "Burdock",
+      "meaning": "Strong endurance"
+    },
+    "googleQuery": {
+      "ko": "우엉 꽃",
+      "en": "burdock flower"
+    }
+  },
+  {
+    "key": "03-30",
+    "ko": {
+      "name": "개나리",
+      "meaning": "희망"
+    },
+    "en": {
+      "name": "Forsythia",
+      "meaning": "Hope"
+    },
+    "googleQuery": {
+      "ko": "개나리 꽃",
+      "en": "forsythia flower"
+    }
+  },
+  {
+    "key": "03-31",
+    "ko": {
+      "name": "흑종초",
+      "meaning": "안개 속의 사랑"
+    },
+    "en": {
+      "name": "Black Caraway",
+      "meaning": "Love in a mist"
+    },
+    "googleQuery": {
+      "ko": "흑종초 꽃",
+      "en": "black caraway flower"
+    }
+  },
+  {
+    "key": "04-01",
+    "ko": {
+      "name": "아몬드",
+      "meaning": "아름다움"
+    },
+    "en": {
+      "name": "Almond",
+      "meaning": "Beauty"
+    },
+    "googleQuery": {
+      "ko": "아몬드 꽃",
+      "en": "almond flower"
+    }
+  },
+  {
+    "key": "04-02",
+    "ko": {
+      "name": "아네모네",
+      "meaning": "헌신적인 사랑"
+    },
+    "en": {
+      "name": "Anemone",
+      "meaning": "Devoted love"
+    },
+    "googleQuery": {
+      "ko": "아네모네 꽃",
+      "en": "anemone flower"
+    }
+  },
+  {
+    "key": "04-03",
+    "ko": {
+      "name": "나팔수선화",
+      "meaning": "새로운 시작"
+    },
+    "en": {
+      "name": "Trumpet Daffodil",
+      "meaning": "New beginnings"
+    },
+    "googleQuery": {
+      "ko": "나팔수선화 꽃",
+      "en": "trumpet daffodil flower"
+    }
+  },
+  {
+    "key": "04-04",
+    "ko": {
+      "name": "빨간색 아네모네",
+      "meaning": "기대에 부푼 사랑"
+    },
+    "en": {
+      "name": "Red Anemone",
+      "meaning": "Anticipation of love"
+    },
+    "googleQuery": {
+      "ko": "아네모네 꽃",
+      "en": "anemone flower"
+    }
+  },
+  {
+    "key": "04-05",
+    "ko": {
+      "name": "무화과",
+      "meaning": "풍요"
+    },
+    "en": {
+      "name": "Fig",
+      "meaning": "Abundance"
+    },
+    "googleQuery": {
+      "ko": "무화과 꽃",
+      "en": "fig flower"
+    }
+  },
+  {
+    "key": "04-06",
+    "ko": {
+      "name": "아도니스",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Adonis",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "아도니스 꽃",
+      "en": "adonis flower"
+    }
+  },
+  {
+    "key": "04-07",
+    "ko": {
+      "name": "공작고사리",
+      "meaning": "진실한 매력"
+    },
+    "en": {
+      "name": "Peacock Fern",
+      "meaning": "Sincerity"
+    },
+    "googleQuery": {
+      "ko": "공작고사리 꽃",
+      "en": "peacock fern flower"
+    }
+  },
+  {
+    "key": "04-08",
+    "ko": {
+      "name": "금작화",
+      "meaning": "우아함"
+    },
+    "en": {
+      "name": "Kerria",
+      "meaning": "Elegance"
+    },
+    "googleQuery": {
+      "ko": "금작화 꽃",
+      "en": "kerria flower"
+    }
+  },
+  {
+    "key": "04-09",
+    "ko": {
+      "name": "벚나무",
+      "meaning": "정절"
+    },
+    "en": {
+      "name": "Cherry Blossom",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "벚나무 꽃",
+      "en": "cherry blossom"
+    }
+  },
+  {
+    "key": "04-10",
+    "ko": {
+      "name": "빙카",
+      "meaning": "추억"
+    },
+    "en": {
+      "name": "Periwinkle",
+      "meaning": "Memory"
+    },
+    "googleQuery": {
+      "ko": "빙카 꽃",
+      "en": "periwinkle flower"
+    }
+  },
+  {
+    "key": "04-11",
+    "ko": {
+      "name": "꽃고비",
+      "meaning": "소망"
+    },
+    "en": {
+      "name": "Flowering Fern",
+      "meaning": "Wish"
+    },
+    "googleQuery": {
+      "ko": "꽃고비 꽃",
+      "en": "flowering fern"
+    }
+  },
+  {
+    "key": "04-12",
+    "ko": {
+      "name": "복사꽃",
+      "meaning": "사랑의 포로"
+    },
+    "en": {
+      "name": "Peach Blossom",
+      "meaning": "Captive of love"
+    },
+    "googleQuery": {
+      "ko": "복사꽃",
+      "en": "peach blossom"
+    }
+  },
+  {
+    "key": "04-13",
+    "ko": {
+      "name": "페르시아 국화",
+      "meaning": "쾌활함"
+    },
+    "en": {
+      "name": "Persian Chrysanthemum",
+      "meaning": "Cheerfulness"
+    },
+    "googleQuery": {
+      "ko": "페르시아 국화 꽃",
+      "en": "persian chrysanthemum flower"
+    }
+  },
+  {
+    "key": "04-14",
+    "ko": {
+      "name": "흰나팔꽃",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "White Bindweed",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "흰나팔꽃",
+      "en": "white bindweed"
+    }
+  },
+  {
+    "key": "04-15",
+    "ko": {
+      "name": "펜 오키드",
+      "meaning": "우아한 매력"
+    },
+    "en": {
+      "name": "Pen Orchid",
+      "meaning": "Elegant charm"
+    },
+    "googleQuery": {
+      "ko": "펜 오키드 꽃",
+      "en": "pen orchid flower"
+    }
+  },
+  {
+    "key": "04-16",
+    "ko": {
+      "name": "튤립",
+      "meaning": "사랑의 고백"
+    },
+    "en": {
+      "name": "Tulip",
+      "meaning": "Declaration of love"
+    },
+    "googleQuery": {
+      "ko": "튤립 꽃",
+      "en": "tulip flower"
+    }
+  },
+  {
+    "key": "04-17",
+    "ko": {
+      "name": "독일 창포",
+      "meaning": "좋은 소식"
+    },
+    "en": {
+      "name": "German Iris",
+      "meaning": "Good news"
+    },
+    "googleQuery": {
+      "ko": "창포 꽃",
+      "en": "iris flower"
+    }
+  },
+  {
+    "key": "04-18",
+    "ko": {
+      "name": "자운영",
+      "meaning": "수줍음"
+    },
+    "en": {
+      "name": "Vetches",
+      "meaning": "Shyness"
+    },
+    "googleQuery": {
+      "ko": "자운영 꽃",
+      "en": "vetches flower"
+    }
+  },
+  {
+    "key": "04-19",
+    "ko": {
+      "name": "참제비고깔",
+      "meaning": "명랑함"
+    },
+    "en": {
+      "name": "Larkspur",
+      "meaning": "Cheerfulness"
+    },
+    "googleQuery": {
+      "ko": "참제비고깔 꽃",
+      "en": "larkspur flower"
+    }
+  },
+  {
+    "key": "04-20",
+    "ko": {
+      "name": "배나무",
+      "meaning": "편안함과 위로"
+    },
+    "en": {
+      "name": "Pear Blossom",
+      "meaning": "Comfort"
+    },
+    "googleQuery": {
+      "ko": "배나무 꽃",
+      "en": "pear blossom"
+    }
+  },
+  {
+    "key": "04-21",
+    "ko": {
+      "name": "수양버들",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Weeping Willow",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "수양버들 꽃",
+      "en": "weeping willow flower"
+    }
+  },
+  {
+    "key": "04-22",
+    "ko": {
+      "name": "과꽃",
+      "meaning": "만족"
+    },
+    "en": {
+      "name": "Geum",
+      "meaning": "Satisfaction"
+    },
+    "googleQuery": {
+      "ko": "과꽃",
+      "en": "geum flower"
+    }
+  },
+  {
+    "key": "04-23",
+    "ko": {
+      "name": "도라지",
+      "meaning": "성실"
+    },
+    "en": {
+      "name": "Bellflower",
+      "meaning": "Sincerity"
+    },
+    "googleQuery": {
+      "ko": "도라지 꽃",
+      "en": "bellflower"
+    }
+  },
+  {
+    "key": "04-24",
+    "ko": {
+      "name": "제라늄",
+      "meaning": "진정한 친절"
+    },
+    "en": {
+      "name": "Geranium",
+      "meaning": "True kindness"
+    },
+    "googleQuery": {
+      "ko": "제라늄 꽃",
+      "en": "geranium flower"
+    }
+  },
+  {
+    "key": "04-25",
+    "ko": {
+      "name": "중국 패모",
+      "meaning": "고귀함"
+    },
+    "en": {
+      "name": "Chinese Fritillaria",
+      "meaning": "Nobility"
+    },
+    "googleQuery": {
+      "ko": "중국 패모 꽃",
+      "en": "chinese fritillaria flower"
+    }
+  },
+  {
+    "key": "04-26",
+    "ko": {
+      "name": "논냉이",
+      "meaning": "봄의 기쁨"
+    },
+    "en": {
+      "name": "Cardamine",
+      "meaning": "Joy of spring"
+    },
+    "googleQuery": {
+      "ko": "논냉이 꽃",
+      "en": "cardamine flower"
+    }
+  },
+  {
+    "key": "04-27",
+    "ko": {
+      "name": "수련",
+      "meaning": "순결"
+    },
+    "en": {
+      "name": "Water Lily",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "수련 꽃",
+      "en": "water lily flower"
+    }
+  },
+  {
+    "key": "04-28",
+    "ko": {
+      "name": "앵초",
+      "meaning": "청춘"
+    },
+    "en": {
+      "name": "Primrose",
+      "meaning": "Youth"
+    },
+    "googleQuery": {
+      "ko": "앵초 꽃",
+      "en": "primrose flower"
+    }
+  },
+  {
+    "key": "04-29",
+    "ko": {
+      "name": "동백나무",
+      "meaning": "그리움"
+    },
+    "en": {
+      "name": "Camellia",
+      "meaning": "Longing"
+    },
+    "googleQuery": {
+      "ko": "동백꽃",
+      "en": "camellia flower"
+    }
+  },
+  {
+    "key": "04-30",
+    "ko": {
+      "name": "금사슬나무",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Golden Chain Tree",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "금사슬나무 꽃",
+      "en": "golden chain tree flower"
+    }
+  },
+  {
+    "key": "05-01",
+    "ko": {
+      "name": "구륜 앵초",
+      "meaning": "우아한 젊음"
+    },
+    "en": {
+      "name": "Cowslip",
+      "meaning": "Youthful grace"
+    },
+    "googleQuery": {
+      "ko": "구륜 앵초 꽃",
+      "en": "cowslip flower"
+    }
+  },
+  {
+    "key": "05-02",
+    "ko": {
+      "name": "미나리아재비",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Buttercup",
+      "meaning": "Fortune"
+    },
+    "googleQuery": {
+      "ko": "미나리아재비 꽃",
+      "en": "buttercup flower"
+    }
+  },
+  {
+    "key": "05-03",
+    "ko": {
+      "name": "민들레",
+      "meaning": "성실함"
+    },
+    "en": {
+      "name": "Dandelion",
+      "meaning": "Faithfulness"
+    },
+    "googleQuery": {
+      "ko": "민들레 꽃",
+      "en": "dandelion flower"
+    }
+  },
+  {
+    "key": "05-04",
+    "ko": {
+      "name": "딸기",
+      "meaning": "완벽함"
+    },
+    "en": {
+      "name": "Strawberry",
+      "meaning": "Perfection"
+    },
+    "googleQuery": {
+      "ko": "딸기 꽃",
+      "en": "strawberry flower"
+    }
+  },
+  {
+    "key": "05-05",
+    "ko": {
+      "name": "은방울꽃",
+      "meaning": "행복"
+    },
+    "en": {
+      "name": "Lily of the Valley",
+      "meaning": "Happiness"
+    },
+    "googleQuery": {
+      "ko": "은방울꽃",
+      "en": "lily of the valley"
+    }
+  },
+  {
+    "key": "05-06",
+    "ko": {
+      "name": "비단향나무꽃",
+      "meaning": "변함없는 아름다움"
+    },
+    "en": {
+      "name": "Fragrant Flower",
+      "meaning": "Lasting beauty"
+    },
+    "googleQuery": {
+      "ko": "비단향나무꽃",
+      "en": "fragrant flower"
+    }
+  },
+  {
+    "key": "05-07",
+    "ko": {
+      "name": "딸기",
+      "meaning": "완벽함"
+    },
+    "en": {
+      "name": "Strawberry",
+      "meaning": "Perfection"
+    },
+    "googleQuery": {
+      "ko": "딸기 꽃",
+      "en": "strawberry flower"
+    }
+  },
+  {
+    "key": "05-08",
+    "ko": {
+      "name": "수련",
+      "meaning": "순결"
+    },
+    "en": {
+      "name": "Water Lily",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "수련 꽃",
+      "en": "water lily flower"
+    }
+  },
+  {
+    "key": "05-09",
+    "ko": {
+      "name": "겹벚꽃",
+      "meaning": "정절"
+    },
+    "en": {
+      "name": "Double Cherry Blossom",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "겹벚꽃",
+      "en": "double cherry blossom"
+    }
+  },
+  {
+    "key": "05-10",
+    "ko": {
+      "name": "꽃창포",
+      "meaning": "좋은 소식"
+    },
+    "en": {
+      "name": "Iris",
+      "meaning": "Good news"
+    },
+    "googleQuery": {
+      "ko": "꽃창포 꽃",
+      "en": "iris flower"
+    }
+  },
+  {
+    "key": "05-11",
+    "ko": {
+      "name": "사과",
+      "meaning": "유혹"
+    },
+    "en": {
+      "name": "Apple",
+      "meaning": "Temptation"
+    },
+    "googleQuery": {
+      "ko": "사과 꽃",
+      "en": "apple flower"
+    }
+  },
+  {
+    "key": "05-12",
+    "ko": {
+      "name": "라일락",
+      "meaning": "첫사랑"
+    },
+    "en": {
+      "name": "Lilac",
+      "meaning": "First love"
+    },
+    "googleQuery": {
+      "ko": "라일락 꽃",
+      "en": "lilac flower"
+    }
+  },
+  {
+    "key": "05-13",
+    "ko": {
+      "name": "산사나무",
+      "meaning": "희망"
+    },
+    "en": {
+      "name": "Hawthorn",
+      "meaning": "Hope"
+    },
+    "googleQuery": {
+      "ko": "산사나무 꽃",
+      "en": "hawthorn flower"
+    }
+  },
+  {
+    "key": "05-14",
+    "ko": {
+      "name": "매발톱꽃",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Columbine",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "매발톱꽃",
+      "en": "columbine flower"
+    }
+  },
+  {
+    "key": "05-15",
+    "ko": {
+      "name": "물망초",
+      "meaning": "기억"
+    },
+    "en": {
+      "name": "Forget-me-not",
+      "meaning": "Remembrance"
+    },
+    "googleQuery": {
+      "ko": "물망초 꽃",
+      "en": "forget-me-not flower"
+    }
+  },
+  {
+    "key": "05-16",
+    "ko": {
+      "name": "조밥나물",
+      "meaning": "회복"
+    },
+    "en": {
+      "name": "Bistorta",
+      "meaning": "Restoration"
+    },
+    "googleQuery": {
+      "ko": "조밥나물 꽃",
+      "en": "bistorta flower"
+    }
+  },
+  {
+    "key": "05-17",
+    "ko": {
+      "name": "튤립",
+      "meaning": "사랑의 고백"
+    },
+    "en": {
+      "name": "Tulip",
+      "meaning": "Declaration of love"
+    },
+    "googleQuery": {
+      "ko": "튤립 꽃",
+      "en": "tulip flower"
+    }
+  },
+  {
+    "key": "05-18",
+    "ko": {
+      "name": "옥슬립 앵초",
+      "meaning": "젊은 사랑"
+    },
+    "en": {
+      "name": "Oxlip",
+      "meaning": "Young love"
+    },
+    "googleQuery": {
+      "ko": "옥슬립 앵초 꽃",
+      "en": "oxlip flower"
+    }
+  },
+  {
+    "key": "05-19",
+    "ko": {
+      "name": "아리스타타",
+      "meaning": "강인함"
+    },
+    "en": {
+      "name": "Aristata",
+      "meaning": "Resilience"
+    },
+    "googleQuery": {
+      "ko": "아리스타타 꽃",
+      "en": "aristata flower"
+    }
+  },
+  {
+    "key": "05-20",
+    "ko": {
+      "name": "괭이밥",
+      "meaning": "기쁨"
+    },
+    "en": {
+      "name": "Oxalis",
+      "meaning": "Joy"
+    },
+    "googleQuery": {
+      "ko": "괭이밥 꽃",
+      "en": "oxalis flower"
+    }
+  },
+  {
+    "key": "05-21",
+    "ko": {
+      "name": "참제비고깔",
+      "meaning": "명랑함"
+    },
+    "en": {
+      "name": "Larkspur",
+      "meaning": "Cheerfulness"
+    },
+    "googleQuery": {
+      "ko": "참제비고깔 꽃",
+      "en": "larkspur flower"
+    }
+  },
+  {
+    "key": "05-22",
+    "ko": {
+      "name": "귀고리꽃",
+      "meaning": "반짝이는 매력"
+    },
+    "en": {
+      "name": "Dodecatheon",
+      "meaning": "Sparkling charm"
+    },
+    "googleQuery": {
+      "ko": "귀고리꽃",
+      "en": "dodecatheon flower"
+    }
+  },
+  {
+    "key": "05-23",
+    "ko": {
+      "name": "싹",
+      "meaning": "새로운 희망"
+    },
+    "en": {
+      "name": "Sprout",
+      "meaning": "New hope"
+    },
+    "googleQuery": {
+      "ko": "싹 꽃",
+      "en": "sprout flower"
+    }
+  },
+  {
+    "key": "05-24",
+    "ko": {
+      "name": "헬리오트로프",
+      "meaning": "헌신"
+    },
+    "en": {
+      "name": "Heliotrope",
+      "meaning": "Devotion"
+    },
+    "googleQuery": {
+      "ko": "헬리오트로프 꽃",
+      "en": "heliotrope flower"
+    }
+  },
+  {
+    "key": "05-25",
+    "ko": {
+      "name": "삼색제비꽃",
+      "meaning": "사랑"
+    },
+    "en": {
+      "name": "Pansy",
+      "meaning": "Love"
+    },
+    "googleQuery": {
+      "ko": "팬지 꽃",
+      "en": "pansy flower"
+    }
+  },
+  {
+    "key": "05-26",
+    "ko": {
+      "name": "올리브나무",
+      "meaning": "평화"
+    },
+    "en": {
+      "name": "Olive Tree",
+      "meaning": "Peace"
+    },
+    "googleQuery": {
+      "ko": "올리브나무 꽃",
+      "en": "olive tree flower"
+    }
+  },
+  {
+    "key": "05-27",
+    "ko": {
+      "name": "데이지",
+      "meaning": "순결"
+    },
+    "en": {
+      "name": "Daisy",
+      "meaning": "Innocence"
+    },
+    "googleQuery": {
+      "ko": "데이지 꽃",
+      "en": "daisy flower"
+    }
+  },
+  {
+    "key": "05-28",
+    "ko": {
+      "name": "박하",
+      "meaning": "미덕"
+    },
+    "en": {
+      "name": "Mint",
+      "meaning": "Virtue"
+    },
+    "googleQuery": {
+      "ko": "박하 꽃",
+      "en": "mint flower"
+    }
+  },
+  {
+    "key": "05-29",
+    "ko": {
+      "name": "토끼풀",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Clover",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "토끼풀 꽃",
+      "en": "clover flower"
+    }
+  },
+  {
+    "key": "05-30",
+    "ko": {
+      "name": "라일락",
+      "meaning": "첫사랑"
+    },
+    "en": {
+      "name": "Lilac",
+      "meaning": "First love"
+    },
+    "googleQuery": {
+      "ko": "라일락 꽃",
+      "en": "lilac flower"
+    }
+  },
+  {
+    "key": "05-31",
+    "ko": {
+      "name": "무릇",
+      "meaning": "인내"
+    },
+    "en": {
+      "name": "Allium",
+      "meaning": "Endurance"
+    },
+    "googleQuery": {
+      "ko": "무릇 꽃",
+      "en": "allium flower"
+    }
+  },
+  {
+    "key": "06-01",
+    "ko": {
+      "name": "장미",
+      "meaning": "사랑"
+    },
+    "en": {
+      "name": "Rose",
+      "meaning": "Love"
+    },
+    "googleQuery": {
+      "ko": "장미 꽃",
+      "en": "rose flower"
+    }
+  },
+  {
+    "key": "06-02",
+    "ko": {
+      "name": "매발톱꽃",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Columbine",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "매발톱꽃",
+      "en": "columbine flower"
+    }
+  },
+  {
+    "key": "06-03",
+    "ko": {
+      "name": "아마",
+      "meaning": "정성"
+    },
+    "en": {
+      "name": "Flax",
+      "meaning": "Devotion"
+    },
+    "googleQuery": {
+      "ko": "아마 꽃",
+      "en": "flax flower"
+    }
+  },
+  {
+    "key": "06-04",
+    "ko": {
+      "name": "장미",
+      "meaning": "사랑"
+    },
+    "en": {
+      "name": "Rose",
+      "meaning": "Love"
+    },
+    "googleQuery": {
+      "ko": "장미 꽃",
+      "en": "rose flower"
+    }
+  },
+  {
+    "key": "06-05",
+    "ko": {
+      "name": "메리골드",
+      "meaning": "질투"
+    },
+    "en": {
+      "name": "Marigold",
+      "meaning": "Jealousy"
+    },
+    "googleQuery": {
+      "ko": "메리골드 꽃",
+      "en": "marigold flower"
+    }
+  },
+  {
+    "key": "06-06",
+    "ko": {
+      "name": "붓꽃",
+      "meaning": "아름다움"
+    },
+    "en": {
+      "name": "Bearded Iris",
+      "meaning": "Beauty"
+    },
+    "googleQuery": {
+      "ko": "붓꽃",
+      "en": "iris flower"
+    }
+  },
+  {
+    "key": "06-07",
+    "ko": {
+      "name": "슈미트티아나",
+      "meaning": "우아함"
+    },
+    "en": {
+      "name": "Schmidtiana",
+      "meaning": "Grace"
+    },
+    "googleQuery": {
+      "ko": "슈미트티아나 꽃",
+      "en": "schmidtiana flower"
+    }
+  },
+  {
+    "key": "06-08",
+    "ko": {
+      "name": "재스민",
+      "meaning": "부드러움"
+    },
+    "en": {
+      "name": "Jasmine",
+      "meaning": "Gentleness"
+    },
+    "googleQuery": {
+      "ko": "재스민 꽃",
+      "en": "jasmine flower"
+    }
+  },
+  {
+    "key": "06-09",
+    "ko": {
+      "name": "스위트피",
+      "meaning": "즐거운 추억"
+    },
+    "en": {
+      "name": "Sweet Pea",
+      "meaning": "Happy memories"
+    },
+    "googleQuery": {
+      "ko": "스위트피 꽃",
+      "en": "sweet pea flower"
+    }
+  },
+  {
+    "key": "06-10",
+    "ko": {
+      "name": "수염패랭이꽃",
+      "meaning": "용맹"
+    },
+    "en": {
+      "name": "Bearded Pink",
+      "meaning": "Gallantry"
+    },
+    "googleQuery": {
+      "ko": "수염패랭이꽃",
+      "en": "bearded pink flower"
+    }
+  },
+  {
+    "key": "06-11",
+    "ko": {
+      "name": "중국 패모",
+      "meaning": "고귀함"
+    },
+    "en": {
+      "name": "Chinese Fritillaria",
+      "meaning": "Nobility"
+    },
+    "googleQuery": {
+      "ko": "중국 패모 꽃",
+      "en": "chinese fritillaria flower"
+    }
+  },
+  {
+    "key": "06-12",
+    "ko": {
+      "name": "레제다 오도라타",
+      "meaning": "은은한 매력"
+    },
+    "en": {
+      "name": "Mignonette",
+      "meaning": "Understated charm"
+    },
+    "googleQuery": {
+      "ko": "레제다 오도라타 꽃",
+      "en": "mignonette flower"
+    }
+  },
+  {
+    "key": "06-13",
+    "ko": {
+      "name": "디기탈리스",
+      "meaning": "비밀"
+    },
+    "en": {
+      "name": "Foxglove",
+      "meaning": "Secret"
+    },
+    "googleQuery": {
+      "ko": "디기탈리스 꽃",
+      "en": "foxglove flower"
+    }
+  },
+  {
+    "key": "06-14",
+    "ko": {
+      "name": "뚜껑별꽃",
+      "meaning": "매혹"
+    },
+    "en": {
+      "name": "Silene",
+      "meaning": "Allure"
+    },
+    "googleQuery": {
+      "ko": "뚜껑별꽃",
+      "en": "silene flower"
+    }
+  },
+  {
+    "key": "06-15",
+    "ko": {
+      "name": "카네이션",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Carnation",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "카네이션 꽃",
+      "en": "carnation flower"
+    }
+  },
+  {
+    "key": "06-16",
+    "ko": {
+      "name": "월하향",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Night-blooming Jasmine",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "월하향 꽃",
+      "en": "night-blooming jasmine"
+    }
+  },
+  {
+    "key": "06-17",
+    "ko": {
+      "name": "토끼풀",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Clover",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "토끼풀 꽃",
+      "en": "clover flower"
+    }
+  },
+  {
+    "key": "06-18",
+    "ko": {
+      "name": "백리향",
+      "meaning": "용기"
+    },
+    "en": {
+      "name": "Thyme",
+      "meaning": "Courage"
+    },
+    "googleQuery": {
+      "ko": "백리향 꽃",
+      "en": "thyme flower"
+    }
+  },
+  {
+    "key": "06-19",
+    "ko": {
+      "name": "들장미",
+      "meaning": "순결한 사랑"
+    },
+    "en": {
+      "name": "Wild Rose",
+      "meaning": "Innocent love"
+    },
+    "googleQuery": {
+      "ko": "들장미 꽃",
+      "en": "wild rose flower"
+    }
+  },
+  {
+    "key": "06-20",
+    "ko": {
+      "name": "꼬리풀",
+      "meaning": "회복"
+    },
+    "en": {
+      "name": "Bistorta",
+      "meaning": "Restoration"
+    },
+    "googleQuery": {
+      "ko": "꼬리풀 꽃",
+      "en": "bistorta flower"
+    }
+  },
+  {
+    "key": "06-21",
+    "ko": {
+      "name": "달맞이꽃",
+      "meaning": "기다림"
+    },
+    "en": {
+      "name": "Evening Primrose",
+      "meaning": "Waiting"
+    },
+    "googleQuery": {
+      "ko": "달맞이꽃",
+      "en": "evening primrose flower"
+    }
+  },
+  {
+    "key": "06-22",
+    "ko": {
+      "name": "가막살나무",
+      "meaning": "약속"
+    },
+    "en": {
+      "name": "Viburnum",
+      "meaning": "Promise"
+    },
+    "googleQuery": {
+      "ko": "가막살나무 꽃",
+      "en": "viburnum flower"
+    }
+  },
+  {
+    "key": "06-23",
+    "ko": {
+      "name": "접시꽃",
+      "meaning": "부드러움"
+    },
+    "en": {
+      "name": "Hibiscus",
+      "meaning": "Gentleness"
+    },
+    "googleQuery": {
+      "ko": "접시꽃",
+      "en": "hibiscus flower"
+    }
+  },
+  {
+    "key": "06-24",
+    "ko": {
+      "name": "버베나",
+      "meaning": "순결"
+    },
+    "en": {
+      "name": "Verbena",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "버베나 꽃",
+      "en": "verbena flower"
+    }
+  },
+  {
+    "key": "06-25",
+    "ko": {
+      "name": "나팔꽃",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Morning Glory",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "나팔꽃",
+      "en": "morning glory flower"
+    }
+  },
+  {
+    "key": "06-26",
+    "ko": {
+      "name": "라일락",
+      "meaning": "첫사랑"
+    },
+    "en": {
+      "name": "Lilac",
+      "meaning": "First love"
+    },
+    "googleQuery": {
+      "ko": "라일락 꽃",
+      "en": "lilac flower"
+    }
+  },
+  {
+    "key": "06-27",
+    "ko": {
+      "name": "시계꽃",
+      "meaning": "생명력"
+    },
+    "en": {
+      "name": "Passion Flower",
+      "meaning": "Vitality"
+    },
+    "googleQuery": {
+      "ko": "시계꽃",
+      "en": "passion flower"
+    }
+  },
+  {
+    "key": "06-28",
+    "ko": {
+      "name": "제라늄",
+      "meaning": "진정한 친절"
+    },
+    "en": {
+      "name": "Geranium",
+      "meaning": "True kindness"
+    },
+    "googleQuery": {
+      "ko": "제라늄 꽃",
+      "en": "geranium flower"
+    }
+  },
+  {
+    "key": "06-29",
+    "ko": {
+      "name": "제라늄",
+      "meaning": "진정한 친절"
+    },
+    "en": {
+      "name": "Geranium",
+      "meaning": "True kindness"
+    },
+    "googleQuery": {
+      "ko": "제라늄 꽃",
+      "en": "geranium flower"
+    }
+  },
+  {
+    "key": "06-30",
+    "ko": {
+      "name": "인동",
+      "meaning": "부부 사랑"
+    },
+    "en": {
+      "name": "Honeysuckle",
+      "meaning": "Marital love"
+    },
+    "googleQuery": {
+      "ko": "인동 꽃",
+      "en": "honeysuckle flower"
+    }
+  },
+  {
+    "key": "07-01",
+    "ko": {
+      "name": "쑥부쟁이",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Aster",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "쑥부쟁이 꽃",
+      "en": "aster flower"
+    }
+  },
+  {
+    "key": "07-02",
+    "ko": {
+      "name": "금어초",
+      "meaning": "우아함"
+    },
+    "en": {
+      "name": "Snapdragon",
+      "meaning": "Grace"
+    },
+    "googleQuery": {
+      "ko": "금어초 꽃",
+      "en": "snapdragon flower"
+    }
+  },
+  {
+    "key": "07-03",
+    "ko": {
+      "name": "흰색 양귀비꽃",
+      "meaning": "위로"
+    },
+    "en": {
+      "name": "White Poppy",
+      "meaning": "Consolation"
+    },
+    "googleQuery": {
+      "ko": "양귀비 꽃",
+      "en": "poppy flower"
+    }
+  },
+  {
+    "key": "07-04",
+    "ko": {
+      "name": "자목련",
+      "meaning": "웅대함"
+    },
+    "en": {
+      "name": "Purple Magnolia",
+      "meaning": "Magnificence"
+    },
+    "googleQuery": {
+      "ko": "자목련 꽃",
+      "en": "purple magnolia flower"
+    }
+  },
+  {
+    "key": "07-05",
+    "ko": {
+      "name": "라벤더",
+      "meaning": "침묵"
+    },
+    "en": {
+      "name": "Lavender",
+      "meaning": "Silence"
+    },
+    "googleQuery": {
+      "ko": "라벤더 꽃",
+      "en": "lavender flower"
+    }
+  },
+  {
+    "key": "07-06",
+    "ko": {
+      "name": "해바라기",
+      "meaning": "충실함"
+    },
+    "en": {
+      "name": "Sunflower",
+      "meaning": "Loyalty"
+    },
+    "googleQuery": {
+      "ko": "해바라기 꽃",
+      "en": "sunflower flower"
+    }
+  },
+  {
+    "key": "07-07",
+    "ko": {
+      "name": "까치밥나무",
+      "meaning": "예상 밖의 기쁨"
+    },
+    "en": {
+      "name": "Rowan",
+      "meaning": "Unexpected joy"
+    },
+    "googleQuery": {
+      "ko": "까치밥나무 꽃",
+      "en": "rowan flower"
+    }
+  },
+  {
+    "key": "07-08",
+    "ko": {
+      "name": "열엽모간",
+      "meaning": "신의"
+    },
+    "en": {
+      "name": "Veronica",
+      "meaning": "Fidelity"
+    },
+    "googleQuery": {
+      "ko": "열엽모간 꽃",
+      "en": "veronica flower"
+    }
+  },
+  {
+    "key": "07-09",
+    "ko": {
+      "name": "아이비 제라늄",
+      "meaning": "우아한 사랑"
+    },
+    "en": {
+      "name": "Ivy Geranium",
+      "meaning": "Graceful love"
+    },
+    "googleQuery": {
+      "ko": "아이비 제라늄 꽃",
+      "en": "ivy geranium flower"
+    }
+  },
+  {
+    "key": "07-10",
+    "ko": {
+      "name": "초롱꽃",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Bellflower",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "초롱꽃",
+      "en": "bellflower"
+    }
+  },
+  {
+    "key": "07-11",
+    "ko": {
+      "name": "아스포델",
+      "meaning": "추모"
+    },
+    "en": {
+      "name": "Asphodel",
+      "meaning": "Remembrance"
+    },
+    "googleQuery": {
+      "ko": "아스포델 꽃",
+      "en": "asphodel flower"
+    }
+  },
+  {
+    "key": "07-12",
+    "ko": {
+      "name": "좁은입배풍동",
+      "meaning": "지혜"
+    },
+    "en": {
+      "name": "Clary",
+      "meaning": "Wisdom"
+    },
+    "googleQuery": {
+      "ko": "좁은입배풍동 꽃",
+      "en": "clary flower"
+    }
+  },
+  {
+    "key": "07-13",
+    "ko": {
+      "name": "잡초꽃",
+      "meaning": "소박한 강인함"
+    },
+    "en": {
+      "name": "Weed Flower",
+      "meaning": "Simple resilience"
+    },
+    "googleQuery": {
+      "ko": "잡초 꽃",
+      "en": "weed flower"
+    }
+  },
+  {
+    "key": "07-14",
+    "ko": {
+      "name": "플록스",
+      "meaning": "합치"
+    },
+    "en": {
+      "name": "Phlox",
+      "meaning": "Unity"
+    },
+    "googleQuery": {
+      "ko": "플록스 꽃",
+      "en": "phlox flower"
+    }
+  },
+  {
+    "key": "07-15",
+    "ko": {
+      "name": "들장미",
+      "meaning": "순결한 사랑"
+    },
+    "en": {
+      "name": "Wild Rose",
+      "meaning": "Innocent love"
+    },
+    "googleQuery": {
+      "ko": "들장미 꽃",
+      "en": "wild rose flower"
+    }
+  },
+  {
+    "key": "07-16",
+    "ko": {
+      "name": "비단향 꽃무",
+      "meaning": "변함없는 아름다움"
+    },
+    "en": {
+      "name": "Fragrant Stock",
+      "meaning": "Lasting beauty"
+    },
+    "googleQuery": {
+      "ko": "비단향 꽃무",
+      "en": "fragrant stock flower"
+    }
+  },
+  {
+    "key": "07-17",
+    "ko": {
+      "name": "흰 장미",
+      "meaning": "순결한 사랑"
+    },
+    "en": {
+      "name": "White Rose",
+      "meaning": "Pure love"
+    },
+    "googleQuery": {
+      "ko": "흰 장미 꽃",
+      "en": "white rose flower"
+    }
+  },
+  {
+    "key": "07-18",
+    "ko": {
+      "name": "이끼장미",
+      "meaning": "사랑의 고백"
+    },
+    "en": {
+      "name": "Moss Rose",
+      "meaning": "Confession of love"
+    },
+    "googleQuery": {
+      "ko": "이끼장미 꽃",
+      "en": "moss rose flower"
+    }
+  },
+  {
+    "key": "07-19",
+    "ko": {
+      "name": "백부자",
+      "meaning": "고귀한 용기"
+    },
+    "en": {
+      "name": "Aconite",
+      "meaning": "Noble courage"
+    },
+    "googleQuery": {
+      "ko": "백부자 꽃",
+      "en": "aconite flower"
+    }
+  },
+  {
+    "key": "07-20",
+    "ko": {
+      "name": "가지",
+      "meaning": "풍요로운 결실"
+    },
+    "en": {
+      "name": "Eggplant",
+      "meaning": "Abundant harvest"
+    },
+    "googleQuery": {
+      "ko": "가지 꽃",
+      "en": "eggplant flower"
+    }
+  },
+  {
+    "key": "07-21",
+    "ko": {
+      "name": "장미",
+      "meaning": "사랑"
+    },
+    "en": {
+      "name": "Rose",
+      "meaning": "Love"
+    },
+    "googleQuery": {
+      "ko": "장미 꽃",
+      "en": "rose flower"
+    }
+  },
+  {
+    "key": "07-22",
+    "ko": {
+      "name": "패랭이꽃",
+      "meaning": "불같은 사랑"
+    },
+    "en": {
+      "name": "Pink",
+      "meaning": "Passionate love"
+    },
+    "googleQuery": {
+      "ko": "패랭이꽃",
+      "en": "pink flower"
+    }
+  },
+  {
+    "key": "07-23",
+    "ko": {
+      "name": "장미",
+      "meaning": "사랑"
+    },
+    "en": {
+      "name": "Rose",
+      "meaning": "Love"
+    },
+    "googleQuery": {
+      "ko": "장미 꽃",
+      "en": "rose flower"
+    }
+  },
+  {
+    "key": "07-24",
+    "ko": {
+      "name": "연령초",
+      "meaning": "치유"
+    },
+    "en": {
+      "name": "Yarrow",
+      "meaning": "Healing"
+    },
+    "googleQuery": {
+      "ko": "연령초 꽃",
+      "en": "yarrow flower"
+    }
+  },
+  {
+    "key": "07-25",
+    "ko": {
+      "name": "말오줌나무",
+      "meaning": "자비심"
+    },
+    "en": {
+      "name": "Horse-tail Tree",
+      "meaning": "Compassion"
+    },
+    "googleQuery": {
+      "ko": "말오줌나무 꽃",
+      "en": "horse-tail tree flower"
+    }
+  },
+  {
+    "key": "07-26",
+    "ko": {
+      "name": "향쑥",
+      "meaning": "평화"
+    },
+    "en": {
+      "name": "Fragrant Mugwort",
+      "meaning": "Peace"
+    },
+    "googleQuery": {
+      "ko": "향쑥 꽃",
+      "en": "fragrant mugwort flower"
+    }
+  },
+  {
+    "key": "07-27",
+    "ko": {
+      "name": "제라늄",
+      "meaning": "진정한 친절"
+    },
+    "en": {
+      "name": "Geranium",
+      "meaning": "True kindness"
+    },
+    "googleQuery": {
+      "ko": "제라늄 꽃",
+      "en": "geranium flower"
+    }
+  },
+  {
+    "key": "07-28",
+    "ko": {
+      "name": "패랭이꽃",
+      "meaning": "불같은 사랑"
+    },
+    "en": {
+      "name": "Pink",
+      "meaning": "Passionate love"
+    },
+    "googleQuery": {
+      "ko": "패랭이꽃",
+      "en": "pink flower"
+    }
+  },
+  {
+    "key": "07-29",
+    "ko": {
+      "name": "선인장",
+      "meaning": "열정"
+    },
+    "en": {
+      "name": "Cactus",
+      "meaning": "Passion"
+    },
+    "googleQuery": {
+      "ko": "선인장 꽃",
+      "en": "cactus flower"
+    }
+  },
+  {
+    "key": "07-30",
+    "ko": {
+      "name": "보리수",
+      "meaning": "부부애"
+    },
+    "en": {
+      "name": "Hackberry",
+      "meaning": "Marital love"
+    },
+    "googleQuery": {
+      "ko": "보리수 꽃",
+      "en": "hackberry flower"
+    }
+  },
+  {
+    "key": "07-31",
+    "ko": {
+      "name": "호박",
+      "meaning": "풍요"
+    },
+    "en": {
+      "name": "Pumpkin",
+      "meaning": "Abundance"
+    },
+    "googleQuery": {
+      "ko": "호박 꽃",
+      "en": "pumpkin flower"
+    }
+  },
+  {
+    "key": "08-01",
+    "ko": {
+      "name": "양귀비꽃",
+      "meaning": "쾌락"
+    },
+    "en": {
+      "name": "Poppy",
+      "meaning": "Pleasure"
+    },
+    "googleQuery": {
+      "ko": "양귀비 꽃",
+      "en": "poppy flower"
+    }
+  },
+  {
+    "key": "08-02",
+    "ko": {
+      "name": "수레국화",
+      "meaning": "행복"
+    },
+    "en": {
+      "name": "Cornflower",
+      "meaning": "Happiness"
+    },
+    "googleQuery": {
+      "ko": "수레국화 꽃",
+      "en": "cornflower flower"
+    }
+  },
+  {
+    "key": "08-03",
+    "ko": {
+      "name": "수박풀",
+      "meaning": "신선함"
+    },
+    "en": {
+      "name": "Watermelon Vine",
+      "meaning": "Freshness"
+    },
+    "googleQuery": {
+      "ko": "수박풀 꽃",
+      "en": "watermelon vine flower"
+    }
+  },
+  {
+    "key": "08-04",
+    "ko": {
+      "name": "옥수수",
+      "meaning": "풍요"
+    },
+    "en": {
+      "name": "Corn",
+      "meaning": "Abundance"
+    },
+    "googleQuery": {
+      "ko": "옥수수 꽃",
+      "en": "corn flower"
+    }
+  },
+  {
+    "key": "08-05",
+    "ko": {
+      "name": "에리카",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Erica",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "에리카 꽃",
+      "en": "erica flower"
+    }
+  },
+  {
+    "key": "08-06",
+    "ko": {
+      "name": "능소화",
+      "meaning": "아름다움"
+    },
+    "en": {
+      "name": "Trumpet Vine",
+      "meaning": "Beauty"
+    },
+    "googleQuery": {
+      "ko": "능소화 꽃",
+      "en": "trumpet vine flower"
+    }
+  },
+  {
+    "key": "08-07",
+    "ko": {
+      "name": "석류",
+      "meaning": "풍요로운 사랑"
+    },
+    "en": {
+      "name": "Pomegranate",
+      "meaning": "Abundant love"
+    },
+    "googleQuery": {
+      "ko": "석류 꽃",
+      "en": "pomegranate flower"
+    }
+  },
+  {
+    "key": "08-08",
+    "ko": {
+      "name": "진달래",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Azalea",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "진달래 꽃",
+      "en": "azalea flower"
+    }
+  },
+  {
+    "key": "08-09",
+    "ko": {
+      "name": "시스투스",
+      "meaning": "강인한 아름다움"
+    },
+    "en": {
+      "name": "Cistus",
+      "meaning": "Resilient beauty"
+    },
+    "googleQuery": {
+      "ko": "시스투스 꽃",
+      "en": "cistus flower"
+    }
+  },
+  {
+    "key": "08-10",
+    "ko": {
+      "name": "이끼",
+      "meaning": "어머니"
+    },
+    "en": {
+      "name": "Moss",
+      "meaning": "Mother"
+    },
+    "googleQuery": {
+      "ko": "이끼 꽃",
+      "en": "moss flower"
+    }
+  },
+  {
+    "key": "08-11",
+    "ko": {
+      "name": "제라늄",
+      "meaning": "진정한 친절"
+    },
+    "en": {
+      "name": "Geranium",
+      "meaning": "True kindness"
+    },
+    "googleQuery": {
+      "ko": "제라늄 꽃",
+      "en": "geranium flower"
+    }
+  },
+  {
+    "key": "08-12",
+    "ko": {
+      "name": "협죽도",
+      "meaning": "주의"
+    },
+    "en": {
+      "name": "Oleander",
+      "meaning": "Caution"
+    },
+    "googleQuery": {
+      "ko": "협죽도 꽃",
+      "en": "oleander flower"
+    }
+  },
+  {
+    "key": "08-13",
+    "ko": {
+      "name": "골든 로드",
+      "meaning": "격려"
+    },
+    "en": {
+      "name": "Goldenrod",
+      "meaning": "Encouragement"
+    },
+    "googleQuery": {
+      "ko": "골든 로드 꽃",
+      "en": "goldenrod flower"
+    }
+  },
+  {
+    "key": "08-14",
+    "ko": {
+      "name": "저먼더",
+      "meaning": "기쁨"
+    },
+    "en": {
+      "name": "Germander",
+      "meaning": "Joy"
+    },
+    "googleQuery": {
+      "ko": "저먼더 꽃",
+      "en": "germander flower"
+    }
+  },
+  {
+    "key": "08-15",
+    "ko": {
+      "name": "해바라기",
+      "meaning": "충실함"
+    },
+    "en": {
+      "name": "Sunflower",
+      "meaning": "Loyalty"
+    },
+    "googleQuery": {
+      "ko": "해바라기 꽃",
+      "en": "sunflower flower"
+    }
+  },
+  {
+    "key": "08-16",
+    "ko": {
+      "name": "타마린드",
+      "meaning": "달콤 쌉싸름한 사랑"
+    },
+    "en": {
+      "name": "Tamarind",
+      "meaning": "Bittersweet love"
+    },
+    "googleQuery": {
+      "ko": "타마린드 꽃",
+      "en": "tamarind flower"
+    }
+  },
+  {
+    "key": "08-17",
+    "ko": {
+      "name": "튤립나무",
+      "meaning": "소박한 행복"
+    },
+    "en": {
+      "name": "Tulip Tree",
+      "meaning": "Simple happiness"
+    },
+    "googleQuery": {
+      "ko": "튤립나무 꽃",
+      "en": "tulip tree flower"
+    }
+  },
+  {
+    "key": "08-18",
+    "ko": {
+      "name": "접시꽃",
+      "meaning": "부드러움"
+    },
+    "en": {
+      "name": "Hibiscus",
+      "meaning": "Gentleness"
+    },
+    "googleQuery": {
+      "ko": "접시꽃",
+      "en": "hibiscus flower"
+    }
+  },
+  {
+    "key": "08-19",
+    "ko": {
+      "name": "로사 캠피언",
+      "meaning": "매혹"
+    },
+    "en": {
+      "name": "Rose Campion",
+      "meaning": "Charm"
+    },
+    "googleQuery": {
+      "ko": "로사 캠피언 꽃",
+      "en": "rose campion flower"
+    }
+  },
+  {
+    "key": "08-20",
+    "ko": {
+      "name": "프리지아",
+      "meaning": "순결"
+    },
+    "en": {
+      "name": "Freesia",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "프리지아 꽃",
+      "en": "freesia flower"
+    }
+  },
+  {
+    "key": "08-21",
+    "ko": {
+      "name": "짚신나물",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Agrimony",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "짚신나물 꽃",
+      "en": "agrimony flower"
+    }
+  },
+  {
+    "key": "08-22",
+    "ko": {
+      "name": "스피리아(조팝나무속)",
+      "meaning": "승리"
+    },
+    "en": {
+      "name": "Spiraea",
+      "meaning": "Victory"
+    },
+    "googleQuery": {
+      "ko": "스피리아 꽃",
+      "en": "spiraea flower"
+    }
+  },
+  {
+    "key": "08-23",
+    "ko": {
+      "name": "보리수",
+      "meaning": "부부애"
+    },
+    "en": {
+      "name": "Hackberry",
+      "meaning": "Marital love"
+    },
+    "googleQuery": {
+      "ko": "보리수 꽃",
+      "en": "hackberry flower"
+    }
+  },
+  {
+    "key": "08-24",
+    "ko": {
+      "name": "금잔화",
+      "meaning": "변함없는 사랑"
+    },
+    "en": {
+      "name": "Calendula",
+      "meaning": "Eternal love"
+    },
+    "googleQuery": {
+      "ko": "금잔화 꽃",
+      "en": "calendula flower"
+    }
+  },
+  {
+    "key": "08-25",
+    "ko": {
+      "name": "안스리움",
+      "meaning": "열정"
+    },
+    "en": {
+      "name": "Anthurium",
+      "meaning": "Passion"
+    },
+    "googleQuery": {
+      "ko": "안스리움 꽃",
+      "en": "anthurium flower"
+    }
+  },
+  {
+    "key": "08-26",
+    "ko": {
+      "name": "하이포시스 오리어",
+      "meaning": "반짝이는 희망"
+    },
+    "en": {
+      "name": "Hypoxis",
+      "meaning": "Sparkling hope"
+    },
+    "googleQuery": {
+      "ko": "하이포시스 오리어 꽃",
+      "en": "hypoxis flower"
+    }
+  },
+  {
+    "key": "08-27",
+    "ko": {
+      "name": "고비",
+      "meaning": "진실함"
+    },
+    "en": {
+      "name": "Fern",
+      "meaning": "Sincerity"
+    },
+    "googleQuery": {
+      "ko": "고비 꽃",
+      "en": "fern flower"
+    }
+  },
+  {
+    "key": "08-28",
+    "ko": {
+      "name": "에린지움",
+      "meaning": "통일"
+    },
+    "en": {
+      "name": "Eryngium",
+      "meaning": "Unity"
+    },
+    "googleQuery": {
+      "ko": "에린지움 꽃",
+      "en": "eryngium flower"
+    }
+  },
+  {
+    "key": "08-29",
+    "ko": {
+      "name": "꽃담배",
+      "meaning": "자존심"
+    },
+    "en": {
+      "name": "Flowering Tobacco",
+      "meaning": "Self-esteem"
+    },
+    "googleQuery": {
+      "ko": "꽃담배 꽃",
+      "en": "flowering tobacco flower"
+    }
+  },
+  {
+    "key": "08-30",
+    "ko": {
+      "name": "저먼더",
+      "meaning": "기쁨"
+    },
+    "en": {
+      "name": "Germander",
+      "meaning": "Joy"
+    },
+    "googleQuery": {
+      "ko": "저먼더 꽃",
+      "en": "germander flower"
+    }
+  },
+  {
+    "key": "08-31",
+    "ko": {
+      "name": "토끼풀",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Clover",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "토끼풀 꽃",
+      "en": "clover flower"
+    }
+  },
+  {
+    "key": "09-01",
+    "ko": {
+      "name": "호랑이꽃",
+      "meaning": "강인한 매력"
+    },
+    "en": {
+      "name": "Tiger Flower",
+      "meaning": "Bold charm"
+    },
+    "googleQuery": {
+      "ko": "호랑이꽃",
+      "en": "tiger flower"
+    }
+  },
+  {
+    "key": "09-02",
+    "ko": {
+      "name": "멕시칸 아이비",
+      "meaning": "영원한 우정"
+    },
+    "en": {
+      "name": "Mexican Ivy",
+      "meaning": "Everlasting friendship"
+    },
+    "googleQuery": {
+      "ko": "멕시칸 아이비 꽃",
+      "en": "mexican ivy flower"
+    }
+  },
+  {
+    "key": "09-03",
+    "ko": {
+      "name": "마거리트",
+      "meaning": "순결한 사랑"
+    },
+    "en": {
+      "name": "Marguerite",
+      "meaning": "Innocent love"
+    },
+    "googleQuery": {
+      "ko": "마거리트 꽃",
+      "en": "marguerite flower"
+    }
+  },
+  {
+    "key": "09-04",
+    "ko": {
+      "name": "뱀무",
+      "meaning": "회복"
+    },
+    "en": {
+      "name": "Bistorta",
+      "meaning": "Restoration"
+    },
+    "googleQuery": {
+      "ko": "뱀무 꽃",
+      "en": "bistorta flower"
+    }
+  },
+  {
+    "key": "09-05",
+    "ko": {
+      "name": "느릅나무",
+      "meaning": "새로운 시작"
+    },
+    "en": {
+      "name": "Elm",
+      "meaning": "New beginning"
+    },
+    "googleQuery": {
+      "ko": "느릅나무 꽃",
+      "en": "elm flower"
+    }
+  },
+  {
+    "key": "09-06",
+    "ko": {
+      "name": "한련",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Nasturtium",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "한련 꽃",
+      "en": "nasturtium flower"
+    }
+  },
+  {
+    "key": "09-07",
+    "ko": {
+      "name": "오렌지",
+      "meaning": "순수한 기쁨"
+    },
+    "en": {
+      "name": "Orange",
+      "meaning": "Pure joy"
+    },
+    "googleQuery": {
+      "ko": "오렌지 꽃",
+      "en": "orange flower"
+    }
+  },
+  {
+    "key": "09-08",
+    "ko": {
+      "name": "갓",
+      "meaning": "소박함"
+    },
+    "en": {
+      "name": "Mustard",
+      "meaning": "Simplicity"
+    },
+    "googleQuery": {
+      "ko": "갓 꽃",
+      "en": "mustard flower"
+    }
+  },
+  {
+    "key": "09-09",
+    "ko": {
+      "name": "갓개매취",
+      "meaning": "소박함"
+    },
+    "en": {
+      "name": "Wild Mustard",
+      "meaning": "Simplicity"
+    },
+    "googleQuery": {
+      "ko": "갓개매취 꽃",
+      "en": "wild mustard flower"
+    }
+  },
+  {
+    "key": "09-10",
+    "ko": {
+      "name": "과꽃",
+      "meaning": "만족"
+    },
+    "en": {
+      "name": "Geum",
+      "meaning": "Satisfaction"
+    },
+    "googleQuery": {
+      "ko": "과꽃",
+      "en": "geum flower"
+    }
+  },
+  {
+    "key": "09-11",
+    "ko": {
+      "name": "알로에",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Aloe",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "알로에 꽃",
+      "en": "aloe flower"
+    }
+  },
+  {
+    "key": "09-12",
+    "ko": {
+      "name": "클레마티스",
+      "meaning": "미의 정수"
+    },
+    "en": {
+      "name": "Clematis",
+      "meaning": "Essence of beauty"
+    },
+    "googleQuery": {
+      "ko": "클레마티스 꽃",
+      "en": "clematis flower"
+    }
+  },
+  {
+    "key": "09-13",
+    "ko": {
+      "name": "버드나무",
+      "meaning": "유순함"
+    },
+    "en": {
+      "name": "Willow",
+      "meaning": "Gentleness"
+    },
+    "googleQuery": {
+      "ko": "버드나무 꽃",
+      "en": "willow flower"
+    }
+  },
+  {
+    "key": "09-14",
+    "ko": {
+      "name": "마르멜로",
+      "meaning": "유혹"
+    },
+    "en": {
+      "name": "Quince",
+      "meaning": "Temptation"
+    },
+    "googleQuery": {
+      "ko": "마르멜로 꽃",
+      "en": "quince flower"
+    }
+  },
+  {
+    "key": "09-15",
+    "ko": {
+      "name": "다알리아",
+      "meaning": "위엄"
+    },
+    "en": {
+      "name": "Dahlia",
+      "meaning": "Dignity"
+    },
+    "googleQuery": {
+      "ko": "다알리아 꽃",
+      "en": "dahlia flower"
+    }
+  },
+  {
+    "key": "09-16",
+    "ko": {
+      "name": "용담",
+      "meaning": "강인함"
+    },
+    "en": {
+      "name": "Gentian",
+      "meaning": "Fortitude"
+    },
+    "googleQuery": {
+      "ko": "용담 꽃",
+      "en": "gentian flower"
+    }
+  },
+  {
+    "key": "09-17",
+    "ko": {
+      "name": "에리카",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Erica",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "에리카 꽃",
+      "en": "erica flower"
+    }
+  },
+  {
+    "key": "09-18",
+    "ko": {
+      "name": "엉겅퀴",
+      "meaning": "순수함"
+    },
+    "en": {
+      "name": "Thistle",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "엉겅퀴 꽃",
+      "en": "thistle flower"
+    }
+  },
+  {
+    "key": "09-19",
+    "ko": {
+      "name": "사초",
+      "meaning": "겸손"
+    },
+    "en": {
+      "name": "Sedge",
+      "meaning": "Humility"
+    },
+    "googleQuery": {
+      "ko": "사초 꽃",
+      "en": "sedge flower"
+    }
+  },
+  {
+    "key": "09-20",
+    "ko": {
+      "name": "로즈메리",
+      "meaning": "충실함"
+    },
+    "en": {
+      "name": "Rosemary",
+      "meaning": "Loyalty"
+    },
+    "googleQuery": {
+      "ko": "로즈메리 꽃",
+      "en": "rosemary flower"
+    }
+  },
+  {
+    "key": "09-21",
+    "ko": {
+      "name": "사프란",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Saffron Crocus",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "사프란 꽃",
+      "en": "saffron crocus flower"
+    }
+  },
+  {
+    "key": "09-22",
+    "ko": {
+      "name": "퀘이킹 그라스",
+      "meaning": "설렘"
+    },
+    "en": {
+      "name": "Quaking Grass",
+      "meaning": "Excitement"
+    },
+    "googleQuery": {
+      "ko": "퀘이킹 그라스 꽃",
+      "en": "quaking grass flower"
+    }
+  },
+  {
+    "key": "09-23",
+    "ko": {
+      "name": "주목",
+      "meaning": "불멸"
+    },
+    "en": {
+      "name": "Yew",
+      "meaning": "Immortality"
+    },
+    "googleQuery": {
+      "ko": "주목 꽃",
+      "en": "yew flower"
+    }
+  },
+  {
+    "key": "09-24",
+    "ko": {
+      "name": "오렌지",
+      "meaning": "순수한 기쁨"
+    },
+    "en": {
+      "name": "Orange",
+      "meaning": "Pure joy"
+    },
+    "googleQuery": {
+      "ko": "오렌지 꽃",
+      "en": "orange flower"
+    }
+  },
+  {
+    "key": "09-25",
+    "ko": {
+      "name": "메귀리",
+      "meaning": "소박함"
+    },
+    "en": {
+      "name": "Brome Grass",
+      "meaning": "Simplicity"
+    },
+    "googleQuery": {
+      "ko": "메귀리 꽃",
+      "en": "brome grass flower"
+    }
+  },
+  {
+    "key": "09-26",
+    "ko": {
+      "name": "감",
+      "meaning": "풍요"
+    },
+    "en": {
+      "name": "Persimmon",
+      "meaning": "Abundance"
+    },
+    "googleQuery": {
+      "ko": "감 꽃",
+      "en": "persimmon flower"
+    }
+  },
+  {
+    "key": "09-27",
+    "ko": {
+      "name": "떡갈나무",
+      "meaning": "강인함"
+    },
+    "en": {
+      "name": "Japanese Oak",
+      "meaning": "Strength"
+    },
+    "googleQuery": {
+      "ko": "떡갈나무 꽃",
+      "en": "japanese oak flower"
+    }
+  },
+  {
+    "key": "09-28",
+    "ko": {
+      "name": "색비름",
+      "meaning": "불멸"
+    },
+    "en": {
+      "name": "Amaranth",
+      "meaning": "Immortality"
+    },
+    "googleQuery": {
+      "ko": "색비름 꽃",
+      "en": "amaranth flower"
+    }
+  },
+  {
+    "key": "09-29",
+    "ko": {
+      "name": "사과",
+      "meaning": "유혹"
+    },
+    "en": {
+      "name": "Apple",
+      "meaning": "Temptation"
+    },
+    "googleQuery": {
+      "ko": "사과 꽃",
+      "en": "apple flower"
+    }
+  },
+  {
+    "key": "09-30",
+    "ko": {
+      "name": "삼나무",
+      "meaning": "불변"
+    },
+    "en": {
+      "name": "Sugi",
+      "meaning": "Unchanging"
+    },
+    "googleQuery": {
+      "ko": "삼나무 꽃",
+      "en": "sugi flower"
+    }
+  },
+  {
+    "key": "10-01",
+    "ko": {
+      "name": "국화",
+      "meaning": "장수"
+    },
+    "en": {
+      "name": "Chrysanthemum",
+      "meaning": "Longevity"
+    },
+    "googleQuery": {
+      "ko": "국화 꽃",
+      "en": "chrysanthemum flower"
+    }
+  },
+  {
+    "key": "10-02",
+    "ko": {
+      "name": "살구",
+      "meaning": "수줍은 사랑"
+    },
+    "en": {
+      "name": "Apricot",
+      "meaning": "Bashful love"
+    },
+    "googleQuery": {
+      "ko": "살구 꽃",
+      "en": "apricot flower"
+    }
+  },
+  {
+    "key": "10-03",
+    "ko": {
+      "name": "단풍나무",
+      "meaning": "섬세함"
+    },
+    "en": {
+      "name": "Maple",
+      "meaning": "Delicacy"
+    },
+    "googleQuery": {
+      "ko": "단풍나무 꽃",
+      "en": "maple flower"
+    }
+  },
+  {
+    "key": "10-04",
+    "ko": {
+      "name": "홉",
+      "meaning": "활기"
+    },
+    "en": {
+      "name": "Hops",
+      "meaning": "Vitality"
+    },
+    "googleQuery": {
+      "ko": "홉 꽃",
+      "en": "hops flower"
+    }
+  },
+  {
+    "key": "10-05",
+    "ko": {
+      "name": "종려나무",
+      "meaning": "승리"
+    },
+    "en": {
+      "name": "Palm",
+      "meaning": "Victory"
+    },
+    "googleQuery": {
+      "ko": "종려나무 꽃",
+      "en": "palm flower"
+    }
+  },
+  {
+    "key": "10-06",
+    "ko": {
+      "name": "개암나무",
+      "meaning": "화해"
+    },
+    "en": {
+      "name": "Hazelnut",
+      "meaning": "Reconciliation"
+    },
+    "googleQuery": {
+      "ko": "개암나무 꽃",
+      "en": "hazelnut flower"
+    }
+  },
+  {
+    "key": "10-07",
+    "ko": {
+      "name": "전나무",
+      "meaning": "고귀함"
+    },
+    "en": {
+      "name": "Fir Tree",
+      "meaning": "Nobility"
+    },
+    "googleQuery": {
+      "ko": "전나무 꽃",
+      "en": "fir tree flower"
+    }
+  },
+  {
+    "key": "10-08",
+    "ko": {
+      "name": "파슬리",
+      "meaning": "축제"
+    },
+    "en": {
+      "name": "Parsley",
+      "meaning": "Festivity"
+    },
+    "googleQuery": {
+      "ko": "파슬리 꽃",
+      "en": "parsley flower"
+    }
+  },
+  {
+    "key": "10-09",
+    "ko": {
+      "name": "회향",
+      "meaning": "강인함"
+    },
+    "en": {
+      "name": "Fennel",
+      "meaning": "Strength"
+    },
+    "googleQuery": {
+      "ko": "회향 꽃",
+      "en": "fennel flower"
+    }
+  },
+  {
+    "key": "10-10",
+    "ko": {
+      "name": "멜론",
+      "meaning": "풍요"
+    },
+    "en": {
+      "name": "Melon",
+      "meaning": "Abundance"
+    },
+    "googleQuery": {
+      "ko": "멜론 꽃",
+      "en": "melon flower"
+    }
+  },
+  {
+    "key": "10-11",
+    "ko": {
+      "name": "부처꽃",
+      "meaning": "한결같은 사랑"
+    },
+    "en": {
+      "name": "Lythrum",
+      "meaning": "Constant love"
+    },
+    "googleQuery": {
+      "ko": "부처꽃",
+      "en": "lythrum flower"
+    }
+  },
+  {
+    "key": "10-12",
+    "ko": {
+      "name": "월귤",
+      "meaning": "소박한 기쁨"
+    },
+    "en": {
+      "name": "Cowberry",
+      "meaning": "Simple joy"
+    },
+    "googleQuery": {
+      "ko": "월귤 꽃",
+      "en": "cowberry flower"
+    }
+  },
+  {
+    "key": "10-13",
+    "ko": {
+      "name": "조팝나무",
+      "meaning": "승리"
+    },
+    "en": {
+      "name": "Spiraea",
+      "meaning": "Victory"
+    },
+    "googleQuery": {
+      "ko": "조팝나무 꽃",
+      "en": "spiraea flower"
+    }
+  },
+  {
+    "key": "10-14",
+    "ko": {
+      "name": "국화",
+      "meaning": "장수"
+    },
+    "en": {
+      "name": "Chrysanthemum",
+      "meaning": "Longevity"
+    },
+    "googleQuery": {
+      "ko": "국화 꽃",
+      "en": "chrysanthemum flower"
+    }
+  },
+  {
+    "key": "10-15",
+    "ko": {
+      "name": "스위트 바질",
+      "meaning": "행운을 빎"
+    },
+    "en": {
+      "name": "Sweet Basil",
+      "meaning": "Good wishes"
+    },
+    "googleQuery": {
+      "ko": "바질 꽃",
+      "en": "basil flower"
+    }
+  },
+  {
+    "key": "10-16",
+    "ko": {
+      "name": "이끔 장미",
+      "meaning": "사랑의 고백"
+    },
+    "en": {
+      "name": "Moss Rose",
+      "meaning": "Confession of love"
+    },
+    "googleQuery": {
+      "ko": "이끔 장미 꽃",
+      "en": "moss rose flower"
+    }
+  },
+  {
+    "key": "10-17",
+    "ko": {
+      "name": "포도",
+      "meaning": "축복"
+    },
+    "en": {
+      "name": "Grape",
+      "meaning": "Blessing"
+    },
+    "googleQuery": {
+      "ko": "포도 꽃",
+      "en": "grape flower"
+    }
+  },
+  {
+    "key": "10-18",
+    "ko": {
+      "name": "크랜베리",
+      "meaning": "치유"
+    },
+    "en": {
+      "name": "Cranberry",
+      "meaning": "Healing"
+    },
+    "googleQuery": {
+      "ko": "크랜베리 꽃",
+      "en": "cranberry flower"
+    }
+  },
+  {
+    "key": "10-19",
+    "ko": {
+      "name": "봉선화",
+      "meaning": "성의"
+    },
+    "en": {
+      "name": "Impatiens",
+      "meaning": "Sincerity"
+    },
+    "googleQuery": {
+      "ko": "봉선화 꽃",
+      "en": "impatiens flower"
+    }
+  },
+  {
+    "key": "10-20",
+    "ko": {
+      "name": "마(麻)",
+      "meaning": "운명"
+    },
+    "en": {
+      "name": "Hemp",
+      "meaning": "Fate"
+    },
+    "googleQuery": {
+      "ko": "마 꽃",
+      "en": "hemp flower"
+    }
+  },
+  {
+    "key": "10-21",
+    "ko": {
+      "name": "엉겅퀴",
+      "meaning": "순수함"
+    },
+    "en": {
+      "name": "Thistle",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "엉겅퀴 꽃",
+      "en": "thistle flower"
+    }
+  },
+  {
+    "key": "10-22",
+    "ko": {
+      "name": "카라꽃",
+      "meaning": "순결"
+    },
+    "en": {
+      "name": "Calla Lily",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "카라 꽃",
+      "en": "calla lily flower"
+    }
+  },
+  {
+    "key": "10-23",
+    "ko": {
+      "name": "흰독말풀",
+      "meaning": "신비"
+    },
+    "en": {
+      "name": "White Aconite",
+      "meaning": "Mystery"
+    },
+    "googleQuery": {
+      "ko": "흰독말풀 꽃",
+      "en": "white aconite flower"
+    }
+  },
+  {
+    "key": "10-24",
+    "ko": {
+      "name": "매화",
+      "meaning": "충절"
+    },
+    "en": {
+      "name": "Plum Blossom",
+      "meaning": "Loyalty"
+    },
+    "googleQuery": {
+      "ko": "매화",
+      "en": "plum blossom"
+    }
+  },
+  {
+    "key": "10-25",
+    "ko": {
+      "name": "단풍나무",
+      "meaning": "섬세함"
+    },
+    "en": {
+      "name": "Maple",
+      "meaning": "Delicacy"
+    },
+    "googleQuery": {
+      "ko": "단풍나무 꽃",
+      "en": "maple flower"
+    }
+  },
+  {
+    "key": "10-26",
+    "ko": {
+      "name": "수영",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Azalea",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "수영 꽃",
+      "en": "azalea flower"
+    }
+  },
+  {
+    "key": "10-27",
+    "ko": {
+      "name": "들장미",
+      "meaning": "순결한 사랑"
+    },
+    "en": {
+      "name": "Wild Rose",
+      "meaning": "Innocent love"
+    },
+    "googleQuery": {
+      "ko": "들장미 꽃",
+      "en": "wild rose flower"
+    }
+  },
+  {
+    "key": "10-28",
+    "ko": {
+      "name": "무궁화",
+      "meaning": "영원한 사랑"
+    },
+    "en": {
+      "name": "Rose of Sharon",
+      "meaning": "Eternal love"
+    },
+    "googleQuery": {
+      "ko": "무궁화 꽃",
+      "en": "rose of sharon flower"
+    }
+  },
+  {
+    "key": "10-29",
+    "ko": {
+      "name": "해당화",
+      "meaning": "주의"
+    },
+    "en": {
+      "name": "Beach Rose",
+      "meaning": "Caution"
+    },
+    "googleQuery": {
+      "ko": "해당화 꽃",
+      "en": "beach rose flower"
+    }
+  },
+  {
+    "key": "10-30",
+    "ko": {
+      "name": "로벨리아",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Lobelia",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "로벨리아 꽃",
+      "en": "lobelia flower"
+    }
+  },
+  {
+    "key": "10-31",
+    "ko": {
+      "name": "칼라",
+      "meaning": "웅대함"
+    },
+    "en": {
+      "name": "Calla Lily",
+      "meaning": "Magnificence"
+    },
+    "googleQuery": {
+      "ko": "칼라 꽃",
+      "en": "calla lily flower"
+    }
+  },
+  {
+    "key": "11-01",
+    "ko": {
+      "name": "모과",
+      "meaning": "유혹"
+    },
+    "en": {
+      "name": "Quince",
+      "meaning": "Temptation"
+    },
+    "googleQuery": {
+      "ko": "모과 꽃",
+      "en": "quince flower"
+    }
+  },
+  {
+    "key": "11-02",
+    "ko": {
+      "name": "루피너스",
+      "meaning": "상상"
+    },
+    "en": {
+      "name": "Lupine",
+      "meaning": "Imagination"
+    },
+    "googleQuery": {
+      "ko": "루피너스 꽃",
+      "en": "lupine flower"
+    }
+  },
+  {
+    "key": "11-03",
+    "ko": {
+      "name": "브리오니아",
+      "meaning": "의지"
+    },
+    "en": {
+      "name": "Bryonia",
+      "meaning": "Support"
+    },
+    "googleQuery": {
+      "ko": "브리오니아 꽃",
+      "en": "bryonia flower"
+    }
+  },
+  {
+    "key": "11-04",
+    "ko": {
+      "name": "골고사리",
+      "meaning": "신뢰"
+    },
+    "en": {
+      "name": "Male Fern",
+      "meaning": "Trust"
+    },
+    "googleQuery": {
+      "ko": "골고사리 꽃",
+      "en": "male fern flower"
+    }
+  },
+  {
+    "key": "11-05",
+    "ko": {
+      "name": "단양쑥부쟁이",
+      "meaning": "인내"
+    },
+    "en": {
+      "name": "Aster",
+      "meaning": "Patience"
+    },
+    "googleQuery": {
+      "ko": "단양쑥부쟁이 꽃",
+      "en": "aster flower"
+    }
+  },
+  {
+    "key": "11-06",
+    "ko": {
+      "name": "등골나물",
+      "meaning": "기다림"
+    },
+    "en": {
+      "name": "Sedum",
+      "meaning": "Waiting"
+    },
+    "googleQuery": {
+      "ko": "등골나물 꽃",
+      "en": "sedum flower"
+    }
+  },
+  {
+    "key": "11-07",
+    "ko": {
+      "name": "메리골드",
+      "meaning": "질투"
+    },
+    "en": {
+      "name": "Marigold",
+      "meaning": "Jealousy"
+    },
+    "googleQuery": {
+      "ko": "메리골드 꽃",
+      "en": "marigold flower"
+    }
+  },
+  {
+    "key": "11-08",
+    "ko": {
+      "name": "가는동자꽃",
+      "meaning": "청순함"
+    },
+    "en": {
+      "name": "Delicate Flower",
+      "meaning": "Innocent charm"
+    },
+    "googleQuery": {
+      "ko": "가는동자꽃 꽃",
+      "en": "delicate flower"
+    }
+  },
+  {
+    "key": "11-09",
+    "ko": {
+      "name": "몰약의 꽃",
+      "meaning": "고귀한 선물"
+    },
+    "en": {
+      "name": "Myrrh Flower",
+      "meaning": "Precious gift"
+    },
+    "googleQuery": {
+      "ko": "몰약의 꽃",
+      "en": "myrrh flower"
+    }
+  },
+  {
+    "key": "11-10",
+    "ko": {
+      "name": "부용",
+      "meaning": "신비로움"
+    },
+    "en": {
+      "name": "Hibiscus",
+      "meaning": "Mystery"
+    },
+    "googleQuery": {
+      "ko": "부용 꽃",
+      "en": "hibiscus flower"
+    }
+  },
+  {
+    "key": "11-11",
+    "ko": {
+      "name": "흰동백",
+      "meaning": "흠모"
+    },
+    "en": {
+      "name": "White Camellia",
+      "meaning": "Adoration"
+    },
+    "googleQuery": {
+      "ko": "흰동백 꽃",
+      "en": "white camellia flower"
+    }
+  },
+  {
+    "key": "11-12",
+    "ko": {
+      "name": "레몬",
+      "meaning": "신중함"
+    },
+    "en": {
+      "name": "Lemon",
+      "meaning": "Discretion"
+    },
+    "googleQuery": {
+      "ko": "레몬 꽃",
+      "en": "lemon flower"
+    }
+  },
+  {
+    "key": "11-13",
+    "ko": {
+      "name": "레몬 버베나",
+      "meaning": "매혹"
+    },
+    "en": {
+      "name": "Lemon Verbena",
+      "meaning": "Enchantment"
+    },
+    "googleQuery": {
+      "ko": "레몬 버베나 꽃",
+      "en": "lemon verbena flower"
+    }
+  },
+  {
+    "key": "11-14",
+    "ko": {
+      "name": "소나무",
+      "meaning": "불변"
+    },
+    "en": {
+      "name": "Pine",
+      "meaning": "Unchanging"
+    },
+    "googleQuery": {
+      "ko": "소나무 꽃",
+      "en": "pine flower"
+    }
+  },
+  {
+    "key": "11-15",
+    "ko": {
+      "name": "황금싸리",
+      "meaning": "기대"
+    },
+    "en": {
+      "name": "Forsythia",
+      "meaning": "Anticipation"
+    },
+    "googleQuery": {
+      "ko": "황금싸리 꽃",
+      "en": "forsythia flower"
+    }
+  },
+  {
+    "key": "11-16",
+    "ko": {
+      "name": "크리스마스 장미",
+      "meaning": "평온"
+    },
+    "en": {
+      "name": "Christmas Rose",
+      "meaning": "Serenity"
+    },
+    "googleQuery": {
+      "ko": "크리스마스 장미 꽃",
+      "en": "christmas rose flower"
+    }
+  },
+  {
+    "key": "11-17",
+    "ko": {
+      "name": "머위",
+      "meaning": "정절"
+    },
+    "en": {
+      "name": "Coltsfoot",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "머위 꽃",
+      "en": "coltsfoot flower"
+    }
+  },
+  {
+    "key": "11-18",
+    "ko": {
+      "name": "산나리",
+      "meaning": "순결"
+    },
+    "en": {
+      "name": "Mountain Lily",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "산나리 꽃",
+      "en": "mountain lily flower"
+    }
+  },
+  {
+    "key": "11-19",
+    "ko": {
+      "name": "범의귀",
+      "meaning": "끈기"
+    },
+    "en": {
+      "name": "Bergenia",
+      "meaning": "Perseverance"
+    },
+    "googleQuery": {
+      "ko": "범의귀 꽃",
+      "en": "bergenia flower"
+    }
+  },
+  {
+    "key": "11-20",
+    "ko": {
+      "name": "뷰글라스",
+      "meaning": "한결같음"
+    },
+    "en": {
+      "name": "Bugle",
+      "meaning": "Steadfastness"
+    },
+    "googleQuery": {
+      "ko": "뷰글라스 꽃",
+      "en": "bugle flower"
+    }
+  },
+  {
+    "key": "11-21",
+    "ko": {
+      "name": "초롱꽃",
+      "meaning": "감사"
+    },
+    "en": {
+      "name": "Bellflower",
+      "meaning": "Gratitude"
+    },
+    "googleQuery": {
+      "ko": "초롱꽃",
+      "en": "bellflower"
+    }
+  },
+  {
+    "key": "11-22",
+    "ko": {
+      "name": "매자나무",
+      "meaning": "톡 쏘는 매력"
+    },
+    "en": {
+      "name": "Barberry",
+      "meaning": "Tangy charm"
+    },
+    "googleQuery": {
+      "ko": "매자나무 꽃",
+      "en": "barberry flower"
+    }
+  },
+  {
+    "key": "11-23",
+    "ko": {
+      "name": "고사리",
+      "meaning": "진실함"
+    },
+    "en": {
+      "name": "Fern",
+      "meaning": "Sincerity"
+    },
+    "googleQuery": {
+      "ko": "고사리 꽃",
+      "en": "fern flower"
+    }
+  },
+  {
+    "key": "11-24",
+    "ko": {
+      "name": "가막살나무",
+      "meaning": "약속"
+    },
+    "en": {
+      "name": "Viburnum",
+      "meaning": "Promise"
+    },
+    "googleQuery": {
+      "ko": "가막살나무 꽃",
+      "en": "viburnum flower"
+    }
+  },
+  {
+    "key": "11-25",
+    "ko": {
+      "name": "개옻나무",
+      "meaning": "강렬함"
+    },
+    "en": {
+      "name": "Sumac",
+      "meaning": "Intensity"
+    },
+    "googleQuery": {
+      "ko": "개옻나무 꽃",
+      "en": "sumac flower"
+    }
+  },
+  {
+    "key": "11-26",
+    "ko": {
+      "name": "서양톱풀",
+      "meaning": "치유"
+    },
+    "en": {
+      "name": "Yarrow",
+      "meaning": "Healing"
+    },
+    "googleQuery": {
+      "ko": "서양톱풀 꽃",
+      "en": "yarrow flower"
+    }
+  },
+  {
+    "key": "11-27",
+    "ko": {
+      "name": "붉나무",
+      "meaning": "따뜻한 매력"
+    },
+    "en": {
+      "name": "Fragrant Sumac",
+      "meaning": "Warm charm"
+    },
+    "googleQuery": {
+      "ko": "붉나무 꽃",
+      "en": "fragrant sumac flower"
+    }
+  },
+  {
+    "key": "11-28",
+    "ko": {
+      "name": "과꽃",
+      "meaning": "만족"
+    },
+    "en": {
+      "name": "Geum",
+      "meaning": "Satisfaction"
+    },
+    "googleQuery": {
+      "ko": "과꽃",
+      "en": "geum flower"
+    }
+  },
+  {
+    "key": "11-29",
+    "ko": {
+      "name": "바카리스",
+      "meaning": "회복력"
+    },
+    "en": {
+      "name": "Baccharis",
+      "meaning": "Resilience"
+    },
+    "googleQuery": {
+      "ko": "바카리스 꽃",
+      "en": "baccharis flower"
+    }
+  },
+  {
+    "key": "11-30",
+    "ko": {
+      "name": "낙엽",
+      "meaning": "변화"
+    },
+    "en": {
+      "name": "Fallen Leaf",
+      "meaning": "Change"
+    },
+    "googleQuery": {
+      "ko": "낙엽",
+      "en": "fallen leaf"
+    }
+  },
+  {
+    "key": "12-01",
+    "ko": {
+      "name": "쑥국화",
+      "meaning": "강인한 생명력"
+    },
+    "en": {
+      "name": "Wormwood",
+      "meaning": "Hardy vitality"
+    },
+    "googleQuery": {
+      "ko": "쑥국화 꽃",
+      "en": "wormwood flower"
+    }
+  },
+  {
+    "key": "12-02",
+    "ko": {
+      "name": "이끔",
+      "meaning": "어머니"
+    },
+    "en": {
+      "name": "Moss",
+      "meaning": "Mother"
+    },
+    "googleQuery": {
+      "ko": "이끼 꽃",
+      "en": "moss flower"
+    }
+  },
+  {
+    "key": "12-03",
+    "ko": {
+      "name": "라벤더",
+      "meaning": "침묵"
+    },
+    "en": {
+      "name": "Lavender",
+      "meaning": "Silence"
+    },
+    "googleQuery": {
+      "ko": "라벤더 꽃",
+      "en": "lavender flower"
+    }
+  },
+  {
+    "key": "12-04",
+    "ko": {
+      "name": "수영",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Azalea",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "수영 꽃",
+      "en": "azalea flower"
+    }
+  },
+  {
+    "key": "12-05",
+    "ko": {
+      "name": "앰브로시아",
+      "meaning": "응답받은 사랑"
+    },
+    "en": {
+      "name": "Ambrosia",
+      "meaning": "Answered love"
+    },
+    "googleQuery": {
+      "ko": "앰브로시아 꽃",
+      "en": "ambrosia flower"
+    }
+  },
+  {
+    "key": "12-06",
+    "ko": {
+      "name": "바위취",
+      "meaning": "애정"
+    },
+    "en": {
+      "name": "Sedum",
+      "meaning": "Affection"
+    },
+    "googleQuery": {
+      "ko": "바위취 꽃",
+      "en": "sedum flower"
+    }
+  },
+  {
+    "key": "12-07",
+    "ko": {
+      "name": "양치식물",
+      "meaning": "우아함"
+    },
+    "en": {
+      "name": "Fern",
+      "meaning": "Grace"
+    },
+    "googleQuery": {
+      "ko": "양치 꽃",
+      "en": "fern flower"
+    }
+  },
+  {
+    "key": "12-08",
+    "ko": {
+      "name": "갈대",
+      "meaning": "여운"
+    },
+    "en": {
+      "name": "Reed",
+      "meaning": "Lingering charm"
+    },
+    "googleQuery": {
+      "ko": "갈대 꽃",
+      "en": "reed flower"
+    }
+  },
+  {
+    "key": "12-09",
+    "ko": {
+      "name": "국화",
+      "meaning": "장수"
+    },
+    "en": {
+      "name": "Chrysanthemum",
+      "meaning": "Longevity"
+    },
+    "googleQuery": {
+      "ko": "국화 꽃",
+      "en": "chrysanthemum flower"
+    }
+  },
+  {
+    "key": "12-10",
+    "ko": {
+      "name": "동백꽃",
+      "meaning": "그리움"
+    },
+    "en": {
+      "name": "Camellia",
+      "meaning": "Longing"
+    },
+    "googleQuery": {
+      "ko": "동백꽃",
+      "en": "camellia flower"
+    }
+  },
+  {
+    "key": "12-11",
+    "ko": {
+      "name": "단양쑥부쟁이",
+      "meaning": "인내"
+    },
+    "en": {
+      "name": "Aster",
+      "meaning": "Patience"
+    },
+    "googleQuery": {
+      "ko": "단양쑥부쟁이 꽃",
+      "en": "aster flower"
+    }
+  },
+  {
+    "key": "12-12",
+    "ko": {
+      "name": "목화",
+      "meaning": "섬세함"
+    },
+    "en": {
+      "name": "Cotton Flower",
+      "meaning": "Delicacy"
+    },
+    "googleQuery": {
+      "ko": "목화 꽃",
+      "en": "cotton flower"
+    }
+  },
+  {
+    "key": "12-13",
+    "ko": {
+      "name": "자홍색 국화",
+      "meaning": "진심 어린 사랑"
+    },
+    "en": {
+      "name": "Purple Chrysanthemum",
+      "meaning": "Heartfelt love"
+    },
+    "googleQuery": {
+      "ko": "국화 꽃",
+      "en": "chrysanthemum flower"
+    }
+  },
+  {
+    "key": "12-14",
+    "ko": {
+      "name": "소나무",
+      "meaning": "불변"
+    },
+    "en": {
+      "name": "Pine",
+      "meaning": "Unchanging"
+    },
+    "googleQuery": {
+      "ko": "소나무 꽃",
+      "en": "pine flower"
+    }
+  },
+  {
+    "key": "12-15",
+    "ko": {
+      "name": "서향",
+      "meaning": "아름다움"
+    },
+    "en": {
+      "name": "Daphne",
+      "meaning": "Beauty"
+    },
+    "googleQuery": {
+      "ko": "서향 꽃",
+      "en": "daphne flower"
+    }
+  },
+  {
+    "key": "12-16",
+    "ko": {
+      "name": "오리나무",
+      "meaning": "굳건함"
+    },
+    "en": {
+      "name": "Alder",
+      "meaning": "Steadfastness"
+    },
+    "googleQuery": {
+      "ko": "오리나무 꽃",
+      "en": "alder flower"
+    }
+  },
+  {
+    "key": "12-17",
+    "ko": {
+      "name": "벚꽃난",
+      "meaning": "우아한 미인"
+    },
+    "en": {
+      "name": "Cherry Orchid",
+      "meaning": "Elegant beauty"
+    },
+    "googleQuery": {
+      "ko": "벚꽃난 꽃",
+      "en": "cherry orchid flower"
+    }
+  },
+  {
+    "key": "12-18",
+    "ko": {
+      "name": "세이지",
+      "meaning": "지혜"
+    },
+    "en": {
+      "name": "Sage",
+      "meaning": "Wisdom"
+    },
+    "googleQuery": {
+      "ko": "세이지 꽃",
+      "en": "sage flower"
+    }
+  },
+  {
+    "key": "12-19",
+    "ko": {
+      "name": "스노우 플레이크",
+      "meaning": "순수함"
+    },
+    "en": {
+      "name": "Snowflake",
+      "meaning": "Purity"
+    },
+    "googleQuery": {
+      "ko": "스노우 플레이크 꽃",
+      "en": "snowflake flower"
+    }
+  },
+  {
+    "key": "12-20",
+    "ko": {
+      "name": "파인애플",
+      "meaning": "환영"
+    },
+    "en": {
+      "name": "Pineapple",
+      "meaning": "Welcome"
+    },
+    "googleQuery": {
+      "ko": "파인애플 꽃",
+      "en": "pineapple flower"
+    }
+  },
+  {
+    "key": "12-21",
+    "ko": {
+      "name": "박하",
+      "meaning": "미덕"
+    },
+    "en": {
+      "name": "Mint",
+      "meaning": "Virtue"
+    },
+    "googleQuery": {
+      "ko": "박하 꽃",
+      "en": "mint flower"
+    }
+  },
+  {
+    "key": "12-22",
+    "ko": {
+      "name": "백일홍",
+      "meaning": "절대 사랑"
+    },
+    "en": {
+      "name": "Zinnia",
+      "meaning": "Everlasting love"
+    },
+    "googleQuery": {
+      "ko": "백일홍 꽃",
+      "en": "zinnia flower"
+    }
+  },
+  {
+    "key": "12-23",
+    "ko": {
+      "name": "플라타너스",
+      "meaning": "호기심"
+    },
+    "en": {
+      "name": "Plane Tree",
+      "meaning": "Curiosity"
+    },
+    "googleQuery": {
+      "ko": "플라타너스 꽃",
+      "en": "plane tree flower"
+    }
+  },
+  {
+    "key": "12-24",
+    "ko": {
+      "name": "겨우살이",
+      "meaning": "기적"
+    },
+    "en": {
+      "name": "Mistletoe",
+      "meaning": "Miracle"
+    },
+    "googleQuery": {
+      "ko": "겨우살이 꽃",
+      "en": "mistletoe flower"
+    }
+  },
+  {
+    "key": "12-25",
+    "ko": {
+      "name": "서양호랑가시나무",
+      "meaning": "행운"
+    },
+    "en": {
+      "name": "Holly",
+      "meaning": "Good fortune"
+    },
+    "googleQuery": {
+      "ko": "호랑가시나무 꽃",
+      "en": "holly flower"
+    }
+  },
+  {
+    "key": "12-26",
+    "ko": {
+      "name": "크리스마스 장미",
+      "meaning": "평온"
+    },
+    "en": {
+      "name": "Christmas Rose",
+      "meaning": "Serenity"
+    },
+    "googleQuery": {
+      "ko": "크리스마스 장미 꽃",
+      "en": "christmas rose flower"
+    }
+  },
+  {
+    "key": "12-27",
+    "ko": {
+      "name": "매화",
+      "meaning": "충절"
+    },
+    "en": {
+      "name": "Plum Blossom",
+      "meaning": "Loyalty"
+    },
+    "googleQuery": {
+      "ko": "매화",
+      "en": "plum blossom"
+    }
+  },
+  {
+    "key": "12-28",
+    "ko": {
+      "name": "석류",
+      "meaning": "풍요로운 사랑"
+    },
+    "en": {
+      "name": "Pomegranate",
+      "meaning": "Abundant love"
+    },
+    "googleQuery": {
+      "ko": "석류 꽃",
+      "en": "pomegranate flower"
+    }
+  },
+  {
+    "key": "12-29",
+    "ko": {
+      "name": "꽈리",
+      "meaning": "숨겨진 아름다움"
+    },
+    "en": {
+      "name": "Ground Cherry",
+      "meaning": "Hidden beauty"
+    },
+    "googleQuery": {
+      "ko": "꽈리 꽃",
+      "en": "ground cherry flower"
+    }
+  },
+  {
+    "key": "12-30",
+    "ko": {
+      "name": "납매",
+      "meaning": "우아함"
+    },
+    "en": {
+      "name": "Winter Jasmine",
+      "meaning": "Grace"
+    },
+    "googleQuery": {
+      "ko": "납매 꽃",
+      "en": "winter jasmine flower"
+    }
+  },
+  {
+    "key": "12-31",
+    "ko": {
+      "name": "노송나무",
+      "meaning": "영원함"
+    },
+    "en": {
+      "name": "Falsecypress",
+      "meaning": "Eternity"
+    },
+    "googleQuery": {
+      "ko": "노송나무 꽃",
+      "en": "falsecypress flower"
+    }
+  }
+]
