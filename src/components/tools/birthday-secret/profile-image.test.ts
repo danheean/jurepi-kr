@@ -11,6 +11,11 @@ beforeEach(() => {
   vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
 });
 
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
+
 function mockCanvasContext() {
   const gradient = { addColorStop: vi.fn() };
   const ctx = {
@@ -25,15 +30,45 @@ function mockCanvasContext() {
     beginPath: vi.fn(),
     moveTo: vi.fn(),
     arcTo: vi.fn(),
+    arc: vi.fn(),
     closePath: vi.fn(),
     fill: vi.fn(),
     stroke: vi.fn(),
+    save: vi.fn(),
+    restore: vi.fn(),
+    clip: vi.fn(),
+    drawImage: vi.fn(),
   };
   vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(
     ctx as unknown as CanvasRenderingContext2D
   );
   vi.spyOn(HTMLCanvasElement.prototype, 'toDataURL').mockReturnValue('data:image/png;base64,mock');
   return { ctx, gradient };
+}
+
+/**
+ * jsdom never fires real image load/decode events, so `new Image()` +
+ * `img.src = …` would hang forever without this stub. Mirrors the
+ * production `loadImage()` contract: onload on success, onerror on failure
+ * — the module under test never rejects either way.
+ */
+function stubImageLoad(outcome: 'success' | 'failure') {
+  class FakeImage {
+    onload: (() => void) | null = null;
+    onerror: (() => void) | null = null;
+    private _src = '';
+    set src(value: string) {
+      this._src = value;
+      queueMicrotask(() => {
+        if (outcome === 'success') this.onload?.();
+        else this.onerror?.();
+      });
+    }
+    get src() {
+      return this._src;
+    }
+  }
+  vi.stubGlobal('Image', FakeImage);
 }
 
 const profile: BirthProfile = {
@@ -69,29 +104,27 @@ const labels: ProfileImageLabels = {
 };
 
 describe('downloadProfileImage', () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  it('returns false and draws nothing when 2D context is unavailable', () => {
+  it('returns false and draws nothing when 2D context is unavailable', async () => {
     vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(null);
-    const ok = downloadProfileImage(profile, 'ko', labels);
+    const ok = await downloadProfileImage(profile, 'ko', labels);
     expect(ok).toBe(false);
   });
 
-  it('returns true and triggers a download when context is available', () => {
+  it('returns true and triggers a download when context is available', async () => {
+    stubImageLoad('success');
     mockCanvasContext();
     const createElementSpy = vi.spyOn(document, 'createElement');
     const appendChildSpy = vi.spyOn(document.body, 'appendChild');
 
-    const ok = downloadProfileImage(profile, 'ko', labels);
+    const ok = await downloadProfileImage(profile, 'ko', labels);
 
     expect(ok).toBe(true);
     expect(createElementSpy).toHaveBeenCalledWith('a');
     expect(appendChildSpy).toHaveBeenCalled();
   });
 
-  it('names the downloaded file after the profile date', () => {
+  it('names the downloaded file after the profile date', async () => {
+    stubImageLoad('success');
     mockCanvasContext();
     let capturedAnchor: HTMLAnchorElement | undefined;
     const realCreateElement = document.createElement.bind(document);
@@ -101,15 +134,16 @@ describe('downloadProfileImage', () => {
       return el;
     });
 
-    downloadProfileImage(profile, 'ko', labels);
+    await downloadProfileImage(profile, 'ko', labels);
 
     expect(capturedAnchor?.download).toBe('birthday-secret-04-15.png');
     expect(capturedAnchor?.href).toBe('data:image/png;base64,mock');
   });
 
-  it('draws the flower, stone, and color card titles onto the canvas', () => {
+  it('draws the flower, stone, and color card titles onto the canvas', async () => {
+    stubImageLoad('success');
     const { ctx } = mockCanvasContext();
-    downloadProfileImage(profile, 'ko', labels);
+    await downloadProfileImage(profile, 'ko', labels);
 
     const drawnTexts = ctx.fillText.mock.calls.map((call) => call[0]);
     expect(drawnTexts).toContain(labels.brand);
@@ -119,30 +153,33 @@ describe('downloadProfileImage', () => {
     expect(drawnTexts).toContain(profile.color.ko.name);
   });
 
-  it('draws the flower meaning when present (regression guard for the empty-meaning content gap)', () => {
+  it('draws the flower meaning when present (regression guard for the empty-meaning content gap)', async () => {
+    stubImageLoad('success');
     const { ctx } = mockCanvasContext();
-    downloadProfileImage(profile, 'ko', labels);
+    await downloadProfileImage(profile, 'ko', labels);
 
     const drawnTexts = ctx.fillText.mock.calls.map((call) => call[0]);
     expect(drawnTexts).toContain(profile.flower.ko.meaning);
   });
 
-  it('skips the meaning line (rather than drawing an empty string) when a flower has no meaning', () => {
+  it('skips the meaning line (rather than drawing an empty string) when a flower has no meaning', async () => {
+    stubImageLoad('success');
     const { ctx } = mockCanvasContext();
     const profileNoMeaning: BirthProfile = {
       ...profile,
       flower: { ...profile.flower, ko: { name: '이름만', meaning: '' }, en: { name: 'NameOnly', meaning: '' } },
     };
 
-    downloadProfileImage(profileNoMeaning, 'ko', labels);
+    await downloadProfileImage(profileNoMeaning, 'ko', labels);
 
     const drawnTexts = ctx.fillText.mock.calls.map((call) => call[0]);
     expect(drawnTexts).not.toContain('');
   });
 
-  it('uses the color hex for the swatch fill', () => {
+  it('uses the color hex for the swatch fill', async () => {
+    stubImageLoad('success');
     const { ctx } = mockCanvasContext();
-    downloadProfileImage(profile, 'ko', labels);
+    await downloadProfileImage(profile, 'ko', labels);
 
     // fillStyle is set repeatedly through the draw; the swatch step sets it
     // directly to the raw hex right before drawing the rounded rect.
@@ -150,22 +187,44 @@ describe('downloadProfileImage', () => {
     expect(fillStyleWasSetToHex).toBe(true);
   });
 
-  it('renders English content for the en locale', () => {
+  it('renders English content for the en locale', async () => {
+    stubImageLoad('success');
     const { ctx } = mockCanvasContext();
-    downloadProfileImage(profile, 'en', labels);
+    await downloadProfileImage(profile, 'en', labels);
 
     const drawnTexts = ctx.fillText.mock.calls.map((call) => call[0]);
     expect(drawnTexts).toContain(profile.flower.en.name);
     expect(drawnTexts).toContain(profile.stone.en.name);
   });
 
-  it('returns false when canvas.toDataURL throws (e.g. tainted canvas)', () => {
+  it('returns false when canvas.toDataURL throws (e.g. tainted canvas)', async () => {
+    stubImageLoad('success');
     mockCanvasContext();
     vi.spyOn(HTMLCanvasElement.prototype, 'toDataURL').mockImplementation(() => {
       throw new Error('tainted canvas');
     });
 
-    const ok = downloadProfileImage(profile, 'ko', labels);
+    const ok = await downloadProfileImage(profile, 'ko', labels);
     expect(ok).toBe(false);
+  });
+
+  it('draws the stone illustration clipped into a circle when the image loads', async () => {
+    stubImageLoad('success');
+    const { ctx } = mockCanvasContext();
+    await downloadProfileImage(profile, 'ko', labels);
+
+    expect(ctx.clip).toHaveBeenCalled();
+    expect(ctx.drawImage).toHaveBeenCalledTimes(1);
+  });
+
+  it('completes the download (text-only card) when the stone illustration fails to load', async () => {
+    stubImageLoad('failure');
+    const { ctx } = mockCanvasContext();
+    const ok = await downloadProfileImage(profile, 'ko', labels);
+
+    expect(ok).toBe(true);
+    expect(ctx.drawImage).not.toHaveBeenCalled();
+    const drawnTexts = ctx.fillText.mock.calls.map((call) => call[0]);
+    expect(drawnTexts).toContain(profile.stone.ko.name);
   });
 });
