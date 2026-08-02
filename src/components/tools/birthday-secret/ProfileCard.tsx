@@ -74,9 +74,9 @@ export function ProfileCard({ profile, compact = false }: ProfileCardProps) {
           <p className="text-xs font-semibold uppercase tracking-wide text-accent-rose-ink">
             💎 {t('result.stoneTitle')}
           </p>
-          <div className="mt-1 flex items-start gap-3">
+          <div className="mt-2 flex flex-col items-center gap-3 text-center">
             <div
-              className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-surface-sunken"
+              className="h-40 w-40 shrink-0 overflow-hidden rounded-2xl bg-surface-sunken shadow-card sm:h-44 sm:w-44"
               data-testid="stone-illustration"
             >
               <img
@@ -84,8 +84,8 @@ export function ProfileCard({ profile, compact = false }: ProfileCardProps) {
                 alt=""
                 aria-hidden="true"
                 loading="lazy"
-                width={64}
-                height={64}
+                width={176}
+                height={176}
                 className="h-full w-full object-cover"
               />
             </div>
@@ -99,9 +99,11 @@ export function ProfileCard({ profile, compact = false }: ProfileCardProps) {
               )}
             </div>
           </div>
-          <a href={googleImageUrl(profile.stone.googleQuery[locale])} target="_blank" rel="noopener noreferrer" className={`${googleLinkClass} mt-2`}>
-            {t('result.googleImage')}
-          </a>
+          <div className="mt-2 flex justify-center">
+            <a href={googleImageUrl(profile.stone.googleQuery[locale])} target="_blank" rel="noopener noreferrer" className={googleLinkClass}>
+              {t('result.googleImage')}
+            </a>
+          </div>
         </article>
 
         {/* Color */}
